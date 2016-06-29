@@ -8,7 +8,7 @@
         <!--Ferries Home View Controller-->
         <scene sceneID="TTO-sh-riy">
             <objects>
-                <tableViewController hidesBottomBarWhenPushed="YES" id="ekB-dW-zV3" customClass="FerriesHomeViewController" customModule="wsdot" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="ekB-dW-zV3" customClass="FerriesHomeViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="RqN-K6-FGu">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -29,21 +29,11 @@
         <!--Route Schedules View Controller-->
         <scene sceneID="tOb-Kp-Cb7">
             <objects>
-                <tableViewController id="H7m-8E-Pu6" customClass="RouteSchedulesViewController" customModule="wsdot" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="H7m-8E-Pu6" customClass="RouteSchedulesViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="PxJ-gn-nl2">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="oxz-Wc-GaG">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oxz-Wc-GaG" id="7Zl-Qv-iQr">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="H7m-8E-Pu6" id="EXq-dH-wRh"/>
                             <outlet property="delegate" destination="H7m-8E-Pu6" id="Fgw-qS-kD3"/>
