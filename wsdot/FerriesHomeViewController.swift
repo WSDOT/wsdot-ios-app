@@ -11,6 +11,8 @@ import UIKit
 class FerriesHomeViewController: UITableViewController {
 
     let cellIdentifier = "FerriesHomeCell"
+    let SegueRouteSchedulesViewController = "RouteSchedulesViewController"
+    
     var menu_options: [String] = []
 
     override func viewDidLoad() {
@@ -50,5 +52,13 @@ class FerriesHomeViewController: UITableViewController {
     // MARK: Table View Delegate Methods
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print(menu_options[indexPath.row])
+        // Perform Segue
+        switch (indexPath.row) {
+            case 0:
+                performSegueWithIdentifier(SegueRouteSchedulesViewController, sender: self)
+                tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            default:
+                break
+        }
     }
 }
