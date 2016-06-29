@@ -8,7 +8,7 @@
         <!--Ferries Home View Controller-->
         <scene sceneID="TTO-sh-riy">
             <objects>
-                <tableViewController id="ekB-dW-zV3" customClass="FerriesHomeViewController" customModule="wsdot" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="ekB-dW-zV3" customClass="FerriesHomeViewController" customModule="wsdot" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="RqN-K6-FGu">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

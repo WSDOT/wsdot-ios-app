@@ -18,7 +18,7 @@ class HomeViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Set Title
-        title = "WSDOT"
+        title = "Home"
         menu_options = ["Traffic Map", "Ferries", "Mountain Passes", "Social Media", "Toll Rates", "Border Waits", "Amtrak Cascades"]
         tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: cellIdentifier)
         // Do any additional setup after loading the view, typically from a nib.
