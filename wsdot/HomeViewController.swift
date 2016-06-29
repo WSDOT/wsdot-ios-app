@@ -10,6 +10,8 @@ import UIKit
 
 class HomeViewController: UITableViewController {
 
+    let TITLE = "Home"
+
     let cellIdentifier = "HomeCell"
     let SegueFerriesHomeViewController = "FerriesHomeViewController"
     
@@ -18,7 +20,7 @@ class HomeViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Set Title
-        title = "Home"
+        title = TITLE
         menu_options = ["Traffic Map", "Ferries", "Mountain Passes", "Social Media", "Toll Rates", "Border Waits", "Amtrak Cascades"]
         tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: cellIdentifier)
         // Do any additional setup after loading the view, typically from a nib.
@@ -27,6 +29,12 @@ class HomeViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        // Initialize Tab Bar Item
+        tabBarItem = UITabBarItem(title: TITLE, image: UIImage(named: "ic-home"), tag: 0)
     }
 
     // MARK: -

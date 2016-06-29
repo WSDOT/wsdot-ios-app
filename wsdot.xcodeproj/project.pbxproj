@@ -17,6 +17,12 @@
 		9AD32E2A1D24233D000AEC28 /* FerriesHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32E291D24233D000AEC28 /* FerriesHomeViewController.swift */; };
 		9AD32E2C1D242A5A000AEC28 /* RouteSchedulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32E2B1D242A5A000AEC28 /* RouteSchedulesViewController.swift */; };
 		9AD32E2E1D243260000AEC28 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32E2D1D243260000AEC28 /* FavoritesViewController.swift */; };
+		9AD32E371D24393D000AEC28 /* ic-star.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E341D24393D000AEC28 /* ic-star.png */; };
+		9AD32E381D24393D000AEC28 /* ic-star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E351D24393D000AEC28 /* ic-star@2x.png */; };
+		9AD32E391D24393D000AEC28 /* ic-star@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E361D24393D000AEC28 /* ic-star@3x.png */; };
+		9AD32E3C1D2439C3000AEC28 /* ic-home.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E3B1D2439C3000AEC28 /* ic-home.png */; };
+		9AD32E3E1D2439E1000AEC28 /* ic-home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E3D1D2439E1000AEC28 /* ic-home@2x.png */; };
+		9AD32E401D2439E5000AEC28 /* ic-home@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E3F1D2439E5000AEC28 /* ic-home@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +50,12 @@
 		9AD32E291D24233D000AEC28 /* FerriesHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerriesHomeViewController.swift; sourceTree = "<group>"; };
 		9AD32E2B1D242A5A000AEC28 /* RouteSchedulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteSchedulesViewController.swift; sourceTree = "<group>"; };
 		9AD32E2D1D243260000AEC28 /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		9AD32E341D24393D000AEC28 /* ic-star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic-star.png"; sourceTree = "<group>"; };
+		9AD32E351D24393D000AEC28 /* ic-star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic-star@2x.png"; sourceTree = "<group>"; };
+		9AD32E361D24393D000AEC28 /* ic-star@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic-star@3x.png"; sourceTree = "<group>"; };
+		9AD32E3B1D2439C3000AEC28 /* ic-home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic-home.png"; sourceTree = "<group>"; };
+		9AD32E3D1D2439E1000AEC28 /* ic-home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic-home@2x.png"; sourceTree = "<group>"; };
+		9AD32E3F1D2439E5000AEC28 /* ic-home@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic-home@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +79,7 @@
 		9AD32DF01D23172C000AEC28 = {
 			isa = PBXGroup;
 			children = (
+				9AD32E331D24393D000AEC28 /* Resources */,
 				9AD32DFB1D23172C000AEC28 /* wsdot */,
 				9AD32E101D23172C000AEC28 /* wsdotTests */,
 				9AD32DFA1D23172C000AEC28 /* Products */,
@@ -164,6 +177,28 @@
 			name = Ferries;
 			sourceTree = "<group>";
 		};
+		9AD32E331D24393D000AEC28 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9AD32E3A1D24394C000AEC28 /* tabbar */,
+			);
+			name = Resources;
+			path = wsdot/Resources;
+			sourceTree = "<group>";
+		};
+		9AD32E3A1D24394C000AEC28 /* tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				9AD32E3B1D2439C3000AEC28 /* ic-home.png */,
+				9AD32E3F1D2439E5000AEC28 /* ic-home@3x.png */,
+				9AD32E341D24393D000AEC28 /* ic-star.png */,
+				9AD32E3D1D2439E1000AEC28 /* ic-home@2x.png */,
+				9AD32E351D24393D000AEC28 /* ic-star@2x.png */,
+				9AD32E361D24393D000AEC28 /* ic-star@3x.png */,
+			);
+			name = tabbar;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -247,7 +282,13 @@
 			files = (
 				9AD32E071D23172C000AEC28 /* LaunchScreen.storyboard in Resources */,
 				9AD32E281D2421E4000AEC28 /* Ferries.storyboard in Resources */,
+				9AD32E401D2439E5000AEC28 /* ic-home@3x.png in Resources */,
+				9AD32E371D24393D000AEC28 /* ic-star.png in Resources */,
+				9AD32E3E1D2439E1000AEC28 /* ic-home@2x.png in Resources */,
+				9AD32E391D24393D000AEC28 /* ic-star@3x.png in Resources */,
+				9AD32E381D24393D000AEC28 /* ic-star@2x.png in Resources */,
 				9AD32E041D23172C000AEC28 /* Assets.xcassets in Resources */,
+				9AD32E3C1D2439C3000AEC28 /* ic-home.png in Resources */,
 				9AD32E021D23172C000AEC28 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,9 +10,11 @@ import UIKit
 
 class FavoritesViewController: UITableViewController {
 
+    let TITLE = "Favorites"
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Favorites"
+        title = TITLE
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -24,6 +26,14 @@ class FavoritesViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+     
+        // Initialize Tab Bar Item
+        tabBarItem = UITabBarItem(title: TITLE, image: UIImage(named: "ic-star"), tag: 1)
+    }
+
 
     // MARK: - Table view data source
 
