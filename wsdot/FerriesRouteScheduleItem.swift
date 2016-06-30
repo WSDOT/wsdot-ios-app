@@ -23,4 +23,12 @@ class FerriesRouteScheduleItem: NSObject {
         self.routeAlert = alerts
         self.scheduleDate = scheduleDate
     }
+    
+    // MARK: -
+    // MARK: For testing
+    init(description: String, id: Int) {
+        super.init()
+        self.routeId = id
+        self.routeDescription = description
+    }
 }

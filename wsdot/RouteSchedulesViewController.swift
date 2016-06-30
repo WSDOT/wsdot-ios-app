@@ -12,19 +12,35 @@ class RouteSchedulesViewController: UITableViewController {
 
     let cellIdentifier = "FerriesRouteSchedulesCell"
 
+    
     var routes = [FerriesRouteScheduleItem]()
 
     // MARK: -
     // MARK: Initialization
     required init?(coder decoder: NSCoder) {
         super.init(coder: decoder)
-        // Load Items
-        routes = RouteSchedulesStore.getRouteSchedules()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Route Schedules"
+        tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: cellIdentifier)
+        
+    
+        RouteSchedulesStore.getRouteSchedules { data, error in
+            if let validData = data {
+                self.routes = validData
+                
+                // Reload tableview on UI thread
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.tableView.reloadData()
+                })
+            } else {
+                // TODO: Display error
+            }
+        }
+        
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
