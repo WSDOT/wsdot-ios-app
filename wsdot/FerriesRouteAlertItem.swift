@@ -10,10 +10,19 @@ import UIKit
 class FerriesRouteAlertItem: NSObject {
  
     var uuid: String = NSUUID().UUIDString
-    var routeId: Int = 0
+    var bulletinId: Int = 0
+    var publishDate: String = ""
+    var alertDescription: String = ""
+    var alertFullTitle: String = ""
+    var alertFullText: String = ""
  
-    init(id: Int) {
+ 
+    init(id: Int, date: String, desc: String, title: String, text: String) {
         super.init()
-        self.routeId = id
+        self.bulletinId = id
+        self.publishDate = date
+        self.alertDescription = desc
+        self.alertFullTitle = title
+        self.alertFullText = text
     }
 }

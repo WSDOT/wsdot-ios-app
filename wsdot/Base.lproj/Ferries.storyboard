@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Ferries Home View Controller-->
@@ -30,17 +31,68 @@
         <scene sceneID="tOb-Kp-Cb7">
             <objects>
                 <tableViewController id="H7m-8E-Pu6" customClass="RouteSchedulesViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="PxJ-gn-nl2">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="28" sectionFooterHeight="28" id="PxJ-gn-nl2">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <activityIndicatorView key="tableFooterView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="gQv-RW-mzK">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
+                            <rect key="frame" x="0.0" y="100" width="600" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </activityIndicatorView>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FerriesRouteSchedulesCell" rowHeight="72" id="Mat-j0-LTz" customClass="RoutesCustomCell" customModule="WSDOT">
+                                <rect key="frame" x="0.0" y="28" width="600" height="72"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mat-j0-LTz" id="Xhp-Rs-5eD">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="71"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RGh-Vh-w9J" userLabel="Sub Title">
+                                            <rect key="frame" x="8" y="42" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OGh-z4-3tg">
+                                            <rect key="frame" x="8" y="8" width="42" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="XSZ-Bi-dT4"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9bu-ZF-Yvd">
+                                            <rect key="frame" x="502" y="38" width="90" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="90" id="7yb-d8-ekh"/>
+                                            </constraints>
+                                            <state key="normal" title="View Alerts">
+                                                <color key="titleColor" red="1" green="0.4136994591" blue="0.25250550579999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="RGh-Vh-w9J" firstAttribute="top" secondItem="OGh-z4-3tg" secondAttribute="bottom" constant="13" id="0QF-rH-FYH"/>
+                                        <constraint firstItem="9bu-ZF-Yvd" firstAttribute="trailing" secondItem="Xhp-Rs-5eD" secondAttribute="trailingMargin" id="IdQ-N1-S6l"/>
+                                        <constraint firstItem="OGh-z4-3tg" firstAttribute="leading" secondItem="RGh-Vh-w9J" secondAttribute="leading" id="SkK-9r-c28"/>
+                                        <constraint firstItem="OGh-z4-3tg" firstAttribute="trailing" secondItem="RGh-Vh-w9J" secondAttribute="trailing" id="Tnd-rA-U24"/>
+                                        <constraint firstItem="RGh-Vh-w9J" firstAttribute="bottom" secondItem="9bu-ZF-Yvd" secondAttribute="bottom" constant="-5" id="aLD-82-D90"/>
+                                        <constraint firstItem="OGh-z4-3tg" firstAttribute="leading" secondItem="Xhp-Rs-5eD" secondAttribute="leadingMargin" id="ePA-QT-PjG"/>
+                                        <constraint firstItem="RGh-Vh-w9J" firstAttribute="bottom" secondItem="Xhp-Rs-5eD" secondAttribute="bottomMargin" id="hZS-rr-Rn8"/>
+                                        <constraint firstItem="OGh-z4-3tg" firstAttribute="top" secondItem="Xhp-Rs-5eD" secondAttribute="topMargin" id="sQe-Am-hqI"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="alertButton" destination="9bu-ZF-Yvd" id="ua0-Dv-BU5"/>
+                                    <outlet property="subTitle" destination="RGh-Vh-w9J" id="pLs-M9-E37"/>
+                                    <outlet property="title" destination="OGh-z4-3tg" id="iBe-Ir-EFn"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="H7m-8E-Pu6" id="EXq-dH-wRh"/>
-                            <outlet property="delegate" destination="H7m-8E-Pu6" id="Fgw-qS-kD3"/>
+                            <outlet property="dataSource" destination="H7m-8E-Pu6" id="Eb4-di-k7h"/>
+                            <outlet property="delegate" destination="H7m-8E-Pu6" id="Zeg-hB-Cm7"/>
                         </connections>
                     </tableView>
                     <connections>

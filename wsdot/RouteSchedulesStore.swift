@@ -39,17 +39,28 @@ class RouteSchedulesStore {
         var routeSchedules = [FerriesRouteScheduleItem]()
     
         for (_,subJson):(String, JSON) in json {
-            let route = FerriesRouteScheduleItem(description: subJson["Description"].stringValue, id: subJson["RouteID"].intValue)
+            let route = FerriesRouteScheduleItem(description: subJson["Description"].stringValue, id: subJson["RouteID"].intValue,
+                                                    alerts: parseRouteAlertJSON(subJson["RouteAlert"]), scheduleDate: parseRouteDatesJSON(subJson["Date"]))
             routeSchedules.append(route)
         }
-    
     
         return routeSchedules
     }
     
-    // TODO: implement
+
     private static func parseRouteAlertJSON(json: JSON) ->[FerriesRouteAlertItem]{
-        return [FerriesRouteAlertItem]()
+    
+        var routeAlerts = [FerriesRouteAlertItem]()
+        
+        for (_,subJson):(String, JSON) in json {
+            let alert = FerriesRouteAlertItem(id: subJson["BulletinID"].intValue, date: subJson["PublishDate"].stringValue, desc: subJson["AlertDescription"].stringValue,
+                                                 title: subJson["AlertFullTitle"].stringValue, text: subJson["AlertFullText"].stringValue)
+        
+        
+            routeAlerts.append(alert)
+        }
+    
+        return routeAlerts
     }
     
     // TODO: implement

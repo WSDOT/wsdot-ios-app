@@ -24,7 +24,9 @@ class RouteSchedulesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Route Schedules"
-        tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: cellIdentifier)
+        
+        //tableView.registerClass(RoutesCustomCell.classForCoder(), forCellReuseIdentifier: cellIdentifier)
+        
         activityIndicatorView.startAnimating()
     
         RouteSchedulesStore.getRouteSchedules { data, error in
@@ -32,7 +34,6 @@ class RouteSchedulesViewController: UITableViewController {
             self.activityIndicatorView.stopAnimating()
             if let validData = data {
                 self.routes = validData
-                
                 // Reload tableview on UI thread
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.tableView.reloadData()
@@ -41,13 +42,7 @@ class RouteSchedulesViewController: UITableViewController {
                 // TODO: Display error
             }
         }
-        
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,10 +61,20 @@ class RouteSchedulesViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
+        //let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! RoutesCustomCell
+        
+        cell.title.text = routes[indexPath.row].routeDescription
+        cell.subTitle.text = "updated: "
+        cell.alertButton = UIButton()
+        
+        if self.routes[indexPath.row].routeAlert.count == 0 {
+            cell.alertButton.hidden = true
+        }
         
         // Configure Cell
-        cell.textLabel?.text = routes[indexPath.row].routeDescription
+        // cell.textLabel?.text = routes[indexPath.row].routeDescription
      
         return cell
     }
@@ -78,5 +83,10 @@ class RouteSchedulesViewController: UITableViewController {
     // MARK: Table View Delegate Methods
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print(routes[indexPath.row].routeDescription)
+                        
+        if self.routes[indexPath.row].routeAlert.count > 0 {
+            print("this route has alerts!")
+        }
+        
     }
 }
