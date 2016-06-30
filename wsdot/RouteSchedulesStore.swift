@@ -38,7 +38,7 @@ class RouteSchedulesStore {
     
         var routeSchedules = [FerriesRouteScheduleItem]()
     
-        for (index,subJson):(String, JSON) in json {
+        for (_,subJson):(String, JSON) in json {
             let route = FerriesRouteScheduleItem(description: subJson["Description"].stringValue, id: subJson["RouteID"].intValue)
             routeSchedules.append(route)
         }

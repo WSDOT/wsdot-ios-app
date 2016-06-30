@@ -34,11 +34,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <activityIndicatorView key="tableFooterView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="gQv-RW-mzK">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </activityIndicatorView>
                         <connections>
                             <outlet property="dataSource" destination="H7m-8E-Pu6" id="EXq-dH-wRh"/>
                             <outlet property="delegate" destination="H7m-8E-Pu6" id="Fgw-qS-kD3"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="activityIndicatorView" destination="gQv-RW-mzK" id="93V-y2-rgZ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z8Z-0c-ZZJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

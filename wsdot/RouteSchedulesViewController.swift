@@ -11,9 +11,9 @@ import UIKit
 class RouteSchedulesViewController: UITableViewController {
 
     let cellIdentifier = "FerriesRouteSchedulesCell"
-
-    
     var routes = [FerriesRouteScheduleItem]()
+    
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
 
     // MARK: -
     // MARK: Initialization
@@ -25,9 +25,11 @@ class RouteSchedulesViewController: UITableViewController {
         super.viewDidLoad()
         title = "Route Schedules"
         tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: cellIdentifier)
-        
+        activityIndicatorView.startAnimating()
     
         RouteSchedulesStore.getRouteSchedules { data, error in
+            
+            self.activityIndicatorView.stopAnimating()
             if let validData = data {
                 self.routes = validData
                 
