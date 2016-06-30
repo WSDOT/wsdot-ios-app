@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		925D2EDCFB8CE8521EA1BE65 /* Pods_WSDOT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4874A45B23E5DF3AD6E8C108 /* Pods_WSDOT.framework */; };
+		9A5017941D258F0C00B9C49E /* FerriesRouteAlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5017931D258F0C00B9C49E /* FerriesRouteAlertItem.swift */; };
+		9A5017961D258F1100B9C49E /* FerriesRouteScheduleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5017951D258F1100B9C49E /* FerriesRouteScheduleItem.swift */; };
+		9A5017981D258F1500B9C49E /* FerriesScheduleDateItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5017971D258F1500B9C49E /* FerriesScheduleDateItem.swift */; };
+		9A50179A1D258F1B00B9C49E /* RouteSchedulesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5017991D258F1B00B9C49E /* RouteSchedulesStore.swift */; };
+		9A50179C1D258F2000B9C49E /* RoutesCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */; };
 		9AD32DFD1D23172C000AEC28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32DFC1D23172C000AEC28 /* AppDelegate.swift */; };
 		9AD32E021D23172C000AEC28 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E001D23172C000AEC28 /* Main.storyboard */; };
 		9AD32E041D23172C000AEC28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E031D23172C000AEC28 /* Assets.xcassets */; };
@@ -36,7 +42,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9AD32DF91D23172C000AEC28 /* wsdot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wsdot.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4874A45B23E5DF3AD6E8C108 /* Pods_WSDOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WSDOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A5017931D258F0C00B9C49E /* FerriesRouteAlertItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerriesRouteAlertItem.swift; sourceTree = "<group>"; };
+		9A5017951D258F1100B9C49E /* FerriesRouteScheduleItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerriesRouteScheduleItem.swift; sourceTree = "<group>"; };
+		9A5017971D258F1500B9C49E /* FerriesScheduleDateItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerriesScheduleDateItem.swift; sourceTree = "<group>"; };
+		9A5017991D258F1B00B9C49E /* RouteSchedulesStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteSchedulesStore.swift; sourceTree = "<group>"; };
+		9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutesCustomCell.swift; sourceTree = "<group>"; };
+		9AD32DF91D23172C000AEC28 /* WSDOT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WSDOT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD32DFC1D23172C000AEC28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9AD32E011D23172C000AEC28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9AD32E031D23172C000AEC28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -56,6 +68,8 @@
 		9AD32E3B1D2439C3000AEC28 /* ic-home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic-home.png"; sourceTree = "<group>"; };
 		9AD32E3D1D2439E1000AEC28 /* ic-home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic-home@2x.png"; sourceTree = "<group>"; };
 		9AD32E3F1D2439E5000AEC28 /* ic-home@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic-home@3x.png"; sourceTree = "<group>"; };
+		D580B199D18890EA70A9D2CE /* Pods-WSDOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.release.xcconfig"; sourceTree = "<group>"; };
+		EF91807E010BF6B934CE16C4 /* Pods-WSDOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				925D2EDCFB8CE8521EA1BE65 /* Pods_WSDOT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +91,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6880C254A7FDBC3E863BDF4D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4874A45B23E5DF3AD6E8C108 /* Pods_WSDOT.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9A50178F1D258EE300B9C49E /* Ferries */ = {
+			isa = PBXGroup;
+			children = (
+				9A5017991D258F1B00B9C49E /* RouteSchedulesStore.swift */,
+			);
+			name = Ferries;
+			sourceTree = "<group>";
+		};
+		9A5017911D258EF300B9C49E /* Ferries */ = {
+			isa = PBXGroup;
+			children = (
+				9A5017951D258F1100B9C49E /* FerriesRouteScheduleItem.swift */,
+				9A5017971D258F1500B9C49E /* FerriesScheduleDateItem.swift */,
+				9A5017931D258F0C00B9C49E /* FerriesRouteAlertItem.swift */,
+			);
+			name = Ferries;
+			sourceTree = "<group>";
+		};
+		9A5017921D258EFF00B9C49E /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+				9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */,
+			);
+			name = CustomCells;
+			sourceTree = "<group>";
+		};
 		9AD32DF01D23172C000AEC28 = {
 			isa = PBXGroup;
 			children = (
@@ -83,13 +132,15 @@
 				9AD32DFB1D23172C000AEC28 /* wsdot */,
 				9AD32E101D23172C000AEC28 /* wsdotTests */,
 				9AD32DFA1D23172C000AEC28 /* Products */,
+				CF411D71D85E5D578BA870A8 /* Pods */,
+				6880C254A7FDBC3E863BDF4D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		9AD32DFA1D23172C000AEC28 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9AD32DF91D23172C000AEC28 /* wsdot.app */,
+				9AD32DF91D23172C000AEC28 /* WSDOT.app */,
 				9AD32E0D1D23172C000AEC28 /* wsdotTests.xctest */,
 			);
 			name = Products;
@@ -122,6 +173,7 @@
 		9AD32E1C1D231731000AEC28 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9A5017911D258EF300B9C49E /* Ferries */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -129,6 +181,7 @@
 		9AD32E1D1D231739000AEC28 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9A5017921D258EFF00B9C49E /* CustomCells */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -145,6 +198,7 @@
 		9AD32E1F1D231749000AEC28 /* Stores */ = {
 			isa = PBXGroup;
 			children = (
+				9A50178F1D258EE300B9C49E /* Ferries */,
 			);
 			name = Stores;
 			sourceTree = "<group>";
@@ -199,24 +253,36 @@
 			name = tabbar;
 			sourceTree = "<group>";
 		};
+		CF411D71D85E5D578BA870A8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EF91807E010BF6B934CE16C4 /* Pods-WSDOT.debug.xcconfig */,
+				D580B199D18890EA70A9D2CE /* Pods-WSDOT.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9AD32DF81D23172C000AEC28 /* wsdot */ = {
+		9AD32DF81D23172C000AEC28 /* WSDOT */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AD32E161D23172C000AEC28 /* Build configuration list for PBXNativeTarget "wsdot" */;
+			buildConfigurationList = 9AD32E161D23172C000AEC28 /* Build configuration list for PBXNativeTarget "WSDOT" */;
 			buildPhases = (
+				0FA43F1483001A8A59A02D3A /* [CP] Check Pods Manifest.lock */,
 				9AD32DF51D23172C000AEC28 /* Sources */,
 				9AD32DF61D23172C000AEC28 /* Frameworks */,
 				9AD32DF71D23172C000AEC28 /* Resources */,
+				66C8D8D6CB7FBC355F7E46A6 /* [CP] Embed Pods Frameworks */,
+				9D171E847602D9A1BEE959D4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = wsdot;
+			name = WSDOT;
 			productName = wsdot;
-			productReference = 9AD32DF91D23172C000AEC28 /* wsdot.app */;
+			productReference = 9AD32DF91D23172C000AEC28 /* WSDOT.app */;
 			productType = "com.apple.product-type.application";
 		};
 		9AD32E0C1D23172C000AEC28 /* wsdotTests */ = {
@@ -256,7 +322,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9AD32DF41D23172C000AEC28 /* Build configuration list for PBXProject "wsdot" */;
+			buildConfigurationList = 9AD32DF41D23172C000AEC28 /* Build configuration list for PBXProject "WSDOT" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -269,7 +335,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9AD32DF81D23172C000AEC28 /* wsdot */,
+				9AD32DF81D23172C000AEC28 /* WSDOT */,
 				9AD32E0C1D23172C000AEC28 /* wsdotTests */,
 			);
 		};
@@ -302,15 +368,68 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0FA43F1483001A8A59A02D3A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		66C8D8D6CB7FBC355F7E46A6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9D171E847602D9A1BEE959D4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9AD32DF51D23172C000AEC28 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A5017941D258F0C00B9C49E /* FerriesRouteAlertItem.swift in Sources */,
 				9AD32DFD1D23172C000AEC28 /* AppDelegate.swift in Sources */,
+				9A5017981D258F1500B9C49E /* FerriesScheduleDateItem.swift in Sources */,
+				9A5017961D258F1100B9C49E /* FerriesRouteScheduleItem.swift in Sources */,
+				9A50179C1D258F2000B9C49E /* RoutesCustomCell.swift in Sources */,
 				9AD32E2A1D24233D000AEC28 /* FerriesHomeViewController.swift in Sources */,
 				9AD32E221D241AF4000AEC28 /* HomeViewController.swift in Sources */,
 				9AD32E2E1D243260000AEC28 /* FavoritesViewController.swift in Sources */,
+				9A50179A1D258F1B00B9C49E /* RouteSchedulesStore.swift in Sources */,
 				9AD32E2C1D242A5A000AEC28 /* RouteSchedulesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -328,7 +447,7 @@
 /* Begin PBXTargetDependency section */
 		9AD32E0F1D23172C000AEC28 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9AD32DF81D23172C000AEC28 /* wsdot */;
+			target = 9AD32DF81D23172C000AEC28 /* WSDOT */;
 			targetProxy = 9AD32E0E1D23172C000AEC28 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -440,6 +559,7 @@
 		};
 		9AD32E171D23172C000AEC28 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF91807E010BF6B934CE16C4 /* Pods-WSDOT.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = wsdot/Info.plist;
@@ -451,6 +571,7 @@
 		};
 		9AD32E181D23172C000AEC28 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D580B199D18890EA70A9D2CE /* Pods-WSDOT.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = wsdot/Info.plist;
@@ -487,7 +608,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9AD32DF41D23172C000AEC28 /* Build configuration list for PBXProject "wsdot" */ = {
+		9AD32DF41D23172C000AEC28 /* Build configuration list for PBXProject "WSDOT" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9AD32E141D23172C000AEC28 /* Debug */,
@@ -496,13 +617,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AD32E161D23172C000AEC28 /* Build configuration list for PBXNativeTarget "wsdot" */ = {
+		9AD32E161D23172C000AEC28 /* Build configuration list for PBXNativeTarget "WSDOT" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9AD32E171D23172C000AEC28 /* Debug */,
 				9AD32E181D23172C000AEC28 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9AD32E191D23172C000AEC28 /* Build configuration list for PBXNativeTarget "wsdotTests" */ = {
 			isa = XCConfigurationList;
@@ -511,6 +633,7 @@
 				9AD32E1B1D23172C000AEC28 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
