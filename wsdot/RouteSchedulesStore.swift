@@ -38,9 +38,18 @@ class RouteSchedulesStore {
     
         var routeSchedules = [FerriesRouteScheduleItem]()
     
+        
+    
         for (_,subJson):(String, JSON) in json {
+        
+            var crossingTime: String? = nil
+        
+            if (subJson["CrossingTime"] != nil){
+                crossingTime = subJson["CrossingTime"].stringValue
+            }
+        
             let route = FerriesRouteScheduleItem(description: subJson["Description"].stringValue, id: subJson["RouteID"].intValue,
-                                                    alerts: parseRouteAlertJSON(subJson["RouteAlert"]), scheduleDate: parseRouteDatesJSON(subJson["Date"]))
+                        crossingTime: crossingTime, alerts: parseRouteAlertJSON(subJson["RouteAlert"]), scheduleDate: parseRouteDatesJSON(subJson["Date"]))
             routeSchedules.append(route)
         }
     

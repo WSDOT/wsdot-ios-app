@@ -25,8 +25,6 @@ class RouteSchedulesViewController: UITableViewController {
         super.viewDidLoad()
         title = "Route Schedules"
         
-        //tableView.registerClass(RoutesCustomCell.classForCoder(), forCellReuseIdentifier: cellIdentifier)
-        
         activityIndicatorView.startAnimating()
     
         RouteSchedulesStore.getRouteSchedules { data, error in
@@ -61,20 +59,25 @@ class RouteSchedulesViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        //let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
         
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! RoutesCustomCell
         
         cell.title.text = routes[indexPath.row].routeDescription
-        cell.subTitle.text = "updated: "
-        cell.alertButton = UIButton()
         
-        if self.routes[indexPath.row].routeAlert.count == 0 {
-            cell.alertButton.hidden = true
+        if self.routes[indexPath.row].crossingTime != nil {
+            cell.subTitleOne.hidden = false
+            cell.subTitleOne.text = "Crossing time: ~ " + self.routes[indexPath.row].crossingTime! + " min"
+        } else {
+            cell.subTitleOne.hidden = true
         }
         
-        // Configure Cell
-        // cell.textLabel?.text = routes[indexPath.row].routeDescription
+        cell.subTitleTwo.text = "X minutes ago"
+
+        if self.routes[indexPath.row].routeAlert.count == 0 {
+            cell.alertButton.hidden = true
+        } else {
+            cell.alertButton.hidden = false
+        }
      
         return cell
     }
