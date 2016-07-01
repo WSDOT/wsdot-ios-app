@@ -24,11 +24,34 @@ class RouteSchedulesStore {
                     if let value = response.result.value {
                         let json = JSON(value)
                         //print("JSON: \(json)")
-                        completion(data: self.parseRouteSchedulesJSON(json), error: nil)
+                        
+                        let routeSchedules = self.parseRouteSchedulesJSON(json)
+                        
+                        saveRouteSchedules(routeSchedules)
+                        
+                        completion(data: routeSchedules, error: nil)
                     }
                 case .Failure(let error):
                     print(error)
                     completion(data: nil, error: error)
+            }
+        }
+    }
+
+
+    private static func saveRouteSchedules(routeSchedules: [FerriesRouteScheduleItem]){
+        for route in routeSchedules {
+            do {
+                try FerriesScheduleDataHelper.insert(
+                    RouteScheduleDataModel(
+                        routeId: Int64(route.routeId),
+                        routeDescription: route.routeDescription,
+                        selected: route.selected ? 1 : 0,
+                        crossingTime: route.crossingTime,
+                        routeAlert: "", // TODO: store alerts and date..
+                        scheduleDate: ""))
+            } catch _ {
+                // Failed to insert
             }
         }
     }
