@@ -1,5 +1,5 @@
 //
-//  RouteSchedulesModel.swift
+//  FerriesRouteScheduleItem.swift
 //  WSDOT
 //
 //  Created by Logan Sims on 6/29/16.

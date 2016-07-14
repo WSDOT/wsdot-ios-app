@@ -17,28 +17,40 @@ class SQLiteDataStore {
    
     private init() {
        
-        var path = "wsdotDB.sqlite"
-       
-        if let dirs: [NSString] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory,
-            NSSearchPathDomainMask.AllDomainsMask, true) as [NSString] {
-               
-             let dir = dirs[0]
-             path = dir.stringByAppendingPathComponent("wsdotDB.sqlite");
-        }
+        let path = NSSearchPathForDirectoriesInDomains(
+            .DocumentDirectory, .UserDomainMask, true
+        ).first!
        
         do {
-            WSDOTDB = try Connection(path)
+            WSDOTDB = try Connection("\(path)/wsdotDB.sqlite3")
         } catch _ {
             WSDOTDB = nil
         }
     }
    
     func createTables() throws{
+   
         do {
-            print("creating DB for Ferries Schedules...")
+            print("creating Caches table...")
+            try CachesDataHelper.createTable()
+            seedCaches()
+        } catch {
+            throw DataAccessError.Datastore_Connection_Error
+        }
+        
+        
+        do {
+            print("creating Ferries Schedules table...")
             try FerriesScheduleDataHelper.createTable()
         } catch {
             throw DataAccessError.Datastore_Connection_Error
         }
     }
+    
+    
+    private func seedCaches(){
+        print("seeding caches table")
+        CachesStore.insertNewTime(Tables.FERRIES_TABLE, updated: 0)
+    }
+    
 }

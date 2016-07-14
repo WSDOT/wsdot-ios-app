@@ -11,6 +11,11 @@
     Used when retreving data from the database.
 */
 
+typealias CachesDataModel = (
+    tableName: String?,
+    updated: Int64?
+)
+
 typealias RouteScheduleDataModel = (
     routeId: Int64?,
     routeDescription: String?,

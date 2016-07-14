@@ -5,32 +5,39 @@
 //  Created by Logan Sims on 6/29/16.
 //  Copyright © 2016 wsdot. All rights reserved.
 //
-// TODO: Database logic
 
 import Foundation
 import Alamofire
 import SwiftyJSON
-/* 
-    This class collects new ferry schedule information from
-    the schedule API at: http://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js
-    
-    Roles:
-        Saves information into SQLite database.
-        Converts JSON data structure into SQLite data using typealias.
+/*
+ This class collects new ferry schedule information from
+ the schedule API at: http://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js
  
-*/
+ Roles:
+ Saves information into SQLite database.
+ Converts JSON data structure into SQLite data using typealias.
+ 
+ */
 class RouteSchedulesStore {
-
-    /*
-        Gets ferry schedule data from API or database.
-        Updates database when pulling from API.
-    */
+    
+    
+    
+    
     typealias FetchRouteScheduleCompletion = (data: [FerriesRouteScheduleItem]?, error: NSError?) -> ()
-
-    // a function definition that takes a function as an argument (its completion function)
+    
+    /*
+     Gets ferry schedule data from API or database.
+     Updates database when pulling from API.
+     */
     static func getRouteSchedules(completion: FetchRouteScheduleCompletion) {
-        Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js").validate().responseJSON { response in
-            switch response.result {
+
+        print (TimeUtils.currentTime)
+        print (CachesStore.getUpdatedTime(Tables.FERRIES_TABLE))
+        
+        if ((TimeUtils.currentTime - CachesStore.getUpdatedTime(Tables.FERRIES_TABLE)) > TimeUtils.updateTime){
+            print("Database data is old.")
+            Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js").validate().responseJSON { response in
+                switch response.result {
                 case .Success:
                     if let value = response.result.value {
                         let json = JSON(value)
@@ -39,16 +46,29 @@ class RouteSchedulesStore {
                         let routeSchedules = self.parseRouteSchedulesJSON(json)
                         
                         saveRouteSchedules(routeSchedules)
+                        CachesStore.updateTime(Tables.FERRIES_TABLE, updated: TimeUtils.currentTime)
                         
                         completion(data: routeSchedules, error: nil)
                     }
                 case .Failure(let error):
                     print(error)
                     completion(data: nil, error: error)
+                }
             }
+            
+        }else {
+            print("Database data is still good.")
+            
+            
+            
+            
+            
+            
+            
+        
         }
     }
-
+    
     // Saves newly pulled data from the API into the database.
     private static func saveRouteSchedules(routeSchedules: [FerriesRouteScheduleItem]){
         for route in routeSchedules {
@@ -59,50 +79,50 @@ class RouteSchedulesStore {
                         routeDescription: route.routeDescription,
                         selected: route.selected ? 1 : 0,
                         crossingTime: route.crossingTime,
-                        routeAlert: "", // TODO: store alerts and date..
+                        routeAlert: "", // TODO: store alerts and date..?
                         scheduleDate: ""))
             } catch _ {
                 // Failed to insert
             }
         }
     }
-
+    
     //Converts JSON from api into and array of FerriesRouteScheduleItems
     private static func parseRouteSchedulesJSON(json: JSON) ->[FerriesRouteScheduleItem]{
-    
+        
         var routeSchedules = [FerriesRouteScheduleItem]()
-    
+        
         for (_,subJson):(String, JSON) in json {
-        
+            
             var crossingTime: String? = nil
-        
+            
             if (subJson["CrossingTime"] != nil){
                 crossingTime = subJson["CrossingTime"].stringValue
             }
-        
+            
             let route = FerriesRouteScheduleItem(description: subJson["Description"].stringValue, id: subJson["RouteID"].intValue,
-                        crossingTime: crossingTime, alerts: parseRouteAlertJSON(subJson["RouteAlert"]), scheduleDate: parseRouteDatesJSON(subJson["Date"]))
+                                                 crossingTime: crossingTime, alerts: parseRouteAlertJSON(subJson["RouteAlert"]), scheduleDate: parseRouteDatesJSON(subJson["Date"]))
             routeSchedules.append(route)
         }
-    
+        
         return routeSchedules
     }
     
-
+    
     // Helper function for parseRouteSchedulesJSON
     // Reads builds FerriesRouteAlertItem array from JSON
     private static func parseRouteAlertJSON(json: JSON) ->[FerriesRouteAlertItem]{
-    
+        
         var routeAlerts = [FerriesRouteAlertItem]()
         
         for (_,subJson):(String, JSON) in json {
             let alert = FerriesRouteAlertItem(id: subJson["BulletinID"].intValue, date: subJson["PublishDate"].stringValue, desc: subJson["AlertDescription"].stringValue,
-                                                 title: subJson["AlertFullTitle"].stringValue, text: subJson["AlertFullText"].stringValue)
-        
-        
+                                              title: subJson["AlertFullTitle"].stringValue, text: subJson["AlertFullText"].stringValue)
+            
+            
             routeAlerts.append(alert)
         }
-    
+        
         return routeAlerts
     }
     

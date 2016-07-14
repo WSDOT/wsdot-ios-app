@@ -10,7 +10,7 @@ import Foundation
 import SQLite
 
 class FerriesScheduleDataHelper: DataHelperProtocol {
-    static let TABLE_NAME = "FERRIES_SCHEDULES"
+    static let TABLE_NAME = Tables.FERRIES_TABLE
    
     static let table = Table(TABLE_NAME)
     static let routeId = Expression<Int64>("routeid")
@@ -35,10 +35,9 @@ class FerriesScheduleDataHelper: DataHelperProtocol {
                 t.column(routeAlert)
                 t.column(scheduleDate)
                 })
-            print("Ferries schedules DB Created.")
+            print("Ferries schedules table ready.")
         } catch _ {
-            print("Ferries schedules DB already exists.")
-            // Error throw if table already exists
+            print("Error creating table")
         }
        
     }
