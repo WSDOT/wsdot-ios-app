@@ -71,7 +71,7 @@ class RouteSchedulesViewController: UITableViewController {
             cell.subTitleOne.hidden = true
         }
 
-        cell.subTitleTwo.text = TimeUtils.timeSinceDate(self.routes[indexPath.row].cacheDate)
+        cell.subTitleTwo.text = TimeUtils.timeSinceDate(self.routes[indexPath.row].cacheDate, numericDates: true)
 
         if self.routes[indexPath.row].routeAlert.count == 0 {
             cell.alertButton.hidden = true
