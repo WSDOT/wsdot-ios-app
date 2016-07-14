@@ -16,12 +16,8 @@ import SwiftyJSON
  Roles:
  Saves information into SQLite database.
  Converts JSON data structure into SQLite data using typealias.
- 
  */
 class RouteSchedulesStore {
-    
-    
-    
     
     typealias FetchRouteScheduleCompletion = (data: [FerriesRouteScheduleItem]?, error: NSError?) -> ()
     
@@ -30,24 +26,18 @@ class RouteSchedulesStore {
      Updates database when pulling from API.
      */
     static func getRouteSchedules(completion: FetchRouteScheduleCompletion) {
-
-        print (TimeUtils.currentTime)
-        print (CachesStore.getUpdatedTime(Tables.FERRIES_TABLE))
         
-        if ((TimeUtils.currentTime - CachesStore.getUpdatedTime(Tables.FERRIES_TABLE)) > TimeUtils.updateTime){
+        if (true){
+        //if ((TimeUtils.currentTime - CachesStore.getUpdatedTime(Tables.FERRIES_TABLE)) > TimeUtils.updateTime){
             print("Database data is old.")
             Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js").validate().responseJSON { response in
                 switch response.result {
                 case .Success:
                     if let value = response.result.value {
                         let json = JSON(value)
-                        //print("JSON: \(json)")
-                        
                         let routeSchedules = self.parseRouteSchedulesJSON(json)
-                        
                         saveRouteSchedules(routeSchedules)
                         CachesStore.updateTime(Tables.FERRIES_TABLE, updated: TimeUtils.currentTime)
-                        
                         completion(data: routeSchedules, error: nil)
                     }
                 case .Failure(let error):
@@ -58,14 +48,8 @@ class RouteSchedulesStore {
             
         }else {
             print("Database data is still good.")
-            
-            
-            
-            
-            
-            
-            
-        
+            //let routeSchedules = findAllSchedules()
+            //completion(data: routeSchedules, error: nil)
         }
     }
     
@@ -79,6 +63,7 @@ class RouteSchedulesStore {
                         routeDescription: route.routeDescription,
                         selected: route.selected ? 1 : 0,
                         crossingTime: route.crossingTime,
+                        cacheDate: route.cacheDate,
                         routeAlert: "", // TODO: store alerts and date..?
                         scheduleDate: ""))
             } catch _ {
@@ -86,6 +71,16 @@ class RouteSchedulesStore {
             }
         }
     }
+    
+    /*
+     private static func findAllSchedules() -> [FerriesRouteScheduleItem]{
+     
+     
+     
+     return nil
+     
+     }
+     */
     
     //Converts JSON from api into and array of FerriesRouteScheduleItems
     private static func parseRouteSchedulesJSON(json: JSON) ->[FerriesRouteScheduleItem]{
@@ -100,8 +95,9 @@ class RouteSchedulesStore {
                 crossingTime = subJson["CrossingTime"].stringValue
             }
             
-            let route = FerriesRouteScheduleItem(description: subJson["Description"].stringValue, id: subJson["RouteID"].intValue,
-                                                 crossingTime: crossingTime, alerts: parseRouteAlertJSON(subJson["RouteAlert"]), scheduleDate: parseRouteDatesJSON(subJson["Date"]))
+            let cacheDate = TimeUtils.parseJSONDate(subJson["CacheDate"].stringValue)
+            
+            let route = FerriesRouteScheduleItem(description: subJson["Description"].stringValue, id: subJson["RouteID"].intValue, crossingTime: crossingTime,                                                  cacheDate: cacheDate, alerts: parseRouteAlertJSON(subJson["RouteAlert"]), scheduleDate: parseRouteDatesJSON(subJson["Date"]))
             routeSchedules.append(route)
         }
         

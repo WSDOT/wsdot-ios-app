@@ -73,9 +73,8 @@ class RouteSchedulesViewController: UITableViewController {
         }
 
 
-
         // TODO: Update time
-        cell.subTitleTwo.text = "X minutes ago"
+        cell.subTitleTwo.text = TimeUtils.timeSinceDate(self.routes[indexPath.row].cacheDate)
 
 
         if self.routes[indexPath.row].routeAlert.count == 0 {

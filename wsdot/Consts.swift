@@ -23,12 +23,44 @@ class Tables {
 }
 
 class TimeUtils {
+    
     static var currentTime: Int64{
         get {
             return Int64(floor(NSDate().timeIntervalSince1970 * 1000))
         }
     }
     
-    static let updateTime = 300000
+    static let updateTime = 900000
     
+    // formates a /Date(1468516282113-0700)/ date into a Int64
+    static func parseJSONDate(date: String) -> Int64{
+        let parseDateString = date[date.startIndex.advancedBy(6)..<date.startIndex.advancedBy(19)]
+        if let date = Int64(parseDateString) {
+            return date
+        } else {
+            return 0
+        }
+    }
+    
+    // Returns a string timestamp since a given time in miliseconds.
+    static func timeSinceDate(date: Int64) -> String{
+        
+        let timeSince = self.currentTime - date
+        let timeSinceInSeconds = timeSince / 1000
+        
+        print("current time: " + String(self.currentTime))
+        print("cacheDate: " + String(date))
+        
+        print("time since in seconds " + String(timeSinceInSeconds))
+        
+        if (timeSinceInSeconds < 60){
+            return String(timeSinceInSeconds) + " seconds ago"
+        } else if (timeSinceInSeconds < 3600){
+            return String(timeSinceInSeconds / 60) + " minutes ago"
+        } else if (timeSinceInSeconds < 86400){
+            return String(timeSinceInSeconds / (60 * 60)) + " hours ago"
+        } else {
+            return String(timeSinceInSeconds / (60 * 60 * 24)) + " days ago"
+        }
+    }
 }

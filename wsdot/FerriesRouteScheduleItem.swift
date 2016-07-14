@@ -14,14 +14,17 @@ class FerriesRouteScheduleItem: NSObject {
     var routeDescription: String = ""
     var selected = false
     var crossingTime: String? = nil
+    var cacheDate: Int64 = 0
     var routeAlert = [FerriesRouteAlertItem]()
     var scheduleDate = [FerriesScheduleDateItem]()
+
  
-    init(description: String, id: Int, crossingTime: String?, alerts: [FerriesRouteAlertItem], scheduleDate: [FerriesScheduleDateItem] ) {
+    init(description: String, id: Int, crossingTime: String?, cacheDate: Int64, alerts: [FerriesRouteAlertItem], scheduleDate: [FerriesScheduleDateItem] ) {
         super.init()
         self.routeId = id
         self.routeDescription = description
         self.crossingTime = crossingTime
+        self.cacheDate = cacheDate
         self.routeAlert = alerts
         self.scheduleDate = scheduleDate
     }
