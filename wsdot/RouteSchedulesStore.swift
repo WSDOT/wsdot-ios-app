@@ -10,14 +10,25 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
-
+/* 
+    This class collects new ferry schedule information from
+    the schedule API at: http://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js
+    
+    Roles:
+        Saves information into SQLite database.
+        Converts JSON data structure into SQLite data using typealias.
+ 
+*/
 class RouteSchedulesStore {
 
+    /*
+        Gets ferry schedule data from API or database.
+        Updates database when pulling from API.
+    */
     typealias FetchRouteScheduleCompletion = (data: [FerriesRouteScheduleItem]?, error: NSError?) -> ()
 
     // a function definition that takes a function as an argument (its completion function)
     static func getRouteSchedules(completion: FetchRouteScheduleCompletion) {
-        // do asyncrounous work
         Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js").validate().responseJSON { response in
             switch response.result {
                 case .Success:
@@ -38,7 +49,7 @@ class RouteSchedulesStore {
         }
     }
 
-
+    // Saves newly pulled data from the API into the database.
     private static func saveRouteSchedules(routeSchedules: [FerriesRouteScheduleItem]){
         for route in routeSchedules {
             do {
@@ -56,12 +67,10 @@ class RouteSchedulesStore {
         }
     }
 
-    
+    //Converts JSON from api into and array of FerriesRouteScheduleItems
     private static func parseRouteSchedulesJSON(json: JSON) ->[FerriesRouteScheduleItem]{
     
         var routeSchedules = [FerriesRouteScheduleItem]()
-    
-        
     
         for (_,subJson):(String, JSON) in json {
         
@@ -80,6 +89,8 @@ class RouteSchedulesStore {
     }
     
 
+    // Helper function for parseRouteSchedulesJSON
+    // Reads builds FerriesRouteAlertItem array from JSON
     private static func parseRouteAlertJSON(json: JSON) ->[FerriesRouteAlertItem]{
     
         var routeAlerts = [FerriesRouteAlertItem]()
@@ -96,6 +107,8 @@ class RouteSchedulesStore {
     }
     
     // TODO: implement
+    // Helper function for parseRouteSchedulesJSON
+    // Reads builds FerriesScheduleDateItem array from JSON
     private static func parseRouteDatesJSON(json: JSON) ->[FerriesScheduleDateItem]{
         return [FerriesScheduleDateItem]()
     }

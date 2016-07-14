@@ -31,7 +31,7 @@
         <scene sceneID="1cr-QC-fuh">
             <objects>
                 <navigationController id="U1v-YW-FZi" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="prU-3j-2ne"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="icFavoritesTab" id="prU-3j-2ne"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="V7P-Nx-xf7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -98,12 +98,12 @@
         <scene sceneID="GKV-pi-eKX">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Kfb-p0-sSb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="q2D-xo-JIM"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="icHomeTab" id="q2D-xo-JIM"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="EaH-rk-NDh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.57647058823529407" green="0.87058823529411766" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.80579105510000004" green="0.90013819360000003" blue="0.015527511149999999" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="barTintColor" red="0.0" green="0.47843137254901957" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -119,4 +119,8 @@
             <point key="canvasLocation" x="989" y="612"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icFavoritesTab" width="32" height="32"/>
+        <image name="icHomeTab" width="32" height="32"/>
+    </resources>
 </document>

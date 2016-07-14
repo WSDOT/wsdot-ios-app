@@ -6,6 +6,11 @@
 //  Copyright © 2016 wsdot. All rights reserved.
 //
 
+/*
+    This file contains typealias for data held in the database.
+    Used when retreving data from the database.
+*/
+
 typealias RouteScheduleDataModel = (
     routeId: Int64?,
     routeDescription: String?,

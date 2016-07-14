@@ -5,7 +5,7 @@
 //  Created by Logan Sims on 6/29/16.
 //  Copyright © 2016 wsdot. All rights reserved.
 //
-import UIKit
+import Foundation
  
 class FerriesRouteScheduleItem: NSObject {
  

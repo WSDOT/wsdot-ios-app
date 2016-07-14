@@ -33,9 +33,10 @@ class RouteSchedulesViewController: UITableViewController {
             if let validData = data {
                 self.routes = validData
                 // Reload tableview on UI thread
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.tableView.reloadData()
-                })
+                dispatch_async(dispatch_get_main_queue(),
+                    { () -> Void in
+                        self.tableView.reloadData()}
+                )
             } else {
                 // TODO: Display error
             }
@@ -70,8 +71,12 @@ class RouteSchedulesViewController: UITableViewController {
         } else {
             cell.subTitleOne.hidden = true
         }
-        
+
+
+
+        // TODO: Update time
         cell.subTitleTwo.text = "X minutes ago"
+
 
         if self.routes[indexPath.row].routeAlert.count == 0 {
             cell.alertButton.hidden = true

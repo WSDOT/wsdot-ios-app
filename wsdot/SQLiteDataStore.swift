@@ -8,6 +8,9 @@
 import Foundation
 import SQLite
 
+/*
+   Creates SQLite database.
+*/
 class SQLiteDataStore {
     static let sharedInstance = SQLiteDataStore()
     let WSDOTDB: Connection?
@@ -16,7 +19,7 @@ class SQLiteDataStore {
        
         var path = "wsdotDB.sqlite"
        
-        if let dirs: [NSString] =          NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory,
+        if let dirs: [NSString] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory,
             NSSearchPathDomainMask.AllDomainsMask, true) as [NSString] {
                
              let dir = dirs[0]

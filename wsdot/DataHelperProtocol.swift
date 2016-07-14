@@ -6,6 +6,10 @@
 //  Copyright © 2016 wsdot. All rights reserved.
 //
 
+/*
+    Defines methods all data helpers must provide
+*/
+
 import Foundation
 protocol DataHelperProtocol {
     associatedtype T
