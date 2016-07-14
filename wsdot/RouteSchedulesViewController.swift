@@ -41,7 +41,6 @@ class RouteSchedulesViewController: UITableViewController {
                 // TODO: Display error
             }
         }
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,10 +71,7 @@ class RouteSchedulesViewController: UITableViewController {
             cell.subTitleOne.hidden = true
         }
 
-
-        // TODO: Update time
         cell.subTitleTwo.text = TimeUtils.timeSinceDate(self.routes[indexPath.row].cacheDate)
-
 
         if self.routes[indexPath.row].routeAlert.count == 0 {
             cell.alertButton.hidden = true

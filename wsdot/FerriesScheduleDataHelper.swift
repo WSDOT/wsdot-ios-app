@@ -16,7 +16,7 @@ class FerriesScheduleDataHelper: DataHelperProtocol {
     static let routeId = Expression<Int64>("routeid")
     static let routeDescription = Expression<String>("routedescritption")
     static let selected = Expression<Int64>("selected")
-    static let crossingTime = Expression<String>("crossingtime")
+    static let crossingTime = Expression<String?>("crossingtime")
     static let cacheDate = Expression<Int64>("cacheDate")
     static let routeAlert = Expression<String>("routealert")
     static let scheduleDate  = Expression<String>("scheduledate")
@@ -48,14 +48,20 @@ class FerriesScheduleDataHelper: DataHelperProtocol {
         guard let DB = SQLiteDataStore.sharedInstance.WSDOTDB else {
             throw DataAccessError.Datastore_Connection_Error
         }
-        if (item.routeDescription != nil && item.crossingTime != nil && item.scheduleDate != nil
+        if (item.routeDescription != nil && item.scheduleDate != nil
             && item.cacheDate != nil && item.routeAlert != nil && item.selected != nil && item.routeId != nil) {
+            
+            if (item.crossingTime != nil){
+                print("not nil")
+            }else{
+                print("It's nil!")
+                        }
             
             let insert = table.insert(
                                     routeId <- item.routeId!,
                                     routeDescription <- item.routeDescription!,
                                     selected <- item.selected!,
-                                    crossingTime <- item.crossingTime!,
+                                    crossingTime <- item.crossingTime,
                                     cacheDate <- item.cacheDate!,
                                     routeAlert <- item.routeAlert!,
                                     scheduleDate <- item.scheduleDate!)
@@ -117,7 +123,8 @@ class FerriesScheduleDataHelper: DataHelperProtocol {
             throw DataAccessError.Datastore_Connection_Error
         }
         var retArray = [T]()
-        let items = try DB.prepare(table)
+        let items = try DB.prepare(table.order(routeDescription))
+        
         for item in items {
             retArray.append(RouteScheduleDataModel(routeId: item[routeId],
                                         routeDescription: item[routeDescription],

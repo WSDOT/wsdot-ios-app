@@ -27,8 +27,7 @@ class RouteSchedulesStore {
      */
     static func getRouteSchedules(completion: FetchRouteScheduleCompletion) {
         
-        if (true){
-        //if ((TimeUtils.currentTime - CachesStore.getUpdatedTime(Tables.FERRIES_TABLE)) > TimeUtils.updateTime){
+        if ((TimeUtils.currentTime - CachesStore.getUpdatedTime(Tables.FERRIES_TABLE)) > TimeUtils.updateTime){
             print("Database data is old.")
             Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js").validate().responseJSON { response in
                 switch response.result {
@@ -48,14 +47,18 @@ class RouteSchedulesStore {
             
         }else {
             print("Database data is still good.")
-            //let routeSchedules = findAllSchedules()
-            //completion(data: routeSchedules, error: nil)
+            let routeSchedules = findAllSchedules()
+            completion(data: routeSchedules, error: nil)
         }
     }
     
     // Saves newly pulled data from the API into the database.
     private static func saveRouteSchedules(routeSchedules: [FerriesRouteScheduleItem]){
         for route in routeSchedules {
+        
+            print(route.crossingTime)
+
+        
             do {
                 try FerriesScheduleDataHelper.insert(
                     RouteScheduleDataModel(
@@ -66,21 +69,39 @@ class RouteSchedulesStore {
                         cacheDate: route.cacheDate,
                         routeAlert: "", // TODO: store alerts and date..?
                         scheduleDate: ""))
+            } catch DataAccessError.Update_Error {
+                print("failed to update caches")
+            } catch DataAccessError.Datastore_Connection_Error {
+                print("Connection error")
+            } catch DataAccessError.Nil_In_Data{
+                print("nil in data error")
             } catch _ {
-                // Failed to insert
+                print("unknown error occured.")
             }
         }
     }
     
-    /*
-     private static func findAllSchedules() -> [FerriesRouteScheduleItem]{
-     
-     
-     
-     return nil
-     
-     }
-     */
+
+    private static func findAllSchedules() -> [FerriesRouteScheduleItem]{
+        
+        var routeSchedules = [FerriesRouteScheduleItem]()
+        
+        do{
+            if let result = try FerriesScheduleDataHelper.findAll(){
+                for route in result {
+                    let routeItem = FerriesRouteScheduleItem(description: route.routeDescription!, id: Int(route.routeId!), crossingTime: route.crossingTime,                                                  cacheDate: route.cacheDate!, alerts: [FerriesRouteAlertItem](), scheduleDate: [FerriesScheduleDateItem]())
+                    routeSchedules.append(routeItem)
+                }
+            }
+        } catch DataAccessError.Datastore_Connection_Error {
+            print("Connection error")
+        } catch _ {
+            print("unknown error")
+        }
+        
+        return routeSchedules
+    }
+
     
     //Converts JSON from api into and array of FerriesRouteScheduleItems
     private static func parseRouteSchedulesJSON(json: JSON) ->[FerriesRouteScheduleItem]{

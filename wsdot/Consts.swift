@@ -48,11 +48,6 @@ class TimeUtils {
         let timeSince = self.currentTime - date
         let timeSinceInSeconds = timeSince / 1000
         
-        print("current time: " + String(self.currentTime))
-        print("cacheDate: " + String(date))
-        
-        print("time since in seconds " + String(timeSinceInSeconds))
-        
         if (timeSinceInSeconds < 60){
             return String(timeSinceInSeconds) + " seconds ago"
         } else if (timeSinceInSeconds < 3600){
