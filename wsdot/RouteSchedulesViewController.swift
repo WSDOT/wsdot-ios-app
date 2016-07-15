@@ -12,24 +12,24 @@ class RouteSchedulesViewController: UITableViewController {
 
     let cellIdentifier = "FerriesRouteSchedulesCell"
     var routes = [FerriesRouteScheduleItem]()
-    
-    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
 
     // MARK: -
     // MARK: Initialization
     required init?(coder decoder: NSCoder) {
         super.init(coder: decoder)
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Route Schedules"
         
-        activityIndicatorView.startAnimating()
-    
-        RouteSchedulesStore.getRouteSchedules { data, error in
+        //activityIndicatorView.startAnimating()
+        self.refreshControl?.beginRefreshing()
+        RouteSchedulesStore.getRouteSchedules(false, completion: { data, error in
             
-            self.activityIndicatorView.stopAnimating()
+            //self.activityIndicatorView.stopAnimating()
+            self.refreshControl?.endRefreshing()
+            
             if let validData = data {
                 self.routes = validData
                 // Reload tableview on UI thread
@@ -38,16 +38,29 @@ class RouteSchedulesViewController: UITableViewController {
                         self.tableView.reloadData()}
                 )
             } else {
-                // TODO: Display error
+                self.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
             }
-        }
+        })
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func refresh(sender: UIRefreshControl) {
+        RouteSchedulesStore.getRouteSchedules (true, completion: { data, error in
+            if let validData = data {
+                self.routes = validData
+                // Reload tableview on UI thread
+                sender.endRefreshing()
+            } else {
+                // TODO: Display error
+            }
+        })
+    }
+    
     // MARK: -
     // MARK: Table View Data Source Methods
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

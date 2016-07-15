@@ -25,9 +25,9 @@ class RouteSchedulesStore {
      Gets ferry schedule data from API or database.
      Updates database when pulling from API.
      */
-    static func getRouteSchedules(completion: FetchRouteScheduleCompletion) {
+    static func getRouteSchedules(force: Bool, completion: FetchRouteScheduleCompletion) {
         
-        if ((TimeUtils.currentTime - CachesStore.getUpdatedTime(Tables.FERRIES_TABLE)) > TimeUtils.updateTime){
+        if (((TimeUtils.currentTime - CachesStore.getUpdatedTime(Tables.FERRIES_TABLE)) > TimeUtils.updateTime) || force){
             print("Database data is old.")
             Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js").validate().responseJSON { response in
                 switch response.result {
@@ -44,7 +44,6 @@ class RouteSchedulesStore {
                     completion(data: nil, error: error)
                 }
             }
-            
         }else {
             print("Database data is still good.")
             let routeSchedules = findAllSchedules()
@@ -57,7 +56,6 @@ class RouteSchedulesStore {
         for route in routeSchedules {
         
             print(route.crossingTime)
-
         
             do {
                 try FerriesScheduleDataHelper.insert(
@@ -80,7 +78,6 @@ class RouteSchedulesStore {
             }
         }
     }
-    
 
     private static func findAllSchedules() -> [FerriesRouteScheduleItem]{
         
@@ -125,7 +122,6 @@ class RouteSchedulesStore {
         return routeSchedules
     }
     
-    
     // Helper function for parseRouteSchedulesJSON
     // Reads builds FerriesRouteAlertItem array from JSON
     private static func parseRouteAlertJSON(json: JSON) ->[FerriesRouteAlertItem]{
@@ -136,10 +132,8 @@ class RouteSchedulesStore {
             let alert = FerriesRouteAlertItem(id: subJson["BulletinID"].intValue, date: subJson["PublishDate"].stringValue, desc: subJson["AlertDescription"].stringValue,
                                               title: subJson["AlertFullTitle"].stringValue, text: subJson["AlertFullText"].stringValue)
             
-            
             routeAlerts.append(alert)
         }
-        
         return routeAlerts
     }
     
