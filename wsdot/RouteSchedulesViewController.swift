@@ -54,6 +54,10 @@ class RouteSchedulesViewController: UITableViewController {
             if let validData = data {
                 self.routes = validData
                 // Reload tableview on UI thread
+                dispatch_async(dispatch_get_main_queue(),
+                    { () -> Void in
+                        self.tableView.reloadData()}
+                )
                 sender.endRefreshing()
             } else {
                 // TODO: Display error
@@ -86,7 +90,7 @@ class RouteSchedulesViewController: UITableViewController {
 
         cell.subTitleTwo.text = TimeUtils.timeSinceDate(self.routes[indexPath.row].cacheDate, numericDates: true)
 
-        if self.routes[indexPath.row].routeAlert.count == 0 {
+        if self.routes[indexPath.row].routeAlerts.count == 0 {
             cell.alertButton.hidden = true
         } else {
             cell.alertButton.hidden = false
@@ -100,7 +104,7 @@ class RouteSchedulesViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print(routes[indexPath.row].routeDescription)
                         
-        if self.routes[indexPath.row].routeAlert.count > 0 {
+        if self.routes[indexPath.row].routeAlerts.count > 0 {
             print("this route has alerts!")
         }
         

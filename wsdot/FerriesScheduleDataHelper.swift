@@ -18,8 +18,8 @@ class FerriesScheduleDataHelper: DataHelperProtocol {
     static let selected = Expression<Int64>("selected")
     static let crossingTime = Expression<String?>("crossingtime")
     static let cacheDate = Expression<Int64>("cacheDate")
-    static let routeAlert = Expression<String>("routealert")
-    static let scheduleDate  = Expression<String>("scheduledate")
+    static let routeAlerts = Expression<String>("routealert")
+    static let scheduleDate  = Expression<String?>("scheduledate")
    
     typealias T = RouteScheduleDataModel
    
@@ -34,7 +34,7 @@ class FerriesScheduleDataHelper: DataHelperProtocol {
                 t.column(selected)
                 t.column(crossingTime)
                 t.column(cacheDate)
-                t.column(routeAlert)
+                t.column(routeAlerts)
                 t.column(scheduleDate)
                 })
             print("Ferries schedules table ready.")
@@ -49,13 +49,15 @@ class FerriesScheduleDataHelper: DataHelperProtocol {
             throw DataAccessError.Datastore_Connection_Error
         }
         if (item.routeDescription != nil && item.scheduleDate != nil
-            && item.cacheDate != nil && item.routeAlert != nil && item.selected != nil && item.routeId != nil) {
+            && item.cacheDate != nil && item.routeAlerts != nil && item.selected != nil && item.routeId != nil) {
             
-            if (item.crossingTime != nil){
-                print("not nil")
-            }else{
-                print("It's nil!")
-                        }
+
+
+
+
+
+
+
             
             let insert = table.insert(
                                     routeId <- item.routeId!,
@@ -63,7 +65,7 @@ class FerriesScheduleDataHelper: DataHelperProtocol {
                                     selected <- item.selected!,
                                     crossingTime <- item.crossingTime,
                                     cacheDate <- item.cacheDate!,
-                                    routeAlert <- item.routeAlert!,
+                                    routeAlerts <- item.routeAlerts!,
                                     scheduleDate <- item.scheduleDate!)
             
             do {
@@ -110,7 +112,7 @@ class FerriesScheduleDataHelper: DataHelperProtocol {
                                         selected: item[selected],
                                         crossingTime: item[crossingTime],
                                         cacheDate: item[cacheDate],
-                                        routeAlert: item[routeAlert],
+                                        routeAlerts: item[routeAlerts],
                                         scheduleDate: item[scheduleDate])
         }
        
@@ -131,7 +133,7 @@ class FerriesScheduleDataHelper: DataHelperProtocol {
                                         selected: item[selected],
                                         crossingTime: item[crossingTime],
                                         cacheDate: item[cacheDate],
-                                        routeAlert: item[routeAlert],
+                                        routeAlerts: item[routeAlerts],
                                         scheduleDate: item[scheduleDate]))
         }
        

@@ -46,16 +46,17 @@ class RouteSchedulesStore {
             }
         }else {
             print("Database data is still good.")
-            let routeSchedules = findAllSchedules()
-            completion(data: routeSchedules, error: nil)
+            let routeSchedulesA = findAllSchedules()
+            completion(data: routeSchedulesA, error: nil)
         }
     }
     
     // Saves newly pulled data from the API into the database.
     private static func saveRouteSchedules(routeSchedules: [FerriesRouteScheduleItem]){
+    
         for route in routeSchedules {
         
-            print(route.crossingTime)
+            print(route.routeAlertsJSON.type)
         
             do {
                 try FerriesScheduleDataHelper.insert(
@@ -65,46 +66,45 @@ class RouteSchedulesStore {
                         selected: route.selected ? 1 : 0,
                         crossingTime: route.crossingTime,
                         cacheDate: route.cacheDate,
-                        routeAlert: "", // TODO: store alerts and date..?
-                        scheduleDate: ""))
+                        routeAlerts: route.routeAlertsJSON.rawString(),
+                        scheduleDate: "")) // TODO: store date
             } catch DataAccessError.Update_Error {
-                print("failed to update caches")
+                print("saveRouteSchedules: failed to update caches")
             } catch DataAccessError.Datastore_Connection_Error {
-                print("Connection error")
+                print("saveRouteSchedules: Connection error")
             } catch DataAccessError.Nil_In_Data{
-                print("nil in data error")
+                print("saveRouteSchedules: nil in data error")
             } catch _ {
-                print("unknown error occured.")
+                print("saveRouteSchedules: unknown error occured.")
             }
         }
     }
 
     private static func findAllSchedules() -> [FerriesRouteScheduleItem]{
-        
         var routeSchedules = [FerriesRouteScheduleItem]()
-        
         do{
             if let result = try FerriesScheduleDataHelper.findAll(){
+            
                 for route in result {
-                    let routeItem = FerriesRouteScheduleItem(description: route.routeDescription!, id: Int(route.routeId!), crossingTime: route.crossingTime,                                                  cacheDate: route.cacheDate!, alerts: [FerriesRouteAlertItem](), scheduleDate: [FerriesScheduleDateItem]())
+                
+                    let alertsJSON: JSON = JSON(arrayLiteral: route.routeAlerts!)
+                
+                    let routeItem = FerriesRouteScheduleItem(description: route.routeDescription!, id: Int(route.routeId!), crossingTime: route.crossingTime,                                                  cacheDate: route.cacheDate!, alerts: alertsJSON, scheduleDate: [FerriesScheduleDateItem]())
                     routeSchedules.append(routeItem)
                 }
             }
         } catch DataAccessError.Datastore_Connection_Error {
-            print("Connection error")
+            print("findAllSchedules: Connection error")
         } catch _ {
-            print("unknown error")
+            print("findAllSchedules: unknown error")
         }
-        
         return routeSchedules
     }
 
     
     //Converts JSON from api into and array of FerriesRouteScheduleItems
     private static func parseRouteSchedulesJSON(json: JSON) ->[FerriesRouteScheduleItem]{
-        
         var routeSchedules = [FerriesRouteScheduleItem]()
-        
         for (_,subJson):(String, JSON) in json {
             
             var crossingTime: String? = nil
@@ -115,26 +115,15 @@ class RouteSchedulesStore {
             
             let cacheDate = TimeUtils.parseJSONDate(subJson["CacheDate"].stringValue)
             
-            let route = FerriesRouteScheduleItem(description: subJson["Description"].stringValue, id: subJson["RouteID"].intValue, crossingTime: crossingTime,                                                  cacheDate: cacheDate, alerts: parseRouteAlertJSON(subJson["RouteAlert"]), scheduleDate: parseRouteDatesJSON(subJson["Date"]))
+            print("dsjklfhalkdshjflksdjfhasljkfhasdjlfhk")
+            print(subJson["RouteAlert"].type)
+
+            
+            let route = FerriesRouteScheduleItem(description: subJson["Description"].stringValue, id: subJson["RouteID"].intValue, crossingTime: crossingTime,                                                  cacheDate: cacheDate, alerts: subJson["RouteAlert"], scheduleDate: parseRouteDatesJSON(subJson["Date"]))
             routeSchedules.append(route)
         }
         
         return routeSchedules
-    }
-    
-    // Helper function for parseRouteSchedulesJSON
-    // Reads builds FerriesRouteAlertItem array from JSON
-    private static func parseRouteAlertJSON(json: JSON) ->[FerriesRouteAlertItem]{
-        
-        var routeAlerts = [FerriesRouteAlertItem]()
-        
-        for (_,subJson):(String, JSON) in json {
-            let alert = FerriesRouteAlertItem(id: subJson["BulletinID"].intValue, date: subJson["PublishDate"].stringValue, desc: subJson["AlertDescription"].stringValue,
-                                              title: subJson["AlertFullTitle"].stringValue, text: subJson["AlertFullText"].stringValue)
-            
-            routeAlerts.append(alert)
-        }
-        return routeAlerts
     }
     
     // TODO: implement
