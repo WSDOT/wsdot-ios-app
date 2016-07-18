@@ -9,10 +9,12 @@
 import UIKit
 
 class RouteSchedulesViewController: UITableViewController {
-
+    
     let cellIdentifier = "FerriesRouteSchedulesCell"
+    let SegueRouteDeparturesViewController = "RouteDepartureViewController"
+    
     var routes = [FerriesRouteScheduleItem]()
-
+    
     // MARK: -
     // MARK: Initialization
     required init?(coder decoder: NSCoder) {
@@ -23,8 +25,8 @@ class RouteSchedulesViewController: UITableViewController {
         super.viewDidLoad()
         title = "Route Schedules"
         
-        //activityIndicatorView.startAnimating()
         self.refreshControl?.beginRefreshing()
+        
         RouteSchedulesStore.getRouteSchedules(false, completion: { data, error in
             
             //self.activityIndicatorView.stopAnimating()
@@ -103,10 +105,24 @@ class RouteSchedulesViewController: UITableViewController {
     // MARK: Table View Delegate Methods
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print(routes[indexPath.row].routeDescription)
-                        
+        
         if self.routes[indexPath.row].routeAlerts.count > 0 {
             print("this route has alerts!")
         }
         
+        // Perform Segue
+        performSegueWithIdentifier(SegueRouteDeparturesViewController, sender: self)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == SegueRouteDeparturesViewController {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let routeItem = self.routes[indexPath.row] as FerriesRouteScheduleItem
+                let destinationViewController = segue.destinationViewController as! RouteDepartureViewController
+                destinationViewController.routeItem = routeItem
+            }
+        }
     }
 }

@@ -29,6 +29,8 @@ class RouteSchedulesStore {
         
         if (((TimeUtils.currentTime - CachesStore.getUpdatedTime(Tables.FERRIES_TABLE)) > TimeUtils.updateTime) || force){
             print("Database data is old.")
+            deleteAll()
+    
             Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js").validate().responseJSON { response in
                 switch response.result {
                 case .Success:
@@ -55,8 +57,6 @@ class RouteSchedulesStore {
     private static func saveRouteSchedules(routeSchedules: [FerriesRouteScheduleItem]){
     
         for route in routeSchedules {
-        
-            print(route.routeAlertsJSON.type)
         
             do {
                 try FerriesScheduleDataHelper.insert(
@@ -100,7 +100,17 @@ class RouteSchedulesStore {
         }
         return routeSchedules
     }
-
+    
+    private static func deleteAll(){
+        do{
+            try FerriesScheduleDataHelper.deleteAll()
+        } catch DataAccessError.Datastore_Connection_Error {
+            print("deleteAll: Connection error")
+        } catch _ {
+            print("deleteAll: unknown error")
+        }
+    }
+    
     
     //Converts JSON from api into and array of FerriesRouteScheduleItems
     private static func parseRouteSchedulesJSON(json: JSON) ->[FerriesRouteScheduleItem]{
@@ -114,10 +124,6 @@ class RouteSchedulesStore {
             }
             
             let cacheDate = TimeUtils.parseJSONDate(subJson["CacheDate"].stringValue)
-            
-            print("dsjklfhalkdshjflksdjfhasljkfhasdjlfhk")
-            print(subJson["RouteAlert"].type)
-
             
             let route = FerriesRouteScheduleItem(description: subJson["Description"].stringValue, id: subJson["RouteID"].intValue, crossingTime: crossingTime,                                                  cacheDate: cacheDate, alerts: subJson["RouteAlert"], scheduleDate: parseRouteDatesJSON(subJson["Date"]))
             routeSchedules.append(route)
