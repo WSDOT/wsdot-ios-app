@@ -8,16 +8,16 @@
 
 import UIKit
 
-class RouteDepartureViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class RouteSailingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    let cellIdentifier = "RouteDepartures"
+    let cellIdentifier = "RouteSailings"
     
     var routeItem : FerriesRouteScheduleItem? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = routeItem?.routeDescription
+        title = "Sailings"
         
     }
     
@@ -27,13 +27,13 @@ class RouteDepartureViewController: UIViewController, UITableViewDataSource, UIT
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return (routeItem?.sailings.count)!
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
         
-
+        cell.textLabel?.text = routeItem?.sailings[indexPath.row]
         
         return cell
     }

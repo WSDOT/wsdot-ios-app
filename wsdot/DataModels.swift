@@ -23,5 +23,5 @@ typealias RouteScheduleDataModel = (
     crossingTime: String?,
     cacheDate: Int64?,
     routeAlerts: String?,
-    scheduleDate: String?
+    scheduleDates: String?
 )

@@ -30,7 +30,7 @@ class RouteSchedulesStore {
         if (((TimeUtils.currentTime - CachesStore.getUpdatedTime(Tables.FERRIES_TABLE)) > TimeUtils.updateTime) || force){
             print("Database data is old.")
             deleteAll()
-    
+            
             Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js").validate().responseJSON { response in
                 switch response.result {
                 case .Success:
@@ -55,9 +55,8 @@ class RouteSchedulesStore {
     
     // Saves newly pulled data from the API into the database.
     private static func saveRouteSchedules(routeSchedules: [FerriesRouteScheduleItem]){
-    
-        for route in routeSchedules {
         
+        for route in routeSchedules {
             do {
                 try FerriesScheduleDataHelper.insert(
                     RouteScheduleDataModel(
@@ -67,7 +66,7 @@ class RouteSchedulesStore {
                         crossingTime: route.crossingTime,
                         cacheDate: route.cacheDate,
                         routeAlerts: route.routeAlertsJSON.rawString(),
-                        scheduleDate: "")) // TODO: store date
+                        scheduleDates: route.scheduleDatesJSON.rawString()))
             } catch DataAccessError.Update_Error {
                 print("saveRouteSchedules: failed to update caches")
             } catch DataAccessError.Datastore_Connection_Error {
@@ -79,17 +78,20 @@ class RouteSchedulesStore {
             }
         }
     }
-
+    
     private static func findAllSchedules() -> [FerriesRouteScheduleItem]{
         var routeSchedules = [FerriesRouteScheduleItem]()
         do{
             if let result = try FerriesScheduleDataHelper.findAll(){
-            
+                
                 for route in result {
-                
+
                     let alertsJSON: JSON = JSON(arrayLiteral: route.routeAlerts!)
-                
-                    let routeItem = FerriesRouteScheduleItem(description: route.routeDescription!, id: Int(route.routeId!), crossingTime: route.crossingTime,                                                  cacheDate: route.cacheDate!, alerts: alertsJSON, scheduleDate: [FerriesScheduleDateItem]())
+                    let scheduleDatesJSON: JSON = JSON(arrayLiteral: route.scheduleDates!)
+                    
+                    let routeItem = FerriesRouteScheduleItem(description: route.routeDescription!, id: Int(route.routeId!), crossingTime: route.crossingTime, cacheDate: route.cacheDate!, alerts: alertsJSON, scheduleDates: scheduleDatesJSON)
+
+                    
                     routeSchedules.append(routeItem)
                 }
             }
@@ -125,7 +127,7 @@ class RouteSchedulesStore {
             
             let cacheDate = TimeUtils.parseJSONDate(subJson["CacheDate"].stringValue)
             
-            let route = FerriesRouteScheduleItem(description: subJson["Description"].stringValue, id: subJson["RouteID"].intValue, crossingTime: crossingTime,                                                  cacheDate: cacheDate, alerts: subJson["RouteAlert"], scheduleDate: parseRouteDatesJSON(subJson["Date"]))
+            let route = FerriesRouteScheduleItem(description: subJson["Description"].stringValue, id: subJson["RouteID"].intValue, crossingTime: crossingTime, cacheDate: cacheDate, alerts: subJson["RouteAlert"], scheduleDates: subJson["Date"])
             routeSchedules.append(route)
         }
         

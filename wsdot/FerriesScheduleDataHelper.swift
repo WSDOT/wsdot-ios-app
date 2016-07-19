@@ -19,7 +19,7 @@ class FerriesScheduleDataHelper: DataHelperProtocol {
     static let crossingTime = Expression<String?>("crossingtime")
     static let cacheDate = Expression<Int64>("cacheDate")
     static let routeAlerts = Expression<String>("routealert")
-    static let scheduleDate  = Expression<String?>("scheduledate")
+    static let scheduleDates  = Expression<String>("scheduledate")
     
     typealias T = RouteScheduleDataModel
     
@@ -35,7 +35,7 @@ class FerriesScheduleDataHelper: DataHelperProtocol {
                 t.column(crossingTime)
                 t.column(cacheDate)
                 t.column(routeAlerts)
-                t.column(scheduleDate)
+                t.column(scheduleDates)
                 })
             print("Ferries schedules table ready.")
         } catch _ {
@@ -48,16 +48,8 @@ class FerriesScheduleDataHelper: DataHelperProtocol {
         guard let DB = SQLiteDataStore.sharedInstance.WSDOTDB else {
             throw DataAccessError.Datastore_Connection_Error
         }
-        if (item.routeDescription != nil && item.scheduleDate != nil
+        if (item.routeDescription != nil && item.scheduleDates != nil
             && item.cacheDate != nil && item.routeAlerts != nil && item.selected != nil && item.routeId != nil) {
-            
-            
-            
-            
-            
-            
-            
-            
             
             let insert = table.insert(
                 routeId <- item.routeId!,
@@ -66,7 +58,7 @@ class FerriesScheduleDataHelper: DataHelperProtocol {
                 crossingTime <- item.crossingTime,
                 cacheDate <- item.cacheDate!,
                 routeAlerts <- item.routeAlerts!,
-                scheduleDate <- item.scheduleDate!)
+                scheduleDates <- item.scheduleDates!)
             
             do {
                 let rowId = try DB.run(insert)
@@ -113,11 +105,9 @@ class FerriesScheduleDataHelper: DataHelperProtocol {
                                           crossingTime: item[crossingTime],
                                           cacheDate: item[cacheDate],
                                           routeAlerts: item[routeAlerts],
-                                          scheduleDate: item[scheduleDate])
+                                          scheduleDates: item[scheduleDates])
         }
-        
         return nil
-        
     }
     
     static func findAll() throws -> [T]? {
@@ -134,11 +124,9 @@ class FerriesScheduleDataHelper: DataHelperProtocol {
                 crossingTime: item[crossingTime],
                 cacheDate: item[cacheDate],
                 routeAlerts: item[routeAlerts],
-                scheduleDate: item[scheduleDate]))
+                scheduleDates: item[scheduleDates]))
         }
-        
         return retArray
-        
     }
     
     static func deleteAll() throws {
@@ -148,6 +136,5 @@ class FerriesScheduleDataHelper: DataHelperProtocol {
         
         let delete = table.delete()
         try DB.run(delete)
-
     }
 }
