@@ -71,7 +71,9 @@
         <!--Ferries-->
         <scene sceneID="Cxa-dc-UyN">
             <objects>
-                <viewControllerPlaceholder storyboardName="Ferries" id="l6k-sb-rpG" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="Ferries" storyboardName="Ferries" id="l6k-sb-rpG" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="FQy-AQ-EOB"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dpe-UF-qpK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2194.5" y="431"/>
@@ -97,7 +99,7 @@
         <!--Home-->
         <scene sceneID="GKV-pi-eKX">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Kfb-p0-sSb" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="HomeNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Kfb-p0-sSb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="icHomeTab" id="q2D-xo-JIM"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="EaH-rk-NDh">

@@ -122,7 +122,9 @@ class RouteSchedulesViewController: UITableViewController {
                 let ctrl: UITabBarController = segue.destinationViewController as! UITabBarController
                 let sailingsViewController = ctrl.childViewControllers[0] as! RouteSailingsViewController
                 
-                
+                if (routeItem.routeAlerts.count > 0){
+                    ctrl.tabBar.items?[1].badgeValue = String(routeItem.routeAlerts.count)
+                }
                 sailingsViewController.routeItem = routeItem
                 
             }
