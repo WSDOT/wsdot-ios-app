@@ -51,7 +51,6 @@ class FerriesHomeViewController: UITableViewController {
     // MARK: -
     // MARK: Table View Delegate Methods
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print(menu_options[indexPath.row])
         // Perform Segue
         switch (indexPath.row) {
             case 0:

@@ -27,22 +27,30 @@ class RouteSchedulesViewController: UITableViewController {
         
         self.refreshControl?.beginRefreshing()
         
-        RouteSchedulesStore.getRouteSchedules(false, completion: { data, error in
+        // Dispatch work with QOS user initated for top priority. 
+        // weak binding in case user navigates away and self becomes nil.
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak self] in
             
-            //self.activityIndicatorView.stopAnimating()
-            self.refreshControl?.endRefreshing()
-            
-            if let validData = data {
-                self.routes = validData
-                // Reload tableview on UI thread
-                dispatch_async(dispatch_get_main_queue(),
-                    { () -> Void in
-                        self.tableView.reloadData()}
-                )
-            } else {
-                self.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
-            }
-        })
+            RouteSchedulesStore.getRouteSchedules(false, completion: { data, error in
+                if let validData = data {
+                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                        if let selfValue = self{
+                            selfValue.routes = validData
+                            selfValue.tableView.reloadData()
+                        }
+                    }
+                } else {
+                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                        if let selfValue = self{
+                            selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                        }
+                    }
+                }
+                if let selfValue = self {
+                    selfValue.refreshControl?.endRefreshing()
+                }
+            })
+        }
         
     }
     
@@ -50,7 +58,7 @@ class RouteSchedulesViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     @IBAction func refresh(sender: UIRefreshControl) {
         RouteSchedulesStore.getRouteSchedules (true, completion: { data, error in
             if let validData = data {
@@ -91,12 +99,6 @@ class RouteSchedulesViewController: UITableViewController {
         }
 
         cell.subTitleTwo.text = TimeUtils.timeSinceDate(self.routes[indexPath.row].cacheDate, numericDates: true)
-
-        if self.routes[indexPath.row].routeAlerts.count == 0 {
-            cell.alertButton.hidden = true
-        } else {
-            cell.alertButton.hidden = false
-        }
      
         return cell
     }
