@@ -223,8 +223,8 @@
 			isa = PBXGroup;
 			children = (
 				9AD32E271D2421E4000AEC28 /* Ferries.storyboard */,
-				9AD32E2B1D242A5A000AEC28 /* RouteSchedulesViewController.swift */,
 				9AD32E291D24233D000AEC28 /* FerriesHomeViewController.swift */,
+				9AD32E2B1D242A5A000AEC28 /* RouteSchedulesViewController.swift */,
 				9A21E1CB1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift */,
 			);
 			name = Ferries;
