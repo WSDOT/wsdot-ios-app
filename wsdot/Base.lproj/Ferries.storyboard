@@ -136,7 +136,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZGt-mq-4yj">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RouteSailings" textLabel="wiM-A5-A6x" style="IBUITableViewCellStyleDefault" id="BUe-qI-3WT">
@@ -166,10 +166,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.80392156859999997" green="0.90196078430000004" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="ZGt-mq-4yj" firstAttribute="bottom" secondItem="y6q-ay-IVn" secondAttribute="top" id="KoD-Rx-aSs"/>
-                            <constraint firstAttribute="trailing" secondItem="ZGt-mq-4yj" secondAttribute="trailing" id="hDz-2g-MDr"/>
-                            <constraint firstItem="ZGt-mq-4yj" firstAttribute="leading" secondItem="uyJ-5I-Rnk" secondAttribute="leading" id="ltx-o6-Uhf"/>
-                            <constraint firstItem="ZGt-mq-4yj" firstAttribute="top" secondItem="M8B-Ye-Ot0" secondAttribute="bottom" id="ux0-0c-77a"/>
+                            <constraint firstAttribute="trailing" secondItem="ZGt-mq-4yj" secondAttribute="trailing" id="3jf-Gz-bha"/>
+                            <constraint firstItem="ZGt-mq-4yj" firstAttribute="top" secondItem="uyJ-5I-Rnk" secondAttribute="top" id="JJv-qS-EaE"/>
+                            <constraint firstItem="ZGt-mq-4yj" firstAttribute="leading" secondItem="uyJ-5I-Rnk" secondAttribute="leading" id="VrV-i0-GqU"/>
+                            <constraint firstItem="ZGt-mq-4yj" firstAttribute="bottom" secondItem="y6q-ay-IVn" secondAttribute="top" id="iUE-sz-Vge"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Sailings" image="icCompassTab" id="5Ki-U2-7ke"/>
