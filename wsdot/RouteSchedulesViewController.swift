@@ -104,11 +104,6 @@ class RouteSchedulesViewController: UITableViewController {
     // MARK: -
     // MARK: Table View Delegate Methods
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print(routes[indexPath.row].routeDescription)
-        
-        if self.routes[indexPath.row].routeAlerts.count > 0 {
-            print("this route has alerts!")
-        }
         
         // Perform Segue
         performSegueWithIdentifier(SegueRouteDeparturesViewController, sender: self)

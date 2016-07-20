@@ -32,8 +32,6 @@ class FerriesRouteScheduleItem: NSObject {
         self.routeAlerts = getRouteAlertItemsFromJson(alerts)
         self.scheduleDatesJSON = scheduleDates
         self.scheduleDates = getDateItemsFromJson(scheduleDates)
-       // print("FerriesRouteScheduleItem.init scheduleDates: JSON ")
-       // print(scheduleDates)
         self.sailings = getSailings()
     }
     
@@ -64,8 +62,6 @@ class FerriesRouteScheduleItem: NSObject {
             
             let alert = FerriesRouteAlertItem(id: alertJSON["BulletinID"].intValue, date: alertJSON["PublishDate"].stringValue, desc: alertJSON["AlertDescription"].stringValue, title: alertJSON["AlertFullTitle"].stringValue, text: alertJSON["AlertFullText"].stringValue)
             alerts.append(alert)
-            print("alert full title")
-            print(alert.alertFullTitle)
         }
         
         return alerts

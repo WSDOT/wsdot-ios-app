@@ -28,7 +28,7 @@ class RouteSchedulesStore {
     static func getRouteSchedules(force: Bool, completion: FetchRouteScheduleCompletion) {
         
         if (((TimeUtils.currentTime - CachesStore.getUpdatedTime(Tables.FERRIES_TABLE)) > TimeUtils.updateTime) || force){
-            print("Database data is old.")
+            
             deleteAll()
             
             Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js").validate().responseJSON { response in
@@ -47,7 +47,6 @@ class RouteSchedulesStore {
                 }
             }
         }else {
-            print("Database data is still good.")
             let routeSchedulesA = findAllSchedules()
             completion(data: routeSchedulesA, error: nil)
         }
@@ -85,12 +84,12 @@ class RouteSchedulesStore {
             if let result = try FerriesScheduleDataHelper.findAll(){
                 
                 for route in result {
-
-                    let alertsJSON: JSON = JSON(arrayLiteral: route.routeAlerts!)
-                    let scheduleDatesJSON: JSON = JSON(arrayLiteral: route.scheduleDates!)
                     
-                    let routeItem = FerriesRouteScheduleItem(description: route.routeDescription!, id: Int(route.routeId!), crossingTime: route.crossingTime, cacheDate: route.cacheDate!, alerts: alertsJSON, scheduleDates: scheduleDatesJSON)
+                    let alertsJSON: JSON = JSON(data: route.routeAlerts!.dataUsingEncoding(NSUTF8StringEncoding)!)
+                    let scheduleDatesJSON: JSON = JSON(data: route.scheduleDates!.dataUsingEncoding(NSUTF8StringEncoding)!)
 
+                    let routeItem = FerriesRouteScheduleItem(description: route.routeDescription!, id: Int(route.routeId!), crossingTime: route.crossingTime, cacheDate: route.cacheDate!, alerts: alertsJSON, scheduleDates: scheduleDatesJSON)
+                    
                     
                     routeSchedules.append(routeItem)
                 }
