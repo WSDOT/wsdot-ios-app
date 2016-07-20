@@ -18,7 +18,7 @@ class RouteSailingsViewController: UIViewController, UITableViewDataSource, UITa
         super.viewDidLoad()
         
         title = "Sailings"
-        
+        self.tabBarController!.navigationItem.title = "Sailings";
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

@@ -96,27 +96,46 @@
                         </connections>
                     </refreshControl>
                     <connections>
-                        <segue destination="CgF-du-Pei" kind="show" identifier="RouteDepartureViewController" id="emk-1X-PGU"/>
+                        <segue destination="yl3-tQ-80q" kind="show" identifier="RouteSailingsViewController" id="X4D-os-z1S"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z8Z-0c-ZZJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1280" y="127"/>
         </scene>
-        <!--Route Sailings View Controller-->
-        <scene sceneID="ngm-ja-Pjz">
+        <!--Alerts-->
+        <scene sceneID="85i-BK-qs1">
             <objects>
-                <viewController id="CgF-du-Pei" customClass="RouteSailingsViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7rf-f5-hN4" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="bfc-yD-ihv"/>
-                        <viewControllerLayoutGuide type="bottom" id="5Ma-tO-f6y"/>
+                        <viewControllerLayoutGuide type="top" id="HJf-ts-AWf"/>
+                        <viewControllerLayoutGuide type="bottom" id="ICE-bh-NjL"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="GrJ-Hf-N9z">
+                    <view key="view" contentMode="scaleToFill" id="I5c-gP-h5w">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Alerts" image="icAlertTab" id="e50-de-Ugu"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JlM-gg-ob8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2770" y="264"/>
+        </scene>
+        <!--Sailings-->
+        <scene sceneID="Khq-UL-JUH">
+            <objects>
+                <viewController id="TcV-j1-eLg" customClass="RouteSailingsViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="M8B-Ye-Ot0"/>
+                        <viewControllerLayoutGuide type="bottom" id="y6q-ay-IVn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uyJ-5I-Rnk">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZGt-mq-4yj">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="531"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RouteSailings" textLabel="wiM-A5-A6x" style="IBUITableViewCellStyleDefault" id="BUe-qI-3WT">
@@ -138,23 +157,46 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="CgF-du-Pei" id="2HD-sb-Qxx"/>
-                                    <outlet property="delegate" destination="CgF-du-Pei" id="h3e-C0-SMT"/>
+                                    <outlet property="dataSource" destination="TcV-j1-eLg" id="OxQ-uU-Lwm"/>
+                                    <outlet property="delegate" destination="TcV-j1-eLg" id="ejX-j6-DrP"/>
                                 </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ZGt-mq-4yj" firstAttribute="bottom" secondItem="5Ma-tO-f6y" secondAttribute="top" id="75G-8b-9na"/>
-                            <constraint firstItem="ZGt-mq-4yj" firstAttribute="leading" secondItem="GrJ-Hf-N9z" secondAttribute="leading" id="Zme-OR-nDK"/>
-                            <constraint firstAttribute="trailing" secondItem="ZGt-mq-4yj" secondAttribute="trailing" id="bT1-QI-6mM"/>
-                            <constraint firstItem="ZGt-mq-4yj" firstAttribute="top" secondItem="bfc-yD-ihv" secondAttribute="bottom" id="xfl-QC-bIa"/>
+                            <constraint firstItem="ZGt-mq-4yj" firstAttribute="top" secondItem="M8B-Ye-Ot0" secondAttribute="bottom" id="1Sx-jA-7Pz"/>
+                            <constraint firstItem="ZGt-mq-4yj" firstAttribute="bottom" secondItem="y6q-ay-IVn" secondAttribute="top" id="46a-9z-faY"/>
+                            <constraint firstItem="ZGt-mq-4yj" firstAttribute="leading" secondItem="uyJ-5I-Rnk" secondAttribute="leading" id="LPi-q0-PHa"/>
+                            <constraint firstAttribute="trailing" secondItem="ZGt-mq-4yj" secondAttribute="trailing" id="NAK-Cl-fG6"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Sailings" image="icCompassTab" id="5Ki-U2-7ke"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nlY-tO-WJx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="orE-IO-Z0Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2103" y="-108"/>
+            <point key="canvasLocation" x="2770" y="-383"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="dIi-W7-GWL">
+            <objects>
+                <tabBarController id="yl3-tQ-80q" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="cbp-38-NGx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="TcV-j1-eLg" kind="relationship" relationship="viewControllers" id="HAI-9m-fm2"/>
+                        <segue destination="7rf-f5-hN4" kind="relationship" relationship="viewControllers" id="gAa-Qy-t15"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="77x-N4-ihL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2023" y="127"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icAlertTab" width="32" height="32"/>
+        <image name="icCompassTab" width="32" height="32"/>
+    </resources>
 </document>

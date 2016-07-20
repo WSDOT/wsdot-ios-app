@@ -11,7 +11,7 @@ import UIKit
 class RouteSchedulesViewController: UITableViewController {
     
     let cellIdentifier = "FerriesRouteSchedulesCell"
-    let SegueRouteDeparturesViewController = "RouteDepartureViewController"
+    let SegueRouteDeparturesViewController = "RouteSailingsViewController"
     
     var routes = [FerriesRouteScheduleItem]()
     
@@ -117,8 +117,14 @@ class RouteSchedulesViewController: UITableViewController {
         if segue.identifier == SegueRouteDeparturesViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let routeItem = self.routes[indexPath.row] as FerriesRouteScheduleItem
-                let destinationViewController = segue.destinationViewController as! RouteSailingsViewController
-                destinationViewController.routeItem = routeItem
+                //let destinationViewController = segue.destinationViewController as! RouteSailingsViewController
+                
+                let ctrl: UITabBarController = segue.destinationViewController as! UITabBarController
+                let sailingsViewController = ctrl.childViewControllers[0] as! RouteSailingsViewController
+                
+                
+                sailingsViewController.routeItem = routeItem
+                
             }
         }
     }

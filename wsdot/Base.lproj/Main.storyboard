@@ -27,11 +27,11 @@
             </objects>
             <point key="canvasLocation" x="1663" y="612"/>
         </scene>
-        <!--Item-->
+        <!--Favorites-->
         <scene sceneID="1cr-QC-fuh">
             <objects>
                 <navigationController id="U1v-YW-FZi" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="icFavoritesTab" id="prU-3j-2ne"/>
+                    <tabBarItem key="tabBarItem" title="Favorites" image="icFavoritesTab" id="prU-3j-2ne"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="V7P-Nx-xf7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -94,11 +94,11 @@
             </objects>
             <point key="canvasLocation" x="219" y="1038"/>
         </scene>
-        <!--Item-->
+        <!--Home-->
         <scene sceneID="GKV-pi-eKX">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Kfb-p0-sSb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="icHomeTab" id="q2D-xo-JIM"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="icHomeTab" id="q2D-xo-JIM"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="EaH-rk-NDh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
