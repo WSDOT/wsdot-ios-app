@@ -19,9 +19,7 @@ class RouteSailingsViewController: UIViewController, UITableViewDataSource, UITa
         
         title = "Sailings"
         
-        self.tabBarController!.navigationItem.title = "Sailings";
-        
-        
+        self.tabBarController!.navigationItem.title = routeItem?.routeDescription;
         
         let favoriteButton = UIButton()
         favoriteButton.setImage(UIImage(named: "icFavoriteDefault"), forState: .Normal)

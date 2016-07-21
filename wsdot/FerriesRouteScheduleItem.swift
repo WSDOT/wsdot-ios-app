@@ -44,7 +44,7 @@ class FerriesRouteScheduleItem: NSObject {
         
         for sailing in scheduleDates[0].sailings {
         
-            let sailingName = sailing.departingTerminalName + " / " + sailing.arrivingTerminalName
+            let sailingName = sailing.departingTerminalName + " to " + sailing.arrivingTerminalName
             
             if (!sailingsSet.contains(sailingName)){
                 sailingsSet.insert(sailingName)
