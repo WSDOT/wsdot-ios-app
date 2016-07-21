@@ -43,13 +43,13 @@ class RouteAlertsViewController: UIViewController, UITableViewDataSource, UITabl
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
         
         let attrStr = try! NSAttributedString(
-            data: alertItems[indexPath.row].alertFullText.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: true)!,
+            data: alertItems[indexPath.row].alertFullText.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: false)!,
             options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
             documentAttributes: nil)
         
-        cell.textLabel?.text = attrStr.string
+        let attributedString = NSMutableAttributedString(string: alertItems[indexPath.row].alertFullText)
         
-        print(alertItems[indexPath.row].alertFullText)
+        cell.textLabel?.attributedText = attributedString
         
         cell.detailTextLabel?.text = "Published " + TimeUtils.timeSinceDate(TimeUtils.parseJSONDate(alertItems[indexPath.row].publishDate), numericDates: false)
         

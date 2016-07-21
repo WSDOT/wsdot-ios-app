@@ -22,11 +22,9 @@ class RouteSailingsViewController: UIViewController, UITableViewDataSource, UITa
         routeItem = routeTabBarContoller.routeItem
     }
 
-    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (routeItem?.sailings.count)!
