@@ -27,7 +27,7 @@ class RouteSchedulesViewController: UITableViewController {
         
         self.refreshControl?.beginRefreshing()
         
-        // Dispatch work with QOS user initated for top priority. 
+        // Dispatch work with QOS user initated for top priority.
         // weak binding in case user navigates away and self becomes nil.
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak self] in
             
@@ -37,18 +37,19 @@ class RouteSchedulesViewController: UITableViewController {
                         if let selfValue = self{
                             selfValue.routes = validData
                             selfValue.tableView.reloadData()
+                            selfValue.refreshControl?.endRefreshing()
                         }
                     }
                 } else {
                     dispatch_async(dispatch_get_main_queue()) { [weak self] in
                         if let selfValue = self{
+                            selfValue.refreshControl?.endRefreshing()
                             selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                            
                         }
                     }
                 }
-                if let selfValue = self {
-                    selfValue.refreshControl?.endRefreshing()
-                }
+                
             })
         }
         

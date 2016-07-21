@@ -20,8 +20,6 @@ class FerriesHomeViewController: UITableViewController {
         // Set Title
         title = "Ferries"
         menu_options = ["Route Schedules", "Vehicle Reservations", "VesselWatch"]
-        tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: cellIdentifier)
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
