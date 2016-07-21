@@ -16,52 +16,12 @@ class RouteSailingsViewController: UIViewController, UITableViewDataSource, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        title = "Sailings"
-        
-        self.tabBarController!.navigationItem.title = routeItem?.routeDescription;
-        
-        let favoriteButton = UIButton()
-        favoriteButton.setImage(UIImage(named: "icFavoriteDefault"), forState: .Normal)
-        favoriteButton.setImage(UIImage(named: "icFavoriteSelected"), forState: .Highlighted)
-        favoriteButton.tintColor = UIColor.redColor()
-        
-        favoriteButton.addTarget(self, action: #selector(RouteSailingsViewController.addFavorite(_:)), forControlEvents: .TouchUpInside)
-        favoriteButton.sizeToFit()
-        
-        let favoritesNavItemButton = UIBarButtonItem()
-        favoritesNavItemButton.target = self
-        favoritesNavItemButton.action = #selector(RouteSailingsViewController.addFavorite(_:))
-        favoritesNavItemButton.customView = favoriteButton
-        
-        self.tabBarController!.navigationItem.rightBarButtonItem = favoritesNavItemButton
-        
-    }
     
-    func addFavorite(sender: UIButton){
-        
-        sender.setImage(UIImage(named: "icFavoriteSelected"), forState: .Normal)
-        sender.setImage(UIImage(named: "icFavoriteDefault"), forState: .Highlighted)
-        sender.setImage(UIImage(named: "icFavoriteDefault"), forState: .Selected)
-        sender.removeTarget(self, action: #selector(RouteSailingsViewController.addFavorite(_:)), forControlEvents: .TouchUpInside)
-        sender.addTarget(self, action: #selector(RouteSailingsViewController.removeFavorite(_:)), forControlEvents: .TouchUpInside)
-        
-        print("fav Added!")
-        
+        // get routeItem
+        let routeTabBarContoller = self.tabBarController as! RouteTabBarViewController
+        routeItem = routeTabBarContoller.routeItem
     }
-    
-    func removeFavorite(sender: UIButton){
-        sender.setImage(UIImage(named: "icFavoriteDefault"), forState: .Normal)
-        sender.setImage(UIImage(named: "icFavoriteSelected"), forState: .Highlighted)
-        sender.setImage(UIImage(named: "icFavoriteSelected"), forState: .Selected)
-        sender.removeTarget(self, action: #selector(RouteSailingsViewController.removeFavorite(_:)), forControlEvents: .TouchUpInside)
-        sender.addTarget(self, action: #selector(RouteSailingsViewController.addFavorite(_:)), forControlEvents: .TouchUpInside)
-        
-        
 
-        print("fav removed!")
-        
-    }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -79,9 +39,4 @@ class RouteSailingsViewController: UIViewController, UITableViewDataSource, UITa
         
         return cell
     }
-    
-    
-    
-    
-    
 }

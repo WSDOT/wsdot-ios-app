@@ -54,6 +54,8 @@ class FerriesHomeViewController: UITableViewController {
             case 0:
                 performSegueWithIdentifier(SegueRouteSchedulesViewController, sender: self)
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            case 1:
+                UIApplication.sharedApplication().openURL(NSURL(string: "https://secureapps.wsdot.wa.gov/Ferries/Reservations/Vehicle/default.aspx")!)
             default:
                 break
         }

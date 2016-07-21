@@ -61,7 +61,13 @@ class FerriesRouteScheduleItem: NSObject {
         for (_,alertJSON):(String, JSON) in alertsJSON {
             
             let alert = FerriesRouteAlertItem(id: alertJSON["BulletinID"].intValue, date: alertJSON["PublishDate"].stringValue, desc: alertJSON["AlertDescription"].stringValue, title: alertJSON["AlertFullTitle"].stringValue, text: alertJSON["AlertFullText"].stringValue)
-            alerts.append(alert)
+            
+            
+            if(alert.alertFullText != ""){
+                alerts.append(alert)
+            }
+            
+            
         }
         
         return alerts
