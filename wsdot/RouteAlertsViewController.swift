@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RouteAlertsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class RouteAlertsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, INDLinkLabelDelegate {
 
     
     @IBOutlet var tableView: UITableView!
@@ -34,26 +34,37 @@ class RouteAlertsViewController: UIViewController, UITableViewDataSource, UITabl
         return 1
     }
     
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return alertItems.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! LinkCell
         
-        let attrStr = try! NSAttributedString(
-            data: alertItems[indexPath.row].alertFullText.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: false)!,
-            options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
+        let htmlStyleString = "<style>body{font-family: '\(cell.linkLabel.font.fontName)'; font-size:\(cell.linkLabel.font.pointSize)px;}</style>"
+        
+        let htmlString = htmlStyleString + alertItems[indexPath.row].alertFullText
+        
+        let attrStr = try! NSMutableAttributedString(
+            data: htmlString.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: false)!,
+            options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 17)!],
             documentAttributes: nil)
         
-        let attributedString = NSMutableAttributedString(string: alertItems[indexPath.row].alertFullText)
-        
-        cell.textLabel?.attributedText = attributedString
-        
-        cell.detailTextLabel?.text = "Published " + TimeUtils.timeSinceDate(TimeUtils.parseJSONDate(alertItems[indexPath.row].publishDate), numericDates: false)
+        cell.linkLabel.attributedText = attrStr
+        cell.linkLabel.delegate = self
         
         return cell
+    }
+    
+    // MARK: INDLinkLabelDelegate
+    
+    func linkLabel(label: INDLinkLabel, didLongPressLinkWithURL URL: NSURL) {
+        let activityController = UIActivityViewController(activityItems: [URL], applicationActivities: nil)
+        self.presentViewController(activityController, animated: true, completion: nil)
+    }
+    
+    func linkLabel(label: INDLinkLabel, didTapLinkWithURL URL: NSURL) {
+        UIApplication.sharedApplication().openURL(URL)
     }
 }
 
