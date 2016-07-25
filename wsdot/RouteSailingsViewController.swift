@@ -54,6 +54,9 @@ class RouteSailingsViewController: UIViewController, UITableViewDataSource, UITa
                 let destinationViewController = segue.destinationViewController as! RouteDeparturesViewController
                 destinationViewController.routeItem = routeItem
                 destinationViewController.departingTerminal = routeItem?.sailings[indexPath.row]
+                let backItem = UIBarButtonItem()
+                backItem.title = "Back"
+                self.tabBarController!.navigationItem.backBarButtonItem = backItem
             }
         }
     }

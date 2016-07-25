@@ -19,14 +19,12 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
         
         title = departingTerminal
         
-        let backItem = UIBarButtonItem()
-        backItem.title = "back"
-        navigationItem.backBarButtonItem = backItem
-        
         print("departing from")
         print(departingTerminal)
     }
-
+    
+    // MARK: -
+    // MARK: Table View Data Source Methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -40,4 +38,6 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
         
         return cell
     }
+    
+    
 }
