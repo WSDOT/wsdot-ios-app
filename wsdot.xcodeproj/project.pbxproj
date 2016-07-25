@@ -14,6 +14,7 @@
 		9A0719351D4274B8007BB4C5 /* LinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0719341D4274B8007BB4C5 /* LinkCell.swift */; };
 		9A0CA8311D428EE9009C67B7 /* RouteDeparturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0CA8301D428EE9009C67B7 /* RouteDeparturesViewController.swift */; };
 		9A0CA8371D466045009C67B7 /* TimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0CA8361D466045009C67B7 /* TimeUtils.swift */; };
+		9A0CA8391D466DF6009C67B7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A0CA8381D466DF6009C67B7 /* GoogleService-Info.plist */; };
 		9A21E1CC1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A21E1CB1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift */; };
 		9A5017941D258F0C00B9C49E /* FerriesRouteAlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5017931D258F0C00B9C49E /* FerriesRouteAlertItem.swift */; };
 		9A5017961D258F1100B9C49E /* FerriesRouteScheduleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5017951D258F1100B9C49E /* FerriesRouteScheduleItem.swift */; };
@@ -59,6 +60,7 @@
 		9A0719341D4274B8007BB4C5 /* LinkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkCell.swift; sourceTree = "<group>"; };
 		9A0CA8301D428EE9009C67B7 /* RouteDeparturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteDeparturesViewController.swift; sourceTree = "<group>"; };
 		9A0CA8361D466045009C67B7 /* TimeUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUtils.swift; sourceTree = "<group>"; };
+		9A0CA8381D466DF6009C67B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9A21E1CB1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteSailingsViewController.swift; sourceTree = "<group>"; };
 		9A5017931D258F0C00B9C49E /* FerriesRouteAlertItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerriesRouteAlertItem.swift; sourceTree = "<group>"; };
 		9A5017951D258F1100B9C49E /* FerriesRouteScheduleItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerriesRouteScheduleItem.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				9AD32E1D1D231739000AEC28 /* CustomViews */,
 				9AD32DFC1D23172C000AEC28 /* AppDelegate.swift */,
 				9AD32E031D23172C000AEC28 /* Assets.xcassets */,
+				9A0CA8381D466DF6009C67B7 /* GoogleService-Info.plist */,
 				9AD32E081D23172C000AEC28 /* Info.plist */,
 			);
 			path = wsdot;
@@ -393,6 +396,7 @@
 			files = (
 				9AD32E071D23172C000AEC28 /* LaunchScreen.storyboard in Resources */,
 				9AD32E281D2421E4000AEC28 /* Ferries.storyboard in Resources */,
+				9A0CA8391D466DF6009C67B7 /* GoogleService-Info.plist in Resources */,
 				9AD32E041D23172C000AEC28 /* Assets.xcassets in Resources */,
 				9AD32E021D23172C000AEC28 /* Main.storyboard in Resources */,
 			);

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,6 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch {
             print("Something went wrong!")
         }
+        
+        FIRApp.configure()
+        GADMobileAds.configureWithApplicationID("ad_string");
+        
         return true
     }
 

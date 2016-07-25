@@ -6,6 +6,7 @@
 //  Copyright © 2016 wsdot. All rights reserved.
 //
 import UIKit
+import GoogleMobileAds
 
 class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -14,6 +15,8 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
     var routeItem : FerriesRouteScheduleItem? = nil
     var departingTerminal : String? = nil
     
+    @IBOutlet weak var bannerView: GADBannerView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,6 +24,12 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
         
         print("departing from")
         print(departingTerminal)
+        
+        
+        bannerView.adUnitID = "ad_string"
+        bannerView.rootViewController = self
+        bannerView.loadRequest(GADRequest())
+        
     }
     
     // MARK: -
@@ -38,6 +47,4 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
         
         return cell
     }
-    
-    
 }
