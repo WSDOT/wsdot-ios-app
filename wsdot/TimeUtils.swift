@@ -28,6 +28,19 @@ class TimeUtils {
         }
     }
     
+    // Returns an array of the days of the week starting with the current day
+    static func nextSevenDaysStrings() -> [String]{
+        let weekdays = NSDateFormatter().weekdaySymbols
+        return Array(weekdays[getDayOfWeek()-1..<weekdays.count]) + weekdays[0..<getDayOfWeek()-1]
+    }
+    
+    private static func getDayOfWeek()->Int {
+        let myCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+        let myComponents = myCalendar.components(.Weekday, fromDate: NSDate())
+        let weekDay = myComponents.weekday
+        return weekDay
+    }
+    
     // Returns a string timestamp since a given time in miliseconds.
     // Source: https://gist.github.com/jacks205/4a77fb1703632eb9ae79
     static func timeSinceDate(date:Int64, numericDates:Bool) -> String {

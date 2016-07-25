@@ -15,6 +15,7 @@
 		9A0CA8311D428EE9009C67B7 /* RouteDeparturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0CA8301D428EE9009C67B7 /* RouteDeparturesViewController.swift */; };
 		9A0CA8371D466045009C67B7 /* TimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0CA8361D466045009C67B7 /* TimeUtils.swift */; };
 		9A0CA8391D466DF6009C67B7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A0CA8381D466DF6009C67B7 /* GoogleService-Info.plist */; };
+		9A0CA83C1D46AC51009C67B7 /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0CA83B1D46AC51009C67B7 /* PickerTextField.swift */; };
 		9A21E1CC1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A21E1CB1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift */; };
 		9A5017941D258F0C00B9C49E /* FerriesRouteAlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5017931D258F0C00B9C49E /* FerriesRouteAlertItem.swift */; };
 		9A5017961D258F1100B9C49E /* FerriesRouteScheduleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5017951D258F1100B9C49E /* FerriesRouteScheduleItem.swift */; };
@@ -61,6 +62,7 @@
 		9A0CA8301D428EE9009C67B7 /* RouteDeparturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteDeparturesViewController.swift; sourceTree = "<group>"; };
 		9A0CA8361D466045009C67B7 /* TimeUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUtils.swift; sourceTree = "<group>"; };
 		9A0CA8381D466DF6009C67B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9A0CA83B1D46AC51009C67B7 /* PickerTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
 		9A21E1CB1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteSailingsViewController.swift; sourceTree = "<group>"; };
 		9A5017931D258F0C00B9C49E /* FerriesRouteAlertItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerriesRouteAlertItem.swift; sourceTree = "<group>"; };
 		9A5017951D258F1100B9C49E /* FerriesRouteScheduleItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerriesRouteScheduleItem.swift; sourceTree = "<group>"; };
@@ -170,6 +172,14 @@
 			name = RouteSchedules;
 			sourceTree = "<group>";
 		};
+		9A0CA83A1D46AC2D009C67B7 /* CustomTextFields */ = {
+			isa = PBXGroup;
+			children = (
+				9A0CA83B1D46AC51009C67B7 /* PickerTextField.swift */,
+			);
+			name = CustomTextFields;
+			sourceTree = "<group>";
+		};
 		9A5017921D258EFF00B9C49E /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -228,6 +238,7 @@
 		9AD32E1D1D231739000AEC28 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				9A0CA83A1D46AC2D009C67B7 /* CustomTextFields */,
 				9A0719311D427310007BB4C5 /* CustomLabels */,
 				9A5017921D258EFF00B9C49E /* CustomCells */,
 			);
@@ -490,6 +501,7 @@
 				9A50179A1D258F1B00B9C49E /* RouteSchedulesStore.swift in Sources */,
 				9AD32E2C1D242A5A000AEC28 /* RouteSchedulesViewController.swift in Sources */,
 				9A0719351D4274B8007BB4C5 /* LinkCell.swift in Sources */,
+				9A0CA83C1D46AC51009C67B7 /* PickerTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
