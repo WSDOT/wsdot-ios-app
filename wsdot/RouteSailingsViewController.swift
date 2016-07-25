@@ -11,7 +11,9 @@ import UIKit
 class RouteSailingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     let cellIdentifier = "RouteSailings"
-
+    let SegueRouteDeparturesViewController = "RouteDeparturesViewController"
+    
+    @IBOutlet var tableView: UITableView!
     var routeItem : FerriesRouteScheduleItem? = nil
     
     override func viewDidLoad() {
@@ -37,4 +39,23 @@ class RouteSailingsViewController: UIViewController, UITableViewDataSource, UITa
         
         return cell
     }
+    
+    // MARK: -
+    // MARK: Table View Delegate Methods
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // Perform Segue
+        performSegueWithIdentifier(SegueRouteDeparturesViewController, sender: self)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == SegueRouteDeparturesViewController {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let destinationViewController = segue.destinationViewController as! RouteDeparturesViewController
+                destinationViewController.routeItem = routeItem
+                destinationViewController.departingTerminal = routeItem?.sailings[indexPath.row]
+            }
+        }
+    }
+
 }

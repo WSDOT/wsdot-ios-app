@@ -233,10 +233,33 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Sailings" image="icCompassTab" id="5Ki-U2-7ke"/>
+                    <connections>
+                        <outlet property="tableView" destination="ZGt-mq-4yj" id="paI-dG-QEN"/>
+                        <segue destination="zsX-Zv-QLD" kind="show" identifier="RouteDeparturesViewController" id="Y4V-Dd-S2H"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="orE-IO-Z0Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2770" y="-383"/>
+        </scene>
+        <!--Route Departures View Controller-->
+        <scene sceneID="nLr-PW-gpl">
+            <objects>
+                <viewController id="zsX-Zv-QLD" customClass="RouteDeparturesViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EZJ-4E-Bku"/>
+                        <viewControllerLayoutGuide type="bottom" id="5Bs-yw-TIP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dNL-ZE-gHM">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RFS-Ka-R4z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3582" y="-383"/>
         </scene>
         <!--Route Tab Bar View Controller-->
         <scene sceneID="dIi-W7-GWL">
