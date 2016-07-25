@@ -20,6 +20,7 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
         title = departingTerminal
         
         let backItem = UIBarButtonItem()
+        backItem.title = "back"
         navigationItem.backBarButtonItem = backItem
         
         print("departing from")
