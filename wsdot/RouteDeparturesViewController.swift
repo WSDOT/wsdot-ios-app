@@ -10,7 +10,8 @@ import GoogleMobileAds
 
 class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    let cellIdentifier = "RouteDepartures"
+    let departuresCellIdentifier = "RouteDepartures"
+    let camerasCellIdentifier = "RouteCameras"
 
     // set by previous view controller
     var currentSailing : (String, String) = ("", "")
@@ -24,7 +25,6 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
     
     @IBOutlet weak var dateTextField: PickerTextField!
     @IBOutlet weak var bannerView: GADBannerView!
-    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -78,13 +78,15 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
         case 0: // Departure times
             dateTextField.hidden = false
 
-        
+            segment = 0
+            tableView.reloadData()
         
             break;
         case 1: // Cameras
             dateTextField.hidden = true
+            segment = 1
         
-        
+            tableView.reloadData()
         
             break;
         default:
@@ -130,15 +132,15 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
         
         switch segment{
         case 0: // Departure times
-            
             return displayedSailing!.times.count
             
-            
         case 1: // Cameras
-            return 0
+            return 1
         default:
             return 0
         }
+        
+        
         
     }
     
@@ -147,46 +149,59 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! DeparturesCustomCell
         
-        let times = displayedSailing!.times
-        
-        let departingTimeDate = NSDate(timeIntervalSince1970: Double(TimeUtils.parseJSONDate(times[indexPath.row].departingTime) / 1000))
-        let displayDepartingTime = TimeUtils.getTimeOfDay(departingTimeDate)
-        
-        cell.departingTime.text = displayDepartingTime
-        
-        if let arrivingTime = times[indexPath.row].arrivingTime {
-            let arrivingTimeDate = NSDate(timeIntervalSince1970: Double(TimeUtils.parseJSONDate(arrivingTime) / 1000))
-            let displayArrivingTime = TimeUtils.getTimeOfDay(arrivingTimeDate)
-            cell.arrivingTime.text = displayArrivingTime
-        } else {
-            cell.arrivingTime.text = ""
+        switch segment{
+        case 0: // Departure times
+            
+            let cell = tableView.dequeueReusableCellWithIdentifier(departuresCellIdentifier) as! DeparturesCustomCell
+            
+            let times = displayedSailing!.times
+            
+            let departingTimeDate = NSDate(timeIntervalSince1970: Double(TimeUtils.parseJSONDate(times[indexPath.row].departingTime) / 1000))
+            let displayDepartingTime = TimeUtils.getTimeOfDay(departingTimeDate)
+            
+            cell.departingTime.text = displayDepartingTime
+            
+            if let arrivingTime = times[indexPath.row].arrivingTime {
+                let arrivingTimeDate = NSDate(timeIntervalSince1970: Double(TimeUtils.parseJSONDate(arrivingTime) / 1000))
+                let displayArrivingTime = TimeUtils.getTimeOfDay(arrivingTimeDate)
+                cell.arrivingTime.text = displayArrivingTime
+            } else {
+                cell.arrivingTime.text = ""
+            }
+            
+            var annotaions = ""
+            
+            for index in times[indexPath.row].annotationIndexes{
+                annotaions += (displayedSailing?.annotations[index])! + " "
+            }
+            
+            let htmlStyleString = "<style>body{font-family: '\(cell.annotations.font.fontName)'; font-size:\(cell.annotations.font.pointSize)px;}</style>"
+            let attrAnnotationsStr = try! NSMutableAttributedString(
+                data: (htmlStyleString + annotaions).dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: false)!,
+                options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 17)!],
+                documentAttributes: nil)
+            
+            cell.annotations.attributedText = attrAnnotationsStr
+            cell.annotations.sizeToFit()
+            
+            // TODO: Sailing Spaces
+            cell.sailingSpaces.text = "Sample Text"
+            
+            cell.avaliableSpacesBar.progress = 0.5
+            
+            return cell
+            
+        case 1: // Cameras
+            let cell = tableView.dequeueReusableCellWithIdentifier(camerasCellIdentifier) as! CameraImageCustomCell
+            return cell
+        default:
+            let cell = tableView.dequeueReusableCellWithIdentifier(departuresCellIdentifier) as! DeparturesCustomCell
+            return cell
+            
         }
         
-        var annotaions = ""
         
-        for index in times[indexPath.row].annotationIndexes{
-            annotaions += (displayedSailing?.annotations[index])! + " "
-        }
-        
-        let htmlStyleString = "<style>body{font-family: '\(cell.annotations.font.fontName)'; font-size:\(cell.annotations.font.pointSize)px;}</style>"
-        let attrAnnotationsStr = try! NSMutableAttributedString(
-            data: (htmlStyleString + annotaions).dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: false)!,
-            options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 17)!],
-            documentAttributes: nil)
-        
-        cell.annotations.attributedText = attrAnnotationsStr
-        cell.annotations.sizeToFit()
-
-
-
-        // TODO: Sailing Spaces
-        cell.sailingSpaces.text = "Sample Text"
-
-        cell.avaliableSpacesBar.progress = 0.5
-        
-        return cell
     }
     
     

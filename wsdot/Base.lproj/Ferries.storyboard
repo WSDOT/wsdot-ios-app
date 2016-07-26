@@ -351,6 +351,28 @@
                                             <outlet property="sailingSpaces" destination="4tw-1s-LEj" id="TuT-hI-MlU"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RouteCameras" rowHeight="118" id="wUL-Va-DT1" customClass="CameraImageCustomCell" customModule="WSDOT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="146" width="600" height="118"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wUL-Va-DT1" id="z0O-nn-rfY">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="117"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EN3-jP-K1R">
+                                                    <rect key="frame" x="8" y="0.0" width="584" height="109"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="EN3-jP-K1R" firstAttribute="bottom" secondItem="z0O-nn-rfY" secondAttribute="bottomMargin" id="Qm6-AM-A74"/>
+                                                <constraint firstItem="EN3-jP-K1R" firstAttribute="top" secondItem="z0O-nn-rfY" secondAttribute="top" id="SF5-N9-pUU"/>
+                                                <constraint firstItem="EN3-jP-K1R" firstAttribute="trailing" secondItem="z0O-nn-rfY" secondAttribute="trailingMargin" id="lNd-0V-aXf"/>
+                                                <constraint firstItem="EN3-jP-K1R" firstAttribute="leading" secondItem="z0O-nn-rfY" secondAttribute="leadingMargin" id="wpQ-PW-Oi5"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="CameraImage" destination="EN3-jP-K1R" id="gaX-mW-3Eq"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="zsX-Zv-QLD" id="FcY-xL-KHf"/>

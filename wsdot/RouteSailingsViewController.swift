@@ -56,7 +56,6 @@ class RouteSailingsViewController: UIViewController, UITableViewDataSource, UITa
                 let destinationViewController = segue.destinationViewController as! RouteDeparturesViewController
                 
                 destinationViewController.sailingsByDate = routeItem?.scheduleDates
-                
                 destinationViewController.currentSailing = (routeItem?.sailings[indexPath.row])!
                 
                 let backItem = UIBarButtonItem()
