@@ -330,6 +330,7 @@
                     <connections>
                         <outlet property="bannerView" destination="92X-rn-RaJ" id="wLc-k2-toI"/>
                         <outlet property="dateTextField" destination="P85-h2-iUQ" id="cmp-ao-Pda"/>
+                        <outlet property="tableView" destination="ea4-dX-pgd" id="ir6-wo-Ff7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RFS-Ka-R4z" userLabel="First Responder" sceneMemberID="firstResponder"/>

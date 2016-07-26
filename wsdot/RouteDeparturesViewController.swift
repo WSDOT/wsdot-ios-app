@@ -24,6 +24,7 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
     
     @IBOutlet weak var dateTextField: PickerTextField!
     @IBOutlet weak var bannerView: GADBannerView!
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,8 +114,9 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
     func donePicker() {
         dateTextField.resignFirstResponder()
         setDisplayedSailing()
+        self.tableView.reloadData()
     }
-
+    
     // MARK: -
     // MARK: Table View Delegate & data source methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -137,7 +139,24 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
         
-        cell.textLabel?.text = displayedSailing!.departingTerminalName
+        let times = displayedSailing!.times
+        
+        let departingTimeDate = NSDate(timeIntervalSince1970: Double(TimeUtils.parseJSONDate(times[indexPath.row].departingTime!) / 1000))
+        let displayDepartingTime = TimeUtils.getTimeOfDay(departingTimeDate)
+        
+        if let arrivingTime = times[indexPath.row].arrivingTime {
+        
+            let arrivingTimeDate = NSDate(timeIntervalSince1970: Double(TimeUtils.parseJSONDate(arrivingTime) / 1000))
+            let displayArrivingTime = TimeUtils.getTimeOfDay(arrivingTimeDate)
+            
+            cell.textLabel?.text = displayDepartingTime + " - " + displayArrivingTime
+        
+        }else {
+        
+            cell.textLabel?.text = displayDepartingTime
+        }
+        
+
         
         
         return cell
@@ -150,13 +169,11 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
         let sailings = routeItem?.scheduleDates[currentDay].sailings
         
         for sailing in sailings! as [SailingsItem] {
-        
-        
+
             if ((sailing.departingTerminalName == currentSailing.0) && (sailing.arrivingTerminalName == currentSailing.1)) {
                 displayedSailing = sailing
             }
-        
-        
+            
         }
         
     }

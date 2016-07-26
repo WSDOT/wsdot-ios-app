@@ -28,6 +28,18 @@ class TimeUtils {
         }
     }
     
+    static func getTimeOfDay(date: NSDate) -> String{
+        //Get Short Time String
+        let formatter = NSDateFormatter()
+        formatter.timeStyle = .ShortStyle
+        let timeString = formatter.stringFromDate(date)
+
+        //Return Short Time String
+        return timeString
+        
+    }
+    
+    
     // Returns an array of the days of the week starting with the current day
     static func nextSevenDaysStrings(date: Int64) -> [String]{
         let weekdays = NSDateFormatter().weekdaySymbols
