@@ -12,24 +12,32 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
     
     let cellIdentifier = "RouteDepartures"
 
-    @IBOutlet weak var dateTextField: PickerTextField!
+    // set by previous view controller
+    var currentSailing : (String, String) = ("", "")
     var routeItem : FerriesRouteScheduleItem? = nil
-    var departingTerminal : String? = nil
     
-    
-    @IBOutlet weak var bannerView: GADBannerView!
-    
+    var segment = 0
+    var currentDay = 0
+
+    var displayedSailing: SailingsItem? = nil
     var pickerData = [String]()
+    
+    @IBOutlet weak var dateTextField: PickerTextField!
+    @IBOutlet weak var bannerView: GADBannerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = departingTerminal
+        title = currentSailing.0 + " to " + currentSailing.1
 
+        setDisplayedSailing()
+
+        // Ad Banner
         bannerView.adUnitID = "ad_string"
         bannerView.rootViewController = self
         bannerView.loadRequest(GADRequest())
         
+        // Set up day of week picker
         let picker: UIPickerView
         picker = UIPickerView(frame: CGRectMake(0, 200, view.frame.width, 300))
         picker.backgroundColor = .whiteColor()
@@ -38,7 +46,8 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
         picker.delegate = self
         picker.dataSource = self
         
-        pickerData = TimeUtils.nextSevenDaysStrings()
+        pickerData = TimeUtils.nextSevenDaysStrings(TimeUtils.parseJSONDate((routeItem?.scheduleDates[0].date)!))
+        pickerData = Array(pickerData[0...(routeItem?.scheduleDates.count)! - 1])
         
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.Default
@@ -59,18 +68,17 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
     }
     
     @IBAction func indexChanged(sender: UISegmentedControl) {
-        
         // TODO: Change Data Source for list and refesh
         switch sender.selectedSegmentIndex
         {
         case 0: // Departure times
-            
-        
+            dateTextField.hidden = false
+
         
         
             break;
-        case 1: // Camertas
-        
+        case 1: // Cameras
+            dateTextField.hidden = true
         
         
         
@@ -93,6 +101,7 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
     
     // The data to return for the row and component (column) that's being passed in
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        currentDay = row
         return pickerData[row]
     }
     
@@ -103,22 +112,52 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
     
     func donePicker() {
         dateTextField.resignFirstResponder()
-        
-        // TODO: load new data for current date
-        
+        setDisplayedSailing()
     }
 
+    // MARK: -
+    // MARK: Table View Delegate & data source methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0 // TODO
+        
+        switch segment{
+        case 0: // Departure times
+            return displayedSailing!.times.count
+        case 1: // Cameras
+            return 0
+        default:
+            return 0
+        }
+        
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
         
+        cell.textLabel?.text = displayedSailing!.departingTerminalName
+        
+        
         return cell
+    }
+    
+    // MARK: -
+    // MARK: Helper functions
+    private func setDisplayedSailing(){
+
+        let sailings = routeItem?.scheduleDates[currentDay].sailings
+        
+        for sailing in sailings! as [SailingsItem] {
+        
+        
+            if ((sailing.departingTerminalName == currentSailing.0) && (sailing.arrivingTerminalName == currentSailing.1)) {
+                displayedSailing = sailing
+            }
+        
+        
+        }
+        
     }
 }

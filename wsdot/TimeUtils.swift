@@ -10,13 +10,13 @@ import Foundation
 
 class TimeUtils {
     
+    static let updateTime = 900000
+    
     static var currentTime: Int64{
         get {
             return Int64(floor(NSDate().timeIntervalSince1970 * 1000))
         }
     }
-    
-    static let updateTime = 900000
     
     // formates a /Date(1468516282113-0700)/ date into a Int64
     static func parseJSONDate(date: String) -> Int64{
@@ -29,14 +29,15 @@ class TimeUtils {
     }
     
     // Returns an array of the days of the week starting with the current day
-    static func nextSevenDaysStrings() -> [String]{
+    static func nextSevenDaysStrings(date: Int64) -> [String]{
         let weekdays = NSDateFormatter().weekdaySymbols
-        return Array(weekdays[getDayOfWeek()-1..<weekdays.count]) + weekdays[0..<getDayOfWeek()-1]
+        let dayOfWeekInt = getDayOfWeek(date)
+        return Array(weekdays[dayOfWeekInt-1..<weekdays.count]) + weekdays[0..<dayOfWeekInt-1]
     }
     
-    private static func getDayOfWeek()->Int {
+    private static func getDayOfWeek(date: Int64)->Int {
         let myCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-        let myComponents = myCalendar.components(.Weekday, fromDate: NSDate())
+        let myComponents = myCalendar.components(.Weekday, fromDate: NSDate(timeIntervalSince1970: Double(date / 1000)))
         let weekDay = myComponents.weekday
         return weekDay
     }

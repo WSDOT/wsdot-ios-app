@@ -35,7 +35,9 @@ class RouteSailingsViewController: UIViewController, UITableViewDataSource, UITa
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
         
-        cell.textLabel?.text = routeItem?.sailings[indexPath.row]
+        let sailing = routeItem?.sailings[indexPath.row]
+        
+        cell.textLabel?.text = (sailing?.0)! + " to " + (sailing?.1)!
         
         return cell
     }
@@ -52,8 +54,11 @@ class RouteSailingsViewController: UIViewController, UITableViewDataSource, UITa
         if segue.identifier == SegueRouteDeparturesViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let destinationViewController = segue.destinationViewController as! RouteDeparturesViewController
+                
                 destinationViewController.routeItem = routeItem
-                destinationViewController.departingTerminal = routeItem?.sailings[indexPath.row]
+                
+                destinationViewController.currentSailing = (routeItem?.sailings[indexPath.row])!
+                
                 let backItem = UIBarButtonItem()
                 backItem.title = "Back"
                 self.tabBarController!.navigationItem.backBarButtonItem = backItem

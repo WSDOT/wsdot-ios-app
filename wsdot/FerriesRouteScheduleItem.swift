@@ -20,7 +20,7 @@ class FerriesRouteScheduleItem: NSObject {
     var routeAlerts = [FerriesRouteAlertItem]()
     var scheduleDatesJSON: JSON = nil
     var scheduleDates = [FerriesScheduleDateItem]()
-    var sailings = [String]()
+    var sailings = [(String, String)]()
     
     init(description: String, id: Int, crossingTime: String?, cacheDate: Int64, alerts: JSON, scheduleDates: JSON ) {
         super.init()
@@ -35,23 +35,33 @@ class FerriesRouteScheduleItem: NSObject {
         self.sailings = getSailings()
     }
     
+
+    
     /*
         Creates an array of avaliable sailings for a route based on todays sailings.
     */
-    private func getSailings() -> [String]{
-    
-        var sailingsSet = Set<String>()
+    private func getSailings() -> [(String, String)]{
         
-        for sailing in scheduleDates[0].sailings {
+        var sailings = [(String, String)]()
         
-            let sailingName = sailing.departingTerminalName + " to " + sailing.arrivingTerminalName
-            
-            if (!sailingsSet.contains(sailingName)){
-                sailingsSet.insert(sailingName)
+        for index in 0...scheduleDates.count-1 {
+            for sailing in scheduleDates[index].sailings {
+                
+                let sailing = (sailing.departingTerminalName, sailing.arrivingTerminalName)
+                
+                if (!contains(sailings, v: sailing)){
+                    sailings.append(sailing)
+                }
             }
         }
+        
+        return sailings
+    }
     
-        return Array(sailingsSet)
+    private func contains(a:[(String, String)], v:(String,String)) -> Bool {
+        let (c1, c2) = v
+        for (v1, v2) in a { if v1 == c1 && v2 == c2 { return true } }
+        return false
     }
     
     private func getRouteAlertItemsFromJson(alertsJSON: JSON) -> [FerriesRouteAlertItem]{
