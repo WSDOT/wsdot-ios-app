@@ -127,7 +127,10 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
         
         switch segment{
         case 0: // Departure times
+            
             return displayedSailing!.times.count
+            
+            
         case 1: // Cameras
             return 0
         default:
@@ -166,15 +169,27 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
     // MARK: Helper functions
     private func setDisplayedSailing(){
 
+        // get sailings for selected day
         let sailings = routeItem?.scheduleDates[currentDay].sailings
         
+        // get sailings for current route
         for sailing in sailings! as [SailingsItem] {
 
             if ((sailing.departingTerminalName == currentSailing.0) && (sailing.arrivingTerminalName == currentSailing.1)) {
                 displayedSailing = sailing
             }
-            
         }
+        
+        // remove past sailings
+        var trimmedTimes = [SailingTimeItem]()
+        
+        for time in displayedSailing!.times {
+            if TimeUtils.parseJSONDate(time.departingTime!) > TimeUtils.currentTime{
+                trimmedTimes.append(time)
+            }
+        }
+        
+        displayedSailing!.times = trimmedTimes
         
     }
 }
