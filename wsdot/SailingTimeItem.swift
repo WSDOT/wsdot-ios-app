@@ -12,11 +12,11 @@ import SwiftyJSON
 class SailingTimeItem: NSObject {
     
     var uuid: String = NSUUID().UUIDString
-    var departingTime: String? = nil
+    var departingTime: String = ""
     var arrivingTime: String? = nil
     var annotationIndexes = [Int]()
     
-    init(departingTime: String?, arrivingTime: String?, annotationIndexesJSON: JSON) {
+    init(departingTime: String, arrivingTime: String?, annotationIndexesJSON: JSON) {
         super.init()
         self.departingTime = departingTime
         self.arrivingTime = arrivingTime

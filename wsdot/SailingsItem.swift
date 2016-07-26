@@ -35,7 +35,7 @@ class SailingsItem: NSObject {
         var times = [SailingTimeItem]()
 
         for (_,timeJSON):(String, JSON) in timesJSON {
-            let time = SailingTimeItem(departingTime: timeJSON["DepartingTime"].string, arrivingTime: timeJSON["ArrivingTime"].string, annotationIndexesJSON: timeJSON["AnnotationIndexes"])
+            let time = SailingTimeItem(departingTime: timeJSON["DepartingTime"].string!, arrivingTime: timeJSON["ArrivingTime"].string, annotationIndexesJSON: timeJSON["AnnotationIndexes"])
             times.append(time)
         }
     

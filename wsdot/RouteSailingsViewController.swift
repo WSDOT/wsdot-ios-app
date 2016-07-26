@@ -55,7 +55,7 @@ class RouteSailingsViewController: UIViewController, UITableViewDataSource, UITa
             if let indexPath = tableView.indexPathForSelectedRow {
                 let destinationViewController = segue.destinationViewController as! RouteDeparturesViewController
                 
-                destinationViewController.routeItem = routeItem
+                destinationViewController.sailingsByDate = routeItem?.scheduleDates
                 
                 destinationViewController.currentSailing = (routeItem?.sailings[indexPath.row])!
                 

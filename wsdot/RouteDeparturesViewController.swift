@@ -14,7 +14,7 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
 
     // set by previous view controller
     var currentSailing : (String, String) = ("", "")
-    var routeItem : FerriesRouteScheduleItem? = nil
+    var sailingsByDate : [FerriesScheduleDateItem]? = nil
     
     var segment = 0
     var currentDay = 0
@@ -24,6 +24,7 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
     
     @IBOutlet weak var dateTextField: PickerTextField!
     @IBOutlet weak var bannerView: GADBannerView!
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -49,8 +50,8 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
         picker.delegate = self
         picker.dataSource = self
         
-        pickerData = TimeUtils.nextSevenDaysStrings(TimeUtils.parseJSONDate((routeItem?.scheduleDates[0].date)!))
-        pickerData = Array(pickerData[0...(routeItem?.scheduleDates.count)! - 1])
+        pickerData = TimeUtils.nextSevenDaysStrings(TimeUtils.parseJSONDate((sailingsByDate![0].date)))
+        pickerData = Array(pickerData[0...sailingsByDate!.count - 1])
         
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.Default
@@ -150,7 +151,7 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
         
         let times = displayedSailing!.times
         
-        let departingTimeDate = NSDate(timeIntervalSince1970: Double(TimeUtils.parseJSONDate(times[indexPath.row].departingTime!) / 1000))
+        let departingTimeDate = NSDate(timeIntervalSince1970: Double(TimeUtils.parseJSONDate(times[indexPath.row].departingTime) / 1000))
         let displayDepartingTime = TimeUtils.getTimeOfDay(departingTimeDate)
         
         cell.departingTime.text = displayDepartingTime
@@ -194,10 +195,10 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
     private func setDisplayedSailing(){
 
         // get sailings for selected day
-        let sailings = routeItem?.scheduleDates[currentDay].sailings
+        let sailings = sailingsByDate![currentDay].sailings
         
         // get sailings for current route
-        for sailing in sailings! as [SailingsItem] {
+        for sailing in sailings as [SailingsItem] {
 
             if ((sailing.departingTerminalName == currentSailing.0) && (sailing.arrivingTerminalName == currentSailing.1)) {
                 displayedSailing = sailing
@@ -208,7 +209,7 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
         var trimmedTimes = [SailingTimeItem]()
         
         for time in displayedSailing!.times {
-            if TimeUtils.parseJSONDate(time.departingTime!) > TimeUtils.currentTime{
+            if TimeUtils.parseJSONDate(time.departingTime) > TimeUtils.currentTime{
                 trimmedTimes.append(time)
             }
         }
