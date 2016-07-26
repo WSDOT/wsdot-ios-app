@@ -47,7 +47,7 @@ class RouteAlertsViewController: UIViewController, UITableViewDataSource, UITabl
         
         let attrStr = try! NSMutableAttributedString(
             data: htmlString.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: false)!,
-            options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 17)!],
+            options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
             documentAttributes: nil)
         
         cell.linkLabel.attributedText = attrStr

@@ -33,6 +33,8 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
 
         setDisplayedSailing()
 
+        tableView.rowHeight = UITableViewAutomaticDimension
+
         // Ad Banner
         bannerView.adUnitID = "ad_string"
         bannerView.rootViewController = self
@@ -139,31 +141,53 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
         
     }
     
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! DeparturesCustomCell
         
         let times = displayedSailing!.times
         
         let departingTimeDate = NSDate(timeIntervalSince1970: Double(TimeUtils.parseJSONDate(times[indexPath.row].departingTime!) / 1000))
         let displayDepartingTime = TimeUtils.getTimeOfDay(departingTimeDate)
         
-        if let arrivingTime = times[indexPath.row].arrivingTime {
+        cell.departingTime.text = displayDepartingTime
         
+        if let arrivingTime = times[indexPath.row].arrivingTime {
             let arrivingTimeDate = NSDate(timeIntervalSince1970: Double(TimeUtils.parseJSONDate(arrivingTime) / 1000))
             let displayArrivingTime = TimeUtils.getTimeOfDay(arrivingTimeDate)
-            
-            cell.textLabel?.text = displayDepartingTime + " - " + displayArrivingTime
-        
-        }else {
-        
-            cell.textLabel?.text = displayDepartingTime
+            cell.arrivingTime.text = displayArrivingTime
+        } else {
+            cell.arrivingTime.text = ""
         }
         
-
+        var annotaions = ""
         
+        for index in times[indexPath.row].annotationIndexes{
+            annotaions += (displayedSailing?.annotations[index])! + " "
+        }
+        
+        let htmlStyleString = "<style>body{font-family: '\(cell.annotations.font.fontName)'; font-size:\(cell.annotations.font.pointSize)px;}</style>"
+        let attrAnnotationsStr = try! NSMutableAttributedString(
+            data: (htmlStyleString + annotaions).dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: false)!,
+            options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 17)!],
+            documentAttributes: nil)
+        
+        cell.annotations.attributedText = attrAnnotationsStr
+        cell.annotations.sizeToFit()
+
+
+
+        // TODO: Sailing Spaces
+        cell.sailingSpaces.text = "Sample Text"
+
+        cell.avaliableSpacesBar.progress = 0.5
         
         return cell
     }
+    
     
     // MARK: -
     // MARK: Helper functions
