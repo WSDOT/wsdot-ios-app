@@ -15,7 +15,9 @@ class DeparturesCustomCell: UITableViewCell {
     @IBOutlet weak var sailingSpaces: UILabel!
     @IBOutlet weak var annotations: INDLinkLabel!
     @IBOutlet weak var avaliableSpacesBar: UIProgressView!
+    @IBOutlet weak var spacesDisclaimer: UILabel!
     
+    @IBOutlet weak var updated: UILabel!
 
 
 }

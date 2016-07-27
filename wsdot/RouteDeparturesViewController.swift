@@ -10,22 +10,29 @@ import GoogleMobileAds
 
 class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    let departuresCellIdentifier = "RouteDepartures"
+    let departuresSailingSpacesCellIdentifier = "RouteDeparturesSailingSpaces"
+    let departureCellIdentifier = "RouteDeparture"
     let camerasCellIdentifier = "RouteCameras"
+
+    var sailingSpaces : [SailingSpacesItem]?
 
     // set by previous view controller
     var currentSailing : (String, String) = ("", "")
     var sailingsByDate : [FerriesScheduleDateItem]? = nil
     
+    var updatedAt: Int64 = 0
     var segment = 0
     var currentDay = 0
-
+    
     var displayedSailing: SailingsItem? = nil
     var pickerData = [String]()
+    
+    let refreshControl = UIRefreshControl()
     
     @IBOutlet weak var dateTextField: PickerTextField!
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var departuresHeader: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +43,11 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
 
         tableView.rowHeight = UITableViewAutomaticDimension
 
+        // refresh controller
+        refreshControl.addTarget(self, action: #selector(RouteDeparturesViewController.refresh(_:)), forControlEvents: .ValueChanged)
+        refreshControl.attributedTitle = NSAttributedString.init(string: "loading drive-up spaces")
+        tableView.addSubview(refreshControl)
+
         // Ad Banner
         bannerView.adUnitID = "ad_string"
         bannerView.rootViewController = self
@@ -43,7 +55,7 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
         
         // Set up day of week picker
         let picker: UIPickerView
-        picker = UIPickerView(frame: CGRectMake(0, 200, view.frame.width, 300))
+        picker = UIPickerView()
         picker.backgroundColor = .whiteColor()
         
         picker.showsSelectionIndicator = true
@@ -68,6 +80,45 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
         dateTextField.text = pickerData[0]
         dateTextField.inputView = picker
         dateTextField.inputAccessoryView = toolBar
+
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.contentOffset = CGPointMake(0, -self.refreshControl.frame.size.height)
+        refreshControl.beginRefreshing()
+        refresh(self.refreshControl)
+    }
+    
+    func refresh(refreshControl: UIRefreshControl) {
+        print("refeshing")
+        if (currentDay == 0){
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak self] in
+                SailingSpacesStore.getSailingSpacesForTerminal((self!.displayedSailing?.departingTerminalId)!, arrivingId: (self!.displayedSailing?.arrivingTerminalId)!, completion: { data, error in
+                    if let validData = data {
+                        dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                            if let selfValue = self{
+                                selfValue.sailingSpaces = validData
+                                selfValue.tableView.reloadData()
+                                refreshControl.endRefreshing()
+                                selfValue.updatedAt = TimeUtils.currentTime
+                            }
+                        }
+                    } else {
+                        dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                            if let selfValue = self{
+                                refreshControl.endRefreshing()
+                                selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                                
+                            }
+                        }
+                    }
+                    
+                })
+            }
+        }else{
+            self.refreshControl.endRefreshing()
+        }
         
     }
     
@@ -77,15 +128,17 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
         {
         case 0: // Departure times
             dateTextField.hidden = false
-
+            departuresHeader.hidden = false
+            refreshControl.hidden = false
             segment = 0
             tableView.reloadData()
         
             break;
         case 1: // Cameras
             dateTextField.hidden = true
+            departuresHeader.hidden = true
+            refreshControl.hidden = true
             segment = 1
-        
             tableView.reloadData()
         
             break;
@@ -105,18 +158,16 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
         return pickerData.count
     }
     
-    // The data to return for the row and component (column) that's being passed in
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        currentDay = row
         return pickerData[row]
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
-    {
-        dateTextField.text = pickerData[row]
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        currentDay = row
     }
     
     func donePicker() {
+        dateTextField.text = pickerData[currentDay]
         dateTextField.resignFirstResponder()
         setDisplayedSailing()
         self.tableView.reloadData()
@@ -135,17 +186,18 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
             return displayedSailing!.times.count
             
         case 1: // Cameras
+        
+        
             return 1
         default:
             return 0
         }
-        
-        
-        
     }
     
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
         return UITableViewAutomaticDimension
+        
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -153,9 +205,25 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
         switch segment{
         case 0: // Departure times
             
-            let cell = tableView.dequeueReusableCellWithIdentifier(departuresCellIdentifier) as! DeparturesCustomCell
+            var cell = tableView.dequeueReusableCellWithIdentifier(departureCellIdentifier) as! DeparturesCustomCell
             
+            
+            // Check if sailing space informatino is avaliable. If so change prototype cell.
             let times = displayedSailing!.times
+            if let sailingSpacesValue = sailingSpaces{
+                for spaceItem: SailingSpacesItem in sailingSpacesValue {
+                    if times[indexPath.row].departingTime == spaceItem.Date {
+                        cell = tableView.dequeueReusableCellWithIdentifier(departuresSailingSpacesCellIdentifier) as! DeparturesCustomCell
+                        cell.sailingSpaces.hidden = false
+                        cell.sailingSpaces.text = String(spaceItem.remainingSpaces) + " Drive-up spaces"
+                        cell.avaliableSpacesBar.hidden = false
+                        cell.avaliableSpacesBar.progress = spaceItem.percentAvaliable
+                        cell.spacesDisclaimer.hidden = false
+                        cell.spacesDisclaimer.sizeToFit()
+                        cell.updated.text = TimeUtils.timeSinceDate(updatedAt, numericDates: true)
+                    }
+                }
+            }
             
             let departingTimeDate = NSDate(timeIntervalSince1970: Double(TimeUtils.parseJSONDate(times[indexPath.row].departingTime) / 1000))
             let displayDepartingTime = TimeUtils.getTimeOfDay(departingTimeDate)
@@ -176,19 +244,22 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
                 annotaions += (displayedSailing?.annotations[index])! + " "
             }
             
-            let htmlStyleString = "<style>body{font-family: '\(cell.annotations.font.fontName)'; font-size:\(cell.annotations.font.pointSize)px;}</style>"
-            let attrAnnotationsStr = try! NSMutableAttributedString(
-                data: (htmlStyleString + annotaions).dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: false)!,
-                options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 17)!],
-                documentAttributes: nil)
+            if (annotaions != ""){
+                
+                let htmlStyleString = "<style>body{font-family: '\(cell.annotations.font.fontName)'; font-size:\(cell.annotations.font.pointSize)px;}</style>"
+                let attrAnnotationsStr = try! NSMutableAttributedString(
+                    data: (htmlStyleString + annotaions).dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: false)!,
+                    options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 17)!],
+                    documentAttributes: nil)
+                cell.annotations.hidden = false
+                cell.annotations.attributedText = attrAnnotationsStr
+                cell.annotations.sizeToFit()
+                
+            }else {
+                cell.annotations.text = annotaions
+            }
             
-            cell.annotations.attributedText = attrAnnotationsStr
-            cell.annotations.sizeToFit()
-            
-            // TODO: Sailing Spaces
-            cell.sailingSpaces.text = "Sample Text"
-            
-            cell.avaliableSpacesBar.progress = 0.5
+
             
             return cell
             
@@ -196,12 +267,10 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
             let cell = tableView.dequeueReusableCellWithIdentifier(camerasCellIdentifier) as! CameraImageCustomCell
             return cell
         default:
-            let cell = tableView.dequeueReusableCellWithIdentifier(departuresCellIdentifier) as! DeparturesCustomCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(departuresSailingSpacesCellIdentifier) as! DeparturesCustomCell
             return cell
             
         }
-        
-        
     }
     
     
