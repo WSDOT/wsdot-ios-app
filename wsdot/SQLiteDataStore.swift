@@ -38,6 +38,12 @@ class SQLiteDataStore {
             throw DataAccessError.Datastore_Connection_Error
         }
         
+        do {
+            print("creating Cameras table...")
+            try CamerasDataHelper.createTable()
+        } catch {
+            throw DataAccessError.Datastore_Connection_Error
+        }
         
         do {
             print("creating Ferries Schedules table...")
@@ -51,6 +57,7 @@ class SQLiteDataStore {
     private func seedCaches(){
         print("seeding caches table")
         CachesStore.insertNewTime(Tables.FERRIES_TABLE, updated: 0)
+        CachesStore.insertNewTime(Tables.CAMERAS_TABLE, updated: 0)
     }
     
 }

@@ -27,6 +27,8 @@
 		9A5017981D258F1500B9C49E /* FerriesScheduleDateItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5017971D258F1500B9C49E /* FerriesScheduleDateItem.swift */; };
 		9A50179A1D258F1B00B9C49E /* RouteSchedulesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5017991D258F1B00B9C49E /* RouteSchedulesStore.swift */; };
 		9A50179C1D258F2000B9C49E /* RoutesCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */; };
+		9A81A5741D4A81DC0049913A /* CamerasDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5731D4A81DC0049913A /* CamerasDataHelper.swift */; };
+		9A81A5761D4A87480049913A /* CamerasStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5751D4A87480049913A /* CamerasStore.swift */; };
 		9A9804F21D3E6DBF0058146F /* SailingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9804F11D3E6DBF0058146F /* SailingsItem.swift */; };
 		9A9804F41D3E6FE80058146F /* SailingTimeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9804F31D3E6FE80058146F /* SailingTimeItem.swift */; };
 		9AD32DFD1D23172C000AEC28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32DFC1D23172C000AEC28 /* AppDelegate.swift */; };
@@ -44,6 +46,9 @@
 		9ADEAE521D270E3E00BA7DD4 /* DataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADEAE511D270E3E00BA7DD4 /* DataModels.swift */; };
 		9ADEAE541D270FB100BA7DD4 /* DataHelperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADEAE531D270FB100BA7DD4 /* DataHelperProtocol.swift */; };
 		9ADEAE571D2710CC00BA7DD4 /* FerriesScheduleDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADEAE561D2710CC00BA7DD4 /* FerriesScheduleDataHelper.swift */; };
+		9AE4863E1D49594D007A92E3 /* FerriesTerminalMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE4863D1D49594D007A92E3 /* FerriesTerminalMap.swift */; };
+		9AE486441D495ACB007A92E3 /* FerriesTerminalItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE486431D495ACB007A92E3 /* FerriesTerminalItem.swift */; };
+		9AE486471D495E90007A92E3 /* CameraItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE486461D495E90007A92E3 /* CameraItem.swift */; };
 		9AFEECDE1D39252E0078A781 /* CachesDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFEECDD1D39252E0078A781 /* CachesDataHelper.swift */; };
 		9AFEECE11D3925400078A781 /* CachesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFEECE01D3925400078A781 /* CachesStore.swift */; };
 /* End PBXBuildFile section */
@@ -79,6 +84,8 @@
 		9A5017971D258F1500B9C49E /* FerriesScheduleDateItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerriesScheduleDateItem.swift; sourceTree = "<group>"; };
 		9A5017991D258F1B00B9C49E /* RouteSchedulesStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteSchedulesStore.swift; sourceTree = "<group>"; };
 		9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutesCustomCell.swift; sourceTree = "<group>"; };
+		9A81A5731D4A81DC0049913A /* CamerasDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CamerasDataHelper.swift; sourceTree = "<group>"; };
+		9A81A5751D4A87480049913A /* CamerasStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CamerasStore.swift; sourceTree = "<group>"; };
 		9A9804F11D3E6DBF0058146F /* SailingsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SailingsItem.swift; sourceTree = "<group>"; };
 		9A9804F31D3E6FE80058146F /* SailingTimeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SailingTimeItem.swift; sourceTree = "<group>"; };
 		9AD32DF91D23172C000AEC28 /* WSDOT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WSDOT.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +107,9 @@
 		9ADEAE511D270E3E00BA7DD4 /* DataModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModels.swift; sourceTree = "<group>"; };
 		9ADEAE531D270FB100BA7DD4 /* DataHelperProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHelperProtocol.swift; sourceTree = "<group>"; };
 		9ADEAE561D2710CC00BA7DD4 /* FerriesScheduleDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerriesScheduleDataHelper.swift; sourceTree = "<group>"; };
+		9AE4863D1D49594D007A92E3 /* FerriesTerminalMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerriesTerminalMap.swift; sourceTree = "<group>"; };
+		9AE486431D495ACB007A92E3 /* FerriesTerminalItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerriesTerminalItem.swift; sourceTree = "<group>"; };
+		9AE486461D495E90007A92E3 /* CameraItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraItem.swift; sourceTree = "<group>"; };
 		9AFEECDD1D39252E0078A781 /* CachesDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachesDataHelper.swift; sourceTree = "<group>"; };
 		9AFEECE01D3925400078A781 /* CachesStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachesStore.swift; sourceTree = "<group>"; };
 		D580B199D18890EA70A9D2CE /* Pods-WSDOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.release.xcconfig"; sourceTree = "<group>"; };
@@ -163,14 +173,9 @@
 		9A0CA8341D465FA4009C67B7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				9A5017991D258F1B00B9C49E /* RouteSchedulesStore.swift */,
-				9A5017951D258F1100B9C49E /* FerriesRouteScheduleItem.swift */,
-				9A5017931D258F0C00B9C49E /* FerriesRouteAlertItem.swift */,
-				9A5017971D258F1500B9C49E /* FerriesScheduleDateItem.swift */,
-				9A9804F11D3E6DBF0058146F /* SailingsItem.swift */,
-				9A9804F31D3E6FE80058146F /* SailingTimeItem.swift */,
-				9A1F5FA21D47DBB700DA5F99 /* SailingSpacesStore.swift */,
-				9A1F5FA61D47E27200DA5F99 /* SailingSpacesItem.swift */,
+				9AE486421D495A49007A92E3 /* Terminals */,
+				9AE486411D495A38007A92E3 /* Routes */,
+				9AE4863F1D495A16007A92E3 /* SailingSpaces */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -230,7 +235,7 @@
 				9AFEECDB1D3924570078A781 /* Home */,
 				9AFEECDA1D3924520078A781 /* Ferries */,
 				9ADEAE4B1D270CBB00BA7DD4 /* Helpers */,
-				9AD32E1F1D231749000AEC28 /* Stores */,
+				9AD32E1F1D231749000AEC28 /* Model */,
 				9AD32E1D1D231739000AEC28 /* CustomViews */,
 				9AD32DFC1D23172C000AEC28 /* AppDelegate.swift */,
 				9AD32E031D23172C000AEC28 /* Assets.xcassets */,
@@ -259,13 +264,14 @@
 			name = CustomViews;
 			sourceTree = "<group>";
 		};
-		9AD32E1F1D231749000AEC28 /* Stores */ = {
+		9AD32E1F1D231749000AEC28 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9AE486451D495DA5007A92E3 /* Cameras */,
 				9AFEECDF1D39253A0078A781 /* Caches */,
 				9ADEAE481D27099900BA7DD4 /* Database */,
 			);
-			name = Stores;
+			name = Model;
 			sourceTree = "<group>";
 		};
 		9ADEAE481D27099900BA7DD4 /* Database */ = {
@@ -294,8 +300,49 @@
 				9ADEAE531D270FB100BA7DD4 /* DataHelperProtocol.swift */,
 				9AFEECDD1D39252E0078A781 /* CachesDataHelper.swift */,
 				9ADEAE561D2710CC00BA7DD4 /* FerriesScheduleDataHelper.swift */,
+				9A81A5731D4A81DC0049913A /* CamerasDataHelper.swift */,
 			);
 			name = DataHelpers;
+			sourceTree = "<group>";
+		};
+		9AE4863F1D495A16007A92E3 /* SailingSpaces */ = {
+			isa = PBXGroup;
+			children = (
+				9A1F5FA21D47DBB700DA5F99 /* SailingSpacesStore.swift */,
+				9A1F5FA61D47E27200DA5F99 /* SailingSpacesItem.swift */,
+			);
+			name = SailingSpaces;
+			sourceTree = "<group>";
+		};
+		9AE486411D495A38007A92E3 /* Routes */ = {
+			isa = PBXGroup;
+			children = (
+				9A9804F31D3E6FE80058146F /* SailingTimeItem.swift */,
+				9A9804F11D3E6DBF0058146F /* SailingsItem.swift */,
+				9A5017971D258F1500B9C49E /* FerriesScheduleDateItem.swift */,
+				9A5017931D258F0C00B9C49E /* FerriesRouteAlertItem.swift */,
+				9A5017951D258F1100B9C49E /* FerriesRouteScheduleItem.swift */,
+				9A5017991D258F1B00B9C49E /* RouteSchedulesStore.swift */,
+			);
+			name = Routes;
+			sourceTree = "<group>";
+		};
+		9AE486421D495A49007A92E3 /* Terminals */ = {
+			isa = PBXGroup;
+			children = (
+				9AE4863D1D49594D007A92E3 /* FerriesTerminalMap.swift */,
+				9AE486431D495ACB007A92E3 /* FerriesTerminalItem.swift */,
+			);
+			name = Terminals;
+			sourceTree = "<group>";
+		};
+		9AE486451D495DA5007A92E3 /* Cameras */ = {
+			isa = PBXGroup;
+			children = (
+				9AE486461D495E90007A92E3 /* CameraItem.swift */,
+				9A81A5751D4A87480049913A /* CamerasStore.swift */,
+			);
+			name = Cameras;
 			sourceTree = "<group>";
 		};
 		9AFEECDA1D3924520078A781 /* Ferries */ = {
@@ -505,16 +552,21 @@
 				9A1F5F9F1D47C2E800DA5F99 /* DeparturesCustomCell.swift in Sources */,
 				9ADEAE4A1D2709AF00BA7DD4 /* SQLiteDataStore.swift in Sources */,
 				9A1F5FA51D47DCB900DA5F99 /* ApiKeys.swift in Sources */,
+				9AE486441D495ACB007A92E3 /* FerriesTerminalItem.swift in Sources */,
 				9A5017961D258F1100B9C49E /* FerriesRouteScheduleItem.swift in Sources */,
+				9AE486471D495E90007A92E3 /* CameraItem.swift in Sources */,
 				9A9804F21D3E6DBF0058146F /* SailingsItem.swift in Sources */,
 				9A07192E1D4110BC007BB4C5 /* RouteTabBarViewController.swift in Sources */,
 				9A0719331D42732A007BB4C5 /* INDLinkLabel.swift in Sources */,
 				9A50179C1D258F2000B9C49E /* RoutesCustomCell.swift in Sources */,
+				9A81A5761D4A87480049913A /* CamerasStore.swift in Sources */,
+				9AE4863E1D49594D007A92E3 /* FerriesTerminalMap.swift in Sources */,
 				9AD32E2A1D24233D000AEC28 /* FerriesHomeViewController.swift in Sources */,
 				9A0CA8371D466045009C67B7 /* TimeUtils.swift in Sources */,
 				9ADEAE541D270FB100BA7DD4 /* DataHelperProtocol.swift in Sources */,
 				9A1F5FA31D47DBB700DA5F99 /* SailingSpacesStore.swift in Sources */,
 				9AD32E221D241AF4000AEC28 /* HomeViewController.swift in Sources */,
+				9A81A5741D4A81DC0049913A /* CamerasDataHelper.swift in Sources */,
 				9AD32E2E1D243260000AEC28 /* FavoritesViewController.swift in Sources */,
 				9A0CA8311D428EE9009C67B7 /* RouteDeparturesViewController.swift in Sources */,
 				9A50179A1D258F1B00B9C49E /* RouteSchedulesStore.swift in Sources */,

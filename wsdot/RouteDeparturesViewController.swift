@@ -15,6 +15,7 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
     let camerasCellIdentifier = "RouteCameras"
 
     var sailingSpaces : [SailingSpacesItem]?
+    var cameras : [CameraItem]? = nil
 
     // set by previous view controller
     var currentSailing : (String, String) = ("", "")
@@ -28,6 +29,7 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
     var pickerData = [String]()
     
     let refreshControl = UIRefreshControl()
+    let refreshControlA = UIRefreshControl()
     
     @IBOutlet weak var dateTextField: PickerTextField!
     @IBOutlet weak var bannerView: GADBannerView!
@@ -45,8 +47,14 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
 
         // refresh controller
         refreshControl.addTarget(self, action: #selector(RouteDeparturesViewController.refresh(_:)), forControlEvents: .ValueChanged)
-        refreshControl.attributedTitle = NSAttributedString.init(string: "loading drive-up spaces")
+        // TODO: add refresh cameras
+
+
+        refreshControl.attributedTitle = NSAttributedString.init(string: "times")
+        refreshControlA.attributedTitle = NSAttributedString.init(string: "Cameras")
+
         tableView.addSubview(refreshControl)
+        //tableView.addSubview(refreshControlA)
 
         // Ad Banner
         bannerView.adUnitID = "ad_string"
@@ -80,7 +88,26 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
         dateTextField.text = pickerData[0]
         dateTextField.inputView = picker
         dateTextField.inputAccessoryView = toolBar
-
+        
+        refreshControlA.hidden = true
+        refreshControlA.beginRefreshing()
+        
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak self] in
+            CamerasStore.getCameras("Ferries", completion:  { data, error in
+                if (error == nil){
+                    if let selfValue = self{
+                        selfValue.cameras = data
+                        selfValue.refreshControlA.endRefreshing()
+                        selfValue.tableView.reloadData()
+                        print("Cameras Loaded")
+                    }
+                }else{
+                    print("RouteDepartureViewContorller: Error getting cameras")
+                }
+            })
+        }
+        
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -102,6 +129,7 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
                                 selfValue.tableView.reloadData()
                                 refreshControl.endRefreshing()
                                 selfValue.updatedAt = TimeUtils.currentTime
+                                print("Done refreshing")
                             }
                         }
                     } else {
@@ -119,7 +147,6 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
         }else{
             self.refreshControl.endRefreshing()
         }
-        
     }
     
     @IBAction func indexChanged(sender: UISegmentedControl) {
@@ -129,18 +156,28 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
         case 0: // Departure times
             dateTextField.hidden = false
             departuresHeader.hidden = false
-            refreshControl.hidden = false
+            
+            refreshControl.addTarget(self, action: #selector(RouteDeparturesViewController.refresh(_:)), forControlEvents: .ValueChanged)
+            
+            refreshControlA.removeFromSuperview()
+            tableView.addSubview(refreshControl)
+            
             segment = 0
             tableView.reloadData()
-        
             break;
         case 1: // Cameras
             dateTextField.hidden = true
             departuresHeader.hidden = true
-            refreshControl.hidden = true
+            
+            refreshControl.removeTarget(self, action: #selector(RouteDeparturesViewController.refresh(_:)), forControlEvents: .ValueChanged)
+            
+            refreshControl.removeFromSuperview()
+            tableView.addSubview(refreshControlA)
+            
+            tableView.
+            
             segment = 1
             tableView.reloadData()
-        
             break;
         default:
             break;
@@ -186,9 +223,7 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
             return displayedSailing!.times.count
             
         case 1: // Cameras
-        
-        
-            return 1
+            return cameras!.count
         default:
             return 0
         }
@@ -259,12 +294,17 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
                 cell.annotations.text = annotaions
             }
             
-
-            
             return cell
             
         case 1: // Cameras
             let cell = tableView.dequeueReusableCellWithIdentifier(camerasCellIdentifier) as! CameraImageCustomCell
+            
+            if let url = NSURL(string: cameras![indexPath.row].url) {
+                if let data = NSData(contentsOfURL: url) {
+                    cell.CameraImage.image = UIImage(data: data)
+                }
+            }
+            
             return cell
         default:
             let cell = tableView.dequeueReusableCellWithIdentifier(departuresSailingSpacesCellIdentifier) as! DeparturesCustomCell
@@ -272,7 +312,6 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
             
         }
     }
-    
     
     // MARK: -
     // MARK: Helper functions
@@ -297,8 +336,6 @@ class RouteDeparturesViewController: UIViewController, UITableViewDataSource, UI
                 trimmedTimes.append(time)
             }
         }
-        
         displayedSailing!.times = trimmedTimes
-        
     }
 }

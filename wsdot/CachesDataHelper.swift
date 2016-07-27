@@ -27,9 +27,8 @@ class CachesDataHelper: DataHelperProtocol {
                 t.column(tableName, primaryKey: true)
                 t.column(updated)
                 })
-            print("caches table ready.")
         } catch _ {
-            print("Error creating table")
+            print("Error creating caches table")
         }
         
     }
@@ -46,7 +45,6 @@ class CachesDataHelper: DataHelperProtocol {
             
             do {
                 if try DB.run(insert) > 0{
-                    print("inserted new value into " + item.tableName!)
                     return 0
                 } else {
                     throw DataAccessError.Insert_Error
@@ -65,22 +63,21 @@ class CachesDataHelper: DataHelperProtocol {
         }
         if (item.tableName != nil) {
             
-            print(item.tableName!)
-            print(item.updated!)
+            let filterTable = table.filter(tableName == item.tableName!)
             
-            let update = table.update(
+            let update = filterTable.update(
                 tableName <- item.tableName!,
                 updated <- item.updated!)
             
             do {
                 if try DB.run(update) > 0 {
-                    print("updated " + item.tableName!)
+
                     return 0
                 } else {
-                    throw DataAccessError.Insert_Error
+                    throw DataAccessError.Update_Error
                 }
             } catch {
-                throw DataAccessError.Insert_Error
+                throw DataAccessError.Update_Error
             }
         }
         throw DataAccessError.Nil_In_Data

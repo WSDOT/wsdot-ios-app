@@ -25,3 +25,13 @@ typealias RouteScheduleDataModel = (
     routeAlerts: String?,
     scheduleDates: String?
 )
+
+typealias CameraDataModel = (
+    cameraId: Int64,
+    url: String,
+    title: String,
+    roadName: String,
+    latitude: Double,
+    longitude: Double,
+    video: Int64
+)

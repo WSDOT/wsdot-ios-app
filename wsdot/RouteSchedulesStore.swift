@@ -47,8 +47,8 @@ class RouteSchedulesStore {
                 }
             }
         }else {
-            let routeSchedulesA = findAllSchedules()
-            completion(data: routeSchedulesA, error: nil)
+            let routeSchedules = findAllSchedules()
+            completion(data: routeSchedules, error: nil)
         }
     }
     
@@ -132,11 +132,5 @@ class RouteSchedulesStore {
         
         return routeSchedules
     }
-    
-    // TODO: implement
-    // Helper function for parseRouteSchedulesJSON
-    // Reads builds FerriesScheduleDateItem array from JSON
-    private static func parseRouteDatesJSON(json: JSON) ->[FerriesScheduleDateItem]{
-        return [FerriesScheduleDateItem]()
-    }
+
 }
