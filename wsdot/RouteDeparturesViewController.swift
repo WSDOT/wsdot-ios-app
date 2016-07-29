@@ -15,11 +15,6 @@ class RouteDeparturesViewController: UIViewController {
 
     @IBOutlet weak var timesContainerView: UIView!
     @IBOutlet weak var camerasContainerView: UIView!
-    
-    
-    let camerasCellIdentifier = "RouteCameras"
-
-    var cameras : [CameraItem]? = nil
 
     // set by previous view controller
     var currentSailing : (String, String) = ("", "")

@@ -569,15 +569,58 @@
             </objects>
             <point key="canvasLocation" x="4340" y="-54"/>
         </scene>
-        <!--View Controller-->
+        <!--Route Cameras View Controller-->
         <scene sceneID="hfE-u9-p0y">
             <objects>
-                <viewController id="9oz-GA-S3r" sceneMemberID="viewController">
+                <viewController id="9oz-GA-S3r" customClass="RouteCamerasViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cNj-D7-o38">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="153" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EyA-JM-ZYf">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="390"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TerminalCameras" rowHeight="153" id="YaX-Bs-itt" customClass="CameraImageCustomCell" customModule="WSDOT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="153"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YaX-Bs-itt" id="6r9-Yh-Tw5">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="152"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DgE-rk-BCG">
+                                                    <rect key="frame" x="8" y="8" width="584" height="151"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="DgE-rk-BCG" secondAttribute="bottom" constant="-15" id="56Q-Zx-LYy"/>
+                                                <constraint firstItem="DgE-rk-BCG" firstAttribute="top" secondItem="6r9-Yh-Tw5" secondAttribute="topMargin" id="ZJh-c1-Voh"/>
+                                                <constraint firstItem="DgE-rk-BCG" firstAttribute="leading" secondItem="6r9-Yh-Tw5" secondAttribute="leadingMargin" id="g1I-r6-eVi"/>
+                                                <constraint firstItem="DgE-rk-BCG" firstAttribute="trailing" secondItem="6r9-Yh-Tw5" secondAttribute="trailingMargin" id="woO-Bj-TQn"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="CameraImage" destination="DgE-rk-BCG" id="sOP-Uv-3QW"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="9oz-GA-S3r" id="8IS-sK-4S9"/>
+                                    <outlet property="delegate" destination="9oz-GA-S3r" id="AQe-Q6-8QH"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="EyA-JM-ZYf" secondAttribute="trailing" id="4C1-3e-kT7"/>
+                            <constraint firstItem="EyA-JM-ZYf" firstAttribute="top" secondItem="cNj-D7-o38" secondAttribute="top" id="J1i-XG-U1p"/>
+                            <constraint firstAttribute="bottom" secondItem="EyA-JM-ZYf" secondAttribute="bottom" id="n0J-8g-xDO"/>
+                            <constraint firstItem="EyA-JM-ZYf" firstAttribute="leading" secondItem="cNj-D7-o38" secondAttribute="leading" id="r4V-dE-0o5"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="EyA-JM-ZYf" id="5X3-4e-yYE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5I9-Un-JsC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
