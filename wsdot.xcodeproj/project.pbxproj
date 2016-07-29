@@ -29,6 +29,8 @@
 		9A50179C1D258F2000B9C49E /* RoutesCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */; };
 		9A81A5741D4A81DC0049913A /* CamerasDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5731D4A81DC0049913A /* CamerasDataHelper.swift */; };
 		9A81A5761D4A87480049913A /* CamerasStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5751D4A87480049913A /* CamerasStore.swift */; };
+		9A81A5781D4AC5710049913A /* RouteTimesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5771D4AC5710049913A /* RouteTimesViewController.swift */; };
+		9A81A57A1D4AC5840049913A /* RouteCameras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5791D4AC5840049913A /* RouteCameras.swift */; };
 		9A9804F21D3E6DBF0058146F /* SailingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9804F11D3E6DBF0058146F /* SailingsItem.swift */; };
 		9A9804F41D3E6FE80058146F /* SailingTimeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9804F31D3E6FE80058146F /* SailingTimeItem.swift */; };
 		9AD32DFD1D23172C000AEC28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32DFC1D23172C000AEC28 /* AppDelegate.swift */; };
@@ -86,6 +88,8 @@
 		9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutesCustomCell.swift; sourceTree = "<group>"; };
 		9A81A5731D4A81DC0049913A /* CamerasDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CamerasDataHelper.swift; sourceTree = "<group>"; };
 		9A81A5751D4A87480049913A /* CamerasStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CamerasStore.swift; sourceTree = "<group>"; };
+		9A81A5771D4AC5710049913A /* RouteTimesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTimesViewController.swift; sourceTree = "<group>"; };
+		9A81A5791D4AC5840049913A /* RouteCameras.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteCameras.swift; sourceTree = "<group>"; };
 		9A9804F11D3E6DBF0058146F /* SailingsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SailingsItem.swift; sourceTree = "<group>"; };
 		9A9804F31D3E6FE80058146F /* SailingTimeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SailingTimeItem.swift; sourceTree = "<group>"; };
 		9AD32DF91D23172C000AEC28 /* WSDOT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WSDOT.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,6 +170,8 @@
 			isa = PBXGroup;
 			children = (
 				9A0CA8301D428EE9009C67B7 /* RouteDeparturesViewController.swift */,
+				9A81A5771D4AC5710049913A /* RouteTimesViewController.swift */,
+				9A81A5791D4AC5840049913A /* RouteCameras.swift */,
 			);
 			name = departures;
 			sourceTree = "<group>";
@@ -568,11 +574,13 @@
 				9AD32E221D241AF4000AEC28 /* HomeViewController.swift in Sources */,
 				9A81A5741D4A81DC0049913A /* CamerasDataHelper.swift in Sources */,
 				9AD32E2E1D243260000AEC28 /* FavoritesViewController.swift in Sources */,
+				9A81A5781D4AC5710049913A /* RouteTimesViewController.swift in Sources */,
 				9A0CA8311D428EE9009C67B7 /* RouteDeparturesViewController.swift in Sources */,
 				9A50179A1D258F1B00B9C49E /* RouteSchedulesStore.swift in Sources */,
 				9A1F5FA11D47D3D100DA5F99 /* CameraImageCustomCell.swift in Sources */,
 				9AD32E2C1D242A5A000AEC28 /* RouteSchedulesViewController.swift in Sources */,
 				9A0719351D4274B8007BB4C5 /* LinkCell.swift in Sources */,
+				9A81A57A1D4AC5840049913A /* RouteCameras.swift in Sources */,
 				9A0CA83C1D46AC51009C67B7 /* PickerTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
