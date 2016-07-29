@@ -27,7 +27,9 @@ class RouteSchedulesStore {
      */
     static func getRouteSchedules(force: Bool, completion: FetchRouteScheduleCompletion) {
         
-        if (((TimeUtils.currentTime - CachesStore.getUpdatedTime(Tables.FERRIES_TABLE)) > TimeUtils.updateTime) || force){
+        let deltaUpdated = TimeUtils.currentTime - CachesStore.getUpdatedTime(Tables.FERRIES_TABLE)
+        
+        if ((deltaUpdated > TimeUtils.updateTime) || force){
             
             deleteAll()
             

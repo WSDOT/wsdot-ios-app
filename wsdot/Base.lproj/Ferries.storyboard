@@ -577,26 +577,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="172" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EyA-JM-ZYf">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="261" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EyA-JM-ZYf">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="390"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TerminalCameras" rowHeight="172" id="YaX-Bs-itt" customClass="CameraImageCustomCell" customModule="WSDOT" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="172"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TerminalCameras" rowHeight="261" id="YaX-Bs-itt" customClass="CameraImageCustomCell" customModule="WSDOT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="261"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YaX-Bs-itt" id="6r9-Yh-Tw5">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="171"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="261"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DgE-rk-BCG">
-                                                    <rect key="frame" x="8" y="8" width="584" height="151"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DgE-rk-BCG">
+                                                    <rect key="frame" x="8" y="8" width="584" height="245"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="DgE-rk-BCG" firstAttribute="top" secondItem="6r9-Yh-Tw5" secondAttribute="topMargin" id="ALS-Mr-upp"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="DgE-rk-BCG" secondAttribute="bottom" constant="4" id="b4e-gj-kfO"/>
-                                                <constraint firstItem="DgE-rk-BCG" firstAttribute="leading" secondItem="6r9-Yh-Tw5" secondAttribute="leadingMargin" id="d7X-dl-U6o"/>
-                                                <constraint firstItem="DgE-rk-BCG" firstAttribute="trailing" secondItem="6r9-Yh-Tw5" secondAttribute="trailingMargin" id="jXo-pc-mL1"/>
+                                                <constraint firstItem="DgE-rk-BCG" firstAttribute="top" secondItem="6r9-Yh-Tw5" secondAttribute="topMargin" id="WdH-er-BvO"/>
+                                                <constraint firstItem="DgE-rk-BCG" firstAttribute="trailing" secondItem="6r9-Yh-Tw5" secondAttribute="trailingMargin" id="aEV-Tm-Zyn"/>
+                                                <constraint firstItem="DgE-rk-BCG" firstAttribute="leading" secondItem="6r9-Yh-Tw5" secondAttribute="leadingMargin" id="gfu-wM-75M"/>
+                                                <constraint firstItem="DgE-rk-BCG" firstAttribute="bottom" secondItem="6r9-Yh-Tw5" secondAttribute="bottomMargin" id="oFN-4c-MZf"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -612,10 +612,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="EyA-JM-ZYf" secondAttribute="bottom" id="22w-uX-n6J"/>
-                            <constraint firstItem="EyA-JM-ZYf" firstAttribute="top" secondItem="cNj-D7-o38" secondAttribute="top" id="HlC-Cg-Dj0"/>
-                            <constraint firstAttribute="trailing" secondItem="EyA-JM-ZYf" secondAttribute="trailing" id="IvQ-VI-O6L"/>
-                            <constraint firstItem="EyA-JM-ZYf" firstAttribute="leading" secondItem="cNj-D7-o38" secondAttribute="leading" id="rYH-f1-xfh"/>
+                            <constraint firstAttribute="bottom" secondItem="EyA-JM-ZYf" secondAttribute="bottom" id="DjW-qd-ZY4"/>
+                            <constraint firstItem="EyA-JM-ZYf" firstAttribute="top" secondItem="cNj-D7-o38" secondAttribute="top" id="OMP-O8-R72"/>
+                            <constraint firstAttribute="trailing" secondItem="EyA-JM-ZYf" secondAttribute="trailing" id="S8G-cn-YGg"/>
+                            <constraint firstItem="EyA-JM-ZYf" firstAttribute="leading" secondItem="cNj-D7-o38" secondAttribute="leading" id="f8Y-Vb-Ff2"/>
                         </constraints>
                     </view>
                     <connections>

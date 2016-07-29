@@ -70,12 +70,11 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         dateTextField.text = pickerData[0]
         dateTextField.inputView = picker
         dateTextField.inputAccessoryView = toolBar
-        
         self.tableView.contentOffset = CGPointMake(0, -self.refreshControl.frame.size.height)
         refreshControl.beginRefreshing()
         refresh(self.refreshControl)
+        
     }
-    
     
     func refresh(refreshControl: UIRefreshControl) {
         if (currentDay == 0){
@@ -86,7 +85,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                             if let selfValue = self{
                                 selfValue.sailingSpaces = validData
                                 selfValue.tableView.reloadData()
-                                refreshControl.endRefreshing()
+                                selfValue.refreshControl.endRefreshing()
                                 selfValue.updatedAt = TimeUtils.currentTime
 
                             }
@@ -94,7 +93,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                     } else {
                         dispatch_async(dispatch_get_main_queue()) { [weak self] in
                             if let selfValue = self{
-                                refreshControl.endRefreshing()
+                                selfValue.refreshControl.endRefreshing()
                                 selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                                 
                             }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
 
@@ -32,9 +33,10 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
         tableView.addSubview(refreshControl)
         
         print(departingTerminalId)
-        
+        self.tableView.contentOffset = CGPointMake(0, -self.refreshControl.frame.size.height)
         refreshControl.beginRefreshing()
         refresh(self.refreshControl)
+        
     }
     
     func refresh(refreshControl: UIRefreshControl) {
@@ -43,8 +45,10 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
                 if (error == nil){
                     if let selfValue = self{
                         selfValue.cameras = selfValue.filterCameras(data)
+                        print("cameras filtered")
                         dispatch_async(dispatch_get_main_queue()) {[weak self] in
                             if let selfValue = self{
+                                print("reloading data")
                                 selfValue.tableView.reloadData()
                                 selfValue.refreshControl.endRefreshing()
                             }
@@ -54,14 +58,13 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
                 }else{
                     dispatch_async(dispatch_get_main_queue()) { [weak self] in
                         if let selfValue = self{
-                            refreshControl.endRefreshing()
+                            selfValue.refreshControl.endRefreshing()
                             selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                             
                         }
                     }
                 }
             })
-            
         }
     }
     
@@ -82,11 +85,7 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(camerasCellIdentifier) as! CameraImageCustomCell
         
-        if let url = NSURL(string: cameras[indexPath.row].url) {
-            if let data = NSData(contentsOfURL: url) {
-                cell.CameraImage.image = UIImage(data: data)
-            }
-        }
+        cell.CameraImage.sd_setImageWithURL(NSURL(string: cameras[indexPath.row].url), placeholderImage: UIImage(named: "imagePlaceholder"), options: .RefreshCached)
         
         return cell
     }

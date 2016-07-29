@@ -163,19 +163,19 @@
 				9A07192D1D4110BC007BB4C5 /* RouteTabBarViewController.swift */,
 				9A21E1CB1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift */,
 				9A07192B1D410FD5007BB4C5 /* RouteAlertsViewController.swift */,
-				9A0CA8331D465F44009C67B7 /* departures */,
+				9A0CA8331D465F44009C67B7 /* Departures */,
 			);
 			name = Sailings;
 			sourceTree = "<group>";
 		};
-		9A0CA8331D465F44009C67B7 /* departures */ = {
+		9A0CA8331D465F44009C67B7 /* Departures */ = {
 			isa = PBXGroup;
 			children = (
 				9A0CA8301D428EE9009C67B7 /* RouteDeparturesViewController.swift */,
 				9A81A5771D4AC5710049913A /* RouteTimesViewController.swift */,
 				9A81A5791D4AC5840049913A /* RouteCamerasViewController.swift */,
 			);
-			name = departures;
+			name = Departures;
 			sourceTree = "<group>";
 		};
 		9A0CA8341D465FA4009C67B7 /* Models */ = {

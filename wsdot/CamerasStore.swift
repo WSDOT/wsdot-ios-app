@@ -53,9 +53,12 @@ class CamerasStore {
                 switch response.result {
                 case .Success:
                     if let value = response.result.value {
+                        print(response.response?.statusCode)
                         let json = JSON(value)
                         let cameras = self.parseCamerasJSON(json)
+                        print("saving..")
                         self.saveCameras(cameras)
+                        print("done saving")
                         //CachesStore.updateTime(Tables.CAMERAS_TABLE, updated: TimeUtils.currentTime)
                         completion(error: nil)
                     }
@@ -94,8 +97,6 @@ class CamerasStore {
             print("saveCameras: Bulk insert Error")
         } catch DataAccessError.Datastore_Connection_Error {
             print("saveCameras: Connection error")
-        } catch DataAccessError.Nil_In_Data{
-            print("saveCameras: nil in data error")
         } catch _ {
             print("saveCameras: unknown error occured.")
         }
@@ -134,6 +135,7 @@ class CamerasStore {
     
     private static func getCamerasByRoadName(roadName : String, completion: FetchCamerasCompletion) -> [CameraItem]{
         var cameras = [CameraItem]()
+        print("get cameras")
         do{
             if let result = try CamerasDataHelper.findByRoadName(roadName){
                 
@@ -160,6 +162,7 @@ class CamerasStore {
             print("findAllSchedules: unknown error")
             completion(data: [], error: DataAccessError.Unknown_Error)
         }
+        print("returning cameras")
         return cameras
     }
     

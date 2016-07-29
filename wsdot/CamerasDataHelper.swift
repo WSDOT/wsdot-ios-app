@@ -68,14 +68,13 @@ class CamerasDataHelper: DataHelperProtocol {
         } catch {
             throw DataAccessError.Insert_Error
         }
-        
     }
     
     static func bulkInsert(items: [T]) throws -> Int64 {
         guard let DB = SQLiteDataStore.sharedInstance.WSDOTDB else {
             throw DataAccessError.Datastore_Connection_Error
         }
-        do{
+        do {
             try DB.transaction {
                 for item in items{
                     let insert = table.insert(
@@ -94,7 +93,6 @@ class CamerasDataHelper: DataHelperProtocol {
             throw DataAccessError.Bulk_Insert_Error
         }
         return 0
-        
     }
     
     static func delete (item: T) throws -> Void {
