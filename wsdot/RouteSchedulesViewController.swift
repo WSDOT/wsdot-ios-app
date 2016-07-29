@@ -118,10 +118,8 @@ class RouteSchedulesViewController: UITableViewController {
         if segue.identifier == SegueRouteDeparturesViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let routeItem = self.routes[indexPath.row] as FerriesRouteScheduleItem
-                //let destinationViewController = segue.destinationViewController as! RouteSailingsViewController
-                
-                let ctrl: RouteTabBarViewController = segue.destinationViewController as! RouteTabBarViewController
-                ctrl.routeItem = routeItem                
+                let destinationViewController: RouteTabBarViewController = segue.destinationViewController as! RouteTabBarViewController
+                destinationViewController.routeItem = routeItem
             }
         }
     }

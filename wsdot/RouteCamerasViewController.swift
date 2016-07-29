@@ -15,10 +15,11 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
 
     let refreshControl = UIRefreshControl()
 
+    var departingTerminalId = -1
+
     var cameras : [CameraItem] = []
 
     @IBOutlet weak var tableView: UITableView!
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,26 +31,37 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
         refreshControl.attributedTitle = NSAttributedString.init(string: "loading cameras")
         tableView.addSubview(refreshControl)
         
+        print(departingTerminalId)
+        
         refreshControl.beginRefreshing()
         refresh(self.refreshControl)
     }
     
-    
     func refresh(refreshControl: UIRefreshControl) {
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak self] in
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {[weak self] in
             CamerasStore.getCameras("Ferries", completion:  { data, error in
                 if (error == nil){
                     if let selfValue = self{
-                        selfValue.cameras = data
-                        selfValue.tableView.reloadData()
-                        print("Cameras Loaded")
-                        refreshControl.endRefreshing()
+                        selfValue.cameras = selfValue.filterCameras(data)
+                        dispatch_async(dispatch_get_main_queue()) {[weak self] in
+                            if let selfValue = self{
+                                selfValue.tableView.reloadData()
+                                selfValue.refreshControl.endRefreshing()
+                            }
+                        }
+                        
                     }
                 }else{
-                    print("RouteDepartureViewContorller: Error getting cameras")
-                    refreshControl.endRefreshing()
+                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                        if let selfValue = self{
+                            refreshControl.endRefreshing()
+                            selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                            
+                        }
+                    }
                 }
             })
+            
         }
     }
     
@@ -81,7 +93,21 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
     
     // MARK: -
     // MARK: Helper functinos
+    func filterCameras(cameras: [CameraItem]) -> [CameraItem] {
     
-    
-    
+        var filteredCameras = [CameraItem]()
+        for camera in cameras {
+            
+            let distance = LatLonUtils.haversine(
+                (FerriesConsts.terminalMap[departingTerminalId]?.latitude)!,
+                lonA: (FerriesConsts.terminalMap[departingTerminalId]?.longitude)!,
+                latB: camera.latitude,
+                lonB: camera.longitude)
+            
+            if (distance < 5280){
+                filteredCameras.append(camera)
+            }
+        }
+        return filteredCameras
+    }
 }

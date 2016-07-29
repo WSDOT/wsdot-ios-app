@@ -11,6 +11,7 @@ import UIKit
 enum DataAccessError: ErrorType {
     case Datastore_Connection_Error
     case Insert_Error
+    case Bulk_Insert_Error
     case Delete_Error
     case Search_Error
     case Update_Error

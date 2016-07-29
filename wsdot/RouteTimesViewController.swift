@@ -71,14 +71,15 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         dateTextField.inputView = picker
         dateTextField.inputAccessoryView = toolBar
         
+        self.tableView.contentOffset = CGPointMake(0, -self.refreshControl.frame.size.height)
         refreshControl.beginRefreshing()
         refresh(self.refreshControl)
     }
     
+    
     func refresh(refreshControl: UIRefreshControl) {
-        print("refeshing")
         if (currentDay == 0){
-            dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak self] in
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) { [weak self] in
                 SailingSpacesStore.getSailingSpacesForTerminal((self!.displayedSailing?.departingTerminalId)!, arrivingId: (self!.displayedSailing?.arrivingTerminalId)!, completion: { data, error in
                     if let validData = data {
                         dispatch_async(dispatch_get_main_queue()) { [weak self] in
@@ -87,7 +88,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                                 selfValue.tableView.reloadData()
                                 refreshControl.endRefreshing()
                                 selfValue.updatedAt = TimeUtils.currentTime
-                                print("Done refreshing")
+
                             }
                         }
                     } else {

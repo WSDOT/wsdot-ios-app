@@ -35,9 +35,9 @@ class CamerasStore {
                 }else{
                     getAllCameras(completion)
                 }
-                print("3")
             }
         })
+        
     }
     
     // Mark: -
@@ -47,18 +47,16 @@ class CamerasStore {
         
         if (((TimeUtils.currentTime - CachesStore.getUpdatedTime(Tables.CAMERAS_TABLE)) > TimeUtils.updateTime) || force){
             
-            deleteAll()
+        deleteAll()
             
             Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/Cameras.js").validate().responseJSON { response in
                 switch response.result {
                 case .Success:
                     if let value = response.result.value {
-                                    print("1")
                         let json = JSON(value)
                         let cameras = self.parseCamerasJSON(json)
                         self.saveCameras(cameras)
                         //CachesStore.updateTime(Tables.CAMERAS_TABLE, updated: TimeUtils.currentTime)
-                                        print("2")
                         completion(error: nil)
                     }
                 case .Failure(let error):
@@ -75,30 +73,35 @@ class CamerasStore {
     // Saves newly pulled data from the API into the database.
     private static func saveCameras(cameras: [CameraItem]){
         
+        var dataModelCameras = [CameraDataModel]()
+        
         for camera in cameras {
-            
-            do {
-                try CamerasDataHelper.insert(
-                    CameraDataModel(
-                        cameraId: camera.cameraId,
-                        url: camera.url,
-                        title: camera.title,
-                        roadName: camera.roadName,
-                        latitude: camera.latitude,
-                        longitude: camera.longitude,
-                        video: camera.video ? 1 : 0))
-            } catch DataAccessError.Update_Error {
-                print("saveCameras: failed to update caches")
-            } catch DataAccessError.Datastore_Connection_Error {
-                print("saveCameras: Connection error")
-            } catch DataAccessError.Nil_In_Data{
-                print("saveCameras: nil in data error")
-            } catch _ {
-                print("saveCameras: unknown error occured.")
-            }
+            dataModelCameras.append(
+            CameraDataModel(
+                cameraId: camera.cameraId,
+                url: camera.url,
+                title: camera.title,
+                roadName: camera.roadName,
+                latitude: camera.latitude,
+                longitude: camera.longitude,
+                video: camera.video ? 1 : 0))
+        }
+        
+        
+        do {
+            try CamerasDataHelper.bulkInsert(dataModelCameras)
+        } catch DataAccessError.Bulk_Insert_Error {
+            print("saveCameras: Bulk insert Error")
+        } catch DataAccessError.Datastore_Connection_Error {
+            print("saveCameras: Connection error")
+        } catch DataAccessError.Nil_In_Data{
+            print("saveCameras: nil in data error")
+        } catch _ {
+            print("saveCameras: unknown error occured.")
         }
     }
-    
+
+
     private static func getAllCameras(completion: FetchCamerasCompletion) -> [CameraItem]{
         var cameras = [CameraItem]()
         do{

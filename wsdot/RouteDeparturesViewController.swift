@@ -19,9 +19,6 @@ class RouteDeparturesViewController: UIViewController {
     // set by previous view controller
     var currentSailing : (String, String) = ("", "")
     var sailingsByDate : [FerriesScheduleDateItem]? = nil
-    
-
-    var segment = 0
 
     @IBOutlet weak var bannerView: GADBannerView!
     
@@ -42,18 +39,7 @@ class RouteDeparturesViewController: UIViewController {
 
 
     }
-    
-    /*
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        self.tableView.contentOffset = CGPointMake(0, -self.refreshControl.frame.size.height)
-        refreshControl.beginRefreshing()
-     refresh(self.refreshControl)
-     }
-     
-     */
-    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == timesViewSegue {
@@ -62,21 +48,42 @@ class RouteDeparturesViewController: UIViewController {
             dest.sailingsByDate = self.sailingsByDate
         }
         
+        if segue.identifier == camerasViewSegue {
+            let dest: RouteCamerasViewController = segue.destinationViewController as! RouteCamerasViewController
+            dest.departingTerminalId = getDepartingId()
+        }
+        
     }
-    
     
     @IBAction func indexChanged(sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
-            UIView.animateWithDuration(0.5, animations: {
+            UIView.animateWithDuration(0.3, animations: {
                 self.timesContainerView.alpha = 1
                 self.camerasContainerView.alpha = 0
             })
         } else {
-            UIView.animateWithDuration(0.5, animations: {
+            UIView.animateWithDuration(0.3, animations: {
                 self.timesContainerView.alpha = 0
                 self.camerasContainerView.alpha = 1
             })
         }
+    }
+    
+    // MARK: -
+    // MARK: Helper functions
+    private func getDepartingId() -> Int{
+        
+        // get sailings for selected day
+        let sailings = sailingsByDate![0].sailings
+        
+        // get sailings for current route
+        for sailing in sailings as [SailingsItem] {
+            if ((sailing.departingTerminalName == currentSailing.0)) {
+                return sailing.departingTerminalId
+            }
+        }
+        
+        return -1
     }
     
 }

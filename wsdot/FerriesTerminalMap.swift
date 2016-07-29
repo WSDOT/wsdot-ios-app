@@ -9,7 +9,7 @@
 import Foundation
 
 class FerriesConsts {
-    let terminalMap = [
+    static let terminalMap = [
         1: FerriesTerminalItem(id: 1, name: "Anacortes", lat: 48.507351, long: -122.677),
         3: FerriesTerminalItem(id: 3, name: "Bainbridge Island", lat: 47.622339, long: -122.509617),
         4: FerriesTerminalItem(id: 4, name: "Bremerton", lat: 47.561847, long: -122.624089),

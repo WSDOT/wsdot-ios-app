@@ -31,6 +31,7 @@
 		9A81A5761D4A87480049913A /* CamerasStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5751D4A87480049913A /* CamerasStore.swift */; };
 		9A81A5781D4AC5710049913A /* RouteTimesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5771D4AC5710049913A /* RouteTimesViewController.swift */; };
 		9A81A57A1D4AC5840049913A /* RouteCamerasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5791D4AC5840049913A /* RouteCamerasViewController.swift */; };
+		9A81A57C1D4BB41B0049913A /* LatLonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */; };
 		9A9804F21D3E6DBF0058146F /* SailingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9804F11D3E6DBF0058146F /* SailingsItem.swift */; };
 		9A9804F41D3E6FE80058146F /* SailingTimeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9804F31D3E6FE80058146F /* SailingTimeItem.swift */; };
 		9AD32DFD1D23172C000AEC28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32DFC1D23172C000AEC28 /* AppDelegate.swift */; };
@@ -90,6 +91,7 @@
 		9A81A5751D4A87480049913A /* CamerasStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CamerasStore.swift; sourceTree = "<group>"; };
 		9A81A5771D4AC5710049913A /* RouteTimesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTimesViewController.swift; sourceTree = "<group>"; };
 		9A81A5791D4AC5840049913A /* RouteCamerasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteCamerasViewController.swift; sourceTree = "<group>"; };
+		9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatLonUtils.swift; sourceTree = "<group>"; };
 		9A9804F11D3E6DBF0058146F /* SailingsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SailingsItem.swift; sourceTree = "<group>"; };
 		9A9804F31D3E6FE80058146F /* SailingTimeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SailingTimeItem.swift; sourceTree = "<group>"; };
 		9AD32DF91D23172C000AEC28 /* WSDOT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WSDOT.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -296,6 +298,7 @@
 				9ADEAE4C1D270CC800BA7DD4 /* Consts.swift */,
 				9A0CA8361D466045009C67B7 /* TimeUtils.swift */,
 				9A1F5FA41D47DCB900DA5F99 /* ApiKeys.swift */,
+				9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -558,6 +561,7 @@
 				9A1F5F9F1D47C2E800DA5F99 /* DeparturesCustomCell.swift in Sources */,
 				9ADEAE4A1D2709AF00BA7DD4 /* SQLiteDataStore.swift in Sources */,
 				9A1F5FA51D47DCB900DA5F99 /* ApiKeys.swift in Sources */,
+				9A81A57C1D4BB41B0049913A /* LatLonUtils.swift in Sources */,
 				9AE486441D495ACB007A92E3 /* FerriesTerminalItem.swift in Sources */,
 				9A5017961D258F1100B9C49E /* FerriesRouteScheduleItem.swift in Sources */,
 				9AE486471D495E90007A92E3 /* CameraItem.swift in Sources */,

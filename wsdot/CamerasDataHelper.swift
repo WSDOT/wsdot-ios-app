@@ -71,6 +71,32 @@ class CamerasDataHelper: DataHelperProtocol {
         
     }
     
+    static func bulkInsert(items: [T]) throws -> Int64 {
+        guard let DB = SQLiteDataStore.sharedInstance.WSDOTDB else {
+            throw DataAccessError.Datastore_Connection_Error
+        }
+        do{
+            try DB.transaction {
+                for item in items{
+                    let insert = table.insert(
+                        cameraId <- item.cameraId,
+                        url <- item.url,
+                        title <- item.title,
+                        roadName <- item.roadName,
+                        latitude <- item.latitude,
+                        longitude <- item.longitude,
+                        video <- item.video
+                    )
+                    try DB.run(insert)
+                }
+            }
+        }catch {
+            throw DataAccessError.Bulk_Insert_Error
+        }
+        return 0
+        
+    }
+    
     static func delete (item: T) throws -> Void {
         guard let DB = SQLiteDataStore.sharedInstance.WSDOTDB else {
             throw DataAccessError.Datastore_Connection_Error
