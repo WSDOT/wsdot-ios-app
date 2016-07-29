@@ -256,16 +256,6 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4jQ-hU-YF7">
-                                <rect key="frame" x="20" y="8" width="560" height="29"/>
-                                <segments>
-                                    <segment title="Departures"/>
-                                    <segment title="Cameras"/>
-                                </segments>
-                                <connections>
-                                    <action selector="indexChanged:" destination="zsX-Zv-QLD" eventType="valueChanged" id="NQz-1f-YIr"/>
-                                </connections>
-                            </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="92X-rn-RaJ" customClass="GADBannerView">
                                 <rect key="frame" x="140" y="436" width="320" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -286,23 +276,46 @@
                                     <segue destination="9oz-GA-S3r" kind="embed" identifier="camerasViewSegue" id="6lF-hc-Nk1"/>
                                 </connections>
                             </containerView>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jSE-iR-oBe">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <color key="barTintColor" white="0.96999999999999997" alpha="1" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <navigationItem id="V89-io-f3q">
+                                        <nil key="title"/>
+                                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="qiG-uG-uoY">
+                                            <rect key="frame" x="20" y="8" width="560" height="29"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <segments>
+                                                <segment title="Departures"/>
+                                                <segment title="Cameras"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="indexChanged:" destination="zsX-Zv-QLD" eventType="valueChanged" id="vHH-Ih-mRN"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </navigationItem>
+                                </items>
+                                <connections>
+                                    <outlet property="delegate" destination="zsX-Zv-QLD" id="jlr-B4-kMy"/>
+                                </connections>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="5Bs-yw-TIP" firstAttribute="top" secondItem="92X-rn-RaJ" secondAttribute="bottom" constant="1" id="1eA-Qs-Ijw"/>
-                            <constraint firstItem="7in-bp-hzl" firstAttribute="top" secondItem="jQQ-2t-Te6" secondAttribute="top" id="2tV-8a-zU5"/>
-                            <constraint firstItem="jQQ-2t-Te6" firstAttribute="bottom" secondItem="5Bs-yw-TIP" secondAttribute="top" constant="-53" id="8aX-Yx-c7b"/>
-                            <constraint firstItem="7in-bp-hzl" firstAttribute="bottom" secondItem="jQQ-2t-Te6" secondAttribute="bottom" id="8oe-Rx-nAg"/>
-                            <constraint firstItem="jQQ-2t-Te6" firstAttribute="top" secondItem="4jQ-hU-YF7" secondAttribute="bottom" constant="8" symbolic="YES" id="AgV-iJ-dQ8"/>
-                            <constraint firstItem="4jQ-hU-YF7" firstAttribute="top" secondItem="EZJ-4E-Bku" secondAttribute="bottom" constant="8" symbolic="YES" id="BZp-C4-XPp"/>
-                            <constraint firstItem="4jQ-hU-YF7" firstAttribute="centerX" secondItem="92X-rn-RaJ" secondAttribute="centerX" id="MdX-gh-BNk"/>
+                            <constraint firstItem="jQQ-2t-Te6" firstAttribute="leading" secondItem="dNL-ZE-gHM" secondAttribute="leading" id="3eE-XR-CHx"/>
+                            <constraint firstItem="7in-bp-hzl" firstAttribute="trailing" secondItem="jQQ-2t-Te6" secondAttribute="trailing" id="3ox-RJ-msa"/>
+                            <constraint firstItem="jSE-iR-oBe" firstAttribute="leading" secondItem="jQQ-2t-Te6" secondAttribute="leading" id="4TI-vC-cdX"/>
+                            <constraint firstItem="92X-rn-RaJ" firstAttribute="top" secondItem="jQQ-2t-Te6" secondAttribute="bottom" constant="2" id="86H-X8-dag"/>
+                            <constraint firstItem="jQQ-2t-Te6" firstAttribute="centerX" secondItem="92X-rn-RaJ" secondAttribute="centerX" id="9PM-3v-p65"/>
+                            <constraint firstItem="7in-bp-hzl" firstAttribute="bottom" secondItem="jQQ-2t-Te6" secondAttribute="bottom" id="IPu-0U-EUY"/>
+                            <constraint firstItem="7in-bp-hzl" firstAttribute="leading" secondItem="jQQ-2t-Te6" secondAttribute="leading" id="JsC-Oc-y95"/>
+                            <constraint firstItem="7in-bp-hzl" firstAttribute="top" secondItem="jSE-iR-oBe" secondAttribute="bottom" id="OjS-rR-yRs"/>
                             <constraint firstItem="92X-rn-RaJ" firstAttribute="centerX" secondItem="dNL-ZE-gHM" secondAttribute="centerX" id="TOW-rn-sz5"/>
-                            <constraint firstItem="jQQ-2t-Te6" firstAttribute="centerX" secondItem="92X-rn-RaJ" secondAttribute="centerX" id="Zxn-iL-yfI"/>
-                            <constraint firstItem="7in-bp-hzl" firstAttribute="trailing" secondItem="jQQ-2t-Te6" secondAttribute="trailing" id="aa0-j4-1PD"/>
-                            <constraint firstItem="jQQ-2t-Te6" firstAttribute="leading" secondItem="dNL-ZE-gHM" secondAttribute="leading" id="t2f-To-VCW"/>
-                            <constraint firstItem="4jQ-hU-YF7" firstAttribute="leading" secondItem="dNL-ZE-gHM" secondAttribute="leadingMargin" id="uiH-i1-rLg"/>
-                            <constraint firstItem="7in-bp-hzl" firstAttribute="leading" secondItem="jQQ-2t-Te6" secondAttribute="leading" id="yKw-Wa-pjp"/>
+                            <constraint firstItem="7in-bp-hzl" firstAttribute="top" secondItem="jQQ-2t-Te6" secondAttribute="top" id="VdT-by-f8v"/>
+                            <constraint firstItem="jSE-iR-oBe" firstAttribute="top" secondItem="EZJ-4E-Bku" secondAttribute="bottom" id="pG5-rV-KIR"/>
+                            <constraint firstItem="jSE-iR-oBe" firstAttribute="trailing" secondItem="jQQ-2t-Te6" secondAttribute="trailing" id="sx3-d9-tFf"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>

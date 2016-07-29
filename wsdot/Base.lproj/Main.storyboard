@@ -121,7 +121,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.0" green="0.68235294117647061" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="barTintColor" white="0.96527943595143773" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" white="0.96999999999999997" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
