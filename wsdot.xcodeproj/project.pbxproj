@@ -163,7 +163,6 @@
 				9A07192D1D4110BC007BB4C5 /* RouteTabBarViewController.swift */,
 				9A21E1CB1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift */,
 				9A07192B1D410FD5007BB4C5 /* RouteAlertsViewController.swift */,
-				9A0CA8331D465F44009C67B7 /* Departures */,
 			);
 			name = Sailings;
 			sourceTree = "<group>";
@@ -192,7 +191,6 @@
 			isa = PBXGroup;
 			children = (
 				9AD32E2B1D242A5A000AEC28 /* RouteSchedulesViewController.swift */,
-				9A0CA8321D465F24009C67B7 /* Sailings */,
 			);
 			name = RouteSchedules;
 			sourceTree = "<group>";
@@ -214,6 +212,17 @@
 				9A1F5FA01D47D3D100DA5F99 /* CameraImageCustomCell.swift */,
 			);
 			name = CustomCells;
+			sourceTree = "<group>";
+		};
+		9A81A57D1D4F8FB90049913A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9AD32E291D24233D000AEC28 /* FerriesHomeViewController.swift */,
+				9A0CA8331D465F44009C67B7 /* Departures */,
+				9A0CA8321D465F24009C67B7 /* Sailings */,
+				9A0CA8351D466005009C67B7 /* RouteSchedules */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		9AD32DF01D23172C000AEC28 = {
@@ -357,10 +366,9 @@
 		9AFEECDA1D3924520078A781 /* Ferries */ = {
 			isa = PBXGroup;
 			children = (
-				9AD32E291D24233D000AEC28 /* FerriesHomeViewController.swift */,
+				9A81A57D1D4F8FB90049913A /* Controllers */,
 				9AD32E271D2421E4000AEC28 /* Ferries.storyboard */,
 				9A0CA8341D465FA4009C67B7 /* Models */,
-				9A0CA8351D466005009C67B7 /* RouteSchedules */,
 			);
 			name = Ferries;
 			sourceTree = "<group>";
