@@ -38,7 +38,7 @@
 		9AD32E021D23172C000AEC28 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E001D23172C000AEC28 /* Main.storyboard */; };
 		9AD32E041D23172C000AEC28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E031D23172C000AEC28 /* Assets.xcassets */; };
 		9AD32E071D23172C000AEC28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E051D23172C000AEC28 /* LaunchScreen.storyboard */; };
-		9AD32E121D23172C000AEC28 /* wsdotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32E111D23172C000AEC28 /* wsdotTests.swift */; };
+		9AD32E121D23172C000AEC28 /* LatLonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32E111D23172C000AEC28 /* LatLonTests.swift */; };
 		9AD32E221D241AF4000AEC28 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32E211D241AF4000AEC28 /* HomeViewController.swift */; };
 		9AD32E281D2421E4000AEC28 /* Ferries.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E271D2421E4000AEC28 /* Ferries.storyboard */; };
 		9AD32E2A1D24233D000AEC28 /* FerriesHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32E291D24233D000AEC28 /* FerriesHomeViewController.swift */; };
@@ -101,7 +101,7 @@
 		9AD32E061D23172C000AEC28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9AD32E081D23172C000AEC28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AD32E0D1D23172C000AEC28 /* wsdotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = wsdotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AD32E111D23172C000AEC28 /* wsdotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wsdotTests.swift; sourceTree = "<group>"; };
+		9AD32E111D23172C000AEC28 /* LatLonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatLonTests.swift; sourceTree = "<group>"; };
 		9AD32E131D23172C000AEC28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AD32E211D241AF4000AEC28 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9AD32E271D2421E4000AEC28 /* Ferries.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Ferries.storyboard; path = Base.lproj/Ferries.storyboard; sourceTree = "<group>"; };
@@ -265,7 +265,7 @@
 		9AD32E101D23172C000AEC28 /* wsdotTests */ = {
 			isa = PBXGroup;
 			children = (
-				9AD32E111D23172C000AEC28 /* wsdotTests.swift */,
+				9AD32E111D23172C000AEC28 /* LatLonTests.swift */,
 				9AD32E131D23172C000AEC28 /* Info.plist */,
 			);
 			path = wsdotTests;
@@ -601,7 +601,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AD32E121D23172C000AEC28 /* wsdotTests.swift in Sources */,
+				9AD32E121D23172C000AEC28 /* LatLonTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

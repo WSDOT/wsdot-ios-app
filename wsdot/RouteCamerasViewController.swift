@@ -32,7 +32,6 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
         refreshControl.attributedTitle = NSAttributedString.init(string: "loading cameras")
         tableView.addSubview(refreshControl)
         
-        print(departingTerminalId)
         self.tableView.contentOffset = CGPointMake(0, -self.refreshControl.frame.size.height)
         refreshControl.beginRefreshing()
         refresh(self.refreshControl)
@@ -45,10 +44,8 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
                 if (error == nil){
                     if let selfValue = self{
                         selfValue.cameras = selfValue.filterCameras(data)
-                        print("cameras filtered")
                         dispatch_async(dispatch_get_main_queue()) {[weak self] in
                             if let selfValue = self{
-                                print("reloading data")
                                 selfValue.tableView.reloadData()
                                 selfValue.refreshControl.endRefreshing()
                             }

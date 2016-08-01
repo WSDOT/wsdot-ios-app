@@ -74,19 +74,33 @@ class CamerasDataHelper: DataHelperProtocol {
         guard let DB = SQLiteDataStore.sharedInstance.WSDOTDB else {
             throw DataAccessError.Datastore_Connection_Error
         }
+        
+        
+        let data = " ("
+            + cameraId.template + ", "
+            + url.template + ", "
+            + title.template + ", "
+            + roadName.template + ", "
+            + latitude.template + ", "
+            + longitude.template + ", "
+            + video.template + ") "
+        let values = "VALUES (?,?,?,?,?,?,?)"
+        
+        let bulkTrans = try DB.prepare("INSERT INTO " + TABLE_NAME + data + values)
+        
         do {
-            try DB.transaction {
+            try DB.transaction(.Deferred) { () -> Void in
                 for item in items{
-                    let insert = table.insert(
-                        cameraId <- item.cameraId,
-                        url <- item.url,
-                        title <- item.title,
-                        roadName <- item.roadName,
-                        latitude <- item.latitude,
-                        longitude <- item.longitude,
-                        video <- item.video
-                    )
-                    try DB.run(insert)
+                    
+                    try bulkTrans.run(
+                        item.cameraId,
+                        item.url,
+                        item.title,
+                        item.roadName,
+                        item.latitude,
+                        item.longitude,
+                        item.video)
+                    
                 }
             }
         }catch {
