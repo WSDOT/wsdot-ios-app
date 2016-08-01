@@ -21,9 +21,7 @@ class SailingSpacesStore {
             case .Success:
                 if let value = response.result.value {
                     let json = JSON(value)
-
                     let sailingSpaces = parseSailingSpacesJSON(departingId, arrivingId: arrivingId, json: json)
-
                     completion(data: sailingSpaces, error: nil)
                 }
             case .Failure(let error):

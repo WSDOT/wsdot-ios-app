@@ -29,13 +29,13 @@ class CachesStore {
                 updated: updated
                 ))
         } catch DataAccessError.Insert_Error {
-            print("failed to insert into caches")
+            print("CachesStore.insertNewTime: failed to insert into caches")
         } catch DataAccessError.Datastore_Connection_Error {
-            print("Connection error")
+            print("CachesStore.insertNewTime: Connection error")
         } catch DataAccessError.Nil_In_Data{
-            print("Nil in data error")
+            print("CachesStore.insertNewTime: Nil in data error")
         } catch _ {
-            print("unknown error occured.")
+            print("CachesStore.insertNewTime: unknown error occured.")
         }
     }
     
@@ -47,13 +47,14 @@ class CachesStore {
                 updated: updated
                 ))
         } catch DataAccessError.Update_Error {
-            print("failed to update caches")
+            print("CachesStore.updateTime: failed to update caches")
         } catch DataAccessError.Datastore_Connection_Error {
-            print("Connection error")
+            print("CachesStore.updateTime: Connection error")
         } catch DataAccessError.Nil_In_Data{
-            print("Nil in data error")
-        } catch _ {
-            print("unknown error occured.")
+            print("CachesStore.updateTime: Nil in data error")
+        } catch {
+            print("CachesStore.updateTime: unknown error occured.")
+            print("Error info: \(error)")
         }
     }
 }

@@ -37,11 +37,9 @@ class FerriesScheduleDataHelper: DataHelperProtocol {
                 t.column(routeAlerts)
                 t.column(scheduleDates)
                 })
-            print("Ferries schedules table ready.")
         } catch _ {
-            print("Error creating table")
+            print("Error creating ferries table")
         }
-        
     }
     
     static func insert(item: T) throws -> Int64 {

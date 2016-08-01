@@ -10,7 +10,7 @@ import Foundation
 
 class TimeUtils {
     
-    static let updateTime = 900000
+    static let updateTime: Int64 = 900000
     
     static var currentTime: Int64{
         get {

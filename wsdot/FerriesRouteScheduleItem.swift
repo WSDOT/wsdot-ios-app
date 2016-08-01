@@ -35,8 +35,6 @@ class FerriesRouteScheduleItem: NSObject {
         self.sailings = getSailings()
     }
     
-
-    
     /*
         Creates an array of avaliable sailings for a route based on todays sailings.
     */
@@ -55,7 +53,7 @@ class FerriesRouteScheduleItem: NSObject {
             }
         }
         
-        return sailings
+        return sailings.sort({ $0.0 < $1.0})
     }
     
     private func contains(a:[(String, String)], v:(String,String)) -> Bool {

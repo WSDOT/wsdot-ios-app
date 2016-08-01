@@ -11,16 +11,18 @@ import UIKit
 enum DataAccessError: ErrorType {
     case Datastore_Connection_Error
     case Insert_Error
+    case Bulk_Insert_Error
     case Delete_Error
     case Search_Error
     case Update_Error
     case Nil_In_Data
+    case Unknown_Error
 }
 
 class Tables {
     static let FERRIES_TABLE = "ferries_schedules"
+    static let CAMERAS_TABLE = "cameras"
     static let CACHES_TABLE = "caches"
-    
 }
 
 

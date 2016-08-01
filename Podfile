@@ -9,4 +9,5 @@ target 'WSDOT' do
     pod 'Alamofire', '~> 3.4.1'
     pod 'SwiftyJSON'
     pod 'SQLite.swift', '~> 0.10.1'
+    pod 'SDWebImage'
 end
