@@ -358,6 +358,10 @@
         <scene sceneID="47E-34-9GC">
             <objects>
                 <viewController id="Whq-2K-wR1" customClass="RouteTimesViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="A7Y-kt-IV5"/>
+                        <viewControllerLayoutGuide type="bottom" id="fEC-xW-GrM"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="OXS-G6-73x">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -586,6 +590,10 @@
         <scene sceneID="hfE-u9-p0y">
             <objects>
                 <viewController id="9oz-GA-S3r" customClass="RouteCamerasViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Vb4-d0-gf7"/>
+                        <viewControllerLayoutGuide type="bottom" id="Jin-zT-dkH"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="cNj-D7-o38">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

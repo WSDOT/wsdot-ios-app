@@ -33,7 +33,7 @@ class RouteDeparturesViewController: UIViewController {
         self.camerasContainerView.alpha = 0
 
         // Ad Banner
-        bannerView.adUnitID = "ad_string"
+        bannerView.adUnitID = ApiKeys.wsdot_ad_string
         bannerView.rootViewController = self
         bannerView.loadRequest(GADRequest())
         

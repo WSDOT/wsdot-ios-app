@@ -20,18 +20,48 @@ import SwiftyJSON
 class RouteSchedulesStore {
     
     typealias FetchRouteScheduleCompletion = (data: [FerriesRouteScheduleItem]?, error: NSError?) -> ()
+    typealias UpdateRoutesCompletion = (error: NSError?) -> ()
+    
+    static func getRouteSchedules(force: Bool, favoritesOnly: Bool, completion: FetchRouteScheduleCompletion){
+        self.updateRouteSchedules(force, completion: { error in
+            if ((error == nil)){
+                if favoritesOnly {
+                    // MARK -
+                    // MARK TODO:
+                    // self.getFavoriteRoutes
+                }else{
+                    let routeSchedules = findAllSchedules()
+                    completion(data: routeSchedules, error: nil)
+                }
+            }else{
+                completion(data: nil, error: error)
+            }
+        })
+    }
+        
+    static func updateFavorite(routeId: Int, newValue: Bool){
+        do {
+            try FerriesScheduleDataHelper.updateFavorite(Int64(routeId), isFavorite: newValue)
+        } catch DataAccessError.Update_Error {
+            print("saveRouteSchedules: failed to update caches")
+        } catch DataAccessError.Datastore_Connection_Error {
+            print("saveRouteSchedules: Connection error")
+        } catch DataAccessError.Nil_In_Data{
+            print("saveRouteSchedules: nil in data error")
+        } catch _ {
+            print("saveRouteSchedules: unknown error occured.")
+        }
+    }
+    
     
     /*
-     Gets ferry schedule data from API or database.
-     Updates database when pulling from API.
+     Updates database by pulling from API.
      */
-    static func getRouteSchedules(force: Bool, completion: FetchRouteScheduleCompletion) {
+    private static func updateRouteSchedules(force: Bool, completion: UpdateRoutesCompletion) {
         
         let deltaUpdated = TimeUtils.currentTime - CachesStore.getUpdatedTime(Tables.FERRIES_TABLE)
         
         if ((deltaUpdated > TimeUtils.updateTime) || force){
-            
-            deleteAll()
             
             Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js").validate().responseJSON { response in
                 switch response.result {
@@ -41,29 +71,47 @@ class RouteSchedulesStore {
                         let routeSchedules = self.parseRouteSchedulesJSON(json)
                         saveRouteSchedules(routeSchedules)
                         CachesStore.updateTime(Tables.FERRIES_TABLE, updated: TimeUtils.currentTime)
-                        completion(data: routeSchedules, error: nil)
+                        completion(error: nil)
                     }
                 case .Failure(let error):
                     print(error)
-                    completion(data: nil, error: error)
+                    completion(error: error)
                 }
             }
         }else {
-            let routeSchedules = findAllSchedules()
-            completion(data: routeSchedules, error: nil)
+            completion(error: nil)
         }
     }
+
+    
     
     // Saves newly pulled data from the API into the database.
     private static func saveRouteSchedules(routeSchedules: [FerriesRouteScheduleItem]){
         
+        let oldRoutes = self.findAllSchedules()
+        
+        self.deleteAll()
+        
         for route in routeSchedules {
+        
+            for oldRoute in oldRoutes {
+            
+                if(oldRoute.selected){
+                    print("!!!!!!!!")
+                }
+            
+                if (oldRoute.routeId == route.routeId) && (oldRoute.selected){
+                    print("transfering fav status")
+                    route.selected = oldRoute.selected
+                }
+            }
+        
             do {
                 try FerriesScheduleDataHelper.insert(
                     RouteScheduleDataModel(
                         routeId: Int64(route.routeId),
                         routeDescription: route.routeDescription,
-                        selected: route.selected ? 1 : 0,
+                        selected: route.selected,
                         crossingTime: route.crossingTime,
                         cacheDate: route.cacheDate,
                         routeAlerts: route.routeAlertsJSON.rawString(),

@@ -8,20 +8,31 @@
 
 import UIKit
 
-class FavoritesViewController: UITableViewController {
+class FavoritesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     let TITLE = "Favorites"
+
+    let ferriesCellIdentifier = "FerriesFavoriteCell"
+
+    @IBOutlet weak var favoritesTable: UITableView!
+
+    var favoriteRoutes = [FerriesRouteScheduleItem]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = TITLE
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
+        
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        self.requestFavoriteFerries()
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -33,29 +44,99 @@ class FavoritesViewController: UITableViewController {
         // Initialize Tab Bar Item
         tabBarItem = UITabBarItem(title: TITLE, image: UIImage(named: "ic-star"), tag: 1)
     }
+    
+    private func requestFavoriteFerries(){
+        
+        // Dispatch work with QOS user initated for top priority.
+        // weak binding in case user navigates away and self becomes nil.
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak self] in
+            
+            RouteSchedulesStore.getRouteSchedules(false, favoritesOnly: false, completion: { data, error in
+                if let validData = data {
+                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                        if let selfValue = self{
+                            
+                            print("returned with valid data")
+                            
+                            for route in validData {
+                                if (route.selected){
+                                    print("found a favorite route")
+                                    selfValue.favoriteRoutes.append(route)
+                                }
+                            }
+                            
+                            
+                            selfValue.favoritesTable.reloadData()
+                            //selfValue.refreshControl?.endRefreshing()
+                        }
+                    }
+                } else {
+                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                        if let selfValue = self{
+                            //selfValue.refreshControl?.endRefreshing()
+                            selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                        }
+                    }
+                }
+            })
+        }
+    }
 
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 5
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        switch(section){
+            
+        case 0:
+            print(favoriteRoutes.count)
+            return favoriteRoutes.count
+            
+            
+        default:
+            return 0
+            
+        }
+    }
+    
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        switch(indexPath.section){
+            
+        case 0:
+            print("Building ferry cell")
+            let cell = tableView.dequeueReusableCellWithIdentifier(ferriesCellIdentifier) as! RoutesCustomCell
+            
+            cell.title.text = favoriteRoutes[indexPath.row].routeDescription
+            
+            if self.favoriteRoutes[indexPath.row].crossingTime != nil {
+                cell.subTitleOne.hidden = false
+                cell.subTitleOne.text = "Crossing time: ~ " + self.favoriteRoutes[indexPath.row].crossingTime! + " min"
+            } else {
+                cell.subTitleOne.hidden = true
+            }
+            
+            cell.subTitleTwo.text = TimeUtils.timeSinceDate(self.favoriteRoutes[indexPath.row].cacheDate, numericDates: true)
+            
+            return cell
+            
+        default:
+            return tableView.dequeueReusableCellWithIdentifier("", forIndexPath: indexPath)
+
+        }
+        
+
+        
+
     }
 
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
 
     /*
     // Override to support conditional editing of the table view.

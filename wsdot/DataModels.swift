@@ -19,7 +19,7 @@ typealias CachesDataModel = (
 typealias RouteScheduleDataModel = (
     routeId: Int64?,
     routeDescription: String?,
-    selected: Int64?,
+    selected: Bool?,
     crossingTime: String?,
     cacheDate: Int64?,
     routeAlerts: String?,
