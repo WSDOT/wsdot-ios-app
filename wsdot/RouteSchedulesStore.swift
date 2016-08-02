@@ -138,8 +138,7 @@ class RouteSchedulesStore {
                     let alertsJSON: JSON = JSON(data: route.routeAlerts!.dataUsingEncoding(NSUTF8StringEncoding)!)
                     let scheduleDatesJSON: JSON = JSON(data: route.scheduleDates!.dataUsingEncoding(NSUTF8StringEncoding)!)
 
-                    let routeItem = FerriesRouteScheduleItem(description: route.routeDescription!, id: Int(route.routeId!), crossingTime: route.crossingTime, cacheDate: route.cacheDate!, alerts: alertsJSON, scheduleDates: scheduleDatesJSON)
-                    
+                    let routeItem = FerriesRouteScheduleItem(description: route.routeDescription!, id: Int(route.routeId!), crossingTime: route.crossingTime, isFavorite: route.selected!, cacheDate: route.cacheDate!, alerts: alertsJSON, scheduleDates: scheduleDatesJSON)
                     
                     routeSchedules.append(routeItem)
                 }
@@ -176,7 +175,8 @@ class RouteSchedulesStore {
             
             let cacheDate = TimeUtils.parseJSONDate(subJson["CacheDate"].stringValue)
             
-            let route = FerriesRouteScheduleItem(description: subJson["Description"].stringValue, id: subJson["RouteID"].intValue, crossingTime: crossingTime, cacheDate: cacheDate, alerts: subJson["RouteAlert"], scheduleDates: subJson["Date"])
+            let route = FerriesRouteScheduleItem(description: subJson["Description"].stringValue, id: subJson["RouteID"].intValue, crossingTime: crossingTime,
+                                                 isFavorite: false, cacheDate: cacheDate, alerts: subJson["RouteAlert"], scheduleDates: subJson["Date"])
             routeSchedules.append(route)
         }
         
