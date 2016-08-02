@@ -28,25 +28,23 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         refreshControl.addTarget(self, action: #selector(FavoritesViewController.loadFavorites), forControlEvents: .ValueChanged)
         favoritesTable.addSubview(refreshControl)
         
+        self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-                
-        self.refreshControl.beginRefreshing()
-        self.loadFavorites()
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     override func viewWillAppear(animated: Bool) {
-
-        
+        self.loadFavorites()
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        self.favoritesTable.editing = false
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -70,7 +68,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         // weak binding in case user navigates away and self becomes nil.
         dispatch_group_enter(serviceGroup)
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak self] in
-            RouteSchedulesStore.getRouteSchedules(false, favoritesOnly: false, completion: { data, error in
+            RouteSchedulesStore.getRouteSchedules(false, favoritesOnly: true, completion: { data, error in
                 if let validData = data {
                     if let selfValue = self{
                         selfValue.favoriteRoutes = validData
@@ -88,8 +86,6 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             })
         }
     }
-
-
 
     // MARK: - Table view data source
 
@@ -154,33 +150,42 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         
 
         
-
+        
+    }
+    
+    override func setEditing(editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        self.favoritesTable.setEditing(editing, animated: animated)
     }
 
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
+    // support conditional editing of the table view.
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    
+    
+    // support editing the table view.
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
+            
+            switch (indexPath.section) {
+            case 0:
+                RouteSchedulesStore.updateFavorite(favoriteRoutes[indexPath.row].routeId, newValue: false)
+                favoriteRoutes.removeAtIndex(indexPath.row)
+                
+                break
+            default:
+                break
+            }
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
-    */
-
+    
+    
     /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
+     // Override to support rearranging the table view.
+     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
 
     }
     */

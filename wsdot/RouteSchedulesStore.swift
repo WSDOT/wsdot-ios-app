@@ -26,9 +26,8 @@ class RouteSchedulesStore {
         self.updateRouteSchedules(force, completion: { error in
             if ((error == nil)){
                 if favoritesOnly {
-                    // MARK -
-                    // MARK TODO:
-                    // self.getFavoriteRoutes
+                    let routeSchedules = findFavoriteSchedules()
+                    completion(data: routeSchedules, error: nil)
                 }else{
                     let routeSchedules = findAllSchedules()
                     completion(data: routeSchedules, error: nil)
@@ -38,7 +37,7 @@ class RouteSchedulesStore {
             }
         })
     }
-        
+    
     static func updateFavorite(routeId: Int, newValue: Bool){
         do {
             try FerriesScheduleDataHelper.updateFavorite(Int64(routeId), isFavorite: newValue)
@@ -132,6 +131,30 @@ class RouteSchedulesStore {
                     let alertsJSON: JSON = JSON(data: route.routeAlerts!.dataUsingEncoding(NSUTF8StringEncoding)!)
                     let scheduleDatesJSON: JSON = JSON(data: route.scheduleDates!.dataUsingEncoding(NSUTF8StringEncoding)!)
 
+                    let routeItem = FerriesRouteScheduleItem(description: route.routeDescription!, id: Int(route.routeId!), crossingTime: route.crossingTime, isFavorite: route.selected!, cacheDate: route.cacheDate!, alerts: alertsJSON, scheduleDates: scheduleDatesJSON)
+                    
+                    routeSchedules.append(routeItem)
+                }
+            }
+        } catch DataAccessError.Datastore_Connection_Error {
+            print("findAllSchedules: Connection error")
+        } catch _ {
+            print("findAllSchedules: unknown error")
+        }
+        return routeSchedules
+    }
+    
+    private static func findFavoriteSchedules() -> [FerriesRouteScheduleItem]{
+        
+        var routeSchedules = [FerriesRouteScheduleItem]()
+        do{
+            if let result = try FerriesScheduleDataHelper.findFavorites(){
+                
+                for route in result {
+                    
+                    let alertsJSON: JSON = JSON(data: route.routeAlerts!.dataUsingEncoding(NSUTF8StringEncoding)!)
+                    let scheduleDatesJSON: JSON = JSON(data: route.scheduleDates!.dataUsingEncoding(NSUTF8StringEncoding)!)
+                    
                     let routeItem = FerriesRouteScheduleItem(description: route.routeDescription!, id: Int(route.routeId!), crossingTime: route.crossingTime, isFavorite: route.selected!, cacheDate: route.cacheDate!, alerts: alertsJSON, scheduleDates: scheduleDatesJSON)
                     
                     routeSchedules.append(routeItem)

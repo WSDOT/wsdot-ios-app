@@ -147,6 +147,25 @@ class FerriesScheduleDataHelper: DataHelperProtocol {
         return retArray
     }
     
+    static func findFavorites() throws -> [T]? {
+        guard let DB = SQLiteDataStore.sharedInstance.WSDOTDB else {
+            throw DataAccessError.Datastore_Connection_Error
+        }
+        var retArray = [T]()
+        let items = try DB.prepare(table.filter(selected == true).order(routeDescription))
+        
+        for item in items {
+            retArray.append(RouteScheduleDataModel(routeId: item[routeId],
+                routeDescription: item[routeDescription],
+                selected: item[selected],
+                crossingTime: item[crossingTime],
+                cacheDate: item[cacheDate],
+                routeAlerts: item[routeAlerts],
+                scheduleDates: item[scheduleDates]))
+        }
+        return retArray
+    }
+    
     static func deleteAll() throws {
         guard let DB = SQLiteDataStore.sharedInstance.WSDOTDB else {
             throw DataAccessError.Datastore_Connection_Error
