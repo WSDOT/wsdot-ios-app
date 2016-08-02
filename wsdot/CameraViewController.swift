@@ -18,6 +18,10 @@ class CameraViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.title = cameraItem!.title;
         
+        
+        cameraImage.sd_setImageWithURL(NSURL(string: cameraItem!.url), placeholderImage: UIImage(named: "imagePlaceholder"), options: .RefreshCached)
+        
+        
         let favoriteButton = UIButton()
         
         if (cameraItem!.selected){
