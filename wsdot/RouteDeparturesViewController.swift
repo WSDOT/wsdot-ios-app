@@ -15,14 +15,12 @@ class RouteDeparturesViewController: UIViewController {
 
     @IBOutlet weak var timesContainerView: UIView!
     @IBOutlet weak var camerasContainerView: UIView!
-
+    @IBOutlet weak var bannerView: GADBannerView!
+    @IBOutlet weak var adBackGroundView: UIView!
+    
     // set by previous view controller
     var currentSailing : (String, String) = ("", "")
     var sailingsByDate : [FerriesScheduleDateItem]? = nil
-
-    @IBOutlet weak var bannerView: GADBannerView!
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +35,15 @@ class RouteDeparturesViewController: UIViewController {
         bannerView.rootViewController = self
         bannerView.loadRequest(GADRequest())
         
+        
+        
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewDidAppear(animated: Bool) {
+        adBackGroundView.hidden = true
+    }
+    
+   override func viewWillAppear(animated: Bool) {
         let img = UIImage()
         self.navigationController?.navigationBar.shadowImage = img
         self.navigationController?.navigationBar.setBackgroundImage(img, forBarMetrics: .Default)
@@ -50,7 +54,6 @@ class RouteDeparturesViewController: UIViewController {
         self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: .Default)
         
     }
-    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         

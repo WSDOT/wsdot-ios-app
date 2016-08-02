@@ -19,6 +19,7 @@ class RouteSchedulesViewController: UITableViewController {
         super.viewDidLoad()
         title = "Route Schedules"
         
+        self.tableView.contentOffset = CGPointMake(0, -self.refreshControl!.frame.size.height)
         self.refreshControl?.beginRefreshing()
         
         // Dispatch work with QOS user initated for top priority.

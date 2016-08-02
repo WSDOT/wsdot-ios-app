@@ -31,16 +31,21 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        self.navigationController?.view.backgroundColor = UIColor.whiteColor()
-        
     }
     
     override func viewWillAppear(animated: Bool) {
+        self.refreshControl.beginRefreshing()
         self.loadFavorites()
     }
     
     override func viewDidDisappear(animated: Bool) {
-        self.favoritesTable.editing = false
+        if (self.editing){
+            self.setEditing(false, animated: false)
+        }
+        
+        if (self.favoritesTable.editing){
+            self.favoritesTable.setEditing(false, animated: false)
+        }
     }
     
     override func didReceiveMemoryWarning() {

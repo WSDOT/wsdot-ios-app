@@ -23,7 +23,6 @@ class HomeViewController: UITableViewController {
         title = TITLE
         menu_options = ["Traffic Map", "Ferries", "Mountain Passes", "Social Media", "Toll Rates", "Border Waits", "Amtrak Cascades"]
         
-        self.navigationController?.view.backgroundColor = UIColor.whiteColor()
         self.tabBarController!.view.backgroundColor = UIColor.whiteColor()
     }
     

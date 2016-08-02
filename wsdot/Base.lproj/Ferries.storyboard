@@ -253,11 +253,11 @@
                         <viewControllerLayoutGuide type="bottom" id="5Bs-yw-TIP"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dNL-ZE-gHM">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="92X-rn-RaJ" customClass="GADBannerView">
-                                <rect key="frame" x="140" y="436" width="320" height="50"/>
+                                <rect key="frame" x="140" y="500" width="320" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="WbO-6G-Iov"/>
@@ -265,19 +265,13 @@
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jQQ-2t-Te6" userLabel="Times Container View">
-                                <rect key="frame" x="0.0" y="44" width="600" height="390"/>
+                                <rect key="frame" x="0.0" y="108" width="600" height="390"/>
                                 <connections>
                                     <segue destination="Whq-2K-wR1" kind="embed" identifier="timesViewSegue" id="ioK-qy-EUX"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7in-bp-hzl">
-                                <rect key="frame" x="0.0" y="44" width="600" height="390"/>
-                                <connections>
-                                    <segue destination="9oz-GA-S3r" kind="embed" identifier="camerasViewSegue" id="6lF-hc-Nk1"/>
-                                </connections>
-                            </containerView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jSE-iR-oBe">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                 <items>
                                     <navigationItem id="V89-io-f3q">
                                         <nil key="title"/>
@@ -298,27 +292,41 @@
                                     <outlet property="delegate" destination="zsX-Zv-QLD" id="jlr-B4-kMy"/>
                                 </connections>
                             </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s3p-vV-1U1">
+                                <rect key="frame" x="0.0" y="494" width="600" height="57"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7in-bp-hzl">
+                                <rect key="frame" x="0.0" y="108" width="600" height="390"/>
+                                <connections>
+                                    <segue destination="9oz-GA-S3r" kind="embed" identifier="camerasViewSegue" id="6lF-hc-Nk1"/>
+                                </connections>
+                            </containerView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="5Bs-yw-TIP" firstAttribute="top" secondItem="92X-rn-RaJ" secondAttribute="bottom" constant="1" id="1eA-Qs-Ijw"/>
                             <constraint firstItem="jQQ-2t-Te6" firstAttribute="leading" secondItem="dNL-ZE-gHM" secondAttribute="leading" id="3eE-XR-CHx"/>
                             <constraint firstItem="7in-bp-hzl" firstAttribute="trailing" secondItem="jQQ-2t-Te6" secondAttribute="trailing" id="3ox-RJ-msa"/>
+                            <constraint firstItem="s3p-vV-1U1" firstAttribute="bottom" secondItem="5Bs-yw-TIP" secondAttribute="top" id="4PE-ZG-vRI"/>
                             <constraint firstItem="jSE-iR-oBe" firstAttribute="leading" secondItem="jQQ-2t-Te6" secondAttribute="leading" id="4TI-vC-cdX"/>
                             <constraint firstItem="92X-rn-RaJ" firstAttribute="top" secondItem="jQQ-2t-Te6" secondAttribute="bottom" constant="2" id="86H-X8-dag"/>
                             <constraint firstItem="jQQ-2t-Te6" firstAttribute="centerX" secondItem="92X-rn-RaJ" secondAttribute="centerX" id="9PM-3v-p65"/>
+                            <constraint firstItem="s3p-vV-1U1" firstAttribute="leading" secondItem="7in-bp-hzl" secondAttribute="leading" id="E9W-p5-nPr"/>
                             <constraint firstItem="7in-bp-hzl" firstAttribute="bottom" secondItem="jQQ-2t-Te6" secondAttribute="bottom" id="IPu-0U-EUY"/>
                             <constraint firstItem="7in-bp-hzl" firstAttribute="leading" secondItem="jQQ-2t-Te6" secondAttribute="leading" id="JsC-Oc-y95"/>
+                            <constraint firstItem="s3p-vV-1U1" firstAttribute="trailing" secondItem="7in-bp-hzl" secondAttribute="trailing" id="Kf8-AW-20q"/>
                             <constraint firstItem="7in-bp-hzl" firstAttribute="top" secondItem="jSE-iR-oBe" secondAttribute="bottom" id="OjS-rR-yRs"/>
+                            <constraint firstItem="s3p-vV-1U1" firstAttribute="top" secondItem="92X-rn-RaJ" secondAttribute="top" constant="-6" id="SnY-cr-78h"/>
                             <constraint firstItem="92X-rn-RaJ" firstAttribute="centerX" secondItem="dNL-ZE-gHM" secondAttribute="centerX" id="TOW-rn-sz5"/>
                             <constraint firstItem="7in-bp-hzl" firstAttribute="top" secondItem="jQQ-2t-Te6" secondAttribute="top" id="VdT-by-f8v"/>
                             <constraint firstItem="jSE-iR-oBe" firstAttribute="top" secondItem="EZJ-4E-Bku" secondAttribute="bottom" id="pG5-rV-KIR"/>
                             <constraint firstItem="jSE-iR-oBe" firstAttribute="trailing" secondItem="jQQ-2t-Te6" secondAttribute="trailing" id="sx3-d9-tFf"/>
                         </constraints>
                     </view>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="adBackGroundView" destination="s3p-vV-1U1" id="os5-Ke-n8t"/>
                         <outlet property="bannerView" destination="92X-rn-RaJ" id="wLc-k2-toI"/>
                         <outlet property="camerasContainerView" destination="7in-bp-hzl" id="dxC-xJ-UsD"/>
                         <outlet property="dateTextField" destination="P85-h2-iUQ" id="cmp-ao-Pda"/>
