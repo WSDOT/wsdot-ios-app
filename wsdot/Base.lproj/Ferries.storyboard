@@ -57,13 +57,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RGh-Vh-w9J" userLabel="Sub Title">
-                                            <rect key="frame" x="19" y="75" width="42" height="21"/>
+                                            <rect key="frame" x="16" y="74" width="42" height="22"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OGh-z4-3tg">
-                                            <rect key="frame" x="19" y="8" width="42" height="21"/>
+                                            <rect key="frame" x="16" y="8" width="42" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="xH8-Kj-DCC"/>
                                             </constraints>
@@ -71,7 +71,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSP-AK-vci">
-                                            <rect key="frame" x="19" y="41" width="42" height="21"/>
+                                            <rect key="frame" x="16" y="41" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -83,9 +83,9 @@
                                         <constraint firstItem="OGh-z4-3tg" firstAttribute="leading" secondItem="gSP-AK-vci" secondAttribute="leading" id="MOM-DT-0PN"/>
                                         <constraint firstItem="gSP-AK-vci" firstAttribute="centerY" secondItem="Xhp-Rs-5eD" secondAttribute="centerY" id="QhS-c1-HMN"/>
                                         <constraint firstItem="RGh-Vh-w9J" firstAttribute="bottom" secondItem="Xhp-Rs-5eD" secondAttribute="bottomMargin" id="Yme-Zk-zuI"/>
-                                        <constraint firstItem="OGh-z4-3tg" firstAttribute="leading" secondItem="Xhp-Rs-5eD" secondAttribute="leadingMargin" constant="11" id="oxh-N0-GXV"/>
+                                        <constraint firstItem="OGh-z4-3tg" firstAttribute="leading" secondItem="Xhp-Rs-5eD" secondAttribute="leadingMargin" constant="8" id="oxh-N0-GXV"/>
                                         <constraint firstItem="OGh-z4-3tg" firstAttribute="top" secondItem="Xhp-Rs-5eD" secondAttribute="topMargin" id="q6e-vB-ZGl"/>
-                                        <constraint firstItem="RGh-Vh-w9J" firstAttribute="top" secondItem="gSP-AK-vci" secondAttribute="bottom" constant="13" id="zaB-iC-b9A"/>
+                                        <constraint firstItem="RGh-Vh-w9J" firstAttribute="top" secondItem="gSP-AK-vci" secondAttribute="bottom" constant="12" id="zaB-iC-b9A"/>
                                         <constraint firstItem="OGh-z4-3tg" firstAttribute="trailing" secondItem="gSP-AK-vci" secondAttribute="trailing" id="zen-KX-4zY"/>
                                         <constraint firstItem="gSP-AK-vci" firstAttribute="top" secondItem="OGh-z4-3tg" secondAttribute="bottom" constant="12" id="zsZ-JF-eH7"/>
                                     </constraints>

@@ -95,13 +95,7 @@ class RouteSchedulesStore {
         for route in routeSchedules {
         
             for oldRoute in oldRoutes {
-            
-                if(oldRoute.selected){
-                    print("!!!!!!!!")
-                }
-            
                 if (oldRoute.routeId == route.routeId) && (oldRoute.selected){
-                    print("transfering fav status")
                     route.selected = oldRoute.selected
                 }
             }
