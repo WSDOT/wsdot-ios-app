@@ -615,13 +615,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="261"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DgE-rk-BCG">
+                                                <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DgE-rk-BCG">
                                                     <rect key="frame" x="8" y="8" width="584" height="245"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="DgE-rk-BCG" firstAttribute="top" secondItem="6r9-Yh-Tw5" secondAttribute="topMargin" id="WdH-er-BvO"/>
-                                                <constraint firstItem="DgE-rk-BCG" firstAttribute="trailing" secondItem="6r9-Yh-Tw5" secondAttribute="trailingMargin" id="aEV-Tm-Zyn"/>
+                                                <constraint firstItem="DgE-rk-BCG" firstAttribute="trailing" secondItem="6r9-Yh-Tw5" secondAttribute="trailingMargin" constant="33" id="aEV-Tm-Zyn"/>
                                                 <constraint firstItem="DgE-rk-BCG" firstAttribute="leading" secondItem="6r9-Yh-Tw5" secondAttribute="leadingMargin" id="gfu-wM-75M"/>
                                                 <constraint firstItem="DgE-rk-BCG" firstAttribute="bottom" secondItem="6r9-Yh-Tw5" secondAttribute="bottomMargin" id="oFN-4c-MZf"/>
                                             </constraints>
@@ -639,19 +639,28 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="EyA-JM-ZYf" secondAttribute="bottom" id="DjW-qd-ZY4"/>
-                            <constraint firstItem="EyA-JM-ZYf" firstAttribute="top" secondItem="cNj-D7-o38" secondAttribute="top" id="OMP-O8-R72"/>
-                            <constraint firstAttribute="trailing" secondItem="EyA-JM-ZYf" secondAttribute="trailing" id="S8G-cn-YGg"/>
-                            <constraint firstItem="EyA-JM-ZYf" firstAttribute="leading" secondItem="cNj-D7-o38" secondAttribute="leading" id="f8Y-Vb-Ff2"/>
+                            <constraint firstItem="EyA-JM-ZYf" firstAttribute="top" secondItem="Vb4-d0-gf7" secondAttribute="bottom" id="6ZV-if-yG6"/>
+                            <constraint firstItem="EyA-JM-ZYf" firstAttribute="bottom" secondItem="Jin-zT-dkH" secondAttribute="top" id="BQ6-8z-Jjt"/>
+                            <constraint firstItem="EyA-JM-ZYf" firstAttribute="leading" secondItem="cNj-D7-o38" secondAttribute="leading" id="PrE-2D-MkA"/>
+                            <constraint firstAttribute="trailing" secondItem="EyA-JM-ZYf" secondAttribute="trailing" id="e01-SN-5no"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="EyA-JM-ZYf" id="5X3-4e-yYE"/>
+                        <segue destination="XCa-6H-Elo" kind="show" identifier="CamerasViewController" id="wGU-xY-kRF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5I9-Un-JsC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4340" y="-540"/>
+        </scene>
+        <!--Camera-->
+        <scene sceneID="Wdj-Js-qUc">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ho0-pz-ykp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Camera" id="XCa-6H-Elo" sceneMemberID="viewController"/>
+            </objects>
+            <point key="canvasLocation" x="4875.5" y="-540"/>
         </scene>
     </scenes>
     <resources>

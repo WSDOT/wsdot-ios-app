@@ -21,6 +21,7 @@ class CamerasDataHelper: DataHelperProtocol {
     static let latitude = Expression<Double>("latitude")
     static let longitude = Expression<Double>("longitude")
     static let video = Expression<Int64>("video")
+    static let selected = Expression<Bool>("selected")
     
     typealias T = CameraDataModel
     
@@ -37,6 +38,7 @@ class CamerasDataHelper: DataHelperProtocol {
                 t.column(latitude)
                 t.column(longitude)
                 t.column(video)
+                t.column(selected)
                 })
         } catch _ {
             print("Error creating cameras table")
@@ -56,7 +58,8 @@ class CamerasDataHelper: DataHelperProtocol {
             roadName <- item.roadName,
             latitude <- item.latitude,
             longitude <- item.longitude,
-            video <- item.video
+            video <- item.video,
+            selected <- item.selected
         )
         
         do {
@@ -83,8 +86,10 @@ class CamerasDataHelper: DataHelperProtocol {
             + roadName.template + ", "
             + latitude.template + ", "
             + longitude.template + ", "
-            + video.template + ") "
-        let values = "VALUES (?,?,?,?,?,?,?)"
+            + video.template + ", "
+            + selected.template + ")"
+        
+        let values = "VALUES (?,?,?,?,?,?,?,?)"
         
         let bulkTrans = try DB.prepare("INSERT INTO " + TABLE_NAME + data + values)
         
@@ -99,7 +104,8 @@ class CamerasDataHelper: DataHelperProtocol {
                         item.roadName,
                         item.latitude,
                         item.longitude,
-                        item.video)
+                        item.video,
+                        item.selected)
                     
                 }
             }
@@ -147,7 +153,8 @@ class CamerasDataHelper: DataHelperProtocol {
                                    roadName: item[roadName],
                                    latitude: item[latitude],
                                    longitude: item[longitude],
-                                   video: item[video])
+                                   video: item[video],
+                                   selected: item[selected])
         }
         return nil
         
@@ -165,12 +172,13 @@ class CamerasDataHelper: DataHelperProtocol {
         
         for item in items {
             let ferryCamera = CameraDataModel(cameraId: item[cameraId],
-                                   url: item[url],
-                                   title: item[title],
-                                   roadName: item[roadName],
-                                   latitude: item[latitude],
-                                   longitude: item[longitude],
-                                   video: item[video])
+                                              url: item[url],
+                                              title: item[title],
+                                              roadName: item[roadName],
+                                              latitude: item[latitude],
+                                              longitude: item[longitude],
+                                              video: item[video],
+                                              selected: item[selected])
             
             result.append(ferryCamera)
         }
@@ -187,13 +195,54 @@ class CamerasDataHelper: DataHelperProtocol {
         let items = try DB.prepare(table)
         for item in items {
             retArray.append(CameraDataModel(cameraId: item[cameraId],
-                                   url: item[url],
-                                   title: item[title],
-                                   roadName: item[roadName],
-                                   latitude: item[latitude],
-                                   longitude: item[longitude],
-                                   video: item[video]))
+                url: item[url],
+                title: item[title],
+                roadName: item[roadName],
+                latitude: item[latitude],
+                longitude: item[longitude],
+                video: item[video],
+                selected: item[selected]))
         }
         return retArray
     }
+    
+    static func updateFavorite(id: Int64, isFavorite: Bool) throws -> Int {
+        guard let DB = SQLiteDataStore.sharedInstance.WSDOTDB else {
+            throw DataAccessError.Datastore_Connection_Error
+        }
+        
+        let filterTable = table.filter(cameraId == id)
+        
+        let update = filterTable.update(
+            selected <- isFavorite)
+        
+        do {
+            let result = try DB.run(update)
+            print(result)
+            return result
+        } catch {
+            throw DataAccessError.Update_Error
+        }
+    }
+    
+    static func findFavorites() throws -> [T]? {
+        guard let DB = SQLiteDataStore.sharedInstance.WSDOTDB else {
+            throw DataAccessError.Datastore_Connection_Error
+        }
+        var retArray = [T]()
+        let items = try DB.prepare(table.filter(selected == true))
+        
+        for item in items {
+            retArray.append(CameraDataModel(cameraId: item[cameraId],
+                url: item[url],
+                title: item[title],
+                roadName: item[roadName],
+                latitude: item[latitude],
+                longitude: item[longitude],
+                video: item[video],
+                selected: item[selected]))
+        }
+        return retArray
+    }
+    
 }
