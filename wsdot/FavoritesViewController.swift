@@ -9,13 +9,14 @@
 import UIKit
 
 class FavoritesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    
     let TITLE = "Favorites"
-
+    
     let ferriesCellIdentifier = "FerriesFavoriteCell"
-
+    let SegueRouteDeparturesViewController = "FavoriteSailingsViewController"
+    
     @IBOutlet weak var favoritesTable: UITableView!
-
+    
     var favoriteRoutes = [FerriesRouteScheduleItem]()
     
     let refreshControl = UIRefreshControl()
@@ -29,6 +30,8 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         favoritesTable.addSubview(refreshControl)
         
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        self.navigationController?.view.backgroundColor = UIColor.whiteColor()
         
     }
     
@@ -147,10 +150,6 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             return tableView.dequeueReusableCellWithIdentifier("", forIndexPath: indexPath)
 
         }
-        
-
-        
-        
     }
     
     override func setEditing(editing: Bool, animated: Bool) {
@@ -183,29 +182,30 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
     // MARK: - Navigation
-
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        switch (indexPath.section){
+            
+        case 0:
+            performSegueWithIdentifier(SegueRouteDeparturesViewController, sender: nil)
+            break;
+        default:
+            break;
+        }
+    }
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == SegueRouteDeparturesViewController {
+            if let indexPath = favoritesTable.indexPathForSelectedRow {
+                let routeItem = self.favoriteRoutes[indexPath.row] as FerriesRouteScheduleItem
+                let destinationViewController: RouteTabBarViewController = segue.destinationViewController as! RouteTabBarViewController
+                destinationViewController.routeItem = routeItem
+            }
+        }
+        
     }
-    */
-
 }

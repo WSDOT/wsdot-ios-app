@@ -189,7 +189,7 @@
         <!--Sailings-->
         <scene sceneID="Khq-UL-JUH">
             <objects>
-                <viewController id="TcV-j1-eLg" customClass="RouteSailingsViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RouteSailingsViewController" id="TcV-j1-eLg" customClass="RouteSailingsViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="M8B-Ye-Ot0"/>
                         <viewControllerLayoutGuide type="bottom" id="y6q-ay-IVn"/>
@@ -276,9 +276,8 @@
                                     <segue destination="9oz-GA-S3r" kind="embed" identifier="camerasViewSegue" id="6lF-hc-Nk1"/>
                                 </connections>
                             </containerView>
-                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jSE-iR-oBe">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jSE-iR-oBe">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                <color key="barTintColor" white="0.96999999999999997" alpha="1" colorSpace="calibratedWhite"/>
                                 <items>
                                     <navigationItem id="V89-io-f3q">
                                         <nil key="title"/>
@@ -334,11 +333,10 @@
         <!--Route Tab Bar View Controller-->
         <scene sceneID="dIi-W7-GWL">
             <objects>
-                <tabBarController id="yl3-tQ-80q" customClass="RouteTabBarViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="RouteTabBarViewController" hidesBottomBarWhenPushed="YES" id="yl3-tQ-80q" customClass="RouteTabBarViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="cbp-38-NGx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
                                 <color key="value" red="0.0" green="0.68235294117647061" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
