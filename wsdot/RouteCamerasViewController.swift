@@ -85,7 +85,7 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
         
         return cell
     }
-    
+
     // MARK: -
     // MARK: Helper functinos
     func filterCameras(cameras: [CameraItem]) -> [CameraItem] {

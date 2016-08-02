@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Camera View Controller-->
+        <scene sceneID="Y3C-pA-gMV">
+            <objects>
+                <viewController id="zYt-nO-VSk" customClass="CameraViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RIO-BU-Amt"/>
+                        <viewControllerLayoutGuide type="bottom" id="gWp-RT-lXo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="b77-Fx-xdT">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CHI-Au-Nf3">
+                                <rect key="frame" x="20" y="0.0" width="560" height="247"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QkN-Ta-Oks">
+                                        <rect key="frame" x="8" y="8" width="544" height="239"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="QkN-Ta-Oks" secondAttribute="bottom" id="5cz-q0-Ljf"/>
+                                    <constraint firstItem="QkN-Ta-Oks" firstAttribute="leading" secondItem="CHI-Au-Nf3" secondAttribute="leadingMargin" id="6hE-o9-gzH"/>
+                                    <constraint firstItem="QkN-Ta-Oks" firstAttribute="trailing" secondItem="CHI-Au-Nf3" secondAttribute="trailingMargin" id="UGs-3H-mIU"/>
+                                    <constraint firstItem="QkN-Ta-Oks" firstAttribute="top" secondItem="CHI-Au-Nf3" secondAttribute="topMargin" id="nEZ-uh-FsC"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gWp-RT-lXo" firstAttribute="top" secondItem="CHI-Au-Nf3" secondAttribute="bottom" constant="289" id="F7H-za-RNo"/>
+                            <constraint firstItem="CHI-Au-Nf3" firstAttribute="leading" secondItem="b77-Fx-xdT" secondAttribute="leadingMargin" id="Kde-Md-Ydd"/>
+                            <constraint firstItem="CHI-Au-Nf3" firstAttribute="trailing" secondItem="b77-Fx-xdT" secondAttribute="trailingMargin" id="iku-Qr-sni"/>
+                            <constraint firstItem="CHI-Au-Nf3" firstAttribute="top" secondItem="RIO-BU-Amt" secondAttribute="bottom" id="nRY-64-Bte"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="cameraImage" destination="QkN-Ta-Oks" id="q6X-Ag-eQd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ady-ct-aeC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="434" y="382"/>
+        </scene>
+    </scenes>
+</document>
