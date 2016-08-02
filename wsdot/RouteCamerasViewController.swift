@@ -29,7 +29,6 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
         
         // refresh controller
         refreshControl.addTarget(self, action: #selector(RouteCamerasViewController.refresh(_:)), forControlEvents: .ValueChanged)
-        refreshControl.attributedTitle = NSAttributedString.init(string: "loading cameras")
         tableView.addSubview(refreshControl)
         
         self.tableView.contentOffset = CGPointMake(0, -self.refreshControl.frame.size.height)

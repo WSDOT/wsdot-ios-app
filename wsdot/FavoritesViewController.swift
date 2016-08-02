@@ -26,17 +26,19 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         
         // refresh controller
         refreshControl.addTarget(self, action: #selector(FavoritesViewController.loadFavorites), forControlEvents: .ValueChanged)
-        refreshControl.attributedTitle = NSAttributedString.init(string: "loading favorites")
         favoritesTable.addSubview(refreshControl)
+        
+        
+                
+        self.refreshControl.beginRefreshing()
+        self.loadFavorites()
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     override func viewWillAppear(animated: Bool) {
-        
-        self.refreshControl.beginRefreshing()
-        self.loadFavorites()
+
         
     }
     
@@ -61,28 +63,30 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             self.favoritesTable.reloadData()
             self.refreshControl.endRefreshing()
         }
-        
     }
     
     private func requestFavoriteFerries(serviceGroup: dispatch_group_t){
         // Dispatch work with QOS user initated for top priority.
         // weak binding in case user navigates away and self becomes nil.
         dispatch_group_enter(serviceGroup)
-        
-        RouteSchedulesStore.getRouteSchedules(false, favoritesOnly: false, completion: { data, error in
-            if let validData = data {
-                self.favoriteRoutes.removeAll()
-                for route in validData {
-                    if (route.selected){
-                        self.favoriteRoutes.append(route)
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak self] in
+            RouteSchedulesStore.getRouteSchedules(false, favoritesOnly: false, completion: { data, error in
+                if let validData = data {
+                    if let selfValue = self{
+                        selfValue.favoriteRoutes = validData
+                    }
+                    dispatch_group_leave(serviceGroup)
+                } else {
+                    dispatch_group_leave(serviceGroup)
+                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                        if let selfValue = self{
+                            selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                        }
                     }
                 }
-                dispatch_group_leave(serviceGroup)
-            } else {
-                dispatch_group_leave(serviceGroup)
-                self.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
-            }
-        })
+                
+            })
+        }
     }
 
 
