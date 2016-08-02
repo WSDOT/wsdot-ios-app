@@ -270,7 +270,7 @@
                                     <segue destination="Whq-2K-wR1" kind="embed" identifier="timesViewSegue" id="ioK-qy-EUX"/>
                                 </connections>
                             </containerView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jSE-iR-oBe">
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jSE-iR-oBe">
                                 <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                 <items>
                                     <navigationItem id="V89-io-f3q">
