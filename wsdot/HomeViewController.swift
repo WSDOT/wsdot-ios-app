@@ -16,19 +16,21 @@ class HomeViewController: UITableViewController {
     let SegueFerriesHomeViewController = "FerriesHomeViewController"
     
     var menu_options: [String] = []
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Set Title
         title = TITLE
         menu_options = ["Traffic Map", "Ferries", "Mountain Passes", "Social Media", "Toll Rates", "Border Waits", "Amtrak Cascades"]
+        
+        self.tabBarController!.view.backgroundColor = UIColor.whiteColor()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         // Initialize Tab Bar Item

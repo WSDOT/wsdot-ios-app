@@ -15,7 +15,7 @@ class FerriesScheduleDataHelper: DataHelperProtocol {
     static let table = Table(TABLE_NAME)
     static let routeId = Expression<Int64>("routeid")
     static let routeDescription = Expression<String>("routedescritption")
-    static let selected = Expression<Int64>("selected")
+    static let selected = Expression<Bool>("selected")
     static let crossingTime = Expression<String?>("crossingtime")
     static let cacheDate = Expression<Int64>("cacheDate")
     static let routeAlerts = Expression<String>("routealert")
@@ -72,6 +72,26 @@ class FerriesScheduleDataHelper: DataHelperProtocol {
         
     }
     
+    static func updateFavorite(id: Int64, isFavorite: Bool) throws -> Int {
+        guard let DB = SQLiteDataStore.sharedInstance.WSDOTDB else {
+            throw DataAccessError.Datastore_Connection_Error
+        }
+        
+        let filterTable = table.filter(routeId == id)
+        
+        let update = filterTable.update(
+            selected <- isFavorite)
+        
+        do {
+            let result = try DB.run(update)
+            print(result)
+            return result
+        } catch {
+            throw DataAccessError.Update_Error
+        }
+        
+    }
+    
     static func delete (item: T) throws -> Void {
         guard let DB = SQLiteDataStore.sharedInstance.WSDOTDB else {
             throw DataAccessError.Datastore_Connection_Error
@@ -114,6 +134,25 @@ class FerriesScheduleDataHelper: DataHelperProtocol {
         }
         var retArray = [T]()
         let items = try DB.prepare(table.order(routeDescription))
+        
+        for item in items {
+            retArray.append(RouteScheduleDataModel(routeId: item[routeId],
+                routeDescription: item[routeDescription],
+                selected: item[selected],
+                crossingTime: item[crossingTime],
+                cacheDate: item[cacheDate],
+                routeAlerts: item[routeAlerts],
+                scheduleDates: item[scheduleDates]))
+        }
+        return retArray
+    }
+    
+    static func findFavorites() throws -> [T]? {
+        guard let DB = SQLiteDataStore.sharedInstance.WSDOTDB else {
+            throw DataAccessError.Datastore_Connection_Error
+        }
+        var retArray = [T]()
+        let items = try DB.prepare(table.filter(selected == true).order(routeDescription))
         
         for item in items {
             retArray.append(RouteScheduleDataModel(routeId: item[routeId],

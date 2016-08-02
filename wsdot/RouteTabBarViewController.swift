@@ -28,33 +28,36 @@ class RouteTabBarViewController: UITabBarController {
         }
         
         let favoriteButton = UIButton()
-        favoriteButton.setImage(UIImage(named: "icFavoriteDefault"), forState: .Normal)
-        favoriteButton.setImage(UIImage(named: "icFavoriteSelected"), forState: .Highlighted)
-        favoriteButton.tintColor = UIColor.redColor()
         
-        favoriteButton.addTarget(self, action: #selector(RouteTabBarViewController.addFavorite(_:)), forControlEvents: .TouchUpInside)
+        if ((routeItem?.selected)!){
+            favoriteButton.setImage(UIImage(named: "icFavoriteSelected"), forState: .Normal)
+            favoriteButton.setImage(UIImage(named: "icFavoriteDefault"), forState: .Highlighted)
+            favoriteButton.setImage(UIImage(named: "icFavoriteDefault"), forState: .Selected)
+            favoriteButton.addTarget(self, action: #selector(RouteTabBarViewController.removeFavorite(_:)), forControlEvents: .TouchUpInside)
+        }else{
+            favoriteButton.setImage(UIImage(named: "icFavoriteDefault"), forState: .Normal)
+            favoriteButton.setImage(UIImage(named: "icFavoriteSelected"), forState: .Highlighted)
+            favoriteButton.setImage(UIImage(named: "icFavoriteSelected"), forState: .Selected)
+            favoriteButton.addTarget(self, action: #selector(RouteTabBarViewController.addFavorite(_:)), forControlEvents: .TouchUpInside)
+        }
+        
         favoriteButton.sizeToFit()
-        
         let favoritesNavItemButton = UIBarButtonItem()
         favoritesNavItemButton.customView = favoriteButton
         
         self.navigationItem.rightBarButtonItem = favoritesNavItemButton
-        
     }
     
     // Sets selected attribute of the route item to true and calls DB update logic
     func addFavorite(sender: UIButton){
-        
         sender.setImage(UIImage(named: "icFavoriteSelected"), forState: .Normal)
         sender.setImage(UIImage(named: "icFavoriteDefault"), forState: .Highlighted)
         sender.setImage(UIImage(named: "icFavoriteDefault"), forState: .Selected)
         sender.removeTarget(self, action: #selector(RouteTabBarViewController.addFavorite(_:)), forControlEvents: .TouchUpInside)
         sender.addTarget(self, action: #selector(RouteTabBarViewController.removeFavorite(_:)), forControlEvents: .TouchUpInside)
-        
-        // MARK
-        // TODO: DB logic call
-        print("fav Added!")
-        
+        routeItem?.selected = true
+        print((routeItem?.routeId)!)
+        RouteSchedulesStore.updateFavorite((routeItem?.routeId)!, newValue: true)
     }
     
     // Sets selected attribute of the route item to false and calls DB update logic
@@ -64,13 +67,7 @@ class RouteTabBarViewController: UITabBarController {
         sender.setImage(UIImage(named: "icFavoriteSelected"), forState: .Selected)
         sender.removeTarget(self, action: #selector(RouteTabBarViewController.removeFavorite(_:)), forControlEvents: .TouchUpInside)
         sender.addTarget(self, action: #selector(RouteTabBarViewController.addFavorite(_:)), forControlEvents: .TouchUpInside)
-        
-        // MARK
-        // TODO: DB logic call
-        print("fav removed!")
-        
+        routeItem?.selected = false
+        RouteSchedulesStore.updateFavorite((routeItem?.routeId)!, newValue: false)
     }
-    
-    
-    
 }

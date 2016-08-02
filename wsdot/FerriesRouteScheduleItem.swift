@@ -22,12 +22,13 @@ class FerriesRouteScheduleItem: NSObject {
     var scheduleDates = [FerriesScheduleDateItem]()
     var sailings = [(String, String)]()
     
-    init(description: String, id: Int, crossingTime: String?, cacheDate: Int64, alerts: JSON, scheduleDates: JSON ) {
+    init(description: String, id: Int, crossingTime: String?, isFavorite: Bool, cacheDate: Int64, alerts: JSON, scheduleDates: JSON ) {
         super.init()
         self.routeId = id
         self.routeDescription = description
         self.crossingTime = crossingTime
         self.cacheDate = cacheDate
+        self.selected = isFavorite
         self.routeAlertsJSON = alerts
         self.routeAlerts = getRouteAlertItemsFromJson(alerts)
         self.scheduleDatesJSON = scheduleDates

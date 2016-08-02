@@ -15,23 +15,18 @@ class RouteSchedulesViewController: UITableViewController {
     
     var routes = [FerriesRouteScheduleItem]()
     
-    // MARK: -
-    // MARK: Initialization
-    required init?(coder decoder: NSCoder) {
-        super.init(coder: decoder)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Route Schedules"
         
+        self.tableView.contentOffset = CGPointMake(0, -self.refreshControl!.frame.size.height)
         self.refreshControl?.beginRefreshing()
         
         // Dispatch work with QOS user initated for top priority.
         // weak binding in case user navigates away and self becomes nil.
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak self] in
             
-            RouteSchedulesStore.getRouteSchedules(false, completion: { data, error in
+            RouteSchedulesStore.getRouteSchedules(false, favoritesOnly: false, completion: { data, error in
                 if let validData = data {
                     dispatch_async(dispatch_get_main_queue()) { [weak self] in
                         if let selfValue = self{
@@ -52,7 +47,6 @@ class RouteSchedulesViewController: UITableViewController {
                 
             })
         }
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -61,7 +55,7 @@ class RouteSchedulesViewController: UITableViewController {
     }
     
     @IBAction func refresh(sender: UIRefreshControl) {
-        RouteSchedulesStore.getRouteSchedules (true, completion: { data, error in
+        RouteSchedulesStore.getRouteSchedules (true, favoritesOnly: false, completion: { data, error in
             if let validData = data {
                 self.routes = validData
                 // Reload tableview on UI thread
