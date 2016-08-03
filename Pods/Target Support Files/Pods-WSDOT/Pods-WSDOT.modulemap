@@ -1,0 +1,6 @@
+framework module Pods_WSDOT {
+  umbrella header "Pods-WSDOT-umbrella.h"
+
+  export *
+  module * { export * }
+}
