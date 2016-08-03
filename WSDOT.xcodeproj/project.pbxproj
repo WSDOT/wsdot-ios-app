@@ -22,6 +22,9 @@
 		9A1F5FA51D47DCB900DA5F99 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F5FA41D47DCB900DA5F99 /* ApiKeys.swift */; };
 		9A1F5FA71D47E27200DA5F99 /* SailingSpacesItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F5FA61D47E27200DA5F99 /* SailingSpacesItem.swift */; };
 		9A21E1CC1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A21E1CB1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift */; };
+		9A2F4A5D1D52747900911AF5 /* FerryScheduleRealmDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A5C1D52747900911AF5 /* FerryScheduleRealmDataModel.swift */; };
+		9A2F4A651D527ACB00911AF5 /* FerrySailingSpaceRealmDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A641D527ACB00911AF5 /* FerrySailingSpaceRealmDataModel.swift */; };
+		9A2F4A681D528A5100911AF5 /* FerryRealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A671D528A5100911AF5 /* FerryRealmStore.swift */; };
 		9A5017941D258F0C00B9C49E /* FerriesRouteAlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5017931D258F0C00B9C49E /* FerriesRouteAlertItem.swift */; };
 		9A5017961D258F1100B9C49E /* FerriesRouteScheduleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5017951D258F1100B9C49E /* FerriesRouteScheduleItem.swift */; };
 		9A5017981D258F1500B9C49E /* FerriesScheduleDateItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5017971D258F1500B9C49E /* FerriesScheduleDateItem.swift */; };
@@ -84,6 +87,9 @@
 		9A1F5FA41D47DCB900DA5F99 /* ApiKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
 		9A1F5FA61D47E27200DA5F99 /* SailingSpacesItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SailingSpacesItem.swift; sourceTree = "<group>"; };
 		9A21E1CB1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteSailingsViewController.swift; sourceTree = "<group>"; };
+		9A2F4A5C1D52747900911AF5 /* FerryScheduleRealmDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerryScheduleRealmDataModel.swift; sourceTree = "<group>"; };
+		9A2F4A641D527ACB00911AF5 /* FerrySailingSpaceRealmDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerrySailingSpaceRealmDataModel.swift; sourceTree = "<group>"; };
+		9A2F4A671D528A5100911AF5 /* FerryRealmStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerryRealmStore.swift; sourceTree = "<group>"; };
 		9A5017931D258F0C00B9C49E /* FerriesRouteAlertItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerriesRouteAlertItem.swift; sourceTree = "<group>"; };
 		9A5017951D258F1100B9C49E /* FerriesRouteScheduleItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerriesRouteScheduleItem.swift; sourceTree = "<group>"; };
 		9A5017971D258F1500B9C49E /* FerriesScheduleDateItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerriesScheduleDateItem.swift; sourceTree = "<group>"; };
@@ -207,6 +213,24 @@
 			name = CustomTextFields;
 			sourceTree = "<group>";
 		};
+		9A2F4A5B1D52745100911AF5 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				9A2F4A661D527BB500911AF5 /* Ferries */,
+			);
+			name = Realm;
+			sourceTree = "<group>";
+		};
+		9A2F4A661D527BB500911AF5 /* Ferries */ = {
+			isa = PBXGroup;
+			children = (
+				9A2F4A641D527ACB00911AF5 /* FerrySailingSpaceRealmDataModel.swift */,
+				9A2F4A5C1D52747900911AF5 /* FerryScheduleRealmDataModel.swift */,
+				9A2F4A671D528A5100911AF5 /* FerryRealmStore.swift */,
+			);
+			name = Ferries;
+			sourceTree = "<group>";
+		};
 		9A5017921D258EFF00B9C49E /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,6 +294,7 @@
 		9AD32DFB1D23172C000AEC28 /* wsdot */ = {
 			isa = PBXGroup;
 			children = (
+				9A2F4A5B1D52745100911AF5 /* Realm */,
 				9AB017771D514606004C228E /* Cameras */,
 				9AD32E051D23172C000AEC28 /* LaunchScreen.storyboard */,
 				9AFEECDB1D3924570078A781 /* Home */,
@@ -583,6 +608,7 @@
 				9ADEAE4D1D270CC800BA7DD4 /* Consts.swift in Sources */,
 				9AFEECE11D3925400078A781 /* CachesStore.swift in Sources */,
 				9ADEAE521D270E3E00BA7DD4 /* DataModels.swift in Sources */,
+				9A2F4A5D1D52747900911AF5 /* FerryScheduleRealmDataModel.swift in Sources */,
 				9A07192C1D410FD5007BB4C5 /* RouteAlertsViewController.swift in Sources */,
 				9A1F5FA71D47E27200DA5F99 /* SailingSpacesItem.swift in Sources */,
 				9AD32DFD1D23172C000AEC28 /* AppDelegate.swift in Sources */,
@@ -590,6 +616,7 @@
 				9A5017981D258F1500B9C49E /* FerriesScheduleDateItem.swift in Sources */,
 				9A9804F41D3E6FE80058146F /* SailingTimeItem.swift in Sources */,
 				9A1F5F9F1D47C2E800DA5F99 /* DeparturesCustomCell.swift in Sources */,
+				9A2F4A681D528A5100911AF5 /* FerryRealmStore.swift in Sources */,
 				9ADEAE4A1D2709AF00BA7DD4 /* SQLiteDataStore.swift in Sources */,
 				9A1F5FA51D47DCB900DA5F99 /* ApiKeys.swift in Sources */,
 				9A81A57C1D4BB41B0049913A /* LatLonUtils.swift in Sources */,
@@ -606,6 +633,7 @@
 				9AD32E2A1D24233D000AEC28 /* FerriesHomeViewController.swift in Sources */,
 				9A0CA8371D466045009C67B7 /* TimeUtils.swift in Sources */,
 				9ADEAE541D270FB100BA7DD4 /* DataHelperProtocol.swift in Sources */,
+				9A2F4A651D527ACB00911AF5 /* FerrySailingSpaceRealmDataModel.swift in Sources */,
 				9A1F5FA31D47DBB700DA5F99 /* SailingSpacesStore.swift in Sources */,
 				9AD32E221D241AF4000AEC28 /* HomeViewController.swift in Sources */,
 				9A81A5741D4A81DC0049913A /* CamerasDataHelper.swift in Sources */,
@@ -697,7 +725,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -738,7 +766,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -752,6 +780,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = wsdot/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = gov.wa.wsdot.wsdot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -764,6 +793,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = wsdot/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = gov.wa.wsdot.wsdot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
