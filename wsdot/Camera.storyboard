@@ -9,7 +9,7 @@
         <!--Camera View Controller-->
         <scene sceneID="Y3C-pA-gMV">
             <objects>
-                <viewController id="zYt-nO-VSk" customClass="CameraViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="zYt-nO-VSk" customClass="CameraViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RIO-BU-Amt"/>
                         <viewControllerLayoutGuide type="bottom" id="gWp-RT-lXo"/>
@@ -19,15 +19,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QkN-Ta-Oks">
-                                <rect key="frame" x="20" y="0.0" width="560" height="220"/>
+                                <rect key="frame" x="20" y="8" width="560" height="508"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="gWp-RT-lXo" firstAttribute="top" secondItem="QkN-Ta-Oks" secondAttribute="bottom" constant="316" id="HD3-7i-9K4"/>
-                            <constraint firstItem="QkN-Ta-Oks" firstAttribute="trailing" secondItem="b77-Fx-xdT" secondAttribute="trailingMargin" id="La0-e2-LK7"/>
-                            <constraint firstItem="QkN-Ta-Oks" firstAttribute="leading" secondItem="b77-Fx-xdT" secondAttribute="leadingMargin" id="UDA-4u-ydq"/>
-                            <constraint firstItem="QkN-Ta-Oks" firstAttribute="top" secondItem="RIO-BU-Amt" secondAttribute="bottom" id="vQy-Ur-m46"/>
+                            <constraint firstItem="QkN-Ta-Oks" firstAttribute="leading" secondItem="b77-Fx-xdT" secondAttribute="leadingMargin" id="8lp-eN-W2A"/>
+                            <constraint firstItem="QkN-Ta-Oks" firstAttribute="trailing" secondItem="b77-Fx-xdT" secondAttribute="trailingMargin" id="G1n-uD-zkH"/>
+                            <constraint firstItem="QkN-Ta-Oks" firstAttribute="top" secondItem="RIO-BU-Amt" secondAttribute="bottom" constant="8" symbolic="YES" id="wP2-zh-OJj"/>
+                            <constraint firstAttribute="bottom" secondItem="QkN-Ta-Oks" secondAttribute="bottom" constant="20" symbolic="YES" id="xMm-u7-zYP"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>

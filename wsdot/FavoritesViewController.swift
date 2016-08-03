@@ -160,10 +160,8 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             return favoriteRoutes.count
         case 1:
             return favoriteCameras.count
-            
         default:
             return 0
-            
         }
     }
     
