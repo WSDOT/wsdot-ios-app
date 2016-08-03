@@ -14,8 +14,8 @@
 		9A0719351D4274B8007BB4C5 /* LinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0719341D4274B8007BB4C5 /* LinkCell.swift */; };
 		9A0CA8311D428EE9009C67B7 /* RouteDeparturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0CA8301D428EE9009C67B7 /* RouteDeparturesViewController.swift */; };
 		9A0CA8371D466045009C67B7 /* TimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0CA8361D466045009C67B7 /* TimeUtils.swift */; };
-		9A0CA8391D466DF6009C67B7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A0CA8381D466DF6009C67B7 /* GoogleService-Info.plist */; };
 		9A0CA83C1D46AC51009C67B7 /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0CA83B1D46AC51009C67B7 /* PickerTextField.swift */; };
+		9A122B431D5246DB00C176CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A122B421D5246DB00C176CD /* GoogleService-Info.plist */; };
 		9A1F5F9F1D47C2E800DA5F99 /* DeparturesCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F5F9E1D47C2E800DA5F99 /* DeparturesCustomCell.swift */; };
 		9A1F5FA11D47D3D100DA5F99 /* CameraImageCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F5FA01D47D3D100DA5F99 /* CameraImageCustomCell.swift */; };
 		9A1F5FA31D47DBB700DA5F99 /* SailingSpacesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F5FA21D47DBB700DA5F99 /* SailingSpacesStore.swift */; };
@@ -76,8 +76,8 @@
 		9A0719341D4274B8007BB4C5 /* LinkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkCell.swift; sourceTree = "<group>"; };
 		9A0CA8301D428EE9009C67B7 /* RouteDeparturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteDeparturesViewController.swift; sourceTree = "<group>"; };
 		9A0CA8361D466045009C67B7 /* TimeUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUtils.swift; sourceTree = "<group>"; };
-		9A0CA8381D466DF6009C67B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9A0CA83B1D46AC51009C67B7 /* PickerTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
+		9A122B421D5246DB00C176CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9A1F5F9E1D47C2E800DA5F99 /* DeparturesCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeparturesCustomCell.swift; sourceTree = "<group>"; };
 		9A1F5FA01D47D3D100DA5F99 /* CameraImageCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraImageCustomCell.swift; sourceTree = "<group>"; };
 		9A1F5FA21D47DBB700DA5F99 /* SailingSpacesStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SailingSpacesStore.swift; sourceTree = "<group>"; };
@@ -279,7 +279,7 @@
 				9AD32E1D1D231739000AEC28 /* CustomViews */,
 				9AD32DFC1D23172C000AEC28 /* AppDelegate.swift */,
 				9AD32E031D23172C000AEC28 /* Assets.xcassets */,
-				9A0CA8381D466DF6009C67B7 /* GoogleService-Info.plist */,
+				9A122B421D5246DB00C176CD /* GoogleService-Info.plist */,
 				9AD32E081D23172C000AEC28 /* Info.plist */,
 			);
 			path = wsdot;
@@ -508,10 +508,10 @@
 			files = (
 				9AD32E071D23172C000AEC28 /* LaunchScreen.storyboard in Resources */,
 				9AD32E281D2421E4000AEC28 /* Ferries.storyboard in Resources */,
-				9A0CA8391D466DF6009C67B7 /* GoogleService-Info.plist in Resources */,
 				9AB0177A1D51464B004C228E /* Camera.storyboard in Resources */,
 				9AD32E041D23172C000AEC28 /* Assets.xcassets in Resources */,
 				9AD32E021D23172C000AEC28 /* Main.storyboard in Resources */,
+				9A122B431D5246DB00C176CD /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
