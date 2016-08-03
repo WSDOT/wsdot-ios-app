@@ -42,9 +42,9 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
     func refresh(refreshControl: UIRefreshControl) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {[weak self] in
             CamerasStore.getCameras("Ferries", favorites: false, completion:  { data, error in
-                if (error == nil){
+                if let validData = data {
                     if let selfValue = self{
-                        selfValue.cameras = selfValue.filterCameras(data)
+                        selfValue.cameras = selfValue.filterCameras(validData)
                         dispatch_async(dispatch_get_main_queue()) {[weak self] in
                             if let selfValue = self{
                                 selfValue.tableView.reloadData()

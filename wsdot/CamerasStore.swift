@@ -17,7 +17,7 @@ import SwiftyJSON
 
 class CamerasStore {
     
-    typealias FetchCamerasCompletion = (data: [CameraItem], error: DataAccessError?) -> ()
+    typealias FetchCamerasCompletion = (data: [CameraItem]?, error: DataAccessError?) -> ()
     typealias UpdateCamerasCompletion = (error: NSError?) -> ()
     
     // Mark: -

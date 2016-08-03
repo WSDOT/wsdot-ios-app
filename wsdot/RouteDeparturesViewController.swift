@@ -38,7 +38,8 @@ class RouteDeparturesViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        adBackGroundView.hidden = true
+        adBackGroundView.alpha = 0
+        bannerView.alpha = 1
     }
     
     override func viewWillAppear(animated: Bool) {
