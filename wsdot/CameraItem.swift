@@ -17,8 +17,9 @@ class CameraItem {
     let latitude: Double
     let longitude: Double
     let video: Bool
+    var selected: Bool
 
-    init(id: Int64, url: String, title: String, road: String, lat: Double, long: Double, video: Bool) {
+    init(id: Int64, url: String, title: String, road: String, lat: Double, long: Double, video: Bool, isFavorite: Bool) {
         self.cameraId = id
         self.url = url
         self.title = title
@@ -26,5 +27,6 @@ class CameraItem {
         self.latitude = lat
         self.longitude = long
         self.video = video
+        self.selected = isFavorite
     }
 }

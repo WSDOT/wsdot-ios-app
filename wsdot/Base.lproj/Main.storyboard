@@ -62,7 +62,7 @@
         <!--Favorites View Controller-->
         <scene sceneID="Jqo-Tu-g2S">
             <objects>
-                <viewController id="T7Q-Fa-apl" customClass="FavoritesViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="T7Q-Fa-apl" customClass="FavoritesViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bn8-in-w0v"/>
                         <viewControllerLayoutGuide type="bottom" id="TNM-mu-2SI"/>
@@ -71,12 +71,12 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="109" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="K0r-R3-tVu">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="109" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="K0r-R3-tVu">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FerriesFavoriteCell" rowHeight="109" id="S94-E2-qXU" customClass="RoutesCustomCell" customModule="WSDOT" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="600" height="109"/>
+                                        <rect key="frame" x="0.0" y="28" width="600" height="109"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S94-E2-qXU" id="Ife-Ev-fck">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="108"/>
@@ -124,6 +124,23 @@
                                             <outlet property="title" destination="3Mw-9a-w2n" id="hyW-o6-nh3"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CameraFavoriteCell" textLabel="YFa-TQ-BoT" rowHeight="45" style="IBUITableViewCellStyleDefault" id="Ehw-Em-thK" customClass="RoutesCustomCell" customModule="WSDOT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="137" width="600" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ehw-Em-thK" id="jYl-KI-SgU">
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YFa-TQ-BoT">
+                                                    <rect key="frame" x="15" y="0.0" width="550" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="T7Q-Fa-apl" id="vij-yn-m9D"/>
@@ -143,6 +160,7 @@
                     <connections>
                         <outlet property="favoritesTable" destination="K0r-R3-tVu" id="bsB-fv-d7X"/>
                         <segue destination="3tB-Ij-054" kind="show" identifier="FavoriteSailingsViewController" id="gMc-xO-dgX"/>
+                        <segue destination="Zfo-py-Elh" kind="show" identifier="FavoriteCameraViewController" id="Pwk-Kr-Jeq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dwt-na-DIG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -156,6 +174,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="16b-np-4z3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2202.5" y="1023"/>
+        </scene>
+        <!--Camera-->
+        <scene sceneID="DKa-Fh-JYS">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Camera" id="Zfo-py-Elh" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bE7-pW-obt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2142.5" y="1088"/>
         </scene>
         <!--Ferries-->
         <scene sceneID="Cxa-dc-UyN">

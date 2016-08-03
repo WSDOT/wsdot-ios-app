@@ -33,5 +33,6 @@ typealias CameraDataModel = (
     roadName: String,
     latitude: Double,
     longitude: Double,
-    video: Int64
+    video: Int64,
+    selected: Bool
 )

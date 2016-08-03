@@ -17,7 +17,7 @@ import SwiftyJSON
 
 class CamerasStore {
     
-    typealias FetchCamerasCompletion = (data: [CameraItem], error: DataAccessError?) -> ()
+    typealias FetchCamerasCompletion = (data: [CameraItem]?, error: DataAccessError?) -> ()
     typealias UpdateCamerasCompletion = (error: NSError?) -> ()
     
     // Mark: -
@@ -27,12 +27,14 @@ class CamerasStore {
      runs give completion with camera data. roadName can be nil, in which case
      returns all camera data
      */
-    static func getCameras(roadName: String?, completion: FetchCamerasCompletion){
+    static func getCameras(roadName: String?, favorites: Bool, completion: FetchCamerasCompletion){
         self.updateCameras(false, completion: { error in
             if ((error == nil)){
                 if let road = roadName {
                     getCamerasByRoadName(road, completion: completion)
-                }else{
+                }else if (favorites){
+                    getFavoriteCameras(completion)
+                } else {
                     getAllCameras(completion)
                 }
             }
@@ -75,6 +77,9 @@ class CamerasStore {
         
         var dataModelCameras = [CameraDataModel]()
         
+        // MARK --
+        // MARK TODO: Keep favorite cameras..?
+        
         for camera in cameras {
             dataModelCameras.append(
             CameraDataModel(
@@ -84,7 +89,8 @@ class CamerasStore {
                 roadName: camera.roadName,
                 latitude: camera.latitude,
                 longitude: camera.longitude,
-                video: camera.video ? 1 : 0))
+                video: camera.video ? 1 : 0,
+                selected: camera.selected))
         }
         
         
@@ -113,7 +119,38 @@ class CamerasStore {
                         road: camera.roadName,
                         lat: camera.latitude,
                         long: camera.longitude,
-                        video: camera.video == 1)
+                        video: camera.video == 1,
+                        isFavorite: camera.selected)
+                    
+                    cameras.append(cameraItem)
+                }
+                completion(data: cameras, error: nil)
+            }
+        } catch DataAccessError.Datastore_Connection_Error {
+            print("findAllSchedules: Connection error")
+            completion(data: [], error: DataAccessError.Datastore_Connection_Error)
+        } catch _ {
+            print("findAllSchedules: unknown error")
+            completion(data: [], error: DataAccessError.Unknown_Error)
+        }
+        return cameras
+    }
+    
+    private static func getFavoriteCameras(completion: FetchCamerasCompletion) -> [CameraItem]{
+        var cameras = [CameraItem]()
+        do{
+            if let result = try CamerasDataHelper.findFavorites(){
+                
+                for camera in result {
+                    let cameraItem = CameraItem(
+                        id: camera.cameraId,
+                        url: camera.url,
+                        title: camera.title,
+                        road: camera.roadName,
+                        lat: camera.latitude,
+                        long: camera.longitude,
+                        video: camera.video == 1,
+                        isFavorite: camera.selected)
                     
                     cameras.append(cameraItem)
                 }
@@ -142,7 +179,8 @@ class CamerasStore {
                         road: camera.roadName,
                         lat: camera.latitude,
                         long: camera.longitude,
-                        video: camera.video == 1)
+                        video: camera.video == 1,
+                        isFavorite: camera.selected)
                     
                     cameras.append(cameraItem)
                 }
@@ -158,6 +196,20 @@ class CamerasStore {
             completion(data: [], error: DataAccessError.Unknown_Error)
         }
         return cameras
+    }
+    
+    static func updateFavorite(cameraId: Int64, newValue: Bool){
+        do {
+            try CamerasDataHelper.updateFavorite(cameraId, isFavorite: newValue)
+        } catch DataAccessError.Update_Error {
+            print("saveRouteSchedules: failed to update caches")
+        } catch DataAccessError.Datastore_Connection_Error {
+            print("saveRouteSchedules: Connection error")
+        } catch DataAccessError.Nil_In_Data{
+            print("saveRouteSchedules: nil in data error")
+        } catch _ {
+            print("saveRouteSchedules: unknown error occured.")
+        }
     }
     
     private static func deleteAll(){
@@ -181,7 +233,8 @@ class CamerasStore {
                 road: cameraJson["roadName"].stringValue,
                 lat: cameraJson["lat"].doubleValue,
                 long: cameraJson["lon"].doubleValue,
-                video: cameraJson["video"].boolValue)
+                video: cameraJson["video"].boolValue,
+                isFavorite: false)
             
             cameras.append(camera)
         }

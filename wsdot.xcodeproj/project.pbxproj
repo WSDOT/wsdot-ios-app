@@ -34,6 +34,8 @@
 		9A81A57C1D4BB41B0049913A /* LatLonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */; };
 		9A9804F21D3E6DBF0058146F /* SailingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9804F11D3E6DBF0058146F /* SailingsItem.swift */; };
 		9A9804F41D3E6FE80058146F /* SailingTimeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9804F31D3E6FE80058146F /* SailingTimeItem.swift */; };
+		9AB0177A1D51464B004C228E /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AB017791D51464B004C228E /* Camera.storyboard */; };
+		9AB0177C1D514668004C228E /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0177B1D514668004C228E /* CameraViewController.swift */; };
 		9AD32DFD1D23172C000AEC28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32DFC1D23172C000AEC28 /* AppDelegate.swift */; };
 		9AD32E021D23172C000AEC28 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E001D23172C000AEC28 /* Main.storyboard */; };
 		9AD32E041D23172C000AEC28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E031D23172C000AEC28 /* Assets.xcassets */; };
@@ -94,6 +96,8 @@
 		9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatLonUtils.swift; sourceTree = "<group>"; };
 		9A9804F11D3E6DBF0058146F /* SailingsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SailingsItem.swift; sourceTree = "<group>"; };
 		9A9804F31D3E6FE80058146F /* SailingTimeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SailingTimeItem.swift; sourceTree = "<group>"; };
+		9AB017791D51464B004C228E /* Camera.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
+		9AB0177B1D514668004C228E /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		9AD32DF91D23172C000AEC28 /* WSDOT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WSDOT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD32DFC1D23172C000AEC28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9AD32E011D23172C000AEC28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -225,6 +229,24 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		9AB017771D514606004C228E /* Cameras */ = {
+			isa = PBXGroup;
+			children = (
+				9AB017781D51462D004C228E /* Controller */,
+				9AE486451D495DA5007A92E3 /* Model */,
+				9AB017791D51464B004C228E /* Camera.storyboard */,
+			);
+			name = Cameras;
+			sourceTree = "<group>";
+		};
+		9AB017781D51462D004C228E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9AB0177B1D514668004C228E /* CameraViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		9AD32DF01D23172C000AEC28 = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +270,7 @@
 		9AD32DFB1D23172C000AEC28 /* wsdot */ = {
 			isa = PBXGroup;
 			children = (
+				9AB017771D514606004C228E /* Cameras */,
 				9AD32E051D23172C000AEC28 /* LaunchScreen.storyboard */,
 				9AFEECDB1D3924570078A781 /* Home */,
 				9AFEECDA1D3924520078A781 /* Ferries */,
@@ -284,7 +307,6 @@
 		9AD32E1F1D231749000AEC28 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9AE486451D495DA5007A92E3 /* Cameras */,
 				9AFEECDF1D39253A0078A781 /* Caches */,
 				9ADEAE481D27099900BA7DD4 /* Database */,
 			);
@@ -354,13 +376,13 @@
 			name = Terminals;
 			sourceTree = "<group>";
 		};
-		9AE486451D495DA5007A92E3 /* Cameras */ = {
+		9AE486451D495DA5007A92E3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				9AE486461D495E90007A92E3 /* CameraItem.swift */,
 				9A81A5751D4A87480049913A /* CamerasStore.swift */,
 			);
-			name = Cameras;
+			name = Model;
 			sourceTree = "<group>";
 		};
 		9AFEECDA1D3924520078A781 /* Ferries */ = {
@@ -487,6 +509,7 @@
 				9AD32E071D23172C000AEC28 /* LaunchScreen.storyboard in Resources */,
 				9AD32E281D2421E4000AEC28 /* Ferries.storyboard in Resources */,
 				9A0CA8391D466DF6009C67B7 /* GoogleService-Info.plist in Resources */,
+				9AB0177A1D51464B004C228E /* Camera.storyboard in Resources */,
 				9AD32E041D23172C000AEC28 /* Assets.xcassets in Resources */,
 				9AD32E021D23172C000AEC28 /* Main.storyboard in Resources */,
 			);
@@ -577,6 +600,7 @@
 				9A07192E1D4110BC007BB4C5 /* RouteTabBarViewController.swift in Sources */,
 				9A0719331D42732A007BB4C5 /* INDLinkLabel.swift in Sources */,
 				9A50179C1D258F2000B9C49E /* RoutesCustomCell.swift in Sources */,
+				9AB0177C1D514668004C228E /* CameraViewController.swift in Sources */,
 				9A81A5761D4A87480049913A /* CamerasStore.swift in Sources */,
 				9AE4863E1D49594D007A92E3 /* FerriesTerminalMap.swift in Sources */,
 				9AD32E2A1D24233D000AEC28 /* FerriesHomeViewController.swift in Sources */,

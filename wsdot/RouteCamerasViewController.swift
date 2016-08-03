@@ -13,6 +13,8 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
 
 
     let camerasCellIdentifier = "TerminalCameras"
+    let SegueCamerasViewController = "CamerasViewController"
+
 
     let refreshControl = UIRefreshControl()
 
@@ -39,10 +41,10 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
     
     func refresh(refreshControl: UIRefreshControl) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {[weak self] in
-            CamerasStore.getCameras("Ferries", completion:  { data, error in
-                if (error == nil){
+            CamerasStore.getCameras("Ferries", favorites: false, completion:  { data, error in
+                if let validData = data {
                     if let selfValue = self{
-                        selfValue.cameras = selfValue.filterCameras(data)
+                        selfValue.cameras = selfValue.filterCameras(validData)
                         dispatch_async(dispatch_get_main_queue()) {[weak self] in
                             if let selfValue = self{
                                 selfValue.tableView.reloadData()
@@ -65,7 +67,7 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     // MARK: -
-    // MARK: Table View Delegate & data source methods
+    // MARK: Table View Data source methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -87,6 +89,26 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     // MARK: -
+    // MARK: Table View Delegate
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        // Perform Segue
+        performSegueWithIdentifier(SegueCamerasViewController, sender: self)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == SegueCamerasViewController {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let cameraItem = self.cameras[indexPath.row] as CameraItem
+                let destinationViewController = segue.destinationViewController as! CameraViewController
+                destinationViewController.cameraItem = cameraItem
+            }
+        }
+    }
+    
+    // MARK: -
     // MARK: Helper functinos
     func filterCameras(cameras: [CameraItem]) -> [CameraItem] {
     
@@ -105,4 +127,6 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
         }
         return filteredCameras
     }
+    
+    
 }

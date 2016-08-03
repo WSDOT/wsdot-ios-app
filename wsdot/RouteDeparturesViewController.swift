@@ -26,24 +26,23 @@ class RouteDeparturesViewController: UIViewController {
         super.viewDidLoad()
         
         title = currentSailing.0 + " to " + currentSailing.1
-
+        
         self.timesContainerView.alpha = 1
         self.camerasContainerView.alpha = 0
-
+        
         // Ad Banner
         bannerView.adUnitID = ApiKeys.wsdot_ad_string
         bannerView.rootViewController = self
         bannerView.loadRequest(GADRequest())
         
-        
-        
     }
     
     override func viewDidAppear(animated: Bool) {
-        adBackGroundView.hidden = true
+        adBackGroundView.alpha = 0
+        bannerView.alpha = 1
     }
     
-   override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
         let img = UIImage()
         self.navigationController?.navigationBar.shadowImage = img
         self.navigationController?.navigationBar.setBackgroundImage(img, forBarMetrics: .Default)
@@ -67,7 +66,6 @@ class RouteDeparturesViewController: UIViewController {
             let dest: RouteCamerasViewController = segue.destinationViewController as! RouteCamerasViewController
             dest.departingTerminalId = getDepartingId()
         }
-        
     }
     
     @IBAction func indexChanged(sender: UISegmentedControl) {
