@@ -64,7 +64,7 @@
 			containerPortal = 9AD32DF11D23172C000AEC28 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 9AD32DF81D23172C000AEC28;
-			remoteInfo = wsdot;
+			remoteInfo = WSDOT;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -441,7 +441,7 @@
 			dependencies = (
 			);
 			name = WSDOT;
-			productName = wsdot;
+			productName = WSDOT;
 			productReference = 9AD32DF91D23172C000AEC28 /* WSDOT.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -471,7 +471,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0730;
-				ORGANIZATIONNAME = wsdot;
+				ORGANIZATIONNAME = WSDOT;
 				TargetAttributes = {
 					9AD32DF81D23172C000AEC28 = {
 						CreatedOnToolsVersion = 7.3;
