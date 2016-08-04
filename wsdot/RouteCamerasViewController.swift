@@ -11,10 +11,8 @@ import SDWebImage
 
 class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
 
-
     let camerasCellIdentifier = "TerminalCameras"
     let SegueCamerasViewController = "CamerasViewController"
-
 
     let refreshControl = UIRefreshControl()
 
@@ -30,35 +28,35 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
         tableView.rowHeight = UITableViewAutomaticDimension
         
         // refresh controller
-        refreshControl.addTarget(self, action: #selector(RouteCamerasViewController.refresh(_:)), forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(RouteCamerasViewController.refreshAction(_:)), forControlEvents: .ValueChanged)
         tableView.addSubview(refreshControl)
         
         self.tableView.contentOffset = CGPointMake(0, -self.refreshControl.frame.size.height)
         refreshControl.beginRefreshing()
-        refresh(self.refreshControl)
+        refresh(false)
         
     }
     
-    func refresh(refreshControl: UIRefreshControl) {
+    func refreshAction(refreshControl: UIRefreshControl) {
+        refresh(true)
+    }
+    
+    func refresh(force: Bool) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {[weak self] in
-            CamerasStore.getCameras("Ferries", favorites: false, completion:  { data, error in
-                if let validData = data {
-                    if let selfValue = self{
-                        selfValue.cameras = selfValue.filterCameras(validData)
-                        dispatch_async(dispatch_get_main_queue()) {[weak self] in
-                            if let selfValue = self{
-                                selfValue.tableView.reloadData()
-                                selfValue.refreshControl.endRefreshing()
-                            }
+            CamerasStore.updateCameras(force, completion: { error in
+                if (error == nil){
+                    dispatch_async(dispatch_get_main_queue()) {[weak self] in
+                        if let selfValue = self{
+                            selfValue.cameras = selfValue.filterCameras(CamerasStore.getCamerasByRoadName("Ferries"))
+                            selfValue.tableView.reloadData()
+                            selfValue.refreshControl.endRefreshing()
                         }
-                        
                     }
                 }else{
                     dispatch_async(dispatch_get_main_queue()) { [weak self] in
                         if let selfValue = self{
                             selfValue.refreshControl.endRefreshing()
                             selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
-                            
                         }
                     }
                 }

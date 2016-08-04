@@ -44,10 +44,6 @@ class FerryRealmStore {
         
         let deltaUpdated = NSCalendar.currentCalendar().components(.Second, fromDate: CachesStore.getUpdatedTime(CachedData.Ferries), toDate: NSDate(), options: []).second
         
-        print(deltaUpdated)
-        
-        print(deltaUpdated > TimeUtils.updateTime)
-        
         if ((deltaUpdated > TimeUtils.updateTime) || force){
             
             Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js").validate().responseJSON { response in
@@ -71,7 +67,7 @@ class FerryRealmStore {
     }
 
     
-    // Saves newly pulled data from the API into the database.
+    // TODO: Make this smarter
     private static func saveRouteSchedules(routeSchedules: [FerryScheduleItem]){
         
         let realm = try! Realm()

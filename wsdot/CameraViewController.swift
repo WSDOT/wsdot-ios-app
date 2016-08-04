@@ -12,19 +12,17 @@ class CameraViewController: UIViewController {
     
     @IBOutlet weak var cameraImage: UIImageView!
     
-    var cameraItem: CameraItem? = nil
+    var cameraItem: CameraItem = CameraItem()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = cameraItem!.title;
+        self.navigationItem.title = cameraItem.title;
         
-        
-        cameraImage.sd_setImageWithURL(NSURL(string: cameraItem!.url), placeholderImage: UIImage(named: "imagePlaceholder"), options: .RefreshCached)
-        
+        cameraImage.sd_setImageWithURL(NSURL(string: cameraItem.url), placeholderImage: UIImage(named: "imagePlaceholder"), options: .RefreshCached)
         
         let favoriteButton = UIButton()
         
-        if (cameraItem!.selected){
+        if (cameraItem.selected){
             favoriteButton.setImage(UIImage(named: "icFavoriteSelected"), forState: .Normal)
             favoriteButton.setImage(UIImage(named: "icFavoriteDefault"), forState: .Highlighted)
             favoriteButton.setImage(UIImage(named: "icFavoriteDefault"), forState: .Selected)
@@ -50,8 +48,7 @@ class CameraViewController: UIViewController {
         sender.setImage(UIImage(named: "icFavoriteDefault"), forState: .Selected)
         sender.removeTarget(self, action: #selector(CameraViewController.addFavorite(_:)), forControlEvents: .TouchUpInside)
         sender.addTarget(self, action: #selector(CameraViewController.removeFavorite(_:)), forControlEvents: .TouchUpInside)
-        cameraItem?.selected = true
-        CamerasStore.updateFavorite(cameraItem!.cameraId, newValue: true)
+        CamerasStore.updateFavorite(cameraItem, newValue: true)
         
         
     }
@@ -63,7 +60,6 @@ class CameraViewController: UIViewController {
         sender.setImage(UIImage(named: "icFavoriteSelected"), forState: .Selected)
         sender.removeTarget(self, action: #selector(CameraViewController.removeFavorite(_:)), forControlEvents: .TouchUpInside)
         sender.addTarget(self, action: #selector(CameraViewController.addFavorite(_:)), forControlEvents: .TouchUpInside)
-        cameraItem?.selected = false
-        CamerasStore.updateFavorite(cameraItem!.cameraId, newValue: false)
+        CamerasStore.updateFavorite(cameraItem, newValue: false)
     }
 }

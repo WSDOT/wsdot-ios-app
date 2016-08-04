@@ -104,22 +104,21 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     
     private func requestFavoriteCameras(serviceGroup: dispatch_group_t){
         dispatch_group_enter(serviceGroup)
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak self] in
-        CamerasStore.getCameras(nil, favorites: true, completion: { data, error in
-                if let validData = data {
-                    if let selfValue = self{
-                        selfValue.favoriteCameras = validData
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {[weak self] in
+            CamerasStore.updateCameras(true, completion: { error in
+                if (error == nil){
+                    dispatch_async(dispatch_get_main_queue()) {[weak self] in
+                        if let selfValue = self{
+                            selfValue.favoriteCameras = CamerasStore.getFavoriteCameras()
+                        }
                     }
-                    dispatch_group_leave(serviceGroup)
-                } else {
-                    dispatch_group_leave(serviceGroup)
+                }else{
                     dispatch_async(dispatch_get_main_queue()) { [weak self] in
                         if let selfValue = self{
                             selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                         }
                     }
                 }
-                
             })
         }
     }
@@ -219,7 +218,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
                 FerryRealmStore.updateFavorite(favoriteRoutes[indexPath.row], newValue: false)
                 favoriteRoutes.removeAtIndex(indexPath.row)
             case 1:
-                CamerasStore.updateFavorite(favoriteCameras[indexPath.row].cameraId, newValue: false)
+                CamerasStore.updateFavorite(favoriteCameras[indexPath.row], newValue: false)
                 favoriteCameras.removeAtIndex(indexPath.row)
                 break
             default:
