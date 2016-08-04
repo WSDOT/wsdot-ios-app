@@ -105,7 +105,7 @@
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="ihb-UH-uIm">
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
-                            <action selector="refresh:" destination="H7m-8E-Pu6" eventType="valueChanged" id="TPu-Qz-AUf"/>
+                            <action selector="refresh" destination="H7m-8E-Pu6" eventType="valueChanged" id="f4n-26-hIb"/>
                         </connections>
                     </refreshControl>
                     <connections>
@@ -657,8 +657,8 @@
         <!--Camera-->
         <scene sceneID="Wdj-Js-qUc">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ho0-pz-ykp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="Camera" id="XCa-6H-Elo" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ho0-pz-ykp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4875.5" y="-540"/>
         </scene>

@@ -19,39 +19,29 @@ import RealmSwift
  */
 class FerryRealmStore {
     
-    typealias FetchRouteScheduleCompletion = (data: [FerryScheduleItem]?, error: NSError?) -> ()
     typealias UpdateRoutesCompletion = (error: NSError?) -> ()
-    
-    static func getRouteSchedules(force: Bool, favoritesOnly: Bool, completion: FetchRouteScheduleCompletion){
-        self.updateRouteSchedules(force, completion: { error in
-            if ((error == nil)){
-                if favoritesOnly {
-                    let routeSchedules = findFavoriteSchedules()
-                    completion(data: routeSchedules, error: nil)
-                }else{
-                    let routeSchedules = findAllSchedules()
-                    completion(data: routeSchedules, error: nil)
-                }
-            }else{
-                completion(data: nil, error: error)
-            }
-        })
-    }
-    
+
     static func updateFavorite(routeId: Int, newValue: Bool){
         let realm = try! Realm()
         let ferryScheduleItem = realm.objects(FerryScheduleItem.self).filter("routeId == \(routeId)").first
-    
         try! realm.write{
             ferryScheduleItem!.selected = newValue
         }
     }
     
+    static func findAllSchedules() -> [FerryScheduleItem]{
+        let realm = try! Realm()
+        let scheduleItems = realm.objects(FerryScheduleItem.self)
+        return Array(scheduleItems)
+    }
     
-    /*
-     Updates database by pulling from API.
-     */
-    private static func updateRouteSchedules(force: Bool, completion: UpdateRoutesCompletion) {
+    static func findFavoriteSchedules() -> [FerryScheduleItem]{
+        let realm = try! Realm()
+        let favoriteScheduleItems = realm.objects(FerryScheduleItem.self).filter("selected == true")
+        return Array(favoriteScheduleItems)
+    }
+    
+    static func updateRouteSchedules(force: Bool, completion: UpdateRoutesCompletion) {
         
         let deltaUpdated = TimeUtils.currentTime - CachesStore.getUpdatedTime(Tables.FERRIES_TABLE)
         
@@ -83,34 +73,27 @@ class FerryRealmStore {
         
         let realm = try! Realm()
         
-        let oldRoutes = self.findAllSchedules()
-        
-        self.deleteAll()
+        let oldFavoriteRoutes = self.findFavoriteSchedules()
+        let newRoutes = List<FerryScheduleItem>()
         
         for route in routeSchedules {
-            
-            for oldRoute in oldRoutes {
-                if (oldRoute.routeId == route.routeId) && (oldRoute.selected){
-                    route.selected = oldRoute.selected
+            for oldRoute in oldFavoriteRoutes {
+                if (oldRoute.routeId == route.routeId){
+                    route.selected = true
                 }
             }
-            
+            newRoutes.append(route)
+        }
+        
+        deleteAll()
+        
+        for newRoute in newRoutes{
             try! realm.write{
-                realm.add(route)
+                realm.add(newRoute)
             }
         }
-    }
     
-    private static func findAllSchedules() -> [FerryScheduleItem]{
-        let realm = try! Realm()
-        let scheduleItems = realm.objects(FerryScheduleItem.self)
-        return Array(scheduleItems)
-    }
-    
-    private static func findFavoriteSchedules() -> [FerryScheduleItem]{
-        let realm = try! Realm()
-        let favoriteScheduleItems = realm.objects(FerryScheduleItem.self).filter("selected == true")
-        return Array(favoriteScheduleItems)
+        
     }
     
     private static func deleteAll(){
@@ -163,7 +146,7 @@ class FerryRealmStore {
     private static func getTerminalPairs(scheduleDates: List<FerryScheduleDateItem>) -> List<FerryTerminalPairItem>{
         let terminalPairs = List<FerryTerminalPairItem>()
         
-        for index in 0...scheduleDates.count - 1 {
+        for index in 0...scheduleDates.count-1 {
             for sailing in scheduleDates[index].sailings{
                 let terminalPair = FerryTerminalPairItem()
                 terminalPair.aTerminalId = sailing.arrivingTerminalId
@@ -207,6 +190,7 @@ class FerryRealmStore {
             for sailing in parseSailingsJSON(dateJSON["Sailings"]){
                 scheduleDate.sailings.append(sailing)
             }
+            scheduleDates.append(scheduleDate)
         }
         return scheduleDates
     }
@@ -240,7 +224,9 @@ class FerryRealmStore {
         for(_, timeJSON):(String, JSON) in json {
             let time = FerryDepartureTimeItem()
             
-            time.arrivingTime = TimeUtils.parseJSONDateToNSDate(timeJSON["ArrivingTime"].stringValue)
+            if (timeJSON["ArrivingTime"] != nil){
+                time.arrivingTime = TimeUtils.parseJSONDateToNSDate(timeJSON["ArrivingTime"].stringValue)
+            }
             time.departingTime = TimeUtils.parseJSONDateToNSDate(timeJSON["DepartingTime"].stringValue)
             
             for(_,annotationIndex):(String, JSON) in timeJSON["AnnotationIndexes"]{

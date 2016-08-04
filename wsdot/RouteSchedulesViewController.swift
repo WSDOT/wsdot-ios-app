@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import RealmSwift
 
 class RouteSchedulesViewController: UITableViewController {
     
     let cellIdentifier = "FerriesRouteSchedulesCell"
     let SegueRouteDeparturesViewController = "RouteSailingsViewController"
     
-    var routes = [FerriesRouteScheduleItem]()
+    var routes = [FerryScheduleItem]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,15 +23,22 @@ class RouteSchedulesViewController: UITableViewController {
         self.tableView.contentOffset = CGPointMake(0, -self.refreshControl!.frame.size.height)
         self.refreshControl?.beginRefreshing()
         
-        // Dispatch work with QOS user initated for top priority.
-        // weak binding in case user navigates away and self becomes nil.
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak self] in
-            
-            RouteSchedulesStore.getRouteSchedules(false, favoritesOnly: false, completion: { data, error in
-                if let validData = data {
+        self.refresh()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func refresh() {
+      dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak self] in
+            FerryRealmStore.updateRouteSchedules(true, completion: { error in
+                if (error == nil) {
+                    // Reload tableview on UI thread
                     dispatch_async(dispatch_get_main_queue()) { [weak self] in
                         if let selfValue = self{
-                            selfValue.routes = validData
+                            selfValue.routes = FerryRealmStore.findAllSchedules()
                             selfValue.tableView.reloadData()
                             selfValue.refreshControl?.endRefreshing()
                         }
@@ -40,34 +48,11 @@ class RouteSchedulesViewController: UITableViewController {
                         if let selfValue = self{
                             selfValue.refreshControl?.endRefreshing()
                             selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
-                            
                         }
                     }
                 }
-                
             })
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func refresh(sender: UIRefreshControl) {
-        RouteSchedulesStore.getRouteSchedules (true, favoritesOnly: false, completion: { data, error in
-            if let validData = data {
-                self.routes = validData
-                // Reload tableview on UI thread
-                dispatch_async(dispatch_get_main_queue(),
-                    { () -> Void in
-                        self.tableView.reloadData()}
-                )
-                sender.endRefreshing()
-            } else {
-                // TODO: Display error
-            }
-        })
     }
     
     // MARK: -
@@ -93,7 +78,8 @@ class RouteSchedulesViewController: UITableViewController {
             cell.subTitleOne.hidden = true
         }
 
-        cell.subTitleTwo.text = TimeUtils.timeSinceDate(self.routes[indexPath.row].cacheDate, numericDates: true)
+        //cell.subTitleTwo.text = TimeUtils.timeSinceDate(self.routes[indexPath.row].cacheDate, numericDates: true)
+        cell.subTitleTwo.text = String(self.routes[indexPath.row].cacheDate)
      
         return cell
     }
@@ -111,9 +97,9 @@ class RouteSchedulesViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == SegueRouteDeparturesViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
-                let routeItem = self.routes[indexPath.row] as FerriesRouteScheduleItem
-                let destinationViewController: RouteTabBarViewController = segue.destinationViewController as! RouteTabBarViewController
-                destinationViewController.routeItem = routeItem
+                //let routeItem = self.routes[indexPath.row] as FerryScheduleItem
+                //let destinationViewController: RouteTabBarViewController = segue.destinationViewController as! RouteTabBarViewController
+                //destinationViewController.routeItem = routeItem
             }
         }
     }

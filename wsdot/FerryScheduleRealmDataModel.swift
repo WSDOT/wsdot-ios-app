@@ -27,6 +27,7 @@ class FerryAlertItem: Object {
     dynamic var alertDescription = ""
     dynamic var alertFullTitle = ""
     dynamic var alertFullText = ""
+
 }
 
 class FerryTerminalPairItem: Object {
