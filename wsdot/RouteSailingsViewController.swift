@@ -57,11 +57,7 @@ class RouteSailingsViewController: UIViewController, UITableViewDataSource, UITa
                 
                 destinationViewController.sailingsByDate = routeItem.scheduleDates
                 destinationViewController.currentSailing = routeItem.terminalPairs[indexPath.row]
-                
-                print(routeItem.scheduleDates.count)
-                print(routeItem.terminalPairs[indexPath.row].aTerminalName)
-                print(routeItem.terminalPairs[indexPath.row].bTterminalName)
-                
+
                 let backItem = UIBarButtonItem()
                 backItem.title = "Back"
                 self.tabBarController!.navigationItem.backBarButtonItem = backItem

@@ -21,7 +21,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     var sailingsByDate = List<FerryScheduleDateItem>()
     
     var currentDay = 0
-    var updatedAt: Int64 = 0
+    var updatedAt = NSDate()
     
     var displayedSailing = FerrySailingsItem()
     var displayedTimes = List<FerryDepartureTimeItem>()
@@ -91,10 +91,9 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                         dispatch_async(dispatch_get_main_queue()) { [weak self] in
                             if let selfValue = self{
                                 selfValue.sailingSpaces = validData
+                                selfValue.updatedAt = NSDate()
                                 selfValue.tableView.reloadData()
                                 selfValue.refreshControl.endRefreshing()
-                                selfValue.updatedAt = TimeUtils.currentTime
-
                             }
                         }
                     } else {
@@ -161,7 +160,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         // Check if sailing space information is avaliable. If so change prototype cell.
         if let sailingSpacesValue = sailingSpaces{
             for spaceItem: SailingSpacesItem in sailingSpacesValue {
-                if displayedTimes[indexPath.row].departingTime == spaceItem.Date {
+                if displayedTimes[indexPath.row].departingTime == spaceItem.date {
                     cell = tableView.dequeueReusableCellWithIdentifier(departuresSailingSpacesCellIdentifier) as! DeparturesCustomCell
                     cell.sailingSpaces.hidden = false
                     cell.sailingSpaces.text = String(spaceItem.remainingSpaces) + " Drive-up spaces"
@@ -169,7 +168,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                     cell.avaliableSpacesBar.progress = spaceItem.percentAvaliable
                     cell.spacesDisclaimer.hidden = false
                     cell.spacesDisclaimer.sizeToFit()
-                  //  cell.updated.text = TimeUtils.timeSinceDate(updatedAt, numericDates: true)
+                    cell.updated.text = TimeUtils.timeAgoSinceDate(updatedAt, numericDates: true)
                 }
             }
         }
@@ -188,11 +187,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         var annotationsString = ""
         
         for indexObj in displayedTimes[indexPath.row].annotationIndexes{
-        
-            print(TimeUtils.getTimeOfDay(displayedTimes[indexPath.row].departingTime))
-            print(displayedSailing.annotations.count)
-            print(indexObj.index)
-            
             annotationsString += displayedSailing.annotations[indexObj.index].message + " "
         }
         
