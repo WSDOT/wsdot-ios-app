@@ -47,9 +47,11 @@ class CamerasStore {
     
     private static func updateCameras(force: Bool, completion: UpdateCamerasCompletion) {
         
-        if (((TimeUtils.currentTime - CachesStore.getUpdatedTime(Tables.CAMERAS_TABLE)) > TimeUtils.updateTime) || force){
+                let deltaUpdated = NSCalendar.currentCalendar().components(.Second, fromDate: CachesStore.getUpdatedTime(CachedData.Cameras), toDate: NSDate(), options: []).second
+        
+        if ((deltaUpdated > TimeUtils.updateTime) || force){
             
-        deleteAll()
+            deleteAll()
             
             Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/Cameras.js").validate().responseJSON { response in
                 switch response.result {
@@ -58,7 +60,7 @@ class CamerasStore {
                         let json = JSON(value)
                         let cameras = self.parseCamerasJSON(json)
                         self.saveCameras(cameras)
-                        CachesStore.updateTime(Tables.CAMERAS_TABLE, updated: TimeUtils.currentTime)
+                        CachesStore.updateTime(CachedData.Cameras, updated: NSDate())
                         completion(error: nil)
                     }
                 case .Failure(let error):

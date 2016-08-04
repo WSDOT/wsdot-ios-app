@@ -105,7 +105,7 @@
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="ihb-UH-uIm">
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
-                            <action selector="refresh" destination="H7m-8E-Pu6" eventType="valueChanged" id="f4n-26-hIb"/>
+                            <action selector="refreshAction" destination="H7m-8E-Pu6" eventType="valueChanged" id="R9p-pq-OLl"/>
                         </connections>
                     </refreshControl>
                     <connections>

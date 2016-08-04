@@ -23,8 +23,8 @@
 		9A1F5FA71D47E27200DA5F99 /* SailingSpacesItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F5FA61D47E27200DA5F99 /* SailingSpacesItem.swift */; };
 		9A21E1CC1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A21E1CB1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift */; };
 		9A2F4A5D1D52747900911AF5 /* FerryScheduleRealmDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A5C1D52747900911AF5 /* FerryScheduleRealmDataModel.swift */; };
-		9A2F4A651D527ACB00911AF5 /* FerrySailingSpaceRealmDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A641D527ACB00911AF5 /* FerrySailingSpaceRealmDataModel.swift */; };
 		9A2F4A681D528A5100911AF5 /* FerryRealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A671D528A5100911AF5 /* FerryRealmStore.swift */; };
+		9A2F4A6E1D539C1600911AF5 /* CachesRealmDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A6D1D539C1600911AF5 /* CachesRealmDataModel.swift */; };
 		9A50179C1D258F2000B9C49E /* RoutesCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */; };
 		9A81A5741D4A81DC0049913A /* CamerasDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5731D4A81DC0049913A /* CamerasDataHelper.swift */; };
 		9A81A5761D4A87480049913A /* CamerasStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5751D4A87480049913A /* CamerasStore.swift */; };
@@ -50,7 +50,6 @@
 		9AE4863E1D49594D007A92E3 /* FerriesTerminalMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE4863D1D49594D007A92E3 /* FerriesTerminalMap.swift */; };
 		9AE486441D495ACB007A92E3 /* FerriesTerminalItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE486431D495ACB007A92E3 /* FerriesTerminalItem.swift */; };
 		9AE486471D495E90007A92E3 /* CameraItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE486461D495E90007A92E3 /* CameraItem.swift */; };
-		9AFEECDE1D39252E0078A781 /* CachesDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFEECDD1D39252E0078A781 /* CachesDataHelper.swift */; };
 		9AFEECE11D3925400078A781 /* CachesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFEECE01D3925400078A781 /* CachesStore.swift */; };
 /* End PBXBuildFile section */
 
@@ -81,8 +80,8 @@
 		9A1F5FA61D47E27200DA5F99 /* SailingSpacesItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SailingSpacesItem.swift; sourceTree = "<group>"; };
 		9A21E1CB1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteSailingsViewController.swift; sourceTree = "<group>"; };
 		9A2F4A5C1D52747900911AF5 /* FerryScheduleRealmDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerryScheduleRealmDataModel.swift; sourceTree = "<group>"; };
-		9A2F4A641D527ACB00911AF5 /* FerrySailingSpaceRealmDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerrySailingSpaceRealmDataModel.swift; sourceTree = "<group>"; };
 		9A2F4A671D528A5100911AF5 /* FerryRealmStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerryRealmStore.swift; sourceTree = "<group>"; };
+		9A2F4A6D1D539C1600911AF5 /* CachesRealmDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachesRealmDataModel.swift; sourceTree = "<group>"; };
 		9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutesCustomCell.swift; sourceTree = "<group>"; };
 		9A81A5731D4A81DC0049913A /* CamerasDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CamerasDataHelper.swift; sourceTree = "<group>"; };
 		9A81A5751D4A87480049913A /* CamerasStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CamerasStore.swift; sourceTree = "<group>"; };
@@ -112,7 +111,6 @@
 		9AE4863D1D49594D007A92E3 /* FerriesTerminalMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerriesTerminalMap.swift; sourceTree = "<group>"; };
 		9AE486431D495ACB007A92E3 /* FerriesTerminalItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerriesTerminalItem.swift; sourceTree = "<group>"; };
 		9AE486461D495E90007A92E3 /* CameraItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraItem.swift; sourceTree = "<group>"; };
-		9AFEECDD1D39252E0078A781 /* CachesDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachesDataHelper.swift; sourceTree = "<group>"; };
 		9AFEECE01D3925400078A781 /* CachesStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachesStore.swift; sourceTree = "<group>"; };
 		D580B199D18890EA70A9D2CE /* Pods-WSDOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.release.xcconfig"; sourceTree = "<group>"; };
 		EF91807E010BF6B934CE16C4 /* Pods-WSDOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.debug.xcconfig"; sourceTree = "<group>"; };
@@ -173,15 +171,6 @@
 			name = Departures;
 			sourceTree = "<group>";
 		};
-		9A0CA8341D465FA4009C67B7 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				9AE486421D495A49007A92E3 /* Terminals */,
-				9AE4863F1D495A16007A92E3 /* SailingSpaces */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
 		9A0CA8351D466005009C67B7 /* RouteSchedules */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,19 +190,35 @@
 		9A2F4A5B1D52745100911AF5 /* Realm */ = {
 			isa = PBXGroup;
 			children = (
-				9A2F4A661D527BB500911AF5 /* Ferries */,
 			);
 			name = Realm;
 			sourceTree = "<group>";
 		};
-		9A2F4A661D527BB500911AF5 /* Ferries */ = {
+		9A2F4A661D527BB500911AF5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				9A2F4A641D527ACB00911AF5 /* FerrySailingSpaceRealmDataModel.swift */,
+				9A2F4A6B1D539BA100911AF5 /* FerrySchedule */,
+				9AE4863F1D495A16007A92E3 /* SailingSpaces */,
+				9AE486421D495A49007A92E3 /* Terminals */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		9A2F4A6B1D539BA100911AF5 /* FerrySchedule */ = {
+			isa = PBXGroup;
+			children = (
 				9A2F4A5C1D52747900911AF5 /* FerryScheduleRealmDataModel.swift */,
 				9A2F4A671D528A5100911AF5 /* FerryRealmStore.swift */,
 			);
-			name = Ferries;
+			name = FerrySchedule;
+			sourceTree = "<group>";
+		};
+		9A2F4A6C1D539BC400911AF5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9AD32E271D2421E4000AEC28 /* Ferries.storyboard */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		9A5017921D258EFF00B9C49E /* CustomCells */ = {
@@ -285,7 +290,7 @@
 				9AFEECDB1D3924570078A781 /* Home */,
 				9AFEECDA1D3924520078A781 /* Ferries */,
 				9ADEAE4B1D270CBB00BA7DD4 /* Helpers */,
-				9AD32E1F1D231749000AEC28 /* Model */,
+				9AD32E1F1D231749000AEC28 /* Models */,
 				9AD32E1D1D231739000AEC28 /* CustomViews */,
 				9AD32DFC1D23172C000AEC28 /* AppDelegate.swift */,
 				9AD32E031D23172C000AEC28 /* Assets.xcassets */,
@@ -314,13 +319,13 @@
 			name = CustomViews;
 			sourceTree = "<group>";
 		};
-		9AD32E1F1D231749000AEC28 /* Model */ = {
+		9AD32E1F1D231749000AEC28 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				9AFEECDF1D39253A0078A781 /* Caches */,
 				9ADEAE481D27099900BA7DD4 /* Database */,
 			);
-			name = Model;
+			name = Models;
 			sourceTree = "<group>";
 		};
 		9ADEAE481D27099900BA7DD4 /* Database */ = {
@@ -348,7 +353,6 @@
 			isa = PBXGroup;
 			children = (
 				9ADEAE531D270FB100BA7DD4 /* DataHelperProtocol.swift */,
-				9AFEECDD1D39252E0078A781 /* CachesDataHelper.swift */,
 				9A81A5731D4A81DC0049913A /* CamerasDataHelper.swift */,
 			);
 			name = DataHelpers;
@@ -384,9 +388,9 @@
 		9AFEECDA1D3924520078A781 /* Ferries */ = {
 			isa = PBXGroup;
 			children = (
+				9A2F4A6C1D539BC400911AF5 /* Views */,
+				9A2F4A661D527BB500911AF5 /* Models */,
 				9A81A57D1D4F8FB90049913A /* Controllers */,
-				9AD32E271D2421E4000AEC28 /* Ferries.storyboard */,
-				9A0CA8341D465FA4009C67B7 /* Models */,
 			);
 			name = Ferries;
 			sourceTree = "<group>";
@@ -405,6 +409,7 @@
 			isa = PBXGroup;
 			children = (
 				9AFEECE01D3925400078A781 /* CachesStore.swift */,
+				9A2F4A6D1D539C1600911AF5 /* CachesRealmDataModel.swift */,
 			);
 			name = Caches;
 			sourceTree = "<group>";
@@ -573,7 +578,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AFEECDE1D39252E0078A781 /* CachesDataHelper.swift in Sources */,
 				9ADEAE4D1D270CC800BA7DD4 /* Consts.swift in Sources */,
 				9AFEECE11D3925400078A781 /* CachesStore.swift in Sources */,
 				9ADEAE521D270E3E00BA7DD4 /* DataModels.swift in Sources */,
@@ -581,6 +585,7 @@
 				9A07192C1D410FD5007BB4C5 /* RouteAlertsViewController.swift in Sources */,
 				9A1F5FA71D47E27200DA5F99 /* SailingSpacesItem.swift in Sources */,
 				9AD32DFD1D23172C000AEC28 /* AppDelegate.swift in Sources */,
+				9A2F4A6E1D539C1600911AF5 /* CachesRealmDataModel.swift in Sources */,
 				9A21E1CC1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift in Sources */,
 				9A1F5F9F1D47C2E800DA5F99 /* DeparturesCustomCell.swift in Sources */,
 				9A2F4A681D528A5100911AF5 /* FerryRealmStore.swift in Sources */,
@@ -598,7 +603,6 @@
 				9AD32E2A1D24233D000AEC28 /* FerriesHomeViewController.swift in Sources */,
 				9A0CA8371D466045009C67B7 /* TimeUtils.swift in Sources */,
 				9ADEAE541D270FB100BA7DD4 /* DataHelperProtocol.swift in Sources */,
-				9A2F4A651D527ACB00911AF5 /* FerrySailingSpaceRealmDataModel.swift in Sources */,
 				9A1F5FA31D47DBB700DA5F99 /* SailingSpacesStore.swift in Sources */,
 				9AD32E221D241AF4000AEC28 /* HomeViewController.swift in Sources */,
 				9A81A5741D4A81DC0049913A /* CamerasDataHelper.swift in Sources */,

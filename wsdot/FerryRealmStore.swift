@@ -42,7 +42,11 @@ class FerryRealmStore {
     
     static func updateRouteSchedules(force: Bool, completion: UpdateRoutesCompletion) {
         
-        let deltaUpdated = TimeUtils.currentTime - CachesStore.getUpdatedTime(Tables.FERRIES_TABLE)
+        let deltaUpdated = NSCalendar.currentCalendar().components(.Second, fromDate: CachesStore.getUpdatedTime(CachedData.Ferries), toDate: NSDate(), options: []).second
+        
+        print(deltaUpdated)
+        
+        print(deltaUpdated > TimeUtils.updateTime)
         
         if ((deltaUpdated > TimeUtils.updateTime) || force){
             
@@ -53,7 +57,7 @@ class FerryRealmStore {
                         let json = JSON(value)
                         let routeSchedules = self.parseRouteSchedulesJSON(json)
                         saveRouteSchedules(routeSchedules)
-                        CachesStore.updateTime(Tables.FERRIES_TABLE, updated: TimeUtils.currentTime)
+                        CachesStore.updateTime(CachedData.Ferries, updated: NSDate())
                         completion(error: nil)
                     }
                 case .Failure(let error):

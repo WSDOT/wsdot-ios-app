@@ -23,16 +23,16 @@ class RouteSchedulesViewController: UITableViewController {
         self.tableView.contentOffset = CGPointMake(0, -self.refreshControl!.frame.size.height)
         self.refreshControl?.beginRefreshing()
         
-        self.refresh()
+        self.refresh(false)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func refresh() {
+    func refresh(force: Bool){
       dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak self] in
-            FerryRealmStore.updateRouteSchedules(true, completion: { error in
+            FerryRealmStore.updateRouteSchedules(force, completion: { error in
                 if (error == nil) {
                     // Reload tableview on UI thread
                     dispatch_async(dispatch_get_main_queue()) { [weak self] in
@@ -52,6 +52,10 @@ class RouteSchedulesViewController: UITableViewController {
                 }
             })
         }
+    }
+    
+    @IBAction func refreshAction() {
+        refresh(true)
     }
     
     // MARK: -

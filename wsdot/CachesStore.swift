@@ -7,54 +7,53 @@
 //
 
 import Foundation
+import RealmSwift
+
+enum CachedData {
+    case Ferries
+    case Cameras
+}
 
 class CachesStore {
     
-    static func getUpdatedTime(table: String) -> Int64 {
-        do {
-            let cachesData = try CachesDataHelper.find(table)
-            return (cachesData?.updated)!
-        } catch _ {
-            // Failed to get
+    static func initCacheItem(){
+        let realm = try! Realm()
+        let cacheItem = realm.objects(CacheItem.self).first
+        
+        if (cacheItem == nil){
+            try! realm.write{
+                realm.add(CacheItem())
+            }
         }
         
-        return 0;
     }
     
-    static func insertNewTime(table: String, updated: Int64){
+    static func getUpdatedTime(data: CachedData) -> NSDate {
         
-        do {
-            try CachesDataHelper.insert(CachesDataModel(
-                tableName: table,
-                updated: updated
-                ))
-        } catch DataAccessError.Insert_Error {
-            print("CachesStore.insertNewTime: failed to insert into caches")
-        } catch DataAccessError.Datastore_Connection_Error {
-            print("CachesStore.insertNewTime: Connection error")
-        } catch DataAccessError.Nil_In_Data{
-            print("CachesStore.insertNewTime: Nil in data error")
-        } catch _ {
-            print("CachesStore.insertNewTime: unknown error occured.")
+        let realm = try! Realm()
+        let cacheItem = realm.objects(CacheItem.self).first
+        
+        switch(data){
+        case .Ferries:
+            return (cacheItem?.ferriesLastUpdate)!
+        case .Cameras:
+            return (cacheItem?.camerasLastUpdate)!
         }
     }
-    
-    static func updateTime(table: String, updated: Int64){
+
+    static func updateTime(data: CachedData, updated: NSDate){
+        let realm = try! Realm()
+        let cacheItem = realm.objects(CacheItem.self).first
         
-        do {
-            try CachesDataHelper.update(CachesDataModel(
-                tableName: table,
-                updated: updated
-                ))
-        } catch DataAccessError.Update_Error {
-            print("CachesStore.updateTime: failed to update caches")
-        } catch DataAccessError.Datastore_Connection_Error {
-            print("CachesStore.updateTime: Connection error")
-        } catch DataAccessError.Nil_In_Data{
-            print("CachesStore.updateTime: Nil in data error")
-        } catch {
-            print("CachesStore.updateTime: unknown error occured.")
-            print("Error info: \(error)")
+        try! realm.write{
+            switch(data){
+            case .Ferries:
+                cacheItem?.ferriesLastUpdate = updated
+                break
+            case .Cameras:
+                cacheItem?.camerasLastUpdate = updated
+                break
+            }
         }
     }
 }

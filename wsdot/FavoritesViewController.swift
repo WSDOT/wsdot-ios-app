@@ -216,7 +216,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             
             switch (indexPath.section) {
             case 0:
-            FerryRealmStore.updateFavorite(favoriteRoutes[indexPath.row], newValue: false)
+                FerryRealmStore.updateFavorite(favoriteRoutes[indexPath.row], newValue: false)
                 favoriteRoutes.removeAtIndex(indexPath.row)
             case 1:
                 CamerasStore.updateFavorite(favoriteCameras[indexPath.row].cameraId, newValue: false)
