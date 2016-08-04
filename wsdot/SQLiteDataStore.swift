@@ -45,12 +45,6 @@ class SQLiteDataStore {
             throw DataAccessError.Datastore_Connection_Error
         }
         
-        do {
-            print("creating Ferries Schedules table...")
-            try FerriesScheduleDataHelper.createTable()
-        } catch {
-            throw DataAccessError.Datastore_Connection_Error
-        }
     }
     
     
