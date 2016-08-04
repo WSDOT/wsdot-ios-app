@@ -28,7 +28,6 @@ class RouteSchedulesViewController: UITableViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func refresh() {
@@ -78,8 +77,7 @@ class RouteSchedulesViewController: UITableViewController {
             cell.subTitleOne.hidden = true
         }
 
-        //cell.subTitleTwo.text = TimeUtils.timeSinceDate(self.routes[indexPath.row].cacheDate, numericDates: true)
-        cell.subTitleTwo.text = String(self.routes[indexPath.row].cacheDate)
+        cell.subTitleTwo.text = TimeUtils.timeAgoSinceDate(self.routes[indexPath.row].cacheDate, numericDates: false)
      
         return cell
     }
@@ -87,19 +85,17 @@ class RouteSchedulesViewController: UITableViewController {
     // MARK: -
     // MARK: Table View Delegate Methods
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
         // Perform Segue
         performSegueWithIdentifier(SegueRouteDeparturesViewController, sender: self)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == SegueRouteDeparturesViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
-                //let routeItem = self.routes[indexPath.row] as FerryScheduleItem
-                //let destinationViewController: RouteTabBarViewController = segue.destinationViewController as! RouteTabBarViewController
-                //destinationViewController.routeItem = routeItem
+                let routeItem = self.routes[indexPath.row] as FerryScheduleItem
+                let destinationViewController: RouteTabBarViewController = segue.destinationViewController as! RouteTabBarViewController
+                destinationViewController.routeItem = routeItem
             }
         }
     }

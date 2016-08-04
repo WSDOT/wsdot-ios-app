@@ -20,7 +20,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     
     @IBOutlet weak var favoritesTable: UITableView!
     
-    var favoriteRoutes = [FerriesRouteScheduleItem]()
+    var favoriteRoutes = [FerryScheduleItem]()
     var favoriteCameras = [CameraItem]()
     
     let refreshControl = UIRefreshControl()
@@ -40,7 +40,6 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.refreshControl.beginRefreshing()
         self.loadFavorites()
     }
     
@@ -82,12 +81,15 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     private func requestFavoriteFerries(serviceGroup: dispatch_group_t){
         dispatch_group_enter(serviceGroup)
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak self] in
-            RouteSchedulesStore.getRouteSchedules(false, favoritesOnly: true, completion: { data, error in
-                if let validData = data {
-                    if let selfValue = self{
-                        selfValue.favoriteRoutes = validData
+            FerryRealmStore.updateRouteSchedules(true, completion: { error in
+                if (error == nil) {
+                    // Reload tableview on UI thread
+                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                        dispatch_group_leave(serviceGroup)
+                        if let selfValue = self{
+                            selfValue.favoriteRoutes = FerryRealmStore.findFavoriteSchedules()
+                        }
                     }
-                    dispatch_group_leave(serviceGroup)
                 } else {
                     dispatch_group_leave(serviceGroup)
                     dispatch_async(dispatch_get_main_queue()) { [weak self] in
@@ -96,7 +98,6 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
                         }
                     }
                 }
-                
             })
         }
     }
@@ -182,7 +183,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
                 ferryCell.subTitleOne.hidden = true
             }
             
-            ferryCell.subTitleTwo.text = TimeUtils.timeSinceDate(self.favoriteRoutes[indexPath.row].cacheDate, numericDates: true)
+            ferryCell.subTitleTwo.text = TimeUtils.timeAgoSinceDate(self.favoriteRoutes[indexPath.row].cacheDate, numericDates: true)
             
             return ferryCell
             
@@ -249,7 +250,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == segueRouteDeparturesViewController {
             if let indexPath = favoritesTable.indexPathForSelectedRow {
-                let routeItem = self.favoriteRoutes[indexPath.row] as FerriesRouteScheduleItem
+                let routeItem = self.favoriteRoutes[indexPath.row] as FerryScheduleItem
                 let destinationViewController = segue.destinationViewController as! RouteTabBarViewController
                 destinationViewController.routeItem = routeItem
             }

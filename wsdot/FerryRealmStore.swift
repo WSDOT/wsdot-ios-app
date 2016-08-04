@@ -21,11 +21,10 @@ class FerryRealmStore {
     
     typealias UpdateRoutesCompletion = (error: NSError?) -> ()
 
-    static func updateFavorite(routeId: Int, newValue: Bool){
+    static func updateFavorite(route: FerryScheduleItem, newValue: Bool){
         let realm = try! Realm()
-        let ferryScheduleItem = realm.objects(FerryScheduleItem.self).filter("routeId == \(routeId)").first
         try! realm.write{
-            ferryScheduleItem!.selected = newValue
+            route.selected = newValue
         }
     }
     
@@ -212,6 +211,7 @@ class FerryRealmStore {
             for(_, annotationJSON):(String, JSON) in sailingJSON["Annotations"]{
                 let annotation = Annotation()
                 annotation.message = annotationJSON.stringValue
+                sailing.annotations.append(annotation)
             }
             
             sailings.append(sailing)
@@ -230,6 +230,7 @@ class FerryRealmStore {
             time.departingTime = TimeUtils.parseJSONDateToNSDate(timeJSON["DepartingTime"].stringValue)
             
             for(_,annotationIndex):(String, JSON) in timeJSON["AnnotationIndexes"]{
+            
                 let index = AnnotationIndex()
                 index.index = annotationIndex.intValue
                 time.annotationIndexes.append(index)

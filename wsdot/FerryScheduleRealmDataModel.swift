@@ -54,7 +54,7 @@ class FerrySailingsItem: Object {
 
 class FerryDepartureTimeItem: Object {
     dynamic var departingTime = NSDate(timeIntervalSince1970: 0)
-    dynamic var  arrivingTime = NSDate(timeIntervalSince1970: 0)
+    dynamic var  arrivingTime: NSDate? = nil
     let annotationIndexes = List<AnnotationIndex>()
 
 }
