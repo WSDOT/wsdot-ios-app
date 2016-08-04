@@ -5,7 +5,6 @@
 //  Created by Logan Sims on 7/27/16.
 //  Copyright © 2016 wsdot. All rights reserved.
 //
-
 import Foundation
 import RealmSwift
 
@@ -19,5 +18,8 @@ class CameraItem: Object {
     dynamic var longitude = 0.0
     dynamic var video = false
     dynamic var selected = false
+    override static func primaryKey() -> String? {
+        return "cameraId"
+    }
     
 }

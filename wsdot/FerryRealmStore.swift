@@ -12,10 +12,6 @@ import RealmSwift
 /*
  This class collects new ferry schedule information from
  the schedule API at: http://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js
- 
- Roles:
- Saves information into SQLite database.
- Converts JSON data structure into SQLite data using typealias.
  */
 class FerryRealmStore {
     
@@ -84,24 +80,11 @@ class FerryRealmStore {
             newRoutes.append(route)
         }
         
-        deleteAll()
-        
-        for newRoute in newRoutes{
-            try! realm.write{
-                realm.add(newRoute)
-            }
-        }
-    
-        
-    }
-    
-    private static func deleteAll(){
-        let realm = try! Realm()
         try! realm.write{
             realm.delete(realm.objects(FerryScheduleItem))
+            realm.add(newRoutes)
         }
     }
-    
     
     //Converts JSON from api into and array of FerriesRouteScheduleItems
     private static func parseRouteSchedulesJSON(json: JSON) ->[FerryScheduleItem]{
@@ -134,7 +117,6 @@ class FerryRealmStore {
             for terminalPair in getTerminalPairs(route.scheduleDates){
                 route.terminalPairs.append(terminalPair)
             }
-            
             
             routeSchedules.append(route)
         }

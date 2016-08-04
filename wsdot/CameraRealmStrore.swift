@@ -82,19 +82,9 @@ class CamerasStore {
             newCameras.append(camera)
         }
         
-        deleteAll()
-        
-        for newCamera in newCameras{
-            try! realm.write{
-                realm.add(newCamera)
-            }
-        }
-    }
-
-    private static func deleteAll(){
-        let realm = try! Realm()
         try! realm.write{
             realm.delete(realm.objects(CameraItem))
+            realm.add(newCameras)
         }
     }
     

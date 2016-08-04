@@ -14,17 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-    
         CachesStore.initCacheItem()
-    
-        do {
-            try SQLiteDataStore.sharedInstance.createTables()
-        } catch {
-            print("Something went wrong!")
-        }
         
         FIRApp.configure()
         GADMobileAds.configureWithApplicationID("ad_string");

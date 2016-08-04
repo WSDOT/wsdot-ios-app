@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class FavoritesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -17,11 +18,13 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     
     let segueRouteDeparturesViewController = "FavoriteSailingsViewController"
     let segueCameraViewController = "FavoriteCameraViewController"
-    
+
     @IBOutlet weak var favoritesTable: UITableView!
     
     var favoriteRoutes = [FerryScheduleItem]()
     var favoriteCameras = [CameraItem]()
+    
+    var notificationToken: NotificationToken?
     
     let refreshControl = UIRefreshControl()
     
@@ -30,17 +33,18 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         title = TITLE
         
         // refresh controller
-        refreshControl.addTarget(self, action: #selector(FavoritesViewController.loadFavorites), forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(FavoritesViewController.loadFavoritesAction(_:)), forControlEvents: .ValueChanged)
         favoritesTable.addSubview(refreshControl)
         
         favoritesTable.rowHeight = UITableViewAutomaticDimension
         
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
+        
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.loadFavorites()
+        self.loadFavorites(false)
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -51,6 +55,8 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         if (self.favoritesTable.editing){
             self.favoritesTable.setEditing(false, animated: false)
         }
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -65,31 +71,34 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         tabBarItem = UITabBarItem(title: TITLE, image: UIImage(named: "ic-star"), tag: 1)
     }
     
-    @objc private func loadFavorites(){
-        
+    func loadFavoritesAction(refreshController: UIRefreshControl){
+        loadFavorites(true)
+    
+    }
+    
+    private func loadFavorites(force: Bool){
         let serviceGroup = dispatch_group_create();
         
-        self.requestFavoriteFerries(serviceGroup)
-        self.requestFavoriteCameras(serviceGroup)
+        self.requestFavoriteFerries(force, serviceGroup: serviceGroup)
+        //self.requestFavoriteCameras(force, serviceGroup: serviceGroup)
         
         dispatch_group_notify(serviceGroup, dispatch_get_main_queue()) { // 2
+            
+            self.favoriteRoutes = FerryRealmStore.findFavoriteSchedules()
+            self.favoriteCameras = CamerasStore.getFavoriteCameras()
+            
             self.favoritesTable.reloadData()
             self.refreshControl.endRefreshing()
+
         }
     }
     
-    private func requestFavoriteFerries(serviceGroup: dispatch_group_t){
+    private func requestFavoriteFerries(force: Bool, serviceGroup: dispatch_group_t){
         dispatch_group_enter(serviceGroup)
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak self] in
-            FerryRealmStore.updateRouteSchedules(true, completion: { error in
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) { [weak self] in
+            FerryRealmStore.updateRouteSchedules(force, completion: { error in
                 if (error == nil) {
-                    // Reload tableview on UI thread
-                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
-                        dispatch_group_leave(serviceGroup)
-                        if let selfValue = self{
-                            selfValue.favoriteRoutes = FerryRealmStore.findFavoriteSchedules()
-                        }
-                    }
+                    dispatch_group_leave(serviceGroup)
                 } else {
                     dispatch_group_leave(serviceGroup)
                     dispatch_async(dispatch_get_main_queue()) { [weak self] in
@@ -102,17 +111,14 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    private func requestFavoriteCameras(serviceGroup: dispatch_group_t){
+    private func requestFavoriteCameras(force: Bool, serviceGroup: dispatch_group_t){
         dispatch_group_enter(serviceGroup)
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {[weak self] in
-            CamerasStore.updateCameras(true, completion: { error in
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) {[weak self] in
+            CamerasStore.updateCameras(force, completion: { error in
                 if (error == nil){
-                    dispatch_async(dispatch_get_main_queue()) {[weak self] in
-                        if let selfValue = self{
-                            selfValue.favoriteCameras = CamerasStore.getFavoriteCameras()
-                        }
-                    }
+                    dispatch_group_leave(serviceGroup)
                 }else{
+                    dispatch_group_leave(serviceGroup)
                     dispatch_async(dispatch_get_main_queue()) { [weak self] in
                         if let selfValue = self{
                             selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
