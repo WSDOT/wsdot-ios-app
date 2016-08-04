@@ -18,7 +18,9 @@ class FerryScheduleItem: Object {
     let routeAlerts = List<FerryAlertItem>()
     let scheduleDates = List<FerryScheduleDateItem>()
     let terminalPairs = List<FerryTerminalPairItem>()
-
+    override static func primaryKey() -> String? {
+        return "routeId"
+    }
 }
 
 class FerryAlertItem: Object {
@@ -27,7 +29,6 @@ class FerryAlertItem: Object {
     dynamic var alertDescription = ""
     dynamic var alertFullTitle = ""
     dynamic var alertFullText = ""
-
 }
 
 class FerryTerminalPairItem: Object {
@@ -40,7 +41,6 @@ class FerryTerminalPairItem: Object {
 class FerryScheduleDateItem: Object {
     dynamic var date = NSDate(timeIntervalSince1970: 0)
     let sailings = List<FerrySailingsItem>()
-
 }
 
 class FerrySailingsItem: Object {
