@@ -25,7 +25,7 @@
 		9A2F4A5D1D52747900911AF5 /* FerryScheduleRealmDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A5C1D52747900911AF5 /* FerryScheduleRealmDataModel.swift */; };
 		9A2F4A681D528A5100911AF5 /* FerryRealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A671D528A5100911AF5 /* FerryRealmStore.swift */; };
 		9A2F4A6E1D539C1600911AF5 /* CachesRealmDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A6D1D539C1600911AF5 /* CachesRealmDataModel.swift */; };
-		9A2F4A701D53AA5C00911AF5 /* CameraRealmStrore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A6F1D53AA5C00911AF5 /* CameraRealmStrore.swift */; };
+		9A2F4A701D53AA5C00911AF5 /* CameraRealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A6F1D53AA5C00911AF5 /* CameraRealmStore.swift */; };
 		9A50179C1D258F2000B9C49E /* RoutesCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */; };
 		9A81A5781D4AC5710049913A /* RouteTimesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5771D4AC5710049913A /* RouteTimesViewController.swift */; };
 		9A81A57A1D4AC5840049913A /* RouteCamerasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5791D4AC5840049913A /* RouteCamerasViewController.swift */; };
@@ -78,7 +78,7 @@
 		9A2F4A5C1D52747900911AF5 /* FerryScheduleRealmDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerryScheduleRealmDataModel.swift; sourceTree = "<group>"; };
 		9A2F4A671D528A5100911AF5 /* FerryRealmStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerryRealmStore.swift; sourceTree = "<group>"; };
 		9A2F4A6D1D539C1600911AF5 /* CachesRealmDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachesRealmDataModel.swift; sourceTree = "<group>"; };
-		9A2F4A6F1D53AA5C00911AF5 /* CameraRealmStrore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraRealmStrore.swift; sourceTree = "<group>"; };
+		9A2F4A6F1D53AA5C00911AF5 /* CameraRealmStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraRealmStore.swift; sourceTree = "<group>"; };
 		9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutesCustomCell.swift; sourceTree = "<group>"; };
 		9A81A5771D4AC5710049913A /* RouteTimesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTimesViewController.swift; sourceTree = "<group>"; };
 		9A81A5791D4AC5840049913A /* RouteCamerasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteCamerasViewController.swift; sourceTree = "<group>"; };
@@ -344,7 +344,7 @@
 			isa = PBXGroup;
 			children = (
 				9AE486461D495E90007A92E3 /* CameraItem.swift */,
-				9A2F4A6F1D53AA5C00911AF5 /* CameraRealmStrore.swift */,
+				9A2F4A6F1D53AA5C00911AF5 /* CameraRealmStore.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -560,7 +560,7 @@
 				9A0719331D42732A007BB4C5 /* INDLinkLabel.swift in Sources */,
 				9A50179C1D258F2000B9C49E /* RoutesCustomCell.swift in Sources */,
 				9AB0177C1D514668004C228E /* CameraViewController.swift in Sources */,
-				9A2F4A701D53AA5C00911AF5 /* CameraRealmStrore.swift in Sources */,
+				9A2F4A701D53AA5C00911AF5 /* CameraRealmStore.swift in Sources */,
 				9AE4863E1D49594D007A92E3 /* FerriesTerminalMap.swift in Sources */,
 				9AD32E2A1D24233D000AEC28 /* FerriesHomeViewController.swift in Sources */,
 				9A0CA8371D466045009C67B7 /* TimeUtils.swift in Sources */,
