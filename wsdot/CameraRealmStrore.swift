@@ -99,8 +99,7 @@ class CamerasStore {
             for oldCamera in oldCameras {
                 oldCamera.delete = true
             }
-            realm.delete(realm.objects(CameraItem))
-            realm.add(newCameras)
+            realm.add(newCameras, update: true)
         }
     }
     
