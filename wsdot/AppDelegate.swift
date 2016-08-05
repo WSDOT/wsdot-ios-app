@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CachesStore.initCacheItem()
         
         FIRApp.configure()
-        GADMobileAds.configureWithApplicationID("ad_string");
+        GADMobileAds.configureWithApplicationID(ApiKeys.wsdot_ad_string);
         
         return true
     }
