@@ -14,22 +14,22 @@ import UIKit
  */
 class RouteTabBarViewController: UITabBarController {
     
-    var routeItem : FerriesRouteScheduleItem? = nil
+    var routeItem : FerryScheduleItem = FerryScheduleItem()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = routeItem?.routeDescription;
+        self.navigationItem.title = routeItem.routeDescription;
         
-        if (routeItem!.routeAlerts.count > 0){
-            self.tabBar.items?[1].badgeValue = String(routeItem!.routeAlerts.count)
+        if (routeItem.routeAlerts.count > 0){
+            self.tabBar.items?[1].badgeValue = String(routeItem.routeAlerts.count)
         } else {
             self.tabBar.items?[1].enabled = false
         }
         
         let favoriteButton = UIButton()
         
-        if ((routeItem?.selected)!){
+        if (routeItem.selected){
             favoriteButton.setImage(UIImage(named: "icFavoriteSelected"), forState: .Normal)
             favoriteButton.setImage(UIImage(named: "icFavoriteDefault"), forState: .Highlighted)
             favoriteButton.setImage(UIImage(named: "icFavoriteDefault"), forState: .Selected)
@@ -55,9 +55,7 @@ class RouteTabBarViewController: UITabBarController {
         sender.setImage(UIImage(named: "icFavoriteDefault"), forState: .Selected)
         sender.removeTarget(self, action: #selector(RouteTabBarViewController.addFavorite(_:)), forControlEvents: .TouchUpInside)
         sender.addTarget(self, action: #selector(RouteTabBarViewController.removeFavorite(_:)), forControlEvents: .TouchUpInside)
-        routeItem?.selected = true
-        print((routeItem?.routeId)!)
-        RouteSchedulesStore.updateFavorite((routeItem?.routeId)!, newValue: true)
+        FerryRealmStore.updateFavorite(routeItem, newValue: true)
     }
     
     // Sets selected attribute of the route item to false and calls DB update logic
@@ -67,7 +65,6 @@ class RouteTabBarViewController: UITabBarController {
         sender.setImage(UIImage(named: "icFavoriteSelected"), forState: .Selected)
         sender.removeTarget(self, action: #selector(RouteTabBarViewController.removeFavorite(_:)), forControlEvents: .TouchUpInside)
         sender.addTarget(self, action: #selector(RouteTabBarViewController.addFavorite(_:)), forControlEvents: .TouchUpInside)
-        routeItem?.selected = false
-        RouteSchedulesStore.updateFavorite((routeItem?.routeId)!, newValue: false)
+        FerryRealmStore.updateFavorite(routeItem, newValue: false)
     }
 }

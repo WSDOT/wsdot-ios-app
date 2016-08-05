@@ -14,7 +14,7 @@ class RouteSailingsViewController: UIViewController, UITableViewDataSource, UITa
     let SegueRouteDeparturesViewController = "RouteDeparturesViewController"
     
     @IBOutlet var tableView: UITableView!
-    var routeItem : FerriesRouteScheduleItem? = nil
+    var routeItem : FerryScheduleItem = FerryScheduleItem()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,15 +29,15 @@ class RouteSailingsViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (routeItem?.sailings.count)!
+        return routeItem.terminalPairs.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
         
-        let sailing = routeItem?.sailings[indexPath.row]
+        let sailing = routeItem.terminalPairs[indexPath.row]
         
-        cell.textLabel?.text = (sailing?.0)! + " to " + (sailing?.1)!
+        cell.textLabel?.text = sailing.aTerminalName + " to " + sailing.bTterminalName
         
         return cell
     }
@@ -55,9 +55,9 @@ class RouteSailingsViewController: UIViewController, UITableViewDataSource, UITa
             if let indexPath = tableView.indexPathForSelectedRow {
                 let destinationViewController = segue.destinationViewController as! RouteDeparturesViewController
                 
-                destinationViewController.sailingsByDate = routeItem?.scheduleDates
-                destinationViewController.currentSailing = (routeItem?.sailings[indexPath.row])!
-                
+                destinationViewController.sailingsByDate = routeItem.scheduleDates
+                destinationViewController.currentSailing = routeItem.terminalPairs[indexPath.row]
+
                 let backItem = UIBarButtonItem()
                 backItem.title = "Back"
                 self.tabBarController!.navigationItem.backBarButtonItem = backItem

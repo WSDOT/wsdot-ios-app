@@ -11,21 +11,6 @@
     Used when retreving data from the database.
 */
 
-typealias CachesDataModel = (
-    tableName: String?,
-    updated: Int64?
-)
-
-typealias RouteScheduleDataModel = (
-    routeId: Int64?,
-    routeDescription: String?,
-    selected: Bool?,
-    crossingTime: String?,
-    cacheDate: Int64?,
-    routeAlerts: String?,
-    scheduleDates: String?
-)
-
 typealias CameraDataModel = (
     cameraId: Int64,
     url: String,

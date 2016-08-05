@@ -5,28 +5,23 @@
 //  Created by Logan Sims on 7/27/16.
 //  Copyright © 2016 wsdot. All rights reserved.
 //
-
 import Foundation
+import RealmSwift
 
-class CameraItem {
+class CameraItem: Object {
 
-    let cameraId: Int64
-    let url: String
-    let title: String
-    let roadName: String
-    let latitude: Double
-    let longitude: Double
-    let video: Bool
-    var selected: Bool
-
-    init(id: Int64, url: String, title: String, road: String, lat: Double, long: Double, video: Bool, isFavorite: Bool) {
-        self.cameraId = id
-        self.url = url
-        self.title = title
-        self.roadName = road
-        self.latitude = lat
-        self.longitude = long
-        self.video = video
-        self.selected = isFavorite
+    dynamic var cameraId = 0
+    dynamic var url = ""
+    dynamic var title = ""
+    dynamic var roadName = ""
+    dynamic var latitude = 0.0
+    dynamic var longitude = 0.0
+    dynamic var video = false
+    dynamic var selected = false
+    
+    dynamic var delete = false
+    
+    override static func primaryKey() -> String? {
+        return "cameraId"
     }
 }

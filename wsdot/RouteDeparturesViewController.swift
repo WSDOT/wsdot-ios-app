@@ -7,6 +7,7 @@
 //
 import UIKit
 import GoogleMobileAds
+import RealmSwift
 
 class RouteDeparturesViewController: UIViewController {
     
@@ -19,13 +20,13 @@ class RouteDeparturesViewController: UIViewController {
     @IBOutlet weak var adBackGroundView: UIView!
     
     // set by previous view controller
-    var currentSailing : (String, String) = ("", "")
-    var sailingsByDate : [FerriesScheduleDateItem]? = nil
+    var currentSailing = FerryTerminalPairItem()
+    var sailingsByDate = List<FerryScheduleDateItem>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = currentSailing.0 + " to " + currentSailing.1
+        title = currentSailing.aTerminalName + " to " + currentSailing.bTterminalName
         
         self.timesContainerView.alpha = 1
         self.camerasContainerView.alpha = 0
@@ -87,11 +88,11 @@ class RouteDeparturesViewController: UIViewController {
     private func getDepartingId() -> Int{
         
         // get sailings for selected day
-        let sailings = sailingsByDate![0].sailings
+        let sailings = sailingsByDate[0].sailings
         
         // get sailings for current route
-        for sailing in sailings as [SailingsItem] {
-            if ((sailing.departingTerminalName == currentSailing.0)) {
+        for sailing in sailings {
+            if ((sailing.departingTerminalId == currentSailing.aTerminalId)) {
                 return sailing.departingTerminalId
             }
         }

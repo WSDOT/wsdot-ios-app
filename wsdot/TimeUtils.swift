@@ -10,7 +10,7 @@ import Foundation
 
 class TimeUtils {
     
-    static let updateTime: Int64 = 900000
+    static let updateTime: Int = 900
     
     static var currentTime: Int64{
         get {
@@ -18,9 +18,20 @@ class TimeUtils {
         }
     }
     
+    // formates a /Date(1468516282113-0700)/ date into NSDate
+    static func parseJSONDateToNSDate(date: String) -> NSDate{
+        let parseDateString = date[date.startIndex.advancedBy(6)..<date.startIndex.advancedBy(16)]
+        if let date = Double(parseDateString) {
+            return NSDate(timeIntervalSince1970: date)
+        } else {
+            return NSDate(timeIntervalSince1970: 0)
+        }
+    }
+    
+    
     // formates a /Date(1468516282113-0700)/ date into a Int64
     static func parseJSONDate(date: String) -> Int64{
-        let parseDateString = date[date.startIndex.advancedBy(6)..<date.startIndex.advancedBy(19)]
+        let parseDateString = date[date.startIndex.advancedBy(6)..<date.startIndex.advancedBy(16)]
         if let date = Int64(parseDateString) {
             return date
         } else {
@@ -33,7 +44,7 @@ class TimeUtils {
         let formatter = NSDateFormatter()
         formatter.timeStyle = .ShortStyle
         let timeString = formatter.stringFromDate(date)
-
+        
         //Return Short Time String
         return timeString
         
@@ -41,23 +52,22 @@ class TimeUtils {
     
     
     // Returns an array of the days of the week starting with the current day
-    static func nextSevenDaysStrings(date: Int64) -> [String]{
+    static func nextSevenDaysStrings(date: NSDate) -> [String]{
         let weekdays = NSDateFormatter().weekdaySymbols
         let dayOfWeekInt = getDayOfWeek(date)
         return Array(weekdays[dayOfWeekInt-1..<weekdays.count]) + weekdays[0..<dayOfWeekInt-1]
     }
     
-    private static func getDayOfWeek(date: Int64)->Int {
+    private static func getDayOfWeek(date: NSDate)->Int {
         let myCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-        let myComponents = myCalendar.components(.Weekday, fromDate: NSDate(timeIntervalSince1970: Double(date / 1000)))
+        let myComponents = myCalendar.components(.Weekday, fromDate: date)
         let weekDay = myComponents.weekday
         return weekDay
     }
     
     // Returns a string timestamp since a given time in miliseconds.
     // Source: https://gist.github.com/jacks205/4a77fb1703632eb9ae79
-    static func timeSinceDate(date:Int64, numericDates:Bool) -> String {
-        let date = NSDate(timeIntervalSince1970: Double(date/1000))
+    static func timeAgoSinceDate(date:NSDate, numericDates:Bool) -> String {
         let calendar = NSCalendar.currentCalendar()
         let now = NSDate()
         let earliest = now.earlierDate(date)
@@ -118,5 +128,4 @@ class TimeUtils {
             return "Just now"
         }
     }
-    
 }

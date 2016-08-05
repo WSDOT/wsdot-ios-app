@@ -38,7 +38,6 @@ class SailingSpacesStore {
         var sailingSpaceItem: SailingSpacesItem
         
         for (_,subJson):(String, JSON) in json {
-            //print(subJson["TerminalID"].int)
             if (subJson["TerminalID"].int == departingId){
                 
                 for (_,departure):(String, JSON) in subJson["DepartingSpaces"] {
@@ -48,19 +47,16 @@ class SailingSpacesStore {
                         if (arrivingTerminalSpace["TerminalID"].int == arrivingId){
                             
                             sailingSpaceItem = SailingSpacesItem()
-                            sailingSpaceItem.Date = departure["Departure"].stringValue
+                            sailingSpaceItem.date = TimeUtils.parseJSONDateToNSDate(departure["Departure"].stringValue)
                             sailingSpaceItem.maxSpace = arrivingTerminalSpace["MaxSpaceCount"].intValue
                             sailingSpaceItem.remainingSpaces = arrivingTerminalSpace["DriveUpSpaceCount"].intValue
-                            
+            
                             sailingSpaces.append(sailingSpaceItem)
-                            
                         }
                     }
                 }
-                
             }
         }
         return sailingSpaces
     }
-    
 }

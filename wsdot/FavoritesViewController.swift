@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class FavoritesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -17,11 +18,13 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     
     let segueRouteDeparturesViewController = "FavoriteSailingsViewController"
     let segueCameraViewController = "FavoriteCameraViewController"
-    
+
     @IBOutlet weak var favoritesTable: UITableView!
     
-    var favoriteRoutes = [FerriesRouteScheduleItem]()
+    var favoriteRoutes = [FerryScheduleItem]()
     var favoriteCameras = [CameraItem]()
+    
+    var notificationToken: NotificationToken?
     
     let refreshControl = UIRefreshControl()
     
@@ -30,7 +33,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         title = TITLE
         
         // refresh controller
-        refreshControl.addTarget(self, action: #selector(FavoritesViewController.loadFavorites), forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(FavoritesViewController.loadFavoritesAction(_:)), forControlEvents: .ValueChanged)
         favoritesTable.addSubview(refreshControl)
         
         favoritesTable.rowHeight = UITableViewAutomaticDimension
@@ -40,8 +43,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.refreshControl.beginRefreshing()
-        self.loadFavorites()
+        self.loadFavorites(false)
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -52,6 +54,8 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         if (self.favoritesTable.editing){
             self.favoritesTable.setEditing(false, animated: false)
         }
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -66,27 +70,32 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         tabBarItem = UITabBarItem(title: TITLE, image: UIImage(named: "ic-star"), tag: 1)
     }
     
-    @objc private func loadFavorites(){
-        
+    func loadFavoritesAction(refreshController: UIRefreshControl){
+        loadFavorites(true)
+    
+    }
+    
+    private func loadFavorites(force: Bool){
         let serviceGroup = dispatch_group_create();
         
-        self.requestFavoriteFerries(serviceGroup)
-        self.requestFavoriteCameras(serviceGroup)
+        self.requestFavoriteFerries(force, serviceGroup: serviceGroup)
+        self.requestFavoriteCameras(force, serviceGroup: serviceGroup)
         
-        dispatch_group_notify(serviceGroup, dispatch_get_main_queue()) { // 2
+        dispatch_group_notify(serviceGroup, dispatch_get_main_queue()) {
+            
+            self.favoriteRoutes = FerryRealmStore.findFavoriteSchedules()
+            self.favoriteCameras = CamerasStore.getFavoriteCameras()
+            
             self.favoritesTable.reloadData()
             self.refreshControl.endRefreshing()
         }
     }
-    
-    private func requestFavoriteFerries(serviceGroup: dispatch_group_t){
-        dispatch_group_enter(serviceGroup)
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak self] in
-            RouteSchedulesStore.getRouteSchedules(false, favoritesOnly: true, completion: { data, error in
-                if let validData = data {
-                    if let selfValue = self{
-                        selfValue.favoriteRoutes = validData
-                    }
+
+private func requestFavoriteFerries(force: Bool, serviceGroup: dispatch_group_t){
+    dispatch_group_enter(serviceGroup)
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) { [weak self] in
+            FerryRealmStore.updateRouteSchedules(force, completion: { error in
+                if (error == nil) {
                     dispatch_group_leave(serviceGroup)
                 } else {
                     dispatch_group_leave(serviceGroup)
@@ -96,21 +105,17 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
                         }
                     }
                 }
-                
             })
         }
     }
     
-    private func requestFavoriteCameras(serviceGroup: dispatch_group_t){
+    private func requestFavoriteCameras(force: Bool, serviceGroup: dispatch_group_t){
         dispatch_group_enter(serviceGroup)
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak self] in
-        CamerasStore.getCameras(nil, favorites: true, completion: { data, error in
-                if let validData = data {
-                    if let selfValue = self{
-                        selfValue.favoriteCameras = validData
-                    }
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) {[weak self] in
+            CamerasStore.updateCameras(force, completion: { error in
+                if (error == nil){
                     dispatch_group_leave(serviceGroup)
-                } else {
+                }else{
                     dispatch_group_leave(serviceGroup)
                     dispatch_async(dispatch_get_main_queue()) { [weak self] in
                         if let selfValue = self{
@@ -118,7 +123,6 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
                         }
                     }
                 }
-                
             })
         }
     }
@@ -182,7 +186,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
                 ferryCell.subTitleOne.hidden = true
             }
             
-            ferryCell.subTitleTwo.text = TimeUtils.timeSinceDate(self.favoriteRoutes[indexPath.row].cacheDate, numericDates: true)
+            ferryCell.subTitleTwo.text = TimeUtils.timeAgoSinceDate(self.favoriteRoutes[indexPath.row].cacheDate, numericDates: true)
             
             return ferryCell
             
@@ -215,10 +219,10 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             
             switch (indexPath.section) {
             case 0:
-                RouteSchedulesStore.updateFavorite(favoriteRoutes[indexPath.row].routeId, newValue: false)
+                FerryRealmStore.updateFavorite(favoriteRoutes[indexPath.row], newValue: false)
                 favoriteRoutes.removeAtIndex(indexPath.row)
             case 1:
-                CamerasStore.updateFavorite(favoriteCameras[indexPath.row].cameraId, newValue: false)
+                CamerasStore.updateFavorite(favoriteCameras[indexPath.row], newValue: false)
                 favoriteCameras.removeAtIndex(indexPath.row)
                 break
             default:
@@ -249,7 +253,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == segueRouteDeparturesViewController {
             if let indexPath = favoritesTable.indexPathForSelectedRow {
-                let routeItem = self.favoriteRoutes[indexPath.row] as FerriesRouteScheduleItem
+                let routeItem = self.favoriteRoutes[indexPath.row] as FerryScheduleItem
                 let destinationViewController = segue.destinationViewController as! RouteTabBarViewController
                 destinationViewController.routeItem = routeItem
             }

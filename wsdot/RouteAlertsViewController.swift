@@ -7,20 +7,20 @@
 //
 
 import UIKit
+import RealmSwift
 
 class RouteAlertsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, INDLinkLabelDelegate {
-
     
     @IBOutlet var tableView: UITableView!
     
     let cellIdentifier = "RouteAlerts"
 
-    var alertItems : [FerriesRouteAlertItem] = []
+    var alertItems = List<FerryAlertItem>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let routeTabBarContoller = self.tabBarController as! RouteTabBarViewController
-        alertItems = (routeTabBarContoller.routeItem?.routeAlerts)!
+        alertItems = routeTabBarContoller.routeItem.routeAlerts
         
         tableView.rowHeight = UITableViewAutomaticDimension
         

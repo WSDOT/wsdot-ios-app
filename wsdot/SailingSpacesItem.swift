@@ -17,6 +17,6 @@ class SailingSpacesItem {
             return 1.0 - Float(remainingSpaces) / Float(maxSpace)
         }
     }
-    var Date = ""
+    var date = NSDate()
 
 }
