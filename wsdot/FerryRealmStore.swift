@@ -46,22 +46,26 @@ class FerryRealmStore {
                 switch response.result {
                 case .Success:
                     if let value = response.result.value {
-                        let json = JSON(value)
-                        let routeSchedules = self.parseRouteSchedulesJSON(json)
-                        saveRouteSchedules(routeSchedules)
-                        CachesStore.updateTime(CachedData.Ferries, updated: NSDate())
-                        completion(error: nil)
+                        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) {
+                            let json = JSON(value)
+                            let routeSchedules = FerryRealmStore.parseRouteSchedulesJSON(json)
+                            saveRouteSchedules(routeSchedules)
+                            CachesStore.updateTime(CachedData.Ferries, updated: NSDate())
+                            completion(error: nil)
+                        }
                     }
                 case .Failure(let error):
                     print(error)
                     completion(error: error)
                 }
+                
             }
         }else {
             completion(error: nil)
         }
     }
 
+    
     
     // TODO: Make this smarter
     private static func saveRouteSchedules(routeSchedules: [FerryScheduleItem]){
@@ -80,9 +84,21 @@ class FerryRealmStore {
             newRoutes.append(route)
         }
         
+        let oldRoutes = realm.objects(FerryScheduleItem.self)
+        
         try! realm.write{
-            realm.delete(realm.objects(FerryScheduleItem))
-            realm.add(newRoutes)
+            for route in oldRoutes{
+                route.delete = true
+            }
+            realm.add(newRoutes, update: true)
+        }
+    }
+    
+    static func flushOldData(){
+        let realm = try! Realm()
+        let routeItems = realm.objects(FerryScheduleItem.self).filter("delete == true")
+        try! realm.write{
+            realm.delete(routeItems)
         }
     }
     

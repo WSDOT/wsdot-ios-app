@@ -48,10 +48,12 @@ class CamerasStore {
                 switch response.result {
                 case .Success:
                     if let value = response.result.value {
-                        let json = JSON(value)
-                        self.saveCameras(json)
-                        CachesStore.updateTime(CachedData.Cameras, updated: NSDate())
-                        completion(error: nil)
+                        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) {
+                            let json = JSON(value)
+                            self.saveCameras(json)
+                            CachesStore.updateTime(CachedData.Cameras, updated: NSDate())
+                            completion(error: nil)
+                        }
                     }
                 case .Failure(let error):
                     print(error)
@@ -91,9 +93,23 @@ class CamerasStore {
             
         }
         
+        let oldCameras = realm.objects(CameraItem.self)
+        
         try! realm.write{
+            for oldCamera in oldCameras {
+                oldCamera.delete = true
+            }
             realm.delete(realm.objects(CameraItem))
             realm.add(newCameras)
         }
     }
+    
+    static func flushOldData() {
+        let realm = try! Realm()
+        let cameraItems = realm.objects(CameraItem.self).filter("delete == true")
+        try! realm.write{
+            realm.delete(cameraItems)
+        }
+    }
+    
 }

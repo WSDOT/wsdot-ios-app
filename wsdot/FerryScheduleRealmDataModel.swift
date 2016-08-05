@@ -18,6 +18,9 @@ class FerryScheduleItem: Object {
     let routeAlerts = List<FerryAlertItem>()
     let scheduleDates = List<FerryScheduleDateItem>()
     let terminalPairs = List<FerryTerminalPairItem>()
+    
+    dynamic var delete = false
+    
     override static func primaryKey() -> String? {
         return "routeId"
     }

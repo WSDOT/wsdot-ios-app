@@ -19,6 +19,8 @@ class CameraItem: Object {
     dynamic var video = false
     dynamic var selected = false
     
+    dynamic var delete = false
+    
     override static func primaryKey() -> String? {
         return "cameraId"
     }
