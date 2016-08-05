@@ -40,7 +40,6 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -80,21 +79,20 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         let serviceGroup = dispatch_group_create();
         
         self.requestFavoriteFerries(force, serviceGroup: serviceGroup)
-        //self.requestFavoriteCameras(force, serviceGroup: serviceGroup)
+        self.requestFavoriteCameras(force, serviceGroup: serviceGroup)
         
-        dispatch_group_notify(serviceGroup, dispatch_get_main_queue()) { // 2
+        dispatch_group_notify(serviceGroup, dispatch_get_main_queue()) {
             
             self.favoriteRoutes = FerryRealmStore.findFavoriteSchedules()
             self.favoriteCameras = CamerasStore.getFavoriteCameras()
             
             self.favoritesTable.reloadData()
             self.refreshControl.endRefreshing()
-
         }
     }
-    
-    private func requestFavoriteFerries(force: Bool, serviceGroup: dispatch_group_t){
-        dispatch_group_enter(serviceGroup)
+
+private func requestFavoriteFerries(force: Bool, serviceGroup: dispatch_group_t){
+    dispatch_group_enter(serviceGroup)
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) { [weak self] in
             FerryRealmStore.updateRouteSchedules(force, completion: { error in
                 if (error == nil) {

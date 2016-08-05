@@ -49,8 +49,7 @@ class CamerasStore {
                 case .Success:
                     if let value = response.result.value {
                         let json = JSON(value)
-                        let cameras = self.parseCamerasJSON(json)
-                        self.saveCameras(cameras)
+                        self.saveCameras(json)
                         CachesStore.updateTime(CachedData.Cameras, updated: NSDate())
                         completion(error: nil)
                     }
@@ -62,34 +61,16 @@ class CamerasStore {
         }else{
             completion(error: nil)
         }
-        
     }
     
-    // TODO: Make this smarter
-    private static func saveCameras(cameras: [CameraItem]){
+
+    private static func saveCameras(json: JSON){
         
         let realm = try! Realm()
         
-        let oldFavoriteCameras = self.getFavoriteCameras()
+        let oldFavoriteCameras = realm.objects(CameraItem.self).filter("selected == true")
         let newCameras = List<CameraItem>()
         
-        for camera in cameras {
-            for oldCameras in oldFavoriteCameras {
-                if (oldCameras.cameraId == camera.cameraId){
-                    camera.selected = true
-                }
-            }
-            newCameras.append(camera)
-        }
-        
-        try! realm.write{
-            realm.delete(realm.objects(CameraItem))
-            realm.add(newCameras)
-        }
-    }
-    
-    private static func parseCamerasJSON(json: JSON) ->[CameraItem]{
-        var cameras = [CameraItem]()
         for (_,cameraJson):(String, JSON) in json["cameras"]["items"] {
             let camera = CameraItem()
             camera.cameraId = cameraJson["id"].intValue
@@ -99,8 +80,20 @@ class CamerasStore {
             camera.latitude = cameraJson["lat"].doubleValue
             camera.longitude = cameraJson["lon"].doubleValue
             camera.video = cameraJson["video"].boolValue
-            cameras.append(camera)
+            
+            for oldCameras in oldFavoriteCameras {
+                if (oldCameras.cameraId == camera.cameraId){
+                    camera.selected = true
+                }
+            }
+            
+            newCameras.append(camera)
+            
         }
-        return cameras
+        
+        try! realm.write{
+            realm.delete(realm.objects(CameraItem))
+            realm.add(newCameras)
+        }
     }
 }

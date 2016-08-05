@@ -18,8 +18,8 @@ class CameraItem: Object {
     dynamic var longitude = 0.0
     dynamic var video = false
     dynamic var selected = false
+    
     override static func primaryKey() -> String? {
         return "cameraId"
     }
-    
 }
