@@ -129,13 +129,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IF4-Y9-eAy">
-                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
-                                <connections>
-                                    <segue destination="Tbg-l4-csa" kind="embed" identifier="EmbedMapSegue" id="dXg-Ar-maZ"/>
-                                </connections>
-                            </containerView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mCg-ql-Rvd">
+                            <toolbar clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCg-ql-Rvd">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
                                     <barButtonItem image="icMyLocation" id="MU2-vD-N2s">
@@ -154,18 +148,40 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ERf-XA-ifQ" customClass="GADBannerView">
+                                <rect key="frame" x="140" y="64" width="320" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Si5-lU-RjZ"/>
+                                    <constraint firstAttribute="width" constant="320" id="hjt-lZ-D5N"/>
+                                </constraints>
+                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IF4-Y9-eAy">
+                                <rect key="frame" x="0.0" y="112" width="600" height="443"/>
+                                <connections>
+                                    <segue destination="Tbg-l4-csa" kind="embed" identifier="EmbedMapSegue" id="dXg-Ar-maZ"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="IF4-Y9-eAy" firstAttribute="leading" secondItem="mCg-ql-Rvd" secondAttribute="leading" id="0QD-dD-O5W"/>
-                            <constraint firstItem="IF4-Y9-eAy" firstAttribute="trailing" secondItem="mCg-ql-Rvd" secondAttribute="trailing" id="IMV-tx-Gr2"/>
-                            <constraint firstAttribute="trailing" secondItem="IF4-Y9-eAy" secondAttribute="trailing" id="Oq8-D6-zIx"/>
-                            <constraint firstItem="IF4-Y9-eAy" firstAttribute="top" secondItem="nXo-3B-NBC" secondAttribute="bottom" id="gGe-Om-t6t"/>
-                            <constraint firstItem="mCg-ql-Rvd" firstAttribute="bottom" secondItem="uqZ-6f-6IX" secondAttribute="top" id="gdN-Se-4Nr"/>
-                            <constraint firstItem="IF4-Y9-eAy" firstAttribute="leading" secondItem="2hI-3V-jEb" secondAttribute="leading" id="qL7-af-7rK"/>
-                            <constraint firstItem="mCg-ql-Rvd" firstAttribute="top" secondItem="IF4-Y9-eAy" secondAttribute="bottom" id="vPZ-qe-X7b"/>
+                            <constraint firstItem="IF4-Y9-eAy" firstAttribute="leading" secondItem="mCg-ql-Rvd" secondAttribute="leading" id="5Ix-iJ-GNT"/>
+                            <constraint firstItem="ERf-XA-ifQ" firstAttribute="top" secondItem="nXo-3B-NBC" secondAttribute="bottom" id="Hny-HC-edM"/>
+                            <constraint firstItem="mCg-ql-Rvd" firstAttribute="top" secondItem="IF4-Y9-eAy" secondAttribute="bottom" constant="1" id="KpJ-2m-KrE"/>
+                            <constraint firstItem="mCg-ql-Rvd" firstAttribute="top" secondItem="IF4-Y9-eAy" secondAttribute="bottom" constant="1" id="V4s-qP-tbu"/>
+                            <constraint firstAttribute="trailing" secondItem="IF4-Y9-eAy" secondAttribute="trailing" id="VBK-EZ-DLl"/>
+                            <constraint firstItem="IF4-Y9-eAy" firstAttribute="trailing" secondItem="mCg-ql-Rvd" secondAttribute="trailing" id="bDI-Zb-WyH"/>
+                            <constraint firstItem="ERf-XA-ifQ" firstAttribute="centerX" secondItem="2hI-3V-jEb" secondAttribute="centerX" id="d2i-tM-fyq"/>
+                            <constraint firstItem="IF4-Y9-eAy" firstAttribute="top" secondItem="ERf-XA-ifQ" secondAttribute="bottom" constant="-2" id="dtb-Lj-eX3"/>
+                            <constraint firstItem="mCg-ql-Rvd" firstAttribute="bottom" secondItem="uqZ-6f-6IX" secondAttribute="top" id="mJx-pO-Hr0"/>
+                            <constraint firstItem="IF4-Y9-eAy" firstAttribute="top" secondItem="ERf-XA-ifQ" secondAttribute="bottom" constant="-2" id="wDE-ne-Dfq"/>
+                            <constraint firstItem="IF4-Y9-eAy" firstAttribute="top" secondItem="ERf-XA-ifQ" secondAttribute="bottom" constant="-2" id="xQ7-go-9t2"/>
+                            <constraint firstItem="IF4-Y9-eAy" firstAttribute="leading" secondItem="2hI-3V-jEb" secondAttribute="leading" id="y4x-qv-rcq"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="bannerView" destination="ERf-XA-ifQ" id="n4W-YV-5cx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NW5-LH-gIW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -180,7 +196,7 @@
                         <viewControllerLayoutGuide type="bottom" id="WT7-BM-ea9"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="eqr-tr-HAs">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="443"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
