@@ -128,12 +128,66 @@
                     <view key="view" contentMode="scaleToFill" id="2hI-3V-jEb">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IF4-Y9-eAy">
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
+                                <connections>
+                                    <segue destination="Tbg-l4-csa" kind="embed" identifier="EmbedMapSegue" id="dXg-Ar-maZ"/>
+                                </connections>
+                            </containerView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mCg-ql-Rvd">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem image="icMyLocation" id="MU2-vD-N2s">
+                                        <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="myLocationButtonPressed:" destination="fa2-BD-KKh" id="fNP-BE-aDC"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="vfm-kI-LXu"/>
+                                    <barButtonItem image="icLocation" id="qca-3e-dOV">
+                                        <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="GDj-q7-L8I"/>
+                                    <barButtonItem image="icCamera" id="J3n-PD-fYP">
+                                        <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="IF4-Y9-eAy" firstAttribute="leading" secondItem="mCg-ql-Rvd" secondAttribute="leading" id="0QD-dD-O5W"/>
+                            <constraint firstItem="IF4-Y9-eAy" firstAttribute="trailing" secondItem="mCg-ql-Rvd" secondAttribute="trailing" id="IMV-tx-Gr2"/>
+                            <constraint firstAttribute="trailing" secondItem="IF4-Y9-eAy" secondAttribute="trailing" id="Oq8-D6-zIx"/>
+                            <constraint firstItem="IF4-Y9-eAy" firstAttribute="top" secondItem="nXo-3B-NBC" secondAttribute="bottom" id="gGe-Om-t6t"/>
+                            <constraint firstItem="mCg-ql-Rvd" firstAttribute="bottom" secondItem="uqZ-6f-6IX" secondAttribute="top" id="gdN-Se-4Nr"/>
+                            <constraint firstItem="IF4-Y9-eAy" firstAttribute="leading" secondItem="2hI-3V-jEb" secondAttribute="leading" id="qL7-af-7rK"/>
+                            <constraint firstItem="mCg-ql-Rvd" firstAttribute="top" secondItem="IF4-Y9-eAy" secondAttribute="bottom" id="vPZ-qe-X7b"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NW5-LH-gIW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1280" y="882"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="J7O-jW-vxm">
+            <objects>
+                <viewController id="Tbg-l4-csa" customClass="MapViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rvl-xa-EME"/>
+                        <viewControllerLayoutGuide type="bottom" id="WT7-BM-ea9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eqr-tr-HAs">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="biC-J0-IUB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1959" y="882"/>
         </scene>
         <!--Alerts-->
         <scene sceneID="85i-BK-qs1">
@@ -684,6 +738,9 @@
     </scenes>
     <resources>
         <image name="icAlertTab" width="32" height="32"/>
+        <image name="icCamera" width="24" height="24"/>
         <image name="icCompassTab" width="32" height="32"/>
+        <image name="icLocation" width="24" height="24"/>
+        <image name="icMyLocation" width="24" height="24"/>
     </resources>
 </document>

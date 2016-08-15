@@ -11,36 +11,25 @@ import GoogleMaps
 
 class VesselWatchViewController: UIViewController{
     
-    override func loadView() {
-        // Create a GMSCameraPosition that tells the map to display the
-        // coordinate -33.86,151.20 at zoom level 6.
-        let camera = GMSCameraPosition.cameraWithLatitude(-33.86, longitude: 151.20, zoom: 6.0)
-        let mapView = GMSMapView.mapWithFrame(CGRect.zero, camera: camera)
-        mapView.myLocationEnabled = true
-        view = mapView
-        
-        // Creates a marker in the center of the map.
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
-        marker.title = "Sydney"
-        marker.snippet = "Australia"
-        marker.map = mapView
-    }
     
-     override func viewDidLoad() {
+    private var embeddedViewController: MapViewController!
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
         title = "Vessel Watch"
+        
+    }
+    
+    
+    @IBAction func myLocationButtonPressed(sender: UIBarButtonItem) {
+            embeddedViewController.goToUsersLocation()
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    // Get refrence to child VC
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let vc = segue.destinationViewController as? MapViewController
+            where segue.identifier == "EmbedMapSegue" {
+            self.embeddedViewController = vc
+        }
+    }
 }
