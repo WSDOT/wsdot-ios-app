@@ -17,13 +17,18 @@ enum CachedData {
 class CachesStore {
     
     static func initCacheItem(){
-        let realm = try! Realm()
-        let cacheItem = realm.objects(CacheItem.self).first
-        
-        if (cacheItem == nil){
-            try! realm.write{
-                realm.add(CacheItem())
+        do {
+            let realm = try Realm()
+            let cacheItem = realm.objects(CacheItem.self).first
+            
+            if (cacheItem == nil){
+                try! realm.write{
+                    realm.add(CacheItem())
+                }
             }
+        } catch {
+            print("Init Realm failed")
+            exit(1)
         }
         
     }
@@ -45,7 +50,9 @@ class CachesStore {
         let realm = try! Realm()
         let cacheItem = realm.objects(CacheItem.self).first
         
-        try! realm.write{
+        do {
+        
+        try realm.write{
             switch(data){
             case .Ferries:
                 cacheItem?.ferriesLastUpdate = updated
@@ -54,6 +61,9 @@ class CachesStore {
                 cacheItem?.camerasLastUpdate = updated
                 break
             }
+        }
+        } catch {
+            print("CachesStore.updateTime: Realm write error")
         }
     }
 }
