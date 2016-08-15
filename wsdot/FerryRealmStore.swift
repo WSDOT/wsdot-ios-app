@@ -16,18 +16,24 @@ import RealmSwift
 class FerryRealmStore {
     
     typealias UpdateRoutesCompletion = (error: NSError?) -> ()
-
+    
     static func updateFavorite(route: FerryScheduleItem, newValue: Bool){
-        let realm = try! Realm()
-        try! realm.write{
-            route.selected = newValue
+        
+        do {
+            let realm = try Realm()
+            try realm.write{
+                route.selected = newValue
+            }
+        } catch {
+            print("FerryRealmStore.updateFavorite: Realm write error")
         }
     }
     
     static func findAllSchedules() -> [FerryScheduleItem]{
-        let realm = try! Realm()
-        let scheduleItems = realm.objects(FerryScheduleItem.self)
-        return Array(scheduleItems)
+            let realm = try! Realm()
+            let scheduleItems = realm.objects(FerryScheduleItem.self)
+            return Array(scheduleItems)
+
     }
     
     static func findFavoriteSchedules() -> [FerryScheduleItem]{
@@ -86,19 +92,27 @@ class FerryRealmStore {
         
         let oldRoutes = realm.objects(FerryScheduleItem.self)
         
-        try! realm.write{
-            for route in oldRoutes{
-                route.delete = true
+        do {
+            try realm.write{
+                for route in oldRoutes{
+                    route.delete = true
+                }
+                realm.add(newRoutes, update: true)
             }
-            realm.add(newRoutes, update: true)
+        }catch {
+            print("FerryRealmStore.saveRouteSchedules: Realm write error")
         }
     }
     
     static func flushOldData(){
-        let realm = try! Realm()
-        let routeItems = realm.objects(FerryScheduleItem.self).filter("delete == true")
-        try! realm.write{
-            realm.delete(routeItems)
+        do {
+            let realm = try Realm()
+            let routeItems = realm.objects(FerryScheduleItem.self).filter("delete == true")
+            try! realm.write{
+                realm.delete(routeItems)
+            }
+        }catch {
+            print("FerryRealmStore.flushOldData: Realm write error")
         }
     }
     

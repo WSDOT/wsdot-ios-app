@@ -33,8 +33,13 @@ class CamerasStore {
     
     static func updateFavorite(camera: CameraItem, newValue: Bool){
         let realm = try! Realm()
-        try! realm.write{
-            camera.selected = newValue
+        do {
+            
+            try realm.write{
+                camera.selected = newValue
+            }
+        }catch{
+            print("CamerasStore.updateFavorite: Realm write error")
         }
     }
     
@@ -65,7 +70,7 @@ class CamerasStore {
         }
     }
     
-
+    
     private static func saveCameras(json: JSON){
         
         let realm = try! Realm()
@@ -95,19 +100,27 @@ class CamerasStore {
         
         let oldCameras = realm.objects(CameraItem.self)
         
-        try! realm.write{
-            for oldCamera in oldCameras {
-                oldCamera.delete = true
+        do {
+            try realm.write{
+                for oldCamera in oldCameras {
+                    oldCamera.delete = true
+                }
+                realm.add(newCameras, update: true)
             }
-            realm.add(newCameras, update: true)
+        }catch{
+            print("CamerasStore.saveCameras: Realm write error")
         }
     }
     
     static func flushOldData() {
         let realm = try! Realm()
         let cameraItems = realm.objects(CameraItem.self).filter("delete == true")
-        try! realm.write{
-            realm.delete(cameraItems)
+        do {
+            try realm.write{
+                realm.delete(cameraItems)
+            }
+        }catch{
+            print("CamerasStore.flushOldData: Realm write error")
         }
     }
     
