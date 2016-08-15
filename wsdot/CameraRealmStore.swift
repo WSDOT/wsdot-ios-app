@@ -34,7 +34,6 @@ class CamerasStore {
     static func updateFavorite(camera: CameraItem, newValue: Bool){
         let realm = try! Realm()
         do {
-            
             try realm.write{
                 camera.selected = newValue
             }

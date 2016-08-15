@@ -10,6 +10,8 @@
 		925D2EDCFB8CE8521EA1BE65 /* Pods_WSDOT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4874A45B23E5DF3AD6E8C108 /* Pods_WSDOT.framework */; };
 		9A06167A1D62285A00126520 /* VesselWatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616791D62285A00126520 /* VesselWatchViewController.swift */; };
 		9A06167C1D622AE800126520 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A06167B1D622AE800126520 /* MapViewController.swift */; };
+		9A06167F1D62602500126520 /* MapMarkerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A06167E1D62602500126520 /* MapMarkerDelegate.swift */; };
+		9A0616811D6265FB00126520 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616801D6265FB00126520 /* UserDefaultsKeys.swift */; };
 		9A07192C1D410FD5007BB4C5 /* RouteAlertsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A07192B1D410FD5007BB4C5 /* RouteAlertsViewController.swift */; };
 		9A07192E1D4110BC007BB4C5 /* RouteTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A07192D1D4110BC007BB4C5 /* RouteTabBarViewController.swift */; };
 		9A0719331D42732A007BB4C5 /* INDLinkLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0719321D42732A007BB4C5 /* INDLinkLabel.swift */; };
@@ -65,6 +67,8 @@
 		4874A45B23E5DF3AD6E8C108 /* Pods_WSDOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WSDOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A0616791D62285A00126520 /* VesselWatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VesselWatchViewController.swift; sourceTree = "<group>"; };
 		9A06167B1D622AE800126520 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		9A06167E1D62602500126520 /* MapMarkerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapMarkerDelegate.swift; sourceTree = "<group>"; };
+		9A0616801D6265FB00126520 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		9A07192B1D410FD5007BB4C5 /* RouteAlertsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteAlertsViewController.swift; sourceTree = "<group>"; };
 		9A07192D1D4110BC007BB4C5 /* RouteTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTabBarViewController.swift; sourceTree = "<group>"; };
 		9A0719321D42732A007BB4C5 /* INDLinkLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = INDLinkLabel.swift; sourceTree = "<group>"; };
@@ -151,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				9A06167B1D622AE800126520 /* MapViewController.swift */,
+				9A06167E1D62602500126520 /* MapMarkerDelegate.swift */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -340,6 +345,7 @@
 				9A0CA8361D466045009C67B7 /* TimeUtils.swift */,
 				9A1F5FA41D47DCB900DA5F99 /* ApiKeys.swift */,
 				9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */,
+				9A0616801D6265FB00126520 /* UserDefaultsKeys.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -568,6 +574,7 @@
 				9AFEECE11D3925400078A781 /* CachesStore.swift in Sources */,
 				9A2F4A5D1D52747900911AF5 /* FerryScheduleRealmDataModel.swift in Sources */,
 				9A07192C1D410FD5007BB4C5 /* RouteAlertsViewController.swift in Sources */,
+				9A0616811D6265FB00126520 /* UserDefaultsKeys.swift in Sources */,
 				9A1F5FA71D47E27200DA5F99 /* SailingSpacesItem.swift in Sources */,
 				9A06167A1D62285A00126520 /* VesselWatchViewController.swift in Sources */,
 				9AD32DFD1D23172C000AEC28 /* AppDelegate.swift in Sources */,
@@ -586,6 +593,7 @@
 				9A2F4A701D53AA5C00911AF5 /* CameraRealmStore.swift in Sources */,
 				9AE4863E1D49594D007A92E3 /* FerriesTerminalMap.swift in Sources */,
 				9AD32E2A1D24233D000AEC28 /* FerriesHomeViewController.swift in Sources */,
+				9A06167F1D62602500126520 /* MapMarkerDelegate.swift in Sources */,
 				9A0CA8371D466045009C67B7 /* TimeUtils.swift in Sources */,
 				9A1F5FA31D47DBB700DA5F99 /* SailingSpacesStore.swift in Sources */,
 				9AD32E221D241AF4000AEC28 /* HomeViewController.swift in Sources */,

@@ -11,17 +11,25 @@ import GoogleMaps
 
 class MapViewController: UIViewController, CLLocationManagerDelegate{
     
+    var markerDelegate: MapMarkerDelegate? = nil
+    var mapDelegate: GMSMapViewDelegate? = nil
     
     let locationManager = CLLocationManager()
     
     override func loadView() {
-        
         let mapView = GMSMapView.mapWithFrame(CGRect.zero, camera: GMSCameraPosition.cameraWithLatitude(47.5990, longitude: -122.3350, zoom: 12.0))
+        
+        mapView.delegate = mapDelegate
+        
         view = mapView
         
+        if let parent = markerDelegate {
+            parent.drawOverlays()
+        }
     }
     
     override func viewDidLoad() {
+    
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
     }

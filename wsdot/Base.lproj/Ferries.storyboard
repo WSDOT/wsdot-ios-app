@@ -145,6 +145,9 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="GDj-q7-L8I"/>
                                     <barButtonItem image="icCamera" id="J3n-PD-fYP">
                                         <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="cameraToggleButtonPressed:" destination="fa2-BD-KKh" id="g7U-No-GIp"/>
+                                        </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
@@ -181,11 +184,12 @@
                     </view>
                     <connections>
                         <outlet property="bannerView" destination="ERf-XA-ifQ" id="n4W-YV-5cx"/>
+                        <segue destination="yoM-cs-BEf" kind="show" identifier="CamerasViewController" id="E22-A6-z9N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NW5-LH-gIW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1280" y="882"/>
+            <point key="canvasLocation" x="1292" y="882"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="J7O-jW-vxm">
@@ -203,7 +207,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="biC-J0-IUB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1959" y="882"/>
+            <point key="canvasLocation" x="1986" y="856.5"/>
+        </scene>
+        <!--Camera-->
+        <scene sceneID="E77-Ko-cCn">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Camera" id="yoM-cs-BEf" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9BZ-St-TNN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1714.5" y="1152"/>
         </scene>
         <!--Alerts-->
         <scene sceneID="85i-BK-qs1">
