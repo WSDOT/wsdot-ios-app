@@ -140,7 +140,7 @@ class FerryRealmStore {
         return routeSchedules
     }
     
-    private static func getTerminalPairs(scheduleDates: List<FerryScheduleDateItem>) -> List<FerryTerminalPairItem>{
+    private static func getTerminalPairs(scheduleDates: List<FerryScheduleDateItem>) -> [FerryTerminalPairItem]{
         let terminalPairs = List<FerryTerminalPairItem>()
         
         for index in 0...scheduleDates.count-1 {
@@ -155,7 +155,9 @@ class FerryRealmStore {
                 }
             }
         }
-        return terminalPairs
+        return terminalPairs.sort({ (a, b) -> Bool in
+            return a.aTerminalName < b.aTerminalName
+        })
     }
     
     
