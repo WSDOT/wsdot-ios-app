@@ -34,11 +34,12 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <segue destination="H7m-8E-Pu6" kind="show" identifier="RouteSchedulesViewController" id="wCp-nd-4cy"/>
+                        <segue destination="fa2-BD-KKh" kind="show" identifier="VesselWatchViewController" id="tre-xc-A1W"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXR-7e-fTI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="471" y="386"/>
+            <point key="canvasLocation" x="520" y="417"/>
         </scene>
         <!--Route Schedules View Controller-->
         <scene sceneID="tOb-Kp-Cb7">
@@ -115,6 +116,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z8Z-0c-ZZJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1280" y="127"/>
+        </scene>
+        <!--Vessel Watch View Controller-->
+        <scene sceneID="juw-fx-em7">
+            <objects>
+                <viewController id="fa2-BD-KKh" customClass="VesselWatchViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nXo-3B-NBC"/>
+                        <viewControllerLayoutGuide type="bottom" id="uqZ-6f-6IX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2hI-3V-jEb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NW5-LH-gIW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1280" y="882"/>
         </scene>
         <!--Alerts-->
         <scene sceneID="85i-BK-qs1">

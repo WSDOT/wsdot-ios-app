@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		925D2EDCFB8CE8521EA1BE65 /* Pods_WSDOT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4874A45B23E5DF3AD6E8C108 /* Pods_WSDOT.framework */; };
+		9A06167A1D62285A00126520 /* VesselWatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616791D62285A00126520 /* VesselWatchViewController.swift */; };
 		9A07192C1D410FD5007BB4C5 /* RouteAlertsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A07192B1D410FD5007BB4C5 /* RouteAlertsViewController.swift */; };
 		9A07192E1D4110BC007BB4C5 /* RouteTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A07192D1D4110BC007BB4C5 /* RouteTabBarViewController.swift */; };
 		9A0719331D42732A007BB4C5 /* INDLinkLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0719321D42732A007BB4C5 /* INDLinkLabel.swift */; };
@@ -61,6 +62,7 @@
 
 /* Begin PBXFileReference section */
 		4874A45B23E5DF3AD6E8C108 /* Pods_WSDOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WSDOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A0616791D62285A00126520 /* VesselWatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VesselWatchViewController.swift; sourceTree = "<group>"; };
 		9A07192B1D410FD5007BB4C5 /* RouteAlertsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteAlertsViewController.swift; sourceTree = "<group>"; };
 		9A07192D1D4110BC007BB4C5 /* RouteTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTabBarViewController.swift; sourceTree = "<group>"; };
 		9A0719321D42732A007BB4C5 /* INDLinkLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = INDLinkLabel.swift; sourceTree = "<group>"; };
@@ -133,6 +135,14 @@
 				4874A45B23E5DF3AD6E8C108 /* Pods_WSDOT.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9A0616781D62283F00126520 /* VesselWatch */ = {
+			isa = PBXGroup;
+			children = (
+				9A0616791D62285A00126520 /* VesselWatchViewController.swift */,
+			);
+			name = VesselWatch;
 			sourceTree = "<group>";
 		};
 		9A0719311D427310007BB4C5 /* CustomLabels */ = {
@@ -220,6 +230,7 @@
 		9A81A57D1D4F8FB90049913A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9A0616781D62283F00126520 /* VesselWatch */,
 				9AD32E291D24233D000AEC28 /* FerriesHomeViewController.swift */,
 				9A0CA8331D465F44009C67B7 /* Departures */,
 				9A0CA8321D465F24009C67B7 /* Sailings */,
@@ -547,6 +558,7 @@
 				9A2F4A5D1D52747900911AF5 /* FerryScheduleRealmDataModel.swift in Sources */,
 				9A07192C1D410FD5007BB4C5 /* RouteAlertsViewController.swift in Sources */,
 				9A1F5FA71D47E27200DA5F99 /* SailingSpacesItem.swift in Sources */,
+				9A06167A1D62285A00126520 /* VesselWatchViewController.swift in Sources */,
 				9AD32DFD1D23172C000AEC28 /* AppDelegate.swift in Sources */,
 				9A2F4A6E1D539C1600911AF5 /* CachesRealmDataModel.swift in Sources */,
 				9A21E1CC1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift in Sources */,

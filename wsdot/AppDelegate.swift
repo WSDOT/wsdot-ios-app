@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         CachesStore.initCacheItem()
         
+        GMSServices.provideAPIKey(ApiKeys.google_key)
         FIRApp.configure()
         GADMobileAds.configureWithApplicationID(ApiKeys.wsdot_ad_string);
         
