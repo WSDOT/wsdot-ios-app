@@ -17,7 +17,7 @@ This project uses [CocoaPods](https://cocoapods.org/) for dependency management.
 * [Google-Mobile-Ads-SDK](https://firebase.google.com/docs/admob/ios/download)
 * [Alamofire 3.4.1](https://github.com/Alamofire/Alamofire)
 * [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
-* [SQLite.swift 0.10.1](https://github.com/stephencelis/SQLite.swift)
+* [RealmSwift](https://realm.io/docs/swift/latest/)
 * [SDWebImage](https://github.com/rs/SDWebImage)
 
 Contributing
