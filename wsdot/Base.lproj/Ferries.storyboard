@@ -168,8 +168,12 @@
                                     <segue destination="Tbg-l4-csa" kind="embed" identifier="EmbedMapSegue" id="dXg-Ar-maZ"/>
                                 </connections>
                             </containerView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ACs-iT-ykb">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="IF4-Y9-eAy" firstAttribute="leading" secondItem="mCg-ql-Rvd" secondAttribute="leading" id="5Ix-iJ-GNT"/>
                             <constraint firstItem="ERf-XA-ifQ" firstAttribute="top" secondItem="nXo-3B-NBC" secondAttribute="bottom" id="Hny-HC-edM"/>
@@ -178,7 +182,9 @@
                             <constraint firstAttribute="trailing" secondItem="IF4-Y9-eAy" secondAttribute="trailing" id="VBK-EZ-DLl"/>
                             <constraint firstItem="IF4-Y9-eAy" firstAttribute="trailing" secondItem="mCg-ql-Rvd" secondAttribute="trailing" id="bDI-Zb-WyH"/>
                             <constraint firstItem="ERf-XA-ifQ" firstAttribute="centerX" secondItem="2hI-3V-jEb" secondAttribute="centerX" id="d2i-tM-fyq"/>
+                            <constraint firstItem="ACs-iT-ykb" firstAttribute="centerY" secondItem="2hI-3V-jEb" secondAttribute="centerY" id="dGK-yt-9XW"/>
                             <constraint firstItem="IF4-Y9-eAy" firstAttribute="top" secondItem="ERf-XA-ifQ" secondAttribute="bottom" constant="-2" id="dtb-Lj-eX3"/>
+                            <constraint firstItem="ACs-iT-ykb" firstAttribute="centerX" secondItem="ERf-XA-ifQ" secondAttribute="centerX" id="iSQ-MX-Yzp"/>
                             <constraint firstItem="mCg-ql-Rvd" firstAttribute="bottom" secondItem="uqZ-6f-6IX" secondAttribute="top" id="mJx-pO-Hr0"/>
                             <constraint firstItem="IF4-Y9-eAy" firstAttribute="top" secondItem="ERf-XA-ifQ" secondAttribute="bottom" constant="-2" id="wDE-ne-Dfq"/>
                             <constraint firstItem="IF4-Y9-eAy" firstAttribute="top" secondItem="ERf-XA-ifQ" secondAttribute="bottom" constant="-2" id="xQ7-go-9t2"/>
@@ -187,7 +193,10 @@
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="Qnu-LN-47K"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="ACs-iT-ykb" id="D9L-rz-gGP"/>
                         <outlet property="bannerView" destination="ERf-XA-ifQ" id="n4W-YV-5cx"/>
+                        <outlet property="cameraBarButton" destination="J3n-PD-fYP" id="z9H-EQ-KZL"/>
+                        <outlet property="myLocationBarButton" destination="MU2-vD-N2s" id="bhL-po-Ugj"/>
                         <segue destination="yoM-cs-BEf" kind="show" identifier="CamerasViewController" id="E22-A6-z9N"/>
                         <segue destination="0hD-sb-OuA" kind="show" identifier="VesselDetailsViewController" id="brb-bs-5Z4"/>
                         <segue destination="4Ar-aO-kt9" kind="popoverPresentation" identifier="GoToViewController" popoverAnchorBarButtonItem="qca-3e-dOV" id="fHQ-Am-pvX">
@@ -242,6 +251,7 @@
                                 <items>
                                     <navigationItem title="Go To Location" id="y0F-kw-hFy">
                                         <barButtonItem key="rightBarButtonItem" title="Close" id="5l5-SG-myY">
+                                            <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="closeAction:" destination="4Ar-aO-kt9" id="q6D-MQ-4eA"/>
                                             </connections>
@@ -1018,9 +1028,9 @@
     </scenes>
     <resources>
         <image name="icAlertTab" width="32" height="32"/>
-        <image name="icCamera" width="24" height="24"/>
+        <image name="icCamera" width="48" height="48"/>
         <image name="icCompassTab" width="32" height="32"/>
         <image name="icLocation" width="24" height="24"/>
-        <image name="icMyLocation" width="24" height="24"/>
+        <image name="icMyLocation" width="32" height="32"/>
     </resources>
 </document>

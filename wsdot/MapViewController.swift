@@ -34,6 +34,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
         
         let mapView = GMSMapView.mapWithFrame(CGRect.zero, camera: GMSCameraPosition.cameraWithLatitude(lat, longitude: lon, zoom: zoom))
         
+        mapView.trafficEnabled = true
+        
         mapView.delegate = mapDelegate
         
         view = mapView
@@ -56,6 +58,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
         locationManager.requestWhenInUseAuthorization()
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        locationManager.stopUpdatingLocation()
+    }
+    
     func goToUsersLocation(){
         if let mapView = view as? GMSMapView{
             if let location = locationManager.location?.coordinate {
@@ -70,6 +76,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
             locationManager.startUpdatingLocation()
             if let mapView = view as? GMSMapView{
                 mapView.myLocationEnabled = true
+            }
+        }
+        if status == .Denied {
+            if let mapView = view as? GMSMapView{
+                mapView.myLocationEnabled = false
             }
         }
     }

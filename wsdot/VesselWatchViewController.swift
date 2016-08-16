@@ -26,6 +26,14 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     
     private let cameraIconImage = UIImage(named: "icMapCamera")
     
+    private let cameraBarButtonImage = UIImage(named: "icCamera")
+    private let cameraHighlightBarButtonImage = UIImage(named: "icCameraHighlight")
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    @IBOutlet weak var myLocationBarButton: UIBarButtonItem!
+    @IBOutlet weak var cameraBarButton: UIBarButtonItem!
+    
     @IBOutlet weak var bannerView: GADBannerView!
     
     override func viewDidLoad() {
@@ -35,6 +43,10 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         // Set defualt value for camera display if there is none
         if (NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.vesselCameras) == nil){
             NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.vesselCameras)
+        }
+        
+        if (NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.vesselCameras) == "on"){
+            cameraBarButton.image = cameraHighlightBarButtonImage
         }
         
         timer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: #selector(VesselWatchViewController.vesselUpdateTask(_:)), userInfo: nil, repeats: true)
@@ -51,7 +63,6 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     }
     
     @IBAction func goToLocation(sender: UIBarButtonItem) {
-        
         performSegueWithIdentifier(SegueGoToPopover, sender: self)
     }
     
@@ -109,9 +120,11 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         if let camerasVisible = camerasPref {
             if (camerasVisible == "on") {
                 NSUserDefaults.standardUserDefaults().setObject("off", forKey: UserDefaultsKeys.vesselCameras)
+                sender.image = cameraBarButtonImage
                 removeCameras()
                 
             } else {
+                sender.image = cameraHighlightBarButtonImage
                 NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.vesselCameras)
                 drawCameras()
             }
@@ -124,19 +137,23 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         }
     }
     
-    func setupCameras(force: Bool) {
+    func fetchCameras(force: Bool, serviceGroup: dispatch_group_t) {
+        dispatch_group_enter(serviceGroup)
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {[weak self] in
             CamerasStore.updateCameras(force, completion: { error in
                 if (error == nil){
                     dispatch_async(dispatch_get_main_queue()) {[weak self] in
                         if let selfValue = self{
+                            dispatch_group_leave(serviceGroup)
                             selfValue.loadCameraMarkers()
                             selfValue.drawCameras()
+                            
                         }
                     }
                 }else{
                     dispatch_async(dispatch_get_main_queue()) { [weak self] in
                         if let selfValue = self{
+                            dispatch_group_leave(serviceGroup)
                             selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                         }
                     }
@@ -149,7 +166,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         
         removeCameras()
         terminalCameraMarkers.removeAll()
-
+        
         for camera in CamerasStore.getCamerasByRoadName("Ferries"){
             let cameraLocation = CLLocationCoordinate2D(latitude: camera.latitude, longitude: camera.longitude)
             let marker = GMSMarker(position: cameraLocation)
@@ -182,12 +199,19 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         }
     }
     
-    func setupVessels(){
+    func fetchVessels(serviceGroup: dispatch_group_t?){
+        
+        if let group = serviceGroup{
+            dispatch_group_enter(group)
+        }
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) { [weak self] in
             VesselWatchStore.getVessels({ data, error in
                 if let validData = data {
                     dispatch_async(dispatch_get_main_queue()) { [weak self] in
                         if let selfValue = self{
+                            if let group = serviceGroup{
+                                dispatch_group_leave(group)
+                            }
                             selfValue.loadVesselMarkers(validData)
                             selfValue.drawVessels()
                         }
@@ -195,6 +219,9 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
                 } else {
                     dispatch_async(dispatch_get_main_queue()) { [weak self] in
                         if let selfValue = self{
+                            if let group = serviceGroup{
+                                dispatch_group_leave(group)
+                            }
                             selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                             
                         }
@@ -204,7 +231,6 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
             })
         }
     }
-    
     
     
     func loadVesselMarkers(vesselItems: [VesselItem]){
@@ -240,13 +266,21 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     }
     
     func vesselUpdateTask(timer:NSTimer) {
-        setupVessels()
+        fetchVessels(nil)
     }
     
     // MARK: MapSuperViewController protocol method
     func drawOverlays(){
-        setupCameras(false)
-        setupVessels()
+        activityIndicator.startAnimating()
+        let serviceGroup = dispatch_group_create();
+        
+        fetchCameras(false, serviceGroup: serviceGroup)
+        fetchVessels(serviceGroup)
+        
+        dispatch_group_notify(serviceGroup, dispatch_get_main_queue()) {
+            self.activityIndicator.stopAnimating()
+            self.activityIndicator.hidden = true
+        }
     }
     
     // MARK: GMSMapViewDelegate

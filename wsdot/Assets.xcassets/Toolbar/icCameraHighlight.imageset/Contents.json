@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "mylocation.png",
+      "filename" : "video-camera-2-32.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "mylocation2x.png",
+      "filename" : "video-camera-64.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "mylocation3x.png",
+      "filename" : "video-camera-96.png",
       "scale" : "3x"
     }
   ],
