@@ -14,6 +14,7 @@ import GoogleMobileAds
 class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapViewDelegate{
     
     let SegueCamerasViewController = "CamerasViewController"
+    let SegueVesselDetailsViewController = "VesselDetailsViewController"
 
     private var timer: NSTimer?
 
@@ -64,10 +65,6 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
                 drawCameras()
             }
         }
-    }
-    
-    @IBAction func refreshAction(sender: UIBarButtonItem) {
-        setupCameras(true)
     }
     
     func removeCameras(){
@@ -183,7 +180,6 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         }
     }
 
-
     func drawVessels(){
         if let mapView = embeddedMapViewController.view as? GMSMapView{
             for vesselMarker in vesselMarkers{
@@ -196,7 +192,6 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         setupVessels()
     }
     
-    
     // MARK: MapSuperViewController protocol method
     func drawOverlays(){
         setupCameras(false)
@@ -205,7 +200,12 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     
     // MARK: GMSMapViewDelegate
     func mapView(mapView: GMSMapView, didTapMarker marker: GMSMarker) -> Bool {
-        performSegueWithIdentifier(SegueCamerasViewController, sender: marker)
+    
+        if marker.snippet == "camera" {
+            performSegueWithIdentifier(SegueCamerasViewController, sender: marker)
+        }else if marker.snippet == "vessel" {
+            performSegueWithIdentifier(SegueVesselDetailsViewController, sender: marker)
+        }
         return true
     }
     
@@ -224,10 +224,17 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
             vc.mapDelegate = self
             self.embeddedMapViewController = vc
         }
+        
         if segue.identifier == SegueCamerasViewController {
-                let cameraItem = ((sender as! GMSMarker).userData as! CameraItem)
-                let destinationViewController = segue.destinationViewController as! CameraViewController
-                destinationViewController.cameraItem = cameraItem
+            let cameraItem = ((sender as! GMSMarker).userData as! CameraItem)
+            let destinationViewController = segue.destinationViewController as! CameraViewController
+            destinationViewController.cameraItem = cameraItem
+        }
+        
+        if segue.identifier == SegueVesselDetailsViewController {
+            let vesselItem = ((sender as! GMSMarker).userData as! VesselItem)
+            let destinationViewController = segue.destinationViewController as! VesselDetailsViewController
+            destinationViewController.vesselItem = vesselItem
         }
     }
 }
