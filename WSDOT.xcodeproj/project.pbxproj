@@ -15,6 +15,7 @@
 		9A0616B51D63672A00126520 /* VesselItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616B41D63672A00126520 /* VesselItem.swift */; };
 		9A0616B71D63674500126520 /* VesselWatchStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616B61D63674500126520 /* VesselWatchStore.swift */; };
 		9A0616B91D63867A00126520 /* VesselDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616B81D63867A00126520 /* VesselDetailsViewController.swift */; };
+		9A0616BB1D63BB9700126520 /* VesselWatchGoToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616BA1D63BB9700126520 /* VesselWatchGoToViewController.swift */; };
 		9A07192C1D410FD5007BB4C5 /* RouteAlertsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A07192B1D410FD5007BB4C5 /* RouteAlertsViewController.swift */; };
 		9A07192E1D4110BC007BB4C5 /* RouteTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A07192D1D4110BC007BB4C5 /* RouteTabBarViewController.swift */; };
 		9A0719331D42732A007BB4C5 /* INDLinkLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0719321D42732A007BB4C5 /* INDLinkLabel.swift */; };
@@ -75,6 +76,7 @@
 		9A0616B41D63672A00126520 /* VesselItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VesselItem.swift; sourceTree = "<group>"; };
 		9A0616B61D63674500126520 /* VesselWatchStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VesselWatchStore.swift; sourceTree = "<group>"; };
 		9A0616B81D63867A00126520 /* VesselDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VesselDetailsViewController.swift; sourceTree = "<group>"; };
+		9A0616BA1D63BB9700126520 /* VesselWatchGoToViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VesselWatchGoToViewController.swift; sourceTree = "<group>"; };
 		9A07192B1D410FD5007BB4C5 /* RouteAlertsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteAlertsViewController.swift; sourceTree = "<group>"; };
 		9A07192D1D4110BC007BB4C5 /* RouteTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTabBarViewController.swift; sourceTree = "<group>"; };
 		9A0719321D42732A007BB4C5 /* INDLinkLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = INDLinkLabel.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			children = (
 				9A0616791D62285A00126520 /* VesselWatchViewController.swift */,
 				9A0616B81D63867A00126520 /* VesselDetailsViewController.swift */,
+				9A0616BA1D63BB9700126520 /* VesselWatchGoToViewController.swift */,
 			);
 			name = VesselWatch;
 			sourceTree = "<group>";
@@ -594,6 +597,7 @@
 				9A0616811D6265FB00126520 /* UserDefaultsKeys.swift in Sources */,
 				9A1F5FA71D47E27200DA5F99 /* SailingSpacesItem.swift in Sources */,
 				9A06167A1D62285A00126520 /* VesselWatchViewController.swift in Sources */,
+				9A0616BB1D63BB9700126520 /* VesselWatchGoToViewController.swift in Sources */,
 				9AD32DFD1D23172C000AEC28 /* AppDelegate.swift in Sources */,
 				9A0616B51D63672A00126520 /* VesselItem.swift in Sources */,
 				9A2F4A6E1D539C1600911AF5 /* CachesRealmDataModel.swift in Sources */,

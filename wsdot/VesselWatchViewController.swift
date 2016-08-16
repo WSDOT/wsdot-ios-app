@@ -15,6 +15,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     
     let SegueCamerasViewController = "CamerasViewController"
     let SegueVesselDetailsViewController = "VesselDetailsViewController"
+    let SegueGoToPopover = "GoToViewController"
 
     private var timer: NSTimer?
 
@@ -47,6 +48,56 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     
     override func viewWillDisappear(animated: Bool) {
         timer?.invalidate()
+    }
+    
+    @IBAction func goToLocation(sender: UIBarButtonItem) {
+        
+        performSegueWithIdentifier(SegueGoToPopover, sender: self)
+    }
+    
+    func goTo(index: Int){
+        if let mapView = embeddedMapViewController.view as? GMSMapView{
+            switch(index){
+            case 0:
+                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 48.535868, longitude: -123.013808))
+                mapView.animateToZoom(10)
+                break
+            case 1:
+                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 47.803096, longitude: -122.438718))
+                mapView.animateToZoom(12)
+                break
+            case 2:
+                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 47.513625, longitude: -122.450820))
+                mapView.animateToZoom(12)
+                break
+            case 3:
+                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 47.963857, longitude: -122.327721))
+                mapView.animateToZoom(13)
+                break
+            case 4:
+                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 47.319040, longitude: -122.510890))
+                mapView.animateToZoom(13)
+                break
+            case 5:
+                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 48.135562, longitude: -122.714449))
+                mapView.animateToZoom(12)
+                break
+            case 6:
+                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 48.557233, longitude: -122.897078))
+                mapView.animateToZoom(12)
+                break
+            case 7:
+                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 47.565125, longitude: -122.480508))
+                mapView.animateToZoom(11)
+                break
+            case 8:
+                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 47.600325, longitude: -122.437249))
+                mapView.animateToZoom(11)
+                break
+            default:
+                break
+            }
+        }
     }
     
     @IBAction func myLocationButtonPressed(sender: UIBarButtonItem) {
@@ -235,6 +286,11 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
             let vesselItem = ((sender as! GMSMarker).userData as! VesselItem)
             let destinationViewController = segue.destinationViewController as! VesselDetailsViewController
             destinationViewController.vesselItem = vesselItem
+        }
+        
+        if segue.identifier == SegueGoToPopover {
+            let destinationViewController = segue.destinationViewController as! GoToViewController
+            destinationViewController.parent = self
         }
     }
 }
