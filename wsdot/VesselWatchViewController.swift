@@ -25,6 +25,11 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         super.viewDidLoad()
         title = "Vessel Watch"
         
+        // Set defualt value for camera display if there is none
+        if (NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.vesselCameras) == nil){
+            NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.vesselCameras)
+        }
+        
         // Ad Banner
         bannerView.adUnitID = ApiKeys.wsdot_ad_string
         bannerView.rootViewController = self
@@ -49,6 +54,53 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         }
     }
     
+    func refreshAction(refreshControl: UIRefreshControl) {
+        setup(true)
+    }
+    
+    func setup(force: Bool) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {[weak self] in
+            CamerasStore.updateCameras(force, completion: { error in
+                if (error == nil){
+                    dispatch_async(dispatch_get_main_queue()) {[weak self] in
+                        if let selfValue = self{
+                            selfValue.setupCameraMarkers()
+                            selfValue.drawCameras()
+                        }
+                    }
+                }else{
+                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                        if let selfValue = self{
+                            selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                        }
+                    }
+                }
+            })
+        }
+    }
+    
+    func drawCameras(){
+        if let mapView = embeddedMapViewController.view as? GMSMapView{
+            let camerasPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.vesselCameras)
+            
+            if (camerasPref! == "on") {
+                for cameraMaker in terminalCameraMarkers{
+                    
+                    let camera = cameraMaker.userData as! CameraItem
+                    
+                    let cameraLocation = CLLocationCoordinate2D(latitude: camera.latitude, longitude: camera.longitude)
+                    
+                    let bounds = GMSCoordinateBounds(coordinate: mapView.projection.visibleRegion().farLeft, coordinate: mapView.projection.visibleRegion().nearRight)
+                    if (bounds.containsCoordinate(cameraLocation)){
+                        cameraMaker.map = mapView
+                    } else {
+                        cameraMaker.map = nil
+                    }
+                }
+            }
+        }
+    }
+    
     func hideCameras(){
         for camera in terminalCameraMarkers{
             camera.map = nil
@@ -63,34 +115,25 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         }
     }
     
-    // MapSuperViewController protocol method
-    func drawOverlays(){
-        drawCameras()
-    }
+
     
-    func drawCameras(){
+    func setupCameraMarkers(){
         
         terminalCameraMarkers.removeAll()
-        
-        // Set defualt value for camera display if there is none
-        if (NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.vesselCameras) == nil){
-            NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.vesselCameras)
+
+        for camera in CamerasStore.getCamerasByRoadName("Ferries"){
+            let cameraLocation = CLLocationCoordinate2D(latitude: camera.latitude, longitude: camera.longitude)
+            let marker = GMSMarker(position: cameraLocation)
+            marker.icon = cameraIconImage
+            marker.userData = camera
+            terminalCameraMarkers.insert(marker)
         }
         
-        let camerasPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.vesselCameras)
-        
-        if let mapView = embeddedMapViewController.view as? GMSMapView{
-            for camera in CamerasStore.getCamerasByRoadName("Ferries"){
-                let cameraLocation = CLLocationCoordinate2D(latitude: camera.latitude, longitude: camera.longitude)
-                let marker = GMSMarker(position: cameraLocation)
-                marker.icon = cameraIconImage
-                marker.userData = camera
-                if (camerasPref! == "on") {
-                    marker.map = mapView
-                }
-                terminalCameraMarkers.insert(marker)
-            }
-        }
+    }
+    
+    // MARK: MapSuperViewController protocol method
+    func drawOverlays(){
+        setup(false)
     }
     
     // MARK: GMSMapViewDelegate
@@ -99,7 +142,12 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         return true
     }
     
+    func mapView(mapView: GMSMapView, idleAtCameraPosition position: GMSCameraPosition) {
+        drawCameras()
+    }
     
+    
+    // MARK: Naviagtion 
     // Get refrence to child VC
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let vc = segue.destinationViewController as? MapViewController
