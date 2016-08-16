@@ -9,6 +9,8 @@
 import Foundation
 class UserDefaultsKeys {
     static let vesselCameras = "VesselWatchCamerasPref"
-
+    static let mapLat = "MapLatitudeBound"
+    static let mapLon = "MapLongitudeBound"
+    static let mapZoom = "MapZoom"
 
 }

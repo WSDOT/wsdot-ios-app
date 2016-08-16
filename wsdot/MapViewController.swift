@@ -17,7 +17,22 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
     let locationManager = CLLocationManager()
     
     override func loadView() {
-        let mapView = GMSMapView.mapWithFrame(CGRect.zero, camera: GMSCameraPosition.cameraWithLatitude(47.5990, longitude: -122.3350, zoom: 12.0))
+        
+        var lat = NSUserDefaults.standardUserDefaults().doubleForKey(UserDefaultsKeys.mapLat)
+        var lon = NSUserDefaults.standardUserDefaults().doubleForKey(UserDefaultsKeys.mapLon)
+        var zoom = NSUserDefaults.standardUserDefaults().floatForKey(UserDefaultsKeys.mapZoom)
+        
+        if lat == 0 {
+            lat = 47.5990
+        }
+        if lon == 0 {
+            lon = -122.3350
+        }
+        if zoom == 0 {
+            zoom = 12
+        }
+        
+        let mapView = GMSMapView.mapWithFrame(CGRect.zero, camera: GMSCameraPosition.cameraWithLatitude(lat, longitude: lon, zoom: zoom))
         
         mapView.delegate = mapDelegate
         
@@ -28,8 +43,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
         }
     }
     
-    override func viewDidLoad() {
+    override func viewWillDisappear(animated: Bool) {
+        if let mapView = view as? GMSMapView{
+            NSUserDefaults.standardUserDefaults().setObject(mapView.camera.target.latitude, forKey: UserDefaultsKeys.mapLat)
+            NSUserDefaults.standardUserDefaults().setObject(mapView.camera.target.longitude, forKey: UserDefaultsKeys.mapLon)
+            NSUserDefaults.standardUserDefaults().setObject(mapView.camera.zoom, forKey: UserDefaultsKeys.mapZoom)
+        }
+    }
     
+    override func viewDidLoad() {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
     }
@@ -46,20 +68,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedWhenInUse {
             locationManager.startUpdatingLocation()
-            
             if let mapView = view as? GMSMapView{
                 mapView.myLocationEnabled = true
             }
         }
-    }
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
-            if let mapView = view as? GMSMapView{
-                mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 12, bearing: 0, viewingAngle: 0)
-                locationManager.stopUpdatingLocation()
-            }
-        }
-        
     }
 }
