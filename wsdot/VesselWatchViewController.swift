@@ -54,7 +54,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         }
     }
     
-    func refreshAction(refreshControl: UIRefreshControl) {
+    @IBAction func refreshAction(sender: UIBarButtonItem) {
         setup(true)
     }
     

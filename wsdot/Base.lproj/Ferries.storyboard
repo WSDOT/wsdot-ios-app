@@ -117,7 +117,7 @@
             </objects>
             <point key="canvasLocation" x="1280" y="127"/>
         </scene>
-        <!--Vessel Watch View Controller-->
+        <!--Title-->
         <scene sceneID="juw-fx-em7">
             <objects>
                 <viewController id="fa2-BD-KKh" customClass="VesselWatchViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
@@ -182,6 +182,14 @@
                             <constraint firstItem="IF4-Y9-eAy" firstAttribute="leading" secondItem="2hI-3V-jEb" secondAttribute="leading" id="y4x-qv-rcq"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="Qnu-LN-47K">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="wqa-jN-ZJV">
+                            <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="refreshAction:" destination="fa2-BD-KKh" id="Q8t-bP-c97"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="bannerView" destination="ERf-XA-ifQ" id="n4W-YV-5cx"/>
                         <segue destination="yoM-cs-BEf" kind="show" identifier="CamerasViewController" id="E22-A6-z9N"/>
