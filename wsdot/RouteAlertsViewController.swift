@@ -50,8 +50,6 @@ class RouteAlertsViewController: UIViewController, UITableViewDataSource, UITabl
             options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
             documentAttributes: nil)
         
-        print(attrStr)
-        
         cell.linkLabel.attributedText = attrStr
         cell.linkLabel.delegate = self
         
