@@ -6,38 +6,6 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Home View Controller-->
-        <scene sceneID="eXd-Ti-wbw">
-            <objects>
-                <tableViewController id="a7d-3w-Qvg" customClass="HomeViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Lw5-xt-oBK">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HomeCell" id="gK8-kC-SpJ">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gK8-kC-SpJ" id="qxF-q2-Il4">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="a7d-3w-Qvg" id="b31-zc-QZV"/>
-                            <outlet property="delegate" destination="a7d-3w-Qvg" id="bjd-Uj-Kk2"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="z93-ra-WJf"/>
-                    <connections>
-                        <segue destination="l6k-sb-rpG" kind="show" identifier="FerriesHomeViewController" id="EiU-jO-osv"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Pbp-jm-XQW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1663" y="612"/>
-        </scene>
         <!--Favorites-->
         <scene sceneID="1cr-QC-fuh">
             <objects>
@@ -183,6 +151,54 @@
             </objects>
             <point key="canvasLocation" x="2142.5" y="1088"/>
         </scene>
+        <!--Home View Controller-->
+        <scene sceneID="515-et-fK2">
+            <objects>
+                <viewController id="4jS-98-Vld" customClass="HomeViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Z0A-cM-fqA"/>
+                        <viewControllerLayoutGuide type="bottom" id="m3A-Kw-zgF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bpP-bq-5j3">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rlc-FT-UvG">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HomeCell" id="b5V-E4-If1">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b5V-E4-If1" id="NPw-n3-ahK">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="4jS-98-Vld" id="NgC-yW-nWE"/>
+                                    <outlet property="delegate" destination="4jS-98-Vld" id="Nf7-JC-OGL"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rlc-FT-UvG" firstAttribute="bottom" secondItem="m3A-Kw-zgF" secondAttribute="top" id="PMd-jZ-Szv"/>
+                            <constraint firstAttribute="trailing" secondItem="rlc-FT-UvG" secondAttribute="trailing" id="PdY-Sg-J9Y"/>
+                            <constraint firstItem="rlc-FT-UvG" firstAttribute="leading" secondItem="bpP-bq-5j3" secondAttribute="leading" id="lYQ-xB-7Sh"/>
+                            <constraint firstItem="rlc-FT-UvG" firstAttribute="top" secondItem="Z0A-cM-fqA" secondAttribute="bottom" id="vnu-HK-dFb"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Xpe-Fb-HQB"/>
+                    <connections>
+                        <segue destination="l6k-sb-rpG" kind="show" identifier="FerriesHomeViewController" id="5xA-LT-yKr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KTF-7j-ojf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1671" y="612"/>
+        </scene>
         <!--Ferries-->
         <scene sceneID="Cxa-dc-UyN">
             <objects>
@@ -228,7 +244,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="a7d-3w-Qvg" kind="relationship" relationship="rootViewController" id="Ad5-wM-Mrd"/>
+                        <segue destination="4jS-98-Vld" kind="relationship" relationship="rootViewController" id="fj3-jg-CpA"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rKN-SL-fBV" userLabel="First Responder" sceneMemberID="firstResponder"/>
