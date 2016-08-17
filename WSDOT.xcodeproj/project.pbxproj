@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		925D2EDCFB8CE8521EA1BE65 /* Pods_WSDOT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4874A45B23E5DF3AD6E8C108 /* Pods_WSDOT.framework */; };
+		9A06167A1D62285A00126520 /* VesselWatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616791D62285A00126520 /* VesselWatchViewController.swift */; };
+		9A06167C1D622AE800126520 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A06167B1D622AE800126520 /* MapViewController.swift */; };
+		9A06167F1D62602500126520 /* MapMarkerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A06167E1D62602500126520 /* MapMarkerDelegate.swift */; };
+		9A0616811D6265FB00126520 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616801D6265FB00126520 /* UserDefaultsKeys.swift */; };
+		9A0616B51D63672A00126520 /* VesselItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616B41D63672A00126520 /* VesselItem.swift */; };
+		9A0616B71D63674500126520 /* VesselWatchStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616B61D63674500126520 /* VesselWatchStore.swift */; };
+		9A0616B91D63867A00126520 /* VesselDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616B81D63867A00126520 /* VesselDetailsViewController.swift */; };
+		9A0616BB1D63BB9700126520 /* VesselWatchGoToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616BA1D63BB9700126520 /* VesselWatchGoToViewController.swift */; };
 		9A07192C1D410FD5007BB4C5 /* RouteAlertsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A07192B1D410FD5007BB4C5 /* RouteAlertsViewController.swift */; };
 		9A07192E1D4110BC007BB4C5 /* RouteTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A07192D1D4110BC007BB4C5 /* RouteTabBarViewController.swift */; };
 		9A0719331D42732A007BB4C5 /* INDLinkLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0719321D42732A007BB4C5 /* INDLinkLabel.swift */; };
@@ -61,6 +69,14 @@
 
 /* Begin PBXFileReference section */
 		4874A45B23E5DF3AD6E8C108 /* Pods_WSDOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WSDOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A0616791D62285A00126520 /* VesselWatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VesselWatchViewController.swift; sourceTree = "<group>"; };
+		9A06167B1D622AE800126520 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		9A06167E1D62602500126520 /* MapMarkerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapMarkerDelegate.swift; sourceTree = "<group>"; };
+		9A0616801D6265FB00126520 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
+		9A0616B41D63672A00126520 /* VesselItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VesselItem.swift; sourceTree = "<group>"; };
+		9A0616B61D63674500126520 /* VesselWatchStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VesselWatchStore.swift; sourceTree = "<group>"; };
+		9A0616B81D63867A00126520 /* VesselDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VesselDetailsViewController.swift; sourceTree = "<group>"; };
+		9A0616BA1D63BB9700126520 /* VesselWatchGoToViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VesselWatchGoToViewController.swift; sourceTree = "<group>"; };
 		9A07192B1D410FD5007BB4C5 /* RouteAlertsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteAlertsViewController.swift; sourceTree = "<group>"; };
 		9A07192D1D4110BC007BB4C5 /* RouteTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTabBarViewController.swift; sourceTree = "<group>"; };
 		9A0719321D42732A007BB4C5 /* INDLinkLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = INDLinkLabel.swift; sourceTree = "<group>"; };
@@ -135,6 +151,34 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9A0616781D62283F00126520 /* VesselWatch */ = {
+			isa = PBXGroup;
+			children = (
+				9A0616791D62285A00126520 /* VesselWatchViewController.swift */,
+				9A0616B81D63867A00126520 /* VesselDetailsViewController.swift */,
+				9A0616BA1D63BB9700126520 /* VesselWatchGoToViewController.swift */,
+			);
+			name = VesselWatch;
+			sourceTree = "<group>";
+		};
+		9A06167D1D622B8D00126520 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				9A06167B1D622AE800126520 /* MapViewController.swift */,
+				9A06167E1D62602500126520 /* MapMarkerDelegate.swift */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
+		9A0616B31D63671400126520 /* VesselWatch */ = {
+			isa = PBXGroup;
+			children = (
+				9A0616B61D63674500126520 /* VesselWatchStore.swift */,
+				9A0616B41D63672A00126520 /* VesselItem.swift */,
+			);
+			name = VesselWatch;
+			sourceTree = "<group>";
+		};
 		9A0719311D427310007BB4C5 /* CustomLabels */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +226,7 @@
 		9A2F4A661D527BB500911AF5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9A0616B31D63671400126520 /* VesselWatch */,
 				9A2F4A6B1D539BA100911AF5 /* FerrySchedule */,
 				9AE4863F1D495A16007A92E3 /* SailingSpaces */,
 				9AE486421D495A49007A92E3 /* Terminals */,
@@ -220,6 +265,7 @@
 		9A81A57D1D4F8FB90049913A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9A0616781D62283F00126520 /* VesselWatch */,
 				9AD32E291D24233D000AEC28 /* FerriesHomeViewController.swift */,
 				9A0CA8331D465F44009C67B7 /* Departures */,
 				9A0CA8321D465F24009C67B7 /* Sailings */,
@@ -269,6 +315,7 @@
 		9AD32DFB1D23172C000AEC28 /* wsdot */ = {
 			isa = PBXGroup;
 			children = (
+				9A06167D1D622B8D00126520 /* Map */,
 				9AB017771D514606004C228E /* Cameras */,
 				9AD32E051D23172C000AEC28 /* LaunchScreen.storyboard */,
 				9AFEECDB1D3924570078A781 /* Home */,
@@ -318,6 +365,7 @@
 				9A0CA8361D466045009C67B7 /* TimeUtils.swift */,
 				9A1F5FA41D47DCB900DA5F99 /* ApiKeys.swift */,
 				9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */,
+				9A0616801D6265FB00126520 /* UserDefaultsKeys.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -546,11 +594,16 @@
 				9AFEECE11D3925400078A781 /* CachesStore.swift in Sources */,
 				9A2F4A5D1D52747900911AF5 /* FerryScheduleRealmDataModel.swift in Sources */,
 				9A07192C1D410FD5007BB4C5 /* RouteAlertsViewController.swift in Sources */,
+				9A0616811D6265FB00126520 /* UserDefaultsKeys.swift in Sources */,
 				9A1F5FA71D47E27200DA5F99 /* SailingSpacesItem.swift in Sources */,
+				9A06167A1D62285A00126520 /* VesselWatchViewController.swift in Sources */,
+				9A0616BB1D63BB9700126520 /* VesselWatchGoToViewController.swift in Sources */,
 				9AD32DFD1D23172C000AEC28 /* AppDelegate.swift in Sources */,
+				9A0616B51D63672A00126520 /* VesselItem.swift in Sources */,
 				9A2F4A6E1D539C1600911AF5 /* CachesRealmDataModel.swift in Sources */,
 				9A21E1CC1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift in Sources */,
 				9A1F5F9F1D47C2E800DA5F99 /* DeparturesCustomCell.swift in Sources */,
+				9A0616B91D63867A00126520 /* VesselDetailsViewController.swift in Sources */,
 				9A2F4A681D528A5100911AF5 /* FerryRealmStore.swift in Sources */,
 				9A1F5FA51D47DCB900DA5F99 /* ApiKeys.swift in Sources */,
 				9A81A57C1D4BB41B0049913A /* LatLonUtils.swift in Sources */,
@@ -563,6 +616,7 @@
 				9A2F4A701D53AA5C00911AF5 /* CameraRealmStore.swift in Sources */,
 				9AE4863E1D49594D007A92E3 /* FerriesTerminalMap.swift in Sources */,
 				9AD32E2A1D24233D000AEC28 /* FerriesHomeViewController.swift in Sources */,
+				9A06167F1D62602500126520 /* MapMarkerDelegate.swift in Sources */,
 				9A0CA8371D466045009C67B7 /* TimeUtils.swift in Sources */,
 				9A1F5FA31D47DBB700DA5F99 /* SailingSpacesStore.swift in Sources */,
 				9AD32E221D241AF4000AEC28 /* HomeViewController.swift in Sources */,
@@ -571,9 +625,11 @@
 				9A0CA8311D428EE9009C67B7 /* RouteDeparturesViewController.swift in Sources */,
 				9A1F5FA11D47D3D100DA5F99 /* CameraImageCustomCell.swift in Sources */,
 				9AD32E2C1D242A5A000AEC28 /* RouteSchedulesViewController.swift in Sources */,
+				9A0616B71D63674500126520 /* VesselWatchStore.swift in Sources */,
 				9A0719351D4274B8007BB4C5 /* LinkCell.swift in Sources */,
 				9A81A57A1D4AC5840049913A /* RouteCamerasViewController.swift in Sources */,
 				9A0CA83C1D46AC51009C67B7 /* PickerTextField.swift in Sources */,
+				9A06167C1D622AE800126520 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

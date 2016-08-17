@@ -12,6 +12,7 @@ class FerriesHomeViewController: UITableViewController {
 
     let cellIdentifier = "FerriesHomeCell"
     let SegueRouteSchedulesViewController = "RouteSchedulesViewController"
+    let SegueVesselWatchViewController = "VesselWatchViewController"
     
     var menu_options: [String] = []
 
@@ -45,19 +46,24 @@ class FerriesHomeViewController: UITableViewController {
      
         return cell
     }
-
+    
     // MARK: -
     // MARK: Table View Delegate Methods
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // Perform Segue
         switch (indexPath.row) {
-            case 0:
-                performSegueWithIdentifier(SegueRouteSchedulesViewController, sender: self)
-                tableView.deselectRowAtIndexPath(indexPath, animated: true)
-            case 1:
-                UIApplication.sharedApplication().openURL(NSURL(string: "https://secureapps.wsdot.wa.gov/Ferries/Reservations/Vehicle/default.aspx")!)
-            default:
-                break
+        case 0:
+            performSegueWithIdentifier(SegueRouteSchedulesViewController, sender: self)
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            break
+        case 1:
+            UIApplication.sharedApplication().openURL(NSURL(string: "https://secureapps.wsdot.wa.gov/Ferries/Reservations/Vehicle/default.aspx")!)
+            break
+        case 2:
+            performSegueWithIdentifier(SegueVesselWatchViewController, sender: self)
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        default:
+            break
         }
     }
 }
