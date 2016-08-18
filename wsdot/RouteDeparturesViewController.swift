@@ -28,8 +28,7 @@ class RouteDeparturesViewController: UIViewController {
         
         title = currentSailing.aTerminalName + " to " + currentSailing.bTterminalName
         
-        self.timesContainerView.alpha = 1
-        self.camerasContainerView.alpha = 0
+        self.camerasContainerView.hidden = true
         
         // Ad Banner
         bannerView.adUnitID = ApiKeys.wsdot_ad_string
@@ -39,8 +38,7 @@ class RouteDeparturesViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        adBackGroundView.alpha = 0
-        bannerView.alpha = 1
+        adBackGroundView.hidden = true
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -72,13 +70,13 @@ class RouteDeparturesViewController: UIViewController {
     @IBAction func indexChanged(sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             UIView.animateWithDuration(0.3, animations: {
-                self.timesContainerView.alpha = 1
-                self.camerasContainerView.alpha = 0
+                self.timesContainerView.hidden = false
+                self.camerasContainerView.hidden = true
             })
         } else {
             UIView.animateWithDuration(0.3, animations: {
-                self.timesContainerView.alpha = 0
-                self.camerasContainerView.alpha = 1
+                self.timesContainerView.hidden = true
+                self.camerasContainerView.hidden = false
             })
         }
     }

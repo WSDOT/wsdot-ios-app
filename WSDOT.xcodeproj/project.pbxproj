@@ -17,6 +17,8 @@
 		9A0616B91D63867A00126520 /* VesselDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616B81D63867A00126520 /* VesselDetailsViewController.swift */; };
 		9A0616BB1D63BB9700126520 /* VesselWatchGoToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616BA1D63BB9700126520 /* VesselWatchGoToViewController.swift */; };
 		9A0616C21D651B1300126520 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616C11D651B1300126520 /* InfoViewController.swift */; };
+		9A0616C81D6601BD00126520 /* TollRates.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A0616C71D6601BD00126520 /* TollRates.storyboard */; };
+		9A0616CA1D66021B00126520 /* TollRatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616C91D66021B00126520 /* TollRatesViewController.swift */; };
 		9A07192C1D410FD5007BB4C5 /* RouteAlertsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A07192B1D410FD5007BB4C5 /* RouteAlertsViewController.swift */; };
 		9A07192E1D4110BC007BB4C5 /* RouteTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A07192D1D4110BC007BB4C5 /* RouteTabBarViewController.swift */; };
 		9A0719331D42732A007BB4C5 /* INDLinkLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0719321D42732A007BB4C5 /* INDLinkLabel.swift */; };
@@ -79,6 +81,8 @@
 		9A0616B81D63867A00126520 /* VesselDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VesselDetailsViewController.swift; sourceTree = "<group>"; };
 		9A0616BA1D63BB9700126520 /* VesselWatchGoToViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VesselWatchGoToViewController.swift; sourceTree = "<group>"; };
 		9A0616C11D651B1300126520 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		9A0616C71D6601BD00126520 /* TollRates.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TollRates.storyboard; sourceTree = "<group>"; };
+		9A0616C91D66021B00126520 /* TollRatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TollRatesViewController.swift; sourceTree = "<group>"; };
 		9A07192B1D410FD5007BB4C5 /* RouteAlertsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteAlertsViewController.swift; sourceTree = "<group>"; };
 		9A07192D1D4110BC007BB4C5 /* RouteTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTabBarViewController.swift; sourceTree = "<group>"; };
 		9A0719321D42732A007BB4C5 /* INDLinkLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = INDLinkLabel.swift; sourceTree = "<group>"; };
@@ -179,6 +183,39 @@
 				9A0616B41D63672A00126520 /* VesselItem.swift */,
 			);
 			name = VesselWatch;
+			sourceTree = "<group>";
+		};
+		9A0616C31D66018100126520 /* TollRates */ = {
+			isa = PBXGroup;
+			children = (
+				9A0616C61D6601A000126520 /* Controllers */,
+				9A0616C51D66019900126520 /* Views */,
+				9A0616C41D66018A00126520 /* Models */,
+			);
+			name = TollRates;
+			sourceTree = "<group>";
+		};
+		9A0616C41D66018A00126520 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		9A0616C51D66019900126520 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9A0616C71D6601BD00126520 /* TollRates.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		9A0616C61D6601A000126520 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9A0616C91D66021B00126520 /* TollRatesViewController.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		9A0719311D427310007BB4C5 /* CustomLabels */ = {
@@ -317,6 +354,7 @@
 		9AD32DFB1D23172C000AEC28 /* wsdot */ = {
 			isa = PBXGroup;
 			children = (
+				9A0616C31D66018100126520 /* TollRates */,
 				9A06167D1D622B8D00126520 /* Map */,
 				9AB017771D514606004C228E /* Cameras */,
 				9AD32E051D23172C000AEC28 /* LaunchScreen.storyboard */,
@@ -528,6 +566,7 @@
 				9AD32E041D23172C000AEC28 /* Assets.xcassets in Resources */,
 				9AD32E021D23172C000AEC28 /* Main.storyboard in Resources */,
 				9A122B431D5246DB00C176CD /* GoogleService-Info.plist in Resources */,
+				9A0616C81D6601BD00126520 /* TollRates.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,6 +639,7 @@
 				9A0616811D6265FB00126520 /* UserDefaultsKeys.swift in Sources */,
 				9A1F5FA71D47E27200DA5F99 /* SailingSpacesItem.swift in Sources */,
 				9A06167A1D62285A00126520 /* VesselWatchViewController.swift in Sources */,
+				9A0616CA1D66021B00126520 /* TollRatesViewController.swift in Sources */,
 				9A0616BB1D63BB9700126520 /* VesselWatchGoToViewController.swift in Sources */,
 				9AD32DFD1D23172C000AEC28 /* AppDelegate.swift in Sources */,
 				9A0616B51D63672A00126520 /* VesselItem.swift in Sources */,
