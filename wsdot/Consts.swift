@@ -32,5 +32,11 @@ class AlertMessages {
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         return alert
     }
-
+    
+    static func getMailAlert() -> UIAlertController{
+        let alert = UIAlertController(title: "Cannot Compose Message", message: "Please add a mail account", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        return alert
+    }
+    
 }

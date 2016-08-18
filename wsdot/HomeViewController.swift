@@ -10,17 +10,16 @@ import UIKit
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    let TITLE = "Home"
-
     let cellIdentifier = "HomeCell"
     let SegueFerriesHomeViewController = "FerriesHomeViewController"
+    let SegueInfoViewController = "InfoViewController"
     
     var menu_options: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Set Title
-        title = TITLE
+        title = "Home"
         menu_options = ["Traffic Map", "Ferries", "Mountain Passes", "Social Media", "Toll Rates", "Border Waits", "Amtrak Cascades"]
         
         self.tabBarController!.view.backgroundColor = UIColor.whiteColor()
@@ -34,7 +33,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         // Initialize Tab Bar Item
-        tabBarItem = UITabBarItem(title: TITLE, image: UIImage(named: "ic-home"), tag: 0)
+        tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "ic-home"), tag: 0)
+    }
+    @IBAction func infoBarButtonPressed(sender: UIBarButtonItem) {
+        performSegueWithIdentifier(SegueInfoViewController, sender: self)
     }
 
     // MARK: -
