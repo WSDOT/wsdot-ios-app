@@ -8,19 +8,18 @@
 
 import UIKit
 
-class HomeViewController: UITableViewController {
-
-    let TITLE = "Home"
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     let cellIdentifier = "HomeCell"
     let SegueFerriesHomeViewController = "FerriesHomeViewController"
+    let SegueInfoViewController = "InfoViewController"
     
     var menu_options: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Set Title
-        title = TITLE
+        title = "Home"
         menu_options = ["Traffic Map", "Ferries", "Mountain Passes", "Social Media", "Toll Rates", "Border Waits", "Amtrak Cascades"]
         
         self.tabBarController!.view.backgroundColor = UIColor.whiteColor()
@@ -34,20 +33,23 @@ class HomeViewController: UITableViewController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         // Initialize Tab Bar Item
-        tabBarItem = UITabBarItem(title: TITLE, image: UIImage(named: "ic-home"), tag: 0)
+        tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "ic-home"), tag: 0)
+    }
+    @IBAction func infoBarButtonPressed(sender: UIBarButtonItem) {
+        performSegueWithIdentifier(SegueInfoViewController, sender: self)
     }
 
     // MARK: -
     // MARK: Table View Data Source Methods
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menu_options.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
         
         // Configure Cell
@@ -58,7 +60,7 @@ class HomeViewController: UITableViewController {
 
     // MARK: -
     // MARK: Table View Delegate Methods
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print(menu_options[indexPath.row])
         // Perform Segue
         switch (indexPath.row) {

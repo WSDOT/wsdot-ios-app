@@ -20,7 +20,7 @@ class FerriesHomeViewController: UITableViewController {
         super.viewDidLoad()
         // Set Title
         title = "Ferries"
-        menu_options = ["Route Schedules", "Vehicle Reservations", "VesselWatch"]
+        menu_options = ["Route Schedules", "Vehicle Reservations Website", "VesselWatch"]
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,16 +54,15 @@ class FerriesHomeViewController: UITableViewController {
         switch (indexPath.row) {
         case 0:
             performSegueWithIdentifier(SegueRouteSchedulesViewController, sender: self)
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
             break
         case 1:
             UIApplication.sharedApplication().openURL(NSURL(string: "https://secureapps.wsdot.wa.gov/Ferries/Reservations/Vehicle/default.aspx")!)
             break
         case 2:
             performSegueWithIdentifier(SegueVesselWatchViewController, sender: self)
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
         default:
             break
         }
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 }
