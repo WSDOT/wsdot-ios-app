@@ -3,9 +3,10 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
-        <!--Traffic Map View Controller-->
+        <!--Title-->
         <scene sceneID="arI-z3-ZGl">
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="1Nk-0b-wXD" customClass="TrafficMapViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
@@ -14,32 +15,40 @@
                         <viewControllerLayoutGuide type="bottom" id="FGe-PW-V8g"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Cd9-UR-QA9">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="OjX-cU-cHS">
                                 <rect key="frame" x="290" y="312" width="20" height="20"/>
                             </activityIndicatorView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qyr-NB-cah" customClass="GADBannerView">
-                                <rect key="frame" x="140" y="0.0" width="320" height="50"/>
+                                <rect key="frame" x="140" y="64" width="320" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="aYl-DA-GQ3"/>
-                                    <constraint firstAttribute="width" constant="320" id="iDr-gP-omi"/>
+                                    <constraint firstAttribute="height" constant="50" id="9IT-z1-IVn"/>
+                                    <constraint firstAttribute="width" constant="320" id="ZHW-wt-rOo"/>
                                 </constraints>
                             </view>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gnH-bF-LaH">
-                                <rect key="frame" x="0.0" y="492" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
                                     <barButtonItem image="icMyLocation" id="HnW-dK-Qw3">
                                         <connections>
                                             <action selector="myLocationButtonPressed:" destination="1Nk-0b-wXD" id="PIE-04-cIJ"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="jGm-n0-0ck"/>
+                                    <barButtonItem image="icAlert" id="f2S-Vg-19G"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="P5q-Jx-Phh"/>
+                                    <barButtonItem image="icLocation" id="OPC-ew-Vud"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="aJN-yJ-q7N"/>
+                                    <barButtonItem image="icStarSmall" id="bPg-Zk-YwW"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="yr2-sO-d7w"/>
+                                    <barButtonItem image="icGear" id="Yhn-F9-Ikf"/>
                                 </items>
                             </toolbar>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZJx-g9-PRb">
-                                <rect key="frame" x="0.0" y="51" width="600" height="441"/>
+                                <rect key="frame" x="0.0" y="113" width="600" height="442"/>
                                 <connections>
                                     <segue destination="wff-dx-aQ7" kind="embed" identifier="EmbedMapSegue" id="Vyk-He-Y9F"/>
                                 </connections>
@@ -48,22 +57,32 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="gnH-bF-LaH" firstAttribute="top" secondItem="ZJx-g9-PRb" secondAttribute="bottom" id="4Zm-cB-q5k"/>
-                            <constraint firstAttribute="trailing" secondItem="ZJx-g9-PRb" secondAttribute="trailing" id="4tw-3I-vcr"/>
-                            <constraint firstAttribute="bottom" secondItem="OjX-cU-cHS" secondAttribute="bottom" constant="204" id="7UP-Qt-095"/>
-                            <constraint firstItem="Qyr-NB-cah" firstAttribute="top" secondItem="QZd-M0-o1F" secondAttribute="bottom" id="Phq-aZ-KTb"/>
-                            <constraint firstItem="ZJx-g9-PRb" firstAttribute="top" secondItem="Qyr-NB-cah" secondAttribute="bottom" constant="1" id="X6X-Tb-m3Y"/>
-                            <constraint firstItem="gnH-bF-LaH" firstAttribute="bottom" secondItem="FGe-PW-V8g" secondAttribute="top" id="XTp-0D-QEB"/>
-                            <constraint firstItem="ZJx-g9-PRb" firstAttribute="leading" secondItem="Cd9-UR-QA9" secondAttribute="leading" id="XmW-gF-1en"/>
-                            <constraint firstItem="ZJx-g9-PRb" firstAttribute="top" secondItem="Cd9-UR-QA9" secondAttribute="top" constant="51" id="cWd-8P-gQS"/>
-                            <constraint firstItem="ZJx-g9-PRb" firstAttribute="trailing" secondItem="gnH-bF-LaH" secondAttribute="trailing" id="cxf-vo-kqF"/>
-                            <constraint firstAttribute="bottom" secondItem="gnH-bF-LaH" secondAttribute="bottom" id="hYI-CR-fck"/>
-                            <constraint firstItem="Qyr-NB-cah" firstAttribute="centerX" secondItem="Cd9-UR-QA9" secondAttribute="centerX" id="hhh-0Y-BIz"/>
-                            <constraint firstItem="ZJx-g9-PRb" firstAttribute="leading" secondItem="gnH-bF-LaH" secondAttribute="leading" id="kXH-2e-EMZ"/>
-                            <constraint firstItem="OjX-cU-cHS" firstAttribute="centerX" secondItem="gnH-bF-LaH" secondAttribute="centerX" id="leK-At-uQm"/>
+                            <constraint firstItem="ZJx-g9-PRb" firstAttribute="top" secondItem="Qyr-NB-cah" secondAttribute="bottom" constant="-1" id="2eJ-u1-uSw"/>
+                            <constraint firstItem="Qyr-NB-cah" firstAttribute="centerX" secondItem="Cd9-UR-QA9" secondAttribute="centerX" id="5xR-b9-Nrs"/>
+                            <constraint firstItem="ZJx-g9-PRb" firstAttribute="leading" secondItem="gnH-bF-LaH" secondAttribute="leading" id="9Ot-pd-T2K"/>
+                            <constraint firstItem="ZJx-g9-PRb" firstAttribute="trailing" secondItem="gnH-bF-LaH" secondAttribute="trailing" id="Kkt-ja-dcY"/>
+                            <constraint firstItem="OjX-cU-cHS" firstAttribute="centerX" secondItem="gnH-bF-LaH" secondAttribute="centerX" id="OGH-QE-z5C"/>
+                            <constraint firstItem="gnH-bF-LaH" firstAttribute="top" secondItem="ZJx-g9-PRb" secondAttribute="bottom" constant="1" id="OY8-Sa-jzV"/>
+                            <constraint firstAttribute="bottom" secondItem="gnH-bF-LaH" secondAttribute="bottom" id="Px6-we-R5o"/>
+                            <constraint firstItem="Qyr-NB-cah" firstAttribute="top" secondItem="QZd-M0-o1F" secondAttribute="bottom" id="h9J-rz-Ihr"/>
+                            <constraint firstItem="ZJx-g9-PRb" firstAttribute="top" secondItem="Qyr-NB-cah" secondAttribute="bottom" constant="-1" id="jVQ-tA-zV4"/>
+                            <constraint firstAttribute="bottom" secondItem="OjX-cU-cHS" secondAttribute="bottom" constant="268" id="k0Z-gx-ysx"/>
+                            <constraint firstAttribute="trailing" secondItem="ZJx-g9-PRb" secondAttribute="trailing" id="uh0-Q4-Vqd"/>
+                            <constraint firstItem="ZJx-g9-PRb" firstAttribute="leading" secondItem="Cd9-UR-QA9" secondAttribute="leading" id="wNz-VI-64b"/>
+                            <constraint firstItem="gnH-bF-LaH" firstAttribute="bottom" secondItem="FGe-PW-V8g" secondAttribute="top" id="ykk-YJ-r2U"/>
                         </constraints>
                     </view>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationItem key="navigationItem" title="Title" id="7DF-yq-rSE">
+                        <rightBarButtonItems>
+                            <barButtonItem image="icMenu" id="6VY-LF-EDH">
+                                <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </barButtonItem>
+                            <barButtonItem systemItem="refresh" id="taC-KG-CUf">
+                                <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="activityIndicatorView" destination="OjX-cU-cHS" id="tQE-33-MbS"/>
                         <outlet property="bannerView" destination="Qyr-NB-cah" id="ocH-R2-n1i"/>
@@ -71,14 +90,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rnr-aE-lbf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="449" y="383"/>
+            <point key="canvasLocation" x="459" y="390"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="dkU-hR-jTP">
             <objects>
                 <viewController id="wff-dx-aQ7" customClass="MapViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KNj-di-rE6">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="441"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="442"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -89,6 +108,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="icAlert" width="24" height="24"/>
+        <image name="icGear" width="24" height="24"/>
+        <image name="icLocation" width="24" height="24"/>
+        <image name="icMenu" width="24" height="24"/>
         <image name="icMyLocation" width="32" height="32"/>
+        <image name="icStarSmall" width="24" height="24"/>
     </resources>
 </document>
