@@ -23,6 +23,8 @@
 		9A0616CE1D660CC800126520 /* SR16ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616CD1D660CC800126520 /* SR16ViewController.swift */; };
 		9A0616D01D660D6100126520 /* SR167ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616CF1D660D6100126520 /* SR167ViewController.swift */; };
 		9A0616D21D660DC500126520 /* I405ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616D11D660DC500126520 /* I405ViewController.swift */; };
+		9A0616D51D6638AB00126520 /* TollRatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616D41D6638AB00126520 /* TollRatesModel.swift */; };
+		9A0616D71D664D2300126520 /* FourColTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616D61D664D2300126520 /* FourColTableViewCell.swift */; };
 		9A07192C1D410FD5007BB4C5 /* RouteAlertsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A07192B1D410FD5007BB4C5 /* RouteAlertsViewController.swift */; };
 		9A07192E1D4110BC007BB4C5 /* RouteTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A07192D1D4110BC007BB4C5 /* RouteTabBarViewController.swift */; };
 		9A0719331D42732A007BB4C5 /* INDLinkLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0719321D42732A007BB4C5 /* INDLinkLabel.swift */; };
@@ -91,6 +93,8 @@
 		9A0616CD1D660CC800126520 /* SR16ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SR16ViewController.swift; sourceTree = "<group>"; };
 		9A0616CF1D660D6100126520 /* SR167ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SR167ViewController.swift; sourceTree = "<group>"; };
 		9A0616D11D660DC500126520 /* I405ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = I405ViewController.swift; sourceTree = "<group>"; };
+		9A0616D41D6638AB00126520 /* TollRatesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TollRatesModel.swift; sourceTree = "<group>"; };
+		9A0616D61D664D2300126520 /* FourColTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourColTableViewCell.swift; sourceTree = "<group>"; };
 		9A07192B1D410FD5007BB4C5 /* RouteAlertsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteAlertsViewController.swift; sourceTree = "<group>"; };
 		9A07192D1D4110BC007BB4C5 /* RouteTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTabBarViewController.swift; sourceTree = "<group>"; };
 		9A0719321D42732A007BB4C5 /* INDLinkLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = INDLinkLabel.swift; sourceTree = "<group>"; };
@@ -206,6 +210,7 @@
 		9A0616C41D66018A00126520 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9A0616D41D6638AB00126520 /* TollRatesModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 				9A0719341D4274B8007BB4C5 /* LinkCell.swift */,
 				9A1F5F9E1D47C2E800DA5F99 /* DeparturesCustomCell.swift */,
 				9A1F5FA01D47D3D100DA5F99 /* CameraImageCustomCell.swift */,
+				9A0616D61D664D2300126520 /* FourColTableViewCell.swift */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -687,6 +693,8 @@
 				9AD32E2C1D242A5A000AEC28 /* RouteSchedulesViewController.swift in Sources */,
 				9A0616B71D63674500126520 /* VesselWatchStore.swift in Sources */,
 				9A0719351D4274B8007BB4C5 /* LinkCell.swift in Sources */,
+				9A0616D71D664D2300126520 /* FourColTableViewCell.swift in Sources */,
+				9A0616D51D6638AB00126520 /* TollRatesModel.swift in Sources */,
 				9A81A57A1D4AC5840049913A /* RouteCamerasViewController.swift in Sources */,
 				9A0CA83C1D46AC51009C67B7 /* PickerTextField.swift in Sources */,
 				9A06167C1D622AE800126520 /* MapViewController.swift in Sources */,
