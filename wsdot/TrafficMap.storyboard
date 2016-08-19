@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1Nk-0b-wXD">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Traffic Map View Controller-->
+        <scene sceneID="arI-z3-ZGl">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="1Nk-0b-wXD" customClass="TrafficMapViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QZd-M0-o1F"/>
+                        <viewControllerLayoutGuide type="bottom" id="FGe-PW-V8g"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Cd9-UR-QA9">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="OjX-cU-cHS">
+                                <rect key="frame" x="290" y="312" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qyr-NB-cah" customClass="GADBannerView">
+                                <rect key="frame" x="140" y="0.0" width="320" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="aYl-DA-GQ3"/>
+                                    <constraint firstAttribute="width" constant="320" id="iDr-gP-omi"/>
+                                </constraints>
+                            </view>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gnH-bF-LaH">
+                                <rect key="frame" x="0.0" y="492" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem image="icMyLocation" id="HnW-dK-Qw3">
+                                        <connections>
+                                            <action selector="myLocationButtonPressed:" destination="1Nk-0b-wXD" id="PIE-04-cIJ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZJx-g9-PRb">
+                                <rect key="frame" x="0.0" y="51" width="600" height="441"/>
+                                <connections>
+                                    <segue destination="wff-dx-aQ7" kind="embed" identifier="EmbedMapSegue" id="Vyk-He-Y9F"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="gnH-bF-LaH" firstAttribute="top" secondItem="ZJx-g9-PRb" secondAttribute="bottom" id="4Zm-cB-q5k"/>
+                            <constraint firstAttribute="trailing" secondItem="ZJx-g9-PRb" secondAttribute="trailing" id="4tw-3I-vcr"/>
+                            <constraint firstAttribute="bottom" secondItem="OjX-cU-cHS" secondAttribute="bottom" constant="204" id="7UP-Qt-095"/>
+                            <constraint firstItem="Qyr-NB-cah" firstAttribute="top" secondItem="QZd-M0-o1F" secondAttribute="bottom" id="Phq-aZ-KTb"/>
+                            <constraint firstItem="ZJx-g9-PRb" firstAttribute="top" secondItem="Qyr-NB-cah" secondAttribute="bottom" constant="1" id="X6X-Tb-m3Y"/>
+                            <constraint firstItem="gnH-bF-LaH" firstAttribute="bottom" secondItem="FGe-PW-V8g" secondAttribute="top" id="XTp-0D-QEB"/>
+                            <constraint firstItem="ZJx-g9-PRb" firstAttribute="leading" secondItem="Cd9-UR-QA9" secondAttribute="leading" id="XmW-gF-1en"/>
+                            <constraint firstItem="ZJx-g9-PRb" firstAttribute="top" secondItem="Cd9-UR-QA9" secondAttribute="top" constant="51" id="cWd-8P-gQS"/>
+                            <constraint firstItem="ZJx-g9-PRb" firstAttribute="trailing" secondItem="gnH-bF-LaH" secondAttribute="trailing" id="cxf-vo-kqF"/>
+                            <constraint firstAttribute="bottom" secondItem="gnH-bF-LaH" secondAttribute="bottom" id="hYI-CR-fck"/>
+                            <constraint firstItem="Qyr-NB-cah" firstAttribute="centerX" secondItem="Cd9-UR-QA9" secondAttribute="centerX" id="hhh-0Y-BIz"/>
+                            <constraint firstItem="ZJx-g9-PRb" firstAttribute="leading" secondItem="gnH-bF-LaH" secondAttribute="leading" id="kXH-2e-EMZ"/>
+                            <constraint firstItem="OjX-cU-cHS" firstAttribute="centerX" secondItem="gnH-bF-LaH" secondAttribute="centerX" id="leK-At-uQm"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="activityIndicatorView" destination="OjX-cU-cHS" id="tQE-33-MbS"/>
+                        <outlet property="bannerView" destination="Qyr-NB-cah" id="ocH-R2-n1i"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rnr-aE-lbf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="449" y="383"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="dkU-hR-jTP">
+            <objects>
+                <viewController id="wff-dx-aQ7" customClass="MapViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KNj-di-rE6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="441"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yad-Rb-j1s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1177" y="383"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icMyLocation" width="32" height="32"/>
+    </resources>
+</document>

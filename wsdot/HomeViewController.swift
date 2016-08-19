@@ -12,7 +12,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     let cellIdentifier = "HomeCell"
     
-    
+    let SegueTrafficMapViewController = "TrafficMapViewController"
     let SegueFerriesHomeViewController = "FerriesHomeViewController"
     let SegueTollRatesViewController = "TollRatesViewController"
     
@@ -68,12 +68,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         print(menu_options[indexPath.row])
         // Perform Segue
         switch (indexPath.row) {
+            case 0:
+                performSegueWithIdentifier(SegueTrafficMapViewController, sender: self)
+                tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                break
             case 1:
                 performSegueWithIdentifier(SegueFerriesHomeViewController, sender: self)
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                break
             case 4:
                 performSegueWithIdentifier(SegueTollRatesViewController, sender: self)
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                break
             default:
                 break
         }
