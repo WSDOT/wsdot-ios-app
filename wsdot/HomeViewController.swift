@@ -11,7 +11,11 @@ import UIKit
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     let cellIdentifier = "HomeCell"
+    
+    
     let SegueFerriesHomeViewController = "FerriesHomeViewController"
+    let SegueTollRatesViewController = "TollRatesViewController"
+    
     let SegueInfoViewController = "InfoViewController"
     
     var menu_options: [String] = []
@@ -66,6 +70,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         switch (indexPath.row) {
             case 1:
                 performSegueWithIdentifier(SegueFerriesHomeViewController, sender: self)
+                tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            case 4:
+                performSegueWithIdentifier(SegueTollRatesViewController, sender: self)
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
             default:
                 break

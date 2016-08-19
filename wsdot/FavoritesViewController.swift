@@ -90,9 +90,9 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             self.refreshControl.endRefreshing()
         }
     }
-
-private func requestFavoriteFerries(force: Bool, serviceGroup: dispatch_group_t){
-    dispatch_group_enter(serviceGroup)
+    
+    private func requestFavoriteFerries(force: Bool, serviceGroup: dispatch_group_t){
+        dispatch_group_enter(serviceGroup)
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) { [weak self] in
             FerryRealmStore.updateRouteSchedules(force, completion: { error in
                 if (error == nil) {

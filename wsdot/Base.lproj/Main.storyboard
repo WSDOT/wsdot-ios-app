@@ -200,6 +200,7 @@
                     <connections>
                         <segue destination="l6k-sb-rpG" kind="show" identifier="FerriesHomeViewController" id="5xA-LT-yKr"/>
                         <segue destination="505-eM-iAh" kind="show" identifier="InfoViewController" id="XKx-Ti-GiN"/>
+                        <segue destination="Zgq-67-CnN" kind="show" identifier="TollRatesViewController" id="mSI-P8-Paq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KTF-7j-ojf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -280,6 +281,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dpe-UF-qpK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2194.5" y="431"/>
+        </scene>
+        <!--TollRates-->
+        <scene sceneID="uUO-qs-Uf4">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="TollRates" storyboardName="TollRates" id="Zgq-67-CnN" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tEk-nI-4Ks" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2201" y="494"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Pky-mg-vjR">
