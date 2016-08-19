@@ -28,6 +28,7 @@
 		9A0616DA1D675DC800126520 /* ThreeColTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616D91D675DC800126520 /* ThreeColTableViewCell.swift */; };
 		9A0616E21D676F7800126520 /* TrafficMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A0616E11D676F7800126520 /* TrafficMap.storyboard */; };
 		9A0616E41D676FB600126520 /* TrafficMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616E31D676FB600126520 /* TrafficMapViewController.swift */; };
+		9A0616E61D67838F00126520 /* TrafficMapGoToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616E51D67838F00126520 /* TrafficMapGoToViewController.swift */; };
 		9A07192C1D410FD5007BB4C5 /* RouteAlertsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A07192B1D410FD5007BB4C5 /* RouteAlertsViewController.swift */; };
 		9A07192E1D4110BC007BB4C5 /* RouteTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A07192D1D4110BC007BB4C5 /* RouteTabBarViewController.swift */; };
 		9A0719331D42732A007BB4C5 /* INDLinkLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0719321D42732A007BB4C5 /* INDLinkLabel.swift */; };
@@ -101,6 +102,7 @@
 		9A0616D91D675DC800126520 /* ThreeColTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeColTableViewCell.swift; sourceTree = "<group>"; };
 		9A0616E11D676F7800126520 /* TrafficMap.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TrafficMap.storyboard; sourceTree = "<group>"; };
 		9A0616E31D676FB600126520 /* TrafficMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficMapViewController.swift; sourceTree = "<group>"; };
+		9A0616E51D67838F00126520 /* TrafficMapGoToViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficMapGoToViewController.swift; sourceTree = "<group>"; };
 		9A07192B1D410FD5007BB4C5 /* RouteAlertsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteAlertsViewController.swift; sourceTree = "<group>"; };
 		9A07192D1D4110BC007BB4C5 /* RouteTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTabBarViewController.swift; sourceTree = "<group>"; };
 		9A0719321D42732A007BB4C5 /* INDLinkLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = INDLinkLabel.swift; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				9A0616E31D676FB600126520 /* TrafficMapViewController.swift */,
+				9A0616E51D67838F00126520 /* TrafficMapGoToViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -693,6 +696,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9ADEAE4D1D270CC800BA7DD4 /* Consts.swift in Sources */,
+				9A0616E61D67838F00126520 /* TrafficMapGoToViewController.swift in Sources */,
 				9AFEECE11D3925400078A781 /* CachesStore.swift in Sources */,
 				9A2F4A5D1D52747900911AF5 /* FerryScheduleRealmDataModel.swift in Sources */,
 				9A07192C1D410FD5007BB4C5 /* RouteAlertsViewController.swift in Sources */,

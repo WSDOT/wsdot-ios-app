@@ -234,10 +234,10 @@
             </objects>
             <point key="canvasLocation" x="1817.5" y="1029"/>
         </scene>
-        <!--Go To View Controller-->
+        <!--Vessel Watch Go To View Controller-->
         <scene sceneID="7re-jS-kgz">
             <objects>
-                <viewController id="4Ar-aO-kt9" customClass="GoToViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="4Ar-aO-kt9" customClass="VesselWatchGoToViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Fje-nb-cnR"/>
                         <viewControllerLayoutGuide type="bottom" id="sm1-kS-G9Q"/>

@@ -323,7 +323,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         }
         
         if segue.identifier == SegueGoToPopover {
-            let destinationViewController = segue.destinationViewController as! GoToViewController
+            let destinationViewController = segue.destinationViewController as! VesselWatchGoToViewController
             destinationViewController.parent = self
         }
     }

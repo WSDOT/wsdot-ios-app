@@ -1,34 +1,42 @@
 //
-//  VesselWatchGoToViewController.swift
+//  TrafficMapGoToViewController.swift
 //  WSDOT
 //
-//  Created by Logan Sims on 8/16/16.
+//  Created by Logan Sims on 8/19/16.
 //  Copyright © 2016 WSDOT. All rights reserved.
 //
+
 import UIKit
 
-class VesselWatchGoToViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TrafficMapGoToViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     let cellIdentifier = "GoToCell"
     
-    var parent: VesselWatchViewController? = nil
+    var parent: TrafficMapViewController? = nil
     
     var menu_options: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        menu_options = ["Anacortes / San Juan Islands / Sidney BC",
-                        "Edmonds / Kingston",
-                        "Fauntleroy / Vashon / Southworth",
-                        "Mukilteo / Clinton",
-                        "Point Defiance / Tahlequah",
-                        "Port Townsend / Coupeville",
-                        "San Juan Islands Inter-Island",
+        
+        menu_options = ["Bellingham",
+                        "Chelalis",
+                        "Hood Canal",
+                        "Monroe",
+                        "Mt Vernon",
+                        "Olympia",
                         "Seattle",
-                        "Seattle / Bainbridge"]
+                        "Snoqualmie Pass",
+                        "Spokane",
+                        "Stanwood",
+                        "Sultan",
+                        "Tacoma",
+                        "Tri-Cities",
+                        "Vancouver",
+                        "Wenatchee",
+                        "Yakima"]
     }
-
+    
     @IBAction func closeAction(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: {()->Void in});
     }
