@@ -294,11 +294,6 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         return true
     }
     
-    func mapView(mapView: GMSMapView, idleAtCameraPosition position: GMSCameraPosition) {
-        drawCameras()
-        drawVessels()
-    }
-    
     
     // MARK: Naviagtion 
     // Get refrence to child VC

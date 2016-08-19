@@ -14,7 +14,11 @@ import GoogleMobileAds
 class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewDelegate {
     
     let SegueGoToPopover = "TrafficMapGoToViewController"
+    let SegueSettingsPopover = "TrafficMapSettingsViewController"
     
+    private var cameraMarkers = Set<GMSMarker>()
+    
+    private let cameraIconImage = UIImage(named: "icMapCamera")
     
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
@@ -25,12 +29,10 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         
         title = "Traffic Map"
         
-        activityIndicatorView.startAnimating()
-        
-
-        
-        activityIndicatorView.stopAnimating()
-        activityIndicatorView.hidden = true
+        // Set defualt value for camera display if there is none
+        if (NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.vesselCameras) == nil){
+            NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.vesselCameras)
+        }
         
         // Ad Banner
         bannerView.adUnitID = ApiKeys.wsdot_ad_string
@@ -46,6 +48,12 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     @IBAction func goToLocation(sender: UIBarButtonItem) {
         performSegueWithIdentifier(SegueGoToPopover, sender: self)
     }
+    
+    @IBAction func settingsAction(sender: UIBarButtonItem) {
+        performSegueWithIdentifier(SegueSettingsPopover, sender: self)
+    }
+    
+    
     
     func goTo(index: Int){
         if let mapView = embeddedMapViewController.view as? GMSMapView{
@@ -120,21 +128,89 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         }
     }
     
+    func removeCameras(){
+        for camera in cameraMarkers{
+            camera.map = nil
+        }
+    }
+    
+    func fetchCameras(force: Bool, serviceGroup: dispatch_group_t) {
+        dispatch_group_enter(serviceGroup)
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {[weak self] in
+            CamerasStore.updateCameras(force, completion: { error in
+                if (error == nil){
+                    dispatch_async(dispatch_get_main_queue()) {[weak self] in
+                        if let selfValue = self{
+                            dispatch_group_leave(serviceGroup)
+                            selfValue.loadCameraMarkers()
+                            selfValue.drawCameras()
+                            
+                        }
+                    }
+                }else{
+                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                        if let selfValue = self{
+                            dispatch_group_leave(serviceGroup)
+                            selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                        }
+                    }
+                }
+            })
+        }
+    }
+    
+    func loadCameraMarkers(){
+        
+        removeCameras()
+        cameraMarkers.removeAll()
+        
+        for camera in CamerasStore.getAllCameras(){
+            let cameraLocation = CLLocationCoordinate2D(latitude: camera.latitude, longitude: camera.longitude)
+            let marker = GMSMarker(position: cameraLocation)
+            marker.snippet = "camera"
+            marker.icon = cameraIconImage
+            marker.userData = camera
+            cameraMarkers.insert(marker)
+        }
+    }
+    
+    func drawCameras(){
+        if let mapView = embeddedMapViewController.view as? GMSMapView{
+            let camerasPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.vesselCameras)
+            
+            if (camerasPref! == "on") {
+                for cameraMarker in cameraMarkers{
+                    
+                    let bounds = GMSCoordinateBounds(coordinate: mapView.projection.visibleRegion().farLeft, coordinate: mapView.projection.visibleRegion().nearRight)
+                    
+                    if (bounds.containsCoordinate(cameraMarker.position)){
+                        cameraMarker.map = mapView
+                    } else {
+                        cameraMarker.map = nil
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    func mapView(mapView: GMSMapView, didChangeCameraPosition position: GMSCameraPosition) {
+        drawCameras()
+    }
     
     // MARK: MapMarkerViewController protocol method
     func drawOverlays(){
-        /*
-         activityIndicator.startAnimating()
-         let serviceGroup = dispatch_group_create();
-         
-         fetchCameras(false, serviceGroup: serviceGroup)
-         fetchVessels(serviceGroup)
-         
-         dispatch_group_notify(serviceGroup, dispatch_get_main_queue()) {
-         self.activityIndicator.stopAnimating()
-         self.activityIndicator.hidden = true
-         }
-         */
+        
+        activityIndicatorView.startAnimating()
+        let serviceGroup = dispatch_group_create();
+        
+        fetchCameras(false, serviceGroup: serviceGroup)
+        
+        dispatch_group_notify(serviceGroup, dispatch_get_main_queue()) {
+            self.activityIndicatorView.stopAnimating()
+            self.activityIndicatorView.hidden = true
+        }
+        
     }
     
     // MARK: Naviagtion
@@ -149,6 +225,11 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         
         if segue.identifier == SegueGoToPopover {
             let destinationViewController = segue.destinationViewController as! TrafficMapGoToViewController
+            destinationViewController.parent = self
+        }
+        
+        if segue.identifier == SegueSettingsPopover {
+            let destinationViewController = segue.destinationViewController as! TrafficMapSettingsViewController
             destinationViewController.parent = self
         }
     }

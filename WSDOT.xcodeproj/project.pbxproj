@@ -43,6 +43,8 @@
 		9A1F5FA51D47DCB900DA5F99 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F5FA41D47DCB900DA5F99 /* ApiKeys.swift */; };
 		9A1F5FA71D47E27200DA5F99 /* SailingSpacesItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F5FA61D47E27200DA5F99 /* SailingSpacesItem.swift */; };
 		9A21E1CC1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A21E1CB1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift */; };
+		9A2C27251D679E5800F05D88 /* TrafficMapSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2C27241D679E5800F05D88 /* TrafficMapSettingsViewController.swift */; };
+		9A2C27271D67A1E400F05D88 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2C27261D67A1E400F05D88 /* SettingsCell.swift */; };
 		9A2F4A5D1D52747900911AF5 /* FerryScheduleRealmDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A5C1D52747900911AF5 /* FerryScheduleRealmDataModel.swift */; };
 		9A2F4A681D528A5100911AF5 /* FerryRealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A671D528A5100911AF5 /* FerryRealmStore.swift */; };
 		9A2F4A6E1D539C1600911AF5 /* CachesRealmDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A6D1D539C1600911AF5 /* CachesRealmDataModel.swift */; };
@@ -117,6 +119,8 @@
 		9A1F5FA41D47DCB900DA5F99 /* ApiKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
 		9A1F5FA61D47E27200DA5F99 /* SailingSpacesItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SailingSpacesItem.swift; sourceTree = "<group>"; };
 		9A21E1CB1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteSailingsViewController.swift; sourceTree = "<group>"; };
+		9A2C27241D679E5800F05D88 /* TrafficMapSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficMapSettingsViewController.swift; sourceTree = "<group>"; };
+		9A2C27261D67A1E400F05D88 /* SettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		9A2F4A5C1D52747900911AF5 /* FerryScheduleRealmDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerryScheduleRealmDataModel.swift; sourceTree = "<group>"; };
 		9A2F4A671D528A5100911AF5 /* FerryRealmStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerryRealmStore.swift; sourceTree = "<group>"; };
 		9A2F4A6D1D539C1600911AF5 /* CachesRealmDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachesRealmDataModel.swift; sourceTree = "<group>"; };
@@ -273,6 +277,7 @@
 			children = (
 				9A0616E31D676FB600126520 /* TrafficMapViewController.swift */,
 				9A0616E51D67838F00126520 /* TrafficMapGoToViewController.swift */,
+				9A2C27241D679E5800F05D88 /* TrafficMapSettingsViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -358,6 +363,7 @@
 				9A1F5FA01D47D3D100DA5F99 /* CameraImageCustomCell.swift */,
 				9A0616D61D664D2300126520 /* FourColTableViewCell.swift */,
 				9A0616D91D675DC800126520 /* ThreeColTableViewCell.swift */,
+				9A2C27261D67A1E400F05D88 /* SettingsCell.swift */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -735,6 +741,7 @@
 				9A0616CC1D660BD500126520 /* SR520ViewController.swift in Sources */,
 				9AD32E2E1D243260000AEC28 /* FavoritesViewController.swift in Sources */,
 				9A0616CE1D660CC800126520 /* SR16ViewController.swift in Sources */,
+				9A2C27271D67A1E400F05D88 /* SettingsCell.swift in Sources */,
 				9A81A5781D4AC5710049913A /* RouteTimesViewController.swift in Sources */,
 				9A0CA8311D428EE9009C67B7 /* RouteDeparturesViewController.swift in Sources */,
 				9A1F5FA11D47D3D100DA5F99 /* CameraImageCustomCell.swift in Sources */,
@@ -746,6 +753,7 @@
 				9A81A57A1D4AC5840049913A /* RouteCamerasViewController.swift in Sources */,
 				9A0CA83C1D46AC51009C67B7 /* PickerTextField.swift in Sources */,
 				9A06167C1D622AE800126520 /* MapViewController.swift in Sources */,
+				9A2C27251D679E5800F05D88 /* TrafficMapSettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
