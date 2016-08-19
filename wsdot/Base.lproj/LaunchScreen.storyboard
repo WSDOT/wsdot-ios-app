@@ -16,7 +16,27 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TCc-rP-uv7">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items/>
+                            </toolbar>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0s7-I9-b28">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <items>
+                                    <navigationItem id="AU5-Cd-K1O"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0s7-I9-b28" firstAttribute="leading" secondItem="TCc-rP-uv7" secondAttribute="leading" id="1GA-zW-Vrs"/>
+                            <constraint firstItem="TCc-rP-uv7" firstAttribute="bottom" secondItem="xb3-aO-Qok" secondAttribute="top" id="3l1-oP-wxq"/>
+                            <constraint firstItem="0s7-I9-b28" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="Qqr-lc-60r"/>
+                            <constraint firstItem="0s7-I9-b28" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="d5Q-iM-Ifr"/>
+                            <constraint firstItem="0s7-I9-b28" firstAttribute="trailing" secondItem="TCc-rP-uv7" secondAttribute="trailing" id="q3W-Mp-eme"/>
+                            <constraint firstAttribute="trailing" secondItem="0s7-I9-b28" secondAttribute="trailing" id="tNa-fo-veM"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
