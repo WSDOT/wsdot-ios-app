@@ -15,6 +15,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     let SegueGoToPopover = "TrafficMapGoToViewController"
     let SegueSettingsPopover = "TrafficMapSettingsViewController"
+    let SegueCamerasViewController = "CamerasViewController"
     
     private var cameraMarkers = Set<GMSMarker>()
     
@@ -213,6 +214,15 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         
     }
     
+    // MARK: GMSMapViewDelegate
+    func mapView(mapView: GMSMapView, didTapMarker marker: GMSMarker) -> Bool {
+        
+        if marker.snippet == "camera" {
+            performSegueWithIdentifier(SegueCamerasViewController, sender: marker)
+        }
+        return true
+    }
+    
     // MARK: Naviagtion
     // Get refrence to child VC
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -221,6 +231,12 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
             vc.markerDelegate = self
             vc.mapDelegate = self
             self.embeddedMapViewController = vc
+        }
+        
+        if segue.identifier == SegueCamerasViewController {
+            let cameraItem = ((sender as! GMSMarker).userData as! CameraItem)
+            let destinationViewController = segue.destinationViewController as! CameraViewController
+            destinationViewController.cameraItem = cameraItem
         }
         
         if segue.identifier == SegueGoToPopover {

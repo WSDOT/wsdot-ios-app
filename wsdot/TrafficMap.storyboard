@@ -100,11 +100,20 @@
                         <segue destination="iX4-th-1S0" kind="popoverPresentation" identifier="TrafficMapSettingsViewController" popoverAnchorBarButtonItem="Yhn-F9-Ikf" id="UL2-94-0AW">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>
+                        <segue destination="B33-Te-SwX" kind="show" identifier="CamerasViewController" id="KM3-eY-kBO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rnr-aE-lbf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="459" y="383"/>
+        </scene>
+        <!--Camera-->
+        <scene sceneID="9M1-Uc-Zzu">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Camera" id="B33-Te-SwX" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MbB-dd-WHT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="923.5" y="105"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="dkU-hR-jTP">
@@ -122,7 +131,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yad-Rb-j1s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1177" y="383"/>
+            <point key="canvasLocation" x="1184" y="505"/>
         </scene>
         <!--Traffic Map Go To View Controller-->
         <scene sceneID="XKW-zr-rYB">
@@ -236,13 +245,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="owa-9R-fe1">
-                                                    <rect key="frame" x="523" y="6" width="51" height="31"/>
+                                                    <rect key="frame" x="533" y="6" width="51" height="31"/>
                                                 </switch>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="D9p-uc-0TU" firstAttribute="centerY" secondItem="owa-9R-fe1" secondAttribute="centerY" id="RN7-69-etW"/>
                                                 <constraint firstItem="D9p-uc-0TU" firstAttribute="leading" secondItem="orx-hg-QW8" secondAttribute="leadingMargin" id="XXC-Xn-dSw"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="owa-9R-fe1" secondAttribute="trailing" constant="20" id="dWQ-Lv-cUw"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="owa-9R-fe1" secondAttribute="trailing" constant="10" id="dWQ-Lv-cUw"/>
                                                 <constraint firstItem="D9p-uc-0TU" firstAttribute="centerY" secondItem="orx-hg-QW8" secondAttribute="centerY" id="lkv-sg-SUs"/>
                                             </constraints>
                                         </tableViewCellContentView>
