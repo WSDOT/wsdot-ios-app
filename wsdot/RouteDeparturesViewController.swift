@@ -41,6 +41,7 @@ class RouteDeparturesViewController: UIViewController {
         adBackGroundView.hidden = true
     }
     
+    // Remove and add hairline for nav bar
     override func viewWillAppear(animated: Bool) {
         let img = UIImage()
         self.navigationController?.navigationBar.shadowImage = img
@@ -50,7 +51,6 @@ class RouteDeparturesViewController: UIViewController {
     override func viewWillDisappear(animated: Bool) {
         self.navigationController?.navigationBar.shadowImage = nil
         self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: .Default)
-        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

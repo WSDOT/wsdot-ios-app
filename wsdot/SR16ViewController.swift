@@ -13,7 +13,6 @@ class SR16ViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     let cellIdentifier = "fourColCell"
     
-    @IBOutlet var tableView: UITableView!
     var data = [FourColItem]()
     
     override func viewDidLoad() {
@@ -46,6 +45,8 @@ class SR16ViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         if (data[indexPath.row].header){
             cell.backgroundColor = UIColor.groupTableViewBackgroundColor()
+        } else {
+            cell.backgroundColor = UIColor.lightTextColor()
         }
                 
         return cell

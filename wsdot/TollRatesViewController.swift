@@ -19,9 +19,18 @@ class TollRatesViewController: UIViewController{
 
     override func viewDidLoad() {
         title = "Toll Rates"
-        let backItem = UIBarButtonItem(title: "Custom", style: .Plain, target: nil, action: nil)
-        navigationItem.backBarButtonItem = backItem
-
+    }
+    
+    // Remove and add hairline for nav bar
+    override func viewWillAppear(animated: Bool) {
+        let img = UIImage()
+        self.navigationController?.navigationBar.shadowImage = img
+        self.navigationController?.navigationBar.setBackgroundImage(img, forBarMetrics: .Default)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.navigationController?.navigationBar.shadowImage = nil
+        self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: .Default)
     }
     
     @IBAction func indexChanged(sender: UISegmentedControl) {

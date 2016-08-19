@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]: 
 
+## [0.4.0] - 2016-08-19
+* Toll Rates added.
+
 ## [0.3.0] - 2016-08-18
 * About section added.
 

@@ -25,6 +25,7 @@
 		9A0616D21D660DC500126520 /* I405ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616D11D660DC500126520 /* I405ViewController.swift */; };
 		9A0616D51D6638AB00126520 /* TollRatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616D41D6638AB00126520 /* TollRatesModel.swift */; };
 		9A0616D71D664D2300126520 /* FourColTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616D61D664D2300126520 /* FourColTableViewCell.swift */; };
+		9A0616DA1D675DC800126520 /* ThreeColTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616D91D675DC800126520 /* ThreeColTableViewCell.swift */; };
 		9A07192C1D410FD5007BB4C5 /* RouteAlertsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A07192B1D410FD5007BB4C5 /* RouteAlertsViewController.swift */; };
 		9A07192E1D4110BC007BB4C5 /* RouteTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A07192D1D4110BC007BB4C5 /* RouteTabBarViewController.swift */; };
 		9A0719331D42732A007BB4C5 /* INDLinkLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0719321D42732A007BB4C5 /* INDLinkLabel.swift */; };
@@ -95,6 +96,7 @@
 		9A0616D11D660DC500126520 /* I405ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = I405ViewController.swift; sourceTree = "<group>"; };
 		9A0616D41D6638AB00126520 /* TollRatesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TollRatesModel.swift; sourceTree = "<group>"; };
 		9A0616D61D664D2300126520 /* FourColTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourColTableViewCell.swift; sourceTree = "<group>"; };
+		9A0616D91D675DC800126520 /* ThreeColTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeColTableViewCell.swift; sourceTree = "<group>"; };
 		9A07192B1D410FD5007BB4C5 /* RouteAlertsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteAlertsViewController.swift; sourceTree = "<group>"; };
 		9A07192D1D4110BC007BB4C5 /* RouteTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTabBarViewController.swift; sourceTree = "<group>"; };
 		9A0719321D42732A007BB4C5 /* INDLinkLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = INDLinkLabel.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 				9A1F5F9E1D47C2E800DA5F99 /* DeparturesCustomCell.swift */,
 				9A1F5FA01D47D3D100DA5F99 /* CameraImageCustomCell.swift */,
 				9A0616D61D664D2300126520 /* FourColTableViewCell.swift */,
+				9A0616D91D675DC800126520 /* ThreeColTableViewCell.swift */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -675,6 +678,7 @@
 				9A0616D01D660D6100126520 /* SR167ViewController.swift in Sources */,
 				9A0719331D42732A007BB4C5 /* INDLinkLabel.swift in Sources */,
 				9A50179C1D258F2000B9C49E /* RoutesCustomCell.swift in Sources */,
+				9A0616DA1D675DC800126520 /* ThreeColTableViewCell.swift in Sources */,
 				9AB0177C1D514668004C228E /* CameraViewController.swift in Sources */,
 				9A2F4A701D53AA5C00911AF5 /* CameraRealmStore.swift in Sources */,
 				9AE4863E1D49594D007A92E3 /* FerriesTerminalMap.swift in Sources */,
