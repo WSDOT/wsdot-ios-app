@@ -20,6 +20,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     // Marker Segues
     let SegueCamerasViewController = "CamerasViewController"
     let SegueRestAreaViewController = "RestAreaViewController"
+    let SegueHighwayAlertViewController = "HighwayAlertViewController"
     
     private var alertMarkers = Set<GMSMarker>()
     private var cameraMarkers = Set<GMSMarker>()
@@ -296,23 +297,66 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         alertMarkers.removeAll()
         
         for alert in HighwayAlertsStore.getAllAlerts(){
-            let alertLocation = CLLocationCoordinate2D(latitude: alert.startLatitude, longitude: alert.startLongitude)
-            let marker = GMSMarker(position: alertLocation)
-            marker.snippet = "alert"
             
+            var alertEnded = false
             
-            // TODO: Select right icon
-            marker.icon = alertModerateIconImage
+            if let alertEndTimeValue = alert.endTime{
+                if alertEndTimeValue.timeIntervalSince1970 < NSDate().timeIntervalSince1970{
+                    alertEnded = true
+                }
+            }
             
-            
-            marker.userData = alert
-            alertMarkers.insert(marker)
+            if (alert.startTime.timeIntervalSince1970 < NSDate().timeIntervalSince1970 && !alertEnded) {
+                
+                let alertLocation = CLLocationCoordinate2D(latitude: alert.startLatitude, longitude: alert.startLongitude)
+                let marker = GMSMarker(position: alertLocation)
+                marker.snippet = "alert"
+                
+                if alert.headlineDesc.containsString("construction") || alert.eventCategory == "Construction"{
+                    switch alert.priority {
+                    case "Moderate":
+                        marker.icon = constructionModerateIconImage
+                        break
+                    case "High":
+                        marker.icon = constructionHighIconImage
+                        break
+                    case "Highest":
+                        marker.icon = constructionHighestIconImage
+                        break
+                    default:
+                        marker.icon = constructionModerateIconImage
+                        break
+                    }
+                    
+                }else if alert.headlineDesc.containsString("road closure") || alert.eventCategory.containsString("Road Closure"){
+                    marker.icon = closedIconImage
+                }else {
+                    switch alert.priority {
+                    case "Moderate":
+                        marker.icon = alertModerateIconImage
+                        break
+                    case "High":
+                        marker.icon = alertHighIconImage
+                        break
+                    case "Highest":
+                        marker.icon = alertHighestIconImage
+                        break
+                    default:
+                        marker.icon = alertModerateIconImage
+                        break
+                    }
+                }
+                
+                marker.userData = alert
+                alertMarkers.insert(marker)
+                
+            }
         }
     }
     
     func drawAlerts(){
         if let mapView = embeddedMapViewController.view as? GMSMapView{
-            let alertsPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.cameras)
+            let alertsPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.alerts)
             
             if let alertsPrefValue = alertsPref {
                 
@@ -327,20 +371,21 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
                             alertMarker.map = nil
                         }
                     }
-                }else{
-                    NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.alerts)
-                    for alertMarker in alertMarkers{
-                        
-                        let bounds = GMSCoordinateBounds(coordinate: mapView.projection.visibleRegion().farLeft, coordinate: mapView.projection.visibleRegion().nearRight)
-                        
-                        if (bounds.containsCoordinate(alertMarker.position)){
-                            alertMarker.map = mapView
-                        } else {
-                            alertMarker.map = nil
-                        }
+                }
+            }else{
+                NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.alerts)
+                for alertMarker in alertMarkers{
+                    
+                    let bounds = GMSCoordinateBounds(coordinate: mapView.projection.visibleRegion().farLeft, coordinate: mapView.projection.visibleRegion().nearRight)
+                    
+                    if (bounds.containsCoordinate(alertMarker.position)){
+                        alertMarker.map = mapView
+                    } else {
+                        alertMarker.map = nil
                     }
                 }
             }
+            
         }
     }
     
@@ -431,6 +476,9 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     // MARK: GMSMapViewDelegate
     func mapView(mapView: GMSMapView, didTapMarker marker: GMSMarker) -> Bool {
+        if marker.snippet == "alert" {
+            performSegueWithIdentifier(SegueHighwayAlertViewController, sender: marker)
+        }
         if marker.snippet == "camera" {
             performSegueWithIdentifier(SegueCamerasViewController, sender: marker)
         }
@@ -459,7 +507,13 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
             let destinationViewController = segue.destinationViewController as! TrafficMapSettingsViewController
             destinationViewController.parent = self
         }
-                
+        
+        if segue.identifier == SegueHighwayAlertViewController {
+            let alertItem = ((sender as! GMSMarker).userData as! HighwayAlertItem)
+            let destinationViewController = segue.destinationViewController as! HighwayAlertViewController
+            destinationViewController.alertItem = alertItem
+        }
+        
         if segue.identifier == SegueCamerasViewController {
             let cameraItem = ((sender as! GMSMarker).userData as! CameraItem)
             let destinationViewController = segue.destinationViewController as! CameraViewController

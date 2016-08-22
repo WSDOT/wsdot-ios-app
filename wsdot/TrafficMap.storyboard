@@ -114,6 +114,7 @@
                         <segue destination="B33-Te-SwX" kind="show" identifier="CamerasViewController" id="KM3-eY-kBO"/>
                         <segue destination="Qwx-cO-mAH" kind="show" identifier="TravelerInfoViewController" id="ts6-vG-vCq"/>
                         <segue destination="QdF-Ti-KSO" kind="show" identifier="RestAreaViewController" id="KcO-W9-svH"/>
+                        <segue destination="Gnu-Bt-A0j" kind="show" identifier="HighwayAlertViewController" id="PBZ-ny-t9b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rnr-aE-lbf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -163,6 +164,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Og4-Qh-gPF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1766" y="36"/>
+        </scene>
+        <!--HighwayAlert-->
+        <scene sceneID="Nq9-eE-uyV">
+            <objects>
+                <viewControllerPlaceholder storyboardName="HighwayAlert" id="Gnu-Bt-A0j" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="131-H6-1Rh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1523" y="424"/>
         </scene>
         <!--RestArea-->
         <scene sceneID="UBd-K4-gVS">

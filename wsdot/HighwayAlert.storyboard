@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rpi-fL-xpe">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Highway Alert View Controller-->
+        <scene sceneID="Mi2-CQ-Hd9">
+            <objects>
+                <viewController id="Rpi-fL-xpe" customClass="HighwayAlertViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ePZ-SL-Nee"/>
+                        <viewControllerLayoutGuide type="bottom" id="0Cs-0a-pDK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="e8o-VD-oDy">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0M-cN-Fir" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
+                                <rect key="frame" x="20" y="28" width="560" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aZ2-Jg-90C">
+                                <rect key="frame" x="20" y="57" width="560" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WlL-ui-YDh">
+                                <rect key="frame" x="20" y="83" width="320" height="320"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="ahn-es-VmI"/>
+                                    <constraint firstAttribute="height" constant="320" id="vGJ-Bn-Maz"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="W0M-cN-Fir" firstAttribute="leading" secondItem="e8o-VD-oDy" secondAttribute="leadingMargin" id="53K-Ei-eRp"/>
+                            <constraint firstItem="aZ2-Jg-90C" firstAttribute="leading" secondItem="WlL-ui-YDh" secondAttribute="leading" id="72W-Fx-Ibs"/>
+                            <constraint firstItem="WlL-ui-YDh" firstAttribute="top" secondItem="aZ2-Jg-90C" secondAttribute="bottom" constant="8" symbolic="YES" id="C9l-Jq-CQ2"/>
+                            <constraint firstItem="W0M-cN-Fir" firstAttribute="trailing" secondItem="e8o-VD-oDy" secondAttribute="trailingMargin" id="CaC-FV-fmt"/>
+                            <constraint firstItem="W0M-cN-Fir" firstAttribute="top" secondItem="ePZ-SL-Nee" secondAttribute="bottom" constant="8" symbolic="YES" id="Elq-Ml-xlH"/>
+                            <constraint firstItem="aZ2-Jg-90C" firstAttribute="top" secondItem="W0M-cN-Fir" secondAttribute="bottom" constant="8" symbolic="YES" id="gBd-fL-k3k"/>
+                            <constraint firstItem="W0M-cN-Fir" firstAttribute="trailing" secondItem="aZ2-Jg-90C" secondAttribute="trailing" id="kUj-mT-CIZ"/>
+                            <constraint firstItem="W0M-cN-Fir" firstAttribute="leading" secondItem="aZ2-Jg-90C" secondAttribute="leading" id="kvS-Mo-lno"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="descLinkLabel" destination="W0M-cN-Fir" id="phd-sj-UDK"/>
+                        <outlet property="mapImage" destination="WlL-ui-YDh" id="wa7-fj-fcS"/>
+                        <outlet property="updateTimeLabel" destination="aZ2-Jg-90C" id="ACX-go-7GR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wPy-AB-iaL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="525" y="393"/>
+        </scene>
+    </scenes>
+</document>

@@ -19,8 +19,8 @@ class TrafficMapSettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        menu_options = ["Show Traffic Alert Markers",
-                        "Show Rest Area Markers",
+        menu_options = ["Show Highway Alerts",
+                        "Show Rest Areas",
                         "Favorite Current Location"]
         
     }
@@ -55,9 +55,6 @@ class TrafficMapSettingsViewController: UIViewController {
                 } else {
                     cell.settingSwitch.on = false
                 }
-            } else { // set default value
-                NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.alerts)
-                cell.settingSwitch.on = true
             }
             
             cell.settingSwitch.addTarget(self, action: #selector(TrafficMapSettingsViewController.changeAlertsPref(_:)), forControlEvents: .ValueChanged)
@@ -114,11 +111,11 @@ class TrafficMapSettingsViewController: UIViewController {
             if (alertsVisible == "on") {
                 NSUserDefaults.standardUserDefaults().setObject("off", forKey: UserDefaultsKeys.alerts)
                 print("alert pref off")
-                //parent!.removeCameras()
+                parent!.removeAlerts()
             } else {
                 NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.alerts)
                 print("alert pref on")
-                //parent!.drawCameras()
+                parent!.drawAlerts()
             }
         }
     }
