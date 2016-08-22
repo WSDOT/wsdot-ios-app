@@ -16,11 +16,25 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
     
     var alerts = [HighwayAlertItem]()
     
+    var trafficAlerts = [HighwayAlertItem]()
+    var constructionAlerts = [HighwayAlertItem]()
+    var specialEvents = [HighwayAlertItem]()
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
 
         title = "Alerts In This Area"
+        
+        for alert in alerts{
+            if alert.headlineDesc.containsString("construction") || alert.eventCategory == "Construction"{
+                constructionAlerts.append(alert)
+            }else if alert.eventCategory == "Special Event"{
+                specialEvents.append(alert)
+            }else {
+                trafficAlerts.append(alert)
+            }
+        }
 
         tableView.rowHeight = UITableViewAutomaticDimension
         
@@ -30,28 +44,62 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
         return UITableViewAutomaticDimension
     }
     
-    
-    @IBAction func closeAction(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: {()->Void in});
-    }
-    
     // MARK: -
     // MARK: Table View Data Source Methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 3
     }
     
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        switch(section){
+        case 0:
+            return "Traffic Alerts"
+        case 1:
+            return "Construction"
+        case 2:
+            return "Special Events"
+        default:
+            return nil
+        }
+    }
+    
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return alerts.count
+        
+        switch(section){
+            
+        case 0:
+            return trafficAlerts.count
+        case 1:
+            return constructionAlerts.count
+        case 2:
+            return specialEvents.count
+        default:
+            return 0
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! LinkCell
-
+        
         let htmlStyleString = "<style>body{font-family: '\(cell.linkLabel.font.fontName)'; font-size:\(cell.linkLabel.font.pointSize)px;}</style>"
+        var htmlString = ""
         
-        let htmlString = htmlStyleString + alerts[indexPath.row].headlineDesc
-        
+        switch indexPath.section{
+        case 0:
+            htmlString = htmlStyleString + trafficAlerts[indexPath.row].headlineDesc
+            break
+        case 1:
+            htmlString = htmlStyleString + constructionAlerts[indexPath.row].headlineDesc
+            break
+        case 2:
+            htmlString = htmlStyleString + specialEvents[indexPath.row].headlineDesc
+            break
+        default:
+            break
+        }
+
         let attrStr = try! NSMutableAttributedString(
             data: htmlString.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: false)!,
             options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
@@ -79,9 +127,7 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
             let destinationViewController = segue.destinationViewController as! HighwayAlertViewController
             destinationViewController.alertItem = alertItem
         }
-        
     }
-    
     
     // MARK: INDLinkLabelDelegate
     func linkLabel(label: INDLinkLabel, didLongPressLinkWithURL URL: NSURL) {
