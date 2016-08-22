@@ -47,7 +47,7 @@
 		9A2C27271D67A1E400F05D88 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2C27261D67A1E400F05D88 /* SettingsCell.swift */; };
 		9A2F4A5D1D52747900911AF5 /* FerryScheduleRealmDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A5C1D52747900911AF5 /* FerryScheduleRealmDataModel.swift */; };
 		9A2F4A681D528A5100911AF5 /* FerryRealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A671D528A5100911AF5 /* FerryRealmStore.swift */; };
-		9A2F4A6E1D539C1600911AF5 /* CachesRealmDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A6D1D539C1600911AF5 /* CachesRealmDataModel.swift */; };
+		9A2F4A6E1D539C1600911AF5 /* CacheItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A6D1D539C1600911AF5 /* CacheItem.swift */; };
 		9A2F4A701D53AA5C00911AF5 /* CameraRealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A6F1D53AA5C00911AF5 /* CameraRealmStore.swift */; };
 		9A50179C1D258F2000B9C49E /* RoutesCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */; };
 		9A6FBCC51D6B4C6500CDCE16 /* TravelerInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCC41D6B4C6500CDCE16 /* TravelerInfoViewController.swift */; };
@@ -56,6 +56,8 @@
 		9A6FBCD41D6B54E300CDCE16 /* RestAreaStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCD31D6B54E300CDCE16 /* RestAreaStore.swift */; };
 		9A6FBCD61D6B5EBB00CDCE16 /* RestArea.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A6FBCD51D6B5EBB00CDCE16 /* RestArea.storyboard */; };
 		9A6FBCD81D6B5EDD00CDCE16 /* RestAreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCD71D6B5EDD00CDCE16 /* RestAreaViewController.swift */; };
+		9A6FBCDA1D6B6DF700CDCE16 /* HighwayAlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCD91D6B6DF700CDCE16 /* HighwayAlertItem.swift */; };
+		9A6FBCDC1D6B6E1200CDCE16 /* HighwayAlertsRealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCDB1D6B6E1200CDCE16 /* HighwayAlertsRealmStore.swift */; };
 		9A81A5781D4AC5710049913A /* RouteTimesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5771D4AC5710049913A /* RouteTimesViewController.swift */; };
 		9A81A57A1D4AC5840049913A /* RouteCamerasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5791D4AC5840049913A /* RouteCamerasViewController.swift */; };
 		9A81A57C1D4BB41B0049913A /* LatLonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */; };
@@ -129,7 +131,7 @@
 		9A2C27261D67A1E400F05D88 /* SettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		9A2F4A5C1D52747900911AF5 /* FerryScheduleRealmDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerryScheduleRealmDataModel.swift; sourceTree = "<group>"; };
 		9A2F4A671D528A5100911AF5 /* FerryRealmStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerryRealmStore.swift; sourceTree = "<group>"; };
-		9A2F4A6D1D539C1600911AF5 /* CachesRealmDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachesRealmDataModel.swift; sourceTree = "<group>"; };
+		9A2F4A6D1D539C1600911AF5 /* CacheItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheItem.swift; sourceTree = "<group>"; };
 		9A2F4A6F1D53AA5C00911AF5 /* CameraRealmStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraRealmStore.swift; sourceTree = "<group>"; };
 		9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutesCustomCell.swift; sourceTree = "<group>"; };
 		9A6FBCC41D6B4C6500CDCE16 /* TravelerInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelerInfoViewController.swift; sourceTree = "<group>"; };
@@ -138,6 +140,8 @@
 		9A6FBCD31D6B54E300CDCE16 /* RestAreaStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAreaStore.swift; sourceTree = "<group>"; };
 		9A6FBCD51D6B5EBB00CDCE16 /* RestArea.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RestArea.storyboard; sourceTree = "<group>"; };
 		9A6FBCD71D6B5EDD00CDCE16 /* RestAreaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAreaViewController.swift; sourceTree = "<group>"; };
+		9A6FBCD91D6B6DF700CDCE16 /* HighwayAlertItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighwayAlertItem.swift; sourceTree = "<group>"; };
+		9A6FBCDB1D6B6E1200CDCE16 /* HighwayAlertsRealmStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighwayAlertsRealmStore.swift; sourceTree = "<group>"; };
 		9A81A5771D4AC5710049913A /* RouteTimesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTimesViewController.swift; sourceTree = "<group>"; };
 		9A81A5791D4AC5840049913A /* RouteCamerasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteCamerasViewController.swift; sourceTree = "<group>"; };
 		9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatLonUtils.swift; sourceTree = "<group>"; };
@@ -280,7 +284,7 @@
 		9A0616DF1D676F6100126520 /* Markers */ = {
 			isa = PBXGroup;
 			children = (
-				9A6FBCCA1D6B51CF00CDCE16 /* Alerts */,
+				9A6FBCCA1D6B51CF00CDCE16 /* HighwayAlerts */,
 				9A6FBCC61D6B517400CDCE16 /* RestAreas */,
 			);
 			name = Markers;
@@ -434,14 +438,14 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
-		9A6FBCCA1D6B51CF00CDCE16 /* Alerts */ = {
+		9A6FBCCA1D6B51CF00CDCE16 /* HighwayAlerts */ = {
 			isa = PBXGroup;
 			children = (
 				9A6FBCCD1D6B51E200CDCE16 /* Controllers */,
 				9A6FBCCC1D6B51DB00CDCE16 /* Models */,
 				9A6FBCCB1D6B51D600CDCE16 /* Views */,
 			);
-			name = Alerts;
+			name = HighwayAlerts;
 			sourceTree = "<group>";
 		};
 		9A6FBCCB1D6B51D600CDCE16 /* Views */ = {
@@ -454,6 +458,8 @@
 		9A6FBCCC1D6B51DB00CDCE16 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9A6FBCD91D6B6DF700CDCE16 /* HighwayAlertItem.swift */,
+				9A6FBCDB1D6B6E1200CDCE16 /* HighwayAlertsRealmStore.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -473,6 +479,14 @@
 			name = StaticJSONData;
 			sourceTree = "<group>";
 		};
+		9A6FBCDD1D6B6E2300CDCE16 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9AB017791D51464B004C228E /* Camera.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		9A81A57D1D4F8FB90049913A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -488,9 +502,9 @@
 		9AB017771D514606004C228E /* Cameras */ = {
 			isa = PBXGroup;
 			children = (
+				9A6FBCDD1D6B6E2300CDCE16 /* Views */,
 				9AB017781D51462D004C228E /* Controller */,
 				9AE486451D495DA5007A92E3 /* Model */,
-				9AB017791D51464B004C228E /* Camera.storyboard */,
 			);
 			name = Cameras;
 			sourceTree = "<group>";
@@ -636,7 +650,7 @@
 			isa = PBXGroup;
 			children = (
 				9AFEECE01D3925400078A781 /* CachesStore.swift */,
-				9A2F4A6D1D539C1600911AF5 /* CachesRealmDataModel.swift */,
+				9A2F4A6D1D539C1600911AF5 /* CacheItem.swift */,
 			);
 			name = Caches;
 			sourceTree = "<group>";
@@ -823,13 +837,14 @@
 				9A0616BB1D63BB9700126520 /* VesselWatchGoToViewController.swift in Sources */,
 				9AD32DFD1D23172C000AEC28 /* AppDelegate.swift in Sources */,
 				9A0616B51D63672A00126520 /* VesselItem.swift in Sources */,
-				9A2F4A6E1D539C1600911AF5 /* CachesRealmDataModel.swift in Sources */,
+				9A2F4A6E1D539C1600911AF5 /* CacheItem.swift in Sources */,
 				9A21E1CC1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift in Sources */,
 				9A1F5F9F1D47C2E800DA5F99 /* DeparturesCustomCell.swift in Sources */,
 				9A6FBCCF1D6B520900CDCE16 /* RestAreaItem.swift in Sources */,
 				9A0616B91D63867A00126520 /* VesselDetailsViewController.swift in Sources */,
 				9A2F4A681D528A5100911AF5 /* FerryRealmStore.swift in Sources */,
 				9A1F5FA51D47DCB900DA5F99 /* ApiKeys.swift in Sources */,
+				9A6FBCDA1D6B6DF700CDCE16 /* HighwayAlertItem.swift in Sources */,
 				9A81A57C1D4BB41B0049913A /* LatLonUtils.swift in Sources */,
 				9AE486441D495ACB007A92E3 /* FerriesTerminalItem.swift in Sources */,
 				9A0616C21D651B1300126520 /* InfoViewController.swift in Sources */,
@@ -855,6 +870,7 @@
 				9A2C27271D67A1E400F05D88 /* SettingsCell.swift in Sources */,
 				9A81A5781D4AC5710049913A /* RouteTimesViewController.swift in Sources */,
 				9A0CA8311D428EE9009C67B7 /* RouteDeparturesViewController.swift in Sources */,
+				9A6FBCDC1D6B6E1200CDCE16 /* HighwayAlertsRealmStore.swift in Sources */,
 				9A1F5FA11D47D3D100DA5F99 /* CameraImageCustomCell.swift in Sources */,
 				9AD32E2C1D242A5A000AEC28 /* RouteSchedulesViewController.swift in Sources */,
 				9A0616B71D63674500126520 /* VesselWatchStore.swift in Sources */,

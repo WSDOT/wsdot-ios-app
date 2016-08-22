@@ -20,6 +20,7 @@ enum DataAccessError: ErrorType {
 }
 
 class Tables {
+    static let HIGHWAY_ALERTS_TABLE = "highway_alerts"
     static let FERRIES_TABLE = "ferries_schedules"
     static let CAMERAS_TABLE = "cameras"
     static let CACHES_TABLE = "caches"

@@ -21,9 +21,12 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     let SegueCamerasViewController = "CamerasViewController"
     let SegueRestAreaViewController = "RestAreaViewController"
     
+    private var alertMarkers = Set<GMSMarker>()
     private var cameraMarkers = Set<GMSMarker>()
     private var restAreaMarkers = Set<GMSMarker>()
     
+    
+    // Mark: Map Icons
     private let restAreaIconImage = UIImage(named: "icMapRestArea")
     private let restAreaDumpIconImage = UIImage(named: "icMapRestAreaDump")
     
@@ -31,6 +34,16 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     private let cameraBarButtonImage = UIImage(named: "icCamera")
     private let cameraHighlightBarButtonImage = UIImage(named: "icCameraHighlight")
+    
+    private let alertHighIconImage = UIImage(named: "icMapAlertHigh")
+    private let alertHighestIconImage = UIImage(named: "icMapAlertHighest")
+    private let alertModerateIconImage = UIImage(named: "icMapAlertModerate")
+    
+    private let constructionHighIconImage = UIImage(named: "icMapConstructionHigh")
+    private let constructionHighestIconImage = UIImage(named: "icMapConstructionHighest")
+    private let constructionModerateIconImage = UIImage(named: "icMapConstructionModerate")
+    
+    private let closedIconImage = UIImage(named: "icMapClosed")
     
     @IBOutlet weak var cameraBarButton: UIBarButtonItem!
     @IBOutlet weak var bannerView: GADBannerView!
@@ -51,16 +64,25 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
             cameraBarButton.image = cameraHighlightBarButtonImage
         }
         
-        // Set defualt value for restarea display if there is none
-        if (NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.restAreas) == nil){
-            NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.restAreas)
-        }
-        
         // Ad Banner
         bannerView.adUnitID = ApiKeys.wsdot_ad_string
         bannerView.rootViewController = self
         bannerView.loadRequest(GADRequest())
         
+    }
+    
+    @IBAction func refreshPressed(sender: UIBarButtonItem) {
+        self.activityIndicatorView.hidden = false
+        activityIndicatorView.startAnimating()
+        let serviceGroup = dispatch_group_create();
+        
+        fetchCameras(true, serviceGroup: serviceGroup)
+        fetchAlerts(true, serviceGroup: serviceGroup)
+        
+        dispatch_group_notify(serviceGroup, dispatch_get_main_queue()) {
+            self.activityIndicatorView.stopAnimating()
+            self.activityIndicatorView.hidden = true
+        }
     }
     
     @IBAction func myLocationButtonPressed(sender: UIBarButtonItem) {
@@ -232,6 +254,95 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
             }
         }
     }
+
+    
+    
+    
+    // MARK: Alerts marker logic
+    
+    func removeAlerts(){
+        for alert in alertMarkers{
+           alert.map = nil
+        }
+    }
+    
+    func fetchAlerts(force: Bool, serviceGroup: dispatch_group_t) {
+        dispatch_group_enter(serviceGroup)
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {[weak self] in
+            HighwayAlertsStore.updateAlerts(force, completion: { error in
+                if (error == nil){
+                    dispatch_async(dispatch_get_main_queue()) {[weak self] in
+                        if let selfValue = self{
+                            dispatch_group_leave(serviceGroup)
+                            selfValue.loadAlertMarkers()
+                            selfValue.drawAlerts()
+                        }
+                    }
+                }else{
+                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                        if let selfValue = self{
+                            dispatch_group_leave(serviceGroup)
+                            selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                        }
+                    }
+                }
+            })
+        }
+    }
+    
+    func loadAlertMarkers(){
+        
+        removeAlerts()
+        alertMarkers.removeAll()
+        
+        for alert in HighwayAlertsStore.getAllAlerts(){
+            let alertLocation = CLLocationCoordinate2D(latitude: alert.startLatitude, longitude: alert.startLongitude)
+            let marker = GMSMarker(position: alertLocation)
+            marker.snippet = "alert"
+            
+            
+            // TODO: Select right icon
+            marker.icon = alertModerateIconImage
+            
+            
+            marker.userData = alert
+            alertMarkers.insert(marker)
+        }
+    }
+    
+    func drawAlerts(){
+        if let mapView = embeddedMapViewController.view as? GMSMapView{
+            let alertsPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.cameras)
+            
+            if let alertsPrefValue = alertsPref {
+                
+                if (alertsPrefValue == "on") {
+                    for alertMarker in alertMarkers{
+                        
+                        let bounds = GMSCoordinateBounds(coordinate: mapView.projection.visibleRegion().farLeft, coordinate: mapView.projection.visibleRegion().nearRight)
+                        
+                        if (bounds.containsCoordinate(alertMarker.position)){
+                            alertMarker.map = mapView
+                        } else {
+                            alertMarker.map = nil
+                        }
+                    }
+                }else{
+                    NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.alerts)
+                    for alertMarker in alertMarkers{
+                        
+                        let bounds = GMSCoordinateBounds(coordinate: mapView.projection.visibleRegion().farLeft, coordinate: mapView.projection.visibleRegion().nearRight)
+                        
+                        if (bounds.containsCoordinate(alertMarker.position)){
+                            alertMarker.map = mapView
+                        } else {
+                            alertMarker.map = nil
+                        }
+                    }
+                }
+            }
+        }
+    }
     
     
     // MARK: Rest area marker logic
@@ -275,7 +386,15 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         if let mapView = embeddedMapViewController.view as? GMSMapView{
             let restAreaPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.restAreas)
             
-            if (restAreaPref! == "on") {
+            if let restAreaPrefValue = restAreaPref{
+                if (restAreaPrefValue == "on") {
+                    for restAreaMarker in restAreaMarkers{
+                        restAreaMarker.map = mapView
+                    }
+                }
+                
+            }else{
+                NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.restAreas)
                 for restAreaMarker in restAreaMarkers{
                     restAreaMarker.map = mapView
                 }
@@ -291,15 +410,17 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
      */
     func mapView(mapView: GMSMapView, didChangeCameraPosition position: GMSCameraPosition) {
         drawCameras()
+        drawAlerts()
     }
     
     // MARK: MapMarkerViewController protocol method
     func drawOverlays(){
-        
+        self.activityIndicatorView.hidden = false
         activityIndicatorView.startAnimating()
         let serviceGroup = dispatch_group_create();
         
         fetchCameras(false, serviceGroup: serviceGroup)
+        fetchAlerts(false, serviceGroup: serviceGroup)
         fetchRestAreas(serviceGroup)
         
         dispatch_group_notify(serviceGroup, dispatch_get_main_queue()) {

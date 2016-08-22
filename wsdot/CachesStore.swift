@@ -10,6 +10,7 @@ import Foundation
 import RealmSwift
 
 enum CachedData {
+    case HighwayAlerts
     case Ferries
     case Cameras
 }
@@ -30,7 +31,6 @@ class CachesStore {
             print("Init Realm failed")
             exit(1)
         }
-        
     }
     
     static func getUpdatedTime(data: CachedData) -> NSDate {
@@ -39,6 +39,8 @@ class CachesStore {
         let cacheItem = realm.objects(CacheItem.self).first
         
         switch(data){
+        case .HighwayAlerts:
+            return (cacheItem?.highwayAlertsLastUpdate)!
         case .Ferries:
             return (cacheItem?.ferriesLastUpdate)!
         case .Cameras:
@@ -51,17 +53,20 @@ class CachesStore {
         let cacheItem = realm.objects(CacheItem.self).first
         
         do {
-        
-        try realm.write{
-            switch(data){
-            case .Ferries:
-                cacheItem?.ferriesLastUpdate = updated
-                break
-            case .Cameras:
-                cacheItem?.camerasLastUpdate = updated
-                break
+            
+            try realm.write{
+                switch(data){
+                case .HighwayAlerts:
+                    cacheItem?.highwayAlertsLastUpdate = updated
+                    break
+                case .Ferries:
+                    cacheItem?.ferriesLastUpdate = updated
+                    break
+                case .Cameras:
+                    cacheItem?.camerasLastUpdate = updated
+                    break
+                }
             }
-        }
         } catch {
             print("CachesStore.updateTime: Realm write error")
         }
