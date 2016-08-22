@@ -54,11 +54,11 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
         
         switch(section){
         case 0:
-            return "Traffic Alerts"
+            return "Traffic Alerts" + (trafficAlerts.count == 0 ? " - None Reported": "")
         case 1:
-            return "Construction"
+            return "Construction"  + (constructionAlerts.count == 0 ? " - None Reported": "")
         case 2:
-            return "Special Events"
+            return "Special Events"  + (specialEvents.count == 0 ? " - None Reported": "")
         default:
             return nil
         }
