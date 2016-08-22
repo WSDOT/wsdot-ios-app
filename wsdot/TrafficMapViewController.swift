@@ -21,6 +21,10 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     private let cameraIconImage = UIImage(named: "icMapCamera")
     
+    private let cameraBarButtonImage = UIImage(named: "icCamera")
+    private let cameraHighlightBarButtonImage = UIImage(named: "icCameraHighlight")
+    
+    @IBOutlet weak var cameraBarButton: UIBarButtonItem!
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
@@ -31,8 +35,12 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         title = "Traffic Map"
         
         // Set defualt value for camera display if there is none
-        if (NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.vesselCameras) == nil){
-            NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.vesselCameras)
+        if (NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.cameras) == nil){
+            NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.cameras)
+        }
+        
+        if (NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.cameras) == "on"){
+            cameraBarButton.image = cameraHighlightBarButtonImage
         }
         
         // Ad Banner
@@ -50,11 +58,24 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         performSegueWithIdentifier(SegueGoToPopover, sender: self)
     }
     
+    @IBAction func cameraToggleButtonPressed(sender: UIBarButtonItem) {
+        let camerasPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.cameras)
+        if let camerasVisible = camerasPref {
+            if (camerasVisible == "on") {
+                NSUserDefaults.standardUserDefaults().setObject("off", forKey: UserDefaultsKeys.cameras)
+                sender.image = cameraBarButtonImage
+                removeCameras()
+            } else {
+                sender.image = cameraHighlightBarButtonImage
+                NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.cameras)
+                drawCameras()
+            }
+        }
+    }
+    
     @IBAction func settingsAction(sender: UIBarButtonItem) {
         performSegueWithIdentifier(SegueSettingsPopover, sender: self)
     }
-    
-    
     
     func goTo(index: Int){
         if let mapView = embeddedMapViewController.view as? GMSMapView{
@@ -177,7 +198,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     func drawCameras(){
         if let mapView = embeddedMapViewController.view as? GMSMapView{
-            let camerasPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.vesselCameras)
+            let camerasPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.cameras)
             
             if (camerasPref! == "on") {
                 for cameraMarker in cameraMarkers{
@@ -194,6 +215,11 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         }
     }
     
+    /*
+     func mapView(mapView: GMSMapView, idleAtCameraPosition position: GMSCameraPosition) {
+     drawCameras()
+     }
+     */
     
     func mapView(mapView: GMSMapView, didChangeCameraPosition position: GMSCameraPosition) {
         drawCameras()

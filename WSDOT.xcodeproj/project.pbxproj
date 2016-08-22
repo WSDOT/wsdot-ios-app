@@ -50,6 +50,7 @@
 		9A2F4A6E1D539C1600911AF5 /* CachesRealmDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A6D1D539C1600911AF5 /* CachesRealmDataModel.swift */; };
 		9A2F4A701D53AA5C00911AF5 /* CameraRealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A6F1D53AA5C00911AF5 /* CameraRealmStore.swift */; };
 		9A50179C1D258F2000B9C49E /* RoutesCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */; };
+		9A6FBCC51D6B4C6500CDCE16 /* TravelerInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCC41D6B4C6500CDCE16 /* TravelerInfoViewController.swift */; };
 		9A81A5781D4AC5710049913A /* RouteTimesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5771D4AC5710049913A /* RouteTimesViewController.swift */; };
 		9A81A57A1D4AC5840049913A /* RouteCamerasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5791D4AC5840049913A /* RouteCamerasViewController.swift */; };
 		9A81A57C1D4BB41B0049913A /* LatLonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */; };
@@ -126,6 +127,7 @@
 		9A2F4A6D1D539C1600911AF5 /* CachesRealmDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachesRealmDataModel.swift; sourceTree = "<group>"; };
 		9A2F4A6F1D53AA5C00911AF5 /* CameraRealmStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraRealmStore.swift; sourceTree = "<group>"; };
 		9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutesCustomCell.swift; sourceTree = "<group>"; };
+		9A6FBCC41D6B4C6500CDCE16 /* TravelerInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelerInfoViewController.swift; sourceTree = "<group>"; };
 		9A81A5771D4AC5710049913A /* RouteTimesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTimesViewController.swift; sourceTree = "<group>"; };
 		9A81A5791D4AC5840049913A /* RouteCamerasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteCamerasViewController.swift; sourceTree = "<group>"; };
 		9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatLonUtils.swift; sourceTree = "<group>"; };
@@ -275,9 +277,8 @@
 		9A0616E01D676F6A00126520 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9A0616E31D676FB600126520 /* TrafficMapViewController.swift */,
-				9A0616E51D67838F00126520 /* TrafficMapGoToViewController.swift */,
-				9A2C27241D679E5800F05D88 /* TrafficMapSettingsViewController.swift */,
+				9A6FBCC31D6B4C2500CDCE16 /* TravelerInformation */,
+				9A6FBCC21D6B4C1000CDCE16 /* TrafficMap */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -366,6 +367,24 @@
 				9A2C27261D67A1E400F05D88 /* SettingsCell.swift */,
 			);
 			name = CustomCells;
+			sourceTree = "<group>";
+		};
+		9A6FBCC21D6B4C1000CDCE16 /* TrafficMap */ = {
+			isa = PBXGroup;
+			children = (
+				9A0616E31D676FB600126520 /* TrafficMapViewController.swift */,
+				9A0616E51D67838F00126520 /* TrafficMapGoToViewController.swift */,
+				9A2C27241D679E5800F05D88 /* TrafficMapSettingsViewController.swift */,
+			);
+			name = TrafficMap;
+			sourceTree = "<group>";
+		};
+		9A6FBCC31D6B4C2500CDCE16 /* TravelerInformation */ = {
+			isa = PBXGroup;
+			children = (
+				9A6FBCC41D6B4C6500CDCE16 /* TravelerInfoViewController.swift */,
+			);
+			name = TravelerInformation;
 			sourceTree = "<group>";
 		};
 		9A81A57D1D4F8FB90049913A /* Controllers */ = {
@@ -753,6 +772,7 @@
 				9A81A57A1D4AC5840049913A /* RouteCamerasViewController.swift in Sources */,
 				9A0CA83C1D46AC51009C67B7 /* PickerTextField.swift in Sources */,
 				9A06167C1D622AE800126520 /* MapViewController.swift in Sources */,
+				9A6FBCC51D6B4C6500CDCE16 /* TravelerInfoViewController.swift in Sources */,
 				9A2C27251D679E5800F05D88 /* TrafficMapSettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
