@@ -16,6 +16,7 @@ class HighwayAlertViewController: UIViewController, INDLinkLabelDelegate {
     @IBOutlet weak var descLinkLabel: INDLinkLabel!
     @IBOutlet weak var updateTimeLabel: UILabel!
     @IBOutlet weak var mapImage: UIImageView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     override func viewDidLoad() {
         title = alertItem.eventCategory
@@ -31,6 +32,7 @@ class HighwayAlertViewController: UIViewController, INDLinkLabelDelegate {
         
         descLinkLabel.attributedText = attrStr
         descLinkLabel.sizeToFit()
+
         
         updateTimeLabel.text = TimeUtils.timeAgoSinceDate(alertItem.lastUpdatedTime, numericDates: false)
         
