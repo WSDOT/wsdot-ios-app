@@ -110,6 +110,7 @@
                         </segue>
                         <segue destination="B33-Te-SwX" kind="show" identifier="CamerasViewController" id="KM3-eY-kBO"/>
                         <segue destination="Qwx-cO-mAH" kind="show" identifier="TravelerInfoViewController" id="ts6-vG-vCq"/>
+                        <segue destination="QdF-Ti-KSO" kind="show" identifier="RestAreaViewController" id="KcO-W9-svH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rnr-aE-lbf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -158,7 +159,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Og4-Qh-gPF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1766" y="220"/>
+            <point key="canvasLocation" x="1766" y="36"/>
+        </scene>
+        <!--RestArea-->
+        <scene sceneID="UBd-K4-gVS">
+            <objects>
+                <viewControllerPlaceholder storyboardName="RestArea" id="QdF-Ti-KSO" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KHZ-Z9-TBX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1510" y="497"/>
         </scene>
         <!--Camera-->
         <scene sceneID="9M1-Uc-Zzu">
@@ -291,19 +300,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="owa-9R-fe1">
+                                                    <rect key="frame" x="533" y="6" width="51" height="31"/>
+                                                </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D9p-uc-0TU">
-                                                    <rect key="frame" x="8" y="11" width="42" height="21"/>
+                                                    <rect key="frame" x="16" y="11" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="owa-9R-fe1">
-                                                    <rect key="frame" x="533" y="6" width="51" height="31"/>
-                                                </switch>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="D9p-uc-0TU" firstAttribute="centerY" secondItem="owa-9R-fe1" secondAttribute="centerY" id="RN7-69-etW"/>
-                                                <constraint firstItem="D9p-uc-0TU" firstAttribute="leading" secondItem="orx-hg-QW8" secondAttribute="leadingMargin" id="XXC-Xn-dSw"/>
+                                                <constraint firstItem="D9p-uc-0TU" firstAttribute="leading" secondItem="orx-hg-QW8" secondAttribute="leadingMargin" constant="8" id="XXC-Xn-dSw"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="owa-9R-fe1" secondAttribute="trailing" constant="10" id="dWQ-Lv-cUw"/>
                                                 <constraint firstItem="D9p-uc-0TU" firstAttribute="centerY" secondItem="orx-hg-QW8" secondAttribute="centerY" id="lkv-sg-SUs"/>
                                             </constraints>

@@ -16,9 +16,16 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     let SegueGoToPopover = "TrafficMapGoToViewController"
     let SegueSettingsPopover = "TrafficMapSettingsViewController"
     let SegueTravlerInfoViewController = "TravelerInfoViewController"
+    
+    // Marker Segues
     let SegueCamerasViewController = "CamerasViewController"
+    let SegueRestAreaViewController = "RestAreaViewController"
     
     private var cameraMarkers = Set<GMSMarker>()
+    private var restAreaMarkers = Set<GMSMarker>()
+    
+    private let restAreaIconImage = UIImage(named: "icMapRestArea")
+    private let restAreaDumpIconImage = UIImage(named: "icMapRestAreaDump")
     
     private let cameraIconImage = UIImage(named: "icMapCamera")
     
@@ -42,6 +49,11 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         
         if (NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.cameras) == "on"){
             cameraBarButton.image = cameraHighlightBarButtonImage
+        }
+        
+        // Set defualt value for restarea display if there is none
+        if (NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.restAreas) == nil){
+            NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.restAreas)
         }
         
         // Ad Banner
@@ -155,6 +167,8 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         }
     }
     
+    // MARK: Camera marker logic
+    
     func removeCameras(){
         for camera in cameraMarkers{
             camera.map = nil
@@ -171,7 +185,6 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
                             dispatch_group_leave(serviceGroup)
                             selfValue.loadCameraMarkers()
                             selfValue.drawCameras()
-                            
                         }
                     }
                 }else{
@@ -220,12 +233,62 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         }
     }
     
+    
+    // MARK: Rest area marker logic
+    
+    func removeRestAreas(){
+        for restarea in restAreaMarkers{
+            restarea.map = nil
+        }
+    }
+    
+    func fetchRestAreas(serviceGroup: dispatch_group_t) {
+        dispatch_group_enter(serviceGroup)
+        loadRestAreaMarkers()
+        drawRestArea()
+        dispatch_group_leave(serviceGroup)
+    }
+    
+    
+    func loadRestAreaMarkers(){
+        
+        removeRestAreas()
+        restAreaMarkers.removeAll()
+
+        for restarea in RestAreaStore.readRestAreas(){
+            let restareaLocation = CLLocationCoordinate2D(latitude: restarea.latitude, longitude: restarea.longitude)
+            let marker = GMSMarker(position: restareaLocation)
+            marker.snippet = "restarea"
+          
+            if (restarea.hasDump){
+                marker.icon = restAreaIconImage
+            }else{
+                marker.icon = restAreaDumpIconImage
+            }
+            
+            marker.userData = restarea
+            restAreaMarkers.insert(marker)
+        }
+    }
+    
+    func drawRestArea(){
+        if let mapView = embeddedMapViewController.view as? GMSMapView{
+            let restAreaPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.restAreas)
+            
+            if (restAreaPref! == "on") {
+                for restAreaMarker in restAreaMarkers{
+                    restAreaMarker.map = mapView
+                }
+            }
+        }
+    }
+    
+    
     /*
      func mapView(mapView: GMSMapView, idleAtCameraPosition position: GMSCameraPosition) {
      drawCameras()
      }
      */
-    
     func mapView(mapView: GMSMapView, didChangeCameraPosition position: GMSCameraPosition) {
         drawCameras()
     }
@@ -237,19 +300,21 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         let serviceGroup = dispatch_group_create();
         
         fetchCameras(false, serviceGroup: serviceGroup)
+        fetchRestAreas(serviceGroup)
         
         dispatch_group_notify(serviceGroup, dispatch_get_main_queue()) {
             self.activityIndicatorView.stopAnimating()
             self.activityIndicatorView.hidden = true
         }
-        
     }
     
     // MARK: GMSMapViewDelegate
     func mapView(mapView: GMSMapView, didTapMarker marker: GMSMarker) -> Bool {
-        
         if marker.snippet == "camera" {
             performSegueWithIdentifier(SegueCamerasViewController, sender: marker)
+        }
+        if marker.snippet == "restarea" {
+            performSegueWithIdentifier(SegueRestAreaViewController, sender: marker)
         }
         return true
     }
@@ -263,13 +328,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
             vc.mapDelegate = self
             self.embeddedMapViewController = vc
         }
-        
-        if segue.identifier == SegueCamerasViewController {
-            let cameraItem = ((sender as! GMSMarker).userData as! CameraItem)
-            let destinationViewController = segue.destinationViewController as! CameraViewController
-            destinationViewController.cameraItem = cameraItem
-        }
-        
+
         if segue.identifier == SegueGoToPopover {
             let destinationViewController = segue.destinationViewController as! TrafficMapGoToViewController
             destinationViewController.parent = self
@@ -278,6 +337,18 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         if segue.identifier == SegueSettingsPopover {
             let destinationViewController = segue.destinationViewController as! TrafficMapSettingsViewController
             destinationViewController.parent = self
+        }
+                
+        if segue.identifier == SegueCamerasViewController {
+            let cameraItem = ((sender as! GMSMarker).userData as! CameraItem)
+            let destinationViewController = segue.destinationViewController as! CameraViewController
+            destinationViewController.cameraItem = cameraItem
+        }
+        
+        if segue.identifier == SegueRestAreaViewController {
+            let restAreaItem = ((sender as! GMSMarker).userData as! RestAreaItem)
+            let destinationViewController = segue.destinationViewController as! RestAreaViewController
+            destinationViewController.restAreaItem = restAreaItem
         }
     }
 }

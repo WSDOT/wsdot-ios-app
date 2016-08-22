@@ -51,6 +51,11 @@
 		9A2F4A701D53AA5C00911AF5 /* CameraRealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A6F1D53AA5C00911AF5 /* CameraRealmStore.swift */; };
 		9A50179C1D258F2000B9C49E /* RoutesCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */; };
 		9A6FBCC51D6B4C6500CDCE16 /* TravelerInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCC41D6B4C6500CDCE16 /* TravelerInfoViewController.swift */; };
+		9A6FBCCF1D6B520900CDCE16 /* RestAreaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCCE1D6B520900CDCE16 /* RestAreaItem.swift */; };
+		9A6FBCD21D6B541F00CDCE16 /* restareas.json in Resources */ = {isa = PBXBuildFile; fileRef = 9A6FBCD11D6B541F00CDCE16 /* restareas.json */; };
+		9A6FBCD41D6B54E300CDCE16 /* RestAreaStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCD31D6B54E300CDCE16 /* RestAreaStore.swift */; };
+		9A6FBCD61D6B5EBB00CDCE16 /* RestArea.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A6FBCD51D6B5EBB00CDCE16 /* RestArea.storyboard */; };
+		9A6FBCD81D6B5EDD00CDCE16 /* RestAreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCD71D6B5EDD00CDCE16 /* RestAreaViewController.swift */; };
 		9A81A5781D4AC5710049913A /* RouteTimesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5771D4AC5710049913A /* RouteTimesViewController.swift */; };
 		9A81A57A1D4AC5840049913A /* RouteCamerasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5791D4AC5840049913A /* RouteCamerasViewController.swift */; };
 		9A81A57C1D4BB41B0049913A /* LatLonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */; };
@@ -128,6 +133,11 @@
 		9A2F4A6F1D53AA5C00911AF5 /* CameraRealmStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraRealmStore.swift; sourceTree = "<group>"; };
 		9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutesCustomCell.swift; sourceTree = "<group>"; };
 		9A6FBCC41D6B4C6500CDCE16 /* TravelerInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelerInfoViewController.swift; sourceTree = "<group>"; };
+		9A6FBCCE1D6B520900CDCE16 /* RestAreaItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAreaItem.swift; sourceTree = "<group>"; };
+		9A6FBCD11D6B541F00CDCE16 /* restareas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = restareas.json; sourceTree = "<group>"; };
+		9A6FBCD31D6B54E300CDCE16 /* RestAreaStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAreaStore.swift; sourceTree = "<group>"; };
+		9A6FBCD51D6B5EBB00CDCE16 /* RestArea.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RestArea.storyboard; sourceTree = "<group>"; };
+		9A6FBCD71D6B5EDD00CDCE16 /* RestAreaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAreaViewController.swift; sourceTree = "<group>"; };
 		9A81A5771D4AC5710049913A /* RouteTimesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTimesViewController.swift; sourceTree = "<group>"; };
 		9A81A5791D4AC5840049913A /* RouteCamerasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteCamerasViewController.swift; sourceTree = "<group>"; };
 		9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatLonUtils.swift; sourceTree = "<group>"; };
@@ -253,7 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				9A0616E01D676F6A00126520 /* Controllers */,
-				9A0616DF1D676F6100126520 /* Models */,
+				9A0616DF1D676F6100126520 /* Markers */,
 				9A0616DE1D676F5C00126520 /* Views */,
 			);
 			name = TrafficMap;
@@ -267,11 +277,13 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		9A0616DF1D676F6100126520 /* Models */ = {
+		9A0616DF1D676F6100126520 /* Markers */ = {
 			isa = PBXGroup;
 			children = (
+				9A6FBCCA1D6B51CF00CDCE16 /* Alerts */,
+				9A6FBCC61D6B517400CDCE16 /* RestAreas */,
 			);
-			name = Models;
+			name = Markers;
 			sourceTree = "<group>";
 		};
 		9A0616E01D676F6A00126520 /* Controllers */ = {
@@ -387,6 +399,80 @@
 			name = TravelerInformation;
 			sourceTree = "<group>";
 		};
+		9A6FBCC61D6B517400CDCE16 /* RestAreas */ = {
+			isa = PBXGroup;
+			children = (
+				9A6FBCC91D6B519600CDCE16 /* Controllers */,
+				9A6FBCC81D6B518D00CDCE16 /* Views */,
+				9A6FBCC71D6B518600CDCE16 /* Models */,
+			);
+			name = RestAreas;
+			sourceTree = "<group>";
+		};
+		9A6FBCC71D6B518600CDCE16 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9A6FBCCE1D6B520900CDCE16 /* RestAreaItem.swift */,
+				9A6FBCD31D6B54E300CDCE16 /* RestAreaStore.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		9A6FBCC81D6B518D00CDCE16 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9A6FBCD51D6B5EBB00CDCE16 /* RestArea.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		9A6FBCC91D6B519600CDCE16 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9A6FBCD71D6B5EDD00CDCE16 /* RestAreaViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		9A6FBCCA1D6B51CF00CDCE16 /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				9A6FBCCD1D6B51E200CDCE16 /* Controllers */,
+				9A6FBCCC1D6B51DB00CDCE16 /* Models */,
+				9A6FBCCB1D6B51D600CDCE16 /* Views */,
+			);
+			name = Alerts;
+			sourceTree = "<group>";
+		};
+		9A6FBCCB1D6B51D600CDCE16 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		9A6FBCCC1D6B51DB00CDCE16 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		9A6FBCCD1D6B51E200CDCE16 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		9A6FBCD01D6B53F800CDCE16 /* StaticJSONData */ = {
+			isa = PBXGroup;
+			children = (
+				9A6FBCD11D6B541F00CDCE16 /* restareas.json */,
+			);
+			name = StaticJSONData;
+			sourceTree = "<group>";
+		};
 		9A81A57D1D4F8FB90049913A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -480,6 +566,7 @@
 		9AD32E1F1D231749000AEC28 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9A6FBCD01D6B53F800CDCE16 /* StaticJSONData */,
 				9AFEECDF1D39253A0078A781 /* Caches */,
 			);
 			name = Models;
@@ -654,7 +741,9 @@
 				9AD32E041D23172C000AEC28 /* Assets.xcassets in Resources */,
 				9AD32E021D23172C000AEC28 /* Main.storyboard in Resources */,
 				9A122B431D5246DB00C176CD /* GoogleService-Info.plist in Resources */,
+				9A6FBCD21D6B541F00CDCE16 /* restareas.json in Resources */,
 				9A0616C81D6601BD00126520 /* TollRates.storyboard in Resources */,
+				9A6FBCD61D6B5EBB00CDCE16 /* RestArea.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -722,8 +811,10 @@
 			files = (
 				9ADEAE4D1D270CC800BA7DD4 /* Consts.swift in Sources */,
 				9A0616E61D67838F00126520 /* TrafficMapGoToViewController.swift in Sources */,
+				9A6FBCD41D6B54E300CDCE16 /* RestAreaStore.swift in Sources */,
 				9AFEECE11D3925400078A781 /* CachesStore.swift in Sources */,
 				9A2F4A5D1D52747900911AF5 /* FerryScheduleRealmDataModel.swift in Sources */,
+				9A6FBCD81D6B5EDD00CDCE16 /* RestAreaViewController.swift in Sources */,
 				9A07192C1D410FD5007BB4C5 /* RouteAlertsViewController.swift in Sources */,
 				9A0616811D6265FB00126520 /* UserDefaultsKeys.swift in Sources */,
 				9A1F5FA71D47E27200DA5F99 /* SailingSpacesItem.swift in Sources */,
@@ -735,6 +826,7 @@
 				9A2F4A6E1D539C1600911AF5 /* CachesRealmDataModel.swift in Sources */,
 				9A21E1CC1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift in Sources */,
 				9A1F5F9F1D47C2E800DA5F99 /* DeparturesCustomCell.swift in Sources */,
+				9A6FBCCF1D6B520900CDCE16 /* RestAreaItem.swift in Sources */,
 				9A0616B91D63867A00126520 /* VesselDetailsViewController.swift in Sources */,
 				9A2F4A681D528A5100911AF5 /* FerryRealmStore.swift in Sources */,
 				9A1F5FA51D47DCB900DA5F99 /* ApiKeys.swift in Sources */,

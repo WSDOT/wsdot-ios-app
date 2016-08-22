@@ -72,9 +72,6 @@ class TrafficMapSettingsViewController: UIViewController {
                 } else {
                     cell.settingSwitch.on = false
                 }
-            } else { // set default value
-                NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.restAreas)
-                cell.settingSwitch.on = true
             }
             
             cell.settingSwitch.addTarget(self, action: #selector(TrafficMapSettingsViewController.changeRestAreaPref(_:)), forControlEvents: .ValueChanged)
@@ -131,12 +128,10 @@ class TrafficMapSettingsViewController: UIViewController {
         if let restAreaVisible = restAreaPref {
             if (restAreaVisible == "on") {
                 NSUserDefaults.standardUserDefaults().setObject("off", forKey: UserDefaultsKeys.restAreas)
-                print("rest area pref off")
-                //parent!.removeCameras()
+                parent!.removeRestAreas()
             } else {
                 NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.restAreas)
-                print("rest area pref on")
-                //parent!.drawCameras()
+                parent!.drawRestArea()
             }
         }
     }
