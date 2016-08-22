@@ -15,6 +15,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     let SegueGoToPopover = "TrafficMapGoToViewController"
     let SegueSettingsPopover = "TrafficMapSettingsViewController"
+    let SegueTravlerInfoViewController = "TravelerInfoViewController"
     let SegueCamerasViewController = "CamerasViewController"
     
     private var cameraMarkers = Set<GMSMarker>()
@@ -73,6 +74,10 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         }
     }
     
+    @IBAction func travelerInfoAction(sender: UIBarButtonItem) {
+        performSegueWithIdentifier(SegueTravlerInfoViewController, sender: self)
+    }
+
     @IBAction func settingsAction(sender: UIBarButtonItem) {
         performSegueWithIdentifier(SegueSettingsPopover, sender: self)
     }

@@ -15,7 +15,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     let SegueTrafficMapViewController = "TrafficMapViewController"
     let SegueFerriesHomeViewController = "FerriesHomeViewController"
     let SegueTollRatesViewController = "TollRatesViewController"
-    
     let SegueInfoViewController = "InfoViewController"
     
     var menu_options: [String] = []
