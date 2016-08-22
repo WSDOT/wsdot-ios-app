@@ -26,7 +26,6 @@
 		9A0616D51D6638AB00126520 /* TollRatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616D41D6638AB00126520 /* TollRatesModel.swift */; };
 		9A0616D71D664D2300126520 /* FourColTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616D61D664D2300126520 /* FourColTableViewCell.swift */; };
 		9A0616DA1D675DC800126520 /* ThreeColTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616D91D675DC800126520 /* ThreeColTableViewCell.swift */; };
-		9A0616E21D676F7800126520 /* TrafficMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A0616E11D676F7800126520 /* TrafficMap.storyboard */; };
 		9A0616E41D676FB600126520 /* TrafficMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616E31D676FB600126520 /* TrafficMapViewController.swift */; };
 		9A0616E61D67838F00126520 /* TrafficMapGoToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616E51D67838F00126520 /* TrafficMapGoToViewController.swift */; };
 		9A07192C1D410FD5007BB4C5 /* RouteAlertsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A07192B1D410FD5007BB4C5 /* RouteAlertsViewController.swift */; };
@@ -60,6 +59,8 @@
 		9A6FBCDC1D6B6E1200CDCE16 /* HighwayAlertsRealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCDB1D6B6E1200CDCE16 /* HighwayAlertsRealmStore.swift */; };
 		9A6FBCDF1D6B86AD00CDCE16 /* HighwayAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A6FBCDE1D6B86AD00CDCE16 /* HighwayAlert.storyboard */; };
 		9A6FBCE11D6B96EE00CDCE16 /* HighwayAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCE01D6B96EE00CDCE16 /* HighwayAlertViewController.swift */; };
+		9A6FBCE31D6BA2DC00CDCE16 /* AlertInAreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCE21D6BA2DC00CDCE16 /* AlertInAreaViewController.swift */; };
+		9A6FBCE51D6BAC2E00CDCE16 /* TrafficMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A6FBCE41D6BAC2E00CDCE16 /* TrafficMap.storyboard */; };
 		9A81A5781D4AC5710049913A /* RouteTimesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5771D4AC5710049913A /* RouteTimesViewController.swift */; };
 		9A81A57A1D4AC5840049913A /* RouteCamerasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5791D4AC5840049913A /* RouteCamerasViewController.swift */; };
 		9A81A57C1D4BB41B0049913A /* LatLonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */; };
@@ -112,7 +113,6 @@
 		9A0616D41D6638AB00126520 /* TollRatesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TollRatesModel.swift; sourceTree = "<group>"; };
 		9A0616D61D664D2300126520 /* FourColTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourColTableViewCell.swift; sourceTree = "<group>"; };
 		9A0616D91D675DC800126520 /* ThreeColTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeColTableViewCell.swift; sourceTree = "<group>"; };
-		9A0616E11D676F7800126520 /* TrafficMap.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TrafficMap.storyboard; sourceTree = "<group>"; };
 		9A0616E31D676FB600126520 /* TrafficMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficMapViewController.swift; sourceTree = "<group>"; };
 		9A0616E51D67838F00126520 /* TrafficMapGoToViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficMapGoToViewController.swift; sourceTree = "<group>"; };
 		9A07192B1D410FD5007BB4C5 /* RouteAlertsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteAlertsViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +146,8 @@
 		9A6FBCDB1D6B6E1200CDCE16 /* HighwayAlertsRealmStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighwayAlertsRealmStore.swift; sourceTree = "<group>"; };
 		9A6FBCDE1D6B86AD00CDCE16 /* HighwayAlert.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HighwayAlert.storyboard; sourceTree = "<group>"; };
 		9A6FBCE01D6B96EE00CDCE16 /* HighwayAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighwayAlertViewController.swift; sourceTree = "<group>"; };
+		9A6FBCE21D6BA2DC00CDCE16 /* AlertInAreaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertInAreaViewController.swift; sourceTree = "<group>"; };
+		9A6FBCE41D6BAC2E00CDCE16 /* TrafficMap.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TrafficMap.storyboard; sourceTree = "<group>"; };
 		9A81A5771D4AC5710049913A /* RouteTimesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTimesViewController.swift; sourceTree = "<group>"; };
 		9A81A5791D4AC5840049913A /* RouteCamerasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteCamerasViewController.swift; sourceTree = "<group>"; };
 		9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatLonUtils.swift; sourceTree = "<group>"; };
@@ -280,7 +282,7 @@
 		9A0616DE1D676F5C00126520 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9A0616E11D676F7800126520 /* TrafficMap.storyboard */,
+				9A6FBCE41D6BAC2E00CDCE16 /* TrafficMap.storyboard */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -395,6 +397,7 @@
 				9A0616E31D676FB600126520 /* TrafficMapViewController.swift */,
 				9A0616E51D67838F00126520 /* TrafficMapGoToViewController.swift */,
 				9A2C27241D679E5800F05D88 /* TrafficMapSettingsViewController.swift */,
+				9A6FBCE21D6BA2DC00CDCE16 /* AlertInAreaViewController.swift */,
 			);
 			name = TrafficMap;
 			sourceTree = "<group>";
@@ -754,8 +757,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A6FBCE51D6BAC2E00CDCE16 /* TrafficMap.storyboard in Resources */,
 				9AD32E071D23172C000AEC28 /* LaunchScreen.storyboard in Resources */,
-				9A0616E21D676F7800126520 /* TrafficMap.storyboard in Resources */,
 				9AD32E281D2421E4000AEC28 /* Ferries.storyboard in Resources */,
 				9AB0177A1D51464B004C228E /* Camera.storyboard in Resources */,
 				9AD32E041D23172C000AEC28 /* Assets.xcassets in Resources */,
@@ -873,6 +876,7 @@
 				9AD32E221D241AF4000AEC28 /* HomeViewController.swift in Sources */,
 				9A0616E41D676FB600126520 /* TrafficMapViewController.swift in Sources */,
 				9A0616CC1D660BD500126520 /* SR520ViewController.swift in Sources */,
+				9A6FBCE31D6BA2DC00CDCE16 /* AlertInAreaViewController.swift in Sources */,
 				9AD32E2E1D243260000AEC28 /* FavoritesViewController.swift in Sources */,
 				9A0616CE1D660CC800126520 /* SR16ViewController.swift in Sources */,
 				9A2C27271D67A1E400F05D88 /* SettingsCell.swift in Sources */,

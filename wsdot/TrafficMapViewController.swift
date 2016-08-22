@@ -14,6 +14,7 @@ import GoogleMobileAds
 class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewDelegate {
     
     let SegueGoToPopover = "TrafficMapGoToViewController"
+    let SegueAlertsInArea = "AlertsInAreaViewController"
     let SegueSettingsPopover = "TrafficMapSettingsViewController"
     let SegueTravlerInfoViewController = "TravelerInfoViewController"
     
@@ -25,7 +26,6 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     private var alertMarkers = Set<GMSMarker>()
     private var cameraMarkers = Set<GMSMarker>()
     private var restAreaMarkers = Set<GMSMarker>()
-    
     
     // Mark: Map Icons
     private let restAreaIconImage = UIImage(named: "icMapRestArea")
@@ -88,6 +88,10 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     @IBAction func myLocationButtonPressed(sender: UIBarButtonItem) {
         embeddedMapViewController.goToUsersLocation()
+    }
+    
+    @IBAction func alertsInAreaButtonPressed(sender: UIBarButtonItem) {
+        performSegueWithIdentifier(SegueAlertsInArea, sender: self)
     }
     
     @IBAction func goToLocation(sender: UIBarButtonItem) {
@@ -389,6 +393,22 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         }
     }
     
+    func getAlertsOnScreen() -> [HighwayAlertItem] {
+        var alerts = [HighwayAlertItem]()
+        
+        if let mapView = embeddedMapViewController.view as? GMSMapView{
+            for alertMarker in alertMarkers{
+                
+                let bounds = GMSCoordinateBounds(coordinate: mapView.projection.visibleRegion().farLeft, coordinate: mapView.projection.visibleRegion().nearRight)
+                
+                if (bounds.containsCoordinate(alertMarker.position)){
+                    alerts.append(alertMarker.userData as! HighwayAlertItem)
+                }
+            }
+        }
+        return alerts
+    }
+    
     
     // MARK: Rest area marker logic
     
@@ -501,6 +521,12 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         if segue.identifier == SegueGoToPopover {
             let destinationViewController = segue.destinationViewController as! TrafficMapGoToViewController
             destinationViewController.parent = self
+        }
+        
+        if segue.identifier == SegueAlertsInArea {
+            let alerts = getAlertsOnScreen()
+            let destinationViewController = segue.destinationViewController as! AlertsInAreaViewController
+            destinationViewController.alerts = alerts
         }
         
         if segue.identifier == SegueSettingsPopover {

@@ -503,7 +503,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zmn-aL-uxR" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="8" width="584" height="90"/>
+                                                    <rect key="frame" x="16" y="8" width="576" height="90"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -516,7 +516,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Zmn-aL-uxR" firstAttribute="trailing" secondItem="ZDq-uQ-GlE" secondAttribute="trailingMargin" id="GWh-gW-Mmd"/>
-                                                <constraint firstItem="Zmn-aL-uxR" firstAttribute="leading" secondItem="ZDq-uQ-GlE" secondAttribute="leadingMargin" id="Kru-0C-uT5"/>
+                                                <constraint firstItem="Zmn-aL-uxR" firstAttribute="leading" secondItem="ZDq-uQ-GlE" secondAttribute="leadingMargin" constant="8" id="Kru-0C-uT5"/>
                                                 <constraint firstItem="Zmn-aL-uxR" firstAttribute="bottom" secondItem="ZDq-uQ-GlE" secondAttribute="bottomMargin" id="dZX-ab-UzA"/>
                                                 <constraint firstItem="Zmn-aL-uxR" firstAttribute="top" secondItem="ZDq-uQ-GlE" secondAttribute="topMargin" id="ixk-BG-29p"/>
                                             </constraints>

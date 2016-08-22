@@ -31,7 +31,6 @@ class HighwayAlertViewController: UIViewController, INDLinkLabelDelegate {
             documentAttributes: nil)
         
         descLinkLabel.attributedText = attrStr
-        descLinkLabel.sizeToFit()
 
         
         updateTimeLabel.text = TimeUtils.timeAgoSinceDate(alertItem.lastUpdatedTime, numericDates: false)

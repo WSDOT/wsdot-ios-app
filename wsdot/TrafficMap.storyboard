@@ -36,7 +36,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="jGm-n0-0ck"/>
-                                    <barButtonItem image="icAlert" id="f2S-Vg-19G"/>
+                                    <barButtonItem image="icAlert" id="f2S-Vg-19G">
+                                        <connections>
+                                            <action selector="alertsInAreaButtonPressed:" destination="1Nk-0b-wXD" id="avG-9R-OcN"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="P5q-Jx-Phh"/>
                                     <barButtonItem image="icLocation" id="OPC-ew-Vud">
                                         <connections>
@@ -115,6 +119,7 @@
                         <segue destination="Qwx-cO-mAH" kind="show" identifier="TravelerInfoViewController" id="ts6-vG-vCq"/>
                         <segue destination="QdF-Ti-KSO" kind="show" identifier="RestAreaViewController" id="KcO-W9-svH"/>
                         <segue destination="Gnu-Bt-A0j" kind="show" identifier="HighwayAlertViewController" id="PBZ-ny-t9b"/>
+                        <segue destination="sl9-wk-KdH" kind="show" identifier="AlertsInAreaViewController" id="AiF-H4-I2A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rnr-aE-lbf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -137,11 +142,11 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TravelerInfoCell" rowHeight="42" id="YHn-B6-ABT">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TravelerInfoCell" rowHeight="42" id="YHn-B6-ABT">
                                         <rect key="frame" x="0.0" y="92" width="600" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YHn-B6-ABT" id="lfV-p9-IV9">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="41"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="41"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -206,6 +211,79 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yad-Rb-j1s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1766" y="851"/>
+        </scene>
+        <!--Alerts In Area View Controller-->
+        <scene sceneID="hMC-PU-rzi">
+            <objects>
+                <viewController id="sl9-wk-KdH" customClass="AlertsInAreaViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="z3x-rR-cpy"/>
+                        <viewControllerLayoutGuide type="bottom" id="W7A-Vx-WNt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HWZ-Zl-Tyx">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HnH-cr-8gd">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AlertCell" id="eNo-lm-JYu" customClass="LinkCell" customModule="WSDOT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eNo-lm-JYu" id="Eb3-jy-4OQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELJ-4a-jeX" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
+                                                    <rect key="frame" x="16" y="0.0" width="551" height="35"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="ELJ-4a-jeX" secondAttribute="trailing" id="P2n-8B-brs"/>
+                                                <constraint firstItem="ELJ-4a-jeX" firstAttribute="top" secondItem="Eb3-jy-4OQ" secondAttribute="top" id="TIZ-WY-gGR"/>
+                                                <constraint firstItem="ELJ-4a-jeX" firstAttribute="bottom" secondItem="Eb3-jy-4OQ" secondAttribute="bottomMargin" id="TOA-xX-hqN"/>
+                                                <constraint firstItem="ELJ-4a-jeX" firstAttribute="leading" secondItem="Eb3-jy-4OQ" secondAttribute="leadingMargin" constant="8" id="qWs-zt-neX"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="linkLabel" destination="ELJ-4a-jeX" id="EnU-Wg-cwj"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="sl9-wk-KdH" id="ufb-Wx-jSj"/>
+                                    <outlet property="delegate" destination="sl9-wk-KdH" id="iQa-0D-ptk"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="HnH-cr-8gd" firstAttribute="leading" secondItem="HWZ-Zl-Tyx" secondAttribute="leading" id="UEC-0F-IcO"/>
+                            <constraint firstItem="HnH-cr-8gd" firstAttribute="top" secondItem="z3x-rR-cpy" secondAttribute="bottom" id="Xwy-TB-ahk"/>
+                            <constraint firstAttribute="trailing" secondItem="HnH-cr-8gd" secondAttribute="trailing" id="ZXF-BP-ukn"/>
+                            <constraint firstItem="HnH-cr-8gd" firstAttribute="bottom" secondItem="W7A-Vx-WNt" secondAttribute="top" id="grN-JP-K96"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="HnH-cr-8gd" id="vEf-af-egI"/>
+                        <segue destination="tFn-Pc-wtP" kind="show" identifier="HighwayAlertViewController" id="I48-Pv-PrS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="74b-ma-3iY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-422" y="1196"/>
+        </scene>
+        <!--HighwayAlert-->
+        <scene sceneID="Qh4-8p-U76">
+            <objects>
+                <viewControllerPlaceholder storyboardName="HighwayAlert" id="tFn-Pc-wtP" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gt5-YB-7xq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="27" y="1045"/>
         </scene>
         <!--Traffic Map Go To View Controller-->
         <scene sceneID="XKW-zr-rYB">
