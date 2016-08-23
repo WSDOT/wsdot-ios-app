@@ -11,12 +11,32 @@ import UIKit
 class TravelTimeDetailsViewController: UIViewController {
 
     @IBOutlet weak var favoriteTabBarButton: UIBarButtonItem!
+    
+    @IBOutlet weak var routeTitle: UILabel!
+    @IBOutlet weak var subTitle: UILabel!
+    @IBOutlet weak var updated: UILabel!
+    @IBOutlet weak var currentTime: UILabel!
+
+    
     var travelTime = TravelTimeItem()
     
     override func viewDidLoad() {
 
         title = travelTime.title
 
+        routeTitle.text = travelTime.title
+        subTitle.text = String(travelTime.distance) + " miles / " + String(travelTime.averageTime) + " min"
+        updated.text = travelTime.updated
+        currentTime.text = String(travelTime.currentTime) + " min"
+ 
+        if (travelTime.averageTime > travelTime.currentTime){
+            currentTime.textColor = Colors.tintColor
+        } else if (travelTime.averageTime < travelTime.currentTime){
+            currentTime.textColor = UIColor.redColor()
+        } else {
+            currentTime.textColor = UIColor.darkTextColor()
+        }
+        
         if (travelTime.selected){
             favoriteTabBarButton.image = UIImage(named: "icStarSmallFilled")
         }else{
