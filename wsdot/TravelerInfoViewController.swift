@@ -47,7 +47,6 @@ class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITable
     // MARK: Table View Delegate Methods
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // Perform Segue
-        /*
         switch (indexPath.row) {
         case 0:
             performSegueWithIdentifier(SegueTravelTimesViewController, sender: self)
@@ -60,6 +59,5 @@ class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITable
         default:
             break
         }
-        */
     }
 }

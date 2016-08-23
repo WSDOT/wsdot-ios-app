@@ -32,7 +32,6 @@ class HighwayAlertViewController: UIViewController, INDLinkLabelDelegate {
         
         descLinkLabel.attributedText = attrStr
 
-        
         updateTimeLabel.text = TimeUtils.timeAgoSinceDate(alertItem.lastUpdatedTime, numericDates: false)
         
         let staticMapUrl = "http://maps.googleapis.com/maps/api/staticmap?center="

@@ -65,6 +65,10 @@
 		9A6FBCEC1D6C953D00CDCE16 /* CalloutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCEB1D6C953D00CDCE16 /* CalloutViewController.swift */; };
 		9A6FBCEF1D6C9B2C00CDCE16 /* FavoriteLocationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCEE1D6C9B2C00CDCE16 /* FavoriteLocationItem.swift */; };
 		9A6FBCF11D6C9B9A00CDCE16 /* FavoriteLocationRealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCF01D6C9B9A00CDCE16 /* FavoriteLocationRealmStore.swift */; };
+		9A6FBCF71D6CA91700CDCE16 /* ExpressLanesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCF61D6CA91700CDCE16 /* ExpressLanesViewController.swift */; };
+		9A6FBCFC1D6CAC0800CDCE16 /* ExpressLaneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCFB1D6CAC0800CDCE16 /* ExpressLaneCell.swift */; };
+		9A6FBCFE1D6CAE5700CDCE16 /* ExpressLaneItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCFD1D6CAE5700CDCE16 /* ExpressLaneItem.swift */; };
+		9A6FBD001D6CB0A700CDCE16 /* ExpressLanesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCFF1D6CB0A700CDCE16 /* ExpressLanesStore.swift */; };
 		9A81A5781D4AC5710049913A /* RouteTimesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5771D4AC5710049913A /* RouteTimesViewController.swift */; };
 		9A81A57A1D4AC5840049913A /* RouteCamerasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5791D4AC5840049913A /* RouteCamerasViewController.swift */; };
 		9A81A57C1D4BB41B0049913A /* LatLonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */; };
@@ -156,6 +160,10 @@
 		9A6FBCEB1D6C953D00CDCE16 /* CalloutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalloutViewController.swift; sourceTree = "<group>"; };
 		9A6FBCEE1D6C9B2C00CDCE16 /* FavoriteLocationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteLocationItem.swift; sourceTree = "<group>"; };
 		9A6FBCF01D6C9B9A00CDCE16 /* FavoriteLocationRealmStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteLocationRealmStore.swift; sourceTree = "<group>"; };
+		9A6FBCF61D6CA91700CDCE16 /* ExpressLanesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpressLanesViewController.swift; sourceTree = "<group>"; };
+		9A6FBCFB1D6CAC0800CDCE16 /* ExpressLaneCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpressLaneCell.swift; sourceTree = "<group>"; };
+		9A6FBCFD1D6CAE5700CDCE16 /* ExpressLaneItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpressLaneItem.swift; sourceTree = "<group>"; };
+		9A6FBCFF1D6CB0A700CDCE16 /* ExpressLanesStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpressLanesStore.swift; sourceTree = "<group>"; };
 		9A81A5771D4AC5710049913A /* RouteTimesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTimesViewController.swift; sourceTree = "<group>"; };
 		9A81A5791D4AC5840049913A /* RouteCamerasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteCamerasViewController.swift; sourceTree = "<group>"; };
 		9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatLonUtils.swift; sourceTree = "<group>"; };
@@ -395,6 +403,7 @@
 				9A0616D61D664D2300126520 /* FourColTableViewCell.swift */,
 				9A0616D91D675DC800126520 /* ThreeColTableViewCell.swift */,
 				9A2C27261D67A1E400F05D88 /* SettingsCell.swift */,
+				9A6FBCFB1D6CAC0800CDCE16 /* ExpressLaneCell.swift */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -413,6 +422,7 @@
 		9A6FBCC31D6B4C2500CDCE16 /* TravelerInformation */ = {
 			isa = PBXGroup;
 			children = (
+				9A6FBCF81D6CAA1200CDCE16 /* ExpressLanes */,
 				9A6FBCC41D6B4C6500CDCE16 /* TravelerInfoViewController.swift */,
 			);
 			name = TravelerInformation;
@@ -537,6 +547,32 @@
 				9A6FBCF01D6C9B9A00CDCE16 /* FavoriteLocationRealmStore.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		9A6FBCF81D6CAA1200CDCE16 /* ExpressLanes */ = {
+			isa = PBXGroup;
+			children = (
+				9A6FBCFA1D6CAA2200CDCE16 /* Controllers */,
+				9A6FBCF91D6CAA1900CDCE16 /* Model */,
+			);
+			name = ExpressLanes;
+			sourceTree = "<group>";
+		};
+		9A6FBCF91D6CAA1900CDCE16 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9A6FBCFD1D6CAE5700CDCE16 /* ExpressLaneItem.swift */,
+				9A6FBCFF1D6CB0A700CDCE16 /* ExpressLanesStore.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		9A6FBCFA1D6CAA2200CDCE16 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9A6FBCF61D6CA91700CDCE16 /* ExpressLanesViewController.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		9A81A57D1D4F8FB90049913A /* Controllers */ = {
@@ -898,6 +934,7 @@
 				9A1F5F9F1D47C2E800DA5F99 /* DeparturesCustomCell.swift in Sources */,
 				9A6FBCEC1D6C953D00CDCE16 /* CalloutViewController.swift in Sources */,
 				9A6FBCCF1D6B520900CDCE16 /* RestAreaItem.swift in Sources */,
+				9A6FBD001D6CB0A700CDCE16 /* ExpressLanesStore.swift in Sources */,
 				9A0616B91D63867A00126520 /* VesselDetailsViewController.swift in Sources */,
 				9A2F4A681D528A5100911AF5 /* FerryRealmStore.swift in Sources */,
 				9A1F5FA51D47DCB900DA5F99 /* ApiKeys.swift in Sources */,
@@ -911,8 +948,11 @@
 				9A0719331D42732A007BB4C5 /* INDLinkLabel.swift in Sources */,
 				9A50179C1D258F2000B9C49E /* RoutesCustomCell.swift in Sources */,
 				9A0616DA1D675DC800126520 /* ThreeColTableViewCell.swift in Sources */,
+				9A6FBCF71D6CA91700CDCE16 /* ExpressLanesViewController.swift in Sources */,
 				9AB0177C1D514668004C228E /* CameraViewController.swift in Sources */,
 				9A2F4A701D53AA5C00911AF5 /* CameraRealmStore.swift in Sources */,
+				9A6FBCFE1D6CAE5700CDCE16 /* ExpressLaneItem.swift in Sources */,
+				9A6FBCFC1D6CAC0800CDCE16 /* ExpressLaneCell.swift in Sources */,
 				9AE4863E1D49594D007A92E3 /* FerriesTerminalMap.swift in Sources */,
 				9A6FBCF11D6C9B9A00CDCE16 /* FavoriteLocationRealmStore.swift in Sources */,
 				9A6FBCE11D6B96EE00CDCE16 /* HighwayAlertViewController.swift in Sources */,
