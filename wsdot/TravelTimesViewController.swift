@@ -12,6 +12,8 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
     
     let cellIdentifier = "TravelTimeCell"
     
+    let segueTravelTimesViewController = "TravelTimesViewController"
+    
     var travelTimes = [TravelTimeItem]()
     var filtered = [TravelTimeItem]()
     
@@ -111,6 +113,13 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
         return cell
     }
     
+     // MARK: -
+    // MARK: Table View Delegate Methods
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier(segueTravelTimesViewController, sender: nil)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
     // MARK: UISearchBar Delegate Methods
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {
@@ -119,4 +128,18 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
             })
             tableView.reloadData()
         }
-    }}
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == segueTravelTimesViewController {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let travelTimeItem = self.filtered[indexPath.row] as TravelTimeItem
+                let destinationViewController = segue.destinationViewController as! TravelTimeDetailsViewController
+                destinationViewController.travelTime = travelTimeItem
+            }
+        }
+    }
+}
+
+
+    

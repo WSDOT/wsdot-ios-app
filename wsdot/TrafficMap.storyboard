@@ -216,6 +216,7 @@
                     <connections>
                         <outlet property="searchDisplayController" destination="GvV-Z4-CLG" id="Xbh-cw-RxB"/>
                         <outlet property="tableView" destination="Q8Z-IW-eY0" id="SPf-Ou-ZGc"/>
+                        <segue destination="qcX-AH-IwH" kind="show" identifier="TravelTimesViewController" id="OOd-eq-Ubi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GGG-bi-Ssi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -229,6 +230,14 @@
                 </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="2627" y="-239"/>
+        </scene>
+        <!--TravelTimeDetails-->
+        <scene sceneID="HLq-bD-JeZ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TravelTimeDetails" id="qcX-AH-IwH" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="emB-DB-OI4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3116.5" y="-239"/>
         </scene>
         <!--Express Lanes View Controller-->
         <scene sceneID="41B-vf-krx">

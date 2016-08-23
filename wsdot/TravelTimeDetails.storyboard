@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LdG-FG-3vc">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Title-->
+        <scene sceneID="bui-Wg-U7n">
+            <objects>
+                <viewController id="LdG-FG-3vc" customClass="TravelTimeDetailsViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IkY-U1-7eh"/>
+                        <viewControllerLayoutGuide type="bottom" id="bKu-xQ-bgS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Dud-V1-BEQ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="5a9-Ho-yoh">
+                        <barButtonItem key="rightBarButtonItem" image="icStarSmall" id="vMl-WG-g86">
+                            <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="updateFavorite:" destination="LdG-FG-3vc" id="FxT-VB-LJH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="favoriteTabBarButton" destination="vMl-WG-g86" id="jr6-td-Al1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7DR-qt-1dR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="561" y="403"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icStarSmall" width="24" height="24"/>
+    </resources>
+</document>
