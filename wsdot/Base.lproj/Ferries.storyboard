@@ -488,15 +488,15 @@
                         <viewControllerLayoutGuide type="bottom" id="ICE-bh-NjL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="I5c-gP-h5w">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="193" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VJP-3Q-OpG">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RouteAlerts" rowHeight="193" id="6sV-50-wR4" customClass="LinkCell" customModule="WSDOT" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="193"/>
+                                        <rect key="frame" x="0.0" y="28" width="600" height="193"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6sV-50-wR4" id="ZDq-uQ-GlE">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="192"/>
@@ -571,15 +571,15 @@
                         <viewControllerLayoutGuide type="bottom" id="y6q-ay-IVn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="uyJ-5I-Rnk">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZGt-mq-4yj">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RouteSailings" textLabel="wiM-A5-A6x" style="IBUITableViewCellStyleDefault" id="BUe-qI-3WT">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BUe-qI-3WT" id="Fgv-1O-cbM">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
@@ -718,6 +718,7 @@
         <scene sceneID="dIi-W7-GWL">
             <objects>
                 <tabBarController storyboardIdentifier="RouteTabBarViewController" hidesBottomBarWhenPushed="YES" id="yl3-tQ-80q" customClass="RouteTabBarViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="cbp-38-NGx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
