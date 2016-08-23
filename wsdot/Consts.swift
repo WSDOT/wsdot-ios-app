@@ -26,6 +26,9 @@ class Tables {
     static let CACHES_TABLE = "caches"
 }
 
+class Colors {
+    static let tintColor = UIColor.init(red: 0.0/255.0, green: 174.0/255.0, blue: 65.0/255.0, alpha: 1)
+}
 
 class AlertMessages {
     static func getConnectionAlert() ->  UIAlertController{

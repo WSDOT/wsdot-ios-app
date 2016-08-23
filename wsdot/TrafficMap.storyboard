@@ -141,19 +141,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="0uk-dJ-6TK">
-                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="QeV-aE-zqv" id="3zx-t8-AkB"/>
-                                </connections>
-                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="98" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Q8Z-IW-eY0">
-                                <rect key="frame" x="0.0" y="108" width="600" height="492"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TravelTimeCell" rowHeight="98" id="VLT-va-d9f" customClass="TravelTimeCell" customModule="WSDOT" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="98"/>
+                                        <rect key="frame" x="0.0" y="92" width="600" height="98"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VLT-va-d9f" id="nDF-DP-dqK">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="97"/>
@@ -214,12 +207,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Q8Z-IW-eY0" firstAttribute="top" secondItem="0uk-dJ-6TK" secondAttribute="bottom" id="4Z0-uE-2jc"/>
-                            <constraint firstItem="0uk-dJ-6TK" firstAttribute="trailing" secondItem="Q8Z-IW-eY0" secondAttribute="trailing" id="Jde-p7-kUM"/>
-                            <constraint firstItem="0uk-dJ-6TK" firstAttribute="leading" secondItem="WRY-Cp-YqK" secondAttribute="leading" id="SDP-Kc-RJ2"/>
-                            <constraint firstItem="0uk-dJ-6TK" firstAttribute="top" secondItem="Wtp-Rh-6nb" secondAttribute="bottom" id="TbJ-pI-8hP"/>
-                            <constraint firstAttribute="trailing" secondItem="0uk-dJ-6TK" secondAttribute="trailing" id="tKB-2a-b0V"/>
-                            <constraint firstItem="0uk-dJ-6TK" firstAttribute="leading" secondItem="Q8Z-IW-eY0" secondAttribute="leading" id="w1A-Jj-QZK"/>
+                            <constraint firstItem="Q8Z-IW-eY0" firstAttribute="leading" secondItem="WRY-Cp-YqK" secondAttribute="leading" id="Rom-yJ-7M6"/>
+                            <constraint firstAttribute="trailing" secondItem="Q8Z-IW-eY0" secondAttribute="trailing" id="quL-k3-SGA"/>
+                            <constraint firstItem="Q8Z-IW-eY0" firstAttribute="top" secondItem="Wtp-Rh-6nb" secondAttribute="bottom" id="vWy-eS-HpT"/>
                             <constraint firstItem="Q8Z-IW-eY0" firstAttribute="bottom" secondItem="jsW-ji-mXM" secondAttribute="top" id="xhD-G4-Fxd"/>
                         </constraints>
                     </view>
@@ -232,7 +222,6 @@
                 <searchDisplayController id="GvV-Z4-CLG">
                     <connections>
                         <outlet property="delegate" destination="QeV-aE-zqv" id="Ipx-j0-63Y"/>
-                        <outlet property="searchBar" destination="0uk-dJ-6TK" id="jjF-N8-kFI"/>
                         <outlet property="searchContentsController" destination="QeV-aE-zqv" id="Hzn-FU-5wh"/>
                         <outlet property="searchResultsDataSource" destination="QeV-aE-zqv" id="bTq-4d-3m7"/>
                         <outlet property="searchResultsDelegate" destination="QeV-aE-zqv" id="40T-VH-zH6"/>
