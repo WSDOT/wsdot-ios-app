@@ -14,13 +14,15 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     let TITLE = "Favorites"
     
     let ferriesCellIdentifier = "FerriesFavoriteCell"
-    let cameraCellIdentifier = "CameraFavoriteCell"
+    let singleTitleCellIdentifier = "SingleTitleFavoriteCell"
     
+    let segueTrafficMapViewController = "TrafficMapViewController"
     let segueRouteDeparturesViewController = "FavoriteSailingsViewController"
     let segueCameraViewController = "FavoriteCameraViewController"
 
     @IBOutlet weak var favoritesTable: UITableView!
     
+    var favoriteLocations = [FavoriteLocationItem]()
     var favoriteRoutes = [FerryScheduleItem]()
     var favoriteCameras = [CameraItem]()
     
@@ -54,13 +56,6 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         if (self.favoritesTable.editing){
             self.favoritesTable.setEditing(false, animated: false)
         }
-        
-        
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -85,7 +80,8 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             
             self.favoriteRoutes = FerryRealmStore.findFavoriteSchedules()
             self.favoriteCameras = CamerasStore.getFavoriteCameras()
-            
+            self.favoriteLocations = FavoriteLocationStore.getFavorites()
+
             self.favoritesTable.reloadData()
             self.refreshControl.endRefreshing()
         }
@@ -141,11 +137,16 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         
         switch(section){
         case 0:
+            if self.favoriteLocations.count > 0 {
+                return "Locations"
+            }
+            return nil
+        case 1:
             if self.favoriteRoutes.count > 0 {
                 return "Ferry Schedules"
             }
             return nil
-        case 1:
+        case 2:
             if self.favoriteCameras.count > 0 {
                 return "Cameras"
             }
@@ -159,10 +160,11 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch(section){
-            
         case 0:
-            return favoriteRoutes.count
+            return favoriteLocations.count
         case 1:
+            return favoriteRoutes.count
+        case 2:
             return favoriteCameras.count
         default:
             return 0
@@ -173,8 +175,11 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         switch(indexPath.section){
-            
         case 0:
+            let locationCell = tableView.dequeueReusableCellWithIdentifier(singleTitleCellIdentifier, forIndexPath: indexPath)
+            locationCell.textLabel?.text = favoriteLocations[indexPath.row].name
+            return locationCell
+        case 1:
             let ferryCell = tableView.dequeueReusableCellWithIdentifier(ferriesCellIdentifier) as! RoutesCustomCell
             
             ferryCell.title.text = favoriteRoutes[indexPath.row].routeDescription
@@ -190,8 +195,8 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             
             return ferryCell
             
-        case 1:
-            let cameraCell = tableView.dequeueReusableCellWithIdentifier(cameraCellIdentifier, forIndexPath: indexPath)
+        case 2:
+            let cameraCell = tableView.dequeueReusableCellWithIdentifier(singleTitleCellIdentifier, forIndexPath: indexPath)
             cameraCell.textLabel?.text = favoriteCameras[indexPath.row].title
             return cameraCell
             
@@ -211,17 +216,18 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         return true
     }
     
-    
     // support editing the table view.
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
-            
             switch (indexPath.section) {
             case 0:
+                FavoriteLocationStore.deleteFavorite(favoriteLocations[indexPath.row])
+                favoriteLocations.removeAtIndex(indexPath.row)
+            case 1:
                 FerryRealmStore.updateFavorite(favoriteRoutes[indexPath.row], newValue: false)
                 favoriteRoutes.removeAtIndex(indexPath.row)
-            case 1:
+            case 2:
                 CamerasStore.updateFavorite(favoriteCameras[indexPath.row], newValue: false)
                 favoriteCameras.removeAtIndex(indexPath.row)
                 break
@@ -232,16 +238,16 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    
     // MARK: - Navigation
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
         switch (indexPath.section){
-            
         case 0:
-            performSegueWithIdentifier(segueRouteDeparturesViewController, sender: nil)
+            performSegueWithIdentifier(segueTrafficMapViewController, sender: nil)
             break
         case 1:
+            performSegueWithIdentifier(segueRouteDeparturesViewController, sender: nil)
+            break
+        case 2:
             performSegueWithIdentifier(segueCameraViewController, sender: nil)
             break
         default:
@@ -251,6 +257,15 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == segueTrafficMapViewController {
+            if let indexPath = favoritesTable.indexPathForSelectedRow {
+                let locationItem = self.favoriteLocations[indexPath.row] as FavoriteLocationItem
+                NSUserDefaults.standardUserDefaults().setObject(locationItem.latitude, forKey: UserDefaultsKeys.mapLat)
+                NSUserDefaults.standardUserDefaults().setObject(locationItem.longitude, forKey: UserDefaultsKeys.mapLon)
+                NSUserDefaults.standardUserDefaults().setObject(locationItem.zoom, forKey: UserDefaultsKeys.mapZoom)
+            }
+        }
         if segue.identifier == segueRouteDeparturesViewController {
             if let indexPath = favoritesTable.indexPathForSelectedRow {
                 let routeItem = self.favoriteRoutes[indexPath.row] as FerryScheduleItem

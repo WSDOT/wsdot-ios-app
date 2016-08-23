@@ -92,7 +92,7 @@
                                             <outlet property="title" destination="3Mw-9a-w2n" id="hyW-o6-nh3"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CameraFavoriteCell" textLabel="YFa-TQ-BoT" rowHeight="45" style="IBUITableViewCellStyleDefault" id="Ehw-Em-thK" customClass="RoutesCustomCell" customModule="WSDOT" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SingleTitleFavoriteCell" textLabel="YFa-TQ-BoT" rowHeight="45" style="IBUITableViewCellStyleDefault" id="Ehw-Em-thK">
                                         <rect key="frame" x="0.0" y="137" width="600" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ehw-Em-thK" id="jYl-KI-SgU">
@@ -129,6 +129,7 @@
                         <outlet property="favoritesTable" destination="K0r-R3-tVu" id="bsB-fv-d7X"/>
                         <segue destination="3tB-Ij-054" kind="show" identifier="FavoriteSailingsViewController" id="gMc-xO-dgX"/>
                         <segue destination="Zfo-py-Elh" kind="show" identifier="FavoriteCameraViewController" id="Pwk-Kr-Jeq"/>
+                        <segue destination="oG1-En-Tc4" kind="show" identifier="TrafficMapViewController" id="V87-UJ-1jU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dwt-na-DIG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -141,7 +142,7 @@
                 <viewControllerPlaceholder storyboardName="Ferries" referencedIdentifier="RouteTabBarViewController" id="3tB-Ij-054" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="16b-np-4z3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2202.5" y="1023"/>
+            <point key="canvasLocation" x="2232.5" y="1048"/>
         </scene>
         <!--Camera-->
         <scene sceneID="DKa-Fh-JYS">
@@ -149,7 +150,15 @@
                 <viewControllerPlaceholder storyboardName="Camera" id="Zfo-py-Elh" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bE7-pW-obt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2142.5" y="1088"/>
+            <point key="canvasLocation" x="2172.5" y="1113"/>
+        </scene>
+        <!--TrafficMap-->
+        <scene sceneID="Uuu-Yx-LTW">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TrafficMap" id="oG1-En-Tc4" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IB3-gY-MEg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2182" y="1179"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="515-et-fK2">

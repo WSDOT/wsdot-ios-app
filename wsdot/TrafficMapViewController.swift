@@ -492,6 +492,31 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         }
     }
     
+    func saveCurrentLocation(){
+        
+        let alert = UIAlertController(title: "New Favorite Location", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
+            textField.placeholder = "Name"
+            textField.secureTextEntry = false
+        })
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler:{ (alertAction:UIAlertAction!) in
+            let textf = alert.textFields![0] as UITextField
+            if let mapView = self.embeddedMapViewController.view as? GMSMapView{
+                let favoriteLocation = FavoriteLocationItem()
+                favoriteLocation.name = textf.text!
+                favoriteLocation.latitude = mapView.camera.target.latitude
+                favoriteLocation.longitude = mapView.camera.target.longitude
+                favoriteLocation.zoom = mapView.camera.zoom
+                FavoriteLocationStore.saveFavorite(favoriteLocation)
+            }
+        }))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
     /*
      func mapView(mapView: GMSMapView, idleAtCameraPosition position: GMSCameraPosition) {
      drawCameras()

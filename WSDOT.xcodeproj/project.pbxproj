@@ -63,6 +63,8 @@
 		9A6FBCE51D6BAC2E00CDCE16 /* TrafficMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A6FBCE41D6BAC2E00CDCE16 /* TrafficMap.storyboard */; };
 		9A6FBCEA1D6C953000CDCE16 /* Callout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A6FBCE91D6C953000CDCE16 /* Callout.storyboard */; };
 		9A6FBCEC1D6C953D00CDCE16 /* CalloutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCEB1D6C953D00CDCE16 /* CalloutViewController.swift */; };
+		9A6FBCEF1D6C9B2C00CDCE16 /* FavoriteLocationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCEE1D6C9B2C00CDCE16 /* FavoriteLocationItem.swift */; };
+		9A6FBCF11D6C9B9A00CDCE16 /* FavoriteLocationRealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCF01D6C9B9A00CDCE16 /* FavoriteLocationRealmStore.swift */; };
 		9A81A5781D4AC5710049913A /* RouteTimesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5771D4AC5710049913A /* RouteTimesViewController.swift */; };
 		9A81A57A1D4AC5840049913A /* RouteCamerasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5791D4AC5840049913A /* RouteCamerasViewController.swift */; };
 		9A81A57C1D4BB41B0049913A /* LatLonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */; };
@@ -152,6 +154,8 @@
 		9A6FBCE41D6BAC2E00CDCE16 /* TrafficMap.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TrafficMap.storyboard; sourceTree = "<group>"; };
 		9A6FBCE91D6C953000CDCE16 /* Callout.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Callout.storyboard; sourceTree = "<group>"; };
 		9A6FBCEB1D6C953D00CDCE16 /* CalloutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalloutViewController.swift; sourceTree = "<group>"; };
+		9A6FBCEE1D6C9B2C00CDCE16 /* FavoriteLocationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteLocationItem.swift; sourceTree = "<group>"; };
+		9A6FBCF01D6C9B9A00CDCE16 /* FavoriteLocationRealmStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteLocationRealmStore.swift; sourceTree = "<group>"; };
 		9A81A5771D4AC5710049913A /* RouteTimesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTimesViewController.swift; sourceTree = "<group>"; };
 		9A81A5791D4AC5840049913A /* RouteCamerasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteCamerasViewController.swift; sourceTree = "<group>"; };
 		9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatLonUtils.swift; sourceTree = "<group>"; };
@@ -276,8 +280,8 @@
 		9A0616DD1D676F5500126520 /* TrafficMap */ = {
 			isa = PBXGroup;
 			children = (
+				9A6FBCED1D6C9B0A00CDCE16 /* Model */,
 				9A0616E01D676F6A00126520 /* Controllers */,
-				9A0616DF1D676F6100126520 /* Markers */,
 				9A0616DE1D676F5C00126520 /* Views */,
 			);
 			name = TrafficMap;
@@ -295,7 +299,6 @@
 			isa = PBXGroup;
 			children = (
 				9A6FBCE61D6C951300CDCE16 /* Callouts */,
-				9A6FBCCA1D6B51CF00CDCE16 /* HighwayAlerts */,
 				9A6FBCC61D6B517400CDCE16 /* RestAreas */,
 			);
 			name = Markers;
@@ -526,6 +529,16 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		9A6FBCED1D6C9B0A00CDCE16 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9A0616DF1D676F6100126520 /* Markers */,
+				9A6FBCEE1D6C9B2C00CDCE16 /* FavoriteLocationItem.swift */,
+				9A6FBCF01D6C9B9A00CDCE16 /* FavoriteLocationRealmStore.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		9A81A57D1D4F8FB90049913A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -579,6 +592,7 @@
 		9AD32DFB1D23172C000AEC28 /* wsdot */ = {
 			isa = PBXGroup;
 			children = (
+				9A6FBCCA1D6B51CF00CDCE16 /* HighwayAlerts */,
 				9A0616DD1D676F5500126520 /* TrafficMap */,
 				9A0616C31D66018100126520 /* TollRates */,
 				9A06167D1D622B8D00126520 /* Map */,
@@ -870,6 +884,7 @@
 				9AFEECE11D3925400078A781 /* CachesStore.swift in Sources */,
 				9A2F4A5D1D52747900911AF5 /* FerryScheduleRealmDataModel.swift in Sources */,
 				9A6FBCD81D6B5EDD00CDCE16 /* RestAreaViewController.swift in Sources */,
+				9A6FBCEF1D6C9B2C00CDCE16 /* FavoriteLocationItem.swift in Sources */,
 				9A07192C1D410FD5007BB4C5 /* RouteAlertsViewController.swift in Sources */,
 				9A0616811D6265FB00126520 /* UserDefaultsKeys.swift in Sources */,
 				9A1F5FA71D47E27200DA5F99 /* SailingSpacesItem.swift in Sources */,
@@ -899,6 +914,7 @@
 				9AB0177C1D514668004C228E /* CameraViewController.swift in Sources */,
 				9A2F4A701D53AA5C00911AF5 /* CameraRealmStore.swift in Sources */,
 				9AE4863E1D49594D007A92E3 /* FerriesTerminalMap.swift in Sources */,
+				9A6FBCF11D6C9B9A00CDCE16 /* FavoriteLocationRealmStore.swift in Sources */,
 				9A6FBCE11D6B96EE00CDCE16 /* HighwayAlertViewController.swift in Sources */,
 				9AD32E2A1D24233D000AEC28 /* FerriesHomeViewController.swift in Sources */,
 				9A06167F1D62602500126520 /* MapMarkerDelegate.swift in Sources */,

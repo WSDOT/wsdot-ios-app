@@ -92,23 +92,4 @@ class HighwayAlertsStore {
             print("HighwayAlertsStore.saveAlerts: Realm write error")
         }
     }
-    
-    
-    /* MARK: TODO - How to flush data, check dates?
-    static func flushOldData() {
-        let realm = try! Realm()
-        let alertItems = realm.objects(HighwayAlertItem.self).filter("delete == true")
-        do {
-            try realm.write{
-                realm.delete(alertItems)
-            }
-        }catch{
-            print("HighwayAlerts.flushOldData: Realm write error")
-        }
-    }
-    */
-
-
-
-
 }

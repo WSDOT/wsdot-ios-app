@@ -101,10 +101,9 @@ class TrafficMapSettingsViewController: UIViewController {
     
     // MARK: Table View Delegate Methods
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        // Perform Segue
         switch (indexPath.row) {
-        case 2:
-            favoriteLocation()
+        case 3:
+            favoriteLocationAction()
         default:
             break
         }
@@ -112,10 +111,9 @@ class TrafficMapSettingsViewController: UIViewController {
     }
     
     // MARK: TODO
-    func favoriteLocation(){
-        
-        
-        
+    func favoriteLocationAction(){
+        self.dismissViewControllerAnimated(true, completion: {()->Void in});
+        parent!.saveCurrentLocation()
     }
     
     func changeAlertsPref(sender: UISwitch){
