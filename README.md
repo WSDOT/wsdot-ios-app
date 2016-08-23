@@ -5,7 +5,8 @@ Washington State Traveler information provide by The Washington State Department
 Setup
 -----
 
-* Written in xcode 7.3.
+* Written in Swift 2.2
+* Developed with Xcode 7.3.
 * Open the `WSDOT.xcworkspace` project in Xcode to get the CocoaPods workspace. 
 
 Dependencies
@@ -13,8 +14,10 @@ Dependencies
 
 This project uses [CocoaPods](https://cocoapods.org/) for dependency management. CocoaPods is not required to build as all Pods are included in this repo.
 
+* Firebase
 * [Firebase/Core](https://firebase.google.com/docs/ios/setup)
 * [Google-Mobile-Ads-SDK](https://firebase.google.com/docs/admob/ios/download)
+* [GoogleMaps](https://developers.google.com/maps/documentation/ios-sdk/)
 * [Alamofire 3.4.1](https://github.com/Alamofire/Alamofire)
 * [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
 * [RealmSwift](https://realm.io/docs/swift/latest/)
