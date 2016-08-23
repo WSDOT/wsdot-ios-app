@@ -120,6 +120,7 @@
                         <segue destination="QdF-Ti-KSO" kind="show" identifier="RestAreaViewController" id="KcO-W9-svH"/>
                         <segue destination="Gnu-Bt-A0j" kind="show" identifier="HighwayAlertViewController" id="PBZ-ny-t9b"/>
                         <segue destination="sl9-wk-KdH" kind="show" identifier="AlertsInAreaViewController" id="AiF-H4-I2A"/>
+                        <segue destination="47G-Kh-Ndz" kind="show" identifier="CalloutViewController" id="JcL-Tz-PUl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rnr-aE-lbf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -170,13 +171,21 @@
             </objects>
             <point key="canvasLocation" x="1766" y="36"/>
         </scene>
+        <!--Callout-->
+        <scene sceneID="ILD-nV-wuR">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Callout" id="47G-Kh-Ndz" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iop-nG-7lx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1503.5" y="565"/>
+        </scene>
         <!--HighwayAlert-->
         <scene sceneID="Nq9-eE-uyV">
             <objects>
                 <viewControllerPlaceholder storyboardName="HighwayAlert" id="Gnu-Bt-A0j" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="131-H6-1Rh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1523" y="424"/>
+            <point key="canvasLocation" x="1523" y="372"/>
         </scene>
         <!--RestArea-->
         <scene sceneID="UBd-K4-gVS">
@@ -184,7 +193,7 @@
                 <viewControllerPlaceholder storyboardName="RestArea" id="QdF-Ti-KSO" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KHZ-Z9-TBX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1510" y="497"/>
+            <point key="canvasLocation" x="1510" y="501"/>
         </scene>
         <!--Camera-->
         <scene sceneID="9M1-Uc-Zzu">
@@ -192,7 +201,7 @@
                 <viewControllerPlaceholder storyboardName="Camera" id="B33-Te-SwX" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MbB-dd-WHT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1505.5" y="565"/>
+            <point key="canvasLocation" x="1505.5" y="437"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="dkU-hR-jTP">

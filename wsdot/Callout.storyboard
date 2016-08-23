@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="36S-Dp-zTv">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Callout View Controller-->
+        <scene sceneID="s6o-go-5hd">
+            <objects>
+                <viewController id="36S-Dp-zTv" customClass="CalloutViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0WZ-41-CUk"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ag3-ON-7eY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="center" id="92x-Nd-qWq">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nlq-x3-ds3">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Nlq-x3-ds3" firstAttribute="leading" secondItem="92x-Nd-qWq" secondAttribute="leading" id="2YZ-z6-apd"/>
+                            <constraint firstItem="Nlq-x3-ds3" firstAttribute="bottom" secondItem="Ag3-ON-7eY" secondAttribute="top" id="XpO-1p-Zgc"/>
+                            <constraint firstItem="Nlq-x3-ds3" firstAttribute="top" secondItem="92x-Nd-qWq" secondAttribute="top" id="ef8-LU-a7l"/>
+                            <constraint firstAttribute="trailing" secondItem="Nlq-x3-ds3" secondAttribute="trailing" id="jJL-A3-dMn"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="calloutImageView" destination="Nlq-x3-ds3" id="JwJ-ME-jUG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WUQ-Mc-vMy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="497" y="400"/>
+        </scene>
+    </scenes>
+</document>

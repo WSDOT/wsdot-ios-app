@@ -21,6 +21,7 @@ class TrafficMapSettingsViewController: UIViewController {
         
         menu_options = ["Show Highway Alerts",
                         "Show Rest Areas",
+                        "Show JBLM",
                         "Favorite Current Location"]
         
     }
@@ -29,7 +30,6 @@ class TrafficMapSettingsViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: {()->Void in});
     }
     
-    // MARK: -
     // MARK: Table View Data Source Methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -76,6 +76,19 @@ class TrafficMapSettingsViewController: UIViewController {
             cell.selectionStyle = .None
             break
         case menu_options[2]:
+            let jblmPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.jblmCallout)
+            if let jblmVisible = jblmPref {
+                if (jblmVisible == "on") {
+                    cell.settingSwitch.on = true
+                } else {
+                    cell.settingSwitch.on = false
+                }
+            }
+            cell.settingSwitch.addTarget(self, action: #selector(TrafficMapSettingsViewController.changeJBLMPref(_:)), forControlEvents: .ValueChanged)
+            cell.settingSwitch.hidden = false
+            cell.selectionStyle = .None
+            break
+        case menu_options[3]:
             cell.selectionStyle = .Blue
             cell.settingSwitch.hidden = true
             break
@@ -86,7 +99,6 @@ class TrafficMapSettingsViewController: UIViewController {
         return cell
     }
     
-    // MARK: -
     // MARK: Table View Delegate Methods
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // Perform Segue
@@ -99,6 +111,7 @@ class TrafficMapSettingsViewController: UIViewController {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
+    // MARK: TODO
     func favoriteLocation(){
         
         
@@ -129,6 +142,19 @@ class TrafficMapSettingsViewController: UIViewController {
             } else {
                 NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.restAreas)
                 parent!.drawRestArea()
+            }
+        }
+    }
+    
+    func changeJBLMPref(sender: UISwitch){
+        let jblmPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.jblmCallout)
+        if let jblmVisible = jblmPref {
+            if (jblmVisible == "on") {
+                NSUserDefaults.standardUserDefaults().setObject("off", forKey: UserDefaultsKeys.jblmCallout)
+                parent!.removeJBLM()
+            } else {
+                NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.jblmCallout)
+                parent!.drawJBLM()
             }
         }
     }

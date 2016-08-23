@@ -61,6 +61,8 @@
 		9A6FBCE11D6B96EE00CDCE16 /* HighwayAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCE01D6B96EE00CDCE16 /* HighwayAlertViewController.swift */; };
 		9A6FBCE31D6BA2DC00CDCE16 /* AlertInAreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCE21D6BA2DC00CDCE16 /* AlertInAreaViewController.swift */; };
 		9A6FBCE51D6BAC2E00CDCE16 /* TrafficMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A6FBCE41D6BAC2E00CDCE16 /* TrafficMap.storyboard */; };
+		9A6FBCEA1D6C953000CDCE16 /* Callout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A6FBCE91D6C953000CDCE16 /* Callout.storyboard */; };
+		9A6FBCEC1D6C953D00CDCE16 /* CalloutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCEB1D6C953D00CDCE16 /* CalloutViewController.swift */; };
 		9A81A5781D4AC5710049913A /* RouteTimesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5771D4AC5710049913A /* RouteTimesViewController.swift */; };
 		9A81A57A1D4AC5840049913A /* RouteCamerasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5791D4AC5840049913A /* RouteCamerasViewController.swift */; };
 		9A81A57C1D4BB41B0049913A /* LatLonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */; };
@@ -148,6 +150,8 @@
 		9A6FBCE01D6B96EE00CDCE16 /* HighwayAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighwayAlertViewController.swift; sourceTree = "<group>"; };
 		9A6FBCE21D6BA2DC00CDCE16 /* AlertInAreaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertInAreaViewController.swift; sourceTree = "<group>"; };
 		9A6FBCE41D6BAC2E00CDCE16 /* TrafficMap.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TrafficMap.storyboard; sourceTree = "<group>"; };
+		9A6FBCE91D6C953000CDCE16 /* Callout.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Callout.storyboard; sourceTree = "<group>"; };
+		9A6FBCEB1D6C953D00CDCE16 /* CalloutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalloutViewController.swift; sourceTree = "<group>"; };
 		9A81A5771D4AC5710049913A /* RouteTimesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTimesViewController.swift; sourceTree = "<group>"; };
 		9A81A5791D4AC5840049913A /* RouteCamerasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteCamerasViewController.swift; sourceTree = "<group>"; };
 		9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatLonUtils.swift; sourceTree = "<group>"; };
@@ -290,6 +294,7 @@
 		9A0616DF1D676F6100126520 /* Markers */ = {
 			isa = PBXGroup;
 			children = (
+				9A6FBCE61D6C951300CDCE16 /* Callouts */,
 				9A6FBCCA1D6B51CF00CDCE16 /* HighwayAlerts */,
 				9A6FBCC61D6B517400CDCE16 /* RestAreas */,
 			);
@@ -494,6 +499,31 @@
 				9AB017791D51464B004C228E /* Camera.storyboard */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		9A6FBCE61D6C951300CDCE16 /* Callouts */ = {
+			isa = PBXGroup;
+			children = (
+				9A6FBCE81D6C952100CDCE16 /* Controllers */,
+				9A6FBCE71D6C951C00CDCE16 /* Views */,
+			);
+			name = Callouts;
+			sourceTree = "<group>";
+		};
+		9A6FBCE71D6C951C00CDCE16 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9A6FBCE91D6C953000CDCE16 /* Callout.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		9A6FBCE81D6C952100CDCE16 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9A6FBCEB1D6C953D00CDCE16 /* CalloutViewController.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		9A81A57D1D4F8FB90049913A /* Controllers */ = {
@@ -766,6 +796,7 @@
 				9AD32E021D23172C000AEC28 /* Main.storyboard in Resources */,
 				9A122B431D5246DB00C176CD /* GoogleService-Info.plist in Resources */,
 				9A6FBCD21D6B541F00CDCE16 /* restareas.json in Resources */,
+				9A6FBCEA1D6C953000CDCE16 /* Callout.storyboard in Resources */,
 				9A0616C81D6601BD00126520 /* TollRates.storyboard in Resources */,
 				9A6FBCD61D6B5EBB00CDCE16 /* RestArea.storyboard in Resources */,
 			);
@@ -850,6 +881,7 @@
 				9A2F4A6E1D539C1600911AF5 /* CacheItem.swift in Sources */,
 				9A21E1CC1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift in Sources */,
 				9A1F5F9F1D47C2E800DA5F99 /* DeparturesCustomCell.swift in Sources */,
+				9A6FBCEC1D6C953D00CDCE16 /* CalloutViewController.swift in Sources */,
 				9A6FBCCF1D6B520900CDCE16 /* RestAreaItem.swift in Sources */,
 				9A0616B91D63867A00126520 /* VesselDetailsViewController.swift in Sources */,
 				9A2F4A681D528A5100911AF5 /* FerryRealmStore.swift in Sources */,

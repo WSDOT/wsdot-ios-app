@@ -22,10 +22,13 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     let SegueCamerasViewController = "CamerasViewController"
     let SegueRestAreaViewController = "RestAreaViewController"
     let SegueHighwayAlertViewController = "HighwayAlertViewController"
+    let SegueCalloutViewController = "CalloutViewController"
     
     private var alertMarkers = Set<GMSMarker>()
     private var cameraMarkers = Set<GMSMarker>()
     private var restAreaMarkers = Set<GMSMarker>()
+    
+    private let JBLMMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: 47.103033, longitude: -122.584394))
     
     // Mark: Map Icons
     private let restAreaIconImage = UIImage(named: "icMapRestArea")
@@ -64,6 +67,10 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         if (NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.cameras) == "on"){
             cameraBarButton.image = cameraHighlightBarButtonImage
         }
+        
+        JBLMMarker.icon = UIImage(named: "icMapJBLM")
+        JBLMMarker.snippet = "jblm"
+        JBLMMarker.userData = "http://images.wsdot.wa.gov/traffic/flowmaps/jblm.png"
         
         // Ad Banner
         bannerView.adUnitID = ApiKeys.wsdot_ad_string
@@ -467,6 +474,23 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         }
     }
     
+    func removeJBLM(){
+        JBLMMarker.map = nil
+    }
+    
+    func drawJBLM(){
+        if let mapView = embeddedMapViewController.view as? GMSMapView{
+            let jblmPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.jblmCallout)
+            if let jblmPrefValue = jblmPref{
+                if (jblmPrefValue == "on") {
+                    JBLMMarker.map = mapView
+                }
+            }else{
+                NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.jblmCallout)
+                JBLMMarker.map = mapView
+            }
+        }
+    }
     
     /*
      func mapView(mapView: GMSMapView, idleAtCameraPosition position: GMSCameraPosition) {
@@ -484,6 +508,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         activityIndicatorView.startAnimating()
         let serviceGroup = dispatch_group_create();
         
+        drawJBLM()
         fetchCameras(false, serviceGroup: serviceGroup)
         fetchAlerts(false, serviceGroup: serviceGroup)
         fetchRestAreas(serviceGroup)
@@ -504,6 +529,9 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         }
         if marker.snippet == "restarea" {
             performSegueWithIdentifier(SegueRestAreaViewController, sender: marker)
+        }
+        if marker.snippet == "jblm" {
+            performSegueWithIdentifier(SegueCalloutViewController, sender: marker)
         }
         return true
     }
@@ -550,6 +578,13 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
             let restAreaItem = ((sender as! GMSMarker).userData as! RestAreaItem)
             let destinationViewController = segue.destinationViewController as! RestAreaViewController
             destinationViewController.restAreaItem = restAreaItem
+        }
+        
+        if segue.identifier == SegueCalloutViewController {
+            let calloutURL = ((sender as! GMSMarker).userData as! String)
+            let destinationViewController = segue.destinationViewController as! CalloutViewController
+            destinationViewController.calloutURL = calloutURL
+            destinationViewController.title = "JBLM"
         }
     }
 }
