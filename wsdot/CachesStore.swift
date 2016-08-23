@@ -10,6 +10,7 @@ import Foundation
 import RealmSwift
 
 enum CachedData {
+    case TravelTimes
     case HighwayAlerts
     case Ferries
     case Cameras
@@ -39,12 +40,14 @@ class CachesStore {
         let cacheItem = realm.objects(CacheItem.self).first
         
         switch(data){
+        case .TravelTimes:
+            return cacheItem!.travelTimesLastUpdate
         case .HighwayAlerts:
-            return (cacheItem?.highwayAlertsLastUpdate)!
+            return cacheItem!.highwayAlertsLastUpdate
         case .Ferries:
-            return (cacheItem?.ferriesLastUpdate)!
+            return cacheItem!.ferriesLastUpdate
         case .Cameras:
-            return (cacheItem?.camerasLastUpdate)!
+            return cacheItem!.camerasLastUpdate
         }
     }
 
@@ -53,9 +56,11 @@ class CachesStore {
         let cacheItem = realm.objects(CacheItem.self).first
         
         do {
-            
             try realm.write{
                 switch(data){
+                case .TravelTimes:
+                    cacheItem?.travelTimesLastUpdate = updated
+                    break
                 case .HighwayAlerts:
                     cacheItem?.highwayAlertsLastUpdate = updated
                     break

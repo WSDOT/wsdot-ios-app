@@ -1,5 +1,5 @@
 //
-//  ExpressLanesViewController.swift
+//  TravelTimesViewController.swift
 //  WSDOT
 //
 //  Created by Logan Sims on 8/23/16.
@@ -8,39 +8,42 @@
 
 import UIKit
 
-class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    let cellIdentifier = "ExpressLanesCell"
-    let webLinkcellIdentifier = "WebsiteLinkCell"
+class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+    
+    let cellIdentifier = "TravelTimeCell"
+    
+    var travelTimes = [TravelTimeItem]()
     
     @IBOutlet weak var tableView: UITableView!
-    var expressLanes = [ExpressLaneItem]()
     
     let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
-        
-        title = "Express Lanes"
+        title = "Travel Times"
         
         // refresh controller
-        refreshControl.addTarget(self, action: #selector(ExpressLanesViewController.refresh(_:)), forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(TravelTimesViewController.refreshAction(_:)), forControlEvents: .ValueChanged)
         tableView.addSubview(refreshControl)
         
         refreshControl.beginRefreshing()
-        refresh(self.refreshControl)
-        
+        refresh(false)
         tableView.rowHeight = UITableViewAutomaticDimension
         
     }
 
-    func refresh(refreshControl: UIRefreshControl) {
-        
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) { [weak self] in
-            ExpressLanesStore.getExpressLanes({ data, error in
-                if let validData = data {
+    
+    func refreshAction(refreshControl: UIRefreshControl) {
+        refresh(true)
+    }
+    
+    func refresh(force: Bool){
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak self] in
+            TravelTimesStore.updateTravelTimes(force, completion: { error in
+                if (error == nil) {
+                    // Reload tableview on UI thread
                     dispatch_async(dispatch_get_main_queue()) { [weak self] in
                         if let selfValue = self{
-                            selfValue.expressLanes = validData
+                            selfValue.travelTimes = TravelTimesStore.getAllTravelTimes()
                             selfValue.tableView.reloadData()
                             selfValue.refreshControl.endRefreshing()
                         }
@@ -56,10 +59,9 @@ class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITable
             })
         }
     }
-
-    // MARK: -
+    
     // MARK: Table View Data Source Methods
-        
+    
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
@@ -69,37 +71,44 @@ class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return expressLanes.count + 1
+        return travelTimes.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        if (indexPath.row == expressLanes.count){
-            let cell = tableView.dequeueReusableCellWithIdentifier(webLinkcellIdentifier, forIndexPath: indexPath)
-            cell.textLabel?.text = "Express Lanes Schedule Website"
-            cell.accessoryType = .DisclosureIndicator
-            cell.selectionStyle = .Blue
-            return cell
-        }else{
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! ExpressLaneCell
-            cell.routeLabel.text = expressLanes[indexPath.row].route
-            cell.directionLabel.text = expressLanes[indexPath.row].direction
-            cell.updatedLabel.text = expressLanes[indexPath.row].updated
-            cell.selectionStyle = .None
-            return cell
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! TravelTimeCell
+        
+        let travelTime = travelTimes[indexPath.row]
+        
+        cell.routeLabel.text = travelTime.title
+        
+        cell.subtitleLabel.text = String(travelTime.distance) + " miles / " + String(travelTime.averageTime) + " min"
+        cell.updatedLabel.text = travelTime.updated
+        
+        cell.currentTimeLabel.text = String(travelTime.currentTime) + " min"
+        
+        if (travelTime.averageTime > travelTime.currentTime){
+            cell.currentTimeLabel.textColor = UIColor.init(red: 0.0/255.0, green: 174.0/255.0, blue: 65.0/255.0, alpha: 1)
+        } else if (travelTime.averageTime < travelTime.currentTime){
+            cell.currentTimeLabel.textColor = UIColor.redColor()
+        } else {
+            cell.currentTimeLabel.textColor = UIColor.darkTextColor()
         }
+
+        cell.sizeToFit()
+
+        return cell
     }
+    
     
     // MARK: -
     // MARK: Table View Delegate Methods
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        switch (indexPath.row) {
-        case expressLanes.count:
-            UIApplication.sharedApplication().openURL(NSURL(string: "http://www.wsdot.wa.gov/Northwest/King/ExpressLanes")!)
-            break
-        default:
-            break
-        }
+        
+        
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
+    
+    
+    
 }

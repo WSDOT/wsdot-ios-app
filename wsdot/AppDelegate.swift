@@ -29,11 +29,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidFinishLaunching(application: UIApplication) {
         FerryRealmStore.flushOldData()
         CamerasStore.flushOldData()
+        TravelTimesStore.flushOldData()
     }
     
     func applicationWillTerminate(application: UIApplication) {
         FerryRealmStore.flushOldData()
         CamerasStore.flushOldData()
+        TravelTimesStore.flushOldData()
     }
     
     
