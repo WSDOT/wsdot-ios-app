@@ -224,33 +224,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HnH-cr-8gd">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="169" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HnH-cr-8gd">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AlertCell" id="eNo-lm-JYu" customClass="LinkCell" customModule="WSDOT" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AlertCell" rowHeight="169" id="eNo-lm-JYu" customClass="LinkCell" customModule="WSDOT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="169"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eNo-lm-JYu" id="Eb3-jy-4OQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="168"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELJ-4a-jeX" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="0.0" width="551" height="35"/>
+                                                    <rect key="frame" x="16" y="4" width="551" height="123"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQa-Dy-XT4">
+                                                    <rect key="frame" x="16" y="135" width="551" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="ihv-GX-sgo"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="ELJ-4a-jeX" secondAttribute="trailing" id="P2n-8B-brs"/>
-                                                <constraint firstItem="ELJ-4a-jeX" firstAttribute="top" secondItem="Eb3-jy-4OQ" secondAttribute="top" id="TIZ-WY-gGR"/>
-                                                <constraint firstItem="ELJ-4a-jeX" firstAttribute="bottom" secondItem="Eb3-jy-4OQ" secondAttribute="bottomMargin" id="TOA-xX-hqN"/>
-                                                <constraint firstItem="ELJ-4a-jeX" firstAttribute="leading" secondItem="Eb3-jy-4OQ" secondAttribute="leadingMargin" constant="8" id="qWs-zt-neX"/>
+                                                <constraint firstItem="ELJ-4a-jeX" firstAttribute="top" secondItem="Eb3-jy-4OQ" secondAttribute="top" constant="4" id="0bw-4Y-wIx"/>
+                                                <constraint firstItem="ELJ-4a-jeX" firstAttribute="trailing" secondItem="TQa-Dy-XT4" secondAttribute="trailing" id="5RA-RM-TyY"/>
+                                                <constraint firstItem="TQa-Dy-XT4" firstAttribute="top" secondItem="ELJ-4a-jeX" secondAttribute="bottom" constant="8" symbolic="YES" id="BRh-to-hc2"/>
+                                                <constraint firstItem="ELJ-4a-jeX" firstAttribute="leading" secondItem="Eb3-jy-4OQ" secondAttribute="leadingMargin" constant="8" id="HaE-d5-MQw"/>
+                                                <constraint firstItem="ELJ-4a-jeX" firstAttribute="leading" secondItem="TQa-Dy-XT4" secondAttribute="leading" id="Iaj-L3-SVK"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="TQa-Dy-XT4" secondAttribute="bottom" constant="4" id="Rao-jS-hjT"/>
+                                                <constraint firstAttribute="trailing" secondItem="ELJ-4a-jeX" secondAttribute="trailing" id="u0Q-6O-qPc"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="linkLabel" destination="ELJ-4a-jeX" id="EnU-Wg-cwj"/>
+                                            <outlet property="updateTime" destination="TQa-Dy-XT4" id="zXG-22-d3i"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

@@ -88,18 +88,21 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
         
         switch indexPath.section{
         case 0:
+            cell.updateTime.text = TimeUtils.timeAgoSinceDate(trafficAlerts[indexPath.row].lastUpdatedTime, numericDates: false)
             htmlString = htmlStyleString + trafficAlerts[indexPath.row].headlineDesc
             break
         case 1:
+            cell.updateTime.text = TimeUtils.timeAgoSinceDate(constructionAlerts[indexPath.row].lastUpdatedTime, numericDates: false)
             htmlString = htmlStyleString + constructionAlerts[indexPath.row].headlineDesc
             break
         case 2:
+            cell.updateTime.text = TimeUtils.timeAgoSinceDate(specialEvents[indexPath.row].lastUpdatedTime, numericDates: false)
             htmlString = htmlStyleString + specialEvents[indexPath.row].headlineDesc
             break
         default:
             break
         }
-
+        
         let attrStr = try! NSMutableAttributedString(
             data: htmlString.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: false)!,
             options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
@@ -114,7 +117,20 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
     // MARK: -
     // MARK: Table View Delegate Methods
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier(SegueHighwayAlertViewController, sender: alerts[indexPath.row])
+        
+        switch(indexPath.section){
+        case 0:
+            performSegueWithIdentifier(SegueHighwayAlertViewController, sender: trafficAlerts[indexPath.row])
+            break
+        case 1:
+            performSegueWithIdentifier(SegueHighwayAlertViewController, sender: constructionAlerts[indexPath.row])
+            break
+        case 2:
+            performSegueWithIdentifier(SegueHighwayAlertViewController, sender: specialEvents[indexPath.row])
+            break
+        default: break
+        }
+        
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
