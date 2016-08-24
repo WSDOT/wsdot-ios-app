@@ -38,8 +38,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Rgb-sw-bak" secondAttribute="bottom" id="f2F-UL-co6"/>
                             <constraint firstItem="Rgb-sw-bak" firstAttribute="leading" secondItem="LcF-fh-lNu" secondAttribute="leading" id="h5a-m7-FRq"/>
-                            <constraint firstItem="Rgb-sw-bak" firstAttribute="bottom" secondItem="Clb-oo-Pce" secondAttribute="top" id="oZ5-wQ-u53"/>
                             <constraint firstItem="Rgb-sw-bak" firstAttribute="top" secondItem="LcF-fh-lNu" secondAttribute="top" id="vwI-tB-lUF"/>
                             <constraint firstAttribute="trailing" secondItem="Rgb-sw-bak" secondAttribute="trailing" id="ykl-Ko-Mew"/>
                         </constraints>
