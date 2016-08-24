@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class GoToViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class VesselWatchGoToViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     let cellIdentifier = "GoToCell"
     

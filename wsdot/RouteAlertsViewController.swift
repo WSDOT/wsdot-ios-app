@@ -50,6 +50,9 @@ class RouteAlertsViewController: UIViewController, UITableViewDataSource, UITabl
             options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
             documentAttributes: nil)
         
+        let alertPubDate = TimeUtils.parseJSONDateToNSDate(alertItems[indexPath.row].publishDate)
+        cell.updateTime.text = TimeUtils.timeAgoSinceDate(alertPubDate, numericDates: false)
+        
         cell.linkLabel.attributedText = attrStr
         cell.linkLabel.delegate = self
         

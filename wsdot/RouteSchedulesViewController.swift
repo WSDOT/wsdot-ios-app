@@ -26,10 +26,6 @@ class RouteSchedulesViewController: UITableViewController {
         self.refresh(false)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     func refresh(force: Bool){
       dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak self] in
             FerryRealmStore.updateRouteSchedules(force, completion: { error in

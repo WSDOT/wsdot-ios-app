@@ -92,7 +92,7 @@
                                             <outlet property="title" destination="3Mw-9a-w2n" id="hyW-o6-nh3"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CameraFavoriteCell" textLabel="YFa-TQ-BoT" rowHeight="45" style="IBUITableViewCellStyleDefault" id="Ehw-Em-thK" customClass="RoutesCustomCell" customModule="WSDOT" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SingleTitleFavoriteCell" textLabel="YFa-TQ-BoT" rowHeight="45" style="IBUITableViewCellStyleDefault" id="Ehw-Em-thK">
                                         <rect key="frame" x="0.0" y="137" width="600" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ehw-Em-thK" id="jYl-KI-SgU">
@@ -108,6 +108,59 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TravelTimesCell" rowHeight="98" id="pfQ-ai-xd4" customClass="TravelTimeCell" customModule="WSDOT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="182" width="600" height="98"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pfQ-ai-xd4" id="Rc8-oY-6jG">
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="97"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BIH-72-mYy">
+                                                    <rect key="frame" x="16" y="8" width="543" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VFh-q6-APf">
+                                                    <rect key="frame" x="16" y="63" width="38" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ofr-hn-0Iu">
+                                                    <rect key="frame" x="510" y="65" width="49" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dsU-7r-F06">
+                                                    <rect key="frame" x="16" y="37" width="543" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ofr-hn-0Iu" firstAttribute="bottom" secondItem="Rc8-oY-6jG" secondAttribute="bottomMargin" id="0PR-mT-QLJ"/>
+                                                <constraint firstItem="BIH-72-mYy" firstAttribute="top" secondItem="Rc8-oY-6jG" secondAttribute="topMargin" id="E14-1i-RQb"/>
+                                                <constraint firstItem="dsU-7r-F06" firstAttribute="leading" secondItem="Rc8-oY-6jG" secondAttribute="leadingMargin" constant="8" id="Fzv-XG-l7W"/>
+                                                <constraint firstItem="dsU-7r-F06" firstAttribute="top" secondItem="BIH-72-mYy" secondAttribute="bottom" constant="8" id="Hxe-vz-ozz"/>
+                                                <constraint firstItem="BIH-72-mYy" firstAttribute="trailing" secondItem="Rc8-oY-6jG" secondAttribute="trailingMargin" id="JYp-Hg-P3P"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="VFh-q6-APf" secondAttribute="bottom" constant="8" id="Tkb-cR-Nl3"/>
+                                                <constraint firstItem="ofr-hn-0Iu" firstAttribute="trailing" secondItem="Rc8-oY-6jG" secondAttribute="trailingMargin" id="VmI-EG-oe5"/>
+                                                <constraint firstItem="VFh-q6-APf" firstAttribute="top" secondItem="dsU-7r-F06" secondAttribute="bottom" constant="8" id="Z7s-tD-5mU"/>
+                                                <constraint firstItem="VFh-q6-APf" firstAttribute="leading" secondItem="Rc8-oY-6jG" secondAttribute="leadingMargin" constant="8" id="imP-4I-K7Y"/>
+                                                <constraint firstItem="BIH-72-mYy" firstAttribute="leading" secondItem="Rc8-oY-6jG" secondAttribute="leadingMargin" constant="8" id="uLU-ok-tZj"/>
+                                                <constraint firstItem="dsU-7r-F06" firstAttribute="trailing" secondItem="Rc8-oY-6jG" secondAttribute="trailingMargin" id="yb5-iq-s7C"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="currentTimeLabel" destination="ofr-hn-0Iu" id="tWZ-7g-00V"/>
+                                            <outlet property="routeLabel" destination="BIH-72-mYy" id="Myk-Bg-eU7"/>
+                                            <outlet property="subtitleLabel" destination="dsU-7r-F06" id="yW3-A5-egE"/>
+                                            <outlet property="updatedLabel" destination="VFh-q6-APf" id="Bzp-qK-Iu3"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -129,6 +182,8 @@
                         <outlet property="favoritesTable" destination="K0r-R3-tVu" id="bsB-fv-d7X"/>
                         <segue destination="3tB-Ij-054" kind="show" identifier="FavoriteSailingsViewController" id="gMc-xO-dgX"/>
                         <segue destination="Zfo-py-Elh" kind="show" identifier="FavoriteCameraViewController" id="Pwk-Kr-Jeq"/>
+                        <segue destination="oG1-En-Tc4" kind="show" identifier="TrafficMapViewController" id="V87-UJ-1jU"/>
+                        <segue destination="cCr-kP-hM8" kind="show" identifier="TravelTimeViewController" id="iA6-Zc-RXP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dwt-na-DIG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -141,7 +196,7 @@
                 <viewControllerPlaceholder storyboardName="Ferries" referencedIdentifier="RouteTabBarViewController" id="3tB-Ij-054" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="16b-np-4z3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2202.5" y="1023"/>
+            <point key="canvasLocation" x="2232.5" y="1048"/>
         </scene>
         <!--Camera-->
         <scene sceneID="DKa-Fh-JYS">
@@ -149,7 +204,23 @@
                 <viewControllerPlaceholder storyboardName="Camera" id="Zfo-py-Elh" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bE7-pW-obt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2142.5" y="1088"/>
+            <point key="canvasLocation" x="2172.5" y="1113"/>
+        </scene>
+        <!--TrafficMap-->
+        <scene sceneID="Uuu-Yx-LTW">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TrafficMap" id="oG1-En-Tc4" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IB3-gY-MEg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2182" y="1179"/>
+        </scene>
+        <!--TravelTimeDetails-->
+        <scene sceneID="1fl-Wo-rU1">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TravelTimeDetails" id="cCr-kP-hM8" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hj5-sU-xql" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2203.5" y="1242"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="515-et-fK2">
@@ -201,6 +272,7 @@
                         <segue destination="l6k-sb-rpG" kind="show" identifier="FerriesHomeViewController" id="5xA-LT-yKr"/>
                         <segue destination="505-eM-iAh" kind="show" identifier="InfoViewController" id="XKx-Ti-GiN"/>
                         <segue destination="Zgq-67-CnN" kind="show" identifier="TollRatesViewController" id="mSI-P8-Paq"/>
+                        <segue destination="WIn-gc-99O" kind="show" identifier="TrafficMapViewController" id="DVt-iU-ehz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KTF-7j-ojf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -272,6 +344,14 @@
             </objects>
             <point key="canvasLocation" x="2505" y="-2"/>
         </scene>
+        <!--TrafficMap-->
+        <scene sceneID="T7P-UI-tGW">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TrafficMap" id="WIn-gc-99O" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kvd-Pj-kgR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2206" y="456"/>
+        </scene>
         <!--Ferries-->
         <scene sceneID="Cxa-dc-UyN">
             <objects>
@@ -280,7 +360,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dpe-UF-qpK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2194.5" y="431"/>
+            <point key="canvasLocation" x="2194.5" y="518"/>
         </scene>
         <!--TollRates-->
         <scene sceneID="uUO-qs-Uf4">
@@ -288,7 +368,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="TollRates" storyboardName="TollRates" id="Zgq-67-CnN" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tEk-nI-4Ks" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2201" y="494"/>
+            <point key="canvasLocation" x="2201" y="582"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Pky-mg-vjR">

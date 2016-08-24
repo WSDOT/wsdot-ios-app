@@ -16,6 +16,8 @@ class RouteTabBarViewController: UITabBarController {
     
     var routeItem : FerryScheduleItem = FerryScheduleItem()
     
+    let favoriteBarButton = UIBarButtonItem()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,44 +29,25 @@ class RouteTabBarViewController: UITabBarController {
             self.tabBar.items?[1].enabled = false
         }
         
-        let favoriteButton = UIButton()
+        favoriteBarButton.action = #selector(RouteTabBarViewController.updateFavorite(_:))
+        favoriteBarButton.target = self
         
         if (routeItem.selected){
-            favoriteButton.setImage(UIImage(named: "icFavoriteSelected"), forState: .Normal)
-            favoriteButton.setImage(UIImage(named: "icFavoriteDefault"), forState: .Highlighted)
-            favoriteButton.setImage(UIImage(named: "icFavoriteDefault"), forState: .Selected)
-            favoriteButton.addTarget(self, action: #selector(RouteTabBarViewController.removeFavorite(_:)), forControlEvents: .TouchUpInside)
+            favoriteBarButton.image = UIImage(named: "icStarSmallFilled")
         }else{
-            favoriteButton.setImage(UIImage(named: "icFavoriteDefault"), forState: .Normal)
-            favoriteButton.setImage(UIImage(named: "icFavoriteSelected"), forState: .Highlighted)
-            favoriteButton.setImage(UIImage(named: "icFavoriteSelected"), forState: .Selected)
-            favoriteButton.addTarget(self, action: #selector(RouteTabBarViewController.addFavorite(_:)), forControlEvents: .TouchUpInside)
+            favoriteBarButton.image = UIImage(named: "icStarSmall")
         }
         
-        favoriteButton.sizeToFit()
-        let favoritesNavItemButton = UIBarButtonItem()
-        favoritesNavItemButton.customView = favoriteButton
-        
-        self.navigationItem.rightBarButtonItem = favoritesNavItemButton
+        self.navigationItem.rightBarButtonItem = favoriteBarButton
     }
     
-    // Sets selected attribute of the route item to true and calls DB update logic
-    func addFavorite(sender: UIButton){
-        sender.setImage(UIImage(named: "icFavoriteSelected"), forState: .Normal)
-        sender.setImage(UIImage(named: "icFavoriteDefault"), forState: .Highlighted)
-        sender.setImage(UIImage(named: "icFavoriteDefault"), forState: .Selected)
-        sender.removeTarget(self, action: #selector(RouteTabBarViewController.addFavorite(_:)), forControlEvents: .TouchUpInside)
-        sender.addTarget(self, action: #selector(RouteTabBarViewController.removeFavorite(_:)), forControlEvents: .TouchUpInside)
-        FerryRealmStore.updateFavorite(routeItem, newValue: true)
-    }
-    
-    // Sets selected attribute of the route item to false and calls DB update logic
-    func removeFavorite(sender: UIButton){
-        sender.setImage(UIImage(named: "icFavoriteDefault"), forState: .Normal)
-        sender.setImage(UIImage(named: "icFavoriteSelected"), forState: .Highlighted)
-        sender.setImage(UIImage(named: "icFavoriteSelected"), forState: .Selected)
-        sender.removeTarget(self, action: #selector(RouteTabBarViewController.removeFavorite(_:)), forControlEvents: .TouchUpInside)
-        sender.addTarget(self, action: #selector(RouteTabBarViewController.addFavorite(_:)), forControlEvents: .TouchUpInside)
-        FerryRealmStore.updateFavorite(routeItem, newValue: false)
+    func updateFavorite(sender: UIBarButtonItem) {
+        if (routeItem.selected){
+            FerryRealmStore.updateFavorite(routeItem, newValue: false)
+            favoriteBarButton.image = UIImage(named: "icStarSmall")
+        }else {
+            FerryRealmStore.updateFavorite(routeItem, newValue: true)
+            favoriteBarButton.image = UIImage(named: "icStarSmallFilled")
+        }
     }
 }

@@ -65,6 +65,15 @@ class TimeUtils {
         return weekDay
     }
     
+    // Returns an NSDate object form a date string with the given format "yyyy-MM-dd hh:mm a"
+    static func formatTimeStamp(timestamp: String) -> NSDate{
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
+        
+        return dateFormatter.dateFromString(timestamp)!
+    }
+    
+    
     // Returns a string timestamp since a given time in miliseconds.
     // Source: https://gist.github.com/jacks205/4a77fb1703632eb9ae79
     static func timeAgoSinceDate(date:NSDate, numericDates:Bool) -> String {

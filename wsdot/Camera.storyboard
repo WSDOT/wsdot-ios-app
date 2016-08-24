@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Camera View Controller-->
+        <!--Title-->
         <scene sceneID="Y3C-pA-gMV">
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="zYt-nO-VSk" customClass="CameraViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
@@ -15,11 +15,11 @@
                         <viewControllerLayoutGuide type="bottom" id="gWp-RT-lXo"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="b77-Fx-xdT">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QkN-Ta-Oks">
-                                <rect key="frame" x="20" y="8" width="560" height="508"/>
+                                <rect key="frame" x="20" y="72" width="560" height="508"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -30,9 +30,18 @@
                             <constraint firstAttribute="bottom" secondItem="QkN-Ta-Oks" secondAttribute="bottom" constant="20" symbolic="YES" id="xMm-u7-zYP"/>
                         </constraints>
                     </view>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationItem key="navigationItem" title="Title" id="JbR-xW-l3E">
+                        <barButtonItem key="rightBarButtonItem" image="icStarSmall" id="6Xy-be-mAQ">
+                            <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="updateFavorite:" destination="zYt-nO-VSk" id="hig-CP-eeM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="cameraImage" destination="QkN-Ta-Oks" id="q6X-Ag-eQd"/>
+                        <outlet property="favoriteBarButton" destination="6Xy-be-mAQ" id="iLr-P3-c2m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ady-ct-aeC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -40,4 +49,7 @@
             <point key="canvasLocation" x="434" y="382"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icStarSmall" width="24" height="24"/>
+    </resources>
 </document>
