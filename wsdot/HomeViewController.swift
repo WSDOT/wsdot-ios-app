@@ -17,6 +17,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     let SegueTollRatesViewController = "TollRatesViewController"
     let SegueBorderWaitsViewController = "BorderWaitsViewController"
     let SegueInfoViewController = "InfoViewController"
+    let SegueMountainPassesViewController = "MountainPassesViewController"
     
     var menu_options: [String] = []
     
@@ -68,6 +69,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 performSegueWithIdentifier(SegueFerriesHomeViewController, sender: self)
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
                 break
+            case 2:
+                performSegueWithIdentifier(SegueMountainPassesViewController, sender: self)
+                tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                break
             case 4:
                 performSegueWithIdentifier(SegueTollRatesViewController, sender: self)
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -75,6 +80,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             case 5:
                 performSegueWithIdentifier(SegueBorderWaitsViewController, sender: self)
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            
             default:
                 break
         }

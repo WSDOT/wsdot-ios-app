@@ -23,12 +23,6 @@ class FerriesHomeViewController: UITableViewController {
         menu_options = ["Route Schedules", "Vehicle Reservations Website", "VesselWatch"]
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: -
     // MARK: Table View Data Source Methods
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -47,7 +41,6 @@ class FerriesHomeViewController: UITableViewController {
         return cell
     }
     
-    // MARK: -
     // MARK: Table View Delegate Methods
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // Perform Segue

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class TimeUtils {
     
@@ -71,6 +72,18 @@ class TimeUtils {
         dateFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
         
         return dateFormatter.dateFromString(timestamp)!
+    }
+    
+    static func getDateFromJSONArray(time: [JSON]) -> NSDate{
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-M-d H:mm"
+        let year = time[0].stringValue
+        let month = time[1].stringValue
+        let day = time[2].stringValue
+        let hour = time[3].stringValue
+        let min = time[4].stringValue
+        let dateString =  year + "-" + month + "-" + day + " " + hour + ":" + min
+        return dateFormatter.dateFromString(dateString)!
     }
     
     

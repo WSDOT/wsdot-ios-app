@@ -220,7 +220,15 @@
                 <viewControllerPlaceholder storyboardName="TravelTimeDetails" id="cCr-kP-hM8" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hj5-sU-xql" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2203.5" y="1242"/>
+            <point key="canvasLocation" x="2203.5" y="1244"/>
+        </scene>
+        <!--MountainPasses-->
+        <scene sceneID="e5m-Cy-pd3">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MountainPasses" id="wj1-H7-MUM" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ao6-oX-VNl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2222.5" y="709"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="515-et-fK2">
@@ -274,6 +282,7 @@
                         <segue destination="Zgq-67-CnN" kind="show" identifier="TollRatesViewController" id="mSI-P8-Paq"/>
                         <segue destination="WIn-gc-99O" kind="show" identifier="TrafficMapViewController" id="DVt-iU-ehz"/>
                         <segue destination="zbi-Ku-wrh" kind="show" identifier="BorderWaitsViewController" id="xhk-Ek-dfU"/>
+                        <segue destination="wj1-H7-MUM" kind="show" identifier="MountainPassesViewController" id="PbE-pI-FxC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KTF-7j-ojf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -377,7 +386,7 @@
                 <viewControllerPlaceholder storyboardName="BorderWaits" id="zbi-Ku-wrh" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wD8-SX-LNc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2207" y="645"/>
+            <point key="canvasLocation" x="2210.5" y="644"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Pky-mg-vjR">

@@ -15,6 +15,7 @@ enum CachedData {
     case Ferries
     case Cameras
     case BorderWaits
+    case MountainPasses
 }
 
 class CachesStore {
@@ -51,6 +52,8 @@ class CachesStore {
             return cacheItem!.camerasLastUpdate
         case .BorderWaits:
             return cacheItem!.borderWaitsLastUpdate
+        case .MountainPasses:
+            return cacheItem!.mountainPassesLastUpdate
         }
     }
 
@@ -75,6 +78,10 @@ class CachesStore {
                     break
                 case .BorderWaits:
                     cacheItem?.borderWaitsLastUpdate = updated
+                    break
+                case .MountainPasses:
+                    cacheItem?.mountainPassesLastUpdate = updated
+                    break
                 }
             }
         } catch {
