@@ -23,7 +23,7 @@
 		9A0616CE1D660CC800126520 /* SR16ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616CD1D660CC800126520 /* SR16ViewController.swift */; };
 		9A0616D01D660D6100126520 /* SR167ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616CF1D660D6100126520 /* SR167ViewController.swift */; };
 		9A0616D21D660DC500126520 /* I405ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616D11D660DC500126520 /* I405ViewController.swift */; };
-		9A0616D51D6638AB00126520 /* TollRatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616D41D6638AB00126520 /* TollRatesModel.swift */; };
+		9A0616D51D6638AB00126520 /* TollRatesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616D41D6638AB00126520 /* TollRatesStore.swift */; };
 		9A0616D71D664D2300126520 /* FourColTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616D61D664D2300126520 /* FourColTableViewCell.swift */; };
 		9A0616DA1D675DC800126520 /* ThreeColTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616D91D675DC800126520 /* ThreeColTableViewCell.swift */; };
 		9A0616E41D676FB600126520 /* TrafficMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616E31D676FB600126520 /* TrafficMapViewController.swift */; };
@@ -75,6 +75,11 @@
 		9A6FBD0F1D6CC43C00CDCE16 /* TravelTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBD0E1D6CC43C00CDCE16 /* TravelTimeCell.swift */; };
 		9A6FBD121D6CEE2600CDCE16 /* TravelTimeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBD111D6CEE2600CDCE16 /* TravelTimeDetailsViewController.swift */; };
 		9A6FBD141D6CEE3300CDCE16 /* TravelTimeDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A6FBD131D6CEE3300CDCE16 /* TravelTimeDetails.storyboard */; };
+		9A6FBD1C1D6DF8F700CDCE16 /* BorderWaits.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A6FBD1B1D6DF8F700CDCE16 /* BorderWaits.storyboard */; };
+		9A6FBD1F1D6DF91300CDCE16 /* BorderWaitItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBD1E1D6DF91300CDCE16 /* BorderWaitItem.swift */; };
+		9A6FBD211D6DF96100CDCE16 /* BorderWaitsRealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBD201D6DF96100CDCE16 /* BorderWaitsRealmStore.swift */; };
+		9A6FBD231D6DF9AB00CDCE16 /* BorderWaitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBD221D6DF9AB00CDCE16 /* BorderWaitsViewController.swift */; };
+		9A6FBD291D6DFFCE00CDCE16 /* BorderWaitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBD281D6DFFCE00CDCE16 /* BorderWaitCell.swift */; };
 		9A81A5781D4AC5710049913A /* RouteTimesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5771D4AC5710049913A /* RouteTimesViewController.swift */; };
 		9A81A57A1D4AC5840049913A /* RouteCamerasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5791D4AC5840049913A /* RouteCamerasViewController.swift */; };
 		9A81A57C1D4BB41B0049913A /* LatLonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */; };
@@ -124,7 +129,7 @@
 		9A0616CD1D660CC800126520 /* SR16ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SR16ViewController.swift; sourceTree = "<group>"; };
 		9A0616CF1D660D6100126520 /* SR167ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SR167ViewController.swift; sourceTree = "<group>"; };
 		9A0616D11D660DC500126520 /* I405ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = I405ViewController.swift; sourceTree = "<group>"; };
-		9A0616D41D6638AB00126520 /* TollRatesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TollRatesModel.swift; sourceTree = "<group>"; };
+		9A0616D41D6638AB00126520 /* TollRatesStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TollRatesStore.swift; sourceTree = "<group>"; };
 		9A0616D61D664D2300126520 /* FourColTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourColTableViewCell.swift; sourceTree = "<group>"; };
 		9A0616D91D675DC800126520 /* ThreeColTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeColTableViewCell.swift; sourceTree = "<group>"; };
 		9A0616E31D676FB600126520 /* TrafficMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficMapViewController.swift; sourceTree = "<group>"; };
@@ -176,6 +181,11 @@
 		9A6FBD0E1D6CC43C00CDCE16 /* TravelTimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelTimeCell.swift; sourceTree = "<group>"; };
 		9A6FBD111D6CEE2600CDCE16 /* TravelTimeDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelTimeDetailsViewController.swift; sourceTree = "<group>"; };
 		9A6FBD131D6CEE3300CDCE16 /* TravelTimeDetails.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TravelTimeDetails.storyboard; sourceTree = "<group>"; };
+		9A6FBD1B1D6DF8F700CDCE16 /* BorderWaits.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BorderWaits.storyboard; sourceTree = "<group>"; };
+		9A6FBD1E1D6DF91300CDCE16 /* BorderWaitItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderWaitItem.swift; sourceTree = "<group>"; };
+		9A6FBD201D6DF96100CDCE16 /* BorderWaitsRealmStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderWaitsRealmStore.swift; sourceTree = "<group>"; };
+		9A6FBD221D6DF9AB00CDCE16 /* BorderWaitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderWaitsViewController.swift; sourceTree = "<group>"; };
+		9A6FBD281D6DFFCE00CDCE16 /* BorderWaitCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderWaitCell.swift; sourceTree = "<group>"; };
 		9A81A5771D4AC5710049913A /* RouteTimesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTimesViewController.swift; sourceTree = "<group>"; };
 		9A81A5791D4AC5840049913A /* RouteCamerasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteCamerasViewController.swift; sourceTree = "<group>"; };
 		9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatLonUtils.swift; sourceTree = "<group>"; };
@@ -272,7 +282,7 @@
 		9A0616C41D66018A00126520 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				9A0616D41D6638AB00126520 /* TollRatesModel.swift */,
+				9A0616D41D6638AB00126520 /* TollRatesStore.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -408,6 +418,7 @@
 				9A2C27261D67A1E400F05D88 /* SettingsCell.swift */,
 				9A6FBCFB1D6CAC0800CDCE16 /* ExpressLaneCell.swift */,
 				9A6FBD0E1D6CC43C00CDCE16 /* TravelTimeCell.swift */,
+				9A6FBD281D6DFFCE00CDCE16 /* BorderWaitCell.swift */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -584,7 +595,6 @@
 		9A6FBD101D6CEE0400CDCE16 /* TravelTimeDetails */ = {
 			isa = PBXGroup;
 			children = (
-				9A6FBCE61D6C951300CDCE16 /* Callouts */,
 				9A6FBD161D6CEE3C00CDCE16 /* Controllers */,
 				9A6FBD151D6CEE3700CDCE16 /* Views */,
 			);
@@ -603,6 +613,41 @@
 			isa = PBXGroup;
 			children = (
 				9A6FBD111D6CEE2600CDCE16 /* TravelTimeDetailsViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		9A6FBD171D6DF8C200CDCE16 /* BorderWait */ = {
+			isa = PBXGroup;
+			children = (
+				9A6FBD1A1D6DF8D900CDCE16 /* Controllers */,
+				9A6FBD191D6DF8D000CDCE16 /* Views */,
+				9A6FBD181D6DF8C800CDCE16 /* Models */,
+			);
+			name = BorderWait;
+			sourceTree = "<group>";
+		};
+		9A6FBD181D6DF8C800CDCE16 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9A6FBD1E1D6DF91300CDCE16 /* BorderWaitItem.swift */,
+				9A6FBD201D6DF96100CDCE16 /* BorderWaitsRealmStore.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		9A6FBD191D6DF8D000CDCE16 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9A6FBD1B1D6DF8F700CDCE16 /* BorderWaits.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		9A6FBD1A1D6DF8D900CDCE16 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9A6FBD221D6DF9AB00CDCE16 /* BorderWaitsViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -660,6 +705,8 @@
 		9AD32DFB1D23172C000AEC28 /* wsdot */ = {
 			isa = PBXGroup;
 			children = (
+				9A6FBCE61D6C951300CDCE16 /* Callouts */,
+				9A6FBD171D6DF8C200CDCE16 /* BorderWait */,
 				9A6FBCC61D6B517400CDCE16 /* RestAreas */,
 				9A6FBD101D6CEE0400CDCE16 /* TravelTimeDetails */,
 				9A6FBCCA1D6B51CF00CDCE16 /* HighwayAlerts */,
@@ -882,6 +929,7 @@
 				9A122B431D5246DB00C176CD /* GoogleService-Info.plist in Resources */,
 				9A6FBCD21D6B541F00CDCE16 /* restareas.json in Resources */,
 				9A6FBCEA1D6C953000CDCE16 /* Callout.storyboard in Resources */,
+				9A6FBD1C1D6DF8F700CDCE16 /* BorderWaits.storyboard in Resources */,
 				9A0616C81D6601BD00126520 /* TollRates.storyboard in Resources */,
 				9A6FBCD61D6B5EBB00CDCE16 /* RestArea.storyboard in Resources */,
 			);
@@ -956,6 +1004,7 @@
 				9A2F4A5D1D52747900911AF5 /* FerryScheduleRealmDataModel.swift in Sources */,
 				9A6FBCD81D6B5EDD00CDCE16 /* RestAreaViewController.swift in Sources */,
 				9A6FBCEF1D6C9B2C00CDCE16 /* FavoriteLocationItem.swift in Sources */,
+				9A6FBD231D6DF9AB00CDCE16 /* BorderWaitsViewController.swift in Sources */,
 				9A07192C1D410FD5007BB4C5 /* RouteAlertsViewController.swift in Sources */,
 				9A0616811D6265FB00126520 /* UserDefaultsKeys.swift in Sources */,
 				9A6FBD0B1D6CBC3A00CDCE16 /* TravelTimeItem.swift in Sources */,
@@ -999,6 +1048,7 @@
 				9A0CA8371D466045009C67B7 /* TimeUtils.swift in Sources */,
 				9A1F5FA31D47DBB700DA5F99 /* SailingSpacesStore.swift in Sources */,
 				9AD32E221D241AF4000AEC28 /* HomeViewController.swift in Sources */,
+				9A6FBD211D6DF96100CDCE16 /* BorderWaitsRealmStore.swift in Sources */,
 				9A0616E41D676FB600126520 /* TrafficMapViewController.swift in Sources */,
 				9A6FBD121D6CEE2600CDCE16 /* TravelTimeDetailsViewController.swift in Sources */,
 				9A0616CC1D660BD500126520 /* SR520ViewController.swift in Sources */,
@@ -1008,15 +1058,17 @@
 				9A0616CE1D660CC800126520 /* SR16ViewController.swift in Sources */,
 				9A2C27271D67A1E400F05D88 /* SettingsCell.swift in Sources */,
 				9A6FBD091D6CBB0000CDCE16 /* TravelTimesViewController.swift in Sources */,
+				9A6FBD291D6DFFCE00CDCE16 /* BorderWaitCell.swift in Sources */,
 				9A81A5781D4AC5710049913A /* RouteTimesViewController.swift in Sources */,
 				9A0CA8311D428EE9009C67B7 /* RouteDeparturesViewController.swift in Sources */,
 				9A6FBCDC1D6B6E1200CDCE16 /* HighwayAlertsRealmStore.swift in Sources */,
 				9A1F5FA11D47D3D100DA5F99 /* CameraImageCustomCell.swift in Sources */,
 				9AD32E2C1D242A5A000AEC28 /* RouteSchedulesViewController.swift in Sources */,
 				9A0616B71D63674500126520 /* VesselWatchStore.swift in Sources */,
+				9A6FBD1F1D6DF91300CDCE16 /* BorderWaitItem.swift in Sources */,
 				9A0719351D4274B8007BB4C5 /* LinkCell.swift in Sources */,
 				9A0616D71D664D2300126520 /* FourColTableViewCell.swift in Sources */,
-				9A0616D51D6638AB00126520 /* TollRatesModel.swift in Sources */,
+				9A0616D51D6638AB00126520 /* TollRatesStore.swift in Sources */,
 				9A81A57A1D4AC5840049913A /* RouteCamerasViewController.swift in Sources */,
 				9A0CA83C1D46AC51009C67B7 /* PickerTextField.swift in Sources */,
 				9A06167C1D622AE800126520 /* MapViewController.swift in Sources */,

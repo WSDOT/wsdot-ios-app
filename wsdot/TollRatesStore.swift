@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TollRatesModel {
+class TollRatesStore {
 
     static func getSR520data() -> [ThreeColItem] {
         var data = [ThreeColItem]()

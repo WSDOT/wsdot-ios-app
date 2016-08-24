@@ -17,10 +17,9 @@ class SR520ViewController: UIViewController {
     
     override func viewDidLoad() {
         
-        data = TollRatesModel.getSR520data()
+        data = TollRatesStore.getSR520data()
     }
     
-    // MARK: -
     // MARK: Table View Data Source Methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1

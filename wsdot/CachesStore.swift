@@ -14,6 +14,7 @@ enum CachedData {
     case HighwayAlerts
     case Ferries
     case Cameras
+    case BorderWaits
 }
 
 class CachesStore {
@@ -48,6 +49,8 @@ class CachesStore {
             return cacheItem!.ferriesLastUpdate
         case .Cameras:
             return cacheItem!.camerasLastUpdate
+        case .BorderWaits:
+            return cacheItem!.borderWaitsLastUpdate
         }
     }
 
@@ -70,6 +73,8 @@ class CachesStore {
                 case .Cameras:
                     cacheItem?.camerasLastUpdate = updated
                     break
+                case .BorderWaits:
+                    cacheItem?.borderWaitsLastUpdate = updated
                 }
             }
         } catch {
