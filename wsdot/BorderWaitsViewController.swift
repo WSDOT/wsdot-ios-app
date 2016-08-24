@@ -10,8 +10,14 @@ import UIKit
 
 class BorderWaitsViewController: UIViewController{
     
+    @IBOutlet weak var southboundViewContrainer: UIView!
+    @IBOutlet weak var northboundViewContainer: UIView!
+    
     override func viewDidLoad() {
         title = "Border Waits"
+        
+        southboundViewContrainer.hidden = true
+        northboundViewContainer.hidden = false
     }
     
     // Remove and add hairline for nav bar
@@ -26,6 +32,18 @@ class BorderWaitsViewController: UIViewController{
         self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: .Default)
     }
     
-    
-    
+    @IBAction func indexChanged(sender: UISegmentedControl) {
+        switch (sender.selectedSegmentIndex){
+        case 0:
+            southboundViewContrainer.hidden = true
+            northboundViewContainer.hidden = false
+            break
+        case 1:
+            southboundViewContrainer.hidden = false
+            northboundViewContainer.hidden = true
+            break
+        default:
+            break
+        }
+    }
 }
