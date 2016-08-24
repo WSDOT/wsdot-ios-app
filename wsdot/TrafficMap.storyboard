@@ -153,19 +153,19 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Hd-bb-TkL">
-                                                    <rect key="frame" x="8" y="8" width="551" height="21"/>
+                                                    <rect key="frame" x="16" y="8" width="543" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMC-8m-3aQ">
-                                                    <rect key="frame" x="8" y="37" width="551" height="18"/>
+                                                    <rect key="frame" x="16" y="37" width="543" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2lk-LP-M9o">
-                                                    <rect key="frame" x="8" y="63" width="38" height="18"/>
+                                                    <rect key="frame" x="16" y="63" width="38" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -178,14 +178,14 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="2lk-LP-M9o" firstAttribute="leading" secondItem="nDF-DP-dqK" secondAttribute="leadingMargin" id="3D6-HY-3Dr"/>
+                                                <constraint firstItem="2lk-LP-M9o" firstAttribute="leading" secondItem="nDF-DP-dqK" secondAttribute="leadingMargin" constant="8" id="3D6-HY-3Dr"/>
                                                 <constraint firstItem="2Hd-bb-TkL" firstAttribute="top" secondItem="nDF-DP-dqK" secondAttribute="topMargin" id="DeX-Hb-Vh1"/>
                                                 <constraint firstItem="6kP-iq-wDS" firstAttribute="trailing" secondItem="nDF-DP-dqK" secondAttribute="trailingMargin" id="FXb-6k-Nsz"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="2lk-LP-M9o" secondAttribute="bottom" constant="8" id="RmN-FV-kp7"/>
-                                                <constraint firstItem="PMC-8m-3aQ" firstAttribute="leading" secondItem="nDF-DP-dqK" secondAttribute="leadingMargin" id="Svt-AI-WXW"/>
+                                                <constraint firstItem="PMC-8m-3aQ" firstAttribute="leading" secondItem="nDF-DP-dqK" secondAttribute="leadingMargin" constant="8" id="Svt-AI-WXW"/>
                                                 <constraint firstItem="2lk-LP-M9o" firstAttribute="top" secondItem="PMC-8m-3aQ" secondAttribute="bottom" constant="8" id="U0e-jN-usX"/>
                                                 <constraint firstItem="2Hd-bb-TkL" firstAttribute="trailing" secondItem="nDF-DP-dqK" secondAttribute="trailingMargin" id="UZp-jC-da6"/>
-                                                <constraint firstItem="2Hd-bb-TkL" firstAttribute="leading" secondItem="nDF-DP-dqK" secondAttribute="leadingMargin" id="Uho-AY-7w4"/>
+                                                <constraint firstItem="2Hd-bb-TkL" firstAttribute="leading" secondItem="nDF-DP-dqK" secondAttribute="leadingMargin" constant="8" id="Uho-AY-7w4"/>
                                                 <constraint firstItem="PMC-8m-3aQ" firstAttribute="trailing" secondItem="nDF-DP-dqK" secondAttribute="trailingMargin" id="Un3-fi-Sbo"/>
                                                 <constraint firstItem="6kP-iq-wDS" firstAttribute="bottom" secondItem="nDF-DP-dqK" secondAttribute="bottomMargin" id="eY2-CK-zfl"/>
                                                 <constraint firstItem="PMC-8m-3aQ" firstAttribute="top" secondItem="2Hd-bb-TkL" secondAttribute="bottom" constant="8" id="qWN-7t-YQe"/>

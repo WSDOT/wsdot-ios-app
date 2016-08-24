@@ -315,15 +315,6 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		9A0616DF1D676F6100126520 /* Markers */ = {
-			isa = PBXGroup;
-			children = (
-				9A6FBCE61D6C951300CDCE16 /* Callouts */,
-				9A6FBCC61D6B517400CDCE16 /* RestAreas */,
-			);
-			name = Markers;
-			sourceTree = "<group>";
-		};
 		9A0616E01D676F6A00126520 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -559,7 +550,6 @@
 				9A6FBD071D6CBABD00CDCE16 /* FavoriteLocations */,
 				9A6FBD061D6CBAB500CDCE16 /* TravelTimes */,
 				9A6FBD051D6CBA8600CDCE16 /* ExpressLanes */,
-				9A0616DF1D676F6100126520 /* Markers */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -594,6 +584,7 @@
 		9A6FBD101D6CEE0400CDCE16 /* TravelTimeDetails */ = {
 			isa = PBXGroup;
 			children = (
+				9A6FBCE61D6C951300CDCE16 /* Callouts */,
 				9A6FBD161D6CEE3C00CDCE16 /* Controllers */,
 				9A6FBD151D6CEE3700CDCE16 /* Views */,
 			);
@@ -603,7 +594,7 @@
 		9A6FBD151D6CEE3700CDCE16 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9A6FBD111D6CEE2600CDCE16 /* TravelTimeDetailsViewController.swift */,
+				9A6FBD131D6CEE3300CDCE16 /* TravelTimeDetails.storyboard */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -611,7 +602,7 @@
 		9A6FBD161D6CEE3C00CDCE16 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9A6FBD131D6CEE3300CDCE16 /* TravelTimeDetails.storyboard */,
+				9A6FBD111D6CEE2600CDCE16 /* TravelTimeDetailsViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -669,6 +660,7 @@
 		9AD32DFB1D23172C000AEC28 /* wsdot */ = {
 			isa = PBXGroup;
 			children = (
+				9A6FBCC61D6B517400CDCE16 /* RestAreas */,
 				9A6FBD101D6CEE0400CDCE16 /* TravelTimeDetails */,
 				9A6FBCCA1D6B51CF00CDCE16 /* HighwayAlerts */,
 				9A0616DD1D676F5500126520 /* TrafficMap */,

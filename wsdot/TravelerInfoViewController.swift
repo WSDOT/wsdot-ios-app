@@ -24,7 +24,7 @@ class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITable
         menu_options = ["Travel Times", "Express Lanes"]
         
     }
-    // MARK: -
+
     // MARK: Table View Data Source Methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -43,7 +43,7 @@ class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITable
         return cell
     }
     
-    // MARK: -
+
     // MARK: Table View Delegate Methods
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // Perform Segue

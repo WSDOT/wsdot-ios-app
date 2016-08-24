@@ -96,7 +96,7 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
         cell.routeLabel.text = travelTime.title
         
         cell.subtitleLabel.text = String(travelTime.distance) + " miles / " + String(travelTime.averageTime) + " min"
-        cell.updatedLabel.text = travelTime.updated
+        cell.updatedLabel.text = TimeUtils.timeAgoSinceDate(TimeUtils.formatTimeStamp(travelTime.updated), numericDates: false)
         
         cell.currentTimeLabel.text = String(travelTime.currentTime) + " min"
         
@@ -113,7 +113,7 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
         return cell
     }
     
-     // MARK: -
+
     // MARK: Table View Delegate Methods
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         performSegueWithIdentifier(segueTravelTimesViewController, sender: nil)

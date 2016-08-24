@@ -40,12 +40,11 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
         
     }
     
+    // MARK: Table View Data Source Methods
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
-    
-    // MARK: -
-    // MARK: Table View Data Source Methods
+
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 3
     }
@@ -114,7 +113,6 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
         return cell
     }
     
-    // MARK: -
     // MARK: Table View Delegate Methods
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         

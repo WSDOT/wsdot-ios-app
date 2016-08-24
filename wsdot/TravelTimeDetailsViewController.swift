@@ -11,13 +11,11 @@ import UIKit
 class TravelTimeDetailsViewController: UIViewController {
 
     @IBOutlet weak var favoriteTabBarButton: UIBarButtonItem!
-    
     @IBOutlet weak var routeTitle: UILabel!
     @IBOutlet weak var subTitle: UILabel!
     @IBOutlet weak var updated: UILabel!
     @IBOutlet weak var currentTime: UILabel!
 
-    
     var travelTime = TravelTimeItem()
     
     override func viewDidLoad() {
@@ -26,7 +24,7 @@ class TravelTimeDetailsViewController: UIViewController {
 
         routeTitle.text = travelTime.title
         subTitle.text = String(travelTime.distance) + " miles / " + String(travelTime.averageTime) + " min"
-        updated.text = travelTime.updated
+        updated.text = TimeUtils.timeAgoSinceDate(TimeUtils.formatTimeStamp(travelTime.updated), numericDates: false)
         currentTime.text = String(travelTime.currentTime) + " min"
  
         if (travelTime.averageTime > travelTime.currentTime){

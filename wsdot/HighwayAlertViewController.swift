@@ -41,7 +41,7 @@ class HighwayAlertViewController: UIViewController, INDLinkLabelDelegate {
             + "&key=" + ApiKeys.google_key
         
         
-        mapImage.sd_setImageWithURL(NSURL(string: staticMapUrl), placeholderImage: nil, options: .RefreshCached)
+        mapImage.sd_setImageWithURL(NSURL(string: staticMapUrl), placeholderImage: UIImage(named: "imagePlaceholder"), options: .RefreshCached)
 
     }
     

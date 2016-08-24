@@ -202,7 +202,6 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     }
     
     // MARK: Camera marker logic
-    
     func removeCameras(){
         for camera in cameraMarkers{
             camera.map = nil
@@ -266,12 +265,8 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
             }
         }
     }
-
-    
-    
     
     // MARK: Alerts marker logic
-    
     func removeAlerts(){
         for alert in alertMarkers{
            alert.map = nil
@@ -416,9 +411,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         return alerts
     }
     
-    
     // MARK: Rest area marker logic
-    
     func removeRestAreas(){
         for restarea in restAreaMarkers{
             restarea.map = nil
@@ -474,6 +467,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         }
     }
     
+    // MARK: JBLM Marker logic
     func removeJBLM(){
         JBLMMarker.map = nil
     }
@@ -492,6 +486,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         }
     }
     
+    // MARK: favorite location
     func saveCurrentLocation(){
         
         let alert = UIAlertController(title: "New Favorite Location", message: "", preferredStyle: UIAlertControllerStyle.Alert)

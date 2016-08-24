@@ -57,9 +57,7 @@ class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
 
-    // MARK: -
     // MARK: Table View Data Source Methods
-        
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
@@ -84,13 +82,12 @@ class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITable
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! ExpressLaneCell
             cell.routeLabel.text = expressLanes[indexPath.row].route
             cell.directionLabel.text = expressLanes[indexPath.row].direction
-            cell.updatedLabel.text = expressLanes[indexPath.row].updated
+            cell.updatedLabel.text = TimeUtils.timeAgoSinceDate(TimeUtils.formatTimeStamp(expressLanes[indexPath.row].updated), numericDates: false)
             cell.selectionStyle = .None
             return cell
         }
     }
     
-    // MARK: -
     // MARK: Table View Delegate Methods
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch (indexPath.row) {

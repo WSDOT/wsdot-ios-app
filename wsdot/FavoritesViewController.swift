@@ -231,7 +231,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             travelTimeCell.routeLabel.text = travelTime.title
             
             travelTimeCell.subtitleLabel.text = String(travelTime.distance) + " miles / " + String(travelTime.averageTime) + " min"
-            travelTimeCell.updatedLabel.text = travelTime.updated
+            travelTimeCell.updatedLabel.text = TimeUtils.timeAgoSinceDate(TimeUtils.formatTimeStamp(travelTime.updated), numericDates: false)
             
             travelTimeCell.currentTimeLabel.text = String(travelTime.currentTime) + " min"
             

@@ -110,22 +110,20 @@ class TrafficMapSettingsViewController: UIViewController {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
-    // MARK: TODO
     func favoriteLocationAction(){
         self.dismissViewControllerAnimated(true, completion: {()->Void in});
         parent!.saveCurrentLocation()
     }
     
+    // MARK: Prefrence functions
     func changeAlertsPref(sender: UISwitch){
         let alertsPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.alerts)
         if let alertsVisible = alertsPref {
             if (alertsVisible == "on") {
                 NSUserDefaults.standardUserDefaults().setObject("off", forKey: UserDefaultsKeys.alerts)
-                print("alert pref off")
                 parent!.removeAlerts()
             } else {
                 NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.alerts)
-                print("alert pref on")
                 parent!.drawAlerts()
             }
         }
