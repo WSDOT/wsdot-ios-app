@@ -595,7 +595,6 @@
 		9A6FBD101D6CEE0400CDCE16 /* TravelTimeDetails */ = {
 			isa = PBXGroup;
 			children = (
-				9A6FBCE61D6C951300CDCE16 /* Callouts */,
 				9A6FBD161D6CEE3C00CDCE16 /* Controllers */,
 				9A6FBD151D6CEE3700CDCE16 /* Views */,
 			);
@@ -706,6 +705,7 @@
 		9AD32DFB1D23172C000AEC28 /* wsdot */ = {
 			isa = PBXGroup;
 			children = (
+				9A6FBCE61D6C951300CDCE16 /* Callouts */,
 				9A6FBD171D6DF8C200CDCE16 /* BorderWait */,
 				9A6FBCC61D6B517400CDCE16 /* RestAreas */,
 				9A6FBD101D6CEE0400CDCE16 /* TravelTimeDetails */,

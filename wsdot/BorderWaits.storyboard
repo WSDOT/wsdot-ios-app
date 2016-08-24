@@ -38,15 +38,15 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="y0T-hn-zi6">
-                                <rect key="frame" x="0.0" y="44" width="600" height="492"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="y0T-hn-zi6">
+                                <rect key="frame" x="0.0" y="44" width="600" height="442"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="borderwaitcell" rowHeight="66" id="TI4-tk-8mV" customClass="BorderWaitCell" customModule="WSDOT" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="66"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="borderwaitcell" rowHeight="64" id="TI4-tk-8mV" customClass="BorderWaitCell" customModule="WSDOT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TI4-tk-8mV" id="Onc-77-xu6">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJU-WX-tch">
@@ -79,6 +79,7 @@
                                                 <constraint firstItem="ZEC-LL-OBG" firstAttribute="leading" secondItem="Onc-77-xu6" secondAttribute="leadingMargin" id="1PU-nX-DRQ"/>
                                                 <constraint firstItem="pFP-fd-8YA" firstAttribute="top" secondItem="eJU-WX-tch" secondAttribute="bottom" id="6Tc-sL-IIi"/>
                                                 <constraint firstItem="eJU-WX-tch" firstAttribute="leading" secondItem="pFP-fd-8YA" secondAttribute="leading" id="AOh-9u-znC"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="pFP-fd-8YA" secondAttribute="bottom" constant="8" id="CvO-Rz-d6Z"/>
                                                 <constraint firstItem="ZEC-LL-OBG" firstAttribute="bottom" secondItem="OO6-MM-0Le" secondAttribute="bottom" id="D4b-iv-OdA"/>
                                                 <constraint firstItem="ZEC-LL-OBG" firstAttribute="top" secondItem="Onc-77-xu6" secondAttribute="topMargin" id="Djn-yU-lhT"/>
                                                 <constraint firstItem="ZEC-LL-OBG" firstAttribute="top" secondItem="eJU-WX-tch" secondAttribute="top" id="jBm-bt-wwt"/>
@@ -99,13 +100,23 @@
                                     <outlet property="delegate" destination="NTb-hm-SC4" id="1bT-iM-hkW"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XwU-Gs-jjE" customClass="GADBannerView">
+                                <rect key="frame" x="140" y="486" width="320" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Ssj-cl-L7q"/>
+                                    <constraint firstAttribute="width" constant="320" id="fTq-FO-1Od"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="XwU-Gs-jjE" secondAttribute="bottom" id="0VP-V9-tMQ"/>
                             <constraint firstItem="DTw-9a-K6t" firstAttribute="top" secondItem="uDq-QW-pNT" secondAttribute="bottom" id="4yl-g6-NmM"/>
                             <constraint firstItem="DTw-9a-K6t" firstAttribute="leading" secondItem="S6k-Dm-gCW" secondAttribute="leading" id="EkZ-Az-jwH"/>
+                            <constraint firstItem="XwU-Gs-jjE" firstAttribute="centerX" secondItem="S6k-Dm-gCW" secondAttribute="centerX" id="TUv-ym-dra"/>
+                            <constraint firstItem="XwU-Gs-jjE" firstAttribute="top" secondItem="y0T-hn-zi6" secondAttribute="bottom" id="Yfw-4p-eVS"/>
                             <constraint firstAttribute="trailing" secondItem="DTw-9a-K6t" secondAttribute="trailing" id="h6a-ER-YTL"/>
-                            <constraint firstItem="y0T-hn-zi6" firstAttribute="bottom" secondItem="LPx-fK-ez5" secondAttribute="top" id="iax-rM-xXJ"/>
                             <constraint firstItem="y0T-hn-zi6" firstAttribute="leading" secondItem="DTw-9a-K6t" secondAttribute="leading" id="lFw-BW-FDW"/>
                             <constraint firstItem="y0T-hn-zi6" firstAttribute="top" secondItem="DTw-9a-K6t" secondAttribute="bottom" id="mqj-s5-iBs"/>
                             <constraint firstItem="y0T-hn-zi6" firstAttribute="trailing" secondItem="DTw-9a-K6t" secondAttribute="trailing" id="poV-AY-0F2"/>
@@ -113,6 +124,8 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="bannerView" destination="XwU-Gs-jjE" id="A5W-NN-k88"/>
+                        <outlet property="segmentedControlView" destination="1ek-XP-VjM" id="4Nc-yu-NmH"/>
                         <outlet property="tableView" destination="y0T-hn-zi6" id="ycG-jW-H2i"/>
                     </connections>
                 </viewController>
