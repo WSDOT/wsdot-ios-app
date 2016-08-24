@@ -79,8 +79,6 @@
 		9A6FBD1F1D6DF91300CDCE16 /* BorderWaitItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBD1E1D6DF91300CDCE16 /* BorderWaitItem.swift */; };
 		9A6FBD211D6DF96100CDCE16 /* BorderWaitsRealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBD201D6DF96100CDCE16 /* BorderWaitsRealmStore.swift */; };
 		9A6FBD231D6DF9AB00CDCE16 /* BorderWaitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBD221D6DF9AB00CDCE16 /* BorderWaitsViewController.swift */; };
-		9A6FBD251D6DFDA800CDCE16 /* BorderWaitsNorthboundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBD241D6DFDA800CDCE16 /* BorderWaitsNorthboundViewController.swift */; };
-		9A6FBD271D6DFDB300CDCE16 /* BorderWaitsSouthBoundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBD261D6DFDB300CDCE16 /* BorderWaitsSouthBoundViewController.swift */; };
 		9A6FBD291D6DFFCE00CDCE16 /* BorderWaitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBD281D6DFFCE00CDCE16 /* BorderWaitCell.swift */; };
 		9A81A5781D4AC5710049913A /* RouteTimesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5771D4AC5710049913A /* RouteTimesViewController.swift */; };
 		9A81A57A1D4AC5840049913A /* RouteCamerasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5791D4AC5840049913A /* RouteCamerasViewController.swift */; };
@@ -187,8 +185,6 @@
 		9A6FBD1E1D6DF91300CDCE16 /* BorderWaitItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderWaitItem.swift; sourceTree = "<group>"; };
 		9A6FBD201D6DF96100CDCE16 /* BorderWaitsRealmStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderWaitsRealmStore.swift; sourceTree = "<group>"; };
 		9A6FBD221D6DF9AB00CDCE16 /* BorderWaitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderWaitsViewController.swift; sourceTree = "<group>"; };
-		9A6FBD241D6DFDA800CDCE16 /* BorderWaitsNorthboundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderWaitsNorthboundViewController.swift; sourceTree = "<group>"; };
-		9A6FBD261D6DFDB300CDCE16 /* BorderWaitsSouthBoundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderWaitsSouthBoundViewController.swift; sourceTree = "<group>"; };
 		9A6FBD281D6DFFCE00CDCE16 /* BorderWaitCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderWaitCell.swift; sourceTree = "<group>"; };
 		9A81A5771D4AC5710049913A /* RouteTimesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTimesViewController.swift; sourceTree = "<group>"; };
 		9A81A5791D4AC5840049913A /* RouteCamerasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteCamerasViewController.swift; sourceTree = "<group>"; };
@@ -653,8 +649,6 @@
 			isa = PBXGroup;
 			children = (
 				9A6FBD221D6DF9AB00CDCE16 /* BorderWaitsViewController.swift */,
-				9A6FBD241D6DFDA800CDCE16 /* BorderWaitsNorthboundViewController.swift */,
-				9A6FBD261D6DFDB300CDCE16 /* BorderWaitsSouthBoundViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1029,7 +1023,6 @@
 				9A0616B91D63867A00126520 /* VesselDetailsViewController.swift in Sources */,
 				9A2F4A681D528A5100911AF5 /* FerryRealmStore.swift in Sources */,
 				9A1F5FA51D47DCB900DA5F99 /* ApiKeys.swift in Sources */,
-				9A6FBD251D6DFDA800CDCE16 /* BorderWaitsNorthboundViewController.swift in Sources */,
 				9A6FBCDA1D6B6DF700CDCE16 /* HighwayAlertItem.swift in Sources */,
 				9A81A57C1D4BB41B0049913A /* LatLonUtils.swift in Sources */,
 				9AE486441D495ACB007A92E3 /* FerriesTerminalItem.swift in Sources */,
@@ -1067,7 +1060,6 @@
 				9A6FBD091D6CBB0000CDCE16 /* TravelTimesViewController.swift in Sources */,
 				9A6FBD291D6DFFCE00CDCE16 /* BorderWaitCell.swift in Sources */,
 				9A81A5781D4AC5710049913A /* RouteTimesViewController.swift in Sources */,
-				9A6FBD271D6DFDB300CDCE16 /* BorderWaitsSouthBoundViewController.swift in Sources */,
 				9A0CA8311D428EE9009C67B7 /* RouteDeparturesViewController.swift in Sources */,
 				9A6FBCDC1D6B6E1200CDCE16 /* HighwayAlertsRealmStore.swift in Sources */,
 				9A1F5FA11D47D3D100DA5F99 /* CameraImageCustomCell.swift in Sources */,

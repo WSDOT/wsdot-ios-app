@@ -38,54 +38,8 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CaB-2H-TTr">
-                                <rect key="frame" x="0.0" y="44" width="600" height="492"/>
-                                <connections>
-                                    <segue destination="KL6-pJ-Oic" kind="embed" id="XrA-eV-88W"/>
-                                </connections>
-                            </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xJj-GE-sDY">
-                                <rect key="frame" x="0.0" y="44" width="600" height="492"/>
-                                <connections>
-                                    <segue destination="mcu-jg-Pnc" kind="embed" id="zLB-hc-ucS"/>
-                                </connections>
-                            </containerView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="DTw-9a-K6t" firstAttribute="top" secondItem="uDq-QW-pNT" secondAttribute="bottom" id="4yl-g6-NmM"/>
-                            <constraint firstItem="DTw-9a-K6t" firstAttribute="leading" secondItem="S6k-Dm-gCW" secondAttribute="leading" id="EkZ-Az-jwH"/>
-                            <constraint firstItem="DTw-9a-K6t" firstAttribute="trailing" secondItem="xJj-GE-sDY" secondAttribute="trailing" id="LlI-wE-Bwz"/>
-                            <constraint firstItem="xJj-GE-sDY" firstAttribute="bottom" secondItem="LPx-fK-ez5" secondAttribute="top" id="Mgl-0o-yuo"/>
-                            <constraint firstItem="CaB-2H-TTr" firstAttribute="bottom" secondItem="LPx-fK-ez5" secondAttribute="top" id="Oze-T0-icq"/>
-                            <constraint firstItem="CaB-2H-TTr" firstAttribute="top" secondItem="DTw-9a-K6t" secondAttribute="bottom" id="TEq-5j-ge4"/>
-                            <constraint firstItem="xJj-GE-sDY" firstAttribute="trailing" secondItem="CaB-2H-TTr" secondAttribute="trailing" id="aKI-Dg-V6M"/>
-                            <constraint firstAttribute="trailing" secondItem="DTw-9a-K6t" secondAttribute="trailing" id="h6a-ER-YTL"/>
-                            <constraint firstItem="CaB-2H-TTr" firstAttribute="top" secondItem="xJj-GE-sDY" secondAttribute="top" id="hY5-qR-NYH"/>
-                            <constraint firstItem="DTw-9a-K6t" firstAttribute="leading" secondItem="xJj-GE-sDY" secondAttribute="leading" id="o6R-fs-Ro0"/>
-                            <constraint firstItem="CaB-2H-TTr" firstAttribute="leading" secondItem="xJj-GE-sDY" secondAttribute="leading" id="zKi-38-O5V"/>
-                        </constraints>
-                    </view>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <connections>
-                        <outlet property="northboundViewContainer" destination="CaB-2H-TTr" id="N0o-DN-spn"/>
-                        <outlet property="southboundViewContrainer" destination="xJj-GE-sDY" id="9OQ-gQ-E16"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LVR-aR-n5f" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="483" y="404"/>
-        </scene>
-        <!--Border Waits Northbound View Controller-->
-        <scene sceneID="84v-aO-Ydk">
-            <objects>
-                <viewController id="KL6-pJ-Oic" customClass="BorderWaitsNorthboundViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="wYs-Mm-Gzg">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="y0T-hn-zi6">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
+                                <rect key="frame" x="0.0" y="44" width="600" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="borderwaitcell" rowHeight="66" id="TI4-tk-8mV" customClass="BorderWaitCell" customModule="WSDOT" customModuleProvider="target">
@@ -141,37 +95,30 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="KL6-pJ-Oic" id="Bne-9v-cNw"/>
-                                    <outlet property="delegate" destination="KL6-pJ-Oic" id="yyq-e5-csx"/>
+                                    <outlet property="dataSource" destination="NTb-hm-SC4" id="csR-bE-VYb"/>
+                                    <outlet property="delegate" destination="NTb-hm-SC4" id="1bT-iM-hkW"/>
                                 </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="y0T-hn-zi6" secondAttribute="bottom" id="BYj-G3-ex6"/>
-                            <constraint firstAttribute="trailing" secondItem="y0T-hn-zi6" secondAttribute="trailing" id="gqG-Rl-rdY"/>
-                            <constraint firstItem="y0T-hn-zi6" firstAttribute="top" secondItem="wYs-Mm-Gzg" secondAttribute="top" id="mbp-bM-9v6"/>
-                            <constraint firstItem="y0T-hn-zi6" firstAttribute="leading" secondItem="wYs-Mm-Gzg" secondAttribute="leading" id="oQ8-Vg-4it"/>
+                            <constraint firstItem="DTw-9a-K6t" firstAttribute="top" secondItem="uDq-QW-pNT" secondAttribute="bottom" id="4yl-g6-NmM"/>
+                            <constraint firstItem="DTw-9a-K6t" firstAttribute="leading" secondItem="S6k-Dm-gCW" secondAttribute="leading" id="EkZ-Az-jwH"/>
+                            <constraint firstAttribute="trailing" secondItem="DTw-9a-K6t" secondAttribute="trailing" id="h6a-ER-YTL"/>
+                            <constraint firstItem="y0T-hn-zi6" firstAttribute="bottom" secondItem="LPx-fK-ez5" secondAttribute="top" id="iax-rM-xXJ"/>
+                            <constraint firstItem="y0T-hn-zi6" firstAttribute="leading" secondItem="DTw-9a-K6t" secondAttribute="leading" id="lFw-BW-FDW"/>
+                            <constraint firstItem="y0T-hn-zi6" firstAttribute="top" secondItem="DTw-9a-K6t" secondAttribute="bottom" id="mqj-s5-iBs"/>
+                            <constraint firstItem="y0T-hn-zi6" firstAttribute="trailing" secondItem="DTw-9a-K6t" secondAttribute="trailing" id="poV-AY-0F2"/>
                         </constraints>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="tableView" destination="y0T-hn-zi6" id="ycG-jW-H2i"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KxI-hF-Q8v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LVR-aR-n5f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1336" y="125"/>
-        </scene>
-        <!--Border Waits Southbound View Controller-->
-        <scene sceneID="yKD-1N-dQj">
-            <objects>
-                <viewController id="mcu-jg-Pnc" customClass="BorderWaitsSouthboundViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="32P-1w-hD1">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gtX-Mz-yo0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1336" y="709"/>
+            <point key="canvasLocation" x="483" y="404"/>
         </scene>
     </scenes>
 </document>
