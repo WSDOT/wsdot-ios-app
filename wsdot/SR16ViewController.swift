@@ -17,7 +17,7 @@ class SR16ViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         
-        data = TollRatesModel.getSR16data()
+        data = TollRatesStore.getSR16data()
     }
     
     // MARK: -

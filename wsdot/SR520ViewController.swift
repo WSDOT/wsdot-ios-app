@@ -17,7 +17,7 @@ class SR520ViewController: UIViewController {
     
     override func viewDidLoad() {
         
-        data = TollRatesModel.getSR520data()
+        data = TollRatesStore.getSR520data()
     }
     
     // MARK: -

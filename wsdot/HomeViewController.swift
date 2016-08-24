@@ -15,6 +15,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     let SegueTrafficMapViewController = "TrafficMapViewController"
     let SegueFerriesHomeViewController = "FerriesHomeViewController"
     let SegueTollRatesViewController = "TollRatesViewController"
+    let SegueBorderWaitsViewController = "BorderWaitsViewController"
     let SegueInfoViewController = "InfoViewController"
     
     var menu_options: [String] = []
@@ -42,7 +43,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         performSegueWithIdentifier(SegueInfoViewController, sender: self)
     }
 
-    // MARK: -
     // MARK: Table View Data Source Methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -55,13 +55,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
         
-        // Configure Cell
         cell.textLabel?.text = menu_options[indexPath.row]
      
         return cell
     }
 
-    // MARK: -
     // MARK: Table View Delegate Methods
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print(menu_options[indexPath.row])
@@ -79,6 +77,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 performSegueWithIdentifier(SegueTollRatesViewController, sender: self)
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
                 break
+            case 5:
+                performSegueWithIdentifier(SegueBorderWaitsViewController, sender: self)
+                tableView.deselectRowAtIndexPath(indexPath, animated: true)
             default:
                 break
         }
