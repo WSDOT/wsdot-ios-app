@@ -602,7 +602,6 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="tintColor" red="0.80392156859999997" green="0.90196078430000004" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="ZGt-mq-4yj" secondAttribute="trailing" id="3jf-Gz-bha"/>
                             <constraint firstItem="ZGt-mq-4yj" firstAttribute="top" secondItem="uyJ-5I-Rnk" secondAttribute="top" id="JJv-qS-EaE"/>

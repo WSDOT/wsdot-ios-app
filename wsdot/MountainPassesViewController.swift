@@ -104,7 +104,7 @@ class MountainPassesViewController: UIViewController, UITableViewDelegate, UITab
         if segue.identifier == segueMountainPassDetailsViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let passItem = self.passItems[indexPath.row] as MountainPassItem
-                let destinationViewController = segue.destinationViewController as! MountainPassDetailsViewController
+                let destinationViewController = segue.destinationViewController as! MountainPassTabBarViewController
                 destinationViewController.passItem = passItem
             }
         }
