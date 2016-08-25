@@ -11,6 +11,10 @@ import SwiftyJSON
 
 class TimeUtils {
     
+    enum TimeUtilsError: ErrorType {
+        case InvalidTimeString
+    }
+    
     static let updateTime: Int = 900
     
     static var currentTime: Int64{
@@ -67,11 +71,15 @@ class TimeUtils {
     }
     
     // Returns an NSDate object form a date string with the given format "yyyy-MM-dd hh:mm a"
-    static func formatTimeStamp(timestamp: String) -> NSDate{
+    static func formatTimeStamp(timestamp: String) throws -> NSDate{
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
         
-        return dateFormatter.dateFromString(timestamp)!
+        guard let time = dateFormatter.dateFromString(timestamp) else {
+            throw TimeUtilsError.InvalidTimeString
+        }
+        
+        return time
     }
     
     static func getDateFromJSONArray(time: [JSON]) -> NSDate{

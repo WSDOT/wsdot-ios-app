@@ -108,7 +108,15 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
         let wait = displayedWaits[indexPath.row]
         
         cell.nameLabel.text = wait.name + " (" + wait.lane + ")"
-        cell.updatedLabel.text = TimeUtils.timeAgoSinceDate(TimeUtils.formatTimeStamp(wait.updated), numericDates: false)
+        
+        do {
+            let updated = try TimeUtils.timeAgoSinceDate(TimeUtils.formatTimeStamp(wait.updated), numericDates: false)
+            cell.updatedLabel.text = updated
+        } catch TimeUtils.TimeUtilsError.InvalidTimeString {
+            cell.updatedLabel.text = "N/A"
+        } catch {
+            cell.updatedLabel.text = "N/A"
+        }
         
         if wait.waitTime == -1 {
             cell.waitTimeLabel.text = "N/A"
