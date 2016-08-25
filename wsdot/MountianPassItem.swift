@@ -26,7 +26,7 @@ class MountainPassItem: Object {
     dynamic var restrictionTwoTravelDirection: String = ""
     dynamic var selected: Bool = false
     let cameras = List<CameraItem>()
-    let forcast = List<ForcastItem>()
+    let forecast = List<ForecastItem>()
     
     dynamic var delete: Bool = false
     

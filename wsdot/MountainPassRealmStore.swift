@@ -137,8 +137,8 @@ class MountainPassStore {
                 pass.cameras.append(camera)
             }
 
-            for forcast in parseForcastJSON(subJson["Forcast"]){
-                pass.forcast.append(forcast)
+            for forcast in parseForecastJSON(subJson["Forecast"]){
+                pass.forecast.append(forcast)
             }
             
             passItems.append(pass)
@@ -161,14 +161,14 @@ class MountainPassStore {
         return cameras
     }
     
-    private static func parseForcastJSON(json: JSON) -> List<ForcastItem> {
-        let forcastItems = List<ForcastItem>()
-        for(_,forcastJSON):(String, JSON) in json {
-            let forcast = ForcastItem()
-            forcast.day = forcastJSON["Day"].stringValue
-            forcast.forcastText = forcastJSON["ForcastText"].stringValue
-            forcastItems.append(forcast)
+    private static func parseForecastJSON(json: JSON) -> List<ForecastItem> {
+        let forecastItems = List<ForecastItem>()
+        for(_,forecastJSON):(String, JSON) in json {
+            let forecast = ForecastItem()
+            forecast.day = forecastJSON["Day"].stringValue
+            forecast.forecastText = forecastJSON["ForecastText"].stringValue
+            forecastItems.append(forecast)
         }
-        return forcastItems
+        return forecastItems
     }
  }

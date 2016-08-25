@@ -8,7 +8,7 @@
 
 import RealmSwift
 
-class ForcastItem: Object {
+class ForecastItem: Object {
     dynamic var day: String = ""
-    dynamic var forcastText: String = ""
+    dynamic var forecastText: String = ""
 }

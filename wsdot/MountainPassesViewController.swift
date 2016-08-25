@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class MountainPassesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -69,11 +70,27 @@ class MountainPassesViewController: UIViewController, UITableViewDelegate, UITab
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! MountainPassCell
         
-        cell.textLabel!.text = passItems[indexPath.row].name
+        let passItem = passItems[indexPath.row]
+        
+        cell.nameLabel.text = passItem.name
+        
+        if (passItem.forecast.count > 0){
+            cell.forecastLabel.text = WeatherUtils.getForecastBriefDescription(passItem.forecast[0].forecastText)
+            cell.weatherImage.image = UIImage(named: WeatherUtils.getIconName(passItem.forecast[0].forecastText))
+        } else {
+            cell.forecastLabel.text = ""
+            cell.weatherImage.image = nil
+        }
+        
+        cell.updatedLabel.text = TimeUtils.timeAgoSinceDate(passItem.dateUpdated, numericDates: false)
      
         return cell
+    }
+    
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
     
     // MARK: Table View Delegate Methods
