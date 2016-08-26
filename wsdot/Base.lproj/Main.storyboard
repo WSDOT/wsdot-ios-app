@@ -162,6 +162,61 @@
                                             <outlet property="updatedLabel" destination="VFh-q6-APf" id="Bzp-qK-Iu3"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PassCell" rowHeight="98" id="j66-LI-dJE" customClass="MountainPassCell" customModule="WSDOT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="280" width="600" height="98"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="j66-LI-dJE" id="G80-KF-dVi">
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="97"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aDT-WA-PUQ">
+                                                    <rect key="frame" x="8" y="8" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="32" id="8QD-aq-C6i"/>
+                                                        <constraint firstAttribute="height" constant="32" id="kS0-9f-sl9"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bwy-sj-0DW">
+                                                    <rect key="frame" x="48" y="8" width="511" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KXy-W3-oub">
+                                                    <rect key="frame" x="48" y="63" width="511" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WhR-0Y-z1f">
+                                                    <rect key="frame" x="48" y="37" width="511" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Bwy-sj-0DW" firstAttribute="leading" secondItem="aDT-WA-PUQ" secondAttribute="trailing" constant="8" id="1mn-sH-5bv"/>
+                                                <constraint firstItem="KXy-W3-oub" firstAttribute="trailing" secondItem="G80-KF-dVi" secondAttribute="trailingMargin" id="3QZ-HM-Tfv"/>
+                                                <constraint firstItem="aDT-WA-PUQ" firstAttribute="leading" secondItem="G80-KF-dVi" secondAttribute="leadingMargin" id="6Z4-do-VPZ"/>
+                                                <constraint firstItem="KXy-W3-oub" firstAttribute="leading" secondItem="G80-KF-dVi" secondAttribute="leadingMargin" constant="40" id="HFH-Ub-MLb"/>
+                                                <constraint firstItem="KXy-W3-oub" firstAttribute="top" secondItem="WhR-0Y-z1f" secondAttribute="bottom" constant="8" id="JQa-it-pYg"/>
+                                                <constraint firstItem="aDT-WA-PUQ" firstAttribute="top" secondItem="G80-KF-dVi" secondAttribute="topMargin" id="VAM-iS-Bcc"/>
+                                                <constraint firstItem="WhR-0Y-z1f" firstAttribute="trailing" secondItem="G80-KF-dVi" secondAttribute="trailingMargin" id="Y38-lC-ANr"/>
+                                                <constraint firstItem="WhR-0Y-z1f" firstAttribute="top" secondItem="Bwy-sj-0DW" secondAttribute="bottom" constant="8" id="a7d-gZ-G8W"/>
+                                                <constraint firstItem="Bwy-sj-0DW" firstAttribute="top" secondItem="G80-KF-dVi" secondAttribute="topMargin" id="dXt-MH-n5a"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="KXy-W3-oub" secondAttribute="bottom" constant="8" id="thN-po-ba1"/>
+                                                <constraint firstItem="Bwy-sj-0DW" firstAttribute="trailing" secondItem="G80-KF-dVi" secondAttribute="trailingMargin" id="usL-pw-89v"/>
+                                                <constraint firstItem="WhR-0Y-z1f" firstAttribute="leading" secondItem="G80-KF-dVi" secondAttribute="leadingMargin" constant="40" id="yJq-nz-A9K"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="forecastLabel" destination="WhR-0Y-z1f" id="y7I-el-TS1"/>
+                                            <outlet property="nameLabel" destination="Bwy-sj-0DW" id="O9U-5k-yLY"/>
+                                            <outlet property="updatedLabel" destination="KXy-W3-oub" id="bHA-Al-CGS"/>
+                                            <outlet property="weatherImage" destination="aDT-WA-PUQ" id="WB7-Vn-J6L"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="T7Q-Fa-apl" id="vij-yn-m9D"/>
@@ -184,6 +239,7 @@
                         <segue destination="Zfo-py-Elh" kind="show" identifier="FavoriteCameraViewController" id="Pwk-Kr-Jeq"/>
                         <segue destination="oG1-En-Tc4" kind="show" identifier="TrafficMapViewController" id="V87-UJ-1jU"/>
                         <segue destination="cCr-kP-hM8" kind="show" identifier="TravelTimeViewController" id="iA6-Zc-RXP"/>
+                        <segue destination="V4d-hV-Hlc" kind="show" identifier="MountianPassDetailsViewController" id="dqO-zU-oDp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dwt-na-DIG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -221,6 +277,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hj5-sU-xql" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2203.5" y="1244"/>
+        </scene>
+        <!--MountainPassTabBarViewController-->
+        <scene sceneID="zcB-CT-yV7">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MountainPasses" referencedIdentifier="MountainPassTabBarViewController" id="V4d-hV-Hlc" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cJp-2s-hth" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2257.5" y="1309"/>
         </scene>
         <!--MountainPasses-->
         <scene sceneID="e5m-Cy-pd3">

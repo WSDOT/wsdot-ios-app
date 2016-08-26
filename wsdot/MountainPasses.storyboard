@@ -441,7 +441,7 @@
         <!--Mountain Pass Tab Bar View Controller-->
         <scene sceneID="Zqy-VJ-4Yb">
             <objects>
-                <tabBarController id="FfY-9V-1oz" customClass="MountainPassTabBarViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MountainPassTabBarViewController" hidesBottomBarWhenPushed="YES" id="FfY-9V-1oz" customClass="MountainPassTabBarViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="aDX-vf-Zm9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
