@@ -16,6 +16,7 @@ class TimeUtils {
     }
     
     static let updateTime: Int = 900
+    static let cameraUpdateTime: Int = 604800
     
     static var currentTime: Int64{
         get {

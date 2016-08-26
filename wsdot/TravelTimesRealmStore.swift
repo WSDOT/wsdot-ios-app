@@ -39,7 +39,7 @@ class TravelTimesStore{
     
     static func updateTravelTimes(force: Bool, completion: getTravelTimesCompletion) {
         
-        let deltaUpdated = NSCalendar.currentCalendar().components(.Second, fromDate: CachesStore.getUpdatedTime(CachedData.Ferries), toDate: NSDate(), options: []).second
+        let deltaUpdated = NSCalendar.currentCalendar().components(.Second, fromDate: CachesStore.getUpdatedTime(CachedData.TravelTimes), toDate: NSDate(), options: []).second
         
         if ((deltaUpdated > TimeUtils.updateTime) || force){
             

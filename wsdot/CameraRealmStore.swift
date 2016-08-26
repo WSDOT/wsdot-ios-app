@@ -61,7 +61,7 @@ class CamerasStore {
         
         let deltaUpdated = NSCalendar.currentCalendar().components(.Second, fromDate: CachesStore.getUpdatedTime(CachedData.Cameras), toDate: NSDate(), options: []).second
         
-        if ((deltaUpdated > TimeUtils.updateTime) || force){
+        if ((deltaUpdated > TimeUtils.cameraUpdateTime) || force){
             
             Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/Cameras.js").validate().responseJSON { response in
                 switch response.result {

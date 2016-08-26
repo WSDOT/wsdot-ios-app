@@ -585,7 +585,6 @@
 			isa = PBXGroup;
 			children = (
 				9A6FBD071D6CBABD00CDCE16 /* FavoriteLocations */,
-				9A6FBD061D6CBAB500CDCE16 /* TravelTimes */,
 				9A6FBD051D6CBA8600CDCE16 /* ExpressLanes */,
 			);
 			name = Model;
@@ -600,15 +599,6 @@
 			name = ExpressLanes;
 			sourceTree = "<group>";
 		};
-		9A6FBD061D6CBAB500CDCE16 /* TravelTimes */ = {
-			isa = PBXGroup;
-			children = (
-				9A6FBD0A1D6CBC3A00CDCE16 /* TravelTimeItem.swift */,
-				9A6FBD0C1D6CBC4E00CDCE16 /* TravelTimesRealmStore.swift */,
-			);
-			name = TravelTimes;
-			sourceTree = "<group>";
-		};
 		9A6FBD071D6CBABD00CDCE16 /* FavoriteLocations */ = {
 			isa = PBXGroup;
 			children = (
@@ -621,6 +611,7 @@
 		9A6FBD101D6CEE0400CDCE16 /* TravelTimeDetails */ = {
 			isa = PBXGroup;
 			children = (
+				9AEEDDAF1D70B1CC0032F5EC /* Model */,
 				9A6FBD161D6CEE3C00CDCE16 /* Controllers */,
 				9A6FBD151D6CEE3700CDCE16 /* Views */,
 			);
@@ -859,6 +850,15 @@
 			children = (
 				9AE486461D495E90007A92E3 /* CameraItem.swift */,
 				9A2F4A6F1D53AA5C00911AF5 /* CameraRealmStore.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		9AEEDDAF1D70B1CC0032F5EC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9A6FBD0C1D6CBC4E00CDCE16 /* TravelTimesRealmStore.swift */,
+				9A6FBD0A1D6CBC3A00CDCE16 /* TravelTimeItem.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
