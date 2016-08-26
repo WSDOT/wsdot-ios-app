@@ -9,8 +9,10 @@
 import UIKit
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
     let cellIdentifier = "HomeCell"
+    
+    let itemsPerRow = 3
     
     let SegueTrafficMapViewController = "TrafficMapViewController"
     let SegueFerriesHomeViewController = "FerriesHomeViewController"
@@ -20,12 +22,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     let SegueMountainPassesViewController = "MountainPassesViewController"
     
     var menu_options: [String] = []
+    var menu_icon_names: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Set Title
         title = "Home"
         menu_options = ["Traffic Map", "Ferries", "Mountain Passes", "Social Media", "Toll Rates", "Border Waits", "Amtrak Cascades"]
+        menu_icon_names = ["icHomeTraffic","icHomeFerries","icHomePasses","icHomeSocialMedia","icHomeTollRates","icHomeBorderWaits","icHomeAmtrakCascades"]
         
         self.tabBarController!.view.backgroundColor = UIColor.whiteColor()
     }
@@ -38,7 +42,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBAction func infoBarButtonPressed(sender: UIBarButtonItem) {
         performSegueWithIdentifier(SegueInfoViewController, sender: self)
     }
-
+    
     // MARK: Table View Data Source Methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -47,42 +51,44 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menu_options.count
     }
-
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
         
-        cell.textLabel?.text = menu_options[indexPath.row]
-     
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! HomeCell
+        
+        cell.label?.text = menu_options[indexPath.row]
+        cell.iconView.image = UIImage(named: menu_icon_names[indexPath.row])
+        
         return cell
     }
-
+    
     // MARK: Table View Delegate Methods
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print(menu_options[indexPath.row])
         // Perform Segue
         switch (indexPath.row) {
-            case 0:
-                performSegueWithIdentifier(SegueTrafficMapViewController, sender: self)
-                tableView.deselectRowAtIndexPath(indexPath, animated: true)
-                break
-            case 1:
-                performSegueWithIdentifier(SegueFerriesHomeViewController, sender: self)
-                tableView.deselectRowAtIndexPath(indexPath, animated: true)
-                break
-            case 2:
-                performSegueWithIdentifier(SegueMountainPassesViewController, sender: self)
-                tableView.deselectRowAtIndexPath(indexPath, animated: true)
-                break
-            case 4:
-                performSegueWithIdentifier(SegueTollRatesViewController, sender: self)
-                tableView.deselectRowAtIndexPath(indexPath, animated: true)
-                break
-            case 5:
-                performSegueWithIdentifier(SegueBorderWaitsViewController, sender: self)
-                tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        case 0:
+            performSegueWithIdentifier(SegueTrafficMapViewController, sender: self)
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            break
+        case 1:
+            performSegueWithIdentifier(SegueFerriesHomeViewController, sender: self)
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            break
+        case 2:
+            performSegueWithIdentifier(SegueMountainPassesViewController, sender: self)
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            break
+        case 4:
+            performSegueWithIdentifier(SegueTollRatesViewController, sender: self)
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            break
+        case 5:
+            performSegueWithIdentifier(SegueBorderWaitsViewController, sender: self)
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
             
-            default:
-                break
+        default:
+            break
         }
     }
 }

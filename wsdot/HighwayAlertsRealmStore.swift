@@ -20,7 +20,13 @@ class HighwayAlertsStore {
         let alertItems = realm.objects(HighwayAlertItem.self)
         return Array(alertItems)
     }
-
+    
+    static func getHighestPriorityAlerts() -> [HighwayAlertItem]{
+        let realm = try! Realm()
+        let alertItems = realm.objects(HighwayAlertItem.self).filter("priority == \"Highest\"")
+        return Array(alertItems)
+    }
+    
     static func updateAlerts(force: Bool, completion: UpdateHighwayAlertsCompletion) {
         
         let deltaUpdated = NSCalendar.currentCalendar().components(.Second, fromDate: CachesStore.getUpdatedTime(CachedData.HighwayAlerts), toDate: NSDate(), options: []).second
