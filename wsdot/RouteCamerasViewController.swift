@@ -64,7 +64,6 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
         }
     }
     
-    // MARK: -
     // MARK: Table View Data source methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -86,7 +85,6 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
         return cell
     }
     
-    // MARK: -
     // MARK: Table View Delegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         

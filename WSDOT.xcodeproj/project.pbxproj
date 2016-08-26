@@ -110,6 +110,7 @@
 		9AEEDDA81D6F7FDF0032F5EC /* MountainPassReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEDDA71D6F7FDF0032F5EC /* MountainPassReportViewController.swift */; };
 		9AEEDDAA1D6F893B0032F5EC /* MountainPassCamerasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEDDA91D6F893B0032F5EC /* MountainPassCamerasViewController.swift */; };
 		9AEEDDAC1D6F89D90032F5EC /* MountainPassWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEDDAB1D6F89D90032F5EC /* MountainPassWeatherViewController.swift */; };
+		9AEEDDAE1D708D8B0032F5EC /* ForecastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEDDAD1D708D8B0032F5EC /* ForecastCell.swift */; };
 		9AFEECE11D3925400078A781 /* CachesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFEECE01D3925400078A781 /* CachesStore.swift */; };
 /* End PBXBuildFile section */
 
@@ -231,6 +232,7 @@
 		9AEEDDA71D6F7FDF0032F5EC /* MountainPassReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MountainPassReportViewController.swift; sourceTree = "<group>"; };
 		9AEEDDA91D6F893B0032F5EC /* MountainPassCamerasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MountainPassCamerasViewController.swift; sourceTree = "<group>"; };
 		9AEEDDAB1D6F89D90032F5EC /* MountainPassWeatherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MountainPassWeatherViewController.swift; sourceTree = "<group>"; };
+		9AEEDDAD1D708D8B0032F5EC /* ForecastCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastCell.swift; sourceTree = "<group>"; };
 		9AFEECE01D3925400078A781 /* CachesStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachesStore.swift; sourceTree = "<group>"; };
 		D580B199D18890EA70A9D2CE /* Pods-WSDOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.release.xcconfig"; sourceTree = "<group>"; };
 		EF91807E010BF6B934CE16C4 /* Pods-WSDOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.debug.xcconfig"; sourceTree = "<group>"; };
@@ -442,6 +444,7 @@
 				9A6FBD0E1D6CC43C00CDCE16 /* TravelTimeCell.swift */,
 				9A6FBD281D6DFFCE00CDCE16 /* BorderWaitCell.swift */,
 				9AEEDDA31D6F3D810032F5EC /* MountainPassCell.swift */,
+				9AEEDDAD1D708D8B0032F5EC /* ForecastCell.swift */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -1131,6 +1134,7 @@
 				9AD32E2E1D243260000AEC28 /* FavoritesViewController.swift in Sources */,
 				9A0616CE1D660CC800126520 /* SR16ViewController.swift in Sources */,
 				9A2C27271D67A1E400F05D88 /* SettingsCell.swift in Sources */,
+				9AEEDDAE1D708D8B0032F5EC /* ForecastCell.swift in Sources */,
 				9A6FBD091D6CBB0000CDCE16 /* TravelTimesViewController.swift in Sources */,
 				9A6FBD291D6DFFCE00CDCE16 /* BorderWaitCell.swift in Sources */,
 				9A81A5781D4AC5710049913A /* RouteTimesViewController.swift in Sources */,

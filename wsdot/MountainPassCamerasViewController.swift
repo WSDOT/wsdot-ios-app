@@ -57,7 +57,7 @@ class MountainPassCamerasViewController: UIViewController, UITableViewDataSource
                             for camera in selfValue.passItem.cameras{
                                 ids.append(camera.cameraId)
                             }
-                            selfValue.cameras = selfValue.filterCameras(CamerasStore.getCamerasByID(ids))
+                            selfValue.cameras = CamerasStore.getCamerasByID(ids)
                             selfValue.tableView.reloadData()
                             selfValue.refreshControl.endRefreshing()
                         }
@@ -115,14 +115,4 @@ class MountainPassCamerasViewController: UIViewController, UITableViewDataSource
             }
         }
     }
-    
-    // MARK: -
-    // MARK: Helper functinos
-    func filterCameras(cameras: [CameraItem]) -> [CameraItem] {
-    
-
-        return cameras
-    }
-    
-    
 }
