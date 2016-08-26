@@ -24,7 +24,16 @@ class TravelTimeDetailsViewController: UIViewController {
 
         routeTitle.text = travelTime.title
         subTitle.text = String(travelTime.distance) + " miles / " + String(travelTime.averageTime) + " min"
-        updated.text = TimeUtils.timeAgoSinceDate(TimeUtils.formatTimeStamp(travelTime.updated), numericDates: false)
+        
+        do {
+            let updatedText = try TimeUtils.timeAgoSinceDate(TimeUtils.formatTimeStamp(travelTime.updated), numericDates: false)
+            updated.text = updatedText
+        } catch TimeUtils.TimeUtilsError.InvalidTimeString {
+            "N/A"
+        } catch {
+            "N/A"
+        }
+        
         currentTime.text = String(travelTime.currentTime) + " min"
  
         if (travelTime.averageTime > travelTime.currentTime){

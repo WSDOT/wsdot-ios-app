@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class CameraViewController: UIViewController {
     
     @IBOutlet weak var cameraImage: UIImageView!
     @IBOutlet weak var favoriteBarButton: UIBarButtonItem!
+    
+    @IBOutlet weak var bannerView: GADBannerView!
     
     var cameraItem: CameraItem = CameraItem()
     
@@ -26,6 +29,11 @@ class CameraViewController: UIViewController {
         }else{
             favoriteBarButton.image = UIImage(named: "icStarSmall")
         }
+        
+        // Ad Banner
+        bannerView.adUnitID = ApiKeys.wsdot_ad_string
+        bannerView.rootViewController = self
+        bannerView.loadRequest(GADRequest())
     }
     
     @IBAction func updateFavorite(sender: UIBarButtonItem) {

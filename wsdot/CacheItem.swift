@@ -16,6 +16,8 @@ class CacheItem: Object{
     dynamic var ferriesLastUpdate: NSDate = NSDate(timeIntervalSince1970: 0)
     dynamic var camerasLastUpdate: NSDate = NSDate(timeIntervalSince1970: 0)
     dynamic var borderWaitsLastUpdate: NSDate = NSDate(timeIntervalSince1970: 0)
+    dynamic var mountainPassesLastUpdate: NSDate = NSDate(timeIntervalSince1970: 0)
+    
     override class func primaryKey() -> String {
         return "id"
     }

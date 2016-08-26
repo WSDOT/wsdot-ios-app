@@ -16,11 +16,13 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     let ferriesCellIdentifier = "FerriesFavoriteCell"
     let singleTitleCellIdentifier = "SingleTitleFavoriteCell"
     let travelTimesCellIdentifier = "TravelTimesCell"
+    let passCellIdentifier = "PassCell"
     
     let segueTrafficMapViewController = "TrafficMapViewController"
     let segueRouteDeparturesViewController = "FavoriteSailingsViewController"
     let segueCameraViewController = "FavoriteCameraViewController"
     let segueTravelTimeViewController = "TravelTimeViewController"
+    let segueMountainPassDetailsViewController = "MountianPassDetailsViewController"
 
     @IBOutlet weak var favoritesTable: UITableView!
     
@@ -28,6 +30,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     var favoriteRoutes = [FerryScheduleItem]()
     var favoriteCameras = [CameraItem]()
     var favoriteTravelTimes = [TravelTimeItem]()
+    var favoritePasses = [MountainPassItem]()
     
     var notificationToken: NotificationToken?
     
@@ -70,7 +73,6 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     
     func loadFavoritesAction(refreshController: UIRefreshControl){
         loadFavorites(true)
-    
     }
     
     private func loadFavorites(force: Bool){
@@ -79,6 +81,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         self.requestFavoriteFerries(force, serviceGroup: serviceGroup)
         self.requestFavoriteCameras(force, serviceGroup: serviceGroup)
         self.requestFavoriteTravelTimes(force, serviceGroup: serviceGroup)
+        self.requestFavoriteMountainPasses(force, serviceGroup: serviceGroup)
         
         dispatch_group_notify(serviceGroup, dispatch_get_main_queue()) {
             
@@ -86,6 +89,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             self.favoriteRoutes = FerryRealmStore.findFavoriteSchedules()
             self.favoriteCameras = CamerasStore.getFavoriteCameras()
             self.favoriteLocations = FavoriteLocationStore.getFavorites()
+            self.favoritePasses = MountainPassStore.findFavoritePasses()
 
             self.favoritesTable.reloadData()
             self.refreshControl.endRefreshing()
@@ -146,6 +150,23 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
+    private func requestFavoriteMountainPasses(force: Bool, serviceGroup: dispatch_group_t){
+        dispatch_group_enter(serviceGroup)
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) {[weak self] in
+            MountainPassStore.updatePasses(force, completion: { error in
+                if (error == nil){
+                    dispatch_group_leave(serviceGroup)
+                }else{
+                    dispatch_group_leave(serviceGroup)
+                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                        if let selfValue = self{
+                            selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                        }
+                    }
+                }
+            })
+        }
+    }
     
     // MARK: - Table view data source
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -170,11 +191,16 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             }
             return nil
         case 2:
+            if self.favoritePasses.count > 0 {
+                return "Mountain Passes"
+            }
+            return nil
+        case 3:
             if self.favoriteTravelTimes.count > 0 {
                 return "Travel Times"
             }
             return nil
-        case 3:
+        case 4:
             if self.favoriteCameras.count > 0 {
                 return "Cameras"
             }
@@ -191,8 +217,10 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         case 1:
             return favoriteRoutes.count
         case 2:
-            return favoriteTravelTimes.count
+            return favoritePasses.count
         case 3:
+            return favoriteTravelTimes.count
+        case 4:
             return favoriteCameras.count
         default:
             return 0
@@ -223,6 +251,25 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             return ferryCell
             
         case 2:
+            let passCell = tableView.dequeueReusableCellWithIdentifier(passCellIdentifier) as! MountainPassCell
+            
+            let passItem = favoritePasses[indexPath.row]
+            
+            passCell.nameLabel.text = passItem.name
+            
+            if (passItem.forecast.count > 0){
+                passCell.forecastLabel.text = WeatherUtils.getForecastBriefDescription(passItem.forecast[0].forecastText)
+                passCell.weatherImage.image = UIImage(named: WeatherUtils.getIconName(passItem.forecast[0].forecastText))
+            } else {
+                passCell.forecastLabel.text = ""
+                passCell.weatherImage.image = nil
+            }
+            
+            passCell.updatedLabel.text = TimeUtils.timeAgoSinceDate(passItem.dateUpdated, numericDates: false)
+            
+            return passCell
+            
+        case 3:
             
             let travelTimeCell = tableView.dequeueReusableCellWithIdentifier(travelTimesCellIdentifier) as! TravelTimeCell
             
@@ -231,7 +278,15 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             travelTimeCell.routeLabel.text = travelTime.title
             
             travelTimeCell.subtitleLabel.text = String(travelTime.distance) + " miles / " + String(travelTime.averageTime) + " min"
-            travelTimeCell.updatedLabel.text = TimeUtils.timeAgoSinceDate(TimeUtils.formatTimeStamp(travelTime.updated), numericDates: false)
+
+            do {
+                let updated = try TimeUtils.timeAgoSinceDate(TimeUtils.formatTimeStamp(travelTime.updated), numericDates: false)
+                travelTimeCell.updatedLabel.text = updated
+            } catch TimeUtils.TimeUtilsError.InvalidTimeString {
+                travelTimeCell.updatedLabel.text = "N/A"
+            } catch {
+                travelTimeCell.updatedLabel.text = "N/A"
+            }
             
             travelTimeCell.currentTimeLabel.text = String(travelTime.currentTime) + " min"
             
@@ -247,7 +302,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             
             return travelTimeCell
             
-        case 3:
+        case 4:
             let cameraCell = tableView.dequeueReusableCellWithIdentifier(singleTitleCellIdentifier, forIndexPath: indexPath)
             cameraCell.textLabel?.text = favoriteCameras[indexPath.row].title
             return cameraCell
@@ -280,10 +335,13 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
                 FerryRealmStore.updateFavorite(favoriteRoutes[indexPath.row], newValue: false)
                 favoriteRoutes.removeAtIndex(indexPath.row)
             case 2:
+                MountainPassStore.updateFavorite(favoritePasses[indexPath.row], newValue: false)
+                favoritePasses.removeAtIndex(indexPath.row)
+            case 3:
                 TravelTimesStore.updateFavorite(favoriteTravelTimes[indexPath.row], newValue: false)
                 favoriteTravelTimes.removeAtIndex(indexPath.row)
                 break
-            case 3:
+            case 4:
                 CamerasStore.updateFavorite(favoriteCameras[indexPath.row], newValue: false)
                 favoriteCameras.removeAtIndex(indexPath.row)
                 break
@@ -304,9 +362,11 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             performSegueWithIdentifier(segueRouteDeparturesViewController, sender: nil)
             break
         case 2:
+            performSegueWithIdentifier(segueMountainPassDetailsViewController, sender: nil)
+        case 3:
             performSegueWithIdentifier(segueTravelTimeViewController, sender: nil)
             break
-        case 3:
+        case 4:
             performSegueWithIdentifier(segueCameraViewController, sender: nil)
             break
         default:
@@ -330,6 +390,13 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
                 let routeItem = self.favoriteRoutes[indexPath.row] as FerryScheduleItem
                 let destinationViewController = segue.destinationViewController as! RouteTabBarViewController
                 destinationViewController.routeItem = routeItem
+            }
+        }
+        if segue.identifier == segueMountainPassDetailsViewController {
+            if let indexPath = favoritesTable.indexPathForSelectedRow {
+                let passItem = self.favoritePasses[indexPath.row] as MountainPassItem
+                let destinationViewController = segue.destinationViewController as! MountainPassTabBarViewController
+                destinationViewController.passItem = passItem
             }
         }
         if segue.identifier == segueCameraViewController {

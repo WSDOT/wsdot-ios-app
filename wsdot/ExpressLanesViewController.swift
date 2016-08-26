@@ -82,7 +82,16 @@ class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITable
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! ExpressLaneCell
             cell.routeLabel.text = expressLanes[indexPath.row].route
             cell.directionLabel.text = expressLanes[indexPath.row].direction
-            cell.updatedLabel.text = TimeUtils.timeAgoSinceDate(TimeUtils.formatTimeStamp(expressLanes[indexPath.row].updated), numericDates: false)
+            
+            do {
+                let updated = try TimeUtils.timeAgoSinceDate(TimeUtils.formatTimeStamp(expressLanes[indexPath.row].updated), numericDates: false)
+                cell.updatedLabel.text = updated
+            } catch TimeUtils.TimeUtilsError.InvalidTimeString {
+                cell.updatedLabel.text = "N/A"
+            } catch {
+                cell.updatedLabel.text = "N/A"
+            }
+            
             cell.selectionStyle = .None
             return cell
         }
