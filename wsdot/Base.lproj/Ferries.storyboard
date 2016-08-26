@@ -992,14 +992,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DgE-rk-BCG">
-                                                    <rect key="frame" x="8" y="8" width="584" height="245"/>
+                                                    <rect key="frame" x="8" y="8" width="559" height="245"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="DgE-rk-BCG" firstAttribute="top" secondItem="6r9-Yh-Tw5" secondAttribute="topMargin" id="WdH-er-BvO"/>
-                                                <constraint firstItem="DgE-rk-BCG" firstAttribute="trailing" secondItem="6r9-Yh-Tw5" secondAttribute="trailingMargin" constant="33" id="aEV-Tm-Zyn"/>
-                                                <constraint firstItem="DgE-rk-BCG" firstAttribute="leading" secondItem="6r9-Yh-Tw5" secondAttribute="leadingMargin" id="gfu-wM-75M"/>
-                                                <constraint firstItem="DgE-rk-BCG" firstAttribute="bottom" secondItem="6r9-Yh-Tw5" secondAttribute="bottomMargin" id="oFN-4c-MZf"/>
+                                                <constraint firstItem="DgE-rk-BCG" firstAttribute="top" secondItem="6r9-Yh-Tw5" secondAttribute="topMargin" id="C2a-L4-vFz"/>
+                                                <constraint firstItem="DgE-rk-BCG" firstAttribute="bottom" secondItem="6r9-Yh-Tw5" secondAttribute="bottomMargin" id="DaB-fQ-iA7"/>
+                                                <constraint firstAttribute="trailing" secondItem="DgE-rk-BCG" secondAttribute="trailing" id="HGF-ZM-TdJ"/>
+                                                <constraint firstItem="DgE-rk-BCG" firstAttribute="leading" secondItem="6r9-Yh-Tw5" secondAttribute="leadingMargin" id="VGs-in-Oa2"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

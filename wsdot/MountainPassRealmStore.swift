@@ -158,6 +158,7 @@ class MountainPassStore {
             camera.title = cameraJSON["title"].stringValue
             cameras.append(camera)
         }
+        
         return cameras
     }
     

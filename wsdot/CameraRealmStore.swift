@@ -31,6 +31,21 @@ class CamerasStore {
         return Array(cameraItems)
     }
     
+    static func getCamerasByID(ids: [Int]) -> [CameraItem]{
+        let realm = try! Realm()
+        
+        var predicats = [NSPredicate]()
+        
+        for id in ids {
+            predicats.append(NSPredicate(format: "cameraId = \(id)"))
+        }
+        
+        let query = NSCompoundPredicate(type: .OrPredicateType, subpredicates: predicats)
+        let cameraItems = realm.objects(CameraItem.self).filter(query)
+        
+        return Array(cameraItems)
+    }
+    
     static func updateFavorite(camera: CameraItem, newValue: Bool){
         let realm = try! Realm()
         do {
