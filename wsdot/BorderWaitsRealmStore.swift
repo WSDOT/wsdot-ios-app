@@ -29,7 +29,7 @@ class BorderWaitStore{
     
     static func updateWaits(force: Bool, completion: getBorderWaitsCompletion) {
         
-        let deltaUpdated = NSCalendar.currentCalendar().components(.Second, fromDate: CachesStore.getUpdatedTime(CachedData.Ferries), toDate: NSDate(), options: []).second
+        let deltaUpdated = NSCalendar.currentCalendar().components(.Second, fromDate: CachesStore.getUpdatedTime(CachedData.BorderWaits), toDate: NSDate(), options: []).second
         
         if ((deltaUpdated > TimeUtils.updateTime) || force){
             

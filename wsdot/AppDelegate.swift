@@ -37,7 +37,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CamerasStore.flushOldData()
         TravelTimesStore.flushOldData()
     }
-    
-    
 }
-

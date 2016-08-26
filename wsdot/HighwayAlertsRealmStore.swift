@@ -23,7 +23,7 @@ class HighwayAlertsStore {
 
     static func updateAlerts(force: Bool, completion: UpdateHighwayAlertsCompletion) {
         
-        let deltaUpdated = NSCalendar.currentCalendar().components(.Second, fromDate: CachesStore.getUpdatedTime(CachedData.Cameras), toDate: NSDate(), options: []).second
+        let deltaUpdated = NSCalendar.currentCalendar().components(.Second, fromDate: CachesStore.getUpdatedTime(CachedData.HighwayAlerts), toDate: NSDate(), options: []).second
         
         if ((deltaUpdated > TimeUtils.updateTime) || force){
             
