@@ -35,22 +35,35 @@ class SailingSpacesStore {
     private static func parseSailingSpacesJSON(departingId: Int, arrivingId: Int, json: JSON) ->[SailingSpacesItem]{
         
         var sailingSpaces = [SailingSpacesItem]()
-        var sailingSpaceItem: SailingSpacesItem
+        var hasSailingSpace = false
         
         for (_,subJson):(String, JSON) in json {
             if (subJson["TerminalID"].int == departingId){
                 
                 for (_,departure):(String, JSON) in subJson["DepartingSpaces"] {
-
+                    
                     for (_,arrivingTerminalSpace):(String, JSON) in departure["SpaceForArrivalTerminals"] {
                         
+                        let sailingSpaceItem = SailingSpacesItem()
+                        hasSailingSpace = false
+                        
+                        for (_,arrivalTermials):(String, JSON) in arrivingTerminalSpace["ArrivalTerminalIDs"]{
+                            if( arrivalTermials.intValue == arrivingId){
+                                hasSailingSpace = true
+                                sailingSpaceItem.date = TimeUtils.parseJSONDateToNSDate(departure["Departure"].stringValue)
+                                sailingSpaceItem.maxSpace = arrivingTerminalSpace["MaxSpaceCount"].intValue
+                                sailingSpaceItem.remainingSpaces = arrivingTerminalSpace["DriveUpSpaceCount"].intValue
+                            }
+                        }
+                        
                         if (arrivingTerminalSpace["TerminalID"].int == arrivingId){
-                            
-                            sailingSpaceItem = SailingSpacesItem()
+                            hasSailingSpace = true
                             sailingSpaceItem.date = TimeUtils.parseJSONDateToNSDate(departure["Departure"].stringValue)
                             sailingSpaceItem.maxSpace = arrivingTerminalSpace["MaxSpaceCount"].intValue
                             sailingSpaceItem.remainingSpaces = arrivingTerminalSpace["DriveUpSpaceCount"].intValue
-            
+                        }
+                        
+                        if (hasSailingSpace){
                             sailingSpaces.append(sailingSpaceItem)
                         }
                     }

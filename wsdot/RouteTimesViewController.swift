@@ -160,6 +160,8 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         // Check if sailing space information is avaliable. If so change prototype cell.
         if let sailingSpacesValue = sailingSpaces{
             for spaceItem: SailingSpacesItem in sailingSpacesValue {
+            
+            
                 if displayedTimes[indexPath.row].departingTime == spaceItem.date {
                     cell = tableView.dequeueReusableCellWithIdentifier(departuresSailingSpacesCellIdentifier) as! DeparturesCustomCell
                     cell.sailingSpaces.hidden = false
@@ -170,6 +172,11 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                     cell.spacesDisclaimer.sizeToFit()
                     cell.updated.text = TimeUtils.timeAgoSinceDate(updatedAt, numericDates: true)
                 }
+            
+            
+            
+            
+            
             }
         }
         
