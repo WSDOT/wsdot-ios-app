@@ -20,6 +20,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     let SegueBorderWaitsViewController = "BorderWaitsViewController"
     let SegueInfoViewController = "InfoViewController"
     let SegueMountainPassesViewController = "MountainPassesViewController"
+    let SegueSocialMediaViewController = "SocialMediaViewController"
     
     var menu_options: [String] = []
     var menu_icon_names: [String] = []
@@ -76,6 +77,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             break
         case 2:
             performSegueWithIdentifier(SegueMountainPassesViewController, sender: self)
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            break
+        case 3:
+            performSegueWithIdentifier(SegueSocialMediaViewController, sender: self)
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             break
         case 4:

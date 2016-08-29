@@ -292,7 +292,15 @@
                 <viewControllerPlaceholder storyboardName="MountainPasses" id="wj1-H7-MUM" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ao6-oX-VNl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2222.5" y="709"/>
+            <point key="canvasLocation" x="2222.5" y="597"/>
+        </scene>
+        <!--SocialMedia-->
+        <scene sceneID="WxP-gM-z4C">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="SocialMedia" storyboardName="SocialMedia" id="dYL-xg-zVH" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cdd-GK-4C9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2210" y="639"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="515-et-fK2">
@@ -386,6 +394,7 @@
                         <segue destination="WIn-gc-99O" kind="show" identifier="TrafficMapViewController" id="DVt-iU-ehz"/>
                         <segue destination="zbi-Ku-wrh" kind="show" identifier="BorderWaitsViewController" id="xhk-Ek-dfU"/>
                         <segue destination="wj1-H7-MUM" kind="show" identifier="MountainPassesViewController" id="PbE-pI-FxC"/>
+                        <segue destination="dYL-xg-zVH" kind="show" identifier="SocialMediaViewController" id="RLV-Ua-tLg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KTF-7j-ojf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -463,7 +472,7 @@
                 <viewControllerPlaceholder storyboardName="TrafficMap" id="WIn-gc-99O" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kvd-Pj-kgR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2206" y="456"/>
+            <point key="canvasLocation" x="2206" y="407"/>
         </scene>
         <!--Ferries-->
         <scene sceneID="Cxa-dc-UyN">
@@ -473,7 +482,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dpe-UF-qpK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2194.5" y="518"/>
+            <point key="canvasLocation" x="2194.5" y="458"/>
         </scene>
         <!--TollRates-->
         <scene sceneID="uUO-qs-Uf4">
@@ -481,7 +490,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="TollRates" storyboardName="TollRates" id="Zgq-67-CnN" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tEk-nI-4Ks" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2201" y="582"/>
+            <point key="canvasLocation" x="2201" y="502"/>
         </scene>
         <!--BorderWaits-->
         <scene sceneID="ojW-nw-RPs">
@@ -489,7 +498,7 @@
                 <viewControllerPlaceholder storyboardName="BorderWaits" id="zbi-Ku-wrh" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wD8-SX-LNc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2210.5" y="644"/>
+            <point key="canvasLocation" x="2210.5" y="554"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Pky-mg-vjR">
