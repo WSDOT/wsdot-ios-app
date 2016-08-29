@@ -3,12 +3,13 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Social Media View Controller-->
         <scene sceneID="Fxe-pI-q1S">
             <objects>
-                <viewController id="xtc-2U-Vhg" customClass="SocialMediaViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="xtc-2U-Vhg" customClass="SocialMediaViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="96v-dh-T8L"/>
                         <viewControllerLayoutGuide type="bottom" id="SWM-oI-FJz"/>
@@ -16,6 +17,53 @@
                     <view key="view" contentMode="scaleToFill" id="7B4-23-7QR">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="53" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="O0X-AT-EXB">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="580"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SocialCell" rowHeight="53" id="GR4-LA-dla" customClass="IconCell" customModule="WSDOT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="53"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GR4-LA-dla" id="WkC-w4-Wfs">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="52"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EMc-3E-Lon">
+                                                    <rect key="frame" x="8" y="8" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="32" id="OdF-N2-rT1"/>
+                                                        <constraint firstAttribute="height" constant="32" id="kr1-rh-Ahp"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ycq-YJ-QSC">
+                                                    <rect key="frame" x="48" y="13" width="544" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="EMc-3E-Lon" firstAttribute="leading" secondItem="WkC-w4-Wfs" secondAttribute="leadingMargin" id="EIt-cG-k0a"/>
+                                                <constraint firstItem="Ycq-YJ-QSC" firstAttribute="trailing" secondItem="WkC-w4-Wfs" secondAttribute="trailingMargin" id="HuV-hi-zhc"/>
+                                                <constraint firstItem="Ycq-YJ-QSC" firstAttribute="top" secondItem="WkC-w4-Wfs" secondAttribute="topMargin" constant="5" id="Lpg-7m-5kD"/>
+                                                <constraint firstItem="EMc-3E-Lon" firstAttribute="top" secondItem="WkC-w4-Wfs" secondAttribute="topMargin" id="SDD-hP-deX"/>
+                                                <constraint firstItem="EMc-3E-Lon" firstAttribute="centerY" secondItem="Ycq-YJ-QSC" secondAttribute="centerY" id="fzA-nz-gxJ"/>
+                                                <constraint firstItem="Ycq-YJ-QSC" firstAttribute="leading" secondItem="EMc-3E-Lon" secondAttribute="trailing" constant="8" symbolic="YES" id="p3r-1j-ple"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="iconView" destination="EMc-3E-Lon" id="aV4-qG-VQd"/>
+                                            <outlet property="label" destination="Ycq-YJ-QSC" id="PVU-0c-zQO"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="xtc-2U-Vhg" id="FlY-UO-Ky5"/>
+                                    <outlet property="delegate" destination="xtc-2U-Vhg" id="pbU-5e-g4q"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
