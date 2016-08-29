@@ -8,7 +8,7 @@
         <!--Highway Alert View Controller-->
         <scene sceneID="Mi2-CQ-Hd9">
             <objects>
-                <viewController id="Rpi-fL-xpe" customClass="HighwayAlertViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="Rpi-fL-xpe" customClass="HighwayAlertViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ePZ-SL-Nee"/>
                         <viewControllerLayoutGuide type="bottom" id="0Cs-0a-pDK"/>

@@ -24,13 +24,20 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
         page.loadingPage = true
         pages.append(page)
         setViewControllers([pages[0]], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
-        
-        fetchAlerts(false)
-        
+
         view.backgroundColor = Colors.lightGrey
         UIPageControl.appearance().pageIndicatorTintColor = UIColor.whiteColor()
         UIPageControl.appearance().currentPageIndicatorTintColor = Colors.tintColor
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        pages.removeAll()
+        let page: AlertContentViewController! = storyboard?.instantiateViewControllerWithIdentifier("AlertContentViewController") as! AlertContentViewController
+        page.loadingPage = true
+        pages.append(page)
+        setViewControllers([pages[0]], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
+        fetchAlerts(false)
     }
     
     private func fetchAlerts(force: Bool) {
@@ -60,6 +67,7 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
     
         for alert in alertItems {
             let page: AlertContentViewController! = storyboard?.instantiateViewControllerWithIdentifier("AlertContentViewController") as! AlertContentViewController
+            page.alert = alert
             page.alertText = alert.headlineDesc
             pages.append(page)
         }

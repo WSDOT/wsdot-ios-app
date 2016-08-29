@@ -27,7 +27,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         // Set Title
-        title = "Home"
+        title = "WSDOT"
         menu_options = ["Traffic Map", "Ferries", "Mountain Passes", "Social Media", "Toll Rates", "Border Waits", "Amtrak Cascades"]
         menu_icon_names = ["icHomeTraffic","icHomeFerries","icHomePasses","icHomeSocialMedia","icHomeTollRates","icHomeBorderWaits","icHomeAmtrakCascades"]
         
@@ -64,7 +64,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // MARK: Table View Delegate Methods
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print(menu_options[indexPath.row])
         // Perform Segue
         switch (indexPath.row) {
         case 0:
