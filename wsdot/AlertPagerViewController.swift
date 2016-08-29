@@ -11,8 +11,9 @@ import UIKit
 
 class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
 
-        var pages = [AlertContentViewController]()
-        var alertItems = [HighwayAlertItem]()
+        private var pages = [AlertContentViewController]()
+        private var alertItems = [HighwayAlertItem]()
+        private var timer: NSTimer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,7 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
         page.loadingPage = true
         pages.append(page)
         setViewControllers([pages[0]], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
-
+        
         view.backgroundColor = Colors.lightGrey
         UIPageControl.appearance().pageIndicatorTintColor = UIColor.whiteColor()
         UIPageControl.appearance().currentPageIndicatorTintColor = Colors.tintColor
@@ -37,6 +38,16 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
         page.loadingPage = true
         pages.append(page)
         setViewControllers([pages[0]], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
+        fetchAlerts(false)
+        timer = NSTimer.scheduledTimerWithTimeInterval(TimeUtils.alertsUpdateTime, target: self, selector: #selector(AlertPagerViewController.updateAlerts(_:)), userInfo: nil, repeats: true)
+
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        timer?.invalidate()
+    }
+    
+    func updateAlerts(sender: NSTimer){
         fetchAlerts(false)
     }
     

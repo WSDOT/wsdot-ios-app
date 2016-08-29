@@ -870,6 +870,15 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		9AEEDDB81D74A9BC0032F5EC /* AlertsTicker */ = {
+			isa = PBXGroup;
+			children = (
+				9AEEDDB21D70C0B70032F5EC /* AlertContentViewController.swift */,
+				9AEEDDB41D70C5190032F5EC /* AlertPagerViewController.swift */,
+			);
+			name = AlertsTicker;
+			sourceTree = "<group>";
+		};
 		9AFEECDA1D3924520078A781 /* Ferries */ = {
 			isa = PBXGroup;
 			children = (
@@ -883,12 +892,11 @@
 		9AFEECDB1D3924570078A781 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				9AEEDDB81D74A9BC0032F5EC /* AlertsTicker */,
 				9AD32E001D23172C000AEC28 /* Main.storyboard */,
 				9AD32E211D241AF4000AEC28 /* HomeViewController.swift */,
 				9AD32E2D1D243260000AEC28 /* FavoritesViewController.swift */,
 				9A0616C11D651B1300126520 /* InfoViewController.swift */,
-				9AEEDDB21D70C0B70032F5EC /* AlertContentViewController.swift */,
-				9AEEDDB41D70C5190032F5EC /* AlertPagerViewController.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";

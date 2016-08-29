@@ -56,6 +56,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     private var embeddedMapViewController: MapViewController!
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         
         title = "Traffic Map"
         

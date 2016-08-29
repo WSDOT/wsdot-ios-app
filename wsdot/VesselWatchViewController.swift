@@ -49,8 +49,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
             cameraBarButton.image = cameraHighlightBarButtonImage
         }
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: #selector(VesselWatchViewController.vesselUpdateTask(_:)), userInfo: nil, repeats: true)
-        
+        timer = NSTimer.scheduledTimerWithTimeInterval(TimeUtils.vesselUpdateTime, target: self, selector: #selector(VesselWatchViewController.vesselUpdateTask(_:)), userInfo: nil, repeats: true)
         // Ad Banner
         bannerView.adUnitID = ApiKeys.wsdot_ad_string
         bannerView.rootViewController = self
