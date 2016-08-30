@@ -78,13 +78,13 @@ class MountainPassesViewController: UIViewController, UITableViewDelegate, UITab
         
         if (passItem.forecast.count > 0){
             cell.forecastLabel.text = WeatherUtils.getForecastBriefDescription(passItem.forecast[0].forecastText)
-            cell.weatherImage.image = UIImage(named: WeatherUtils.getIconName(passItem.forecast[0].forecastText))
+            cell.weatherImage.image = UIImage(named: WeatherUtils.getIconName(passItem.forecast[0].forecastText, title: passItem.forecast[0].day))
         } else {
             cell.forecastLabel.text = ""
             cell.weatherImage.image = nil
         }
         
-        cell.updatedLabel.text = TimeUtils.timeAgoSinceDate(passItem.dateUpdated, numericDates: false)
+        cell.updatedLabel.text = TimeUtils.fullTimeStamp(passItem.dateUpdated)
      
         return cell
     }

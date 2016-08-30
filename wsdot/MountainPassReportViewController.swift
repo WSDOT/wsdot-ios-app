@@ -31,7 +31,7 @@ class MountainPassReportViewController: UIViewController {
         let mountainPassTabBarContoller = self.tabBarController as! MountainPassTabBarViewController
         passItem = mountainPassTabBarContoller.passItem
  
-        updatedLabel.text = "Updated " + TimeUtils.timeAgoSinceDate(passItem.dateUpdated, numericDates: false)
+        updatedLabel.text = "Updated " + TimeUtils.fullTimeStamp(passItem.dateUpdated)
         
         if (passItem.forecast.count > 0){
             weatherDetailsLabel.text = passItem.forecast[0].forecastText

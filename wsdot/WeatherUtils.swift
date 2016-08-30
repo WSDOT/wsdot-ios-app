@@ -5,8 +5,6 @@
 //  Created by Logan Sims on 8/25/16.
 //  Copyright © 2016 WSDOT. All rights reserved.
 //
-
-import Foundation
 import UIKit
 
 class WeatherUtils {
@@ -19,7 +17,7 @@ class WeatherUtils {
     static private let clear = ("icClear", "icClearNight", ["fair", "sunny", "clear"])
     static private let fewClouds = ("icCloudy1", "icCloudyNight1", ["few clouds", "scattered clouds", "mostly sunny", "mostly clear"])
     static private let partlyCloudy = ("icCloudy2", "icCloudyNight2", ["partly cloudy", "partly sunny"])
-    static private let cloudy = ("icCloudy3", "icCloudyNight3", ["cloudy"])
+    static private let cloudy = ("icCloudy3", "icCloudyNight3", ["cloudy", "increasing clouds"])
     static private let mostlyCloudy = ("icCloudy4", "icCloudyNight4", ["broken", "mostly cloudy"])
     static private let overcast = ("icOvercast", "icOvercast", ["overcast"])
     static private let sleet = ("icSleet", "icSleet", ["rain snow", "light rain snow", "heavy rain snow", "rain and snow"])
@@ -32,23 +30,22 @@ class WeatherUtils {
     
     static private let weather = [clear, fewClouds, partlyCloudy, cloudy, mostlyCloudy, overcast, sleet, lightRain, rain, snow, fog, hail, thunderStorm]
     
-    static func getIconName(forecast: String) -> String {
-
+    static func getIconName(forecast: String, title: String) -> String {
+        
         let shortForecast = WeatherUtils.getForecastBriefDescription(forecast)
-
+        
         for weatherTriple in weather {
-            if (weatherTriple.2.filter({(item: String) -> Bool in
-                    return shortForecast.lowercaseString.hasPrefix(item.lowercaseString)}).count > 0){
-                return isNight(shortForecast) ? weatherTriple.1 : weatherTriple.0
+            if (weatherTriple.2.filter({(item: String) -> Bool in return shortForecast.lowercaseString.hasPrefix(item.lowercaseString)}).count > 0){
+                return isNight(title) ? weatherTriple.1 : weatherTriple.0
             }
         }
         return ""
     }
     
-    static func isNight(shortForcast: String) -> Bool {
+    static func isNight(title: String) -> Bool {
         do {
             let internalExpression: NSRegularExpression = try NSRegularExpression(pattern: "night|tonight", options: .CaseInsensitive)
-            let matches = internalExpression.matchesInString(shortForcast, options: NSMatchingOptions.WithoutAnchoringBounds, range:NSMakeRange(0, shortForcast.characters.count))
+            let matches = internalExpression.matchesInString(title, options: NSMatchingOptions.WithoutAnchoringBounds, range:NSMakeRange(0, title.characters.count))
             if matches.count == 0 {
                 return false
             } else {

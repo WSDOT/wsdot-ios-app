@@ -97,6 +97,19 @@ class TimeUtils {
         return dateFormatter.dateFromString(dateString)!
     }
     
+    // Converts blogger pub date format into an NSDate object (ex. 2016-08-26T09:24:00.000-07:00)
+    static func bloggerPubDateToNSDate(time: String) -> NSDate{
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.sssZ"
+        return dateFormatter.dateFromString(time)!
+    }
+    
+    // returns a date string with the format MMMM DD, YYYY H:MM a
+    static func fullTimeStamp(date: NSDate) -> String {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MMMM dd, YYYY H:MM a"
+        return dateFormatter.stringFromDate(date)
+    }
     
     // Returns a string timestamp since a given time in miliseconds.
     // Source: https://gist.github.com/jacks205/4a77fb1703632eb9ae79

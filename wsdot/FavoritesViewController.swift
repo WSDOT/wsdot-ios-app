@@ -259,7 +259,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             
             if (passItem.forecast.count > 0){
                 passCell.forecastLabel.text = WeatherUtils.getForecastBriefDescription(passItem.forecast[0].forecastText)
-                passCell.weatherImage.image = UIImage(named: WeatherUtils.getIconName(passItem.forecast[0].forecastText))
+                passCell.weatherImage.image = UIImage(named: WeatherUtils.getIconName(passItem.forecast[0].forecastText, title: passItem.forecast[0].day))
             } else {
                 passCell.forecastLabel.text = ""
                 passCell.weatherImage.image = nil
