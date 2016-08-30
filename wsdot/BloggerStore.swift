@@ -14,7 +14,7 @@ class BloggerStore {
 
     typealias FetchBlogPostsCompletion = (data: [BlogItem]?, error: NSError?) -> ()
     
-    static func getSailingSpacesForTerminal(completion: FetchBlogPostsCompletion) {
+    static func getBlogPosts(completion: FetchBlogPostsCompletion) {
         
         Alamofire.request(.GET, "http://wsdotblog.blogspot.com/feeds/posts/default?alt=json&max-results=10").validate().responseJSON { response in
             switch response.result {
@@ -49,7 +49,7 @@ class BloggerStore {
                 .stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
  
             post.link = postJson["link"][4]["href"].stringValue
-            post.published = TimeUtils.bloggerPubDateToNSDate(postJson["published"]["$t"].stringValue)
+            post.published = TimeUtils.postPubDateToNSDate(postJson["published"]["$t"].stringValue, formatStr: "yyyy-MM-dd'T'HH:mm:ss.sssZ")
             post.imageUrl = postJson["media$thumbnail"]["url"].stringValue
             
             posts.append(post)

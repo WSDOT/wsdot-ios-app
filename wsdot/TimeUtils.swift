@@ -98,9 +98,9 @@ class TimeUtils {
     }
     
     // Converts blogger pub date format into an NSDate object (ex. 2016-08-26T09:24:00.000-07:00)
-    static func bloggerPubDateToNSDate(time: String) -> NSDate{
+    static func postPubDateToNSDate(time: String, formatStr: String) -> NSDate{
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.sssZ"
+        dateFormatter.dateFormat = formatStr
         return dateFormatter.dateFromString(time)!
     }
     

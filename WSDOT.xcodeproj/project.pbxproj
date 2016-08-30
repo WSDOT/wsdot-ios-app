@@ -120,6 +120,10 @@
 		9AEF4D801D74E1F7003ECA34 /* BloggerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D7F1D74E1F7003ECA34 /* BloggerStore.swift */; };
 		9AEF4D831D75CF42003ECA34 /* BloggerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D821D75CF42003ECA34 /* BloggerViewController.swift */; };
 		9AEF4D851D75DC47003ECA34 /* BloggerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D841D75DC47003ECA34 /* BloggerCell.swift */; };
+		9AEF4D881D75FED8003ECA34 /* FacebookItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D871D75FED8003ECA34 /* FacebookItem.swift */; };
+		9AEF4D8A1D75FEE1003ECA34 /* FacebookStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D891D75FEE1003ECA34 /* FacebookStore.swift */; };
+		9AEF4D8C1D75FEEC003ECA34 /* FacebookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D8B1D75FEEC003ECA34 /* FacebookViewController.swift */; };
+		9AEF4D8E1D7602FE003ECA34 /* FacebookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D8D1D7602FE003ECA34 /* FacebookCell.swift */; };
 		9AFEECE11D3925400078A781 /* CachesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFEECE01D3925400078A781 /* CachesStore.swift */; };
 /* End PBXBuildFile section */
 
@@ -251,6 +255,10 @@
 		9AEF4D7F1D74E1F7003ECA34 /* BloggerStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BloggerStore.swift; sourceTree = "<group>"; };
 		9AEF4D821D75CF42003ECA34 /* BloggerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BloggerViewController.swift; sourceTree = "<group>"; };
 		9AEF4D841D75DC47003ECA34 /* BloggerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BloggerCell.swift; sourceTree = "<group>"; };
+		9AEF4D871D75FED8003ECA34 /* FacebookItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookItem.swift; sourceTree = "<group>"; };
+		9AEF4D891D75FEE1003ECA34 /* FacebookStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookStore.swift; sourceTree = "<group>"; };
+		9AEF4D8B1D75FEEC003ECA34 /* FacebookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookViewController.swift; sourceTree = "<group>"; };
+		9AEF4D8D1D7602FE003ECA34 /* FacebookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookCell.swift; sourceTree = "<group>"; };
 		9AFEECE01D3925400078A781 /* CachesStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachesStore.swift; sourceTree = "<group>"; };
 		D580B199D18890EA70A9D2CE /* Pods-WSDOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.release.xcconfig"; sourceTree = "<group>"; };
 		EF91807E010BF6B934CE16C4 /* Pods-WSDOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.debug.xcconfig"; sourceTree = "<group>"; };
@@ -465,6 +473,7 @@
 				9AEEDDAD1D708D8B0032F5EC /* ForecastCell.swift */,
 				9AEEDDB61D70F1FD0032F5EC /* IconCell.swift */,
 				9AEF4D841D75DC47003ECA34 /* BloggerCell.swift */,
+				9AEF4D8D1D7602FE003ECA34 /* FacebookCell.swift */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -916,6 +925,7 @@
 			children = (
 				9AEEDDBD1D74B0590032F5EC /* SocialMediaViewController.swift */,
 				9AEF4D821D75CF42003ECA34 /* BloggerViewController.swift */,
+				9AEF4D8B1D75FEEC003ECA34 /* FacebookViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -923,6 +933,7 @@
 		9AEEDDBC1D74B0480032F5EC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9AEF4D861D75FEC7003ECA34 /* Facebook */,
 				9AEF4D811D74E208003ECA34 /* Blogger */,
 			);
 			name = Models;
@@ -935,6 +946,15 @@
 				9AEF4D7F1D74E1F7003ECA34 /* BloggerStore.swift */,
 			);
 			name = Blogger;
+			sourceTree = "<group>";
+		};
+		9AEF4D861D75FEC7003ECA34 /* Facebook */ = {
+			isa = PBXGroup;
+			children = (
+				9AEF4D871D75FED8003ECA34 /* FacebookItem.swift */,
+				9AEF4D891D75FEE1003ECA34 /* FacebookStore.swift */,
+			);
+			name = Facebook;
 			sourceTree = "<group>";
 		};
 		9AFEECDA1D3924520078A781 /* Ferries */ = {
@@ -1156,10 +1176,12 @@
 				9A6FBD0B1D6CBC3A00CDCE16 /* TravelTimeItem.swift in Sources */,
 				9A1F5FA71D47E27200DA5F99 /* SailingSpacesItem.swift in Sources */,
 				9A06167A1D62285A00126520 /* VesselWatchViewController.swift in Sources */,
+				9AEF4D8C1D75FEEC003ECA34 /* FacebookViewController.swift in Sources */,
 				9AEF4D851D75DC47003ECA34 /* BloggerCell.swift in Sources */,
 				9A6FBD331D6E3EA200CDCE16 /* MountianPassItem.swift in Sources */,
 				9A0616CA1D66021B00126520 /* TollRatesViewController.swift in Sources */,
 				9A0616BB1D63BB9700126520 /* VesselWatchGoToViewController.swift in Sources */,
+				9AEF4D881D75FED8003ECA34 /* FacebookItem.swift in Sources */,
 				9AEF4D831D75CF42003ECA34 /* BloggerViewController.swift in Sources */,
 				9AD32DFD1D23172C000AEC28 /* AppDelegate.swift in Sources */,
 				9A0616B51D63672A00126520 /* VesselItem.swift in Sources */,
@@ -1199,6 +1221,7 @@
 				9A6FBCF11D6C9B9A00CDCE16 /* FavoriteLocationRealmStore.swift in Sources */,
 				9A6FBCE11D6B96EE00CDCE16 /* HighwayAlertViewController.swift in Sources */,
 				9AD32E2A1D24233D000AEC28 /* FerriesHomeViewController.swift in Sources */,
+				9AEF4D8E1D7602FE003ECA34 /* FacebookCell.swift in Sources */,
 				9AEEDDA81D6F7FDF0032F5EC /* MountainPassReportViewController.swift in Sources */,
 				9A6FBD0D1D6CBC4E00CDCE16 /* TravelTimesRealmStore.swift in Sources */,
 				9A06167F1D62602500126520 /* MapMarkerDelegate.swift in Sources */,
@@ -1226,6 +1249,7 @@
 				9A6FBCDC1D6B6E1200CDCE16 /* HighwayAlertsRealmStore.swift in Sources */,
 				9A1F5FA11D47D3D100DA5F99 /* CameraImageCustomCell.swift in Sources */,
 				9AD32E2C1D242A5A000AEC28 /* RouteSchedulesViewController.swift in Sources */,
+				9AEF4D8A1D75FEE1003ECA34 /* FacebookStore.swift in Sources */,
 				9A0616B71D63674500126520 /* VesselWatchStore.swift in Sources */,
 				9A6FBD1F1D6DF91300CDCE16 /* BorderWaitItem.swift in Sources */,
 				9A6FBD391D6E4A4700CDCE16 /* ForcastItem.swift in Sources */,

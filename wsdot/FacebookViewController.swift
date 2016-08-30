@@ -1,5 +1,5 @@
 //
-//  BloggerViewController.swift
+//  FacebookViewController.swift
 //  WSDOT
 //
 //  Created by Logan Sims on 8/30/16.
@@ -9,22 +9,22 @@
 import UIKit
 import Foundation
 
-class BloggerViewController: UIViewController, UITabBarDelegate, UITableViewDataSource {
+class FacebookViewController: UIViewController, UITabBarDelegate, UITableViewDataSource, INDLinkLabelDelegate {
     
-    let cellIdentifier = "blogCell"
+    let cellIdentifier = "postCell"
     
-    var posts = [BlogItem]()
+    var posts = [FacebookItem]()
     let refreshControl = UIRefreshControl()
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
-        title = "WSDOT Blog"
+        title = "WSDOT on Facebook"
         
         tableView.rowHeight = UITableViewAutomaticDimension
         
         // refresh controller
-        refreshControl.addTarget(self, action: #selector(BloggerViewController.refreshAction(_:)), forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(FacebookViewController.refreshAction(_:)), forControlEvents: .ValueChanged)
         tableView.addSubview(refreshControl)
         refreshControl.beginRefreshing()
         refresh()
@@ -36,7 +36,7 @@ class BloggerViewController: UIViewController, UITabBarDelegate, UITableViewData
     
     func refresh() {
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) { [weak self] in
-            BloggerStore.getBlogPosts({ data, error in
+            FacebookStore.getPosts({ data, error in
                 if let validData = data {
                     dispatch_async(dispatch_get_main_queue()) { [weak self] in
                         if let selfValue = self{
@@ -73,14 +73,22 @@ class BloggerViewController: UIViewController, UITabBarDelegate, UITableViewData
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! BloggerCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! FacebookCell
         
-        cell.title.text = posts[indexPath.row].title
-        cell.content.text = posts[indexPath.row].content
-        cell.updated.text = TimeUtils.fullTimeStamp(posts[indexPath.row].published)
-        cell.imageView!.sd_setImageWithURL(NSURL(string: posts[indexPath.row].imageUrl), placeholderImage: UIImage(named: "imagePlaceholderSmall"), options: .RefreshCached)
-        cell.imageView?.layer.cornerRadius = 8.0
-        cell.imageView?.backgroundColor = UIColor.clearColor()
+        let post = posts[indexPath.row]
+        
+        let htmlStyleString = "<style>body{font-family: '\(cell.contentLabel.font.fontName)'; font-size:\(cell.contentLabel.font.pointSize)px;}</style>"
+        
+        let htmlString = htmlStyleString + post.message
+        
+        let attrStr = try! NSMutableAttributedString(
+            data: htmlString.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: false)!,
+            options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
+            documentAttributes: nil)
+        
+        cell.contentLabel.attributedText = attrStr
+        
+        cell.updatedLabel.text = TimeUtils.fullTimeStamp(post.createdAt)
         
         return cell
     }
@@ -88,7 +96,16 @@ class BloggerViewController: UIViewController, UITabBarDelegate, UITableViewData
     // MARK: Table View Delegate Methods
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        UIApplication.sharedApplication().openURL(NSURL(string: posts[indexPath.row].link)!)
-        
+        UIApplication.sharedApplication().openURL(NSURL(string: "https://facebook.com/" + posts[indexPath.row].id)!)
+    }
+    
+    // MARK: INDLinkLabelDelegate
+    func linkLabel(label: INDLinkLabel, didLongPressLinkWithURL URL: NSURL) {
+        let activityController = UIActivityViewController(activityItems: [URL], applicationActivities: nil)
+        self.presentViewController(activityController, animated: true, completion: nil)
+    }
+    
+    func linkLabel(label: INDLinkLabel, didTapLinkWithURL URL: NSURL) {
+        UIApplication.sharedApplication().openURL(URL)
     }
 }
