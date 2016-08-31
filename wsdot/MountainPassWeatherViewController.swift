@@ -47,7 +47,7 @@ class MountainPassWeatherViewController: UIViewController, UITableViewDelegate, 
         
         cell.dayLabel.text = forecast.day
         cell.forecastLabel.text = forecast.forecastText
-        cell.weatherIconView.image = UIImage(named: WeatherUtils.getIconName(forecast.forecastText))
+        cell.weatherIconView.image = UIImage(named: WeatherUtils.getIconName(forecast.forecastText, title: forecast.day))
         
         return cell
     }

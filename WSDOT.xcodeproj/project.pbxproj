@@ -113,7 +113,33 @@
 		9AEEDDB11D70B8A20032F5EC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9AEEDDB01D70B8A20032F5EC /* GoogleService-Info.plist */; };
 		9AEEDDB31D70C0B70032F5EC /* AlertContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEDDB21D70C0B70032F5EC /* AlertContentViewController.swift */; };
 		9AEEDDB51D70C5190032F5EC /* AlertPagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEDDB41D70C5190032F5EC /* AlertPagerViewController.swift */; };
-		9AEEDDB71D70F1FD0032F5EC /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEDDB61D70F1FD0032F5EC /* HomeCell.swift */; };
+		9AEEDDB71D70F1FD0032F5EC /* IconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEDDB61D70F1FD0032F5EC /* IconCell.swift */; };
+		9AEEDDBE1D74B0590032F5EC /* SocialMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEDDBD1D74B0590032F5EC /* SocialMediaViewController.swift */; };
+		9AEEDDC01D74B0650032F5EC /* SocialMedia.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AEEDDBF1D74B0650032F5EC /* SocialMedia.storyboard */; };
+		9AEF4D7E1D74DFDB003ECA34 /* BlogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D7D1D74DFDB003ECA34 /* BlogItem.swift */; };
+		9AEF4D801D74E1F7003ECA34 /* BloggerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D7F1D74E1F7003ECA34 /* BloggerStore.swift */; };
+		9AEF4D831D75CF42003ECA34 /* BloggerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D821D75CF42003ECA34 /* BloggerViewController.swift */; };
+		9AEF4D851D75DC47003ECA34 /* BloggerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D841D75DC47003ECA34 /* BloggerCell.swift */; };
+		9AEF4D881D75FED8003ECA34 /* FacebookItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D871D75FED8003ECA34 /* FacebookItem.swift */; };
+		9AEF4D8A1D75FEE1003ECA34 /* FacebookStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D891D75FEE1003ECA34 /* FacebookStore.swift */; };
+		9AEF4D8C1D75FEEC003ECA34 /* FacebookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D8B1D75FEEC003ECA34 /* FacebookViewController.swift */; };
+		9AEF4D8E1D7602FE003ECA34 /* FacebookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D8D1D7602FE003ECA34 /* FacebookCell.swift */; };
+		9AEF4D911D7608DA003ECA34 /* FlickrItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D901D7608DA003ECA34 /* FlickrItem.swift */; };
+		9AEF4D931D7608ED003ECA34 /* FlickrStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D921D7608ED003ECA34 /* FlickrStore.swift */; };
+		9AEF4D951D7608F7003ECA34 /* FlickrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D941D7608F7003ECA34 /* FlickrViewController.swift */; };
+		9AEF4D971D760B72003ECA34 /* FlickrCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D961D760B72003ECA34 /* FlickrCollectionCell.swift */; };
+		9AEF4D9A1D772F9C003ECA34 /* NewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D991D772F9C003ECA34 /* NewsItem.swift */; };
+		9AEF4D9C1D772FA5003ECA34 /* NewsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D9B1D772FA5003ECA34 /* NewsStore.swift */; };
+		9AEF4D9E1D773040003ECA34 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D9D1D773040003ECA34 /* NewsViewController.swift */; };
+		9AEF4DA01D773256003ECA34 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D9F1D773256003ECA34 /* NewsCell.swift */; };
+		9AEF4DA31D773630003ECA34 /* YouTubeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4DA21D773630003ECA34 /* YouTubeItem.swift */; };
+		9AEF4DA61D773641003ECA34 /* YouTubeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4DA51D773641003ECA34 /* YouTubeStore.swift */; };
+		9AEF4DA81D773921003ECA34 /* YouTubeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4DA71D773921003ECA34 /* YouTubeViewController.swift */; };
+		9AEF4DAA1D7739E6003ECA34 /* YouTubeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4DA91D7739E6003ECA34 /* YouTubeCell.swift */; };
+		9AEF4DAC1D773F94003ECA34 /* TwitterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4DAB1D773F94003ECA34 /* TwitterViewController.swift */; };
+		9AEF4DAF1D774353003ECA34 /* TwitterItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4DAE1D774353003ECA34 /* TwitterItems.swift */; };
+		9AEF4DB11D77435B003ECA34 /* TwitterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4DB01D77435B003ECA34 /* TwitterStore.swift */; };
+		9AEF4DB31D774BC8003ECA34 /* TwitterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4DB21D774BC8003ECA34 /* TwitterCell.swift */; };
 		9AFEECE11D3925400078A781 /* CachesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFEECE01D3925400078A781 /* CachesStore.swift */; };
 /* End PBXBuildFile section */
 
@@ -238,7 +264,33 @@
 		9AEEDDB01D70B8A20032F5EC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9AEEDDB21D70C0B70032F5EC /* AlertContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertContentViewController.swift; sourceTree = "<group>"; };
 		9AEEDDB41D70C5190032F5EC /* AlertPagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPagerViewController.swift; sourceTree = "<group>"; };
-		9AEEDDB61D70F1FD0032F5EC /* HomeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
+		9AEEDDB61D70F1FD0032F5EC /* IconCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconCell.swift; sourceTree = "<group>"; };
+		9AEEDDBD1D74B0590032F5EC /* SocialMediaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialMediaViewController.swift; sourceTree = "<group>"; };
+		9AEEDDBF1D74B0650032F5EC /* SocialMedia.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SocialMedia.storyboard; sourceTree = "<group>"; };
+		9AEF4D7D1D74DFDB003ECA34 /* BlogItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogItem.swift; sourceTree = "<group>"; };
+		9AEF4D7F1D74E1F7003ECA34 /* BloggerStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BloggerStore.swift; sourceTree = "<group>"; };
+		9AEF4D821D75CF42003ECA34 /* BloggerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BloggerViewController.swift; sourceTree = "<group>"; };
+		9AEF4D841D75DC47003ECA34 /* BloggerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BloggerCell.swift; sourceTree = "<group>"; };
+		9AEF4D871D75FED8003ECA34 /* FacebookItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookItem.swift; sourceTree = "<group>"; };
+		9AEF4D891D75FEE1003ECA34 /* FacebookStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookStore.swift; sourceTree = "<group>"; };
+		9AEF4D8B1D75FEEC003ECA34 /* FacebookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookViewController.swift; sourceTree = "<group>"; };
+		9AEF4D8D1D7602FE003ECA34 /* FacebookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookCell.swift; sourceTree = "<group>"; };
+		9AEF4D901D7608DA003ECA34 /* FlickrItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrItem.swift; sourceTree = "<group>"; };
+		9AEF4D921D7608ED003ECA34 /* FlickrStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrStore.swift; sourceTree = "<group>"; };
+		9AEF4D941D7608F7003ECA34 /* FlickrViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrViewController.swift; sourceTree = "<group>"; };
+		9AEF4D961D760B72003ECA34 /* FlickrCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrCollectionCell.swift; sourceTree = "<group>"; };
+		9AEF4D991D772F9C003ECA34 /* NewsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsItem.swift; sourceTree = "<group>"; };
+		9AEF4D9B1D772FA5003ECA34 /* NewsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsStore.swift; sourceTree = "<group>"; };
+		9AEF4D9D1D773040003ECA34 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		9AEF4D9F1D773256003ECA34 /* NewsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
+		9AEF4DA21D773630003ECA34 /* YouTubeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeItem.swift; sourceTree = "<group>"; };
+		9AEF4DA51D773641003ECA34 /* YouTubeStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeStore.swift; sourceTree = "<group>"; };
+		9AEF4DA71D773921003ECA34 /* YouTubeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeViewController.swift; sourceTree = "<group>"; };
+		9AEF4DA91D7739E6003ECA34 /* YouTubeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeCell.swift; sourceTree = "<group>"; };
+		9AEF4DAB1D773F94003ECA34 /* TwitterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterViewController.swift; sourceTree = "<group>"; };
+		9AEF4DAE1D774353003ECA34 /* TwitterItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterItems.swift; sourceTree = "<group>"; };
+		9AEF4DB01D77435B003ECA34 /* TwitterStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterStore.swift; sourceTree = "<group>"; };
+		9AEF4DB21D774BC8003ECA34 /* TwitterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterCell.swift; sourceTree = "<group>"; };
 		9AFEECE01D3925400078A781 /* CachesStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachesStore.swift; sourceTree = "<group>"; };
 		D580B199D18890EA70A9D2CE /* Pods-WSDOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.release.xcconfig"; sourceTree = "<group>"; };
 		EF91807E010BF6B934CE16C4 /* Pods-WSDOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.debug.xcconfig"; sourceTree = "<group>"; };
@@ -451,7 +503,13 @@
 				9A6FBD281D6DFFCE00CDCE16 /* BorderWaitCell.swift */,
 				9AEEDDA31D6F3D810032F5EC /* MountainPassCell.swift */,
 				9AEEDDAD1D708D8B0032F5EC /* ForecastCell.swift */,
-				9AEEDDB61D70F1FD0032F5EC /* HomeCell.swift */,
+				9AEEDDB61D70F1FD0032F5EC /* IconCell.swift */,
+				9AEF4D841D75DC47003ECA34 /* BloggerCell.swift */,
+				9AEF4D8D1D7602FE003ECA34 /* FacebookCell.swift */,
+				9AEF4D961D760B72003ECA34 /* FlickrCollectionCell.swift */,
+				9AEF4D9F1D773256003ECA34 /* NewsCell.swift */,
+				9AEF4DA91D7739E6003ECA34 /* YouTubeCell.swift */,
+				9AEF4DB21D774BC8003ECA34 /* TwitterCell.swift */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -770,6 +828,7 @@
 		9AD32DFB1D23172C000AEC28 /* wsdot */ = {
 			isa = PBXGroup;
 			children = (
+				9AEEDDB91D74B0330032F5EC /* SocialMedia */,
 				9A6FBD2A1D6E3E5800CDCE16 /* MountainPasses */,
 				9A6FBCE61D6C951300CDCE16 /* Callouts */,
 				9A6FBD171D6DF8C200CDCE16 /* BorderWait */,
@@ -877,6 +936,105 @@
 				9AEEDDB41D70C5190032F5EC /* AlertPagerViewController.swift */,
 			);
 			name = AlertsTicker;
+			sourceTree = "<group>";
+		};
+		9AEEDDB91D74B0330032F5EC /* SocialMedia */ = {
+			isa = PBXGroup;
+			children = (
+				9AEEDDBC1D74B0480032F5EC /* Models */,
+				9AEEDDBB1D74B0420032F5EC /* Controllers */,
+				9AEEDDBA1D74B03D0032F5EC /* Views */,
+			);
+			name = SocialMedia;
+			sourceTree = "<group>";
+		};
+		9AEEDDBA1D74B03D0032F5EC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9AEEDDBF1D74B0650032F5EC /* SocialMedia.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		9AEEDDBB1D74B0420032F5EC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9AEEDDBD1D74B0590032F5EC /* SocialMediaViewController.swift */,
+				9AEF4D821D75CF42003ECA34 /* BloggerViewController.swift */,
+				9AEF4D8B1D75FEEC003ECA34 /* FacebookViewController.swift */,
+				9AEF4D941D7608F7003ECA34 /* FlickrViewController.swift */,
+				9AEF4D9D1D773040003ECA34 /* NewsViewController.swift */,
+				9AEF4DA71D773921003ECA34 /* YouTubeViewController.swift */,
+				9AEF4DAB1D773F94003ECA34 /* TwitterViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		9AEEDDBC1D74B0480032F5EC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9AEF4DAD1D773FF4003ECA34 /* Twitter */,
+				9AEF4DA11D773621003ECA34 /* YouTube */,
+				9AEF4D981D772F92003ECA34 /* News */,
+				9AEF4D8F1D7608BE003ECA34 /* Flickr */,
+				9AEF4D861D75FEC7003ECA34 /* Facebook */,
+				9AEF4D811D74E208003ECA34 /* Blogger */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		9AEF4D811D74E208003ECA34 /* Blogger */ = {
+			isa = PBXGroup;
+			children = (
+				9AEF4D7D1D74DFDB003ECA34 /* BlogItem.swift */,
+				9AEF4D7F1D74E1F7003ECA34 /* BloggerStore.swift */,
+			);
+			name = Blogger;
+			sourceTree = "<group>";
+		};
+		9AEF4D861D75FEC7003ECA34 /* Facebook */ = {
+			isa = PBXGroup;
+			children = (
+				9AEF4D871D75FED8003ECA34 /* FacebookItem.swift */,
+				9AEF4D891D75FEE1003ECA34 /* FacebookStore.swift */,
+			);
+			name = Facebook;
+			sourceTree = "<group>";
+		};
+		9AEF4D8F1D7608BE003ECA34 /* Flickr */ = {
+			isa = PBXGroup;
+			children = (
+				9AEF4D901D7608DA003ECA34 /* FlickrItem.swift */,
+				9AEF4D921D7608ED003ECA34 /* FlickrStore.swift */,
+			);
+			name = Flickr;
+			sourceTree = "<group>";
+		};
+		9AEF4D981D772F92003ECA34 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				9AEF4D991D772F9C003ECA34 /* NewsItem.swift */,
+				9AEF4D9B1D772FA5003ECA34 /* NewsStore.swift */,
+			);
+			name = News;
+			sourceTree = "<group>";
+		};
+		9AEF4DA11D773621003ECA34 /* YouTube */ = {
+			isa = PBXGroup;
+			children = (
+				9AEF4DA21D773630003ECA34 /* YouTubeItem.swift */,
+				9AEF4DA51D773641003ECA34 /* YouTubeStore.swift */,
+			);
+			name = YouTube;
+			sourceTree = "<group>";
+		};
+		9AEF4DAD1D773FF4003ECA34 /* Twitter */ = {
+			isa = PBXGroup;
+			children = (
+				9AEF4DAE1D774353003ECA34 /* TwitterItems.swift */,
+				9AEF4DB01D77435B003ECA34 /* TwitterStore.swift */,
+			);
+			name = Twitter;
 			sourceTree = "<group>";
 		};
 		9AFEECDA1D3924520078A781 /* Ferries */ = {
@@ -1011,6 +1169,7 @@
 				9AB0177A1D51464B004C228E /* Camera.storyboard in Resources */,
 				9A6FBD141D6CEE3300CDCE16 /* TravelTimeDetails.storyboard in Resources */,
 				9AD32E041D23172C000AEC28 /* Assets.xcassets in Resources */,
+				9AEEDDC01D74B0650032F5EC /* SocialMedia.storyboard in Resources */,
 				9A6FBCDF1D6B86AD00CDCE16 /* HighwayAlert.storyboard in Resources */,
 				9AD32E021D23172C000AEC28 /* Main.storyboard in Resources */,
 				9A6FBCD21D6B541F00CDCE16 /* restareas.json in Resources */,
@@ -1084,6 +1243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9ADEAE4D1D270CC800BA7DD4 /* Consts.swift in Sources */,
+				9AEF4D9A1D772F9C003ECA34 /* NewsItem.swift in Sources */,
 				9A0616E61D67838F00126520 /* TrafficMapGoToViewController.swift in Sources */,
 				9A6FBD311D6E3E9100CDCE16 /* MountainPassesViewController.swift in Sources */,
 				9A6FBCD41D6B54E300CDCE16 /* RestAreaStore.swift in Sources */,
@@ -1094,18 +1254,25 @@
 				9A6FBD231D6DF9AB00CDCE16 /* BorderWaitsViewController.swift in Sources */,
 				9A07192C1D410FD5007BB4C5 /* RouteAlertsViewController.swift in Sources */,
 				9A0616811D6265FB00126520 /* UserDefaultsKeys.swift in Sources */,
+				9AEF4D9C1D772FA5003ECA34 /* NewsStore.swift in Sources */,
 				9A6FBD0B1D6CBC3A00CDCE16 /* TravelTimeItem.swift in Sources */,
 				9A1F5FA71D47E27200DA5F99 /* SailingSpacesItem.swift in Sources */,
 				9A06167A1D62285A00126520 /* VesselWatchViewController.swift in Sources */,
+				9AEF4D951D7608F7003ECA34 /* FlickrViewController.swift in Sources */,
+				9AEF4D8C1D75FEEC003ECA34 /* FacebookViewController.swift in Sources */,
+				9AEF4D851D75DC47003ECA34 /* BloggerCell.swift in Sources */,
 				9A6FBD331D6E3EA200CDCE16 /* MountianPassItem.swift in Sources */,
 				9A0616CA1D66021B00126520 /* TollRatesViewController.swift in Sources */,
 				9A0616BB1D63BB9700126520 /* VesselWatchGoToViewController.swift in Sources */,
+				9AEF4D881D75FED8003ECA34 /* FacebookItem.swift in Sources */,
+				9AEF4D831D75CF42003ECA34 /* BloggerViewController.swift in Sources */,
 				9AD32DFD1D23172C000AEC28 /* AppDelegate.swift in Sources */,
 				9A0616B51D63672A00126520 /* VesselItem.swift in Sources */,
 				9AEEDDB31D70C0B70032F5EC /* AlertContentViewController.swift in Sources */,
 				9A2F4A6E1D539C1600911AF5 /* CacheItem.swift in Sources */,
 				9A21E1CC1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift in Sources */,
 				9A1F5F9F1D47C2E800DA5F99 /* DeparturesCustomCell.swift in Sources */,
+				9AEF4D971D760B72003ECA34 /* FlickrCollectionCell.swift in Sources */,
 				9A6FBCEC1D6C953D00CDCE16 /* CalloutViewController.swift in Sources */,
 				9AEEDDAC1D6F89D90032F5EC /* MountainPassWeatherViewController.swift in Sources */,
 				9A6FBCCF1D6B520900CDCE16 /* RestAreaItem.swift in Sources */,
@@ -1115,7 +1282,10 @@
 				9A1F5FA51D47DCB900DA5F99 /* ApiKeys.swift in Sources */,
 				9A6FBCDA1D6B6DF700CDCE16 /* HighwayAlertItem.swift in Sources */,
 				9A81A57C1D4BB41B0049913A /* LatLonUtils.swift in Sources */,
+				9AEEDDBE1D74B0590032F5EC /* SocialMediaViewController.swift in Sources */,
 				9AE486441D495ACB007A92E3 /* FerriesTerminalItem.swift in Sources */,
+				9AEF4D801D74E1F7003ECA34 /* BloggerStore.swift in Sources */,
+				9AEF4D911D7608DA003ECA34 /* FlickrItem.swift in Sources */,
 				9A0616C21D651B1300126520 /* InfoViewController.swift in Sources */,
 				9AE486471D495E90007A92E3 /* CameraItem.swift in Sources */,
 				9A07192E1D4110BC007BB4C5 /* RouteTabBarViewController.swift in Sources */,
@@ -1132,15 +1302,20 @@
 				9A6FBCFE1D6CAE5700CDCE16 /* ExpressLaneItem.swift in Sources */,
 				9A6FBCFC1D6CAC0800CDCE16 /* ExpressLaneCell.swift in Sources */,
 				9AE4863E1D49594D007A92E3 /* FerriesTerminalMap.swift in Sources */,
+				9AEF4D7E1D74DFDB003ECA34 /* BlogItem.swift in Sources */,
 				9A6FBCF11D6C9B9A00CDCE16 /* FavoriteLocationRealmStore.swift in Sources */,
 				9A6FBCE11D6B96EE00CDCE16 /* HighwayAlertViewController.swift in Sources */,
 				9AD32E2A1D24233D000AEC28 /* FerriesHomeViewController.swift in Sources */,
+				9AEF4D8E1D7602FE003ECA34 /* FacebookCell.swift in Sources */,
 				9AEEDDA81D6F7FDF0032F5EC /* MountainPassReportViewController.swift in Sources */,
 				9A6FBD0D1D6CBC4E00CDCE16 /* TravelTimesRealmStore.swift in Sources */,
 				9A06167F1D62602500126520 /* MapMarkerDelegate.swift in Sources */,
 				9AEEDDAA1D6F893B0032F5EC /* MountainPassCamerasViewController.swift in Sources */,
+				9AEF4DA81D773921003ECA34 /* YouTubeViewController.swift in Sources */,
+				9AEF4DA31D773630003ECA34 /* YouTubeItem.swift in Sources */,
 				9A0616D21D660DC500126520 /* I405ViewController.swift in Sources */,
 				9A0CA8371D466045009C67B7 /* TimeUtils.swift in Sources */,
+				9AEF4DAA1D7739E6003ECA34 /* YouTubeCell.swift in Sources */,
 				9A1F5FA31D47DBB700DA5F99 /* SailingSpacesStore.swift in Sources */,
 				9AEEDDB51D70C5190032F5EC /* AlertPagerViewController.swift in Sources */,
 				9AD32E221D241AF4000AEC28 /* HomeViewController.swift in Sources */,
@@ -1150,27 +1325,36 @@
 				9A0616CC1D660BD500126520 /* SR520ViewController.swift in Sources */,
 				9A6FBD0F1D6CC43C00CDCE16 /* TravelTimeCell.swift in Sources */,
 				9A6FBCE31D6BA2DC00CDCE16 /* AlertInAreaViewController.swift in Sources */,
+				9AEF4DA61D773641003ECA34 /* YouTubeStore.swift in Sources */,
 				9AD32E2E1D243260000AEC28 /* FavoritesViewController.swift in Sources */,
 				9A0616CE1D660CC800126520 /* SR16ViewController.swift in Sources */,
+				9AEF4DA01D773256003ECA34 /* NewsCell.swift in Sources */,
+				9AEF4DB31D774BC8003ECA34 /* TwitterCell.swift in Sources */,
 				9A2C27271D67A1E400F05D88 /* SettingsCell.swift in Sources */,
-				9AEEDDB71D70F1FD0032F5EC /* HomeCell.swift in Sources */,
+				9AEEDDB71D70F1FD0032F5EC /* IconCell.swift in Sources */,
 				9AEEDDAE1D708D8B0032F5EC /* ForecastCell.swift in Sources */,
+				9AEF4DAF1D774353003ECA34 /* TwitterItems.swift in Sources */,
 				9A6FBD091D6CBB0000CDCE16 /* TravelTimesViewController.swift in Sources */,
 				9A6FBD291D6DFFCE00CDCE16 /* BorderWaitCell.swift in Sources */,
 				9A81A5781D4AC5710049913A /* RouteTimesViewController.swift in Sources */,
 				9A0CA8311D428EE9009C67B7 /* RouteDeparturesViewController.swift in Sources */,
 				9A6FBCDC1D6B6E1200CDCE16 /* HighwayAlertsRealmStore.swift in Sources */,
+				9AEF4DAC1D773F94003ECA34 /* TwitterViewController.swift in Sources */,
 				9A1F5FA11D47D3D100DA5F99 /* CameraImageCustomCell.swift in Sources */,
 				9AD32E2C1D242A5A000AEC28 /* RouteSchedulesViewController.swift in Sources */,
+				9AEF4D8A1D75FEE1003ECA34 /* FacebookStore.swift in Sources */,
+				9AEF4DB11D77435B003ECA34 /* TwitterStore.swift in Sources */,
 				9A0616B71D63674500126520 /* VesselWatchStore.swift in Sources */,
 				9A6FBD1F1D6DF91300CDCE16 /* BorderWaitItem.swift in Sources */,
 				9A6FBD391D6E4A4700CDCE16 /* ForcastItem.swift in Sources */,
+				9AEF4D9E1D773040003ECA34 /* NewsViewController.swift in Sources */,
 				9A0719351D4274B8007BB4C5 /* LinkCell.swift in Sources */,
 				9A0616D71D664D2300126520 /* FourColTableViewCell.swift in Sources */,
 				9A0616D51D6638AB00126520 /* TollRatesStore.swift in Sources */,
 				9A81A57A1D4AC5840049913A /* RouteCamerasViewController.swift in Sources */,
 				9AEEDDA41D6F3D810032F5EC /* MountainPassCell.swift in Sources */,
 				9A0CA83C1D46AC51009C67B7 /* PickerTextField.swift in Sources */,
+				9AEF4D931D7608ED003ECA34 /* FlickrStore.swift in Sources */,
 				9A06167C1D622AE800126520 /* MapViewController.swift in Sources */,
 				9A6FBCC51D6B4C6500CDCE16 /* TravelerInfoViewController.swift in Sources */,
 				9A2C27251D679E5800F05D88 /* TrafficMapSettingsViewController.swift in Sources */,

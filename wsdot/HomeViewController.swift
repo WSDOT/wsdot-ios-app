@@ -12,14 +12,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     let cellIdentifier = "HomeCell"
     
-    let itemsPerRow = 3
-    
     let SegueTrafficMapViewController = "TrafficMapViewController"
     let SegueFerriesHomeViewController = "FerriesHomeViewController"
     let SegueTollRatesViewController = "TollRatesViewController"
     let SegueBorderWaitsViewController = "BorderWaitsViewController"
     let SegueInfoViewController = "InfoViewController"
     let SegueMountainPassesViewController = "MountainPassesViewController"
+    let SegueSocialMediaViewController = "SocialMediaViewController"
     
     var menu_options: [String] = []
     var menu_icon_names: [String] = []
@@ -54,7 +53,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! HomeCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! IconCell
         
         cell.label?.text = menu_options[indexPath.row]
         cell.iconView.image = UIImage(named: menu_icon_names[indexPath.row])
@@ -76,6 +75,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             break
         case 2:
             performSegueWithIdentifier(SegueMountainPassesViewController, sender: self)
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            break
+        case 3:
+            performSegueWithIdentifier(SegueSocialMediaViewController, sender: self)
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             break
         case 4:
