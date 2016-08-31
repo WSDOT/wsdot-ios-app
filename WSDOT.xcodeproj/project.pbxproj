@@ -142,6 +142,7 @@
 		9AEF4DB31D774BC8003ECA34 /* TwitterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4DB21D774BC8003ECA34 /* TwitterCell.swift */; };
 		9AEF4DBA1D778AF9003ECA34 /* AmtrakCascades.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AEF4DB91D778AF9003ECA34 /* AmtrakCascades.storyboard */; };
 		9AEF4DBC1D778B2D003ECA34 /* AmtrakCascadesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4DBB1D778B2D003ECA34 /* AmtrakCascadesViewController.swift */; };
+		9AEF4DBE1D778ECF003ECA34 /* AmtrakCascadesScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4DBD1D778ECF003ECA34 /* AmtrakCascadesScheduleViewController.swift */; };
 		9AFEECE11D3925400078A781 /* CachesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFEECE01D3925400078A781 /* CachesStore.swift */; };
 /* End PBXBuildFile section */
 
@@ -295,6 +296,7 @@
 		9AEF4DB21D774BC8003ECA34 /* TwitterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterCell.swift; sourceTree = "<group>"; };
 		9AEF4DB91D778AF9003ECA34 /* AmtrakCascades.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AmtrakCascades.storyboard; sourceTree = "<group>"; };
 		9AEF4DBB1D778B2D003ECA34 /* AmtrakCascadesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmtrakCascadesViewController.swift; sourceTree = "<group>"; };
+		9AEF4DBD1D778ECF003ECA34 /* AmtrakCascadesScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmtrakCascadesScheduleViewController.swift; sourceTree = "<group>"; };
 		9AFEECE01D3925400078A781 /* CachesStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachesStore.swift; sourceTree = "<group>"; };
 		D580B199D18890EA70A9D2CE /* Pods-WSDOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.release.xcconfig"; sourceTree = "<group>"; };
 		EF91807E010BF6B934CE16C4 /* Pods-WSDOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1056,6 +1058,7 @@
 			isa = PBXGroup;
 			children = (
 				9AEF4DBB1D778B2D003ECA34 /* AmtrakCascadesViewController.swift */,
+				9AEF4DBD1D778ECF003ECA34 /* AmtrakCascadesScheduleViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1347,6 +1350,7 @@
 				9AD32E2A1D24233D000AEC28 /* FerriesHomeViewController.swift in Sources */,
 				9AEF4D8E1D7602FE003ECA34 /* FacebookCell.swift in Sources */,
 				9AEEDDA81D6F7FDF0032F5EC /* MountainPassReportViewController.swift in Sources */,
+				9AEF4DBE1D778ECF003ECA34 /* AmtrakCascadesScheduleViewController.swift in Sources */,
 				9A6FBD0D1D6CBC4E00CDCE16 /* TravelTimesRealmStore.swift in Sources */,
 				9A06167F1D62602500126520 /* MapMarkerDelegate.swift in Sources */,
 				9AEEDDAA1D6F893B0032F5EC /* MountainPassCamerasViewController.swift in Sources */,
