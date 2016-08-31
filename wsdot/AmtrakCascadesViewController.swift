@@ -13,7 +13,7 @@ class AmtrakCascadesViewController: UIViewController, UITableViewDelegate, UITab
     let cellIdentifier = "AmtrakCell"
     let segueAmtrakSchedulesViewController = "AmtrakCascadesScheduleViewController"
 
-    let menu_options = ["Buy Tickets At Amtrak.com", "Check Schedules and Status"]
+    let menu_options = ["Buy Tickets on Amtrak.com", "Check Schedules and Status"]
 
     override func viewDidLoad() {
     super.viewDidLoad()
