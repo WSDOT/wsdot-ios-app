@@ -19,6 +19,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     let SegueInfoViewController = "InfoViewController"
     let SegueMountainPassesViewController = "MountainPassesViewController"
     let SegueSocialMediaViewController = "SocialMediaViewController"
+    let SegueAmtrakCascadesViewController = "AmtrakCascadesViewController"
     
     var menu_options: [String] = []
     var menu_icon_names: [String] = []
@@ -88,7 +89,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         case 5:
             performSegueWithIdentifier(SegueBorderWaitsViewController, sender: self)
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
-            
+            break
+        case 6:
+            performSegueWithIdentifier(SegueAmtrakCascadesViewController, sender: self)
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            break
         default:
             break
         }
