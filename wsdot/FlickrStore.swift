@@ -33,7 +33,6 @@ class FlickrStore {
         }
     }
     
-    //Converts JSON from api into and array of FerriesRouteScheduleItems
     private static func parsePostsJSON(json: JSON) ->[FlickrItem]{
         
         var posts = [FlickrItem]()

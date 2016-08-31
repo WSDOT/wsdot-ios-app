@@ -31,7 +31,6 @@ class BloggerStore {
         }
     }
     
-    //Converts JSON from api into and array of FerriesRouteScheduleItems
     private static func parsePostsJSON(json: JSON) ->[BlogItem]{
         
         var posts = [BlogItem]()
