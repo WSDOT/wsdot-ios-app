@@ -87,7 +87,6 @@ class FacebookViewController: UIViewController, UITabBarDelegate, UITableViewDat
             documentAttributes: nil)
         
         cell.contentLabel.attributedText = attrStr
-        
         cell.updatedLabel.text = TimeUtils.fullTimeStamp(post.createdAt)
         
         return cell

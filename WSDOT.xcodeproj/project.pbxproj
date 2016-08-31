@@ -124,6 +124,10 @@
 		9AEF4D8A1D75FEE1003ECA34 /* FacebookStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D891D75FEE1003ECA34 /* FacebookStore.swift */; };
 		9AEF4D8C1D75FEEC003ECA34 /* FacebookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D8B1D75FEEC003ECA34 /* FacebookViewController.swift */; };
 		9AEF4D8E1D7602FE003ECA34 /* FacebookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D8D1D7602FE003ECA34 /* FacebookCell.swift */; };
+		9AEF4D911D7608DA003ECA34 /* FlickrItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D901D7608DA003ECA34 /* FlickrItem.swift */; };
+		9AEF4D931D7608ED003ECA34 /* FlickrStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D921D7608ED003ECA34 /* FlickrStore.swift */; };
+		9AEF4D951D7608F7003ECA34 /* FlickrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D941D7608F7003ECA34 /* FlickrViewController.swift */; };
+		9AEF4D971D760B72003ECA34 /* FlickrCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D961D760B72003ECA34 /* FlickrCollectionCell.swift */; };
 		9AFEECE11D3925400078A781 /* CachesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFEECE01D3925400078A781 /* CachesStore.swift */; };
 /* End PBXBuildFile section */
 
@@ -259,6 +263,10 @@
 		9AEF4D891D75FEE1003ECA34 /* FacebookStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookStore.swift; sourceTree = "<group>"; };
 		9AEF4D8B1D75FEEC003ECA34 /* FacebookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookViewController.swift; sourceTree = "<group>"; };
 		9AEF4D8D1D7602FE003ECA34 /* FacebookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookCell.swift; sourceTree = "<group>"; };
+		9AEF4D901D7608DA003ECA34 /* FlickrItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrItem.swift; sourceTree = "<group>"; };
+		9AEF4D921D7608ED003ECA34 /* FlickrStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrStore.swift; sourceTree = "<group>"; };
+		9AEF4D941D7608F7003ECA34 /* FlickrViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrViewController.swift; sourceTree = "<group>"; };
+		9AEF4D961D760B72003ECA34 /* FlickrCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrCollectionCell.swift; sourceTree = "<group>"; };
 		9AFEECE01D3925400078A781 /* CachesStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachesStore.swift; sourceTree = "<group>"; };
 		D580B199D18890EA70A9D2CE /* Pods-WSDOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.release.xcconfig"; sourceTree = "<group>"; };
 		EF91807E010BF6B934CE16C4 /* Pods-WSDOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.debug.xcconfig"; sourceTree = "<group>"; };
@@ -474,6 +482,7 @@
 				9AEEDDB61D70F1FD0032F5EC /* IconCell.swift */,
 				9AEF4D841D75DC47003ECA34 /* BloggerCell.swift */,
 				9AEF4D8D1D7602FE003ECA34 /* FacebookCell.swift */,
+				9AEF4D961D760B72003ECA34 /* FlickrCollectionCell.swift */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -926,6 +935,7 @@
 				9AEEDDBD1D74B0590032F5EC /* SocialMediaViewController.swift */,
 				9AEF4D821D75CF42003ECA34 /* BloggerViewController.swift */,
 				9AEF4D8B1D75FEEC003ECA34 /* FacebookViewController.swift */,
+				9AEF4D941D7608F7003ECA34 /* FlickrViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -933,6 +943,7 @@
 		9AEEDDBC1D74B0480032F5EC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9AEF4D8F1D7608BE003ECA34 /* Flickr */,
 				9AEF4D861D75FEC7003ECA34 /* Facebook */,
 				9AEF4D811D74E208003ECA34 /* Blogger */,
 			);
@@ -955,6 +966,15 @@
 				9AEF4D891D75FEE1003ECA34 /* FacebookStore.swift */,
 			);
 			name = Facebook;
+			sourceTree = "<group>";
+		};
+		9AEF4D8F1D7608BE003ECA34 /* Flickr */ = {
+			isa = PBXGroup;
+			children = (
+				9AEF4D901D7608DA003ECA34 /* FlickrItem.swift */,
+				9AEF4D921D7608ED003ECA34 /* FlickrStore.swift */,
+			);
+			name = Flickr;
 			sourceTree = "<group>";
 		};
 		9AFEECDA1D3924520078A781 /* Ferries */ = {
@@ -1176,6 +1196,7 @@
 				9A6FBD0B1D6CBC3A00CDCE16 /* TravelTimeItem.swift in Sources */,
 				9A1F5FA71D47E27200DA5F99 /* SailingSpacesItem.swift in Sources */,
 				9A06167A1D62285A00126520 /* VesselWatchViewController.swift in Sources */,
+				9AEF4D951D7608F7003ECA34 /* FlickrViewController.swift in Sources */,
 				9AEF4D8C1D75FEEC003ECA34 /* FacebookViewController.swift in Sources */,
 				9AEF4D851D75DC47003ECA34 /* BloggerCell.swift in Sources */,
 				9A6FBD331D6E3EA200CDCE16 /* MountianPassItem.swift in Sources */,
@@ -1189,6 +1210,7 @@
 				9A2F4A6E1D539C1600911AF5 /* CacheItem.swift in Sources */,
 				9A21E1CC1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift in Sources */,
 				9A1F5F9F1D47C2E800DA5F99 /* DeparturesCustomCell.swift in Sources */,
+				9AEF4D971D760B72003ECA34 /* FlickrCollectionCell.swift in Sources */,
 				9A6FBCEC1D6C953D00CDCE16 /* CalloutViewController.swift in Sources */,
 				9AEEDDAC1D6F89D90032F5EC /* MountainPassWeatherViewController.swift in Sources */,
 				9A6FBCCF1D6B520900CDCE16 /* RestAreaItem.swift in Sources */,
@@ -1201,6 +1223,7 @@
 				9AEEDDBE1D74B0590032F5EC /* SocialMediaViewController.swift in Sources */,
 				9AE486441D495ACB007A92E3 /* FerriesTerminalItem.swift in Sources */,
 				9AEF4D801D74E1F7003ECA34 /* BloggerStore.swift in Sources */,
+				9AEF4D911D7608DA003ECA34 /* FlickrItem.swift in Sources */,
 				9A0616C21D651B1300126520 /* InfoViewController.swift in Sources */,
 				9AE486471D495E90007A92E3 /* CameraItem.swift in Sources */,
 				9A07192E1D4110BC007BB4C5 /* RouteTabBarViewController.swift in Sources */,
@@ -1259,6 +1282,7 @@
 				9A81A57A1D4AC5840049913A /* RouteCamerasViewController.swift in Sources */,
 				9AEEDDA41D6F3D810032F5EC /* MountainPassCell.swift in Sources */,
 				9A0CA83C1D46AC51009C67B7 /* PickerTextField.swift in Sources */,
+				9AEF4D931D7608ED003ECA34 /* FlickrStore.swift in Sources */,
 				9A06167C1D622AE800126520 /* MapViewController.swift in Sources */,
 				9A6FBCC51D6B4C6500CDCE16 /* TravelerInfoViewController.swift in Sources */,
 				9A2C27251D679E5800F05D88 /* TrafficMapSettingsViewController.swift in Sources */,

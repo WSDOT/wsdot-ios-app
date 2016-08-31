@@ -75,6 +75,7 @@
                     <connections>
                         <segue destination="XOQ-ef-FjF" kind="show" identifier="BloggerViewController" id="19M-YO-EVF"/>
                         <segue destination="Du2-8d-2Og" kind="show" identifier="FacebookViewController" id="II4-Jo-wBR"/>
+                        <segue destination="EOQ-P4-jBb" kind="show" identifier="FlickrViewController" id="8FE-eK-ASk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ncX-ky-y6E" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -164,6 +165,85 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xpk-8a-C1z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1337" y="-276"/>
+        </scene>
+        <!--Flickr View Controller-->
+        <scene sceneID="Cpb-xQ-6aN">
+            <objects>
+                <viewController id="EOQ-P4-jBb" customClass="FlickrViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Yld-eF-MOg"/>
+                        <viewControllerLayoutGuide type="bottom" id="c5C-17-PhE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Z1S-z9-tsM">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LAQ-uE-Ltq">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="2Yj-Fw-HxI">
+                                    <size key="itemSize" width="180" height="180"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FlickrCell" id="OlW-pg-UPp" customClass="FlickrCollectionCell" customModule="WSDOT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="klm-v2-YXc">
+                                                    <rect key="frame" x="8" y="8" width="164" height="164"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7sD-Fz-Nt9">
+                                                    <rect key="frame" x="8" y="155" width="164" height="17"/>
+                                                    <color key="backgroundColor" red="0.20454727564102559" green="0.20454727564102559" blue="0.20454727564102559" alpha="0.50433728448275861" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="klm-v2-YXc" firstAttribute="bottom" secondItem="OlW-pg-UPp" secondAttribute="bottomMargin" id="BcJ-Iy-zMy"/>
+                                            <constraint firstItem="klm-v2-YXc" firstAttribute="trailing" secondItem="OlW-pg-UPp" secondAttribute="trailingMargin" id="DTu-gA-oAJ"/>
+                                            <constraint firstItem="klm-v2-YXc" firstAttribute="leading" secondItem="7sD-Fz-Nt9" secondAttribute="leading" id="IhI-rH-oXq"/>
+                                            <constraint firstItem="klm-v2-YXc" firstAttribute="trailing" secondItem="7sD-Fz-Nt9" secondAttribute="trailing" id="Qha-7U-WgA"/>
+                                            <constraint firstItem="klm-v2-YXc" firstAttribute="leading" secondItem="OlW-pg-UPp" secondAttribute="leadingMargin" id="Wil-M3-pE6"/>
+                                            <constraint firstItem="klm-v2-YXc" firstAttribute="bottom" secondItem="7sD-Fz-Nt9" secondAttribute="bottom" id="kbc-YU-39T"/>
+                                            <constraint firstItem="klm-v2-YXc" firstAttribute="top" secondItem="OlW-pg-UPp" secondAttribute="topMargin" id="pN9-iW-qdI"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imageTitle" destination="7sD-Fz-Nt9" id="wSL-GN-Itb"/>
+                                            <outlet property="postImage" destination="klm-v2-YXc" id="lTq-pf-FPB"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="EOQ-P4-jBb" id="soA-Cy-mZq"/>
+                                    <outlet property="delegate" destination="EOQ-P4-jBb" id="v3Q-Ix-UYd"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LAQ-uE-Ltq" firstAttribute="bottom" secondItem="c5C-17-PhE" secondAttribute="top" id="7Bw-fA-xXH"/>
+                            <constraint firstItem="LAQ-uE-Ltq" firstAttribute="top" secondItem="Yld-eF-MOg" secondAttribute="bottom" id="fyD-jA-0Yt"/>
+                            <constraint firstAttribute="trailing" secondItem="LAQ-uE-Ltq" secondAttribute="trailing" id="s8m-bX-14b"/>
+                            <constraint firstItem="LAQ-uE-Ltq" firstAttribute="leading" secondItem="Z1S-z9-tsM" secondAttribute="leading" id="xW9-i2-sDe"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="LAQ-uE-Ltq" id="5pd-eU-ruy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dad-ay-5tt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1337" y="1051"/>
         </scene>
         <!--Facebook View Controller-->
         <scene sceneID="AbP-gI-Mfd">
