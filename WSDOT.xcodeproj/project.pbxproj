@@ -132,6 +132,10 @@
 		9AEF4D9C1D772FA5003ECA34 /* NewsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D9B1D772FA5003ECA34 /* NewsStore.swift */; };
 		9AEF4D9E1D773040003ECA34 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D9D1D773040003ECA34 /* NewsViewController.swift */; };
 		9AEF4DA01D773256003ECA34 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D9F1D773256003ECA34 /* NewsCell.swift */; };
+		9AEF4DA31D773630003ECA34 /* YouTubeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4DA21D773630003ECA34 /* YouTubeItem.swift */; };
+		9AEF4DA61D773641003ECA34 /* YouTubeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4DA51D773641003ECA34 /* YouTubeStore.swift */; };
+		9AEF4DA81D773921003ECA34 /* YouTubeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4DA71D773921003ECA34 /* YouTubeViewController.swift */; };
+		9AEF4DAA1D7739E6003ECA34 /* YouTubeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4DA91D7739E6003ECA34 /* YouTubeCell.swift */; };
 		9AFEECE11D3925400078A781 /* CachesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFEECE01D3925400078A781 /* CachesStore.swift */; };
 /* End PBXBuildFile section */
 
@@ -275,6 +279,10 @@
 		9AEF4D9B1D772FA5003ECA34 /* NewsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsStore.swift; sourceTree = "<group>"; };
 		9AEF4D9D1D773040003ECA34 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		9AEF4D9F1D773256003ECA34 /* NewsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
+		9AEF4DA21D773630003ECA34 /* YouTubeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeItem.swift; sourceTree = "<group>"; };
+		9AEF4DA51D773641003ECA34 /* YouTubeStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeStore.swift; sourceTree = "<group>"; };
+		9AEF4DA71D773921003ECA34 /* YouTubeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeViewController.swift; sourceTree = "<group>"; };
+		9AEF4DA91D7739E6003ECA34 /* YouTubeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeCell.swift; sourceTree = "<group>"; };
 		9AFEECE01D3925400078A781 /* CachesStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachesStore.swift; sourceTree = "<group>"; };
 		D580B199D18890EA70A9D2CE /* Pods-WSDOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.release.xcconfig"; sourceTree = "<group>"; };
 		EF91807E010BF6B934CE16C4 /* Pods-WSDOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.debug.xcconfig"; sourceTree = "<group>"; };
@@ -492,6 +500,7 @@
 				9AEF4D8D1D7602FE003ECA34 /* FacebookCell.swift */,
 				9AEF4D961D760B72003ECA34 /* FlickrCollectionCell.swift */,
 				9AEF4D9F1D773256003ECA34 /* NewsCell.swift */,
+				9AEF4DA91D7739E6003ECA34 /* YouTubeCell.swift */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -946,6 +955,7 @@
 				9AEF4D8B1D75FEEC003ECA34 /* FacebookViewController.swift */,
 				9AEF4D941D7608F7003ECA34 /* FlickrViewController.swift */,
 				9AEF4D9D1D773040003ECA34 /* NewsViewController.swift */,
+				9AEF4DA71D773921003ECA34 /* YouTubeViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -953,6 +963,7 @@
 		9AEEDDBC1D74B0480032F5EC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9AEF4DA11D773621003ECA34 /* YouTube */,
 				9AEF4D981D772F92003ECA34 /* News */,
 				9AEF4D8F1D7608BE003ECA34 /* Flickr */,
 				9AEF4D861D75FEC7003ECA34 /* Facebook */,
@@ -995,6 +1006,15 @@
 				9AEF4D9B1D772FA5003ECA34 /* NewsStore.swift */,
 			);
 			name = News;
+			sourceTree = "<group>";
+		};
+		9AEF4DA11D773621003ECA34 /* YouTube */ = {
+			isa = PBXGroup;
+			children = (
+				9AEF4DA21D773630003ECA34 /* YouTubeItem.swift */,
+				9AEF4DA51D773641003ECA34 /* YouTubeStore.swift */,
+			);
+			name = YouTube;
 			sourceTree = "<group>";
 		};
 		9AFEECDA1D3924520078A781 /* Ferries */ = {
@@ -1271,8 +1291,11 @@
 				9A6FBD0D1D6CBC4E00CDCE16 /* TravelTimesRealmStore.swift in Sources */,
 				9A06167F1D62602500126520 /* MapMarkerDelegate.swift in Sources */,
 				9AEEDDAA1D6F893B0032F5EC /* MountainPassCamerasViewController.swift in Sources */,
+				9AEF4DA81D773921003ECA34 /* YouTubeViewController.swift in Sources */,
+				9AEF4DA31D773630003ECA34 /* YouTubeItem.swift in Sources */,
 				9A0616D21D660DC500126520 /* I405ViewController.swift in Sources */,
 				9A0CA8371D466045009C67B7 /* TimeUtils.swift in Sources */,
+				9AEF4DAA1D7739E6003ECA34 /* YouTubeCell.swift in Sources */,
 				9A1F5FA31D47DBB700DA5F99 /* SailingSpacesStore.swift in Sources */,
 				9AEEDDB51D70C5190032F5EC /* AlertPagerViewController.swift in Sources */,
 				9AD32E221D241AF4000AEC28 /* HomeViewController.swift in Sources */,
@@ -1282,6 +1305,7 @@
 				9A0616CC1D660BD500126520 /* SR520ViewController.swift in Sources */,
 				9A6FBD0F1D6CC43C00CDCE16 /* TravelTimeCell.swift in Sources */,
 				9A6FBCE31D6BA2DC00CDCE16 /* AlertInAreaViewController.swift in Sources */,
+				9AEF4DA61D773641003ECA34 /* YouTubeStore.swift in Sources */,
 				9AD32E2E1D243260000AEC28 /* FavoritesViewController.swift in Sources */,
 				9A0616CE1D660CC800126520 /* SR16ViewController.swift in Sources */,
 				9AEF4DA01D773256003ECA34 /* NewsCell.swift in Sources */,

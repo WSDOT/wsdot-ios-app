@@ -77,6 +77,7 @@
                         <segue destination="Du2-8d-2Og" kind="show" identifier="FacebookViewController" id="II4-Jo-wBR"/>
                         <segue destination="EOQ-P4-jBb" kind="show" identifier="FlickrViewController" id="8FE-eK-ASk"/>
                         <segue destination="d7I-Hq-pWa" kind="show" identifier="NewsViewController" id="AJK-ao-ip9"/>
+                        <segue destination="FSp-x5-1gf" kind="show" identifier="YouTubeViewController" id="cpQ-ET-d59"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ncX-ky-y6E" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -167,6 +168,90 @@
             </objects>
             <point key="canvasLocation" x="1337" y="-276"/>
         </scene>
+        <!--You Tube View Controller-->
+        <scene sceneID="tkV-x7-IyP">
+            <objects>
+                <viewController id="FSp-x5-1gf" customClass="YouTubeViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aZX-2x-IRZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="0Ze-Tf-PzT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KiF-TV-p8r">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="117" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mC2-X1-dok">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="YouTubeCell" rowHeight="117" id="Use-vU-dTv" customClass="YouTubeCell" customModule="WSDOT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="117"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Use-vU-dTv" id="W92-oT-Lgp">
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="116"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="36e-F3-Pcv">
+                                                    <rect key="frame" x="116" y="37" width="443" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NCY-N9-0LC">
+                                                    <rect key="frame" x="8" y="8" width="100" height="100"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="100" id="ac4-4B-A9G"/>
+                                                        <constraint firstAttribute="width" constant="100" id="f6X-5t-9cP"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HGo-8b-dkA">
+                                                    <rect key="frame" x="116" y="8" width="443" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="NCY-N9-0LC" firstAttribute="top" secondItem="W92-oT-Lgp" secondAttribute="topMargin" id="38e-QL-9Ud"/>
+                                                <constraint firstItem="HGo-8b-dkA" firstAttribute="trailing" secondItem="W92-oT-Lgp" secondAttribute="trailingMargin" id="JSy-Fw-k6K"/>
+                                                <constraint firstItem="36e-F3-Pcv" firstAttribute="trailing" secondItem="W92-oT-Lgp" secondAttribute="trailingMargin" id="N76-ze-1GU"/>
+                                                <constraint firstItem="HGo-8b-dkA" firstAttribute="leading" secondItem="NCY-N9-0LC" secondAttribute="trailing" constant="8" id="PjN-7m-Jcr"/>
+                                                <constraint firstItem="NCY-N9-0LC" firstAttribute="leading" secondItem="W92-oT-Lgp" secondAttribute="leadingMargin" id="RfW-dE-k33"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="NCY-N9-0LC" secondAttribute="bottom" id="Zr0-3s-Gca"/>
+                                                <constraint firstItem="HGo-8b-dkA" firstAttribute="top" secondItem="W92-oT-Lgp" secondAttribute="topMargin" id="hdM-lO-sXe"/>
+                                                <constraint firstItem="36e-F3-Pcv" firstAttribute="leading" secondItem="NCY-N9-0LC" secondAttribute="trailing" constant="8" id="kPw-gz-TtF"/>
+                                                <constraint firstItem="36e-F3-Pcv" firstAttribute="top" secondItem="HGo-8b-dkA" secondAttribute="bottom" constant="8" id="ti1-IA-lr6"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="publishedLabel" destination="36e-F3-Pcv" id="r52-Rs-j4q"/>
+                                            <outlet property="titleLabel" destination="HGo-8b-dkA" id="uqy-qd-Nch"/>
+                                            <outlet property="videoThumbnailView" destination="NCY-N9-0LC" id="KFf-b4-exX"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="FSp-x5-1gf" id="Ddo-YI-8Mn"/>
+                                    <outlet property="delegate" destination="FSp-x5-1gf" id="bfx-Rr-dv2"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mC2-X1-dok" firstAttribute="top" secondItem="aZX-2x-IRZ" secondAttribute="bottom" id="4Tz-0f-hBf"/>
+                            <constraint firstItem="mC2-X1-dok" firstAttribute="bottom" secondItem="0Ze-Tf-PzT" secondAttribute="top" id="9Wg-eY-xhJ"/>
+                            <constraint firstItem="mC2-X1-dok" firstAttribute="leading" secondItem="KiF-TV-p8r" secondAttribute="leading" id="GhJ-X6-qGK"/>
+                            <constraint firstAttribute="trailing" secondItem="mC2-X1-dok" secondAttribute="trailing" id="SIz-u2-HwN"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="mC2-X1-dok" id="47Z-Sq-P4e"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FAy-Ba-Sws" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="47" y="1195"/>
+        </scene>
         <!--News View Controller-->
         <scene sceneID="1Tv-lV-Egz">
             <objects>
@@ -239,7 +324,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uow-Y1-VOn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="548" y="1182"/>
+            <point key="canvasLocation" x="689" y="1195"/>
         </scene>
         <!--Flickr View Controller-->
         <scene sceneID="Cpb-xQ-6aN">
