@@ -8,5 +8,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * New codebase
 
 ### Added
-* Traffic Map redsign
+* Traffic Map gets refreshed looked
+* Added Flickr to Social Media Section
 * New contact in about section

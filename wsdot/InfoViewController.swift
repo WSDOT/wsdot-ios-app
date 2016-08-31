@@ -48,8 +48,8 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
             mail.setToRecipients(["simsl@wsdot.wa.gov"])
-            mail.setSubject("WSDOT iOS v\(version) Bug Report ")
-            mail.setMessageBody("<b>Bug Description:<b><br><br> <b>Steps to Reproduce:</b><br><br> <b>Paste Any Screenshots Below: </b><br><br>", isHTML: true)
+            mail.setSubject("WSDOT iOS v\(version) Issue Report ")
+            mail.setMessageBody("<b>Issue Description:<b><br><br> <b>Steps to Reproduce:</b><br><br> <b>Paste Any Screenshots Below: </b><br><br>", isHTML: true)
             presentViewController(mail, animated: true, completion: nil)
         } else {
             presentViewController(AlertMessages.getMailAlert(), animated: true, completion: nil)
