@@ -32,7 +32,7 @@ class YouTubeStore {
     
     private static func parsePostsJSON(json: JSON) ->[YouTubeItem]{
         
-        var newsItems = [YouTubeItem]()
+        var videoItems = [YouTubeItem]()
         
         for (_,postJson):(String, JSON) in json["items"] {
             
@@ -43,9 +43,9 @@ class YouTubeStore {
             post.thumbnailLink = postJson["snippet"]["thumbnails"]["default"]["url"].stringValue
             post.published = TimeUtils.postPubDateToNSDate(postJson["snippet"]["publishedAt"].stringValue, formatStr: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
             
-            newsItems.append(post)
+            videoItems.append(post)
         }
-        return newsItems
+        return videoItems
     }
 }
 

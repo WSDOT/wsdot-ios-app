@@ -136,6 +136,10 @@
 		9AEF4DA61D773641003ECA34 /* YouTubeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4DA51D773641003ECA34 /* YouTubeStore.swift */; };
 		9AEF4DA81D773921003ECA34 /* YouTubeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4DA71D773921003ECA34 /* YouTubeViewController.swift */; };
 		9AEF4DAA1D7739E6003ECA34 /* YouTubeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4DA91D7739E6003ECA34 /* YouTubeCell.swift */; };
+		9AEF4DAC1D773F94003ECA34 /* TwitterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4DAB1D773F94003ECA34 /* TwitterViewController.swift */; };
+		9AEF4DAF1D774353003ECA34 /* TwitterItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4DAE1D774353003ECA34 /* TwitterItems.swift */; };
+		9AEF4DB11D77435B003ECA34 /* TwitterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4DB01D77435B003ECA34 /* TwitterStore.swift */; };
+		9AEF4DB31D774BC8003ECA34 /* TwitterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4DB21D774BC8003ECA34 /* TwitterCell.swift */; };
 		9AFEECE11D3925400078A781 /* CachesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFEECE01D3925400078A781 /* CachesStore.swift */; };
 /* End PBXBuildFile section */
 
@@ -283,6 +287,10 @@
 		9AEF4DA51D773641003ECA34 /* YouTubeStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeStore.swift; sourceTree = "<group>"; };
 		9AEF4DA71D773921003ECA34 /* YouTubeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeViewController.swift; sourceTree = "<group>"; };
 		9AEF4DA91D7739E6003ECA34 /* YouTubeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeCell.swift; sourceTree = "<group>"; };
+		9AEF4DAB1D773F94003ECA34 /* TwitterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterViewController.swift; sourceTree = "<group>"; };
+		9AEF4DAE1D774353003ECA34 /* TwitterItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterItems.swift; sourceTree = "<group>"; };
+		9AEF4DB01D77435B003ECA34 /* TwitterStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterStore.swift; sourceTree = "<group>"; };
+		9AEF4DB21D774BC8003ECA34 /* TwitterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterCell.swift; sourceTree = "<group>"; };
 		9AFEECE01D3925400078A781 /* CachesStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachesStore.swift; sourceTree = "<group>"; };
 		D580B199D18890EA70A9D2CE /* Pods-WSDOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.release.xcconfig"; sourceTree = "<group>"; };
 		EF91807E010BF6B934CE16C4 /* Pods-WSDOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.debug.xcconfig"; sourceTree = "<group>"; };
@@ -501,6 +509,7 @@
 				9AEF4D961D760B72003ECA34 /* FlickrCollectionCell.swift */,
 				9AEF4D9F1D773256003ECA34 /* NewsCell.swift */,
 				9AEF4DA91D7739E6003ECA34 /* YouTubeCell.swift */,
+				9AEF4DB21D774BC8003ECA34 /* TwitterCell.swift */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -956,6 +965,7 @@
 				9AEF4D941D7608F7003ECA34 /* FlickrViewController.swift */,
 				9AEF4D9D1D773040003ECA34 /* NewsViewController.swift */,
 				9AEF4DA71D773921003ECA34 /* YouTubeViewController.swift */,
+				9AEF4DAB1D773F94003ECA34 /* TwitterViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -963,6 +973,7 @@
 		9AEEDDBC1D74B0480032F5EC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9AEF4DAD1D773FF4003ECA34 /* Twitter */,
 				9AEF4DA11D773621003ECA34 /* YouTube */,
 				9AEF4D981D772F92003ECA34 /* News */,
 				9AEF4D8F1D7608BE003ECA34 /* Flickr */,
@@ -1015,6 +1026,15 @@
 				9AEF4DA51D773641003ECA34 /* YouTubeStore.swift */,
 			);
 			name = YouTube;
+			sourceTree = "<group>";
+		};
+		9AEF4DAD1D773FF4003ECA34 /* Twitter */ = {
+			isa = PBXGroup;
+			children = (
+				9AEF4DAE1D774353003ECA34 /* TwitterItems.swift */,
+				9AEF4DB01D77435B003ECA34 /* TwitterStore.swift */,
+			);
+			name = Twitter;
 			sourceTree = "<group>";
 		};
 		9AFEECDA1D3924520078A781 /* Ferries */ = {
@@ -1309,17 +1329,21 @@
 				9AD32E2E1D243260000AEC28 /* FavoritesViewController.swift in Sources */,
 				9A0616CE1D660CC800126520 /* SR16ViewController.swift in Sources */,
 				9AEF4DA01D773256003ECA34 /* NewsCell.swift in Sources */,
+				9AEF4DB31D774BC8003ECA34 /* TwitterCell.swift in Sources */,
 				9A2C27271D67A1E400F05D88 /* SettingsCell.swift in Sources */,
 				9AEEDDB71D70F1FD0032F5EC /* IconCell.swift in Sources */,
 				9AEEDDAE1D708D8B0032F5EC /* ForecastCell.swift in Sources */,
+				9AEF4DAF1D774353003ECA34 /* TwitterItems.swift in Sources */,
 				9A6FBD091D6CBB0000CDCE16 /* TravelTimesViewController.swift in Sources */,
 				9A6FBD291D6DFFCE00CDCE16 /* BorderWaitCell.swift in Sources */,
 				9A81A5781D4AC5710049913A /* RouteTimesViewController.swift in Sources */,
 				9A0CA8311D428EE9009C67B7 /* RouteDeparturesViewController.swift in Sources */,
 				9A6FBCDC1D6B6E1200CDCE16 /* HighwayAlertsRealmStore.swift in Sources */,
+				9AEF4DAC1D773F94003ECA34 /* TwitterViewController.swift in Sources */,
 				9A1F5FA11D47D3D100DA5F99 /* CameraImageCustomCell.swift in Sources */,
 				9AD32E2C1D242A5A000AEC28 /* RouteSchedulesViewController.swift in Sources */,
 				9AEF4D8A1D75FEE1003ECA34 /* FacebookStore.swift in Sources */,
+				9AEF4DB11D77435B003ECA34 /* TwitterStore.swift in Sources */,
 				9A0616B71D63674500126520 /* VesselWatchStore.swift in Sources */,
 				9A6FBD1F1D6DF91300CDCE16 /* BorderWaitItem.swift in Sources */,
 				9A6FBD391D6E4A4700CDCE16 /* ForcastItem.swift in Sources */,
