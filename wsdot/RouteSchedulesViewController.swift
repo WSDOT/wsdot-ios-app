@@ -54,7 +54,6 @@ class RouteSchedulesViewController: UITableViewController {
         refresh(true)
     }
     
-    // MARK: -
     // MARK: Table View Data Source Methods
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -82,7 +81,6 @@ class RouteSchedulesViewController: UITableViewController {
         return cell
     }
 
-    // MARK: -
     // MARK: Table View Delegate Methods
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // Perform Segue
@@ -90,6 +88,7 @@ class RouteSchedulesViewController: UITableViewController {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
+    // MARK: Naviagtion
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == SegueRouteDeparturesViewController {
             if let indexPath = tableView.indexPathForSelectedRow {

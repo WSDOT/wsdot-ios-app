@@ -90,6 +90,9 @@
 		9A81A57C1D4BB41B0049913A /* LatLonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */; };
 		9AB0177A1D51464B004C228E /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AB017791D51464B004C228E /* Camera.storyboard */; };
 		9AB0177C1D514668004C228E /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0177B1D514668004C228E /* CameraViewController.swift */; };
+		9AB549011D7874E000927F13 /* AmtrakCascadesStationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB549001D7874E000927F13 /* AmtrakCascadesStationItem.swift */; };
+		9AB549031D78758400927F13 /* AmtrakCascadesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB549021D78758400927F13 /* AmtrakCascadesStore.swift */; };
+		9AB549051D78899600927F13 /* AmtrakCascadesScheduleDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB549041D78899600927F13 /* AmtrakCascadesScheduleDetailsViewController.swift */; };
 		9AD32DFD1D23172C000AEC28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32DFC1D23172C000AEC28 /* AppDelegate.swift */; };
 		9AD32E021D23172C000AEC28 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E001D23172C000AEC28 /* Main.storyboard */; };
 		9AD32E041D23172C000AEC28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E031D23172C000AEC28 /* Assets.xcassets */; };
@@ -240,6 +243,9 @@
 		9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatLonUtils.swift; sourceTree = "<group>"; };
 		9AB017791D51464B004C228E /* Camera.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
 		9AB0177B1D514668004C228E /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		9AB549001D7874E000927F13 /* AmtrakCascadesStationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmtrakCascadesStationItem.swift; sourceTree = "<group>"; };
+		9AB549021D78758400927F13 /* AmtrakCascadesStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmtrakCascadesStore.swift; sourceTree = "<group>"; };
+		9AB549041D78899600927F13 /* AmtrakCascadesScheduleDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmtrakCascadesScheduleDetailsViewController.swift; sourceTree = "<group>"; };
 		9AD32DF91D23172C000AEC28 /* WSDOT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WSDOT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD32DFC1D23172C000AEC28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9AD32E011D23172C000AEC28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -1059,6 +1065,7 @@
 			children = (
 				9AEF4DBB1D778B2D003ECA34 /* AmtrakCascadesViewController.swift */,
 				9AEF4DBD1D778ECF003ECA34 /* AmtrakCascadesScheduleViewController.swift */,
+				9AB549041D78899600927F13 /* AmtrakCascadesScheduleDetailsViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1074,6 +1081,8 @@
 		9AEF4DB81D778AD9003ECA34 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9AB549001D7874E000927F13 /* AmtrakCascadesStationItem.swift */,
+				9AB549021D78758400927F13 /* AmtrakCascadesStore.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1357,6 +1366,7 @@
 				9AEF4DA81D773921003ECA34 /* YouTubeViewController.swift in Sources */,
 				9AEF4DA31D773630003ECA34 /* YouTubeItem.swift in Sources */,
 				9A0616D21D660DC500126520 /* I405ViewController.swift in Sources */,
+				9AB549051D78899600927F13 /* AmtrakCascadesScheduleDetailsViewController.swift in Sources */,
 				9A0CA8371D466045009C67B7 /* TimeUtils.swift in Sources */,
 				9AEF4DAA1D7739E6003ECA34 /* YouTubeCell.swift in Sources */,
 				9A1F5FA31D47DBB700DA5F99 /* SailingSpacesStore.swift in Sources */,
@@ -1371,6 +1381,8 @@
 				9AEF4DA61D773641003ECA34 /* YouTubeStore.swift in Sources */,
 				9AD32E2E1D243260000AEC28 /* FavoritesViewController.swift in Sources */,
 				9A0616CE1D660CC800126520 /* SR16ViewController.swift in Sources */,
+				9AB549011D7874E000927F13 /* AmtrakCascadesStationItem.swift in Sources */,
+				9AB549031D78758400927F13 /* AmtrakCascadesStore.swift in Sources */,
 				9AEF4DA01D773256003ECA34 /* NewsCell.swift in Sources */,
 				9AEF4DB31D774BC8003ECA34 /* TwitterCell.swift in Sources */,
 				9A2C27271D67A1E400F05D88 /* SettingsCell.swift in Sources */,
