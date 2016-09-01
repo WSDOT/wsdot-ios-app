@@ -85,6 +85,8 @@ class TimeUtils {
         return time
     }
     
+    
+    
     static func getDateFromJSONArray(time: [JSON]) -> NSDate{
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-M-d H:mm"
@@ -108,6 +110,13 @@ class TimeUtils {
     static func fullTimeStamp(date: NSDate) -> String {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MMMM dd, YYYY H:MM a"
+        return dateFormatter.stringFromDate(date)
+    }
+    
+    // returns a date string with the format MMMM DD, YYYY H:MM a
+    static func formatTime(date: NSDate, format: String) -> String {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = format
         return dateFormatter.stringFromDate(date)
     }
     

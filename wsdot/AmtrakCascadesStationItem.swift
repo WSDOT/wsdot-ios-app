@@ -10,15 +10,13 @@ class AmtrakCascadesStationItem {
     
     let id: String
     let name: String
-    let sortOrder: Int
     let lat: Double
     let lon: Double
     var distance: Int = -1
     
-    init(id: String, name: String, sortOrder: Int, lat: Double, lon: Double){
+    init(id: String, name: String, lat: Double, lon: Double){
         self.id = id
         self.name = name
-        self.sortOrder = sortOrder
         self.lat = lat
         self.lon = lon
     }

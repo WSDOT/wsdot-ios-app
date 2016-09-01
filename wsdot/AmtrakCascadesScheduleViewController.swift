@@ -124,11 +124,13 @@ class AmtrakCascadesScheduleViewController: UIViewController, UIPickerViewDelega
     }
     
     @IBAction func submitAction(sender: UIButton) {
+        
         if AmtrakCascadesStore.stationIdsMap[originPickerData[currentOriginIndex]]! == AmtrakCascadesStore.stationIdsMap[destinationPickerData[currentDestIndex]]! {
-            presentViewController(AlertMessages.getAlert("Origin and Destination Cannot be the Same", message: ""), animated: true, completion: nil)
-        } else {
-            performSegueWithIdentifier(segueAmtrakCascadesScheduleDetailsViewController, sender: self)
+            currentDestIndex = 0
         }
+        
+        performSegueWithIdentifier(segueAmtrakCascadesScheduleDetailsViewController, sender: self)
+        
     }
     
     // MARK: Picker View Delegate & data source methods
@@ -204,7 +206,7 @@ class AmtrakCascadesScheduleViewController: UIViewController, UIPickerViewDelega
         let userLat: Double = usersLocation!.coordinate.latitude
         let userLon: Double = usersLocation!.coordinate.longitude
     
-        var closest = (station: AmtrakCascadesStationItem(id: "", name: "", sortOrder: -1, lat: 0.0, lon: 0.0), distance: Int.max)
+        var closest = (station: AmtrakCascadesStationItem(id: "", name: "", lat: 0.0, lon: 0.0), distance: Int.max)
         
         for station in stationItems {
     
@@ -217,8 +219,10 @@ class AmtrakCascadesScheduleViewController: UIViewController, UIPickerViewDelega
         
         }
         
-        originTextField.text = originPickerData[closest.station.sortOrder]
-        currentOriginIndex = closest.station.sortOrder
+        let index = originPickerData.indexOf(closest.station.name)
+        
+        originTextField.text = originPickerData[index!]
+        currentOriginIndex = index!
         
         manager.stopUpdatingLocation()
     }
@@ -239,7 +243,9 @@ class AmtrakCascadesScheduleViewController: UIViewController, UIPickerViewDelega
         if segue.identifier == segueAmtrakCascadesScheduleDetailsViewController {
             let destinationViewController = segue.destinationViewController as! AmtrakCascadesScheduleDetailsViewController
             
-            destinationViewController.day = dayPickerData[currentDayIndex]
+            let interval = NSTimeInterval(60 * 60 * 24 * currentDayIndex)
+        
+            destinationViewController.date = NSDate().dateByAddingTimeInterval(interval)
             
             destinationViewController.originId = AmtrakCascadesStore.stationIdsMap[originPickerData[currentOriginIndex]]!
             
