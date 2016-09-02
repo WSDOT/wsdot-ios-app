@@ -55,9 +55,24 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         
     }
     
+    // Checks if users has any favorites.
+    // if they do check if they favorites should be updated, if not display no favorites screen
     override func viewWillAppear(animated: Bool) {
-        self.initActivityIndicator.startAnimating()
-        self.loadFavorites(false)
+        
+        self.favoriteTravelTimes = TravelTimesStore.findFavoriteTimes()
+        self.favoriteRoutes = FerryRealmStore.findFavoriteSchedules()
+        self.favoriteCameras = CamerasStore.getFavoriteCameras()
+        self.favoriteLocations = FavoriteLocationStore.getFavorites()
+        self.favoritePasses = MountainPassStore.findFavoritePasses()
+        
+        if (self.favoritesTableEmpty()){
+            self.emptyFavoritesView.hidden = false
+        }else {
+            self.emptyFavoritesView.hidden = true
+            self.initActivityIndicator.startAnimating()
+            self.loadFavorites(false)
+        }
+        
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -78,7 +93,6 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func loadFavoritesAction(refreshController: UIRefreshControl){
-        initActivityIndicator.startAnimating()
         loadFavorites(true)
     }
     

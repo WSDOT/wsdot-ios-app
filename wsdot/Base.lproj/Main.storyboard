@@ -239,6 +239,12 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yMH-n6-F0h">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Favorites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2T-aD-Yj7">
+                                        <rect key="frame" x="252" y="8" width="96" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Mw-SZ-FVd">
                                         <rect key="frame" x="288" y="66" width="24" height="24"/>
                                         <constraints>
@@ -258,10 +264,12 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="Bbp-dt-9sc" firstAttribute="top" secondItem="yMH-n6-F0h" secondAttribute="top" constant="37" id="6Fn-4F-Z8A"/>
-                                    <constraint firstItem="Bbp-dt-9sc" firstAttribute="centerX" secondItem="8Mw-SZ-FVd" secondAttribute="centerX" id="CLB-Fc-ntf"/>
-                                    <constraint firstItem="8Mw-SZ-FVd" firstAttribute="top" secondItem="Bbp-dt-9sc" secondAttribute="bottom" constant="8" symbolic="YES" id="Tde-oH-t0Y"/>
-                                    <constraint firstItem="Bbp-dt-9sc" firstAttribute="centerX" secondItem="yMH-n6-F0h" secondAttribute="centerX" id="dx7-fM-Z7p"/>
+                                    <constraint firstItem="8Mw-SZ-FVd" firstAttribute="centerX" secondItem="Bbp-dt-9sc" secondAttribute="centerX" id="Thf-5c-fdc"/>
+                                    <constraint firstItem="Bbp-dt-9sc" firstAttribute="top" secondItem="K2T-aD-Yj7" secondAttribute="bottom" constant="8" symbolic="YES" id="aNT-gV-lAb"/>
+                                    <constraint firstItem="8Mw-SZ-FVd" firstAttribute="top" secondItem="Bbp-dt-9sc" secondAttribute="bottom" constant="8" symbolic="YES" id="gXU-n0-hyA"/>
+                                    <constraint firstItem="K2T-aD-Yj7" firstAttribute="centerX" secondItem="Bbp-dt-9sc" secondAttribute="centerX" id="hIW-5R-ZU9"/>
+                                    <constraint firstItem="K2T-aD-Yj7" firstAttribute="top" secondItem="yMH-n6-F0h" secondAttribute="topMargin" id="kEt-dN-opd"/>
+                                    <constraint firstItem="K2T-aD-Yj7" firstAttribute="centerX" secondItem="yMH-n6-F0h" secondAttribute="centerX" id="xsa-Uz-tlp"/>
                                 </constraints>
                             </view>
                         </subviews>
