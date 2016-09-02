@@ -60,6 +60,7 @@ class TrafficMapSettingsViewController: UIViewController {
             cell.settingSwitch.addTarget(self, action: #selector(TrafficMapSettingsViewController.changeAlertsPref(_:)), forControlEvents: .ValueChanged)
             cell.settingSwitch.hidden = false
             cell.selectionStyle = .None
+            cell.favoriteImageView.hidden = true
             break
         case menu_options[1]:
             let restAreaPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.restAreas)
@@ -74,6 +75,7 @@ class TrafficMapSettingsViewController: UIViewController {
             cell.settingSwitch.addTarget(self, action: #selector(TrafficMapSettingsViewController.changeRestAreaPref(_:)), forControlEvents: .ValueChanged)
             cell.settingSwitch.hidden = false
             cell.selectionStyle = .None
+            cell.favoriteImageView.hidden = true
             break
         case menu_options[2]:
             let jblmPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.jblmCallout)
@@ -87,10 +89,12 @@ class TrafficMapSettingsViewController: UIViewController {
             cell.settingSwitch.addTarget(self, action: #selector(TrafficMapSettingsViewController.changeJBLMPref(_:)), forControlEvents: .ValueChanged)
             cell.settingSwitch.hidden = false
             cell.selectionStyle = .None
+            cell.favoriteImageView.hidden = true
             break
         case menu_options[3]:
             cell.selectionStyle = .Blue
             cell.settingSwitch.hidden = true
+            cell.favoriteImageView.hidden = false
             break
         default: break
             

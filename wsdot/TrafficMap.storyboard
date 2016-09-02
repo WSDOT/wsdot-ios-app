@@ -628,15 +628,25 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icFavoriteDefault" translatesAutoresizingMaskIntoConstraints="NO" id="s7j-DD-Rr7">
+                                                    <rect key="frame" x="558" y="10" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="24" id="T8o-xj-DkV"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="s7j-DD-Rr7" firstAttribute="top" secondItem="orx-hg-QW8" secondAttribute="topMargin" constant="2" id="BRV-Sa-mLr"/>
                                                 <constraint firstItem="D9p-uc-0TU" firstAttribute="centerY" secondItem="owa-9R-fe1" secondAttribute="centerY" id="RN7-69-etW"/>
                                                 <constraint firstItem="D9p-uc-0TU" firstAttribute="leading" secondItem="orx-hg-QW8" secondAttribute="leadingMargin" constant="8" id="XXC-Xn-dSw"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="owa-9R-fe1" secondAttribute="trailing" constant="10" id="dWQ-Lv-cUw"/>
                                                 <constraint firstItem="D9p-uc-0TU" firstAttribute="centerY" secondItem="orx-hg-QW8" secondAttribute="centerY" id="lkv-sg-SUs"/>
+                                                <constraint firstItem="s7j-DD-Rr7" firstAttribute="centerY" secondItem="owa-9R-fe1" secondAttribute="centerY" id="vFc-Ob-YS9"/>
+                                                <constraint firstItem="s7j-DD-Rr7" firstAttribute="trailing" secondItem="owa-9R-fe1" secondAttribute="trailing" id="vOb-qw-p6n"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="favoriteImageView" destination="s7j-DD-Rr7" id="uyi-BI-rI6"/>
                                             <outlet property="settingLabel" destination="D9p-uc-0TU" id="hgt-TC-c22"/>
                                             <outlet property="settingSwitch" destination="owa-9R-fe1" id="n4N-bP-P9h"/>
                                         </connections>
@@ -669,6 +679,7 @@
         <image name="icAlert" width="24" height="24"/>
         <image name="icCamera" width="48" height="48"/>
         <image name="icDotMenu" width="24" height="24"/>
+        <image name="icFavoriteDefault" width="32" height="32"/>
         <image name="icLocation" width="24" height="24"/>
         <image name="icMenu" width="24" height="24"/>
         <image name="icMyLocation" width="32" height="32"/>

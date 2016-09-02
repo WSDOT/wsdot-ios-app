@@ -73,6 +73,8 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
         
         tableView.addSubview(refreshControl)
         
+        refreshControl.beginRefreshing()
+        tableView.contentOffset = CGPoint(x: 0, y: self.tableView.contentOffset.y - self.refreshControl.frame.size.height)
         refresh(pickerData[self.currentAccountIndex].screenName)
     }
     
@@ -81,9 +83,6 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
     }
     
     func refresh(account: String?) {
-        
-        refreshControl.beginRefreshing()
-        tableView.contentOffset = CGPoint(x: 0, y: self.tableView.contentOffset.y - self.refreshControl.frame.size.height)
         
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) { [weak self] in
             TwitterStore.getTweets(account, completion: { data, error in
@@ -185,6 +184,8 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
         pickerTextView.resignFirstResponder()
         tweets.removeAll()
         tableView.reloadData()
+        refreshControl.beginRefreshing()
+        tableView.contentOffset = CGPoint(x: 0, y: self.tableView.contentOffset.y - self.refreshControl.frame.size.height)
         refresh(pickerData[self.currentAccountIndex].screenName)
     }
     

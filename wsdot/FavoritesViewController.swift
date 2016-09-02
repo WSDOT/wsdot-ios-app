@@ -24,7 +24,10 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     let segueTravelTimeViewController = "TravelTimeViewController"
     let segueMountainPassDetailsViewController = "MountianPassDetailsViewController"
 
+    @IBOutlet weak var emptyFavoritesView: UIView!
+    @IBOutlet weak var initLoadingView: UIView!
     @IBOutlet weak var favoritesTable: UITableView!
+    @IBOutlet weak var initActivityIndicator: UIActivityIndicatorView!
     
     var favoriteLocations = [FavoriteLocationItem]()
     var favoriteRoutes = [FerryScheduleItem]()
@@ -35,6 +38,8 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     var notificationToken: NotificationToken?
     
     let refreshControl = UIRefreshControl()
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +56,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     override func viewWillAppear(animated: Bool) {
+        self.initActivityIndicator.startAnimating()
         self.loadFavorites(false)
     }
     
@@ -72,12 +78,12 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func loadFavoritesAction(refreshController: UIRefreshControl){
+        initActivityIndicator.startAnimating()
         loadFavorites(true)
     }
     
     private func loadFavorites(force: Bool){
 
-        
         let serviceGroup = dispatch_group_create();
         
         self.requestFavoriteFerries(force, serviceGroup: serviceGroup)
@@ -93,7 +99,15 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             self.favoriteLocations = FavoriteLocationStore.getFavorites()
             self.favoritePasses = MountainPassStore.findFavoritePasses()
 
+            if (self.favoritesTableEmpty()){
+                self.emptyFavoritesView.hidden = false
+            }else {
+                self.emptyFavoritesView.hidden = true
+            }
+
             self.favoritesTable.reloadData()
+            self.initActivityIndicator.stopAnimating()
+            self.initLoadingView.hidden = true
             self.refreshControl.endRefreshing()
         }
     }
@@ -351,6 +365,11 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
                 break
             }
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            
+            if (favoritesTableEmpty()){
+                emptyFavoritesView.hidden = false
+            }
+            
         }
     }
     
@@ -376,7 +395,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    // MARK: navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == segueTrafficMapViewController {
@@ -415,5 +434,14 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
                 destinationViewController.travelTime = travelTimeItem
             }
         }
+    }
+    
+    // MARK: Helpers
+    func favoritesTableEmpty() -> Bool {
+    return (self.favoritePasses.count == 0) &&
+            (self.favoriteRoutes.count == 0) &&
+            (self.favoriteCameras.count == 0) &&
+            (self.favoriteLocations.count == 0) &&
+            (self.favoriteTravelTimes.count == 0)
     }
 }

@@ -223,18 +223,70 @@
                                     <outlet property="delegate" destination="T7Q-Fa-apl" id="DiM-iE-BBK"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p6j-ml-QMi">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                                <subviews>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="d0i-zP-U98">
+                                        <rect key="frame" x="290" y="234" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="d0i-zP-U98" firstAttribute="centerX" secondItem="p6j-ml-QMi" secondAttribute="centerX" id="EOU-Gg-sAi"/>
+                                    <constraint firstItem="d0i-zP-U98" firstAttribute="centerY" secondItem="p6j-ml-QMi" secondAttribute="centerY" id="hiP-O2-QVd"/>
+                                </constraints>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yMH-n6-F0h">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Mw-SZ-FVd">
+                                        <rect key="frame" x="288" y="66" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="WhV-EK-PYG"/>
+                                            <constraint firstAttribute="width" constant="24" id="pWM-8z-Ugr"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="icFavoriteDefault">
+                                            <color key="titleColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Look for a star to add Favorites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bbp-dt-9sc">
+                                        <rect key="frame" x="182" y="37" width="237" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Bbp-dt-9sc" firstAttribute="top" secondItem="yMH-n6-F0h" secondAttribute="top" constant="37" id="6Fn-4F-Z8A"/>
+                                    <constraint firstItem="Bbp-dt-9sc" firstAttribute="centerX" secondItem="8Mw-SZ-FVd" secondAttribute="centerX" id="CLB-Fc-ntf"/>
+                                    <constraint firstItem="8Mw-SZ-FVd" firstAttribute="top" secondItem="Bbp-dt-9sc" secondAttribute="bottom" constant="8" symbolic="YES" id="Tde-oH-t0Y"/>
+                                    <constraint firstItem="Bbp-dt-9sc" firstAttribute="centerX" secondItem="yMH-n6-F0h" secondAttribute="centerX" id="dx7-fM-Z7p"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="K0r-R3-tVu" firstAttribute="top" secondItem="B9f-ZW-xhb" secondAttribute="top" id="1mU-in-ozt"/>
+                            <constraint firstItem="yMH-n6-F0h" firstAttribute="leading" secondItem="p6j-ml-QMi" secondAttribute="leading" id="GkJ-xl-fuq"/>
+                            <constraint firstItem="p6j-ml-QMi" firstAttribute="leading" secondItem="K0r-R3-tVu" secondAttribute="leading" id="Nvp-qs-VWu"/>
+                            <constraint firstItem="p6j-ml-QMi" firstAttribute="bottom" secondItem="TNM-mu-2SI" secondAttribute="top" id="SPR-4c-vDZ"/>
                             <constraint firstItem="K0r-R3-tVu" firstAttribute="bottom" secondItem="TNM-mu-2SI" secondAttribute="top" id="Say-zS-afm"/>
                             <constraint firstAttribute="trailing" secondItem="K0r-R3-tVu" secondAttribute="trailing" id="Yaw-1A-uqd"/>
+                            <constraint firstItem="yMH-n6-F0h" firstAttribute="top" secondItem="p6j-ml-QMi" secondAttribute="top" id="dG8-cA-fZq"/>
+                            <constraint firstItem="p6j-ml-QMi" firstAttribute="trailing" secondItem="K0r-R3-tVu" secondAttribute="trailing" id="kMb-Vf-baR"/>
+                            <constraint firstItem="yMH-n6-F0h" firstAttribute="trailing" secondItem="p6j-ml-QMi" secondAttribute="trailing" id="nJh-Ka-deg"/>
                             <constraint firstItem="K0r-R3-tVu" firstAttribute="leading" secondItem="B9f-ZW-xhb" secondAttribute="leading" id="vCd-U8-ZxH"/>
+                            <constraint firstItem="p6j-ml-QMi" firstAttribute="top" secondItem="K0r-R3-tVu" secondAttribute="top" id="yVg-kw-idk"/>
+                            <constraint firstItem="yMH-n6-F0h" firstAttribute="bottom" secondItem="TNM-mu-2SI" secondAttribute="top" id="yXU-Pv-vZm"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="7yi-QY-ec7"/>
                     <connections>
+                        <outlet property="emptyFavoritesView" destination="yMH-n6-F0h" id="KGT-Th-RBa"/>
                         <outlet property="favoritesTable" destination="K0r-R3-tVu" id="bsB-fv-d7X"/>
+                        <outlet property="initActivityIndicator" destination="d0i-zP-U98" id="AGt-c0-FLW"/>
+                        <outlet property="initLoadingView" destination="p6j-ml-QMi" id="fWW-14-mfd"/>
                         <segue destination="3tB-Ij-054" kind="show" identifier="FavoriteSailingsViewController" id="gMc-xO-dgX"/>
                         <segue destination="Zfo-py-Elh" kind="show" identifier="FavoriteCameraViewController" id="Pwk-Kr-Jeq"/>
                         <segue destination="oG1-En-Tc4" kind="show" identifier="TrafficMapViewController" id="V87-UJ-1jU"/>
@@ -608,6 +660,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="icFavoriteDefault" width="32" height="32"/>
         <image name="icFavoritesTab" width="32" height="32"/>
         <image name="icHomeTab" width="32" height="32"/>
         <image name="icInfo" width="24" height="24"/>
