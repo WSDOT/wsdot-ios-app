@@ -70,8 +70,9 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
         
         // refresh controller
         refreshControl.addTarget(self, action: #selector(TwitterViewController.refreshAction(_:)), forControlEvents: .ValueChanged)
+        
         tableView.addSubview(refreshControl)
-        refreshControl.beginRefreshing()
+        
         refresh(pickerData[self.currentAccountIndex].screenName)
     }
     
@@ -80,29 +81,32 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
     }
     
     func refresh(account: String?) {
+        
+        refreshControl.beginRefreshing()
+        tableView.contentOffset = CGPoint(x: 0, y: self.tableView.contentOffset.y - self.refreshControl.frame.size.height)
+        
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) { [weak self] in
-                TwitterStore.getTweets(account, completion: { data, error in
-                    if let validData = data {
-                        dispatch_async(dispatch_get_main_queue()) { [weak self] in
-                            if let selfValue = self{
-                                selfValue.tweets = validData
-                                selfValue.tableView.reloadData()
-                                selfValue.refreshControl.endRefreshing()
-                            }
-                        }
-                    } else {
-                        dispatch_async(dispatch_get_main_queue()) { [weak self] in
-                            if let selfValue = self{
-                                selfValue.refreshControl.endRefreshing()
-                                selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
-                                
-                            }
+            TwitterStore.getTweets(account, completion: { data, error in
+                if let validData = data {
+                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                        if let selfValue = self{
+                            selfValue.tweets = validData
+                            selfValue.tableView.reloadData()
+                            selfValue.refreshControl.endRefreshing()
                         }
                     }
-                })
+                } else {
+                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                        if let selfValue = self{
+                            selfValue.refreshControl.endRefreshing()
+                            selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                        }
+                    }
+                }
+            })
         }
     }
-
+    
     // MARK: Table View Data Source Methods
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
@@ -179,7 +183,8 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
         tableView.setContentOffset(CGPointZero, animated: false)
         pickerTextView.text = pickerData[currentAccountIndex].name
         pickerTextView.resignFirstResponder()
-        refreshControl.beginRefreshing()
+        tweets.removeAll()
+        tableView.reloadData()
         refresh(pickerData[self.currentAccountIndex].screenName)
     }
     

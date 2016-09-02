@@ -76,6 +76,8 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     private func loadFavorites(force: Bool){
+
+        
         let serviceGroup = dispatch_group_create();
         
         self.requestFavoriteFerries(force, serviceGroup: serviceGroup)

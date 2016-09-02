@@ -21,7 +21,7 @@ class WeatherUtils {
     static private let mostlyCloudy = ("icCloudy4", "icCloudyNight4", ["broken", "mostly cloudy"])
     static private let overcast = ("icOvercast", "icOvercast", ["overcast"])
     static private let sleet = ("icSleet", "icSleet", ["rain snow", "light rain snow", "heavy rain snow", "rain and snow"])
-    static private let lightRain = ("icLightRain", "icLightRain", ["light rain", "showers"])
+    static private let lightRain = ("icLightRain", "icLightRain", ["light rain", "showers", "scattered rain"])
     static private let rain = ("icRain", "icRain", ["rain", "heavy rain", "raining"])
     static private let snow = ("icSnow", "icSnow", ["snow", "snowing", "light snow", "heavy snow"])
     static private let fog = ("icFog", "icFog", ["fog"])
