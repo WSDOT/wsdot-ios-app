@@ -79,7 +79,6 @@ class BloggerViewController: UIViewController, UITabBarDelegate, UITableViewData
         cell.content.text = posts[indexPath.row].content
         cell.updated.text = TimeUtils.fullTimeStamp(posts[indexPath.row].published)
         cell.imageView!.sd_setImageWithURL(NSURL(string: posts[indexPath.row].imageUrl), placeholderImage: UIImage(named: "imagePlaceholderSmall"), options: .RefreshCached)
-        cell.imageView?.layer.cornerRadius = 8.0
         cell.imageView?.backgroundColor = UIColor.clearColor()
         
         return cell

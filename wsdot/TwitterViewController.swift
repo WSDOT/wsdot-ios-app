@@ -39,6 +39,8 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
     var currentAccountIndex = 0
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+    
         title = "WSDOT on Twitter"
         
         // Set up account picker
@@ -78,11 +80,18 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
         refresh(pickerData[self.currentAccountIndex].screenName)
     }
     
+    override func didReceiveMemoryWarning() {
+        print("Memory warning")
+    }
+    
     func refreshAction(sender: UIRefreshControl){
         refresh(pickerData[self.currentAccountIndex].screenName)
     }
     
     func refresh(account: String?) {
+        
+        tweets.removeAll()
+        tableView.reloadData()
         
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) { [weak self] in
             TwitterStore.getTweets(account, completion: { data, error in
@@ -174,16 +183,19 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
         return pickerData[row].name
     }
     
+    
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        currentAccountIndex = row
+        dispatch_async(dispatch_get_main_queue()) { [weak self] in
+            if let selfValue = self {
+                selfValue.currentAccountIndex = row
+                selfValue.pickerTextView.text = selfValue.pickerData[selfValue.currentAccountIndex].name
+            }
+        }
     }
     
     func donePicker() {
-        tableView.setContentOffset(CGPointZero, animated: false)
         pickerTextView.text = pickerData[currentAccountIndex].name
         pickerTextView.resignFirstResponder()
-        tweets.removeAll()
-        tableView.reloadData()
         refreshControl.beginRefreshing()
         tableView.contentOffset = CGPoint(x: 0, y: self.tableView.contentOffset.y - self.refreshControl.frame.size.height)
         refresh(pickerData[self.currentAccountIndex].screenName)
@@ -191,11 +203,17 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
     
     // MARK: INDLinkLabelDelegate
     func linkLabel(label: INDLinkLabel, didLongPressLinkWithURL URL: NSURL) {
-        let activityController = UIActivityViewController(activityItems: [URL], applicationActivities: nil)
-        self.presentViewController(activityController, animated: true, completion: nil)
+        dispatch_async(dispatch_get_main_queue()) { [weak self] in
+            let activityController = UIActivityViewController(activityItems: [URL], applicationActivities: nil)
+            if let selfValue = self{
+                selfValue.presentViewController(activityController, animated: true, completion: nil)
+            }
+        }
     }
     
     func linkLabel(label: INDLinkLabel, didTapLinkWithURL URL: NSURL) {
-        UIApplication.sharedApplication().openURL(URL)
+        dispatch_async(dispatch_get_main_queue()) {
+                UIApplication.sharedApplication().openURL(URL)
+        }
     }
 }
