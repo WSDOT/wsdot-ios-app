@@ -429,10 +429,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CbN-V2-bFU">
-                                <rect key="frame" x="20" y="37" width="120" height="30"/>
+                                <rect key="frame" x="20" y="37" width="560" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="37x-Ah-S1j"/>
-                                    <constraint firstAttribute="height" constant="30" id="mMW-bC-Tac"/>
+                                    <constraint firstAttribute="height" constant="30" id="XR3-N1-LYY"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Send Feedback"/>
@@ -440,11 +439,8 @@
                                     <action selector="composeFeedbackMessage:" destination="505-eM-iAh" eventType="touchUpInside" id="vBd-vl-soH"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PaA-kr-ztN">
-                                <rect key="frame" x="20" y="75" width="222" height="33"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="222" id="bbP-9m-wzR"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PaA-kr-ztN">
+                                <rect key="frame" x="20" y="75" width="560" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Report an Issue with the App"/>
                                 <connections>
@@ -457,11 +453,13 @@
                         <constraints>
                             <constraint firstItem="We9-cw-dtP" firstAttribute="trailing" secondItem="MUk-Qe-Cdo" secondAttribute="trailingMargin" id="GGu-et-TGH"/>
                             <constraint firstItem="We9-cw-dtP" firstAttribute="top" secondItem="IDk-9N-jIS" secondAttribute="bottom" constant="8" symbolic="YES" id="GRA-l8-YvW"/>
-                            <constraint firstItem="PaA-kr-ztN" firstAttribute="top" secondItem="CbN-V2-bFU" secondAttribute="bottom" constant="8" symbolic="YES" id="JJd-XE-6dU"/>
-                            <constraint firstItem="CbN-V2-bFU" firstAttribute="top" secondItem="We9-cw-dtP" secondAttribute="bottom" constant="8" symbolic="YES" id="Jja-7P-SU6"/>
+                            <constraint firstItem="CbN-V2-bFU" firstAttribute="leading" secondItem="We9-cw-dtP" secondAttribute="leading" id="Hne-x8-K5z"/>
                             <constraint firstItem="We9-cw-dtP" firstAttribute="leading" secondItem="MUk-Qe-Cdo" secondAttribute="leadingMargin" id="Pyw-dk-vTd"/>
-                            <constraint firstItem="CbN-V2-bFU" firstAttribute="leading" secondItem="PaA-kr-ztN" secondAttribute="leading" id="eMt-hr-8LS"/>
-                            <constraint firstItem="We9-cw-dtP" firstAttribute="leading" secondItem="CbN-V2-bFU" secondAttribute="leading" id="mnA-G0-bTU"/>
+                            <constraint firstItem="PaA-kr-ztN" firstAttribute="top" secondItem="CbN-V2-bFU" secondAttribute="bottom" constant="8" symbolic="YES" id="VJo-Zp-eLs"/>
+                            <constraint firstItem="CbN-V2-bFU" firstAttribute="top" secondItem="We9-cw-dtP" secondAttribute="bottom" constant="8" symbolic="YES" id="eF1-1t-lid"/>
+                            <constraint firstItem="CbN-V2-bFU" firstAttribute="trailing" secondItem="We9-cw-dtP" secondAttribute="trailing" id="oUk-yR-I1e"/>
+                            <constraint firstItem="CbN-V2-bFU" firstAttribute="trailing" secondItem="PaA-kr-ztN" secondAttribute="trailing" id="pt7-3Z-OEz"/>
+                            <constraint firstItem="CbN-V2-bFU" firstAttribute="leading" secondItem="PaA-kr-ztN" secondAttribute="leading" id="rh1-ZK-flb"/>
                         </constraints>
                     </view>
                     <toolbarItems/>

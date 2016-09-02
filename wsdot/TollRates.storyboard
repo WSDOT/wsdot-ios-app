@@ -287,7 +287,7 @@
                         <viewControllerLayoutGuide type="top" id="Ahh-ej-YAF"/>
                         <viewControllerLayoutGuide type="bottom" id="iCM-Xk-L1j"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="rAf-Co-nKo" customClass="SR167">
+                    <view key="view" contentMode="scaleToFill" id="rAf-Co-nKo">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
