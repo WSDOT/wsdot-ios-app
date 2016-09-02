@@ -302,6 +302,14 @@
             </objects>
             <point key="canvasLocation" x="2210" y="639"/>
         </scene>
+        <!--AmtrakCascades-->
+        <scene sceneID="6xd-8M-pnB">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AmtrakCascades" id="OoJ-ib-dY9" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7ED-cJ-oCU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2224.5" y="682"/>
+        </scene>
         <!--Home View Controller-->
         <scene sceneID="515-et-fK2">
             <objects>
@@ -395,6 +403,7 @@
                         <segue destination="zbi-Ku-wrh" kind="show" identifier="BorderWaitsViewController" id="xhk-Ek-dfU"/>
                         <segue destination="wj1-H7-MUM" kind="show" identifier="MountainPassesViewController" id="PbE-pI-FxC"/>
                         <segue destination="dYL-xg-zVH" kind="show" identifier="SocialMediaViewController" id="RLV-Ua-tLg"/>
+                        <segue destination="OoJ-ib-dY9" kind="show" identifier="AmtrakCascadesViewController" id="S8f-Zm-ZVw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KTF-7j-ojf" userLabel="First Responder" sceneMemberID="firstResponder"/>
