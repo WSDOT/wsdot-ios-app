@@ -44,6 +44,12 @@ class MountainPassesViewController: UIViewController, UITableViewDelegate, UITab
         tableView.rowHeight = UITableViewAutomaticDimension
     
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        GoogleAnalytics.screenView("/Mountain Passes")
+    }
+    
     func refresh(force: Bool){
       dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak self] in
             MountainPassStore.updatePasses(force, completion: { error in

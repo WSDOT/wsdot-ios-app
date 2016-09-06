@@ -44,6 +44,7 @@ class FacebookViewController: UIViewController, UITabBarDelegate, UITableViewDat
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Social Media/Facebook")
     }
     

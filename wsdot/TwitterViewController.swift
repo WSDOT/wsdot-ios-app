@@ -93,11 +93,8 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Social Media/Twitter")
-    }
-    
-    override func didReceiveMemoryWarning() {
-        print("Memory warning")
     }
     
     func refreshAction(sender: UIRefreshControl){

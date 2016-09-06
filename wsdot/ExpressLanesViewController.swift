@@ -46,6 +46,7 @@ class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITable
     }
 
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Traffic Map/Traveler Information/Express Lanes")
     }
 

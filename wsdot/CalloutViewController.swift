@@ -30,6 +30,7 @@ class CalloutViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Traffic Map/JBLM Flow Map")
     }
 }

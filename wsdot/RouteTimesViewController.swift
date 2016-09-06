@@ -93,6 +93,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Ferries/Schedules/Sailings/Departures")
     }
     

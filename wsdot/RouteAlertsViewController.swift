@@ -35,10 +35,10 @@ class RouteAlertsViewController: UIViewController, UITableViewDataSource, UITabl
         alertItems = routeTabBarContoller.routeItem.routeAlerts
         
         tableView.rowHeight = UITableViewAutomaticDimension
-        
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Ferries/Schedules/Alerts")
     }
     

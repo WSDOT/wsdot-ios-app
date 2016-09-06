@@ -35,6 +35,7 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/About")
     }
     

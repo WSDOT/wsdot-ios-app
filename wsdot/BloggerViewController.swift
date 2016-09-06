@@ -44,6 +44,7 @@ class BloggerViewController: UIViewController, UITabBarDelegate, UITableViewData
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Social Media/Blogger")
     }
     

@@ -93,6 +93,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Traffic Map")
     }
     

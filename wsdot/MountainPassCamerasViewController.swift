@@ -54,6 +54,11 @@ class MountainPassCamerasViewController: UIViewController, UITableViewDataSource
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        GoogleAnalytics.screenView("/Mountain Passes/Cameras")
+    }
+    
     func refreshAction(refreshControl: UIRefreshControl) {
         refresh(true)
     }

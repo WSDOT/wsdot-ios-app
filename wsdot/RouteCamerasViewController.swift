@@ -50,6 +50,7 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Ferries/Schedules/Sailings/Cameras")
     }
     

@@ -34,6 +34,7 @@ class AmtrakCascadesViewController: UIViewController, UITableViewDelegate, UITab
     }
 
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Amtrak Cascades")
     }
 

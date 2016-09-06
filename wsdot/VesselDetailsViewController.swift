@@ -72,6 +72,7 @@ class VesselDetailsViewController: UIViewController{
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Ferries/VesselWatch/Vessel Details/" + self.title!)
     }
     

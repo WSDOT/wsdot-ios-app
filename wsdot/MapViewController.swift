@@ -30,7 +30,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
     let locationManager = CLLocationManager()
     
     override func loadView() {
-        super.viewDidLoad()
+        super.loadView()
         var lat = NSUserDefaults.standardUserDefaults().doubleForKey(UserDefaultsKeys.mapLat)
         var lon = NSUserDefaults.standardUserDefaults().doubleForKey(UserDefaultsKeys.mapLon)
         var zoom = NSUserDefaults.standardUserDefaults().floatForKey(UserDefaultsKeys.mapZoom)
@@ -59,6 +59,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
     }
     
     override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
         if let mapView = view as? GMSMapView{
             NSUserDefaults.standardUserDefaults().setObject(mapView.camera.target.latitude, forKey: UserDefaultsKeys.mapLat)
             NSUserDefaults.standardUserDefaults().setObject(mapView.camera.target.longitude, forKey: UserDefaultsKeys.mapLon)
@@ -67,11 +68,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
     }
     
     override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
         locationManager.stopUpdatingLocation()
     }
     

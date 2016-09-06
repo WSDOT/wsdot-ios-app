@@ -46,6 +46,7 @@ class VesselWatchGoToViewController: UIViewController, UITableViewDataSource, UI
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Ferries/VesselWatch/GoTo Location")
     }
     

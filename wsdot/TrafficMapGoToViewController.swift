@@ -50,6 +50,7 @@ class TrafficMapGoToViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Traffic Map/GoTo Location")
     }
     

@@ -70,10 +70,12 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Ferries/VesselWatch")
     }
     
     override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
         timer?.invalidate()
     }
     

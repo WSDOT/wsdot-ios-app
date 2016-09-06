@@ -49,6 +49,7 @@ class CameraViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Camera Details")
     }
     

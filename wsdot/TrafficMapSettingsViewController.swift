@@ -38,6 +38,7 @@ class TrafficMapSettingsViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Traffic Map/More")
     }
     

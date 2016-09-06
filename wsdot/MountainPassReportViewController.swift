@@ -69,7 +69,11 @@ class MountainPassReportViewController: UIViewController {
         bannerView.rootViewController = self
         bannerView.loadRequest(GADRequest())
  
- 
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        GoogleAnalytics.screenView("/Mountain Passes/Report")
     }
     
 }

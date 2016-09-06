@@ -36,6 +36,7 @@ class TollRatesViewController: UIViewController{
     
     // Remove and add hairline for nav bar
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Toll Rates/SR520")
     
         let img = UIImage()

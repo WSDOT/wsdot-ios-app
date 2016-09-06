@@ -44,6 +44,7 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         pages.removeAll()
         let page: AlertContentViewController! = storyboard?.instantiateViewControllerWithIdentifier("AlertContentViewController") as! AlertContentViewController
         page.loadingPage = true
@@ -55,6 +56,7 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
     }
     
     override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
         timer?.invalidate()
     }
     

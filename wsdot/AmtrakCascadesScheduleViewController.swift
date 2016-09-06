@@ -138,6 +138,7 @@ class AmtrakCascadesScheduleViewController: UIViewController, UIPickerViewDelega
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Amtrak Cascades/Schedules")
     }
     

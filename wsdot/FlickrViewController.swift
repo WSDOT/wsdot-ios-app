@@ -43,6 +43,7 @@ class FlickrViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Social Media/Flickr")
     }
     

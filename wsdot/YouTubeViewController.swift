@@ -46,6 +46,7 @@ class YouTubeViewController: UIViewController, UITabBarDelegate, UITableViewData
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Social Media/YouTube")
     }
     

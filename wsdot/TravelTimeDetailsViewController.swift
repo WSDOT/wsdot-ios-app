@@ -64,6 +64,7 @@ class TravelTimeDetailsViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Travel Time Details")
     }
     
