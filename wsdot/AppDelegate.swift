@@ -44,11 +44,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Optional: configure GAI options.
         let gai = GAI.sharedInstance()
         
-        gai.dryRun = ApiKeys.analytics_dryrun
+        if (ApiKeys.analytics_dryrun){
+            gai.dryRun = ApiKeys.analytics_dryrun
+            gai.logger.logLevel = GAILogLevel.Verbose
+        }
         
         gai.trackUncaughtExceptions = true  // report uncaught exceptions
-        gai.logger.logLevel = GAILogLevel.Verbose  // remove before app release
-
         
         return true
     }
