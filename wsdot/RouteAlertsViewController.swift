@@ -26,6 +26,10 @@ class RouteAlertsViewController: UIViewController, UITableViewDataSource, UITabl
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        GoogleAnalytics.screenView("/Ferries/Schedules/Alerts")
+    }
+    
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }

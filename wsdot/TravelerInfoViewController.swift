@@ -24,6 +24,10 @@ class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITable
         menu_options = ["Travel Times", "Express Lanes"]
         
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        GoogleAnalytics.screenView("/Traffic Map/Traveler Information")
+    }
 
     // MARK: Table View Data Source Methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

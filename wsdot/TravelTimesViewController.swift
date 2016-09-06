@@ -45,6 +45,10 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.rowHeight = UITableViewAutomaticDimension
     }
     
+    override func viewWillAppear(animated: Bool) {
+        GoogleAnalytics.screenView("/Traffic Map/Traveler Information/Travel Times")
+    }
+    
     func refreshAction(refreshControl: UIRefreshControl) {
         refresh(true)
     }

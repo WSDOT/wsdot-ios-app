@@ -29,6 +29,10 @@ class FlickrViewController: UIViewController, UICollectionViewDataSource, UIColl
         refresh()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        GoogleAnalytics.screenView("/Social Media/Flickr")
+    }
+    
     func refreshAction(sender: UIRefreshControl){
         refresh()
     }

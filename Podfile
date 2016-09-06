@@ -7,6 +7,7 @@ target 'WSDOT' do
     pod 'Firebase/Core'
     pod 'Google-Mobile-Ads-SDK'
     pod 'GoogleMaps'
+    pod 'Google/Analytics'
     pod 'RealmSwift'
     pod 'Alamofire', '~> 3.4.1'
     pod 'SwiftyJSON'

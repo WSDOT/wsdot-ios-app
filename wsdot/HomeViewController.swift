@@ -34,6 +34,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.tabBarController!.view.backgroundColor = UIColor.whiteColor()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        GoogleAnalytics.screenView("/Home")
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         // Initialize Tab Bar Item

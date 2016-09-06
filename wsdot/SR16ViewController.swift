@@ -19,8 +19,7 @@ class SR16ViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         data = TollRatesStore.getSR16data()
     }
-    
-    // MARK: -
+
     // MARK: Table View Data Source Methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1

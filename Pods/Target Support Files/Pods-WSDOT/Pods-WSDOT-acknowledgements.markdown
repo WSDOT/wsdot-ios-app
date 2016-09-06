@@ -40,6 +40,14 @@ Copyright 2016 Google
 
 Copyright 2011 Google Inc. All Rights Reserved.
 
+## Google
+
+Copyright 2016 Google Inc.
+
+## GoogleAnalytics
+
+Copyright 2016 Google
+
 ## GoogleInterchangeUtilities
 
 Copyright 2015 Google Inc.

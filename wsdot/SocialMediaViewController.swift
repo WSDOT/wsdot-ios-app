@@ -26,6 +26,9 @@ class SocialMediaViewController: UIViewController, UITableViewDelegate, UITableV
         self.title = "Social Media"
     }
     
+    override func viewWillAppear(animated: Bool) {
+        GoogleAnalytics.screenView("/Social Media")
+    }
     
     // MARK: Table View Data Source Methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

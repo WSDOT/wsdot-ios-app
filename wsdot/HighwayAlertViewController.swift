@@ -42,7 +42,11 @@ class HighwayAlertViewController: UIViewController, INDLinkLabelDelegate {
         
         
         mapImage.sd_setImageWithURL(NSURL(string: staticMapUrl), placeholderImage: UIImage(named: "imagePlaceholder"), options: .RefreshCached)
-
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        GoogleAnalytics.screenView("/Highway Alert")
     }
     
     // MARK: INDLinkLabelDelegate

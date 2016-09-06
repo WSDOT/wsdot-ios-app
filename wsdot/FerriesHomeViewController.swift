@@ -23,6 +23,10 @@ class FerriesHomeViewController: UITableViewController {
         menu_options = ["Route Schedules", "Vehicle Reservations Website", "VesselWatch"]
     }
 
+    override func viewWillAppear(animated: Bool) {
+        GoogleAnalytics.screenView("/Ferries")
+    }
+
     // MARK: Table View Data Source Methods
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -49,6 +53,7 @@ class FerriesHomeViewController: UITableViewController {
             performSegueWithIdentifier(SegueRouteSchedulesViewController, sender: self)
             break
         case 1:
+            GoogleAnalytics.screenView("/Ferries/Vehicle Reservations")
             UIApplication.sharedApplication().openURL(NSURL(string: "https://secureapps.wsdot.wa.gov/Ferries/Reservations/Vehicle/default.aspx")!)
             break
         case 2:

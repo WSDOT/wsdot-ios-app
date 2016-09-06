@@ -95,6 +95,7 @@
 		9AB549051D78899600927F13 /* AmtrakCascadesScheduleDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB549041D78899600927F13 /* AmtrakCascadesScheduleDetailsViewController.swift */; };
 		9AB549071D78A81000927F13 /* AmtrakCascadesServiceStopItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB549061D78A81000927F13 /* AmtrakCascadesServiceStopItem.swift */; };
 		9AB549091D78DE6000927F13 /* AmtrakCascadesDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB549081D78DE6000927F13 /* AmtrakCascadesDetailsCell.swift */; };
+		9AB5490C1D7A1D2800927F13 /* GoogleAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB5490B1D7A1D2800927F13 /* GoogleAnalytics.swift */; };
 		9AD32DFD1D23172C000AEC28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32DFC1D23172C000AEC28 /* AppDelegate.swift */; };
 		9AD32E021D23172C000AEC28 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E001D23172C000AEC28 /* Main.storyboard */; };
 		9AD32E041D23172C000AEC28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E031D23172C000AEC28 /* Assets.xcassets */; };
@@ -250,6 +251,8 @@
 		9AB549041D78899600927F13 /* AmtrakCascadesScheduleDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmtrakCascadesScheduleDetailsViewController.swift; sourceTree = "<group>"; };
 		9AB549061D78A81000927F13 /* AmtrakCascadesServiceStopItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmtrakCascadesServiceStopItem.swift; sourceTree = "<group>"; };
 		9AB549081D78DE6000927F13 /* AmtrakCascadesDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmtrakCascadesDetailsCell.swift; sourceTree = "<group>"; };
+		9AB5490A1D7A184F00927F13 /* WSDOT-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WSDOT-Bridging-Header.h"; sourceTree = "<group>"; };
+		9AB5490B1D7A1D2800927F13 /* GoogleAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleAnalytics.swift; sourceTree = "<group>"; };
 		9AD32DF91D23172C000AEC28 /* WSDOT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WSDOT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD32DFC1D23172C000AEC28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9AD32E011D23172C000AEC28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -867,6 +870,7 @@
 				9AD32E031D23172C000AEC28 /* Assets.xcassets */,
 				9AEEDDB01D70B8A20032F5EC /* GoogleService-Info.plist */,
 				9AD32E081D23172C000AEC28 /* Info.plist */,
+				9AB5490A1D7A184F00927F13 /* WSDOT-Bridging-Header.h */,
 			);
 			path = wsdot;
 			sourceTree = "<group>";
@@ -907,6 +911,7 @@
 				9A1F5FA41D47DCB900DA5F99 /* ApiKeys.swift */,
 				9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */,
 				9A0616801D6265FB00126520 /* UserDefaultsKeys.swift */,
+				9AB5490B1D7A1D2800927F13 /* GoogleAnalytics.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -1416,6 +1421,7 @@
 				9A0616D71D664D2300126520 /* FourColTableViewCell.swift in Sources */,
 				9A0616D51D6638AB00126520 /* TollRatesStore.swift in Sources */,
 				9A81A57A1D4AC5840049913A /* RouteCamerasViewController.swift in Sources */,
+				9AB5490C1D7A1D2800927F13 /* GoogleAnalytics.swift in Sources */,
 				9AEEDDA41D6F3D810032F5EC /* MountainPassCell.swift in Sources */,
 				9A0CA83C1D46AC51009C67B7 /* PickerTextField.swift in Sources */,
 				9AEF4D931D7608ED003ECA34 /* FlickrStore.swift in Sources */,
@@ -1560,6 +1566,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = gov.wa.wsdot.iphone.WSDOT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "wsdot/WSDOT-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -1573,6 +1580,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = gov.wa.wsdot.iphone.WSDOT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "wsdot/WSDOT-Bridging-Header.h";
 			};
 			name = Release;
 		};

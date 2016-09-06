@@ -30,6 +30,10 @@ class FacebookViewController: UIViewController, UITabBarDelegate, UITableViewDat
         refresh()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        GoogleAnalytics.screenView("/Social Media/Facebook")
+    }
+    
     func refreshAction(sender: UIRefreshControl){
         refresh()
     }

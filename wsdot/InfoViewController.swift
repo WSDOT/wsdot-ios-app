@@ -22,6 +22,10 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        GoogleAnalytics.screenView("/About")
+    }
+    
     @IBAction func composeFeedbackMessage(sender: UIButton) {
     
         let bundle = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"]

@@ -32,6 +32,10 @@ class NewsViewController: UIViewController, UITabBarDelegate, UITableViewDataSou
         refresh()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        GoogleAnalytics.screenView("/Social Media/News")
+    }
+    
     func refreshAction(sender: UIRefreshControl){
         refresh()
     }

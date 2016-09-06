@@ -51,6 +51,10 @@ class TravelTimeDetailsViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        GoogleAnalytics.screenView("/Travel Time Details")
+    }
+    
     @IBAction func updateFavorite(sender: UIBarButtonItem) {
         if (travelTime.selected){
             TravelTimesStore.updateFavorite(travelTime, newValue: false)

@@ -36,6 +36,10 @@ class CameraViewController: UIViewController {
         bannerView.loadRequest(GADRequest())
     }
     
+    override func viewWillAppear(animated: Bool) {
+        GoogleAnalytics.screenView("/Camera Details")
+    }
+    
     @IBAction func updateFavorite(sender: UIBarButtonItem) {
         if (cameraItem.selected){
             CamerasStore.updateFavorite(cameraItem, newValue: false)

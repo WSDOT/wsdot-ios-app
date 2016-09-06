@@ -44,6 +44,8 @@ class AmtrakCascadesScheduleViewController: UIViewController, UIPickerViewDelega
     var currentDestIndex = 0
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+    
         title = "Find Schedules"
         
         submitButton.layer.cornerRadius = 8
@@ -121,6 +123,10 @@ class AmtrakCascadesScheduleViewController: UIViewController, UIPickerViewDelega
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        GoogleAnalytics.screenView("/Amtrak Cascades/Schedules")
     }
     
     @IBAction func submitAction(sender: UIButton) {

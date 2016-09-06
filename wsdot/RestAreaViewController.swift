@@ -47,4 +47,8 @@ class RestAreaViewController: UIViewController {
         scrollView.contentSize = CGSizeMake(mapImage.frame.size.width, mapImage.frame.size.height)
     }
 
+    override func viewWillAppear(animated: Bool) {
+        GoogleAnalytics.screenView("/Traffic Map/Rest Area Details")
+    }
+
 }

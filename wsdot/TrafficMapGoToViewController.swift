@@ -37,6 +37,10 @@ class TrafficMapGoToViewController: UIViewController, UITableViewDataSource, UIT
                         "Yakima"]
     }
     
+    override func viewWillAppear(animated: Bool) {
+        GoogleAnalytics.screenView("/Traffic Map/GoTo Location")
+    }
+    
     @IBAction func closeAction(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: {()->Void in});
     }
@@ -63,6 +67,7 @@ class TrafficMapGoToViewController: UIViewController, UITableViewDataSource, UIT
     // MARK: -
     // MARK: Table View Delegate Methods
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        GoogleAnalytics.screenView("/Traffic Map/GoTo Location/" + menu_options[indexPath.row])
         self.dismissViewControllerAnimated(true, completion: {()->Void in});
         parent?.goTo(indexPath.row)
     }

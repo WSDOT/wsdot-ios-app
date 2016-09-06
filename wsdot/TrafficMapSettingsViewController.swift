@@ -23,7 +23,10 @@ class TrafficMapSettingsViewController: UIViewController {
                         "Show Rest Areas",
                         "Show JBLM",
                         "Favorite Current Location"]
-        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        GoogleAnalytics.screenView("/Traffic Map/More")
     }
     
     @IBAction func closeAction(sender: AnyObject) {
@@ -124,9 +127,11 @@ class TrafficMapSettingsViewController: UIViewController {
         let alertsPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.alerts)
         if let alertsVisible = alertsPref {
             if (alertsVisible == "on") {
+                GoogleAnalytics.event("Traffic Map", action: "UIAction", label: "Hide Alerts")
                 NSUserDefaults.standardUserDefaults().setObject("off", forKey: UserDefaultsKeys.alerts)
                 parent!.removeAlerts()
             } else {
+                GoogleAnalytics.event("Traffic Map", action: "UIAction", label: "Show Alerts")
                 NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.alerts)
                 parent!.drawAlerts()
             }
@@ -137,9 +142,11 @@ class TrafficMapSettingsViewController: UIViewController {
         let restAreaPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.restAreas)
         if let restAreaVisible = restAreaPref {
             if (restAreaVisible == "on") {
+                GoogleAnalytics.event("Traffic Map", action: "UIAction", label: "Hide Rest Areas")
                 NSUserDefaults.standardUserDefaults().setObject("off", forKey: UserDefaultsKeys.restAreas)
                 parent!.removeRestAreas()
             } else {
+                GoogleAnalytics.event("Traffic Map", action: "UIAction", label: "Show Rest Areas")
                 NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.restAreas)
                 parent!.drawRestArea()
             }
@@ -150,9 +157,11 @@ class TrafficMapSettingsViewController: UIViewController {
         let jblmPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.jblmCallout)
         if let jblmVisible = jblmPref {
             if (jblmVisible == "on") {
+                GoogleAnalytics.event("Traffic Map", action: "UIAction", label: "Hide JBLM")
                 NSUserDefaults.standardUserDefaults().setObject("off", forKey: UserDefaultsKeys.jblmCallout)
                 parent!.removeJBLM()
             } else {
+                GoogleAnalytics.event("Traffic Map", action: "UIAction", label: "Show JBLM")
                 NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.jblmCallout)
                 parent!.drawJBLM()
             }

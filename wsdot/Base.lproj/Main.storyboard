@@ -255,8 +255,8 @@
                                             <color key="titleColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Look for a star to add Favorites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bbp-dt-9sc">
-                                        <rect key="frame" x="182" y="37" width="237" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap star icons to add Favorites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bbp-dt-9sc">
+                                        <rect key="frame" x="184" y="37" width="234" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -264,10 +264,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="8Mw-SZ-FVd" firstAttribute="centerX" secondItem="Bbp-dt-9sc" secondAttribute="centerX" id="Thf-5c-fdc"/>
+                                    <constraint firstItem="8Mw-SZ-FVd" firstAttribute="centerX" secondItem="Bbp-dt-9sc" secondAttribute="centerX" constant="-1" id="Thf-5c-fdc"/>
                                     <constraint firstItem="Bbp-dt-9sc" firstAttribute="top" secondItem="K2T-aD-Yj7" secondAttribute="bottom" constant="8" symbolic="YES" id="aNT-gV-lAb"/>
                                     <constraint firstItem="8Mw-SZ-FVd" firstAttribute="top" secondItem="Bbp-dt-9sc" secondAttribute="bottom" constant="8" symbolic="YES" id="gXU-n0-hyA"/>
-                                    <constraint firstItem="K2T-aD-Yj7" firstAttribute="centerX" secondItem="Bbp-dt-9sc" secondAttribute="centerX" id="hIW-5R-ZU9"/>
+                                    <constraint firstItem="K2T-aD-Yj7" firstAttribute="centerX" secondItem="Bbp-dt-9sc" secondAttribute="centerX" constant="-1" id="hIW-5R-ZU9"/>
                                     <constraint firstItem="K2T-aD-Yj7" firstAttribute="top" secondItem="yMH-n6-F0h" secondAttribute="topMargin" id="kEt-dN-opd"/>
                                     <constraint firstItem="K2T-aD-Yj7" firstAttribute="centerX" secondItem="yMH-n6-F0h" secondAttribute="centerX" id="xsa-Uz-tlp"/>
                                 </constraints>

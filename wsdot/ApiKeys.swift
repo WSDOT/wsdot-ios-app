@@ -14,4 +14,7 @@ class ApiKeys {
     static let wsdot_ad_string = ""
     static let google_key = ""
     
+    static let analytics_enabled = true
+    static let analytics_dryrun = true
+    
 }

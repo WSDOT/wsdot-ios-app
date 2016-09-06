@@ -23,6 +23,10 @@ class RouteSailingsViewController: UIViewController, UITableViewDataSource, UITa
         let routeTabBarContoller = self.tabBarController as! RouteTabBarViewController
         routeItem = routeTabBarContoller.routeItem
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        GoogleAnalytics.screenView("/Ferries/Schedules/Sailings")
+    }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1

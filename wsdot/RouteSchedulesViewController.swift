@@ -26,8 +26,12 @@ class RouteSchedulesViewController: UITableViewController {
         self.refresh(false)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        GoogleAnalytics.screenView("/Ferries/Schedules")
+    }
+    
     func refresh(force: Bool){
-      dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak self] in
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak self] in
             FerryRealmStore.updateRouteSchedules(force, completion: { error in
                 if (error == nil) {
                     // Reload tableview on UI thread

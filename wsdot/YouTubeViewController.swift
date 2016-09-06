@@ -32,6 +32,10 @@ class YouTubeViewController: UIViewController, UITabBarDelegate, UITableViewData
         refresh()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        GoogleAnalytics.screenView("/Social Media/YouTube")
+    }
+    
     func refreshAction(sender: UIRefreshControl){
         refresh()
     }

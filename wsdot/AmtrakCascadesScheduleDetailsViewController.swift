@@ -22,13 +22,17 @@ class AmtrakCascadesScheduleDetailsViewController: UIViewController, UITabBarDel
     var tripItems = [[(AmtrakCascadesServiceStopItem, AmtrakCascadesServiceStopItem?)]]()
     
     override func viewDidLoad() {
-        
+        super.viewDidLoad()
         // refresh controller
         refreshControl.addTarget(self, action: #selector(AmtrakCascadesScheduleDetailsViewController.refreshAction(_:)), forControlEvents: .ValueChanged)
         tableView.addSubview(refreshControl)
         refreshControl.beginRefreshing()
         refresh()
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        GoogleAnalytics.screenView("/Amtrak Cascades/Schedules/Details")
     }
     
     func refreshAction(sender: UIRefreshControl){
