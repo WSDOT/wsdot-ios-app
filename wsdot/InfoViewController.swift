@@ -24,14 +24,22 @@ import MessageUI
 class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate {
    
     @IBOutlet weak var aboutText: UILabel!
-
+    @IBOutlet weak var appVersionLabel: UILabel!
+    
+    var version = "?"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        let bundle = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"]
+        version = bundle as! String
+    
         aboutText.sizeToFit()
         
-        aboutText.text = "The mission of the Washington State Department of Transportation is to keep people and business moving by operating and improving the state's transportation systems vital to our taxpayers and communities. \n\nThe WSDOT mobile app was created to make it easier for you to know the latest about Washington's transportation system."
-        
+        aboutText.text = "The mission of the Washington State Department of Transportation is to keep people and business moving by operating and improving the state's transportation systems vital to our taxpayers and communities. \n\nThe WSDOT mobile app was created to make it easier for you to know the latest about Washington's transportation system. \n\nQuestions, comments or suggestions about this app can be e-mailed to the WSDOT Communications Office at webfeedback@wsdot.wa.gov."
+    
+        appVersionLabel.text =  "App version: " + version
+    
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -51,7 +59,7 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
             mail.setSubject("WSDOT iOS v\(version) Feedback ")
             presentViewController(mail, animated: true, completion: nil)
         } else {
-            presentViewController(AlertMessages.getMailAlert(), animated: true, completion: nil)
+            UIApplication.sharedApplication().openURL(NSURL(string: "mailto:")!)
         }
         
     }
@@ -69,7 +77,7 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
             mail.setMessageBody("<b>Issue Description:<b><br><br> <b>Steps to Reproduce:</b><br><br> <b>Paste Any Screenshots Below: </b><br><br>", isHTML: true)
             presentViewController(mail, animated: true, completion: nil)
         } else {
-            presentViewController(AlertMessages.getMailAlert(), animated: true, completion: nil)
+            UIApplication.sharedApplication().openURL(NSURL(string: "mailto:")!)
         }
     }
     

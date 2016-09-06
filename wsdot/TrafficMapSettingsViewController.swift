@@ -34,7 +34,7 @@ class TrafficMapSettingsViewController: UIViewController {
         menu_options = ["Show Highway Alerts",
                         "Show Rest Areas",
                         "Show JBLM",
-                        "Favorite Current Location"]
+                        "Favorite Current Map Location"]
     }
     
     override func viewWillAppear(animated: Bool) {
