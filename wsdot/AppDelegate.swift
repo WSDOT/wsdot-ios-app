@@ -22,7 +22,6 @@ import UIKit
 import Firebase
 import GoogleMaps
 
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -41,16 +40,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GGLContext.sharedInstance().configureWithError(&configureError)
         assert(configureError == nil, "Error configuring Google services: \(configureError)")
         
-        // Optional: configure GAI options.
-        let gai = GAI.sharedInstance()
-        
-        if (ApiKeys.analytics_dryrun){
-            gai.dryRun = ApiKeys.analytics_dryrun
-            gai.logger.logLevel = GAILogLevel.Verbose
+        if (ApiKeys.analytics_enabled){
+            // Optional: configure GAI options.
+            let gai = GAI.sharedInstance()
+            
+            if (ApiKeys.analytics_dryrun){
+                gai.dryRun = ApiKeys.analytics_dryrun
+                gai.logger.logLevel = GAILogLevel.Verbose
+            }
+            gai.trackUncaughtExceptions = true  // report uncaught exceptions
+
         }
-        
-        gai.trackUncaughtExceptions = true  // report uncaught exceptions
-        
         return true
     }
     
@@ -58,11 +58,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FerryRealmStore.flushOldData()
         CamerasStore.flushOldData()
         TravelTimesStore.flushOldData()
+        HighwayAlertsStore.flushOldData()
     }
     
     func applicationWillTerminate(application: UIApplication) {
         FerryRealmStore.flushOldData()
         CamerasStore.flushOldData()
         TravelTimesStore.flushOldData()
+        HighwayAlertsStore.flushOldData()
     }
 }

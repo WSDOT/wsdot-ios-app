@@ -40,6 +40,8 @@ class HighwayAlertItem: Object {
     dynamic var county: String? = nil
     dynamic var endTime: NSDate? = nil
     dynamic var extendedDesc: String? = nil
+    
+    dynamic var delete = false
 
     override static func primaryKey() -> String? {
         return "alertId"

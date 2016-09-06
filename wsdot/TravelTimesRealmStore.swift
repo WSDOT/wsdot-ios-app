@@ -39,13 +39,13 @@ class TravelTimesStore{
     
     static func getAllTravelTimes() -> [TravelTimeItem]{
         let realm = try! Realm()
-        let travelTimeItems = realm.objects(TravelTimeItem.self)
+        let travelTimeItems = realm.objects(TravelTimeItem.self).filter("delete == false")
         return Array(travelTimeItems)
     }
     
     static func findFavoriteTimes() -> [TravelTimeItem]{
         let realm = try! Realm()
-        let favoriteTimeItems = realm.objects(TravelTimeItem.self).filter("selected == true")
+        let favoriteTimeItems = realm.objects(TravelTimeItem.self).filter("selected == true").filter("delete == false")
         return Array(favoriteTimeItems)
     }
     

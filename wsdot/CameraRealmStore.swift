@@ -27,19 +27,19 @@ class CamerasStore {
     
     static func getAllCameras() -> [CameraItem]{
         let realm = try! Realm()
-        let cameraItems = realm.objects(CameraItem.self)
+        let cameraItems = realm.objects(CameraItem.self).filter("delete == false")
         return Array(cameraItems)
     }
     
     static func getFavoriteCameras() -> [CameraItem]{
         let realm = try! Realm()
-        let cameraItems = realm.objects(CameraItem.self).filter("selected == true")
+        let cameraItems = realm.objects(CameraItem.self).filter("selected == true").filter("delete == false")
         return Array(cameraItems)
     }
     
     static func getCamerasByRoadName(roadName : String) -> [CameraItem]{
         let realm = try! Realm()
-        let cameraItems = realm.objects(CameraItem.self).filter("roadName == \"\(roadName)\"")
+        let cameraItems = realm.objects(CameraItem.self).filter("roadName == \"\(roadName)\"").filter("delete == false")
         return Array(cameraItems)
     }
     
@@ -53,7 +53,7 @@ class CamerasStore {
         }
         
         let query = NSCompoundPredicate(type: .OrPredicateType, subpredicates: predicats)
-        let cameraItems = realm.objects(CameraItem.self).filter(query)
+        let cameraItems = realm.objects(CameraItem.self).filter(query).filter("delete == false")
         
         return Array(cameraItems)
     }

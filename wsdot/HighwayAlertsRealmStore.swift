@@ -29,13 +29,13 @@ class HighwayAlertsStore {
     
     static func getAllAlerts() -> [HighwayAlertItem]{
         let realm = try! Realm()
-        let alertItems = realm.objects(HighwayAlertItem.self)
+        let alertItems = realm.objects(HighwayAlertItem.self).filter("delete == false")
         return Array(alertItems)
     }
     
     static func getHighestPriorityAlerts() -> [HighwayAlertItem]{
         let realm = try! Realm()
-        let alertItems = realm.objects(HighwayAlertItem.self).filter("priority == \"Highest\"")
+        let alertItems = realm.objects(HighwayAlertItem.self).filter("priority == \"Highest\"").filter("delete == false")
         return Array(alertItems)
     }
     
@@ -70,6 +70,8 @@ class HighwayAlertsStore {
         
         let realm = try! Realm()
         
+        
+        
         let newAlerts = List<HighwayAlertItem>()
         
         for (_, alertJson):(String, JSON) in json["alerts"]["items"] {
@@ -101,13 +103,31 @@ class HighwayAlertsStore {
             newAlerts.append(alert)
         }
         
+        let oldAlerts = getAllAlerts()
+        
+        
         do {
             try realm.write{
-                realm.delete(realm.objects(HighwayAlertItem))
+                for alert in oldAlerts {
+                    alert.delete = true
+                }
                 realm.add(newAlerts, update: true)
             }
         }catch{
             print("HighwayAlertsStore.saveAlerts: Realm write error")
         }
     }
+    
+    static func flushOldData() {
+        let realm = try! Realm()
+        let alerts = realm.objects(HighwayAlertItem.self).filter("delete == true")
+        do {
+            try realm.write{
+                realm.delete(alerts)
+            }
+        }catch{
+            print("HighwatAlertsStore.flushOldData: Realm write error")
+        }
+    }
+
 }
