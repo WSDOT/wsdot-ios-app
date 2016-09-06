@@ -16,4 +16,8 @@ class CalloutViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         calloutImageView.sd_setImageWithURL(NSURL(string: calloutURL), placeholderImage: UIImage(named: "imagePlaceholder"), options: .RefreshCached)
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        GoogleAnalytics.screenView("/Traffic Map/JBLM Flow Map")
+    }
 }

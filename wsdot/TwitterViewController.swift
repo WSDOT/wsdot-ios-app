@@ -80,6 +80,10 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
         refresh(pickerData[self.currentAccountIndex].screenName)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        GoogleAnalytics.screenView("/Social Media/Twitter")
+    }
+    
     override func didReceiveMemoryWarning() {
         print("Memory warning")
     }

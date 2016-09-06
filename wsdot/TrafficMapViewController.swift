@@ -80,7 +80,14 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        GoogleAnalytics.screenView("/Traffic Map")
+    }
+    
     @IBAction func refreshPressed(sender: UIBarButtonItem) {
+    
+        GoogleAnalytics.event("Traffic Map", action: "UIAction", label: "Refresh")
+    
         self.activityIndicatorView.hidden = false
         activityIndicatorView.startAnimating()
         let serviceGroup = dispatch_group_create();
@@ -95,6 +102,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     }
     
     @IBAction func myLocationButtonPressed(sender: UIBarButtonItem) {
+        GoogleAnalytics.event("Traffic Map", action: "UIAction", label: "My Location")
         embeddedMapViewController.goToUsersLocation()
     }
     
@@ -110,10 +118,12 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         let camerasPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.cameras)
         if let camerasVisible = camerasPref {
             if (camerasVisible == "on") {
+                GoogleAnalytics.event("Traffic Map", action: "UIAction", label: "Hide Cameras")
                 NSUserDefaults.standardUserDefaults().setObject("off", forKey: UserDefaultsKeys.cameras)
                 sender.image = cameraBarButtonImage
                 removeCameras()
             } else {
+                GoogleAnalytics.event("Traffic Map", action: "UIAction", label: "Show Cameras")
                 sender.image = cameraHighlightBarButtonImage
                 NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.cameras)
                 drawCameras()
@@ -500,6 +510,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: nil))
         
         alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler:{ (alertAction:UIAlertAction!) in
+            GoogleAnalytics.event("Traffic Map", action: "UIAction", label: "Favorite Location Saved")
             let textf = alert.textFields![0] as UITextField
             if let mapView = self.embeddedMapViewController.view as? GMSMapView{
                 let favoriteLocation = FavoriteLocationItem()

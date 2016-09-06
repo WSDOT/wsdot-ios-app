@@ -40,6 +40,10 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        GoogleAnalytics.screenView("/Traffic Map/Area Alerts")
+    }
+    
     // MARK: Table View Data Source Methods
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension

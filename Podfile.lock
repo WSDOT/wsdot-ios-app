@@ -13,6 +13,12 @@ PODS:
     - GoogleUtilities (~> 1.2)
   - FirebaseInstanceID (1.0.8)
   - Google-Mobile-Ads-SDK (7.9.1)
+  - Google/Analytics (3.0.3):
+    - Google/Core
+    - GoogleAnalytics (~> 3.12)
+  - Google/Core (3.0.3):
+    - FirebaseAnalytics (~> 3.2)
+  - GoogleAnalytics (3.16.0)
   - GoogleInterchangeUtilities (1.2.1):
     - GoogleSymbolUtilities (~> 1.0)
   - GoogleMaps (2.0.1):
@@ -38,6 +44,7 @@ DEPENDENCIES:
   - Firebase
   - Firebase/Core
   - Google-Mobile-Ads-SDK
+  - Google/Analytics
   - GoogleMaps
   - RealmSwift
   - SDWebImage
@@ -48,7 +55,9 @@ SPEC CHECKSUMS:
   Firebase: 754562547af419cc2f4b15247fee419081924bc2
   FirebaseAnalytics: 228be2991cb28efb96cdafc4d62f64680e615c69
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
+  Google: 813c467362eabc11385f5a5cc9ad0cb651a58f4e
   Google-Mobile-Ads-SDK: 575583d7eae25793bb81ad8673737d1b4ecbedc5
+  GoogleAnalytics: 3de986b2fa29012c69fa415566006a9c9cf25320
   GoogleInterchangeUtilities: def8415a862effc67d549d5b5b0b9c7a2f97d4de
   GoogleMaps: f09da64fc987c1aa29394567c3cab5a3df83c402
   GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
@@ -58,6 +67,6 @@ SPEC CHECKSUMS:
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 410b8b72dd90d825dd40fae92d9adbcfd45b50bd
+PODFILE CHECKSUM: f4423a3d7f4081465b5f366c794e106971b18a39
 
 COCOAPODS: 1.0.1

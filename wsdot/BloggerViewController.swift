@@ -30,6 +30,10 @@ class BloggerViewController: UIViewController, UITabBarDelegate, UITableViewData
         refresh()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        GoogleAnalytics.screenView("/Social Media/Blogger")
+    }
+    
     func refreshAction(sender: UIRefreshControl){
         refresh()
     }

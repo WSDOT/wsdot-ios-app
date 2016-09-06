@@ -80,6 +80,10 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        GoogleAnalytics.screenView("/Ferries/Schedules/Sailings/Departures")
+    }
+    
     func refresh(refreshControl: UIRefreshControl) {
         if (currentDay == 0){
             let departingId = displayedSailing.departingTerminalId
@@ -160,8 +164,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         // Check if sailing space information is avaliable. If so change prototype cell.
         if let sailingSpacesValue = sailingSpaces{
             for spaceItem: SailingSpacesItem in sailingSpacesValue {
-            
-            
                 if displayedTimes[indexPath.row].departingTime == spaceItem.date {
                     cell = tableView.dequeueReusableCellWithIdentifier(departuresSailingSpacesCellIdentifier) as! DeparturesCustomCell
                     cell.sailingSpaces.hidden = false
@@ -169,14 +171,8 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                     cell.avaliableSpacesBar.hidden = false
                     cell.avaliableSpacesBar.progress = spaceItem.percentAvaliable
                     cell.spacesDisclaimer.hidden = false
-                    cell.spacesDisclaimer.sizeToFit()
                     cell.updated.text = TimeUtils.timeAgoSinceDate(updatedAt, numericDates: true)
                 }
-            
-            
-            
-            
-            
             }
         }
         
@@ -198,7 +194,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         }
         
         if (annotationsString != ""){
-            
             let htmlStyleString = "<style>body{font-family: '\(cell.annotations.font.fontName)'; font-size:\(cell.annotations.font.pointSize)px;}</style>"
             let attrAnnotationsStr = try! NSMutableAttributedString(
                 data: (htmlStyleString + annotationsString).dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: false)!,
@@ -206,15 +201,15 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                 documentAttributes: nil)
             cell.annotations.hidden = false
             cell.annotations.attributedText = attrAnnotationsStr
-            cell.annotations.sizeToFit()
-            
+            cell.annotations.text = nil
         }else {
+            cell.annotations.attributedText = nil
             cell.annotations.text = annotationsString
         }
+        
         return cell
     }
     
-    // MARK: -
     // MARK: Helper functions
     private func setDisplayedSailing(day: Int){
         

@@ -33,7 +33,10 @@ class VesselWatchGoToViewController: UIViewController, UITableViewDataSource, UI
         self.dismissViewControllerAnimated(true, completion: {()->Void in});
     }
     
-    // MARK: -
+    override func viewWillAppear(animated: Bool) {
+        GoogleAnalytics.screenView("/Ferries/VesselWatch/GoTo Location")
+    }
+    
     // MARK: Table View Data Source Methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -52,10 +55,10 @@ class VesselWatchGoToViewController: UIViewController, UITableViewDataSource, UI
         return cell
     }
     
-    // MARK: -
     // MARK: Table View Delegate Methods
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.dismissViewControllerAnimated(true, completion: {()->Void in});
+        GoogleAnalytics.screenView("/Ferries/VesselWatch/GoTo Location/" + menu_options[indexPath.row])
         parent?.goTo(indexPath.row)
     }
 }

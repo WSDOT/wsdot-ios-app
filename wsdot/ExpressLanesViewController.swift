@@ -33,6 +33,10 @@ class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITable
         
     }
 
+    override func viewWillAppear(animated: Bool) {
+        GoogleAnalytics.screenView("/Traffic Map/Traveler Information/Express Lanes")
+    }
+
     func refresh(refreshControl: UIRefreshControl) {
         
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) { [weak self] in
@@ -101,6 +105,7 @@ class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch (indexPath.row) {
         case expressLanes.count:
+            GoogleAnalytics.screenView("/Traffic Map/Traveler Information/Express Lanes/Express Lanes Schedule Website")
             UIApplication.sharedApplication().openURL(NSURL(string: "http://www.wsdot.wa.gov/Northwest/King/ExpressLanes")!)
             break
         default:

@@ -37,6 +37,10 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        GoogleAnalytics.screenView("/Ferries/Schedules/Sailings/Cameras")
+    }
+    
     func refreshAction(refreshControl: UIRefreshControl) {
         refresh(true)
     }
