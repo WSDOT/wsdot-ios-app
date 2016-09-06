@@ -18,6 +18,7 @@ This project uses [CocoaPods](https://cocoapods.org/) for dependency management.
 * [Firebase/Core](https://firebase.google.com/docs/ios/setup)
 * [Google-Mobile-Ads-SDK](https://firebase.google.com/docs/admob/ios/download)
 * [GoogleMaps](https://developers.google.com/maps/documentation/ios-sdk/)
+* [GoogleAnalytics](https://developers.google.com/analytics/devguides/collection/ios/v3/?ver=swift)
 * [Alamofire 3.4.1](https://github.com/Alamofire/Alamofire)
 * [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
 * [RealmSwift](https://realm.io/docs/swift/latest/)
