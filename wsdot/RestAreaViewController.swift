@@ -26,6 +26,7 @@ class RestAreaViewController: UIViewController {
     var restAreaItem: RestAreaItem?
     
 
+    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var directionLabel: UILabel!
     @IBOutlet weak var milepostLabel: UILabel!
@@ -35,8 +36,9 @@ class RestAreaViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = restAreaItem!.route + " - " + restAreaItem!.location
+        self.title = "Rest Area"
     
+        locationLabel.text = restAreaItem!.route + " - " + restAreaItem!.location
         directionLabel.text = restAreaItem!.direction
         milepostLabel.text = String(restAreaItem!.milepost)
         
