@@ -45,8 +45,10 @@ class MountainPassTabBarViewController: UITabBarController{
         
         if (passItem.selected){
             favoriteBarButton.image = UIImage(named: "icStarSmallFilled")
+            favoriteBarButton.accessibilityLabel = "remove from favorites"
         }else{
             favoriteBarButton.image = UIImage(named: "icStarSmall")
+            favoriteBarButton.accessibilityLabel = "add to favorites"
         }
         self.navigationItem.rightBarButtonItem = favoriteBarButton
     }
@@ -55,9 +57,11 @@ class MountainPassTabBarViewController: UITabBarController{
         if (passItem.selected){
             MountainPassStore.updateFavorite(passItem, newValue: false)
             favoriteBarButton.image = UIImage(named: "icStarSmall")
+            favoriteBarButton.accessibilityLabel = "add to favorites"
         }else {
             MountainPassStore.updateFavorite(passItem, newValue: true)
             favoriteBarButton.image = UIImage(named: "icStarSmallFilled")
+            favoriteBarButton.accessibilityLabel = "remove from favorites"
         }
     }
     

@@ -38,8 +38,10 @@ class CameraViewController: UIViewController {
         
         if (cameraItem.selected){
             favoriteBarButton.image = UIImage(named: "icStarSmallFilled")
+            favoriteBarButton.accessibilityLabel = "remove from favorites"
         }else{
             favoriteBarButton.image = UIImage(named: "icStarSmall")
+            favoriteBarButton.accessibilityLabel = "add to favorites"
         }
         
         // Ad Banner
@@ -57,9 +59,11 @@ class CameraViewController: UIViewController {
         if (cameraItem.selected){
             CamerasStore.updateFavorite(cameraItem, newValue: false)
             favoriteBarButton.image = UIImage(named: "icStarSmall")
+            favoriteBarButton.accessibilityLabel = "add to favorites"
         }else {
             CamerasStore.updateFavorite(cameraItem, newValue: true)
             favoriteBarButton.image = UIImage(named: "icStarSmallFilled")
+            favoriteBarButton.accessibilityLabel = "remove from favorites"
         }
     }
 }

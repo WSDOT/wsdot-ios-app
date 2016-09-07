@@ -21,7 +21,7 @@
 import UIKit
 
 class DeparturesCustomCell: UITableViewCell {
-
+    
     @IBOutlet weak var departingTime: UILabel!
     @IBOutlet weak var arrivingTime: UILabel!
     @IBOutlet weak var sailingSpaces: UILabel!
@@ -30,6 +30,5 @@ class DeparturesCustomCell: UITableViewCell {
     @IBOutlet weak var spacesDisclaimer: UILabel!
     
     @IBOutlet weak var updated: UILabel!
-
-
+    
 }

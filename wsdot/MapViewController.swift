@@ -70,7 +70,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
+        //locationManager.requestWhenInUseAuthorization()
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -92,11 +92,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
             locationManager.startUpdatingLocation()
             if let mapView = view as? GMSMapView{
                 mapView.myLocationEnabled = true
+                goToUsersLocation()
             }
         }
         if status == .Denied {
             if let mapView = view as? GMSMapView{
                 mapView.myLocationEnabled = false
+                
             }
         }
     }

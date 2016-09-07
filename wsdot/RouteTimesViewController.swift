@@ -196,8 +196,10 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         if let arrivingTime = displayedTimes[indexPath.row].arrivingTime {
             let displayArrivingTime = TimeUtils.getTimeOfDay(arrivingTime)
             cell.arrivingTime.text = displayArrivingTime
+            cell.arrivingTime.accessibilityLabel = displayArrivingTime
         } else {
             cell.arrivingTime.text = ""
+            cell.arrivingTime.accessibilityLabel = "not available"
         }
         
         var annotationsString = ""
@@ -219,6 +221,19 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
             cell.annotations.attributedText = nil
             cell.annotations.text = annotationsString
         }
+        
+        // Accessibility Setup
+        cell.accessibilityLabel = "departing " + cell.departingTime.text! + ". arriving " + cell.arrivingTime.accessibilityLabel! + ". "
+        
+        if (cell.annotations.attributedText != nil){
+            cell.accessibilityLabel = cell.accessibilityLabel! + (cell.annotations.attributedText?.string)! + ". "
+        }
+        
+        if (cell.sailingSpaces) != nil {
+            cell.accessibilityLabel = cell.accessibilityLabel! + cell.sailingSpaces.text! + " " + cell.spacesDisclaimer.text! + ". "
+            cell.accessibilityLabel = cell.accessibilityLabel! + "Sailing spaces updated " + cell.updated.text!
+        }
+        cell.isAccessibilityElement = true
         
         return cell
     }

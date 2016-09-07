@@ -46,8 +46,10 @@ class RouteTabBarViewController: UITabBarController {
         
         if (routeItem.selected){
             favoriteBarButton.image = UIImage(named: "icStarSmallFilled")
+            favoriteBarButton.accessibilityLabel = "remove from favorites"
         }else{
             favoriteBarButton.image = UIImage(named: "icStarSmall")
+            favoriteBarButton.accessibilityLabel = "add to favorites"
         }
         
         self.navigationItem.rightBarButtonItem = favoriteBarButton
@@ -57,9 +59,11 @@ class RouteTabBarViewController: UITabBarController {
         if (routeItem.selected){
             FerryRealmStore.updateFavorite(routeItem, newValue: false)
             favoriteBarButton.image = UIImage(named: "icStarSmall")
+            favoriteBarButton.accessibilityLabel = "add to favorites"
         }else {
             FerryRealmStore.updateFavorite(routeItem, newValue: true)
             favoriteBarButton.image = UIImage(named: "icStarSmallFilled")
+            favoriteBarButton.accessibilityLabel = "remove from favorites"
         }
     }
 }
