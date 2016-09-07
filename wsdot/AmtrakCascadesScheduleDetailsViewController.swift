@@ -138,6 +138,19 @@ class AmtrakCascadesScheduleDetailsViewController: UIViewController, UITabBarDel
             cell.arrivalNotesLabel.text = ""
         }
     
+        // Accessibility Setup
+        cell.accessibilityLabel = "Scheduled departure from " + cell.departingStationNameLabel.text! + " at " + cell.departingTimeLabel.text! + ". "
+        cell.accessibilityLabel = cell.accessibilityLabel! + cell.departureNotesLabel.text! + ". "
+
+        cell.accessibilityLabel = cell.accessibilityLabel! + "Scheduled arrival at " + cell.arrivingStationNameLabel.text! + " at " + cell.arrivingTimeLabel.text! + ". "
+        cell.accessibilityLabel = cell.accessibilityLabel! + cell.arrivalNotesLabel.text! + ". "
+        
+        cell.accessibilityLabel = cell.accessibilityLabel! + "  via " + cell.trainDetailsLabel.text! + ". updated" + cell.updatedLabel.text!
+        
+        cell.isAccessibilityElement = true
+    
+    
+    
         return cell
 
     }
