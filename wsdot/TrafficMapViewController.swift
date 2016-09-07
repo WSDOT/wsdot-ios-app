@@ -25,6 +25,8 @@ import GoogleMobileAds
 
 class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewDelegate {
     
+    let serviceGroup = dispatch_group_create()
+    
     let SegueGoToPopover = "TrafficMapGoToViewController"
     let SegueAlertsInArea = "AlertsInAreaViewController"
     let SegueSettingsPopover = "TrafficMapSettingsViewController"
@@ -105,8 +107,8 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         activityIndicatorView.startAnimating()
         let serviceGroup = dispatch_group_create();
         
-        fetchCameras(true, serviceGroup: serviceGroup)
-        fetchAlerts(true, serviceGroup: serviceGroup)
+        fetchCameras(true)
+        fetchAlerts(true)
         
         dispatch_group_notify(serviceGroup, dispatch_get_main_queue()) {
             self.activityIndicatorView.stopAnimating()
@@ -116,7 +118,17 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     @IBAction func myLocationButtonPressed(sender: UIBarButtonItem) {
         GoogleAnalytics.event("Traffic Map", action: "UIAction", label: "My Location")
-        embeddedMapViewController.goToUsersLocation()
+        
+        if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse{
+            embeddedMapViewController.goToUsersLocation()
+        } else if !CLLocationManager.locationServicesEnabled() {
+            self.presentViewController(AlertMessages.getAlert("Location Services Are Disabled", message: "You can enable location services from Settings."), animated: true, completion: nil)
+        } else if CLLocationManager.authorizationStatus() == .Denied {
+            self.presentViewController(AlertMessages.getAlert("\"WSDOT\" Doesn't Have Permission To Use Your Location", message: "You can enable location services for this app in Settings"), animated: true, completion: nil)
+        } else {
+            embeddedMapViewController.locationManager.requestWhenInUseAuthorization()
+        }
+        
     }
     
     @IBAction func alertsInAreaButtonPressed(sender: UIBarButtonItem) {
@@ -232,14 +244,14 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         }
     }
     
-    func fetchCameras(force: Bool, serviceGroup: dispatch_group_t) {
+    func fetchCameras(force: Bool) {
         dispatch_group_enter(serviceGroup)
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {[weak self] in
             CamerasStore.updateCameras(force, completion: { error in
                 if (error == nil){
                     dispatch_async(dispatch_get_main_queue()) {[weak self] in
                         if let selfValue = self{
-                            dispatch_group_leave(serviceGroup)
+                            dispatch_group_leave(selfValue.serviceGroup)
                             selfValue.loadCameraMarkers()
                             selfValue.drawCameras()
                         }
@@ -247,7 +259,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
                 }else{
                     dispatch_async(dispatch_get_main_queue()) { [weak self] in
                         if let selfValue = self{
-                            dispatch_group_leave(serviceGroup)
+                            dispatch_group_leave(selfValue.serviceGroup)
                             selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                         }
                     }
@@ -297,14 +309,14 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         }
     }
     
-    func fetchAlerts(force: Bool, serviceGroup: dispatch_group_t) {
+    func fetchAlerts(force: Bool) {
         dispatch_group_enter(serviceGroup)
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {[weak self] in
             HighwayAlertsStore.updateAlerts(force, completion: { error in
                 if (error == nil){
                     dispatch_async(dispatch_get_main_queue()) {[weak self] in
                         if let selfValue = self{
-                            dispatch_group_leave(serviceGroup)
+                            dispatch_group_leave(selfValue.serviceGroup)
                             selfValue.loadAlertMarkers()
                             selfValue.drawAlerts()
                         }
@@ -312,7 +324,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
                 }else{
                     dispatch_async(dispatch_get_main_queue()) { [weak self] in
                         if let selfValue = self{
-                            dispatch_group_leave(serviceGroup)
+                            dispatch_group_leave(selfValue.serviceGroup)
                             selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                         }
                     }
@@ -442,7 +454,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         }
     }
     
-    func fetchRestAreas(serviceGroup: dispatch_group_t) {
+    func fetchRestAreas() {
         dispatch_group_enter(serviceGroup)
         loadRestAreaMarkers()
         drawRestArea()
@@ -551,12 +563,11 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     func drawOverlays(){
         self.activityIndicatorView.hidden = false
         activityIndicatorView.startAnimating()
-        let serviceGroup = dispatch_group_create();
         
         drawJBLM()
-        fetchCameras(false, serviceGroup: serviceGroup)
-        fetchAlerts(false, serviceGroup: serviceGroup)
-        fetchRestAreas(serviceGroup)
+        fetchCameras(false)
+        fetchAlerts(false)
+        fetchRestAreas()
         
         dispatch_group_notify(serviceGroup, dispatch_get_main_queue()) {
             self.activityIndicatorView.stopAnimating()
@@ -579,6 +590,14 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
             performSegueWithIdentifier(SegueCalloutViewController, sender: marker)
         }
         return true
+    }
+    
+    func mapViewDidStartTileRendering(mapView: GMSMapView) {
+        dispatch_group_enter(serviceGroup)
+    }
+    
+    func mapViewDidFinishTileRendering(mapView: GMSMapView) {
+        dispatch_group_leave(serviceGroup)
     }
     
     // MARK: Naviagtion
