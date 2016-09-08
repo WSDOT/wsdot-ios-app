@@ -32,6 +32,11 @@ class RouteSchedulesViewController: UITableViewController {
         super.viewDidLoad()
         title = "Route Schedules"
         
+        self.refreshControl?.isAccessibilityElement = true
+        self.refreshControl?.accessibilityLabel = "activity indicator"
+        
+        self.accessibilityElements?.append(refreshControl!)
+        
         self.tableView.contentOffset = CGPointMake(0, -self.refreshControl!.frame.size.height)
         self.refreshControl?.beginRefreshing()
         
@@ -52,6 +57,7 @@ class RouteSchedulesViewController: UITableViewController {
                         if let selfValue = self{
                             selfValue.routes = FerryRealmStore.findAllSchedules()
                             selfValue.tableView.reloadData()
+                            selfValue.refreshControl?.isAccessibilityElement = false
                             selfValue.refreshControl?.endRefreshing()
                         }
                     }
@@ -59,6 +65,7 @@ class RouteSchedulesViewController: UITableViewController {
                     dispatch_async(dispatch_get_main_queue()) { [weak self] in
                         if let selfValue = self{
                             selfValue.refreshControl?.endRefreshing()
+                            selfValue.refreshControl?.isAccessibilityElement = false
                             selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                         }
                     }

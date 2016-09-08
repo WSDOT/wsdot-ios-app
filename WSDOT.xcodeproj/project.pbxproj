@@ -100,13 +100,14 @@
 		9AD32E021D23172C000AEC28 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E001D23172C000AEC28 /* Main.storyboard */; };
 		9AD32E041D23172C000AEC28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E031D23172C000AEC28 /* Assets.xcassets */; };
 		9AD32E071D23172C000AEC28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E051D23172C000AEC28 /* LaunchScreen.storyboard */; };
-		9AD32E121D23172C000AEC28 /* LatLonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32E111D23172C000AEC28 /* LatLonTests.swift */; };
 		9AD32E221D241AF4000AEC28 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32E211D241AF4000AEC28 /* HomeViewController.swift */; };
 		9AD32E281D2421E4000AEC28 /* Ferries.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E271D2421E4000AEC28 /* Ferries.storyboard */; };
 		9AD32E2A1D24233D000AEC28 /* FerriesHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32E291D24233D000AEC28 /* FerriesHomeViewController.swift */; };
 		9AD32E2C1D242A5A000AEC28 /* RouteSchedulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32E2B1D242A5A000AEC28 /* RouteSchedulesViewController.swift */; };
 		9AD32E2E1D243260000AEC28 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32E2D1D243260000AEC28 /* FavoritesViewController.swift */; };
 		9ADEAE4D1D270CC800BA7DD4 /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADEAE4C1D270CC800BA7DD4 /* Consts.swift */; };
+		9ADF0E021D7F5EF600632F3D /* WSDOTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADF0E011D7F5EF600632F3D /* WSDOTUITests.swift */; };
+		9ADF0E0A1D7F5F8400632F3D /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADF0E091D7F5F8400632F3D /* SnapshotHelper.swift */; };
 		9AE4863E1D49594D007A92E3 /* FerriesTerminalMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE4863D1D49594D007A92E3 /* FerriesTerminalMap.swift */; };
 		9AE486441D495ACB007A92E3 /* FerriesTerminalItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE486431D495ACB007A92E3 /* FerriesTerminalItem.swift */; };
 		9AE486471D495E90007A92E3 /* CameraItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE486461D495E90007A92E3 /* CameraItem.swift */; };
@@ -153,7 +154,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9AD32E0E1D23172C000AEC28 /* PBXContainerItemProxy */ = {
+		9ADF0E041D7F5EF600632F3D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AD32DF11D23172C000AEC28 /* Project object */;
 			proxyType = 1;
@@ -259,15 +260,16 @@
 		9AD32E031D23172C000AEC28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9AD32E061D23172C000AEC28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9AD32E081D23172C000AEC28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9AD32E0D1D23172C000AEC28 /* wsdotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = wsdotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AD32E111D23172C000AEC28 /* LatLonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatLonTests.swift; sourceTree = "<group>"; };
-		9AD32E131D23172C000AEC28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AD32E211D241AF4000AEC28 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9AD32E271D2421E4000AEC28 /* Ferries.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Ferries.storyboard; path = Base.lproj/Ferries.storyboard; sourceTree = "<group>"; };
 		9AD32E291D24233D000AEC28 /* FerriesHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerriesHomeViewController.swift; sourceTree = "<group>"; };
 		9AD32E2B1D242A5A000AEC28 /* RouteSchedulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteSchedulesViewController.swift; sourceTree = "<group>"; };
 		9AD32E2D1D243260000AEC28 /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		9ADEAE4C1D270CC800BA7DD4 /* Consts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
+		9ADF0DFF1D7F5EF600632F3D /* WSDOTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WSDOTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9ADF0E011D7F5EF600632F3D /* WSDOTUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSDOTUITests.swift; sourceTree = "<group>"; };
+		9ADF0E031D7F5EF600632F3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9ADF0E091D7F5F8400632F3D /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		9AE4863D1D49594D007A92E3 /* FerriesTerminalMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerriesTerminalMap.swift; sourceTree = "<group>"; };
 		9AE486431D495ACB007A92E3 /* FerriesTerminalItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerriesTerminalItem.swift; sourceTree = "<group>"; };
 		9AE486461D495E90007A92E3 /* CameraItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraItem.swift; sourceTree = "<group>"; };
@@ -324,7 +326,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9AD32E0A1D23172C000AEC28 /* Frameworks */ = {
+		9ADF0DFC1D7F5EF600632F3D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -829,7 +831,7 @@
 			isa = PBXGroup;
 			children = (
 				9AD32DFB1D23172C000AEC28 /* wsdot */,
-				9AD32E101D23172C000AEC28 /* wsdotTests */,
+				9ADF0E001D7F5EF600632F3D /* WSDOTUITests */,
 				9AD32DFA1D23172C000AEC28 /* Products */,
 				CF411D71D85E5D578BA870A8 /* Pods */,
 				6880C254A7FDBC3E863BDF4D /* Frameworks */,
@@ -840,7 +842,7 @@
 			isa = PBXGroup;
 			children = (
 				9AD32DF91D23172C000AEC28 /* WSDOT.app */,
-				9AD32E0D1D23172C000AEC28 /* wsdotTests.xctest */,
+				9ADF0DFF1D7F5EF600632F3D /* WSDOTUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -875,15 +877,6 @@
 			path = wsdot;
 			sourceTree = "<group>";
 		};
-		9AD32E101D23172C000AEC28 /* wsdotTests */ = {
-			isa = PBXGroup;
-			children = (
-				9AD32E111D23172C000AEC28 /* LatLonTests.swift */,
-				9AD32E131D23172C000AEC28 /* Info.plist */,
-			);
-			path = wsdotTests;
-			sourceTree = "<group>";
-		};
 		9AD32E1D1D231739000AEC28 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -914,6 +907,16 @@
 				9AB5490B1D7A1D2800927F13 /* GoogleAnalytics.swift */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		9ADF0E001D7F5EF600632F3D /* WSDOTUITests */ = {
+			isa = PBXGroup;
+			children = (
+				9ADF0E091D7F5F8400632F3D /* SnapshotHelper.swift */,
+				9ADF0E011D7F5EF600632F3D /* WSDOTUITests.swift */,
+				9ADF0E031D7F5EF600632F3D /* Info.plist */,
+			);
+			path = WSDOTUITests;
 			sourceTree = "<group>";
 		};
 		9AE4863F1D495A16007A92E3 /* SailingSpaces */ = {
@@ -1161,23 +1164,23 @@
 			productReference = 9AD32DF91D23172C000AEC28 /* WSDOT.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9AD32E0C1D23172C000AEC28 /* wsdotTests */ = {
+		9ADF0DFE1D7F5EF600632F3D /* WSDOTUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AD32E191D23172C000AEC28 /* Build configuration list for PBXNativeTarget "wsdotTests" */;
+			buildConfigurationList = 9ADF0E061D7F5EF600632F3D /* Build configuration list for PBXNativeTarget "WSDOTUITests" */;
 			buildPhases = (
-				9AD32E091D23172C000AEC28 /* Sources */,
-				9AD32E0A1D23172C000AEC28 /* Frameworks */,
-				9AD32E0B1D23172C000AEC28 /* Resources */,
+				9ADF0DFB1D7F5EF600632F3D /* Sources */,
+				9ADF0DFC1D7F5EF600632F3D /* Frameworks */,
+				9ADF0DFD1D7F5EF600632F3D /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9AD32E0F1D23172C000AEC28 /* PBXTargetDependency */,
+				9ADF0E051D7F5EF600632F3D /* PBXTargetDependency */,
 			);
-			name = wsdotTests;
-			productName = wsdotTests;
-			productReference = 9AD32E0D1D23172C000AEC28 /* wsdotTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
+			name = WSDOTUITests;
+			productName = WSDOTUITests;
+			productReference = 9ADF0DFF1D7F5EF600632F3D /* WSDOTUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -1192,7 +1195,7 @@
 					9AD32DF81D23172C000AEC28 = {
 						CreatedOnToolsVersion = 7.3;
 					};
-					9AD32E0C1D23172C000AEC28 = {
+					9ADF0DFE1D7F5EF600632F3D = {
 						CreatedOnToolsVersion = 7.3;
 						TestTargetID = 9AD32DF81D23172C000AEC28;
 					};
@@ -1212,7 +1215,7 @@
 			projectRoot = "";
 			targets = (
 				9AD32DF81D23172C000AEC28 /* WSDOT */,
-				9AD32E0C1D23172C000AEC28 /* wsdotTests */,
+				9ADF0DFE1D7F5EF600632F3D /* WSDOTUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -1242,7 +1245,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9AD32E0B1D23172C000AEC28 /* Resources */ = {
+		9ADF0DFD1D7F5EF600632F3D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1431,21 +1434,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9AD32E091D23172C000AEC28 /* Sources */ = {
+		9ADF0DFB1D7F5EF600632F3D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AD32E121D23172C000AEC28 /* LatLonTests.swift in Sources */,
+				9ADF0E021D7F5EF600632F3D /* WSDOTUITests.swift in Sources */,
+				9ADF0E0A1D7F5F8400632F3D /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9AD32E0F1D23172C000AEC28 /* PBXTargetDependency */ = {
+		9ADF0E051D7F5EF600632F3D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9AD32DF81D23172C000AEC28 /* WSDOT */;
-			targetProxy = 9AD32E0E1D23172C000AEC28 /* PBXContainerItemProxy */;
+			targetProxy = 9ADF0E041D7F5EF600632F3D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1584,27 +1588,27 @@
 			};
 			name = Release;
 		};
-		9AD32E1A1D23172C000AEC28 /* Debug */ = {
+		9ADF0E071D7F5EF600632F3D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = wsdotTests/Info.plist;
+				INFOPLIST_FILE = WSDOTUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = gov.wa.wsdot.wsdotTests;
+				PRODUCT_BUNDLE_IDENTIFIER = gov.wa.wsdot.WSDOTUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/wsdot.app/wsdot";
+				TEST_TARGET_NAME = WSDOT;
 			};
 			name = Debug;
 		};
-		9AD32E1B1D23172C000AEC28 /* Release */ = {
+		9ADF0E081D7F5EF600632F3D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = wsdotTests/Info.plist;
+				INFOPLIST_FILE = WSDOTUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = gov.wa.wsdot.wsdotTests;
+				PRODUCT_BUNDLE_IDENTIFIER = gov.wa.wsdot.WSDOTUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/wsdot.app/wsdot";
+				TEST_TARGET_NAME = WSDOT;
 			};
 			name = Release;
 		};
@@ -1629,11 +1633,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AD32E191D23172C000AEC28 /* Build configuration list for PBXNativeTarget "wsdotTests" */ = {
+		9ADF0E061D7F5EF600632F3D /* Build configuration list for PBXNativeTarget "WSDOTUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9AD32E1A1D23172C000AEC28 /* Debug */,
-				9AD32E1B1D23172C000AEC28 /* Release */,
+				9ADF0E071D7F5EF600632F3D /* Debug */,
+				9ADF0E081D7F5EF600632F3D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
