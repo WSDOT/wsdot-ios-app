@@ -21,10 +21,12 @@
 import UIKit
 import RealmSwift
 
-class RouteTimesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class RouteTimesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     let departuresSailingSpacesCellIdentifier = "RouteDeparturesSailingSpaces"
     let departureCellIdentifier = "RouteDeparture"
+    
+    let segueDepartureDaySelectionViewController = "DepartureDaySelectionViewController"
     
     var sailingSpaces : [SailingSpacesItem]?
     
@@ -38,16 +40,20 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     var displayedSailing = FerrySailingsItem()
     var displayedTimes = List<FerryDepartureTimeItem>()
     
-    var pickerData = [String]()
+    var dayData = TimeUtils.nextSevenDaysStrings(NSDate())
     
     let refreshControl = UIRefreshControl()
     
-    @IBOutlet weak var dateTextField: PickerTextField!
+    @IBOutlet weak var dateButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var departuresHeader: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dateButton.layer.cornerRadius = 8.0
+        dateButton.setTitle(dayData[0], forState: .Normal)
+        dateButton.accessibilityHint = "double tap to change sailing day"
         
         setDisplayedSailing(0)
         
@@ -59,33 +65,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         
         tableView.addSubview(refreshControl)
         
-        // Set up day of week picker
-        let picker: UIPickerView
-        picker = UIPickerView()
-        picker.backgroundColor = .whiteColor()
-        
-        picker.showsSelectionIndicator = true
-        picker.delegate = self
-        picker.dataSource = self
-        
-        pickerData = TimeUtils.nextSevenDaysStrings(sailingsByDate[0].date)
-        pickerData = Array(pickerData[0...sailingsByDate.count - 1])
-        
-        let toolBar = UIToolbar()
-        toolBar.barStyle = UIBarStyle.Default
-        toolBar.translucent = true
-        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
-        toolBar.sizeToFit()
-        
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(RouteTimesViewController.donePicker))
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        
-        toolBar.setItems([spaceButton, spaceButton, doneButton], animated: false)
-        toolBar.userInteractionEnabled = true
-        
-        dateTextField.text = pickerData[0]
-        dateTextField.inputView = picker
-        dateTextField.inputAccessoryView = toolBar
         self.tableView.contentOffset = CGPointMake(0, -self.refreshControl.frame.size.height)
         refreshControl.beginRefreshing()
         refresh(self.refreshControl)
@@ -111,6 +90,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                                 selfValue.updatedAt = NSDate()
                                 selfValue.tableView.reloadData()
                                 selfValue.refreshControl.endRefreshing()
+                                UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, "sailing spaces loaded")
                             }
                         }
                     } else {
@@ -129,29 +109,14 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
             self.refreshControl.endRefreshing()
         }
     }
-    
-    // MARK: -
-    // MARK: Picker View Delegate & data source methods
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 1
+
+    @IBAction func selectAccountAction(sender: UIButton) {
+        performSegueWithIdentifier(segueDepartureDaySelectionViewController, sender: self)
     }
     
-    // The number of rows of data
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData.count
-    }
-    
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerData[row]
-    }
-    
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        currentDay = row
-    }
-    
-    func donePicker() {
-        dateTextField.text = pickerData[currentDay]
-        dateTextField.resignFirstResponder()
+    func daySelected(index: Int) {
+        currentDay = index
+        dateButton.setTitle(dayData[currentDay], forState: .Normal)
         setDisplayedSailing(currentDay)
         self.tableView.reloadData()
     }
@@ -236,6 +201,16 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         cell.isAccessibilityElement = true
         
         return cell
+    }
+    
+    // MARK: Naviagtion
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == segueDepartureDaySelectionViewController {
+            let destinationViewController = segue.destinationViewController as! DepartureDaySelectionViewController
+            destinationViewController.parent = self
+            destinationViewController.menu_options = dayData
+            destinationViewController.selectedIndex = currentDay
+        }
     }
     
     // MARK: Helper functions

@@ -60,6 +60,7 @@ class MountainPassesViewController: UIViewController, UITableViewDelegate, UITab
                             selfValue.passItems = MountainPassStore.getPasses()
                             selfValue.tableView.reloadData()
                             selfValue.refreshControl.endRefreshing()
+                            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, selfValue.tableView)
                         }
                     }
                 } else {

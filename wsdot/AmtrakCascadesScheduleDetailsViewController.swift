@@ -65,6 +65,7 @@ class AmtrakCascadesScheduleDetailsViewController: UIViewController, UITabBarDel
                             selfValue.tripItems = validData
                             selfValue.tableView.reloadData()
                             selfValue.refreshControl.endRefreshing()
+                            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, selfValue.tableView)
                         }
                     }
                 } else {

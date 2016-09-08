@@ -21,18 +21,20 @@
 import Foundation
 import UIKit
 
-class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource, INDLinkLabelDelegate {
+class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewDataSource, INDLinkLabelDelegate {
     
     let cellIdentifier = "TwitterCell"
+    
+    let segueTwitterAccountSelectionViewController = "TwitterAccountSelectionViewController"
     
     var tweets = [TwitterItem]()
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var pickerTextView: PickerTextField!
+    @IBOutlet weak var accountButton: UIButton!
     
     let refreshControl = UIRefreshControl()
     
-    let pickerData: [(name:String, screenName:String?)] =
+    let accountData: [(name:String, screenName:String?)] =
         [("All Accounts", nil), ("Ferries", "wsferries"), ("Good To Go!", "GoodToGoWSDOT"),
         ("Snoqualmie Pass", "SnoqualmiePass"), ("WSDOT", "wsdot"), ("WSDOT Jobs", "WSDOTjobs"), ("WSDOT Southwest", "wsdot_sw"),
         ("WSDOT Tacoma","wsdot_tacoma"), ("WSDOT Traffic","wsdot_traffic")]
@@ -55,32 +57,11 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
     
         title = "WSDOT on Twitter"
         
-        // Set up account picker
-        let picker: UIPickerView
-        picker = UIPickerView()
-        picker.backgroundColor = .whiteColor()
+        accountButton.layer.cornerRadius = 8.0
+        accountButton.setTitle("All Accounts", forState: .Normal)
+        accountButton.accessibilityHint = "double tap to change account"
         
-        picker.showsSelectionIndicator = true
-        picker.delegate = self
-        picker.dataSource = self
-
         tableView.rowHeight = UITableViewAutomaticDimension
-        
-        let toolBar = UIToolbar()
-        toolBar.barStyle = UIBarStyle.Default
-        toolBar.translucent = true
-        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
-        toolBar.sizeToFit()
-        
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(TwitterViewController.donePicker))
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        
-        toolBar.setItems([spaceButton, spaceButton, doneButton], animated: false)
-        toolBar.userInteractionEnabled = true
-        
-        pickerTextView.text = pickerData[0].name
-        pickerTextView.inputView = picker
-        pickerTextView.inputAccessoryView = toolBar
         
         // refresh controller
         refreshControl.addTarget(self, action: #selector(TwitterViewController.refreshAction(_:)), forControlEvents: .ValueChanged)
@@ -89,7 +70,7 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
         
         refreshControl.beginRefreshing()
         tableView.contentOffset = CGPoint(x: 0, y: self.tableView.contentOffset.y - self.refreshControl.frame.size.height)
-        refresh(pickerData[self.currentAccountIndex].screenName)
+        refresh(accountData[self.currentAccountIndex].screenName)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -98,7 +79,7 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
     }
     
     func refreshAction(sender: UIRefreshControl){
-        refresh(pickerData[self.currentAccountIndex].screenName)
+        refresh(accountData[self.currentAccountIndex].screenName)
     }
     
     func refresh(account: String?) {
@@ -127,6 +108,19 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
             })
         }
     }
+    
+    @IBAction func selectAccountAction(sender: UIButton) {
+        performSegueWithIdentifier(segueTwitterAccountSelectionViewController, sender: self)
+    }
+    
+    func accountSelected(index: Int){
+        currentAccountIndex = index
+        accountButton.setTitle(accountData[currentAccountIndex].name, forState: .Normal)
+        refreshControl.beginRefreshing()
+        tableView.contentOffset = CGPoint(x: 0, y: self.tableView.contentOffset.y - self.refreshControl.frame.size.height)
+        refresh(accountData[self.currentAccountIndex].screenName)
+    }
+    
     
     // MARK: Table View Data Source Methods
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -180,38 +174,14 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         UIApplication.sharedApplication().openURL(NSURL(string: tweets[indexPath.row].link)!)
     }
-
-    // MARK: -
-    // MARK: Picker View Delegate & data source methods
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 1
-    }
     
-    // The number of rows of data
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData.count
-    }
-    
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerData[row].name
-    }
-    
-    
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        dispatch_async(dispatch_get_main_queue()) { [weak self] in
-            if let selfValue = self {
-                selfValue.currentAccountIndex = row
-                selfValue.pickerTextView.text = selfValue.pickerData[selfValue.currentAccountIndex].name
-            }
+    // MARK: Naviagtion
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == segueTwitterAccountSelectionViewController {
+            let destinationViewController = segue.destinationViewController as! TwitterAccountSelectionViewController
+            destinationViewController.parent = self
+            destinationViewController.selectedIndex = currentAccountIndex
         }
-    }
-    
-    func donePicker() {
-        pickerTextView.text = pickerData[currentAccountIndex].name
-        pickerTextView.resignFirstResponder()
-        refreshControl.beginRefreshing()
-        tableView.contentOffset = CGPoint(x: 0, y: self.tableView.contentOffset.y - self.refreshControl.frame.size.height)
-        refresh(pickerData[self.currentAccountIndex].screenName)
     }
     
     // MARK: INDLinkLabelDelegate

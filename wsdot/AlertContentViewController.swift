@@ -36,6 +36,8 @@ class AlertContentViewController: UIViewController{
         self.view.backgroundColor = Colors.lightGrey
         self.view.frame = parentViewController!.view.frame
         
+        
+        
         if loadingPage {
             progressIndicator.startAnimating()
             alertLabel.hidden = true
@@ -49,6 +51,7 @@ class AlertContentViewController: UIViewController{
                 alertLabel.addGestureRecognizer(tapGesture)
             }
             progressIndicator.hidden = true
+            progressIndicator.isAccessibilityElement = false
         }
     }
     

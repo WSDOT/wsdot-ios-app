@@ -441,8 +441,8 @@
                         <constraints>
                             <constraint firstItem="b3O-Qj-rZv" firstAttribute="leading" secondItem="bpP-bq-5j3" secondAttribute="leadingMargin" constant="-20" id="7Ux-AU-XPA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="b3O-Qj-rZv" secondAttribute="trailing" constant="-20" id="CZW-AO-OkP"/>
-                            <constraint firstItem="peh-Jp-BEr" firstAttribute="top" secondItem="Z0A-cM-fqA" secondAttribute="bottom" id="U0W-Mx-yLa"/>
-                            <constraint firstItem="m3A-Kw-zgF" firstAttribute="top" secondItem="b3O-Qj-rZv" secondAttribute="bottom" id="UV1-Ka-jEq"/>
+                            <constraint firstItem="peh-Jp-BEr" firstAttribute="top" secondItem="Z0A-cM-fqA" secondAttribute="bottom" id="DMt-aC-rnZ"/>
+                            <constraint firstItem="m3A-Kw-zgF" firstAttribute="top" secondItem="b3O-Qj-rZv" secondAttribute="bottom" id="KxQ-N5-kXJ"/>
                             <constraint firstItem="peh-Jp-BEr" firstAttribute="leading" secondItem="bpP-bq-5j3" secondAttribute="leadingMargin" constant="-20" id="Wtz-gx-Mfp"/>
                             <constraint firstItem="b3O-Qj-rZv" firstAttribute="top" secondItem="peh-Jp-BEr" secondAttribute="bottom" id="c0T-Ps-V7v"/>
                             <constraint firstAttribute="trailingMargin" secondItem="peh-Jp-BEr" secondAttribute="trailing" constant="-20" id="v4S-8T-9zx"/>
@@ -450,6 +450,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="Xpe-Fb-HQB">
                         <barButtonItem key="rightBarButtonItem" image="icInfo" id="t4G-kd-S5C">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="About"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="infoBarButtonPressed:" destination="4jS-98-Vld" id="Ll3-O9-ZuD"/>
                             </connections>

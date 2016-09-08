@@ -38,6 +38,7 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
         setViewControllers([pages[0]], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
         
         view.backgroundColor = Colors.lightGrey
+        
         UIPageControl.appearance().pageIndicatorTintColor = UIColor.whiteColor()
         UIPageControl.appearance().currentPageIndicatorTintColor = Colors.tintColor
         
@@ -101,9 +102,8 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
             pages.append(page)
         }
         
-        
-        
         setViewControllers([pages[0]], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
+        
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
@@ -135,4 +135,5 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
         return 0
     }
+    
 }

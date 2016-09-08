@@ -28,9 +28,10 @@ class WSDOTUITests: XCTestCase {
         let exists = NSPredicate(format: "exists == true")
 
         tablesQuery.cells.elementBoundByIndex(0).doubleTap()
+        sleep(5)
         snapshot("01TrafficMap")
         
-        app.navigationBars["Traffic Map"].buttons["icMenu"].doubleTap()
+        app.navigationBars["Traffic Map"].buttons["Menu"].doubleTap()
         
         expectationForPredicate(exists, evaluatedWithObject: tablesQuery.cells.staticTexts["Travel Times"], handler: nil)
         waitForExpectationsWithTimeout(5, handler: nil)
@@ -44,7 +45,7 @@ class WSDOTUITests: XCTestCase {
         let tablesQuery = app.tables
         let exists = NSPredicate(format: "exists == true")
 
-        tablesQuery.cells.elementBoundByIndex(2).doubleTap()
+        tablesQuery.cells.elementBoundByIndex(2).tap()
         
         expectationForPredicate(exists, evaluatedWithObject: tablesQuery.staticTexts["Blewett Pass US97"], handler: nil)
         waitForExpectationsWithTimeout(5, handler: nil)
@@ -85,17 +86,11 @@ class WSDOTUITests: XCTestCase {
             return true
         }
         
-        app.scrollViews.otherElements.childrenMatchingType(.TextField).elementBoundByIndex(1).tap()
-        app.pickerWheels.element.adjustToPickerWheelValue("Seattle, WA")
-        app.pickers.pickerWheels["Seattle, WA"].doubleTap()
-        app.toolbars.buttons["Done"].tap()
-        
-        app.scrollViews.otherElements.childrenMatchingType(.TextField).elementBoundByIndex(2).tap()
-        app.pickerWheels.element.adjustToPickerWheelValue("Portland, OR")
-        app.pickers.pickerWheels["Portland, OR"].doubleTap()
-        app.toolbars.buttons["Done"].tap()
-        
-        app.scrollViews.otherElements.buttons["Check Schedules"].doubleTap()
-        snapshot("05AmtrakCascadesDetails")
+        tablesQuery.staticTexts["Origin"].tap()
+        tablesQuery.staticTexts["Seattle, WA"].tap()
+        tablesQuery.staticTexts["Destination"].tap()
+        tablesQuery.staticTexts["Portland, OR"].tap()
+        tablesQuery.staticTexts["Check Schedule"].tap()
+        snapshot("05Amtrak")
     }
 }

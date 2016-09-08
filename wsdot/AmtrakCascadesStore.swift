@@ -173,7 +173,7 @@ class AmtrakCascadesStore {
         dest.append("Albany, OR")
         dest.append("Eugene, OR")
         dest.sortInPlace()
-        dest.insert("Select your destination", atIndex: 0)
+        dest.insert("All", atIndex: 0)
         return dest
     }
     
@@ -201,7 +201,7 @@ class AmtrakCascadesStore {
     }
     
     static let stationIdsMap: Dictionary<String, String> = [
-        "Select your destination": "N/A",
+        "All": "N/A",
         "Vancouver, BC": "VAC",
         "Bellingham, WA": "BEL",
         "Mount Vernon, WA": "MVW",
@@ -244,4 +244,5 @@ class AmtrakCascadesStore {
         513: "Amtrak Cascades Train",
         517: "Amtrak Cascades Train"
     ]
+
 }
