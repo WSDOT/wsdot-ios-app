@@ -123,6 +123,7 @@ class AmtrakCascadesScheduleViewController: UITableViewController, CLLocationMan
         let index = originTableData.indexOf(closest.station.name)
         
         originCell.selection.text = originTableData[index!]
+        originIndex = index!
         
         manager.stopUpdatingLocation()
     }
