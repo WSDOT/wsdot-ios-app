@@ -17,6 +17,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
+
 import Foundation
 import Alamofire
 import SwiftyJSON
@@ -88,6 +89,36 @@ class AmtrakCascadesStore {
             if service.scheduledArrivalTime == nil {
                 service.scheduledArrivalTime = service.scheduledDepartureTime
             }
+
+            if let arrivComments = stationJson["ArrivalComment"].string {
+                if (arrivComments.lowercaseString.containsString("late")){
+                    let mins = Double(arrivComments.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "0123456789.").invertedSet))!
+                    service.arrivalComment = "Estimated " + arrivComments.lowercaseString + " at " + TimeUtils.getTimeOfDay(service.scheduledArrivalTime!.dateByAddingTimeInterval(mins * 60))
+                } else if (arrivComments.lowercaseString.containsString("early")){
+                    let mins = Double(arrivComments.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "0123456789.").invertedSet))!
+                    service.arrivalComment = "Estimated " + arrivComments.lowercaseString + " at " + TimeUtils.getTimeOfDay(service.scheduledArrivalTime!.dateByAddingTimeInterval(mins * -60))
+                } else {
+                    service.arrivalComment = "Estimated " + arrivComments.lowercaseString
+                }
+            } else {
+                service.arrivalComment = ""
+            }
+            
+            
+            if let departComments = stationJson["ArrivalComment"].string {
+                if (departComments.lowercaseString.containsString("late")){
+                    let mins = Double(departComments.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "0123456789.").invertedSet))!
+                    service.departureComment = "Estimated " + departComments.lowercaseString + " at " + TimeUtils.getTimeOfDay(service.scheduledDepartureTime!.dateByAddingTimeInterval(mins * 60))
+                } else if (departComments.lowercaseString.containsString("early")){
+                    let mins = Double(departComments.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "0123456789.").invertedSet))!
+                    service.departureComment = "Estimated " + departComments.lowercaseString + " at " + TimeUtils.getTimeOfDay(service.scheduledDepartureTime!.dateByAddingTimeInterval(mins * -60))
+                } else {
+                    service.departureComment = "Estimated " + departComments.lowercaseString
+                }
+            } else {
+                service.departureComment = ""
+            }
+
 
             service.updated = TimeUtils.parseJSONDateToNSDate(stationJson["UpdateTime"].stringValue)
 

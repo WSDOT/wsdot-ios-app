@@ -107,11 +107,7 @@ class AmtrakCascadesScheduleDetailsViewController: UIViewController, UITabBarDel
         
         cell.departingTimeLabel.text = TimeUtils.getTimeOfDay(originService.scheduledDepartureTime!)
         
-        if let departComments = originService.departureComment {
-            cell.departureNotesLabel.text = departComments
-        } else {
-            cell.departureNotesLabel.text = ""
-        }
+        cell.departureNotesLabel.text = originService.departureComment
         
         if let train = AmtrakCascadesStore.trainNumberMap[originService.trainNumber]{
             cell.trainDetailsLabel.text = String(originService.trainNumber) + " " + train
@@ -126,12 +122,8 @@ class AmtrakCascadesScheduleDetailsViewController: UIViewController, UITabBarDel
             cell.arrivingStationNameLabel.text = destinationService.stationName
             
             cell.arrivingTimeLabel.text = TimeUtils.getTimeOfDay(destinationService.scheduledArrivalTime!)
-            
-            if let arrivComments = destinationService.arrivalComment {
-                cell.arrivalNotesLabel.text = arrivComments
-            } else {
-                cell.arrivalNotesLabel.text = ""
-            }
+
+            cell.arrivalNotesLabel.text = destinationService.arrivalComment
             
         } else {
             cell.arrivingStationNameLabel.text = ""
