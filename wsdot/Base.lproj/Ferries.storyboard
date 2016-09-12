@@ -168,10 +168,31 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Si5-lU-RjZ"/>
                                     <constraint firstAttribute="width" constant="320" id="hjt-lZ-D5N"/>
+                                    <constraint firstAttribute="height" constant="32" id="pCS-gS-fqo"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="pCS-gS-fqo"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="pCS-gS-fqo"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                    <rect key="frame" x="240" y="64" width="320" height="50"/>
+                                    <mask key="constraints">
+                                        <exclude reference="Si5-lU-RjZ"/>
+                                        <include reference="pCS-gS-fqo"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IF4-Y9-eAy">
                                 <rect key="frame" x="0.0" y="112" width="600" height="443"/>
+                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="112" width="800" height="643"/>
+                                </variation>
                                 <connections>
                                     <segue destination="Tbg-l4-csa" kind="embed" identifier="EmbedMapSegue" id="dXg-Ar-maZ"/>
                                 </connections>
@@ -639,11 +660,32 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="WbO-6G-Iov"/>
+                                    <constraint firstAttribute="height" constant="32" id="aTV-d5-MOE"/>
                                     <constraint firstAttribute="width" constant="320" id="g2z-AV-ZKt"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="aTV-d5-MOE"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="WbO-6G-Iov"/>
+                                        <include reference="aTV-d5-MOE"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <mask key="constraints">
+                                        <exclude reference="WbO-6G-Iov"/>
+                                        <include reference="aTV-d5-MOE"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jQQ-2t-Te6" userLabel="Times Container View">
                                 <rect key="frame" x="0.0" y="108" width="600" height="390"/>
+                                <variation key="heightClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="108" width="600" height="190"/>
+                                </variation>
                                 <connections>
                                     <segue destination="Whq-2K-wR1" kind="embed" identifier="timesViewSegue" id="ioK-qy-EUX"/>
                                 </connections>
@@ -673,9 +715,15 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s3p-vV-1U1">
                                 <rect key="frame" x="0.0" y="494" width="600" height="57"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <variation key="heightClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="294" width="600" height="57"/>
+                                </variation>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7in-bp-hzl">
                                 <rect key="frame" x="0.0" y="108" width="600" height="390"/>
+                                <variation key="heightClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="108" width="600" height="190"/>
+                                </variation>
                                 <connections>
                                     <segue destination="9oz-GA-S3r" kind="embed" identifier="camerasViewSegue" id="6lF-hc-Nk1"/>
                                 </connections>
@@ -950,7 +998,7 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D0y-2V-duT">
                                 <rect key="frame" x="20" y="8" width="560" height="32"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="byX-fx-5C5"/>
                                 </constraints>
