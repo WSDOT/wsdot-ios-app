@@ -663,7 +663,6 @@
                                                 <constraint firstItem="D9p-uc-0TU" firstAttribute="leading" secondItem="orx-hg-QW8" secondAttribute="leadingMargin" constant="8" id="XXC-Xn-dSw"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="owa-9R-fe1" secondAttribute="trailing" constant="10" id="dWQ-Lv-cUw"/>
                                                 <constraint firstItem="D9p-uc-0TU" firstAttribute="centerY" secondItem="orx-hg-QW8" secondAttribute="centerY" id="lkv-sg-SUs"/>
-                                                <constraint firstItem="s7j-DD-Rr7" firstAttribute="centerY" secondItem="owa-9R-fe1" secondAttribute="centerY" id="vFc-Ob-YS9"/>
                                                 <constraint firstItem="s7j-DD-Rr7" firstAttribute="trailing" secondItem="owa-9R-fe1" secondAttribute="trailing" id="vOb-qw-p6n"/>
                                             </constraints>
                                         </tableViewCellContentView>
