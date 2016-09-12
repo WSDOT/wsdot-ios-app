@@ -5,9 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 [Unreleased]: 
 
 ## [5.0.0]
-* New codebase
+* New codebase, new look!
 
 ### Added
-* Traffic Map gets refreshed looked
-* Added Flickr to Social Media Section
-* New contact in about section
+* Can now toggle all map markers on/off on maps.
+* New origanization of Pass Reports.
+* New Amtrak Schedules. Now Shows all legs of a trip in detail. 
+* Ferry Alert tabs now have a badge showing the number of active alerts
+* Added WSDOT Flikr account to Social Media Section.
+* Bug report template in the About section contact.
