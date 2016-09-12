@@ -23,11 +23,27 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qyr-NB-cah" customClass="GADBannerView">
                                 <rect key="frame" x="140" y="64" width="320" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="9IT-z1-IVn"/>
-                                    <constraint firstAttribute="width" constant="320" id="ZHW-wt-rOo"/>
+                                    <constraint firstAttribute="height" constant="50" id="Ruu-Lx-Yj6"/>
+                                    <constraint firstAttribute="height" constant="32" id="l8B-Kd-YNf"/>
+                                    <constraint firstAttribute="width" constant="320" id="v1A-ai-wJk"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="l8B-Kd-YNf"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="Ruu-Lx-Yj6"/>
+                                        <include reference="l8B-Kd-YNf"/>
+                                        <include reference="v1A-ai-wJk"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="64" width="0.0" height="32"/>
+                                </variation>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZJx-g9-PRb">
                                 <rect key="frame" x="0.0" y="114" width="600" height="442"/>
@@ -37,6 +53,9 @@
                             </containerView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ma7-um-xVJ">
                                 <rect key="frame" x="290" y="290" width="20" height="20"/>
+                                <variation key="heightClass=compact-widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="-10" y="190" width="20" height="20"/>
+                                </variation>
                             </activityIndicatorView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gnH-bF-LaH">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
@@ -99,11 +118,15 @@
                             <constraint firstItem="gnH-bF-LaH" firstAttribute="top" secondItem="ZJx-g9-PRb" secondAttribute="bottom" id="OY8-Sa-jzV"/>
                             <constraint firstAttribute="bottom" secondItem="gnH-bF-LaH" secondAttribute="bottom" id="Px6-we-R5o"/>
                             <constraint firstItem="Qyr-NB-cah" firstAttribute="top" secondItem="QZd-M0-o1F" secondAttribute="bottom" id="h9J-rz-Ihr"/>
-                            <constraint firstItem="ZJx-g9-PRb" firstAttribute="top" secondItem="Qyr-NB-cah" secondAttribute="bottom" id="jVQ-tA-zV4"/>
                             <constraint firstAttribute="trailing" secondItem="ZJx-g9-PRb" secondAttribute="trailing" id="uh0-Q4-Vqd"/>
                             <constraint firstItem="ZJx-g9-PRb" firstAttribute="leading" secondItem="Cd9-UR-QA9" secondAttribute="leading" id="wNz-VI-64b"/>
                             <constraint firstItem="ma7-um-xVJ" firstAttribute="centerX" secondItem="Qyr-NB-cah" secondAttribute="centerX" id="zg2-C0-nka"/>
                         </constraints>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="Qyr-NB-cah"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="7DF-yq-rSE">
                         <rightBarButtonItems>
