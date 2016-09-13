@@ -3,7 +3,6 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'WSDOT' do
-    pod 'Firebase'
     pod 'Firebase/Core'
     pod 'Google-Mobile-Ads-SDK'
     pod 'GoogleMaps'

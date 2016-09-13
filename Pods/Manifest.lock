@@ -1,7 +1,5 @@
 PODS:
   - Alamofire (3.4.1)
-  - Firebase (3.4.0):
-    - Firebase/Core (= 3.4.0)
   - Firebase/Analytics (3.4.0):
     - FirebaseAnalytics (~> 3.3)
   - Firebase/Core (3.4.0):
@@ -41,7 +39,6 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 3.4.1)
-  - Firebase
   - Firebase/Core
   - Google-Mobile-Ads-SDK
   - Google/Analytics
@@ -67,6 +64,6 @@ SPEC CHECKSUMS:
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: f4423a3d7f4081465b5f366c794e106971b18a39
+PODFILE CHECKSUM: 7f4b8bcf0e28340ef20e46ce188b3cd946a84e2f
 
 COCOAPODS: 1.0.1
