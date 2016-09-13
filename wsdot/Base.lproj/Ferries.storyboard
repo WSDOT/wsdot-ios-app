@@ -1071,6 +1071,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -1093,7 +1094,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c7J-Cj-FKZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5038" y="51"/>
+            <point key="canvasLocation" x="4340" y="549"/>
         </scene>
         <!--Route Cameras View Controller-->
         <scene sceneID="hfE-u9-p0y">
