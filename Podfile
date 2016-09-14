@@ -4,7 +4,7 @@ use_frameworks!
 
 target 'WSDOT' do
     pod 'Firebase/Core'
-    pod 'Google-Mobile-Ads-SDK'
+    pod 'Firebase/AdMob'
     pod 'GoogleMaps'
     pod 'Google/Analytics'
     #pod 'RealmSwift' # Waiting for Swift 2.3 release
