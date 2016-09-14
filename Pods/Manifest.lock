@@ -1,5 +1,8 @@
 PODS:
   - Alamofire (3.5.0)
+  - Firebase/AdMob (3.5.2):
+    - Firebase/Analytics
+    - Google-Mobile-Ads-SDK (= 7.10.1)
   - Firebase/Analytics (3.5.2):
     - FirebaseAnalytics (~> 3.3)
   - Firebase/Core (3.5.2):
@@ -39,8 +42,8 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 3.5.0)
+  - Firebase/AdMob
   - Firebase/Core
-  - Google-Mobile-Ads-SDK
   - Google/Analytics
   - GoogleMaps
   - Realm (from `https://github.com/realm/realm-cocoa.git`, branch `master`)
@@ -85,6 +88,6 @@ SPEC CHECKSUMS:
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 59e6fd4e20da6dedfdb4e2ccc29d43a1bed411df
+PODFILE CHECKSUM: 7633a9e4de0473206be0cb63aff44dc1abd36d44
 
 COCOAPODS: 1.0.1
