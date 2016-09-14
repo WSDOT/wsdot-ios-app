@@ -37,9 +37,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     let segueMountainPassDetailsViewController = "MountianPassDetailsViewController"
 
     @IBOutlet weak var emptyFavoritesView: UIView!
-    @IBOutlet weak var initLoadingView: UIView!
     @IBOutlet weak var favoritesTable: UITableView!
-    @IBOutlet weak var initActivityIndicator: UIActivityIndicatorView!
     
     var favoriteLocations = [FavoriteLocationItem]()
     var favoriteRoutes = [FerryScheduleItem]()
@@ -50,7 +48,8 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     var notificationToken: NotificationToken?
     
     let refreshControl = UIRefreshControl()
-    
+    var overlayView = UIView()
+    var activityIndicator = UIActivityIndicatorView()
 
     
     override func viewDidLoad() {
@@ -64,7 +63,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         favoritesTable.rowHeight = UITableViewAutomaticDimension
         
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
+ 
     }
     
     // Checks if users has any favorites.
@@ -83,7 +82,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             self.emptyFavoritesView.hidden = false
         }else {
             self.emptyFavoritesView.hidden = true
-            self.initActivityIndicator.startAnimating()
+            self.showOverlay(self.view)
             self.loadFavorites(false)
         }
         
@@ -134,10 +133,33 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             }
 
             self.favoritesTable.reloadData()
-            self.initActivityIndicator.stopAnimating()
-            self.initLoadingView.hidden = true
+            self.hideOverlayView()
             self.refreshControl.endRefreshing()
         }
+    }
+    
+    func showOverlay(view: UIView) {
+        
+        overlayView.frame = CGRectMake(0, 0, 80, 80)
+        overlayView.center = CGPointMake(view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
+        overlayView.backgroundColor = UIColor.blackColor()
+        overlayView.alpha = 0.7
+        overlayView.clipsToBounds = true
+        overlayView.layer.cornerRadius = 10
+        
+        activityIndicator.frame = CGRectMake(0, 0, 40, 40)
+        activityIndicator.activityIndicatorViewStyle = .WhiteLarge
+        activityIndicator.center = CGPointMake(overlayView.bounds.width / 2, overlayView.bounds.height / 2)
+        
+        overlayView.addSubview(activityIndicator)
+        view.addSubview(overlayView)
+        
+        activityIndicator.startAnimating()
+    }
+    
+    func hideOverlayView(){
+        activityIndicator.stopAnimating()
+        overlayView.removeFromSuperview()
     }
     
     private func requestFavoriteTravelTimes(force: Bool, serviceGroup: dispatch_group_t){

@@ -29,6 +29,8 @@ class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITable
     var expressLanes = [ExpressLaneItem]()
     
     let refreshControl = UIRefreshControl()
+    var overlayView = UIView()
+    var activityIndicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +40,7 @@ class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITable
         refreshControl.addTarget(self, action: #selector(ExpressLanesViewController.refresh(_:)), forControlEvents: .ValueChanged)
         tableView.addSubview(refreshControl)
         
-        refreshControl.beginRefreshing()
+        showOverlay(self.view)
         refresh(self.refreshControl)
         
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -60,18 +62,44 @@ class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITable
                             selfValue.expressLanes = validData
                             selfValue.tableView.reloadData()
                             selfValue.refreshControl.endRefreshing()
+                            selfValue.hideOverlayView()
                         }
                     }
                 } else {
                     dispatch_async(dispatch_get_main_queue()) { [weak self] in
                         if let selfValue = self{
                             selfValue.refreshControl.endRefreshing()
+                            selfValue.hideOverlayView()
                             selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                         }
                     }
                 }
             })
         }
+    }
+    
+    func showOverlay(view: UIView) {
+        
+        overlayView.frame = CGRectMake(0, 0, 80, 80)
+        overlayView.center = CGPointMake(view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
+        overlayView.backgroundColor = UIColor.blackColor()
+        overlayView.alpha = 0.7
+        overlayView.clipsToBounds = true
+        overlayView.layer.cornerRadius = 10
+        
+        activityIndicator.frame = CGRectMake(0, 0, 40, 40)
+        activityIndicator.activityIndicatorViewStyle = .WhiteLarge
+        activityIndicator.center = CGPointMake(overlayView.bounds.width / 2, overlayView.bounds.height / 2)
+        
+        overlayView.addSubview(activityIndicator)
+        view.addSubview(overlayView)
+        
+        activityIndicator.startAnimating()
+    }
+    
+    func hideOverlayView(){
+        activityIndicator.stopAnimating()
+        overlayView.removeFromSuperview()
     }
 
     // MARK: Table View Data Source Methods

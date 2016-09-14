@@ -33,7 +33,9 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
     @IBOutlet weak var accountButton: UIButton!
     
     let refreshControl = UIRefreshControl()
-    
+    var overlayView = UIView()
+    var activityIndicator = UIActivityIndicatorView()
+
     let accountData: [(name:String, screenName:String?)] =
         [("All Accounts", nil), ("Ferries", "wsferries"), ("Good To Go!", "GoodToGoWSDOT"),
         ("Snoqualmie Pass", "SnoqualmiePass"), ("WSDOT", "wsdot"), ("WSDOT Jobs", "WSDOTjobs"), ("WSDOT Southwest", "wsdot_sw"),
@@ -68,7 +70,7 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
         
         tableView.addSubview(refreshControl)
         
-        refreshControl.beginRefreshing()
+        showOverlay(self.view)
         tableView.contentOffset = CGPoint(x: 0, y: self.tableView.contentOffset.y - self.refreshControl.frame.size.height)
         refresh(accountData[self.currentAccountIndex].screenName)
     }
@@ -95,18 +97,44 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
                             selfValue.tweets = validData
                             selfValue.tableView.reloadData()
                             selfValue.refreshControl.endRefreshing()
+                            selfValue.hideOverlayView()
                         }
                     }
                 } else {
                     dispatch_async(dispatch_get_main_queue()) { [weak self] in
                         if let selfValue = self{
                             selfValue.refreshControl.endRefreshing()
+                            selfValue.hideOverlayView()
                             selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                         }
                     }
                 }
             })
         }
+    }
+    
+    func showOverlay(view: UIView) {
+        
+        overlayView.frame = CGRectMake(0, 0, 80, 80)
+        overlayView.center = CGPointMake(view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
+        overlayView.backgroundColor = UIColor.blackColor()
+        overlayView.alpha = 0.7
+        overlayView.clipsToBounds = true
+        overlayView.layer.cornerRadius = 10
+        
+        activityIndicator.frame = CGRectMake(0, 0, 40, 40)
+        activityIndicator.activityIndicatorViewStyle = .WhiteLarge
+        activityIndicator.center = CGPointMake(overlayView.bounds.width / 2, overlayView.bounds.height / 2)
+        
+        overlayView.addSubview(activityIndicator)
+        view.addSubview(overlayView)
+        
+        activityIndicator.startAnimating()
+    }
+    
+    func hideOverlayView(){
+        activityIndicator.stopAnimating()
+        overlayView.removeFromSuperview()
     }
     
     @IBAction func selectAccountAction(sender: UIButton) {

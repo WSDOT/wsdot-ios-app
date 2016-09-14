@@ -45,6 +45,8 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
     let bc99Icon = UIImage(named: "icListBC99")
     
     let refreshControl = UIRefreshControl()
+    var overlayView = UIView()
+    var activityIndicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +58,8 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
         refreshControl.addTarget(self, action: #selector(BorderWaitsViewController.refreshAction(_:)), forControlEvents: .ValueChanged)
         tableView.addSubview(refreshControl)
         
-        refreshControl.beginRefreshing()
+        showOverlay(self.refreshControl)
+        
         refresh(false)
         tableView.rowHeight = UITableViewAutomaticDimension
         
@@ -85,12 +88,14 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
                                 selfValue.displayedWaits = selfValue.southboundWaits
                             }
                             selfValue.tableView.reloadData()
+                            selfValue.hideOverlayView()
                             selfValue.refreshControl.endRefreshing()
                         }
                     }
                 } else {
                     dispatch_async(dispatch_get_main_queue()) { [weak self] in
                         if let selfValue = self{
+                            selfValue.hideOverlayView()
                             selfValue.refreshControl.endRefreshing()
                             selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                         }
@@ -100,6 +105,29 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
+    func showOverlay(view: UIView) {
+        
+        overlayView.frame = CGRectMake(0, 0, 80, 80)
+        overlayView.center = CGPointMake(view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
+        overlayView.backgroundColor = UIColor.blackColor()
+        overlayView.alpha = 0.7
+        overlayView.clipsToBounds = true
+        overlayView.layer.cornerRadius = 10
+        
+        activityIndicator.frame = CGRectMake(0, 0, 40, 40)
+        activityIndicator.activityIndicatorViewStyle = .WhiteLarge
+        activityIndicator.center = CGPointMake(overlayView.bounds.width / 2, overlayView.bounds.height / 2)
+        
+        overlayView.addSubview(activityIndicator)
+        view.addSubview(overlayView)
+        
+        activityIndicator.startAnimating()
+    }
+    
+    func hideOverlayView(){
+        activityIndicator.stopAnimating()
+        overlayView.removeFromSuperview()
+    }
     
     // MARK: Table View Data Source Methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

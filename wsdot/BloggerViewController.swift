@@ -27,6 +27,8 @@ class BloggerViewController: UIViewController, UITabBarDelegate, UITableViewData
     
     var posts = [BlogItem]()
     let refreshControl = UIRefreshControl()
+    var overlayView = UIView()
+    var activityIndicator = UIActivityIndicatorView()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -39,7 +41,7 @@ class BloggerViewController: UIViewController, UITabBarDelegate, UITableViewData
         // refresh controller
         refreshControl.addTarget(self, action: #selector(BloggerViewController.refreshAction(_:)), forControlEvents: .ValueChanged)
         tableView.addSubview(refreshControl)
-        refreshControl.beginRefreshing()
+        showOverlay(self.view)
         refresh()
     }
     
@@ -60,12 +62,14 @@ class BloggerViewController: UIViewController, UITabBarDelegate, UITableViewData
                         if let selfValue = self{
                             selfValue.posts = validData
                             selfValue.tableView.reloadData()
+                            selfValue.hideOverlayView()
                             selfValue.refreshControl.endRefreshing()
                         }
                     }
                 } else {
                     dispatch_async(dispatch_get_main_queue()) { [weak self] in
                         if let selfValue = self{
+                            selfValue.hideOverlayView()
                             selfValue.refreshControl.endRefreshing()
                             selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                             
@@ -76,6 +80,29 @@ class BloggerViewController: UIViewController, UITabBarDelegate, UITableViewData
         }
     }
     
+    func showOverlay(view: UIView) {
+        
+        overlayView.frame = CGRectMake(0, 0, 80, 80)
+        overlayView.center = CGPointMake(view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
+        overlayView.backgroundColor = UIColor.blackColor()
+        overlayView.alpha = 0.7
+        overlayView.clipsToBounds = true
+        overlayView.layer.cornerRadius = 10
+        
+        activityIndicator.frame = CGRectMake(0, 0, 40, 40)
+        activityIndicator.activityIndicatorViewStyle = .WhiteLarge
+        activityIndicator.center = CGPointMake(overlayView.bounds.width / 2, overlayView.bounds.height / 2)
+        
+        overlayView.addSubview(activityIndicator)
+        view.addSubview(overlayView)
+        
+        activityIndicator.startAnimating()
+    }
+    
+    func hideOverlayView(){
+        activityIndicator.stopAnimating()
+        overlayView.removeFromSuperview()
+    }
     
     // MARK: Table View Data Source Methods
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

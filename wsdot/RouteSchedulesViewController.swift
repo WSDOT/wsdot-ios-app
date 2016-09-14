@@ -28,14 +28,18 @@ class RouteSchedulesViewController: UITableViewController {
     
     var routes = [FerryScheduleItem]()
     
+    var overlayView = UIView()
+    var activityIndicator = UIActivityIndicatorView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Route Schedules"
-        
-        self.refreshControl?.beginRefreshing()
+
+        showOverlay(self.view)
         
         self.refresh(false)
     }
+
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -54,7 +58,7 @@ class RouteSchedulesViewController: UITableViewController {
                         if let selfValue = self{
                             selfValue.routes = FerryRealmStore.findAllSchedules()
                             selfValue.tableView.reloadData()
-                            selfValue.refreshControl?.isAccessibilityElement = false
+                            selfValue.hideOverlayView()
                             selfValue.refreshControl?.endRefreshing()
                             UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, selfValue.tableView)
                         }
@@ -62,14 +66,38 @@ class RouteSchedulesViewController: UITableViewController {
                 } else {
                     dispatch_async(dispatch_get_main_queue()) { [weak self] in
                         if let selfValue = self{
+                            selfValue.hideOverlayView()
                             selfValue.refreshControl?.endRefreshing()
-                            selfValue.refreshControl?.isAccessibilityElement = false
                             selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                         }
                     }
                 }
             })
         }
+    }
+    
+    func showOverlay(view: UIView) {
+        
+        overlayView.frame = CGRectMake(0, 0, 80, 80)
+        overlayView.center = CGPointMake(view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
+        overlayView.backgroundColor = UIColor.darkGrayColor()
+        overlayView.alpha = 1
+        overlayView.clipsToBounds = true
+        overlayView.layer.cornerRadius = 10
+        
+        activityIndicator.frame = CGRectMake(0, 0, 40, 40)
+        activityIndicator.activityIndicatorViewStyle = .WhiteLarge
+        activityIndicator.center = CGPointMake(overlayView.bounds.width / 2, overlayView.bounds.height / 2)
+        
+        overlayView.addSubview(activityIndicator)
+        view.addSubview(overlayView)
+        
+        activityIndicator.startAnimating()
+    }
+    
+    func hideOverlayView(){
+        activityIndicator.stopAnimating()
+        overlayView.removeFromSuperview()
     }
     
     @IBAction func refreshAction() {
