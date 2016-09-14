@@ -7,8 +7,10 @@ target 'WSDOT' do
     pod 'Google-Mobile-Ads-SDK'
     pod 'GoogleMaps'
     pod 'Google/Analytics'
-    pod 'RealmSwift'
-    pod 'Alamofire', '~> 3.4.1'
+    #pod 'RealmSwift' # Waiting for Swift 2.3 release
+    pod 'Realm', git: 'https://github.com/realm/realm-cocoa.git', branch: 'master', :submodules => true
+    pod 'RealmSwift', git: 'https://github.com/realm/realm-cocoa.git', branch: 'master', :submodules => true
+    pod 'Alamofire', '~> 3.5.0'
     pod 'SwiftyJSON'
     pod 'SDWebImage'
 end

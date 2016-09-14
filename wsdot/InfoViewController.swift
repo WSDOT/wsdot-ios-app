@@ -82,16 +82,15 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
     }
     
     // MARK: - MFMailComposeViewControllerDelegate
-    
     func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         switch result.rawValue {
-        case MFMailComposeResultCancelled.rawValue:
+        case MFMailComposeResult.Cancelled.rawValue:
             print("Cancelled")
-        case MFMailComposeResultSaved.rawValue:
+        case MFMailComposeResult.Saved.rawValue:
             print("Saved")
-        case MFMailComposeResultSent.rawValue:
+        case MFMailComposeResult.Sent.rawValue:
             print("Sent")
-        case MFMailComposeResultFailed.rawValue:
+        case MFMailComposeResult.Failed.rawValue:
             print("Error: \(error?.localizedDescription)")
         default:
             break

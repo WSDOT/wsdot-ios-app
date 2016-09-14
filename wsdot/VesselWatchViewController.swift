@@ -241,9 +241,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
                 } else {
                     dispatch_async(dispatch_get_main_queue()) { [weak self] in
                         if let selfValue = self{
-                            if let group = selfValue.serviceGroup{
-                                dispatch_group_leave(group)
-                            }
+                            dispatch_group_leave(selfValue.serviceGroup)
                             selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                             
                         }

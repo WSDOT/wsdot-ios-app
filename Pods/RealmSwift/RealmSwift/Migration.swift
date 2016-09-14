@@ -30,7 +30,7 @@ Migration block used to migrate a Realm.
                        existing objects which require migration.
 - parameter oldSchemaVersion: The schema version of the `Realm` being migrated.
 */
-public typealias MigrationBlock = (migration: Migration, oldSchemaVersion: UInt64) -> Void
+public typealias MigrationBlock = (_ migration: Migration, _ oldSchemaVersion: UInt64) -> Void
 
 /// Object class used during migrations.
 public typealias MigrationObject = DynamicObject
@@ -42,7 +42,7 @@ accessed using subscripting.
 - parameter oldObject: Object in original `Realm` (read-only).
 - parameter newObject: Object in migrated `Realm` (read-write).
 */
-public typealias MigrationObjectEnumerateBlock = (oldObject: MigrationObject?, newObject: MigrationObject?) -> Void
+public typealias MigrationObjectEnumerateBlock = (_ oldObject: MigrationObject?, _ newObject: MigrationObject?) -> Void
 
 /**
 Get the schema version for a Realm at a given local URL.
@@ -63,28 +63,22 @@ public func schemaVersionAtURL(_ fileURL: URL, encryptionKey: Data? = nil) throw
     return version
 }
 
-/**
-Performs the configuration's migration block on the Realm created by the given
-configuration.
+extension Realm {
+    /**
+     Performs the given Realm configuration's migration block on a Realm at the given path.
 
-This method is called automatically when opening a Realm for the first time and does
-not need to be called explicitly. You can choose to call this method to control
-exactly when and how migrations are performed.
+     This method is called automatically when opening a Realm for the first time and does
+     not need to be called explicitly. You can choose to call this method to control
+     exactly when and how migrations are performed.
 
-- parameter configuration: The Realm.Configuration used to create the Realm to be
-                           migrated, and containing the schema version and migration
-                           block used to perform the migration.
+     - parameter configuration: The Realm configuration used to open and migrate the Realm.
 
-- returns: `nil` if the migration was successful, or an `NSError` object that describes the problem
-           that occurred otherwise.
-*/
-@discardableResult
-public func migrateRealm(_ configuration: Realm.Configuration = Realm.Configuration.defaultConfiguration) throws {
-    if let error = RLMRealm.migrateRealm(configuration.rlmConfiguration) {
-        throw error
+     - throws: An `NSError` that describes an error that occurred while applying the migration, if any.
+     */
+    public static func performMigration(for configuration: Realm.Configuration = Realm.Configuration.defaultConfiguration) throws {
+        try RLMRealm.performMigration(for: configuration.rlmConfiguration)
     }
 }
-
 
 /**
 `Migration` is the object passed into a user-defined `MigrationBlock` when updating the version
@@ -114,9 +108,9 @@ public final class Migration {
     - parameter block:           The block providing both the old and new versions of an object in this Realm.
     */
     public func enumerateObjects(ofType typeName: String, _ block: MigrationObjectEnumerateBlock) {
-        rlmMigration.enumerateObjects(typeName) {
-            block(oldObject: unsafeBitCast($0, to: MigrationObject.self),
-                  newObject: unsafeBitCast($1, to: MigrationObject.self))
+        rlmMigration.enumerateObjects(typeName) { oldObject, newObject in
+            block(unsafeBitCast(oldObject, to: MigrationObject.self),
+                  unsafeBitCast(newObject, to: MigrationObject.self))
         }
     }
 
@@ -133,7 +127,7 @@ public final class Migration {
     - returns: The created object.
     */
     @discardableResult
-    public func createObject(ofType typeName: String, populatedWith value: AnyObject = [:]) -> MigrationObject {
+    public func createObject(ofType typeName: String, populatedWith value: Any = [:]) -> MigrationObject {
         return unsafeBitCast(rlmMigration.createObject(typeName, withValue: value), to: MigrationObject.self)
     }
 
@@ -144,7 +138,7 @@ public final class Migration {
     - parameter object: Object to be deleted from the Realm being migrated.
     */
     public func delete(_ object: MigrationObject) {
-        RLMDeleteObjectFromRealm(object, RLMObjectBaseRealm(object))
+        RLMDeleteObjectFromRealm(object, RLMObjectBaseRealm(object)!)
     }
 
     /**
@@ -175,7 +169,7 @@ public final class Migration {
         rlmMigration.renameProperty(forClass: typeName, oldName: oldName, newName: newName)
     }
 
-    private init(_ rlmMigration: RLMMigration) {
+    fileprivate init(_ rlmMigration: RLMMigration) {
         self.rlmMigration = rlmMigration
     }
 }
@@ -183,7 +177,7 @@ public final class Migration {
 
 // MARK: Private Helpers
 
-internal func accessorMigrationBlock(_ migrationBlock: MigrationBlock) -> RLMMigrationBlock {
+internal func accessorMigrationBlock(_ migrationBlock: @escaping MigrationBlock) -> RLMMigrationBlock {
     return { migration, oldVersion in
         // set all accessor classes to MigrationObject
         for objectSchema in migration.oldSchema.objectSchema {
@@ -198,7 +192,7 @@ internal func accessorMigrationBlock(_ migrationBlock: MigrationBlock) -> RLMMig
         }
 
         // run migration
-        migrationBlock(migration: Migration(migration), oldSchemaVersion: oldVersion)
+        migrationBlock(Migration(migration), oldVersion)
     }
 }
 
@@ -209,7 +203,7 @@ extension Migration {
     public func enumerate(_ objectClassName: String, _ block: MigrationObjectEnumerateBlock) { }
 
     @available(*, unavailable, renamed:"createObject(ofType:populatedWith:)")
-    public func create(_ className: String, value: AnyObject = [:]) -> MigrationObject {
+    public func create(_ className: String, value: Any = [:]) -> MigrationObject {
         fatalError()
     }
 
@@ -277,10 +271,33 @@ public func schemaVersionAtURL(fileURL: NSURL, encryptionKey: NSData? = nil) thr
 
  - returns: An `NSError` that describes an error that occurred while applying the migration, if any.
 */
+@available(*, deprecated=1.0.2, renamed="Realm.performMigration(for:)")
 public func migrateRealm(configuration: Realm.Configuration = Realm.Configuration.defaultConfiguration) -> NSError? {
-    return RLMRealm.migrateRealm(configuration.rlmConfiguration)
+    // Preserves backwards compatibility
+    do {
+        try Realm.performMigration(for: configuration)
+        return nil
+    } catch let error as NSError {
+        return error
+    }
 }
 
+extension Realm {
+    /**
+     Performs the given Realm configuration's migration block on a Realm at the given path.
+
+     This method is called automatically when opening a Realm for the first time and does
+     not need to be called explicitly. You can choose to call this method to control
+     exactly when and how migrations are performed.
+
+     - parameter configuration: The Realm configuration used to open and migrate the Realm.
+
+     - throws: An `NSError` that describes an error that occurred while applying the migration, if any.
+     */
+    public static func performMigration(for configuration: Realm.Configuration = Realm.Configuration.defaultConfiguration) throws {
+        try RLMRealm.performMigrationForConfiguration(configuration.rlmConfiguration)
+    }
+}
 
 /**
  `Migration` instances encapsulate information intended to facilitate a schema migration.
@@ -345,7 +362,7 @@ public final class Migration {
      - parameter object: An object to be deleted from the Realm being migrated.
      */
     public func delete(object: MigrationObject) {
-        RLMDeleteObjectFromRealm(object, RLMObjectBaseRealm(object))
+        RLMDeleteObjectFromRealm(object, RLMObjectBaseRealm(object)!)
     }
 
     /**

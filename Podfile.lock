@@ -1,22 +1,22 @@
 PODS:
-  - Alamofire (3.4.1)
-  - Firebase/Analytics (3.4.0):
+  - Alamofire (3.5.0)
+  - Firebase/Analytics (3.5.2):
     - FirebaseAnalytics (~> 3.3)
-  - Firebase/Core (3.4.0):
+  - Firebase/Core (3.5.2):
     - Firebase/Analytics
-  - FirebaseAnalytics (3.3.0):
+  - FirebaseAnalytics (3.3.1):
     - FirebaseInstanceID (~> 1.0)
     - GoogleInterchangeUtilities (~> 1.2)
     - GoogleSymbolUtilities (~> 1.1)
     - GoogleUtilities (~> 1.2)
   - FirebaseInstanceID (1.0.8)
-  - Google-Mobile-Ads-SDK (7.9.1)
+  - Google-Mobile-Ads-SDK (7.10.1)
   - Google/Analytics (3.0.3):
     - Google/Core
     - GoogleAnalytics (~> 3.12)
   - Google/Core (3.0.3):
     - FirebaseAnalytics (~> 3.2)
-  - GoogleAnalytics (3.16.0)
+  - GoogleAnalytics (3.17.0)
   - GoogleInterchangeUtilities (1.2.1):
     - GoogleSymbolUtilities (~> 1.0)
   - GoogleMaps (2.0.1):
@@ -38,32 +38,53 @@ PODS:
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
-  - Alamofire (~> 3.4.1)
+  - Alamofire (~> 3.5.0)
   - Firebase/Core
   - Google-Mobile-Ads-SDK
   - Google/Analytics
   - GoogleMaps
-  - RealmSwift
+  - Realm (from `https://github.com/realm/realm-cocoa.git`, branch `master`)
+  - RealmSwift (from `https://github.com/realm/realm-cocoa.git`, branch `master`)
   - SDWebImage
   - SwiftyJSON
 
+EXTERNAL SOURCES:
+  Realm:
+    :branch: master
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
+  RealmSwift:
+    :branch: master
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
+
+CHECKOUT OPTIONS:
+  Realm:
+    :commit: c508dee7e99411e74370de7dda89461c1688c611
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
+  RealmSwift:
+    :commit: c508dee7e99411e74370de7dda89461c1688c611
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
+
 SPEC CHECKSUMS:
-  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
-  Firebase: 754562547af419cc2f4b15247fee419081924bc2
-  FirebaseAnalytics: 228be2991cb28efb96cdafc4d62f64680e615c69
+  Alamofire: b70a7352335f8ea5babd0a923eb7e8eacc67b877
+  Firebase: 94e63112efcad75226c0356a8f3032397b8547c9
+  FirebaseAnalytics: d968d4d5f6aeb795cd64144337bcd233e530efc6
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
   Google: 813c467362eabc11385f5a5cc9ad0cb651a58f4e
-  Google-Mobile-Ads-SDK: 575583d7eae25793bb81ad8673737d1b4ecbedc5
-  GoogleAnalytics: 3de986b2fa29012c69fa415566006a9c9cf25320
+  Google-Mobile-Ads-SDK: c8da9e592fe43d9b47ef86b018cadb71af53f6b3
+  GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
   GoogleInterchangeUtilities: def8415a862effc67d549d5b5b0b9c7a2f97d4de
   GoogleMaps: f09da64fc987c1aa29394567c3cab5a3df83c402
   GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
-  Realm: 9d5c46a4d7d27958530a8dfc58f63a99e5c2cba3
-  RealmSwift: 82f3ac5e24530143dddfde2033acc0d308f27d96
+  Realm: 2948cfa3a05b7acc446abc4c124d443df646c8de
+  RealmSwift: 4816c8608630a9a00bba6d726bb30b4bab6dd6bf
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 7f4b8bcf0e28340ef20e46ce188b3cd946a84e2f
+PODFILE CHECKSUM: 59e6fd4e20da6dedfdb4e2ccc29d43a1bed411df
 
 COCOAPODS: 1.0.1

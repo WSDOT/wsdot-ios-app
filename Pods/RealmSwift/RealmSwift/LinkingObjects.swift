@@ -28,18 +28,12 @@ public class LinkingObjectsBase: NSObject, NSFastEnumeration {
     internal let propertyName: String
 
     private var cachedRLMResults: RLMResults<RLMObject>?
-    private var object: RLMWeakObjectHandle?
-    private var property: RLMProperty?
-
-    internal func attachTo(object: RLMObjectBase, property: RLMProperty) {
-        self.object = RLMWeakObjectHandle(object: object)
-        self.property = property
-        self.cachedRLMResults = nil
-    }
+    @objc private var object: RLMWeakObjectHandle?
+    @objc private var property: RLMProperty?
 
     internal var rlmResults: RLMResults<RLMObject> {
         if cachedRLMResults == nil {
-            if let object = self.object, property = self.property {
+            if let object = self.object, let property = self.property {
                 cachedRLMResults = RLMDynamicGet(object.object, property)! as? RLMResults
                 self.object = nil
                 self.property = nil
@@ -128,7 +122,7 @@ public final class LinkingObjects<T: Object>: LinkingObjectsBase {
      - returns: The index of the given object, or `nil` if the object is not present.
      */
     public func index(of object: T) -> Int? {
-        return notFoundToNil(index: rlmResults.index(of: unsafeBitCast(object, to: RLMObject.self)))
+        return notFoundToNil(index: rlmResults.index(of: object.unsafeCastToRLMObject()))
     }
 
     /**
@@ -139,7 +133,7 @@ public final class LinkingObjects<T: Object>: LinkingObjectsBase {
 
      - returns: The index of the first matching object, or `nil` if no objects match.
      */
-    public func indexOfObject(for predicate: Predicate) -> Int? {
+    public func indexOfObject(for predicate: NSPredicate) -> Int? {
         return notFoundToNil(index: rlmResults.indexOfObject(with: predicate))
     }
 
@@ -151,9 +145,9 @@ public final class LinkingObjects<T: Object>: LinkingObjectsBase {
 
      - returns: The index of the first matching object, or `nil` if no objects match.
      */
-    public func indexOfObject(for predicateFormat: String, _ args: AnyObject...) -> Int? {
-        return notFoundToNil(index: rlmResults.indexOfObject(with: Predicate(format: predicateFormat,
-                                                                             argumentArray: args)))
+    public func indexOfObject(for predicateFormat: String, _ args: Any...) -> Int? {
+        return notFoundToNil(index: rlmResults.indexOfObject(with: NSPredicate(format: predicateFormat,
+                                                                               argumentArray: args)))
     }
 
     // MARK: Object Retrieval
@@ -189,7 +183,7 @@ public final class LinkingObjects<T: Object>: LinkingObjectsBase {
      - returns: Array containing the results of invoking `valueForKey(_:)` using key on each of the
        collection's objects.
      */
-    public override func value(forKey key: String) -> AnyObject? {
+    public override func value(forKey key: String) -> Any? {
         return value(forKeyPath: key)
     }
 
@@ -202,7 +196,7 @@ public final class LinkingObjects<T: Object>: LinkingObjectsBase {
      - returns: Array containing the results of invoking `valueForKeyPath(_:)` using keyPath on each of the
        collection's objects.
      */
-    public override func value(forKeyPath keyPath: String) -> AnyObject? {
+    public override func value(forKeyPath keyPath: String) -> Any? {
         return rlmResults.value(forKeyPath: keyPath)
     }
 
@@ -214,7 +208,7 @@ public final class LinkingObjects<T: Object>: LinkingObjectsBase {
      - parameter value: The object value.
      - parameter key:   The name of the property.
      */
-    public override func setValue(_ value: AnyObject?, forKey key: String) {
+    public override func setValue(_ value: Any?, forKey key: String) {
         return rlmResults.setValue(value, forKeyPath: key)
     }
 
@@ -227,8 +221,8 @@ public final class LinkingObjects<T: Object>: LinkingObjectsBase {
 
      - returns: Results containing objects that match the given predicate.
      */
-    public func filter(using predicateFormat: String, _ args: AnyObject...) -> Results<T> {
-        return Results<T>(rlmResults.objects(with: Predicate(format: predicateFormat, argumentArray: args)))
+    public func filter(using predicateFormat: String, _ args: Any...) -> Results<T> {
+        return Results<T>(rlmResults.objects(with: NSPredicate(format: predicateFormat, argumentArray: args)))
     }
 
     /**
@@ -238,7 +232,7 @@ public final class LinkingObjects<T: Object>: LinkingObjectsBase {
 
      - returns: Results containing objects that match the given predicate.
      */
-    public func filter(using predicate: Predicate) -> Results<T> {
+    public func filter(using predicate: NSPredicate) -> Results<T> {
         return Results<T>(rlmResults.objects(with: predicate))
     }
 
@@ -263,7 +257,7 @@ public final class LinkingObjects<T: Object>: LinkingObjectsBase {
 
      - returns: `Results` with elements sorted by the given sort descriptors.
      */
-    public func sorted<S: Sequence where S.Iterator.Element == SortDescriptor>(with sortDescriptors: S) -> Results<T> {
+    public func sorted<S: Sequence>(with sortDescriptors: S) -> Results<T> where S.Iterator.Element == SortDescriptor {
         return Results<T>(rlmResults.sortedResults(using: sortDescriptors.map { $0.rlmSortDescriptorValue }))
     }
 
@@ -280,7 +274,7 @@ public final class LinkingObjects<T: Object>: LinkingObjectsBase {
        is empty.
      */
     public func minimumValue<U: MinMaxType>(ofProperty property: String) -> U? {
-        return rlmResults.min(ofProperty: property) as! U?
+        return rlmResults.min(ofProperty: property).map(dynamicBridgeCast)
     }
 
     /**
@@ -294,7 +288,7 @@ public final class LinkingObjects<T: Object>: LinkingObjectsBase {
        is empty.
      */
     public func maximumValue<U: MinMaxType>(ofProperty property: String) -> U? {
-        return rlmResults.max(ofProperty: property) as! U?
+        return rlmResults.max(ofProperty: property).map(dynamicBridgeCast)
     }
 
     /**
@@ -307,7 +301,7 @@ public final class LinkingObjects<T: Object>: LinkingObjectsBase {
      - returns: The sum of the given property over all objects in the collection.
      */
     public func sum<U: AddableType>(ofProperty property: String) -> U {
-        return rlmResults.sum(ofProperty: property) as AnyObject as! U
+        return dynamicBridgeCast(fromObjectiveC: rlmResults.sum(ofProperty: property))
     }
 
     /**
@@ -321,7 +315,7 @@ public final class LinkingObjects<T: Object>: LinkingObjectsBase {
        is empty.
      */
     public func average<U: AddableType>(ofProperty property: String) -> U? {
-        return rlmResults.average(ofProperty: property) as! U?
+        return rlmResults.average(ofProperty: property).map(dynamicBridgeCast)
     }
 
     // MARK: Notifications
@@ -384,7 +378,7 @@ public final class LinkingObjects<T: Object>: LinkingObjectsBase {
      - parameter block: The block to be called with the evaluated linking objects and change information.
      - returns: A token which must be held for as long as you want updates to be delivered.
      */
-    public func addNotificationBlock(block: ((RealmCollectionChange<LinkingObjects>) -> Void)) -> NotificationToken {
+    public func addNotificationBlock(block: @escaping (RealmCollectionChange<LinkingObjects>) -> Void) -> NotificationToken {
         return rlmResults.addNotificationBlock { results, change, error in
             block(RealmCollectionChange.fromObjc(value: self, change: change, error: error))
         }
@@ -419,7 +413,7 @@ extension LinkingObjects : RealmCollection {
     }
 
     /// :nodoc:
-    public func _addNotificationBlock(block: (RealmCollectionChange<AnyRealmCollection<T>>) -> Void) ->
+    public func _addNotificationBlock(block: @escaping (RealmCollectionChange<AnyRealmCollection<T>>) -> Void) ->
         NotificationToken {
             let anyCollection = AnyRealmCollection(self)
             return rlmResults.addNotificationBlock { _, change, error in
@@ -435,22 +429,22 @@ extension LinkingObjects {
     public var invalidated : Bool { fatalError() }
 
     @available(*, unavailable, renamed:"indexOfObject(for:)")
-    public func index(of predicate: Predicate) -> Int? { fatalError() }
+    public func index(of predicate: NSPredicate) -> Int? { fatalError() }
 
     @available(*, unavailable, renamed:"indexOfObject(for:_:)")
-    public func index(of predicateFormat: String, _ args: AnyObject...) -> Int? { fatalError() }
+    public func index(of predicateFormat: String, _ args: Any...) -> Int? { fatalError() }
 
     @available(*, unavailable, renamed:"filter(using:)")
-    public func filter(_ predicate: Predicate) -> Results<T> { fatalError() }
+    public func filter(_ predicate: NSPredicate) -> Results<T> { fatalError() }
 
     @available(*, unavailable, renamed:"filter(using:_:)")
-    public func filter(_ predicateFormat: String, _ args: AnyObject...) -> Results<T> { fatalError() }
+    public func filter(_ predicateFormat: String, _ args: Any...) -> Results<T> { fatalError() }
 
     @available(*, unavailable, renamed:"sorted(onProperty:ascending:)")
     public func sorted(_ property: String, ascending: Bool = true) -> Results<T> { fatalError() }
 
     @available(*, unavailable, renamed:"sorted(with:)")
-    public func sorted<S: Sequence where S.Iterator.Element == SortDescriptor>(_ sortDescriptors: S) -> Results<T> {
+    public func sorted<S: Sequence>(_ sortDescriptors: S) -> Results<T> where S.Iterator.Element == SortDescriptor {
         fatalError()
     }
 
@@ -476,14 +470,8 @@ public class LinkingObjectsBase: NSObject, NSFastEnumeration {
     internal let propertyName: String
 
     private var cachedRLMResults: RLMResults?
-    private var object: RLMWeakObjectHandle?
-    private var property: RLMProperty?
-
-    internal func attachTo(object object: RLMObjectBase, property: RLMProperty) {
-        self.object = RLMWeakObjectHandle(object: object)
-        self.property = property
-        self.cachedRLMResults = nil
-    }
+    @objc private var object: RLMWeakObjectHandle?
+    @objc private var property: RLMProperty?
 
     internal var rlmResults: RLMResults {
         if cachedRLMResults == nil {
@@ -575,7 +563,7 @@ public final class LinkingObjects<T: Object>: LinkingObjectsBase {
      - parameter object: The object whose index is being queried.
      */
     public func indexOf(object: T) -> Int? {
-        return notFoundToNil(rlmResults.indexOfObject(unsafeBitCast(object, RLMObject.self)))
+        return notFoundToNil(rlmResults.indexOfObject(object.unsafeCastToRLMObject()))
     }
 
     /**
@@ -719,7 +707,7 @@ public final class LinkingObjects<T: Object>: LinkingObjectsBase {
      - returns: The minimum value of the property, or `nil` if the collection is empty.
      */
     public func min<U: MinMaxType>(property: String) -> U? {
-        return rlmResults.minOfProperty(property) as! U?
+        return rlmResults.minOfProperty(property).map(dynamicBridgeCast)
     }
 
     /**
@@ -733,7 +721,7 @@ public final class LinkingObjects<T: Object>: LinkingObjectsBase {
      - returns: The maximum value of the property, or `nil` if the collection is empty.
      */
     public func max<U: MinMaxType>(property: String) -> U? {
-        return rlmResults.maxOfProperty(property) as! U?
+        return rlmResults.maxOfProperty(property).map(dynamicBridgeCast)
     }
 
     /**
@@ -747,7 +735,7 @@ public final class LinkingObjects<T: Object>: LinkingObjectsBase {
      - returns: The sum of the given property.
      */
     public func sum<U: AddableType>(property: String) -> U {
-        return rlmResults.sumOfProperty(property) as AnyObject as! U
+        return dynamicBridgeCast(fromObjectiveC: rlmResults.sumOfProperty(property))
     }
 
     /**
@@ -760,7 +748,7 @@ public final class LinkingObjects<T: Object>: LinkingObjectsBase {
      - returns: The average value of the given property, or `nil` if the collection is empty.
      */
     public func average<U: AddableType>(property: String) -> U? {
-        return rlmResults.averageOfProperty(property) as! U?
+        return rlmResults.averageOfProperty(property).map(dynamicBridgeCast)
     }
 
     // MARK: Notifications
