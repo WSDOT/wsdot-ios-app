@@ -5,12 +5,11 @@ stop_after_first_error
 
 # A list of devices you want to take the screenshots from
 devices([
-   "iPhone 6s",
-   "iPhone 6s Plus",
-   "iPhone 5",
-   "iPhone 4s",
-   "iPad Retina",
-   "iPad Pro"
+   "iPhone 7",
+   "iPhone 7 Plus",
+   "iPhone SE",
+   "iPad Air",
+   "iPad Pro (12.9 inch)"
 ])
 
 languages([
