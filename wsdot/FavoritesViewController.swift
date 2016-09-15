@@ -48,7 +48,6 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     var notificationToken: NotificationToken?
     
     let refreshControl = UIRefreshControl()
-    var overlayView = UIView()
     var activityIndicator = UIActivityIndicatorView()
 
     
@@ -139,28 +138,21 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func showOverlay(view: UIView) {
-        
-        overlayView.frame = CGRectMake(0, 0, 80, 80)
-        overlayView.center = CGPointMake(view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
-        overlayView.backgroundColor = UIColor.blackColor()
-        overlayView.alpha = 0.3
-        overlayView.clipsToBounds = true
-        overlayView.layer.cornerRadius = 10
-        
         activityIndicator.frame = CGRectMake(0, 0, 40, 40)
         activityIndicator.activityIndicatorViewStyle = .WhiteLarge
-        activityIndicator.center = CGPointMake(overlayView.bounds.width / 2, overlayView.bounds.height / 2)
+        activityIndicator.color = UIColor.grayColor()
+        activityIndicator.center = CGPointMake(view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
         
-        overlayView.addSubview(activityIndicator)
-        view.addSubview(overlayView)
+        view.addSubview(activityIndicator)
         
         activityIndicator.startAnimating()
     }
     
     func hideOverlayView(){
         activityIndicator.stopAnimating()
-        overlayView.removeFromSuperview()
+        activityIndicator.removeFromSuperview()
     }
+
     
     private func requestFavoriteTravelTimes(force: Bool, serviceGroup: dispatch_group_t){
         dispatch_group_enter(serviceGroup)

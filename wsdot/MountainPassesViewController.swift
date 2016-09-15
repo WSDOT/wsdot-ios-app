@@ -29,7 +29,6 @@ class MountainPassesViewController: UIViewController, UITableViewDelegate, UITab
     var passItems = [MountainPassItem]()
 
     let refreshControl = UIRefreshControl()
-    var overlayView = UIView()
     var activityIndicator = UIActivityIndicatorView()
     
     @IBOutlet weak var tableView: UITableView!
@@ -84,27 +83,19 @@ class MountainPassesViewController: UIViewController, UITableViewDelegate, UITab
     }
 
     func showOverlay(view: UIView) {
-        
-        overlayView.frame = CGRectMake(0, 0, 80, 80)
-        overlayView.center = CGPointMake(view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
-        overlayView.backgroundColor = UIColor.blackColor()
-        overlayView.alpha = 0.7
-        overlayView.clipsToBounds = true
-        overlayView.layer.cornerRadius = 10
-        
         activityIndicator.frame = CGRectMake(0, 0, 40, 40)
         activityIndicator.activityIndicatorViewStyle = .WhiteLarge
-        activityIndicator.center = CGPointMake(overlayView.bounds.width / 2, overlayView.bounds.height / 2)
+        activityIndicator.color = UIColor.grayColor()
+        activityIndicator.center = CGPointMake(view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
         
-        overlayView.addSubview(activityIndicator)
-        view.addSubview(overlayView)
+        view.addSubview(activityIndicator)
         
         activityIndicator.startAnimating()
     }
     
     func hideOverlayView(){
         activityIndicator.stopAnimating()
-        overlayView.removeFromSuperview()
+        activityIndicator.removeFromSuperview()
     }
 
     // MARK: Table View Data Source Methods
