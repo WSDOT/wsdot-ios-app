@@ -43,6 +43,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     var dayData = TimeUtils.nextSevenDaysStrings(NSDate())
     
     let refreshControl = UIRefreshControl()
+    var activityIndicator = UIActivityIndicatorView()
     
     @IBOutlet weak var dateButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -62,11 +63,10 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         // refresh controller
         refreshControl.addTarget(self, action: #selector(RouteTimesViewController.refresh(_:)), forControlEvents: .ValueChanged)
         refreshControl.attributedTitle = NSAttributedString.init(string: "loading sailing spaces")
-        
+
         tableView.addSubview(refreshControl)
         
-        self.tableView.contentOffset = CGPointMake(0, -self.refreshControl.frame.size.height)
-        refreshControl.beginRefreshing()
+        showOverlay(self.view)
         refresh(self.refreshControl)
         
     }
@@ -90,13 +90,14 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                                 selfValue.updatedAt = NSDate()
                                 selfValue.tableView.reloadData()
                                 selfValue.refreshControl.endRefreshing()
-                                UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, "sailing spaces loaded")
+                                selfValue.hideOverlayView()
                             }
                         }
                     } else {
                         dispatch_async(dispatch_get_main_queue()) { [weak self] in
                             if let selfValue = self{
                                 selfValue.refreshControl.endRefreshing()
+                                selfValue.hideOverlayView()
                                 selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                                 
                             }
@@ -108,6 +109,22 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         }else{
             self.refreshControl.endRefreshing()
         }
+    }
+
+    func showOverlay(view: UIView) {
+        activityIndicator.frame = CGRectMake(0, 0, 40, 40)
+        activityIndicator.activityIndicatorViewStyle = .WhiteLarge
+        activityIndicator.color = UIColor.grayColor()
+        activityIndicator.center = view.center
+        
+        view.addSubview(activityIndicator)
+        
+        activityIndicator.startAnimating()
+    }
+    
+    func hideOverlayView(){
+        activityIndicator.stopAnimating()
+        activityIndicator.removeFromSuperview()
     }
 
     @IBAction func selectAccountAction(sender: UIButton) {

@@ -790,11 +790,11 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RouteDeparturesSailingSpaces" rowHeight="122" id="sOY-xD-adj" customClass="DeparturesCustomCell" customModule="WSDOT" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="49" width="375" height="122"/>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RouteDeparturesSailingSpaces" rowHeight="156" id="sOY-xD-adj" customClass="DeparturesCustomCell" customModule="WSDOT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="49" width="375" height="156"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sOY-xD-adj" id="Sjd-QZ-OtF">
-                                            <frame key="frameInset" width="375" height="121"/>
+                                            <frame key="frameInset" width="375" height="155"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pWN-T2-cy2">
@@ -859,7 +859,7 @@
                                                 <constraint firstItem="gSQ-pN-qXu" firstAttribute="leading" secondItem="ohw-nZ-bs0" secondAttribute="leading" id="e03-lA-IUe"/>
                                                 <constraint firstItem="8gy-y6-8Dd" firstAttribute="top" secondItem="VbF-Ne-s0u" secondAttribute="bottom" constant="7" id="eVj-GS-Cmx"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="4tw-1s-LEj" secondAttribute="trailing" constant="-4" id="frZ-sm-kNa"/>
-                                                <constraint firstItem="gSQ-pN-qXu" firstAttribute="top" secondItem="Sjd-QZ-OtF" secondAttribute="topMargin" constant="-4" id="jH5-3R-Dev"/>
+                                                <constraint firstItem="gSQ-pN-qXu" firstAttribute="top" secondItem="Sjd-QZ-OtF" secondAttribute="topMargin" constant="8" id="jH5-3R-Dev"/>
                                                 <constraint firstItem="4tw-1s-LEj" firstAttribute="top" secondItem="ohw-nZ-bs0" secondAttribute="bottom" constant="6" id="kZk-LE-4yJ"/>
                                                 <constraint firstItem="VbF-Ne-s0u" firstAttribute="trailing" secondItem="8gy-y6-8Dd" secondAttribute="trailing" id="kf3-3H-RIb"/>
                                                 <constraint firstItem="pWN-T2-cy2" firstAttribute="trailing" secondItem="Sjd-QZ-OtF" secondAttribute="trailingMargin" id="sVn-la-GfZ"/>
@@ -883,7 +883,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RouteDeparture" rowHeight="53" id="2Lc-dn-xld" customClass="DeparturesCustomCell" customModule="WSDOT" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="171" width="375" height="53"/>
+                                        <rect key="frame" x="0.0" y="205" width="375" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Lc-dn-xld" id="ARh-tb-FB8">
                                             <frame key="frameInset" width="375" height="52"/>
