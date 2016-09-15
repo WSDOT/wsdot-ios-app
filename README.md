@@ -19,6 +19,7 @@ Setup
 -----
 * Run `pod install` to set up project workspace.
 * Open the `WSDOT.xcworkspace` project in Xcode to get the CocoaPods workspace. 
+* You will need to add a GoogleService-Info.plist file.
 
 Dependencies
 ------------

@@ -35,21 +35,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         GADMobileAds.configureWithApplicationID(ApiKeys.wsdot_ad_string);
         
-        // Configure tracker from GoogleService-Info.plist.
-        var configureError:NSError?
-        GGLContext.sharedInstance().configureWithError(&configureError)
-        assert(configureError == nil, "Error configuring Google services: \(configureError)")
-        
-        if (ApiKeys.analytics_enabled){
+        if (GoogleAnalytics.analytics_enabled){
+            
+            // Configure tracker from GoogleService-Info.plist.
+            var configureError:NSError?
+            GGLContext.sharedInstance().configureWithError(&configureError)
+            assert(configureError == nil, "Error configuring Google services: \(configureError)")
+            
             // Optional: configure GAI options.
             let gai = GAI.sharedInstance()
             
-            if (ApiKeys.analytics_dryrun){
-                gai.dryRun = ApiKeys.analytics_dryrun
+            if (GoogleAnalytics.analytics_dryrun){
+                gai.dryRun = GoogleAnalytics.analytics_dryrun
                 gai.logger.logLevel = GAILogLevel.Verbose
             }
             gai.trackUncaughtExceptions = true  // report uncaught exceptions
-
+            
         }
         return true
     }

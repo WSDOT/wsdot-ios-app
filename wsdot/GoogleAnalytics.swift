@@ -22,8 +22,11 @@ import Foundation
 
 class GoogleAnalytics {
     
+    static let analytics_enabled = false
+    static let analytics_dryrun = false
+    
     static func screenView(screenName: String){
-        if (ApiKeys.analytics_enabled){
+        if (GoogleAnalytics.analytics_enabled){
             let tracker = GAI.sharedInstance().defaultTracker
             tracker.set(kGAIScreenName, value: screenName)
             
@@ -33,7 +36,7 @@ class GoogleAnalytics {
     }
     
     static func event(category: String, action: String, label: String){
-        if (ApiKeys.analytics_enabled){
+        if (GoogleAnalytics.analytics_enabled){
             let tracker = GAI.sharedInstance().defaultTracker
             tracker.send(GAIDictionaryBuilder.createEventWithCategory(category, action: action, label: label, value: nil).build() as [NSObject : AnyObject])
         }
