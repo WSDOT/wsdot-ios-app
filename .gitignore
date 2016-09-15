@@ -34,6 +34,9 @@ GoogleService-Info.plist
 timeline.xctimeline
 playground.xcworkspace
 
+# CocoaPods
+Pods/
+
 # Swift Package Manager
 #
 # Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
@@ -41,16 +44,6 @@ playground.xcworkspace
 .build/
 
 # fastlane
-#
-# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
-# screenshots whenever they are needed.
-# For more information about the recommended setup visit:
-# https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Gitignore.md
-
-fastlane/report.xml
-fastlane/Preview.html
-fastlane/screenshots
-fastlane/test_output
-
+screenshots
 
 .DS_Store

@@ -2,6 +2,9 @@
 
 Washington State Traveler information provide by The Washington State Department of Transportation.
 
+* Written in Swift 2.3
+* Developed with Xcode 8.0
+
 Features
 --------
 * Traffic Map with real-time alerts and conditions.
@@ -14,15 +17,13 @@ Features
 
 Setup
 -----
-
-* Written in Swift 2.3
-* Developed with Xcode 8.0
+* Run `pod install` to set up project workspace.
 * Open the `WSDOT.xcworkspace` project in Xcode to get the CocoaPods workspace. 
 
 Dependencies
 ------------
 
-This project uses [CocoaPods](https://cocoapods.org/) for dependency management. CocoaPods is not required to build as all Pods are included in this repo.
+This project uses [CocoaPods](https://cocoapods.org/) for dependency management.
 
 * [Firebase/Core](https://firebase.google.com/docs/ios/setup)
 * [Firebase/AdMob](https://firebase.google.com/docs/admob/)
