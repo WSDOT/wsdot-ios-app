@@ -22,7 +22,7 @@ import Alamofire
 import SwiftyJSON
 import RealmSwift
 /*
- This class collects new ferry schedule information from
+ Collects new ferry schedule information from
  the schedule API at: http://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js
  */
 class FerryRealmStore {
@@ -85,7 +85,7 @@ class FerryRealmStore {
 
     
     
-    // TODO: Make this smarter
+    // Saves new route schedules. tags old routes for deletion if not updated.
     private static func saveRouteSchedules(routeSchedules: [FerryScheduleItem]){
         
         let realm = try! Realm()
@@ -116,6 +116,7 @@ class FerryRealmStore {
         }
     }
     
+    // Deletes routes tagged for deletion
     static func flushOldData(){
         do {
             let realm = try Realm()

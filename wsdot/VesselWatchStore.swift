@@ -22,6 +22,9 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
+/*
+ *  Gets Vessel Watch data from JSON API.
+ */
 class VesselWatchStore {
 
     typealias FetchVesselsCompletion = (data: [VesselItem]?, error: NSError?) -> ()

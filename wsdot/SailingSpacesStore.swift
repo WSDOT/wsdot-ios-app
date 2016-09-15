@@ -22,10 +22,14 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
+/*
+ * Gets sailing space information from JSON API
+ */
 class SailingSpacesStore {
 
     typealias FetchSailingSpaceCompletion = (data: [SailingSpacesItem]?, error: NSError?) -> ()
     
+    // Returns sailing space data from API. 
     static func getSailingSpacesForTerminal(departingId: Int, arrivingId: Int, completion: FetchSailingSpaceCompletion) {
         
         Alamofire.request(.GET, "http://www.wsdot.wa.gov/ferries/api/terminals/rest/terminalsailingspace?apiaccesscode=" + ApiKeys.wsdot_key).validate().responseJSON { response in

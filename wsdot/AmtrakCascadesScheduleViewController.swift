@@ -67,6 +67,7 @@ class AmtrakCascadesScheduleViewController: UITableViewController, CLLocationMan
     }
 
 
+    // The following 3 methods are called by the AmtrakCascadesSelectionViewContorller to set the selected option.
     func daySelected(index: Int){
         dayIndex = index
         dayCell.selection.text = dayTableData[dayIndex]
@@ -138,10 +139,6 @@ class AmtrakCascadesScheduleViewController: UITableViewController, CLLocationMan
         }
     }
     
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        return UIModalPresentationStyle.None
-    }
-    
     // MARK: Naviagtion
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == segueAmtrakCascadesSelectionViewController {
@@ -188,5 +185,10 @@ class AmtrakCascadesScheduleViewController: UITableViewController, CLLocationMan
                 destinationViewController.title = originTableData[originIndex] + " to " + destinationTableData[destinationIndex]
             }
         }
+    }
+    
+    // MARK: Presentation
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.None
     }
 }

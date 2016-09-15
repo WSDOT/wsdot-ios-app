@@ -160,6 +160,7 @@ class AmtrakCascadesStore {
         return servicePairs
     }
     
+    // Builds an array of Station data for using in calculating the users distance from the station.
     static func getStations() -> [AmtrakCascadesStationItem]{
         var stations = [AmtrakCascadesStationItem]()
         stations.append(AmtrakCascadesStationItem(id: "VAC", name: "Vancouver, BC", lat: 49.2737293, lon: -123.0979175))
@@ -183,6 +184,7 @@ class AmtrakCascadesStore {
         return stations.sort({$0.name > $1.name})
     }
     
+    // Used to populate the destination selection
     static func getDestinationData() -> [String] {
         var dest = [String]()
         dest.append("Vancouver, BC")
@@ -208,6 +210,7 @@ class AmtrakCascadesStore {
         return dest
     }
     
+    // Used to populate the origin selection
     static func getOriginData() -> [String]{
         var origins = [String]()
         origins.append("Vancouver, BC")
@@ -231,6 +234,7 @@ class AmtrakCascadesStore {
         return origins.sort()
     }
     
+    // Station names to ID mapping.
     static let stationIdsMap: Dictionary<String, String> = [
         "All": "N/A",
         "Vancouver, BC": "VAC",

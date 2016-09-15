@@ -18,6 +18,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
 
+// Data about an Amtrak station, it's name, code, location and distance from user.
 class AmtrakCascadesStationItem {
     
     let id: String
@@ -32,6 +33,4 @@ class AmtrakCascadesStationItem {
         self.lat = lat
         self.lon = lon
     }
-    
-    //items.sort({$0.sortOrder > $1.sortOrder})
 }
