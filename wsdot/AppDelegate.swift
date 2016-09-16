@@ -52,6 +52,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             gai.trackUncaughtExceptions = true  // report uncaught exceptions
             
         }
+        
+        // Reset Warning each time app starts
+        NSUserDefaults.standardUserDefaults().setObject(false, forKey: UserDefaultsKeys.hasSeenWarning)
+        
         return true
     }
     

@@ -46,18 +46,21 @@ class Colors {
 class AlertMessages {
     static func getConnectionAlert() ->  UIAlertController{
         let alert = UIAlertController(title: "Connection Error", message: "Please check your connection", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.view.tintColor = Colors.tintColor
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         return alert
     }
     
     static func getMailAlert() -> UIAlertController{
         let alert = UIAlertController(title: "Cannot Compose Message", message: "Please add a mail account", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.view.tintColor = Colors.tintColor
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         return alert
     }
     
     static func getAlert(title: String, message: String) -> UIAlertController{
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.view.tintColor = Colors.tintColor
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         return alert
     }

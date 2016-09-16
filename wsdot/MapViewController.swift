@@ -70,7 +70,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.delegate = self
-        //locationManager.requestWhenInUseAuthorization()
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -99,6 +98,20 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
             if let mapView = view as? GMSMapView{
                 mapView.myLocationEnabled = false
                 
+            }
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+
+        let hasSeenWarning = NSUserDefaults.standardUserDefaults().boolForKey(UserDefaultsKeys.hasSeenWarning)
+        
+        if (!hasSeenWarning){
+            if let location = locationManager.location {
+                if location.speed > 11 {
+                    NSUserDefaults.standardUserDefaults().setObject(true, forKey: UserDefaultsKeys.hasSeenWarning)
+                    parentViewController!.presentViewController(AlertMessages.getAlert("You're moving too fast.", message: "Please don't use the app while driving."), animated: true, completion: { })
+                }
             }
         }
     }

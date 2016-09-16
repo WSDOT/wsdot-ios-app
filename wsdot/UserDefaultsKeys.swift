@@ -27,5 +27,6 @@ class UserDefaultsKeys {
     static let mapLat = "MapLatitudeBound"
     static let mapLon = "MapLongitudeBound"
     static let mapZoom = "MapZoom"
+    static let hasSeenWarning = "HasSeenWarning"
 
 }
