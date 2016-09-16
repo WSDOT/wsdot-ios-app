@@ -40,38 +40,6 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yMH-n6-F0h">
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Favorites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2T-aD-Yj7">
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Mw-SZ-FVd">
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="24" id="8Vl-E1-DCK"/>
-                                            <constraint firstAttribute="width" constant="24" id="rd6-rq-5ch"/>
-                                        </constraints>
-                                        <state key="normal" title="Button" image="icFavoriteDefault">
-                                            <color key="titleColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap star icons to add Favorites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bbp-dt-9sc">
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="Bbp-dt-9sc" firstAttribute="top" secondItem="K2T-aD-Yj7" secondAttribute="bottom" constant="8" symbolic="YES" id="aNT-gV-lAb"/>
-                                    <constraint firstItem="8Mw-SZ-FVd" firstAttribute="centerX" secondItem="yMH-n6-F0h" secondAttribute="centerX" id="f7i-bb-B9H"/>
-                                    <constraint firstItem="K2T-aD-Yj7" firstAttribute="centerX" secondItem="Bbp-dt-9sc" secondAttribute="centerX" constant="-1" id="hIW-5R-ZU9"/>
-                                    <constraint firstItem="8Mw-SZ-FVd" firstAttribute="top" secondItem="Bbp-dt-9sc" secondAttribute="bottom" constant="8" symbolic="YES" id="j6i-Ab-aAn"/>
-                                    <constraint firstItem="8Mw-SZ-FVd" firstAttribute="centerX" secondItem="K2T-aD-Yj7" secondAttribute="centerX" id="oqD-RM-RtT"/>
-                                    <constraint firstItem="8Mw-SZ-FVd" firstAttribute="top" secondItem="yMH-n6-F0h" secondAttribute="top" constant="66" id="qtE-aK-f9h"/>
-                                </constraints>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="109" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="K0r-R3-tVu">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -258,6 +226,38 @@
                                     <outlet property="delegate" destination="T7Q-Fa-apl" id="DiM-iE-BBK"/>
                                 </connections>
                             </tableView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yMH-n6-F0h">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Favorites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2T-aD-Yj7">
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Mw-SZ-FVd">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="8Vl-E1-DCK"/>
+                                            <constraint firstAttribute="width" constant="24" id="rd6-rq-5ch"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="icFavoriteDefault">
+                                            <color key="titleColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap star icons to add Favorites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bbp-dt-9sc">
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Bbp-dt-9sc" firstAttribute="top" secondItem="K2T-aD-Yj7" secondAttribute="bottom" constant="8" symbolic="YES" id="aNT-gV-lAb"/>
+                                    <constraint firstItem="8Mw-SZ-FVd" firstAttribute="centerX" secondItem="yMH-n6-F0h" secondAttribute="centerX" id="f7i-bb-B9H"/>
+                                    <constraint firstItem="K2T-aD-Yj7" firstAttribute="centerX" secondItem="Bbp-dt-9sc" secondAttribute="centerX" constant="-1" id="hIW-5R-ZU9"/>
+                                    <constraint firstItem="8Mw-SZ-FVd" firstAttribute="top" secondItem="Bbp-dt-9sc" secondAttribute="bottom" constant="8" symbolic="YES" id="j6i-Ab-aAn"/>
+                                    <constraint firstItem="8Mw-SZ-FVd" firstAttribute="centerX" secondItem="K2T-aD-Yj7" secondAttribute="centerX" id="oqD-RM-RtT"/>
+                                    <constraint firstItem="8Mw-SZ-FVd" firstAttribute="top" secondItem="yMH-n6-F0h" secondAttribute="top" constant="66" id="qtE-aK-f9h"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -284,7 +284,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dwt-na-DIG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1696.8" y="1346.176911544228"/>
+            <point key="canvasLocation" x="1740" y="1378"/>
         </scene>
         <!--RouteTabBarViewController-->
         <scene sceneID="XAY-Pg-ALR">
@@ -292,7 +292,7 @@
                 <viewControllerPlaceholder storyboardName="Ferries" referencedIdentifier="RouteTabBarViewController" id="3tB-Ij-054" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="16b-np-4z3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2232.5" y="1048"/>
+            <point key="canvasLocation" x="2363" y="1135"/>
         </scene>
         <!--Camera-->
         <scene sceneID="DKa-Fh-JYS">
@@ -300,7 +300,7 @@
                 <viewControllerPlaceholder storyboardName="Camera" id="Zfo-py-Elh" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bE7-pW-obt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2172.5" y="1113"/>
+            <point key="canvasLocation" x="2303" y="1187"/>
         </scene>
         <!--TrafficMap-->
         <scene sceneID="Uuu-Yx-LTW">
@@ -308,7 +308,7 @@
                 <viewControllerPlaceholder storyboardName="TrafficMap" id="oG1-En-Tc4" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IB3-gY-MEg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2182" y="1179"/>
+            <point key="canvasLocation" x="2312" y="1236"/>
         </scene>
         <!--TravelTimeDetails-->
         <scene sceneID="1fl-Wo-rU1">
@@ -316,7 +316,7 @@
                 <viewControllerPlaceholder storyboardName="TravelTimeDetails" id="cCr-kP-hM8" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hj5-sU-xql" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2203.5" y="1244"/>
+            <point key="canvasLocation" x="2334" y="1280"/>
         </scene>
         <!--MountainPassTabBarViewController-->
         <scene sceneID="zcB-CT-yV7">
@@ -324,7 +324,7 @@
                 <viewControllerPlaceholder storyboardName="MountainPasses" referencedIdentifier="MountainPassTabBarViewController" id="V4d-hV-Hlc" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cJp-2s-hth" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2257.5" y="1309"/>
+            <point key="canvasLocation" x="2388" y="1325"/>
         </scene>
         <!--MountainPasses-->
         <scene sceneID="e5m-Cy-pd3">
@@ -621,7 +621,7 @@
                 <pageViewController storyboardIdentifier="HighwayAlertsPageController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="g1e-KM-hhz" customClass="AlertPagerViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j8f-Dg-ffo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2457" y="897"/>
+            <point key="canvasLocation" x="2349" y="897"/>
         </scene>
         <!--Alert Content View Controller-->
         <scene sceneID="2NN-hq-mM2">
