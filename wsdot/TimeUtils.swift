@@ -137,13 +137,15 @@ class TimeUtils {
         let stringArr = string.characters.split{$0 == " "}.map(String.init)
         var index = 0
         var mins = 0.0
-    
+        
         for string in stringArr {
             if (string.rangeOfCharacterFromSet(NSCharacterSet.decimalDigitCharacterSet(), options: NSStringCompareOptions(), range: nil) != nil) {
-                if stringArr[index + 1] == "HR" {
-                    mins += Double(string)! * 60
-                } else {
-                    mins += Double(string)!
+                if Double(string) != nil {
+                    if stringArr[index + 1] == "HR" {
+                        mins += Double(string)! * 60
+                    } else {
+                        mins += Double(string)!
+                    }
                 }
             }
             index += 1

@@ -21,6 +21,14 @@ class WSDOTTests: XCTestCase {
         super.tearDown()
     }
     
+    func testGetMinsFromString() {
+        assert(TimeUtils.getMinsFromString("aaa 02 HR and 49 MIN") == 169.0)
+        assert(TimeUtils.getMinsFromString("aaa aaa 49 MIN") == 49.0)
+        assert(TimeUtils.getMinsFromString("aaa 02 HR") == 120.0)
+        assert(TimeUtils.getMinsFromString("aaa 00 HR and 49 MIN") == 49.0)
+    }
+
+    
     // Umbrella check of all Amtrak schedules.
     func testAmtrakStationCombinations() {
         // This is an example of a performance test case.
