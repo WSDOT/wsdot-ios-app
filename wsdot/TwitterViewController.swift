@@ -144,8 +144,7 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
     func accountSelected(index: Int){
         currentAccountIndex = index
         accountButton.setTitle(accountData[currentAccountIndex].name, forState: .Normal)
-        refreshControl.beginRefreshing()
-        tableView.contentOffset = CGPoint(x: 0, y: self.tableView.contentOffset.y - self.refreshControl.frame.size.height)
+        showOverlay(self.view)
         refresh(accountData[self.currentAccountIndex].screenName)
     }
     

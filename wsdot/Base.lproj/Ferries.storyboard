@@ -458,7 +458,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="eez-ee-ie5">
-                        <barButtonItem key="rightBarButtonItem" title="Vessel Webpage" id="BKJ-Qw-XRH">
+                        <barButtonItem key="rightBarButtonItem" image="web" id="BKJ-Qw-XRH">
                             <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="linkAction:" destination="0hD-sb-OuA" id="YUF-Qi-alg"/>
@@ -1107,5 +1107,6 @@
         <image name="icCompassTab" width="32" height="32"/>
         <image name="icLocation" width="24" height="24"/>
         <image name="icMyLocation" width="32" height="32"/>
+        <image name="web" width="32" height="32"/>
     </resources>
 </document>
