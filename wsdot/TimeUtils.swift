@@ -132,6 +132,25 @@ class TimeUtils {
         return dateFormatter.stringFromDate(date)
     }
     
+    // Calculates the number of mins mentions in a string. Assumes string format XX HR XX MIN, XX MIN, XX HR
+    static func getMinsFromString(string: String) -> Double {
+        let stringArr = string.characters.split{$0 == " "}.map(String.init)
+        var index = 0
+        var mins = 0.0
+    
+        for string in stringArr {
+            if (string.rangeOfCharacterFromSet(NSCharacterSet.decimalDigitCharacterSet(), options: NSStringCompareOptions(), range: nil) != nil) {
+                if stringArr[index + 1] == "HR" {
+                    mins += Double(string)! * 60
+                } else {
+                    mins += Double(string)!
+                }
+            }
+            index += 1
+        }
+        return mins
+    }
+    
     // Returns a string timestamp since a given time in miliseconds.
     // Source: https://gist.github.com/jacks205/4a77fb1703632eb9ae79
     static func timeAgoSinceDate(date:NSDate, numericDates:Bool) -> String {

@@ -92,10 +92,10 @@ class AmtrakCascadesStore {
 
             if let arrivComments = stationJson["ArrivalComment"].string {
                 if (arrivComments.lowercaseString.containsString("late")){
-                    let mins = Double(arrivComments.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "0123456789.").invertedSet))!
+                    let mins = TimeUtils.getMinsFromString(arrivComments)
                     service.arrivalComment = "Estimated " + arrivComments.lowercaseString + " at " + TimeUtils.getTimeOfDay(service.scheduledArrivalTime!.dateByAddingTimeInterval(mins * 60))
                 } else if (arrivComments.lowercaseString.containsString("early")){
-                    let mins = Double(arrivComments.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "0123456789.").invertedSet))!
+                    let mins = TimeUtils.getMinsFromString(arrivComments)
                     service.arrivalComment = "Estimated " + arrivComments.lowercaseString + " at " + TimeUtils.getTimeOfDay(service.scheduledArrivalTime!.dateByAddingTimeInterval(mins * -60))
                 } else {
                     service.arrivalComment = "Estimated " + arrivComments.lowercaseString
@@ -107,10 +107,10 @@ class AmtrakCascadesStore {
             
             if let departComments = stationJson["ArrivalComment"].string {
                 if (departComments.lowercaseString.containsString("late")){
-                    let mins = Double(departComments.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "0123456789.").invertedSet))!
+                    let mins = TimeUtils.getMinsFromString(departComments)
                     service.departureComment = "Estimated " + departComments.lowercaseString + " at " + TimeUtils.getTimeOfDay(service.scheduledDepartureTime!.dateByAddingTimeInterval(mins * 60))
                 } else if (departComments.lowercaseString.containsString("early")){
-                    let mins = Double(departComments.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "0123456789.").invertedSet))!
+                    let mins = TimeUtils.getMinsFromString(departComments)
                     service.departureComment = "Estimated " + departComments.lowercaseString + " at " + TimeUtils.getTimeOfDay(service.scheduledDepartureTime!.dateByAddingTimeInterval(mins * -60))
                 } else {
                     service.departureComment = "Estimated " + departComments.lowercaseString
