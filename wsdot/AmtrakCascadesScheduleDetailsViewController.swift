@@ -42,7 +42,8 @@ class AmtrakCascadesScheduleDetailsViewController: UIViewController, UITabBarDel
         // refresh controller
         refreshControl.addTarget(self, action: #selector(AmtrakCascadesScheduleDetailsViewController.refreshAction(_:)), forControlEvents: .ValueChanged)
         tableView.addSubview(refreshControl)
-        
+     
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         showOverlay(self.view)
         refresh()
