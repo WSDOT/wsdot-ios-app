@@ -12,7 +12,7 @@
             <objects>
                 <navigationController id="U1v-YW-FZi" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Favorites" image="icFavoritesTab" id="prU-3j-2ne"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="V7P-Nx-xf7">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="V7P-Nx-xf7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -601,7 +601,7 @@
                 <navigationController storyboardIdentifier="HomeNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Kfb-p0-sSb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="icHomeTab" id="q2D-xo-JIM"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="EaH-rk-NDh">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="EaH-rk-NDh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.0" green="0.68235294117647061" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
