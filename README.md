@@ -17,15 +17,14 @@ Features
 
 Setup
 -----
-* Run `pod install` to set up project workspace.
+This project uses [CocoaPods](https://cocoapods.org/) for dependency management.
+
+* Run `pod install` in the project directory to set up the workspace.
 * Open the `WSDOT.xcworkspace` project in Xcode to get the CocoaPods workspace. 
-* You will need to add a GoogleService-Info.plist file.
+* You will need to add a GoogleService-Info.plist file and add API keys to ApiKeys.swift.
 
 Dependencies
 ------------
-
-This project uses [CocoaPods](https://cocoapods.org/) for dependency management.
-
 * [Firebase/Core](https://firebase.google.com/docs/ios/setup)
 * [Firebase/AdMob](https://firebase.google.com/docs/admob/)
 * [GoogleMaps](https://developers.google.com/maps/documentation/ios-sdk/)
@@ -38,7 +37,7 @@ This project uses [CocoaPods](https://cocoapods.org/) for dependency management.
 Contributing
 ------------
 
-Find a bug? Got an idea? Send us a PR or open an issue and we'll take a look.
+Find a bug? Got an idea? Send us a pull request or open an issue and we'll take a look.
 
 License
 -------
