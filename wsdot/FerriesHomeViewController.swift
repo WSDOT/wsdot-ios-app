@@ -30,8 +30,6 @@ class FerriesHomeViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Set Title
-        title = "Ferries"
         menu_options = ["Route Schedules", "Vehicle Reservations Website", "VesselWatch"]
     }
 

@@ -49,7 +49,6 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Border Waits"
         
         displayedWaits = northboundWaits
         

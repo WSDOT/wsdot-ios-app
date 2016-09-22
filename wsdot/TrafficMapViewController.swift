@@ -72,8 +72,6 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Traffic Map"
-        
         // Set defualt value for camera display if there is none
         if (NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.cameras) == nil){
             NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.cameras)

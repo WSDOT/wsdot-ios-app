@@ -141,6 +141,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             destinationViewController.viewControllers = [vc]
             vc.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
             vc.navigationItem.leftItemsSupplementBackButton = true
+             vc.navigationItem.title = "Traffic Map"
         }
         
         if segue.identifier == SegueFerriesHomeViewController {
@@ -153,6 +154,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             destinationViewController.viewControllers = [vc]
             vc.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
             vc.navigationItem.leftItemsSupplementBackButton = true
+             vc.navigationItem.title = "Ferries"
         }
         
         if segue.identifier == SegueFavoritesViewController {
@@ -174,6 +176,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             destinationViewController.viewControllers = [vc]
             vc.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
             vc.navigationItem.leftItemsSupplementBackButton = true
+            vc.navigationItem.title = "Toll Rates"
         }
         
         if segue.identifier == SegueMountainPassesViewController {
@@ -186,6 +189,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             destinationViewController.viewControllers = [vc]
             vc.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
             vc.navigationItem.leftItemsSupplementBackButton = true
+            vc.navigationItem.title = "Mountain Passes"
         }
         
         if segue.identifier == SegueAmtrakCascadesViewController {
@@ -198,6 +202,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             destinationViewController.viewControllers = [vc]
             vc.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
             vc.navigationItem.leftItemsSupplementBackButton = true
+            vc.navigationItem.title = "Amtrak Cascades"
         }
         
         if segue.identifier == SegueSocialMediaViewController {
@@ -210,6 +215,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             destinationViewController.viewControllers = [vc]
             vc.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
             vc.navigationItem.leftItemsSupplementBackButton = true
+            vc.navigationItem.title = "Social Media"
         }
         
         if segue.identifier == SegueBorderWaitsViewController {
@@ -222,6 +228,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             destinationViewController.viewControllers = [vc]
             vc.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
             vc.navigationItem.leftItemsSupplementBackButton = true
+            vc.navigationItem.title = "Border Waits"
         }
         
         

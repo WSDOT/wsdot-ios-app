@@ -28,11 +28,6 @@ class TollRatesViewController: UIViewController{
     @IBOutlet weak var SR16ContainerView: UIView!
     @IBOutlet weak var SR167ContainerView: UIView!
     @IBOutlet weak var I405ContainerView: UIView!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        title = "Toll Rates"
-    }
     
     // Remove and add hairline for nav bar
     override func viewWillAppear(animated: Bool) {

@@ -34,7 +34,6 @@ class MountainPassesViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Mountain Passes"
     
         // refresh controller
         refreshControl.addTarget(self, action: #selector(MountainPassesViewController.refreshAction(_:)), forControlEvents: .ValueChanged)
