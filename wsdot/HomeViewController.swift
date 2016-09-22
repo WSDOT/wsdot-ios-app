@@ -122,117 +122,84 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     // MARK: Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if segue.identifier == SegueInfoViewController {
+        if segue.destinationViewController is UINavigationController {
             let destinationViewController = segue.destinationViewController as! UINavigationController
             destinationViewController.navigationBar.translucent = false
             destinationViewController.navigationBar.barTintColor = UIColor.whiteColor()
             destinationViewController.navigationBar.tintColor = Colors.tintColor
-            destinationViewController.viewControllers[0].navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
-            destinationViewController.viewControllers[0].navigationItem.leftItemsSupplementBackButton = true
+            
+            if segue.identifier == SegueInfoViewController {
+                destinationViewController.viewControllers[0].navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                destinationViewController.viewControllers[0].navigationItem.leftItemsSupplementBackButton = true
+            }
+            
+            if segue.identifier == SegueTrafficMapViewController {
+                let storyboard = UIStoryboard(name: "TrafficMap", bundle: nil)
+                let vc = storyboard.instantiateViewControllerWithIdentifier("TrafficMapViewController") as! TrafficMapViewController
+                destinationViewController.viewControllers = [vc]
+                vc.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                vc.navigationItem.leftItemsSupplementBackButton = true
+                vc.navigationItem.title = "Traffic Map"
+            }
+            
+            if segue.identifier == SegueFerriesHomeViewController {
+                let storyboard = UIStoryboard(name: "Ferries", bundle: nil)
+                let vc = storyboard.instantiateViewControllerWithIdentifier("FerriesHomeViewController") as! FerriesHomeViewController
+                destinationViewController.viewControllers = [vc]
+                vc.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                vc.navigationItem.leftItemsSupplementBackButton = true
+                vc.navigationItem.title = "Ferries"
+            }
+            
+            if segue.identifier == SegueFavoritesViewController {
+                destinationViewController.viewControllers[0].navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                destinationViewController.viewControllers[0].navigationItem.leftItemsSupplementBackButton = true
+            }
+            
+            if segue.identifier == SegueTollRatesViewController {
+                let storyboard = UIStoryboard(name: "TollRates", bundle: nil)
+                let vc = storyboard.instantiateViewControllerWithIdentifier("TollRatesViewController") as! TollRatesViewController
+                destinationViewController.viewControllers = [vc]
+                vc.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                vc.navigationItem.leftItemsSupplementBackButton = true
+                vc.navigationItem.title = "Toll Rates"
+            }
+            
+            if segue.identifier == SegueMountainPassesViewController {
+                let storyboard = UIStoryboard(name: "MountainPasses", bundle: nil)
+                let vc = storyboard.instantiateViewControllerWithIdentifier("MountainPassesViewController") as! MountainPassesViewController
+                destinationViewController.viewControllers = [vc]
+                vc.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                vc.navigationItem.leftItemsSupplementBackButton = true
+                vc.navigationItem.title = "Mountain Passes"
+            }
+            
+            if segue.identifier == SegueAmtrakCascadesViewController {
+                let storyboard = UIStoryboard(name: "AmtrakCascades", bundle: nil)
+                let vc = storyboard.instantiateViewControllerWithIdentifier("AmtrakCascadesViewController") as! AmtrakCascadesViewController
+                destinationViewController.viewControllers = [vc]
+                vc.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                vc.navigationItem.leftItemsSupplementBackButton = true
+                vc.navigationItem.title = "Amtrak Cascades"
+            }
+            
+            if segue.identifier == SegueSocialMediaViewController {
+                let storyboard = UIStoryboard(name: "SocialMedia", bundle: nil)
+                let vc = storyboard.instantiateViewControllerWithIdentifier("SocialMediaViewController") as! SocialMediaViewController
+                destinationViewController.viewControllers = [vc]
+                vc.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                vc.navigationItem.leftItemsSupplementBackButton = true
+                vc.navigationItem.title = "Social Media"
+            }
+            
+            if segue.identifier == SegueBorderWaitsViewController {
+                let storyboard = UIStoryboard(name: "BorderWaits", bundle: nil)
+                let vc = storyboard.instantiateViewControllerWithIdentifier("BorderWaitsViewController") as! BorderWaitsViewController
+                destinationViewController.viewControllers = [vc]
+                vc.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                vc.navigationItem.leftItemsSupplementBackButton = true
+                vc.navigationItem.title = "Border Waits"
+            }
         }
-        
-        if segue.identifier == SegueTrafficMapViewController {
-            let destinationViewController = segue.destinationViewController as! UINavigationController
-            destinationViewController.navigationBar.translucent = false
-            destinationViewController.navigationBar.barTintColor = UIColor.whiteColor()
-            destinationViewController.navigationBar.tintColor = Colors.tintColor
-            let storyboard = UIStoryboard(name: "TrafficMap", bundle: nil)
-            let vc = storyboard.instantiateViewControllerWithIdentifier("TrafficMapViewController") as! TrafficMapViewController
-            destinationViewController.viewControllers = [vc]
-            vc.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
-            vc.navigationItem.leftItemsSupplementBackButton = true
-             vc.navigationItem.title = "Traffic Map"
-        }
-        
-        if segue.identifier == SegueFerriesHomeViewController {
-            let destinationViewController = segue.destinationViewController as! UINavigationController
-            destinationViewController.navigationBar.translucent = false
-            destinationViewController.navigationBar.barTintColor = UIColor.whiteColor()
-            destinationViewController.navigationBar.tintColor = Colors.tintColor
-            let storyboard = UIStoryboard(name: "Ferries", bundle: nil)
-            let vc = storyboard.instantiateViewControllerWithIdentifier("FerriesHomeViewController") as! FerriesHomeViewController
-            destinationViewController.viewControllers = [vc]
-            vc.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
-            vc.navigationItem.leftItemsSupplementBackButton = true
-             vc.navigationItem.title = "Ferries"
-        }
-        
-        if segue.identifier == SegueFavoritesViewController {
-            let destinationViewController = segue.destinationViewController as! UINavigationController
-            destinationViewController.navigationBar.translucent = false
-            destinationViewController.navigationBar.barTintColor = UIColor.whiteColor()
-            destinationViewController.navigationBar.tintColor = Colors.tintColor
-            destinationViewController.viewControllers[0].navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
-            destinationViewController.viewControllers[0].navigationItem.leftItemsSupplementBackButton = true
-        }
-        
-        if segue.identifier == SegueTollRatesViewController {
-            let destinationViewController = segue.destinationViewController as! UINavigationController
-            destinationViewController.navigationBar.translucent = false
-            destinationViewController.navigationBar.barTintColor = UIColor.whiteColor()
-            destinationViewController.navigationBar.tintColor = Colors.tintColor
-            let storyboard = UIStoryboard(name: "TollRates", bundle: nil)
-            let vc = storyboard.instantiateViewControllerWithIdentifier("TollRatesViewController") as! TollRatesViewController
-            destinationViewController.viewControllers = [vc]
-            vc.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
-            vc.navigationItem.leftItemsSupplementBackButton = true
-            vc.navigationItem.title = "Toll Rates"
-        }
-        
-        if segue.identifier == SegueMountainPassesViewController {
-            let destinationViewController = segue.destinationViewController as! UINavigationController
-            destinationViewController.navigationBar.translucent = false
-            destinationViewController.navigationBar.barTintColor = UIColor.whiteColor()
-            destinationViewController.navigationBar.tintColor = Colors.tintColor
-            let storyboard = UIStoryboard(name: "MountainPasses", bundle: nil)
-            let vc = storyboard.instantiateViewControllerWithIdentifier("MountainPassesViewController") as! MountainPassesViewController
-            destinationViewController.viewControllers = [vc]
-            vc.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
-            vc.navigationItem.leftItemsSupplementBackButton = true
-            vc.navigationItem.title = "Mountain Passes"
-        }
-        
-        if segue.identifier == SegueAmtrakCascadesViewController {
-            let destinationViewController = segue.destinationViewController as! UINavigationController
-            destinationViewController.navigationBar.translucent = false
-            destinationViewController.navigationBar.barTintColor = UIColor.whiteColor()
-            destinationViewController.navigationBar.tintColor = Colors.tintColor
-            let storyboard = UIStoryboard(name: "AmtrakCascades", bundle: nil)
-            let vc = storyboard.instantiateViewControllerWithIdentifier("AmtrakCascadesViewController") as! AmtrakCascadesViewController
-            destinationViewController.viewControllers = [vc]
-            vc.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
-            vc.navigationItem.leftItemsSupplementBackButton = true
-            vc.navigationItem.title = "Amtrak Cascades"
-        }
-        
-        if segue.identifier == SegueSocialMediaViewController {
-            let destinationViewController = segue.destinationViewController as! UINavigationController
-            destinationViewController.navigationBar.translucent = false
-            destinationViewController.navigationBar.barTintColor = UIColor.whiteColor()
-            destinationViewController.navigationBar.tintColor = Colors.tintColor
-            let storyboard = UIStoryboard(name: "SocialMedia", bundle: nil)
-            let vc = storyboard.instantiateViewControllerWithIdentifier("SocialMediaViewController") as! SocialMediaViewController
-            destinationViewController.viewControllers = [vc]
-            vc.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
-            vc.navigationItem.leftItemsSupplementBackButton = true
-            vc.navigationItem.title = "Social Media"
-        }
-        
-        if segue.identifier == SegueBorderWaitsViewController {
-            let destinationViewController = segue.destinationViewController as! UINavigationController
-            destinationViewController.navigationBar.translucent = false
-            destinationViewController.navigationBar.barTintColor = UIColor.whiteColor()
-            destinationViewController.navigationBar.tintColor = Colors.tintColor
-            let storyboard = UIStoryboard(name: "BorderWaits", bundle: nil)
-            let vc = storyboard.instantiateViewControllerWithIdentifier("BorderWaitsViewController") as! BorderWaitsViewController
-            destinationViewController.viewControllers = [vc]
-            vc.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
-            vc.navigationItem.leftItemsSupplementBackButton = true
-            vc.navigationItem.title = "Border Waits"
-        }
-        
-        
     }
-    
-
 }
