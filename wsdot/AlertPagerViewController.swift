@@ -73,35 +73,40 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
                         if let selfValue = self{
                             selfValue.pages.removeAll()
                             selfValue.alertItems = HighwayAlertsStore.getHighestPriorityAlerts()
-                            selfValue.setUpContent()
-  
+                            selfValue.setUpContent(false)
                         }
                     }
                 }else{
                     dispatch_async(dispatch_get_main_queue()) { [weak self] in
                         if let selfValue = self{
-                            selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                            selfValue.pages.removeAll()
+                            selfValue.setUpContent(true)
                         }
                     }
                 }
             })
         }
     }
-
-    func setUpContent(){
     
-        for alert in alertItems {
-            let page: AlertContentViewController! = storyboard?.instantiateViewControllerWithIdentifier("AlertContentViewController") as! AlertContentViewController
-            page.alert = alert
-            page.alertText = alert.headlineDesc
-            pages.append(page)
-        }
-        if (pages.count == 0){
-            let page: AlertContentViewController! = storyboard?.instantiateViewControllerWithIdentifier("AlertContentViewController") as! AlertContentViewController
-            page.alertText = "No highest impact alerts"
-            pages.append(page)
-        }
+    func setUpContent(failed: Bool){
         
+        if (failed){
+            let page: AlertContentViewController! = storyboard?.instantiateViewControllerWithIdentifier("AlertContentViewController") as! AlertContentViewController
+            page.alertText = "Failed to load alerts"
+            pages.append(page)
+        }else {
+            for alert in alertItems {
+                let page: AlertContentViewController! = storyboard?.instantiateViewControllerWithIdentifier("AlertContentViewController") as! AlertContentViewController
+                page.alert = alert
+                page.alertText = alert.headlineDesc
+                pages.append(page)
+            }
+            if (pages.count == 0){
+                let page: AlertContentViewController! = storyboard?.instantiateViewControllerWithIdentifier("AlertContentViewController") as! AlertContentViewController
+                page.alertText = "No highest impact alerts"
+                pages.append(page)
+            }
+        }
         setViewControllers([pages[0]], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
         
     }

@@ -36,7 +36,6 @@ class SocialMediaViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Social Media"
     }
     
     override func viewWillAppear(animated: Bool) {

@@ -27,7 +27,6 @@ class BloggerViewController: UIViewController, UITabBarDelegate, UITableViewData
     
     var posts = [BlogItem]()
     let refreshControl = UIRefreshControl()
-    var overlayView = UIView()
     var activityIndicator = UIActivityIndicatorView()
     
     @IBOutlet weak var tableView: UITableView!
@@ -81,27 +80,24 @@ class BloggerViewController: UIViewController, UITabBarDelegate, UITableViewData
     }
     
     func showOverlay(view: UIView) {
-        
-        overlayView.frame = CGRectMake(0, 0, 80, 80)
-        overlayView.center = CGPointMake(view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
-        overlayView.backgroundColor = UIColor.blackColor()
-        overlayView.alpha = 0.7
-        overlayView.clipsToBounds = true
-        overlayView.layer.cornerRadius = 10
-        
         activityIndicator.frame = CGRectMake(0, 0, 40, 40)
         activityIndicator.activityIndicatorViewStyle = .WhiteLarge
-        activityIndicator.center = CGPointMake(overlayView.bounds.width / 2, overlayView.bounds.height / 2)
+        activityIndicator.color = UIColor.grayColor()
         
-        overlayView.addSubview(activityIndicator)
-        view.addSubview(overlayView)
+        if self.splitViewController!.collapsed {
+            activityIndicator.center = CGPointMake(view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
+        } else {
+            activityIndicator.center = CGPointMake(view.center.x - self.splitViewController!.viewControllers[0].view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
+        }
+        
+        view.addSubview(activityIndicator)
         
         activityIndicator.startAnimating()
     }
     
     func hideOverlayView(){
         activityIndicator.stopAnimating()
-        overlayView.removeFromSuperview()
+        activityIndicator.removeFromSuperview()
     }
     
     // MARK: Table View Data Source Methods

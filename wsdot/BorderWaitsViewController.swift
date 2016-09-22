@@ -49,15 +49,11 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Border Waits"
         
         displayedWaits = northboundWaits
+
         
-        // refresh controller
-        refreshControl.addTarget(self, action: #selector(BorderWaitsViewController.refreshAction(_:)), forControlEvents: .ValueChanged)
-        tableView.addSubview(refreshControl)
-        
-        showOverlay(self.refreshControl)
+        showOverlay(self.view)
         
         refresh(false)
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -108,7 +104,12 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
         activityIndicator.frame = CGRectMake(0, 0, 40, 40)
         activityIndicator.activityIndicatorViewStyle = .WhiteLarge
         activityIndicator.color = UIColor.grayColor()
-        activityIndicator.center = CGPointMake(view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
+        
+        if self.splitViewController!.collapsed {
+            activityIndicator.center = CGPointMake(view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
+        } else {
+            activityIndicator.center = CGPointMake(view.center.x - self.splitViewController!.viewControllers[0].view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
+        }
         
         view.addSubview(activityIndicator)
         

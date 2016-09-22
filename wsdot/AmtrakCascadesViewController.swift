@@ -27,12 +27,6 @@ class AmtrakCascadesViewController: UIViewController, UITableViewDelegate, UITab
 
     let menu_options = ["Buy Tickets on Amtrak.com", "Check Schedules and Status"]
 
-    override func viewDidLoad() {
-    super.viewDidLoad()
-        title = "Amtrak Cascades"
-
-    }
-
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Amtrak Cascades")

@@ -11,7 +11,7 @@
         <!--Amtrak Cascades View Controller-->
         <scene sceneID="now-mE-ITJ">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="TSb-lu-XT4" customClass="AmtrakCascadesViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AmtrakCascadesViewController" hidesBottomBarWhenPushed="YES" id="TSb-lu-XT4" customClass="AmtrakCascadesViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wzk-Tv-7JH"/>
                         <viewControllerLayoutGuide type="bottom" id="x4v-0q-I3R"/>
