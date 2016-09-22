@@ -23,16 +23,9 @@
                                     <navigationItem id="AU5-Cd-K1O"/>
                                 </items>
                             </navigationBar>
-                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lwa-2a-tgH">
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                <items/>
-                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Lwa-2a-tgH" firstAttribute="trailing" secondItem="0s7-I9-b28" secondAttribute="trailing" id="BEs-Fo-ejM"/>
-                            <constraint firstItem="Lwa-2a-tgH" firstAttribute="bottom" secondItem="xb3-aO-Qok" secondAttribute="top" id="DqL-xu-C8J"/>
-                            <constraint firstItem="Lwa-2a-tgH" firstAttribute="leading" secondItem="0s7-I9-b28" secondAttribute="leading" id="L8w-S2-pN5"/>
                             <constraint firstItem="0s7-I9-b28" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="Qqr-lc-60r"/>
                             <constraint firstItem="0s7-I9-b28" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="d5Q-iM-Ifr"/>
                             <constraint firstAttribute="trailing" secondItem="0s7-I9-b28" secondAttribute="trailing" id="tNa-fo-veM"/>
