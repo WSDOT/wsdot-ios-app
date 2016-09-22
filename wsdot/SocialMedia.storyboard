@@ -86,7 +86,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NfU-fG-XQo" id="YiG-q7-aHj">
-                                            <frame key="frameInset" width="375" height="300"/>
+                                            <frame key="frameInset" width="375" height="299"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T9I-WJ-Rf4">
@@ -179,7 +179,7 @@
         <!--Social Media View Controller-->
         <scene sceneID="Fxe-pI-q1S">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="xtc-2U-Vhg" customClass="SocialMediaViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SocialMediaViewController" hidesBottomBarWhenPushed="YES" id="xtc-2U-Vhg" customClass="SocialMediaViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="96v-dh-T8L"/>
                         <viewControllerLayoutGuide type="bottom" id="SWM-oI-FJz"/>
@@ -577,7 +577,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ev0-w3-oap" id="v1Y-tB-D6w">
-                                            <frame key="frameInset" width="342" height="66"/>
+                                            <frame key="frameInset" width="342" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OAJ-bw-unT" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
@@ -627,7 +627,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VjH-OV-0yn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1668" y="439"/>
+            <point key="canvasLocation" x="1511" y="439"/>
         </scene>
     </scenes>
 </document>
