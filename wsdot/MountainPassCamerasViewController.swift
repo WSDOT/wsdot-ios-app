@@ -28,7 +28,6 @@ class MountainPassCamerasViewController: UIViewController, UITableViewDataSource
     let SegueCamerasViewController = "CamerasViewController"
     
     let refreshControl = UIRefreshControl()
-    var overlayView = UIView()
     var activityIndicator = UIActivityIndicatorView()
     
     var passItem : MountainPassItem = MountainPassItem()
@@ -42,8 +41,6 @@ class MountainPassCamerasViewController: UIViewController, UITableViewDataSource
         
         let mountainPassTabBarContoller = self.tabBarController as! MountainPassTabBarViewController
         passItem = mountainPassTabBarContoller.passItem
-        
-        print(passItem.cameras.count)
         
         tableView.rowHeight = UITableViewAutomaticDimension
         
@@ -97,27 +94,17 @@ class MountainPassCamerasViewController: UIViewController, UITableViewDataSource
     }
     
     func showOverlay(view: UIView) {
-        
-        overlayView.frame = CGRectMake(0, 0, 80, 80)
-        overlayView.center = CGPointMake(view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
-        overlayView.backgroundColor = UIColor.blackColor()
-        overlayView.alpha = 0.7
-        overlayView.clipsToBounds = true
-        overlayView.layer.cornerRadius = 10
-        
         activityIndicator.frame = CGRectMake(0, 0, 40, 40)
         activityIndicator.activityIndicatorViewStyle = .WhiteLarge
-        activityIndicator.center = CGPointMake(overlayView.bounds.width / 2, overlayView.bounds.height / 2)
-        
-        overlayView.addSubview(activityIndicator)
-        view.addSubview(overlayView)
-        
+        activityIndicator.color = UIColor.grayColor()
+        activityIndicator.center = CGPointMake(view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
+        view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
     }
     
     func hideOverlayView(){
         activityIndicator.stopAnimating()
-        overlayView.removeFromSuperview()
+        activityIndicator.removeFromSuperview()
     }
     
     // MARK: -

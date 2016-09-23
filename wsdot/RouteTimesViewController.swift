@@ -115,15 +115,8 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         activityIndicator.frame = CGRectMake(0, 0, 40, 40)
         activityIndicator.activityIndicatorViewStyle = .WhiteLarge
         activityIndicator.color = UIColor.grayColor()
-        
-        if self.splitViewController!.collapsed {
-            activityIndicator.center = CGPointMake(view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
-        } else {
-            activityIndicator.center = CGPointMake(view.center.x - self.splitViewController!.viewControllers[0].view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
-        }
-        
+        activityIndicator.center = CGPointMake(view.center.x, view.center.y)
         view.addSubview(activityIndicator)
-        
         activityIndicator.startAnimating()
     }
     
