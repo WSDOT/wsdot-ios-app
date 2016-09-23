@@ -440,6 +440,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
                 NSUserDefaults.standardUserDefaults().setObject(locationItem.latitude, forKey: UserDefaultsKeys.mapLat)
                 NSUserDefaults.standardUserDefaults().setObject(locationItem.longitude, forKey: UserDefaultsKeys.mapLon)
                 NSUserDefaults.standardUserDefaults().setObject(locationItem.zoom, forKey: UserDefaultsKeys.mapZoom)
+                segue.destinationViewController.title = "Traffic Map"
             }
         }
         if segue.identifier == segueRouteDeparturesViewController {

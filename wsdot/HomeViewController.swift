@@ -42,7 +42,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Set Title
         title = "WSDOT"
         menu_options = ["Traffic Map", "Ferries", "Mountain Passes", "Social Media", "Toll Rates", "Border Waits", "Amtrak Cascades", "Favorites"]
-        menu_icon_names = ["icHomeTraffic","icHomeFerries","icHomePasses","icHomeSocialMedia","icHomeTollRates","icHomeBorderWaits","icHomeAmtrakCascades", "icFavoriteDefault"]
+        menu_icon_names = ["icHomeTraffic","icHomeFerries","icHomePasses","icHomeSocialMedia","icHomeTollRates","icHomeBorderWaits","icHomeAmtrakCascades", "icHomeFavorites"]
         
         self.navigationController!.navigationBar.translucent = false
         self.navigationController!.navigationBar.barTintColor = UIColor.whiteColor()
