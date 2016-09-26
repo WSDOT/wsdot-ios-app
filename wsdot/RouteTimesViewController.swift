@@ -63,7 +63,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         dateButton.accessibilityHint = "double tap to change sailing day"
         
         setDisplayedSailing(0)
-        
         tableView.rowHeight = UITableViewAutomaticDimension
         
         // refresh controller
@@ -74,7 +73,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         
         showOverlay(self.view)
         refresh(self.refreshControl)
-        
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -82,11 +80,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         GoogleAnalytics.screenView("/Ferries/Schedules/Sailings/Departures")
     }
     
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-        self.refreshControl.removeFromSuperview()
-        self.activityIndicator.removeFromSuperview()
-    }
     
     func refresh(refreshControl: UIRefreshControl) {
         if (currentDay == 0){

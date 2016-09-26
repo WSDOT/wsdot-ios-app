@@ -58,11 +58,6 @@ class RouteDeparturesViewController: UIViewController {
         adBackGroundView.hidden = true
     }
     
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-        bannerView.removeFromSuperview()
-    }
-    
     // Remove and add hairline for nav bar
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
