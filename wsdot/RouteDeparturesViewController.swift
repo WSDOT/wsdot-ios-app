@@ -34,6 +34,10 @@ class RouteDeparturesViewController: UIViewController {
     // set by previous view controller
     var currentSailing = FerryTerminalPairItem()
     var sailingsByDate = List<FerryScheduleDateItem>()
+        
+    deinit {
+        print("RouteDeparturesViewController is being deallocated")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,10 +52,15 @@ class RouteDeparturesViewController: UIViewController {
         bannerView.loadRequest(GADRequest())
         
     }
-    
+
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         adBackGroundView.hidden = true
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        bannerView.removeFromSuperview()
     }
     
     // Remove and add hairline for nav bar
