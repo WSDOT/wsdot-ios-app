@@ -414,17 +414,22 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         switch (indexPath.section){
         case 0:
             performSegueWithIdentifier(segueTrafficMapViewController, sender: nil)
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
             break
         case 1:
             performSegueWithIdentifier(segueRouteDeparturesViewController, sender: nil)
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
             break
         case 2:
             performSegueWithIdentifier(segueMountainPassDetailsViewController, sender: nil)
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
         case 3:
             performSegueWithIdentifier(segueTravelTimeViewController, sender: nil)
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
             break
         case 4:
             performSegueWithIdentifier(segueCameraViewController, sender: nil)
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
             break
         default:
             break
