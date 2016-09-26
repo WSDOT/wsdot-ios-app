@@ -24,10 +24,8 @@ import GoogleMaps
 
 class MapViewController: UIViewController, CLLocationManagerDelegate{
     
-    var markerDelegate: MapMarkerDelegate? = nil
-    var mapDelegate: GMSMapViewDelegate? = nil
-    
-    let locationManager = CLLocationManager()
+    weak var markerDelegate: MapMarkerDelegate? = nil
+    weak var mapDelegate: GMSMapViewDelegate? = nil
     
     override func loadView() {
         super.loadView()
@@ -69,17 +67,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager.delegate = self
+        CLLocationManager().delegate = self
     }
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        locationManager.stopUpdatingLocation()
+        CLLocationManager().stopUpdatingLocation()
     }
     
     func goToUsersLocation(){
         if let mapView = view as? GMSMapView{
-            if let location = locationManager.location?.coordinate {
+            if let location = CLLocationManager().location?.coordinate {
                 mapView.animateToLocation(location)
             }
         }
@@ -88,7 +86,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
     // CLLocationManagerDelegate methods
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedWhenInUse {
-            locationManager.startUpdatingLocation()
+            CLLocationManager().startUpdatingLocation()
             if let mapView = view as? GMSMapView{
                 mapView.myLocationEnabled = true
                 goToUsersLocation()
@@ -107,7 +105,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
         let hasSeenWarning = NSUserDefaults.standardUserDefaults().boolForKey(UserDefaultsKeys.hasSeenWarning)
         
         if (!hasSeenWarning){
-            if let location = locationManager.location {
+            if let location = manager.location {
                 if location.speed > 11 {
                     NSUserDefaults.standardUserDefaults().setObject(true, forKey: UserDefaultsKeys.hasSeenWarning)
                     parentViewController!.presentViewController(AlertMessages.getAlert("You're moving too fast.", message: "Please don't use the app while driving."), animated: true, completion: { })

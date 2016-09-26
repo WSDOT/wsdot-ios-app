@@ -9,7 +9,7 @@ target 'WSDOT' do
     pod 'Google/Analytics'
     pod 'RealmSwift', '~> 1.1.0'
     pod 'Alamofire', '~> 3.5.0'
-    pod 'SwiftyJSON'
+    pod 'SwiftyJSON', '~> 2.3.2'
     pod 'SDWebImage'
 end
 
@@ -20,7 +20,7 @@ target 'WSDOTTests' do
     pod 'Google/Analytics'
     pod 'RealmSwift', '~> 1.1.0'
     pod 'Alamofire', '~> 3.5.0'
-    pod 'SwiftyJSON'
+    pod 'SwiftyJSON', '~> 2.3.2'
     pod 'SDWebImage'
 end
 
