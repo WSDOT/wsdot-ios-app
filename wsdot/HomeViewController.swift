@@ -37,18 +37,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var menu_options: [String] = []
     var menu_icon_names: [String] = []
     
-    var trafficMapViewController: TrafficMapViewController? = nil
-    var ferriesHomeViewController: FerriesHomeViewController? = nil
-    var mountainPassesViewController: MountainPassesViewController? = nil
-    var socialMediaViewController: SocialMediaViewController? = nil
-    var tollRatesViewController: TollRatesViewController? = nil
-    var borderWaitsViewController: BorderWaitsViewController? = nil
-    var amtrakCascadesViewController: AmtrakCascadesViewController? = nil
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Set Title
         title = "WSDOT"
+        
         menu_options = ["Traffic Map", "Ferries", "Mountain Passes", "Social Media", "Toll Rates", "Border Waits", "Amtrak Cascades", "Favorites"]
         menu_icon_names = ["icHomeTraffic","icHomeFerries","icHomePasses","icHomeSocialMedia","icHomeTollRates","icHomeBorderWaits","icHomeAmtrakCascades", "icHomeFavorites"]
         
@@ -141,10 +134,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             
             if segue.identifier == SegueTrafficMapViewController {
-                if trafficMapViewController == nil {
-                    let storyboard = UIStoryboard(name: "TrafficMap", bundle: nil)
-                    trafficMapViewController = storyboard.instantiateViewControllerWithIdentifier("TrafficMapViewController") as? TrafficMapViewController
-                }
+                let storyboard = UIStoryboard(name: "TrafficMap", bundle: nil)
+                weak var trafficMapViewController = storyboard.instantiateViewControllerWithIdentifier("TrafficMapViewController") as? TrafficMapViewController
                 destinationViewController.viewControllers = [trafficMapViewController!]
                 trafficMapViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 trafficMapViewController!.navigationItem.leftItemsSupplementBackButton = true
@@ -152,10 +143,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             
             if segue.identifier == SegueFerriesHomeViewController {
-                if ferriesHomeViewController == nil {
-                    let storyboard = UIStoryboard(name: "Ferries", bundle: nil)
-                    ferriesHomeViewController = storyboard.instantiateViewControllerWithIdentifier("FerriesHomeViewController") as? FerriesHomeViewController
-                }
+                let storyboard = UIStoryboard(name: "Ferries", bundle: nil)
+                let ferriesHomeViewController = storyboard.instantiateViewControllerWithIdentifier("FerriesHomeViewController") as? FerriesHomeViewController
                 destinationViewController.viewControllers = [ferriesHomeViewController!]
                 ferriesHomeViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 ferriesHomeViewController!.navigationItem.leftItemsSupplementBackButton = true
@@ -168,10 +157,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             
             if segue.identifier == SegueMountainPassesViewController {
-                if mountainPassesViewController == nil {
-                    let storyboard = UIStoryboard(name: "MountainPasses", bundle: nil)
-                    mountainPassesViewController = storyboard.instantiateViewControllerWithIdentifier("MountainPassesViewController") as? MountainPassesViewController
-                }
+                let storyboard = UIStoryboard(name: "MountainPasses", bundle: nil)
+                let mountainPassesViewController = storyboard.instantiateViewControllerWithIdentifier("MountainPassesViewController") as? MountainPassesViewController
                 destinationViewController.viewControllers = [mountainPassesViewController!]
                 mountainPassesViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 mountainPassesViewController!.navigationItem.leftItemsSupplementBackButton = true
@@ -179,10 +166,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             
             if segue.identifier == SegueSocialMediaViewController {
-                if socialMediaViewController == nil {
-                    let storyboard = UIStoryboard(name: "SocialMedia", bundle: nil)
-                    socialMediaViewController = storyboard.instantiateViewControllerWithIdentifier("SocialMediaViewController") as? SocialMediaViewController
-                }
+                let storyboard = UIStoryboard(name: "SocialMedia", bundle: nil)
+                let socialMediaViewController = storyboard.instantiateViewControllerWithIdentifier("SocialMediaViewController") as? SocialMediaViewController
                 destinationViewController.viewControllers = [socialMediaViewController!]
                 socialMediaViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 socialMediaViewController!.navigationItem.leftItemsSupplementBackButton = true
@@ -190,10 +175,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             
             if segue.identifier == SegueTollRatesViewController {
-                if tollRatesViewController == nil {
-                    let storyboard = UIStoryboard(name: "TollRates", bundle: nil)
-                    tollRatesViewController = storyboard.instantiateViewControllerWithIdentifier("TollRatesViewController") as? TollRatesViewController
-                }
+                let storyboard = UIStoryboard(name: "TollRates", bundle: nil)
+                let tollRatesViewController = storyboard.instantiateViewControllerWithIdentifier("TollRatesViewController") as? TollRatesViewController
                 destinationViewController.viewControllers = [tollRatesViewController!]
                 tollRatesViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 tollRatesViewController!.navigationItem.leftItemsSupplementBackButton = true
@@ -201,10 +184,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             
             if segue.identifier == SegueBorderWaitsViewController {
-                if borderWaitsViewController == nil {
-                    let storyboard = UIStoryboard(name: "BorderWaits", bundle: nil)
-                    borderWaitsViewController = storyboard.instantiateViewControllerWithIdentifier("BorderWaitsViewController") as? BorderWaitsViewController
-                }
+                let storyboard = UIStoryboard(name: "BorderWaits", bundle: nil)
+                let borderWaitsViewController = storyboard.instantiateViewControllerWithIdentifier("BorderWaitsViewController") as? BorderWaitsViewController
                 destinationViewController.viewControllers = [borderWaitsViewController!]
                 borderWaitsViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 borderWaitsViewController!.navigationItem.leftItemsSupplementBackButton = true
@@ -212,10 +193,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             
             if segue.identifier == SegueAmtrakCascadesViewController {
-                if amtrakCascadesViewController == nil {
-                    let storyboard = UIStoryboard(name: "AmtrakCascades", bundle: nil)
-                    amtrakCascadesViewController = storyboard.instantiateViewControllerWithIdentifier("AmtrakCascadesViewController") as? AmtrakCascadesViewController
-                }
+                let storyboard = UIStoryboard(name: "AmtrakCascades", bundle: nil)
+                let amtrakCascadesViewController = storyboard.instantiateViewControllerWithIdentifier("AmtrakCascadesViewController") as? AmtrakCascadesViewController
                 destinationViewController.viewControllers = [amtrakCascadesViewController!]
                 amtrakCascadesViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 amtrakCascadesViewController!.navigationItem.leftItemsSupplementBackButton = true

@@ -22,8 +22,8 @@ import Foundation
 
 class GoogleAnalytics {
     
-    static let analytics_enabled = true
-    static let analytics_dryrun = false
+    static let analytics_enabled = false
+    static let analytics_dryrun = true
     
     static func screenView(screenName: String){
         if (GoogleAnalytics.analytics_enabled){

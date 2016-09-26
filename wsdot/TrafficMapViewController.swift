@@ -67,7 +67,11 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
-    private var embeddedMapViewController: MapViewController!
+    weak private var embeddedMapViewController: MapViewController!
+    
+    deinit {
+        print("traffic map view")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -124,7 +128,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         } else if CLLocationManager.authorizationStatus() == .Denied {
             self.presentViewController(AlertMessages.getAlert("\"WSDOT\" Doesn't Have Permission To Use Your Location", message: "You can enable location services for this app in Settings"), animated: true, completion: nil)
         } else {
-            embeddedMapViewController.locationManager.requestWhenInUseAuthorization()
+            CLLocationManager().requestWhenInUseAuthorization()
         }
         
     }

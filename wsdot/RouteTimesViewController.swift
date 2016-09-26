@@ -31,13 +31,13 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     var sailingSpaces : [SailingSpacesItem]?
     
     // Set by parent view
-    var currentSailing = FerryTerminalPairItem()
-    var sailingsByDate = List<FerryScheduleDateItem>()
+    var currentSailing: FerryTerminalPairItem?
+    var sailingsByDate: List<FerryScheduleDateItem>?
     
     var currentDay = 0
     var updatedAt = NSDate()
     
-    var displayedSailing = FerrySailingsItem()
+    var displayedSailing: FerrySailingsItem?
     var displayedTimes = List<FerryDepartureTimeItem>()
     
     var dayData = TimeUtils.nextSevenDaysStrings(NSDate())
@@ -48,6 +48,12 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var dateButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var departuresHeader: UIView!
+        
+    deinit {
+        print("RouteTimesViewController is being deallocated")
+        displayedSailing = nil
+        sailingSpaces = nil
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +63,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         dateButton.accessibilityHint = "double tap to change sailing day"
         
         setDisplayedSailing(0)
-        
         tableView.rowHeight = UITableViewAutomaticDimension
         
         // refresh controller
@@ -68,18 +73,18 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         
         showOverlay(self.view)
         refresh(self.refreshControl)
-        
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Ferries/Schedules/Sailings/Departures")
     }
     
+    
     func refresh(refreshControl: UIRefreshControl) {
         if (currentDay == 0){
-            let departingId = displayedSailing.departingTerminalId
-            let arrivingId = displayedSailing.arrivingTerminalId
+            let departingId = displayedSailing!.departingTerminalId
+            let arrivingId = displayedSailing!.arrivingTerminalId
         
             dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) { [weak self] in
                 SailingSpacesStore.getSailingSpacesForTerminal(departingId, arrivingId: arrivingId, completion: { data, error in
@@ -185,7 +190,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         var annotationsString = ""
         
         for indexObj in displayedTimes[indexPath.row].annotationIndexes{
-            annotationsString += displayedSailing.annotations[indexObj.index].message + " "
+            annotationsString += displayedSailing!.annotations[indexObj.index].message + " "
         }
         
         if (annotationsString != ""){
@@ -232,11 +237,11 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     private func setDisplayedSailing(day: Int){
         
         // get sailings for selected day
-        let sailings = sailingsByDate[day].sailings
+        let sailings = sailingsByDate![day].sailings
         
         // get sailings for current route
         for sailing in sailings {
-            if ((sailing.departingTerminalName == currentSailing.aTerminalName) && (sailing.arrivingTerminalName == currentSailing.bTterminalName)) {
+            if ((sailing.departingTerminalName == currentSailing!.aTerminalName) && (sailing.arrivingTerminalName == currentSailing!.bTterminalName)) {
                 displayedSailing = sailing
             }
         }
@@ -244,7 +249,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         displayedTimes.removeAll()
         
         // make list of displayable times
-        for time in displayedSailing.times {
+        for time in displayedSailing!.times {
             if (time.departingTime.compare(NSDate()) == .OrderedDescending) {
                 displayedTimes.append(time)
             }
