@@ -27,6 +27,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
     weak var markerDelegate: MapMarkerDelegate? = nil
     weak var mapDelegate: GMSMapViewDelegate? = nil
     
+    deinit {
+        print("map view")
+    }
+    
     override func loadView() {
         super.loadView()
         var lat = NSUserDefaults.standardUserDefaults().doubleForKey(UserDefaultsKeys.mapLat)

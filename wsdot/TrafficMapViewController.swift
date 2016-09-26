@@ -69,6 +69,10 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     weak private var embeddedMapViewController: MapViewController!
     
+    deinit {
+        print("traffic map view")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
