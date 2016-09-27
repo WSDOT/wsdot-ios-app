@@ -73,7 +73,6 @@ class TrafficMapGoToViewController: UIViewController, UITableViewDataSource, UIT
         
         // Configure Cell
         cell.textLabel?.text = menu_options[indexPath.row]
-     
         return cell
     }
     

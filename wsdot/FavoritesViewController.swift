@@ -45,8 +45,6 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     var favoriteTravelTimes = [TravelTimeItem]()
     var favoritePasses = [MountainPassItem]()
     
-    var notificationToken: NotificationToken?
-    
     let refreshControl = UIRefreshControl()
     var activityIndicator = UIActivityIndicatorView()
 

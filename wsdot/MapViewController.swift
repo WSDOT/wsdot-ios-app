@@ -29,8 +29,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
     var locationManager = CLLocationManager()
     
     deinit {
-        print("map view")
+        if let mapView = view as? GMSMapView{
+            mapView.clear()
+            mapView.delegate = nil
+        }
+        view.removeFromSuperview()
         locationManager.delegate = nil
+        markerDelegate = nil
+        mapDelegate = nil
     }
     
     override func loadView() {

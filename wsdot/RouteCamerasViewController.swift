@@ -129,8 +129,8 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
         for camera in cameras {
             
             let distance = LatLonUtils.haversine(
-                (FerriesConsts.terminalMap[departingTerminalId]?.latitude)!,
-                lonA: (FerriesConsts.terminalMap[departingTerminalId]?.longitude)!,
+                (FerriesConsts().terminalMap[departingTerminalId]?.latitude)!,
+                lonA: (FerriesConsts().terminalMap[departingTerminalId]?.longitude)!,
                 latB: camera.latitude,
                 lonB: camera.longitude)
             

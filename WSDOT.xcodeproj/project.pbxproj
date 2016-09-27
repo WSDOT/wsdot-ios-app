@@ -108,7 +108,7 @@
 		9AD32E2A1D24233D000AEC28 /* FerriesHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32E291D24233D000AEC28 /* FerriesHomeViewController.swift */; };
 		9AD32E2C1D242A5A000AEC28 /* RouteSchedulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32E2B1D242A5A000AEC28 /* RouteSchedulesViewController.swift */; };
 		9AD32E2E1D243260000AEC28 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32E2D1D243260000AEC28 /* FavoritesViewController.swift */; };
-		9ADEAE4D1D270CC800BA7DD4 /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADEAE4C1D270CC800BA7DD4 /* Consts.swift */; };
+		9ADEAE4D1D270CC800BA7DD4 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADEAE4C1D270CC800BA7DD4 /* Helpers.swift */; };
 		9ADF0E021D7F5EF600632F3D /* WSDOTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADF0E011D7F5EF600632F3D /* WSDOTUITests.swift */; };
 		9ADF0E0A1D7F5F8400632F3D /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADF0E091D7F5F8400632F3D /* SnapshotHelper.swift */; };
 		9AE4863E1D49594D007A92E3 /* FerriesTerminalMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE4863D1D49594D007A92E3 /* FerriesTerminalMap.swift */; };
@@ -285,7 +285,7 @@
 		9AD32E291D24233D000AEC28 /* FerriesHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerriesHomeViewController.swift; sourceTree = "<group>"; };
 		9AD32E2B1D242A5A000AEC28 /* RouteSchedulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteSchedulesViewController.swift; sourceTree = "<group>"; };
 		9AD32E2D1D243260000AEC28 /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
-		9ADEAE4C1D270CC800BA7DD4 /* Consts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
+		9ADEAE4C1D270CC800BA7DD4 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		9ADF0DFF1D7F5EF600632F3D /* WSDOTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WSDOTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9ADF0E011D7F5EF600632F3D /* WSDOTUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSDOTUITests.swift; sourceTree = "<group>"; };
 		9ADF0E031D7F5EF600632F3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -928,7 +928,7 @@
 		9ADEAE4B1D270CBB00BA7DD4 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				9ADEAE4C1D270CC800BA7DD4 /* Consts.swift */,
+				9ADEAE4C1D270CC800BA7DD4 /* Helpers.swift */,
 				9A0CA8361D466045009C67B7 /* TimeUtils.swift */,
 				9A1F5FA41D47DCB900DA5F99 /* ApiKeys.swift */,
 				9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */,
@@ -1430,7 +1430,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9ADEAE4D1D270CC800BA7DD4 /* Consts.swift in Sources */,
+				9ADEAE4D1D270CC800BA7DD4 /* Helpers.swift in Sources */,
 				9AEF4D9A1D772F9C003ECA34 /* NewsItem.swift in Sources */,
 				9A0616E61D67838F00126520 /* TrafficMapGoToViewController.swift in Sources */,
 				9A6FBD311D6E3E9100CDCE16 /* MountainPassesViewController.swift in Sources */,

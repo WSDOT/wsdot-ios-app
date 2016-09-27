@@ -69,10 +69,6 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     weak private var embeddedMapViewController: MapViewController!
     
-    deinit {
-        print("traffic map view")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -265,7 +261,8 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         removeCameras()
         cameraMarkers.removeAll()
         
-        for camera in CamerasStore.getAllCameras(){
+        let cameras = CamerasStore.getAllCameras()
+        for camera in cameras{
             let cameraLocation = CLLocationCoordinate2D(latitude: camera.latitude, longitude: camera.longitude)
             let marker = GMSMarker(position: cameraLocation)
             marker.snippet = "camera"
@@ -273,6 +270,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
             marker.userData = camera
             cameraMarkers.insert(marker)
         }
+        
     }
     
     func drawCameras(){

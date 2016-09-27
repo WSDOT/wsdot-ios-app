@@ -20,7 +20,7 @@
 
 import Foundation
 
-class ApiKeys {
+struct ApiKeys {
 
     static let wsdot_key = ""
     static let wsdot_ad_string = ""

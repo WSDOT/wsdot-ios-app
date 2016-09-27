@@ -20,8 +20,12 @@
 
 import Foundation
 
-class FerriesConsts {
-    static let terminalMap = [
+struct FerriesConsts {
+    
+    let terminalMap: [Int : FerriesTerminalItem]
+    
+    init() {
+        terminalMap = [
         1: FerriesTerminalItem(id: 1, name: "Anacortes", lat: 48.507351, long: -122.677),
         3: FerriesTerminalItem(id: 3, name: "Bainbridge Island", lat: 47.622339, long: -122.509617),
         4: FerriesTerminalItem(id: 4, name: "Bremerton", lat: 47.561847, long: -122.624089),
@@ -42,5 +46,6 @@ class FerriesConsts {
         20: FerriesTerminalItem(id: 20, name: "Southworth", lat: 47.513064, long: -122.495742),
         21: FerriesTerminalItem(id: 21, name: "Tahlequah", lat: 47.331961, long: -122.507786),
         22: FerriesTerminalItem(id: 22, name: "Vashon Island", lat: 47.51095, long: -122.463639)
-    ]
+        ]
+    }
 }

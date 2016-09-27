@@ -11,14 +11,14 @@
         <scene sceneID="DNA-5x-hOF">
             <objects>
                 <navigationController title="Traffic Map" id="Lbb-0l-yJu" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="W5B-QB-ecH">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="W5B-QB-ecH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kg2-1O-Oac" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-369" y="1809"/>
+            <point key="canvasLocation" x="-887" y="1797"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tF8-lb-MU7">
@@ -26,7 +26,7 @@
                 <navigationController id="2hQ-5G-m4N" sceneMemberID="viewController">
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kcl-MV-c3g">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="kcl-MV-c3g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -41,7 +41,7 @@
                 <navigationController id="WL1-dY-1AO" sceneMemberID="viewController">
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SIV-Fi-8Ne">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="SIV-Fi-8Ne">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -367,7 +367,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HC0-kA-wBI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1927" y="1551"/>
+            <point key="canvasLocation" x="1898" y="1550"/>
         </scene>
         <!--Favorites View Controller-->
         <scene sceneID="9zn-Qv-0gg">
@@ -673,7 +673,7 @@
         <scene sceneID="4jB-de-pq1">
             <objects>
                 <navigationController id="2KS-rG-GP2" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="x3X-h0-jze">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="x3X-h0-jze">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -686,14 +686,14 @@
         <scene sceneID="lR4-nq-Ooh">
             <objects>
                 <navigationController id="uTf-Sh-CaL" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wkt-De-pW0">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="wkt-De-pW0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VPx-cz-GxY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-180" y="1809"/>
+            <point key="canvasLocation" x="-402" y="1797"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cy3-Fc-C9E">
@@ -701,7 +701,7 @@
                 <navigationController id="20J-Fp-3B8" sceneMemberID="viewController">
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="71P-6a-v4j">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="71P-6a-v4j">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -716,7 +716,7 @@
                 <navigationController id="vad-gT-B16" sceneMemberID="viewController">
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Zjl-Hg-wm2">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Zjl-Hg-wm2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
