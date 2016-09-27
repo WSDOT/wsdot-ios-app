@@ -139,7 +139,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 trafficMapViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 trafficMapViewController!.navigationItem.leftItemsSupplementBackButton = true
                 trafficMapViewController!.navigationItem.title = "Traffic Map"
-                destinationViewController.pushViewController(trafficMapViewController!, animated: true)            }
+                if !destinationViewController.viewControllers.contains(trafficMapViewController!){
+                    destinationViewController.pushViewController(trafficMapViewController!, animated: true)
+                }
+            }
             
             if segue.identifier == SegueFerriesHomeViewController {
                 let storyboard = UIStoryboard(name: "Ferries", bundle: nil)
@@ -147,7 +150,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 ferriesHomeViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 ferriesHomeViewController!.navigationItem.leftItemsSupplementBackButton = true
                 ferriesHomeViewController!.navigationItem.title = "Ferries"
-                destinationViewController.pushViewController(ferriesHomeViewController!, animated: true)
+                if !destinationViewController.viewControllers.contains(ferriesHomeViewController!){
+                    destinationViewController.pushViewController(ferriesHomeViewController!, animated: true)
+                }
             }
             
             if segue.identifier == SegueFavoritesViewController {
@@ -161,7 +166,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 mountainPassesViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 mountainPassesViewController!.navigationItem.leftItemsSupplementBackButton = true
                 mountainPassesViewController!.navigationItem.title = "Mountain Passes"
-                destinationViewController.pushViewController(mountainPassesViewController!, animated: true)
+                if !destinationViewController.viewControllers.contains(mountainPassesViewController!){
+                    destinationViewController.pushViewController(mountainPassesViewController!, animated: true)
+                }
             }
             
             if segue.identifier == SegueSocialMediaViewController {
@@ -170,7 +177,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 socialMediaViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 socialMediaViewController!.navigationItem.leftItemsSupplementBackButton = true
                 socialMediaViewController!.navigationItem.title = "Social Media"
-                destinationViewController.pushViewController(socialMediaViewController!, animated: true)
+                if !destinationViewController.viewControllers.contains(socialMediaViewController!) {
+                    destinationViewController.pushViewController(socialMediaViewController!, animated: true)
+                }
             }
             
             if segue.identifier == SegueTollRatesViewController {
@@ -179,7 +188,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 tollRatesViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 tollRatesViewController!.navigationItem.leftItemsSupplementBackButton = true
                 tollRatesViewController!.navigationItem.title = "Toll Rates"
-                destinationViewController.pushViewController(tollRatesViewController!, animated: true)
+                if !destinationViewController.viewControllers.contains(tollRatesViewController!) {
+                    destinationViewController.pushViewController(tollRatesViewController!, animated: true)
+                }
             }
             
             if segue.identifier == SegueBorderWaitsViewController {
@@ -189,7 +200,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 borderWaitsViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 borderWaitsViewController!.navigationItem.leftItemsSupplementBackButton = true
                 borderWaitsViewController!.navigationItem.title = "Border Waits"
-                destinationViewController.pushViewController(borderWaitsViewController!, animated: true)
+                if !destinationViewController.viewControllers.contains(borderWaitsViewController!) {
+                    destinationViewController.pushViewController(borderWaitsViewController!, animated: true)
+                }
             }
             
             if segue.identifier == SegueAmtrakCascadesViewController {
@@ -199,8 +212,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 amtrakCascadesViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 amtrakCascadesViewController!.navigationItem.leftItemsSupplementBackButton = true
                 amtrakCascadesViewController!.navigationItem.title = "Amtrak Cascades"
-                destinationViewController.pushViewController(amtrakCascadesViewController!, animated: true)
+                if !destinationViewController.viewControllers.contains(amtrakCascadesViewController!) {
+                    destinationViewController.pushViewController(amtrakCascadesViewController!, animated: true)
+                }
             }
+            
         }
     }
 }
