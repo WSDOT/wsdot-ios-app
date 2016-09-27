@@ -17,7 +17,6 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
-
 import UIKit
 import CoreLocation
 import GoogleMaps
@@ -27,12 +26,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
     weak var markerDelegate: MapMarkerDelegate? = nil
     weak var mapDelegate: GMSMapViewDelegate? = nil
     
+    var locationManager = CLLocationManager()
+    
     deinit {
         print("map view")
+        locationManager.delegate = nil
     }
     
     override func loadView() {
         super.loadView()
+        locationManager.delegate = self
+        
         var lat = NSUserDefaults.standardUserDefaults().doubleForKey(UserDefaultsKeys.mapLat)
         var lon = NSUserDefaults.standardUserDefaults().doubleForKey(UserDefaultsKeys.mapLon)
         var zoom = NSUserDefaults.standardUserDefaults().floatForKey(UserDefaultsKeys.mapZoom)
@@ -71,35 +75,38 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        CLLocationManager().delegate = self
+        
     }
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        CLLocationManager().stopUpdatingLocation()
+        locationManager.stopUpdatingLocation()
     }
     
     func goToUsersLocation(){
         if let mapView = view as? GMSMapView{
-            if let location = CLLocationManager().location?.coordinate {
-                mapView.animateToLocation(location)
+            if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse{
+                if let location = locationManager.location?.coordinate {
+                    mapView.animateToLocation(location)
+                }
+            } else if !CLLocationManager.locationServicesEnabled() {
+                self.presentViewController(AlertMessages.getAlert("Location Services Are Disabled", message: "You can enable location services from Settings."), animated: true, completion: nil)
+            } else if CLLocationManager.authorizationStatus() == .Denied {
+                self.presentViewController(AlertMessages.getAlert("\"WSDOT\" Doesn't Have Permission To Use Your Location", message: "You can enable location services for this app in Settings"), animated: true, completion: nil)
+            } else {
+                self.locationManager.requestWhenInUseAuthorization()
             }
         }
     }
     
     // CLLocationManagerDelegate methods
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if status == .AuthorizedWhenInUse {
-            CLLocationManager().startUpdatingLocation()
-            if let mapView = view as? GMSMapView{
+        if let mapView = view as? GMSMapView{
+            if status == .AuthorizedWhenInUse {
+                manager.startUpdatingLocation()
                 mapView.myLocationEnabled = true
-                goToUsersLocation()
-            }
-        }
-        if status == .Denied {
-            if let mapView = view as? GMSMapView{
+            }else{
                 mapView.myLocationEnabled = false
-                
             }
         }
     }
