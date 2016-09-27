@@ -120,17 +120,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     @IBAction func myLocationButtonPressed(sender: UIBarButtonItem) {
         GoogleAnalytics.event("Traffic Map", action: "UIAction", label: "My Location")
-        
-        if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse{
-            embeddedMapViewController.goToUsersLocation()
-        } else if !CLLocationManager.locationServicesEnabled() {
-            self.presentViewController(AlertMessages.getAlert("Location Services Are Disabled", message: "You can enable location services from Settings."), animated: true, completion: nil)
-        } else if CLLocationManager.authorizationStatus() == .Denied {
-            self.presentViewController(AlertMessages.getAlert("\"WSDOT\" Doesn't Have Permission To Use Your Location", message: "You can enable location services for this app in Settings"), animated: true, completion: nil)
-        } else {
-            CLLocationManager().requestWhenInUseAuthorization()
-        }
-        
+        embeddedMapViewController.goToUsersLocation()
     }
     
     @IBAction func alertsInAreaButtonPressed(sender: UIBarButtonItem) {
@@ -528,6 +518,8 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     func saveCurrentLocation(){
         
         let alert = UIAlertController(title: "New Favorite Location", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alert.view.tintColor = Colors.tintColor
         
         alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
             textField.placeholder = "Name"

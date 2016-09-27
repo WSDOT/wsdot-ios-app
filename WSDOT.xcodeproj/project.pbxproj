@@ -1773,6 +1773,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DD91BB765A9161CFC06FF1DE /* Pods-WSDOTTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -1791,6 +1792,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D8D316727AAA338CBCFCA3B1 /* Pods-WSDOTTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
