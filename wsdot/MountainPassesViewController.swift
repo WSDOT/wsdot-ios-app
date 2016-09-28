@@ -148,6 +148,9 @@ class MountainPassesViewController: UIViewController, UITableViewDelegate, UITab
                 let passItem = self.passItems[indexPath.row] as MountainPassItem
                 let destinationViewController = segue.destinationViewController as! MountainPassTabBarViewController
                 destinationViewController.passItem = passItem
+                let backItem = UIBarButtonItem()
+                backItem.title = "Back"
+                navigationItem.backBarButtonItem = backItem
             }
         }
     }
