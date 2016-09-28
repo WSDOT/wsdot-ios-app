@@ -52,6 +52,9 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
         
         displayedWaits = northboundWaits
 
+        // refresh controller
+        refreshControl.addTarget(self, action: #selector(BorderWaitsViewController.refreshAction(_:)), forControlEvents: .ValueChanged)
+        tableView.addSubview(refreshControl)
         
         showOverlay(self.view)
         
