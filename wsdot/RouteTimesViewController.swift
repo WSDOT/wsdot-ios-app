@@ -80,7 +80,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         GoogleAnalytics.screenView("/Ferries/Schedules/Sailings/Departures")
     }
     
-    
     func refresh(refreshControl: UIRefreshControl) {
         if (currentDay == 0){
             let departingId = displayedSailing!.departingTerminalId
@@ -108,7 +107,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                             }
                         }
                     }
-                    
                 })
             }
         }else{

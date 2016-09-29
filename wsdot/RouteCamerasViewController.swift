@@ -140,6 +140,4 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
         }
         return filteredCameras
     }
-    
-    
 }
