@@ -87,10 +87,14 @@ class WSDOTUITests: XCTestCase {
         }
         
         tablesQuery.staticTexts["Origin"].tap()
+        // Clears Seattle from origin if using location
+        tablesQuery.staticTexts["Bellingham, WA"].tap()
+        tablesQuery.staticTexts["Origin"].tap()
         tablesQuery.staticTexts["Seattle, WA"].tap()
         tablesQuery.staticTexts["Destination"].tap()
         tablesQuery.staticTexts["Portland, OR"].tap()
         tablesQuery.staticTexts["Check Schedule"].tap()
+        
         snapshot("05Amtrak")
     }
 }
