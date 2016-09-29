@@ -32,7 +32,7 @@ class TrafficMapGoToViewController: UIViewController, UITableViewDataSource, UIT
         super.viewDidLoad()
         
         menu_options = ["Bellingham",
-                        "Chelalis",
+                        "Chehalis",
                         "Hood Canal",
                         "Monroe",
                         "Mt Vernon",

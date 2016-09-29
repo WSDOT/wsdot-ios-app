@@ -68,6 +68,9 @@ class FerriesHomeViewController: UITableViewController {
             UIApplication.sharedApplication().openURL(NSURL(string: "https://secureapps.wsdot.wa.gov/Ferries/Reservations/Vehicle/default.aspx")!)
             break
         case 2:
+            NSUserDefaults.standardUserDefaults().setObject(47.565125, forKey: UserDefaultsKeys.mapLat)
+            NSUserDefaults.standardUserDefaults().setObject(-122.480508, forKey: UserDefaultsKeys.mapLon)
+            NSUserDefaults.standardUserDefaults().setObject(11, forKey: UserDefaultsKeys.mapZoom)
             performSegueWithIdentifier(SegueVesselWatchViewController, sender: self)
         default:
             break
