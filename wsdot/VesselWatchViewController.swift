@@ -316,11 +316,11 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     }
     
     func mapViewDidStartTileRendering(mapView: GMSMapView) {
-        //dispatch_group_enter(serviceGroup)
+        dispatch_group_enter(serviceGroup)
     }
     
     func mapViewDidFinishTileRendering(mapView: GMSMapView) {
-        //dispatch_group_leave(serviceGroup)
+        dispatch_group_leave(serviceGroup)
     }
     
     // MARK: Naviagtion
