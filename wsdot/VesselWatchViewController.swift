@@ -63,7 +63,6 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
             cameraBarButton.image = cameraHighlightBarButtonImage
         }
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(TimeUtils.vesselUpdateTime, target: self, selector: #selector(VesselWatchViewController.vesselUpdateTask(_:)), userInfo: nil, repeats: true)
         // Ad Banner
         bannerView.adUnitID = ApiKeys.wsdot_ad_string
         bannerView.rootViewController = self
@@ -231,19 +230,21 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
                 if let validData = data {
                     dispatch_async(dispatch_get_main_queue()) { [weak self] in
                         if let selfValue = self{
-                            if updateWithGroup{
-                                dispatch_group_leave(selfValue.serviceGroup)
-                            }
                             selfValue.loadVesselMarkers(validData)
                             selfValue.drawVessels()
+                            if updateWithGroup{
+                                dispatch_group_leave(selfValue.serviceGroup)
+
+                            }
                         }
                     }
                 } else {
                     dispatch_async(dispatch_get_main_queue()) { [weak self] in
                         if let selfValue = self{
-                            dispatch_group_leave(selfValue.serviceGroup)
+                            if updateWithGroup{
+                                dispatch_group_leave(selfValue.serviceGroup)
+                            }
                             selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
-                            
                         }
                     }
                 }
@@ -251,7 +252,6 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
             })
         }
     }
-    
     
     func loadVesselMarkers(vesselItems: [VesselItem]){
         
@@ -291,15 +291,16 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     
     // MARK: MapMarkerViewController protocol method
     func drawOverlays(){
+    
         activityIndicator.startAnimating()
-        let serviceGroup = dispatch_group_create();
         
-        fetchCameras(false)
         fetchVessels(true)
-        
+        fetchCameras(false)
+
         dispatch_group_notify(serviceGroup, dispatch_get_main_queue()) {
             self.activityIndicator.stopAnimating()
             self.activityIndicator.hidden = true
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(TimeUtils.vesselUpdateTime, target: self, selector: #selector(VesselWatchViewController.vesselUpdateTask(_:)), userInfo: nil, repeats: true)
         }
     }
     
@@ -315,11 +316,11 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     }
     
     func mapViewDidStartTileRendering(mapView: GMSMapView) {
-        dispatch_group_enter(serviceGroup)
+        //dispatch_group_enter(serviceGroup)
     }
     
     func mapViewDidFinishTileRendering(mapView: GMSMapView) {
-        dispatch_group_leave(serviceGroup)
+        //dispatch_group_leave(serviceGroup)
     }
     
     // MARK: Naviagtion
