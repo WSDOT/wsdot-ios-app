@@ -259,7 +259,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         vesselMarkers.removeAll()
         
         for vessel in vesselItems {
-            if (vessel.inService){
+            if (vessel.inService && vessel.route != "Not available"){
                 let vesselLocation = CLLocationCoordinate2D(latitude: vessel.lat, longitude: vessel.lon)
                 let marker = GMSMarker(position: vesselLocation)
                 marker.snippet = "vessel"
