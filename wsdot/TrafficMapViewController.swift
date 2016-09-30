@@ -152,78 +152,63 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         performSegueWithIdentifier(SegueSettingsPopover, sender: self)
     }
     
-    func goTo(index: Int){
+func goTo(index: Int){
         if let mapView = embeddedMapViewController.view as? GMSMapView{
             switch(index){
             case 0:
-                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 48.756302, longitude: -122.46151)) // Bellingham
-                mapView.animateToZoom(12)
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(48.756302, longitude: -122.46151, zoom: 12))) // Bellingham
                 break
             case 1:
-                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 46.635529, longitude: -122.937698)) // Chelalis
-                mapView.animateToZoom(11)
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(46.635529, longitude: -122.937698, zoom: 11))) // Chehalis
                 break
             case 2:
-                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 47.85268, longitude: -122.628365)) // Hood Canal
-                mapView.animateToZoom(13)
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(47.85268, longitude: -122.628365, zoom: 13))) // Hood Canal
                 break
             case 3:
-                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 47.859476, longitude: -121.972446)) // Monroe
-                mapView.animateToZoom(14)
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(47.859476, longitude: -121.972446, zoom: 13))) // Monroe
                 break
             case 4:
-                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 48.420657, longitude: -122.334824)) // Mt Vernon
-                mapView.animateToZoom(13)
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(48.420657, longitude: -122.334824, zoom: 13))) // Mt Vernon
                 break
             case 5:
-                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 47.021461, longitude: -122.899933)) // Olympia
-                mapView.animateToZoom(13)
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(47.021461, longitude: -122.899933, zoom: 13))) // Olympia
                 break
             case 6:
-                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 47.5990, longitude: -122.3350)) // Seattle
-                mapView.animateToZoom(12)
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(47.5990, longitude: -122.3350, zoom: 12))) // Seattle
                 break
             case 7:
-                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 47.404481, longitude: -121.4232569)) // Snoqualmie Pass
-                mapView.animateToZoom(12)
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(47.404481, longitude: -121.4232569, zoom: 12))) // Snoqualmie Pass
                 break
             case 8:
-                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 47.658566, longitude: -117.425995)) // Spokane
-                mapView.animateToZoom(12)
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(47.658566, longitude: -117.425995, zoom: 12))) // Spokane
                 break
             case 9:
-                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 48.22959, longitude: -122.34581)) //Stanwood
-                mapView.animateToZoom(13)
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(48.22959, longitude: -122.34581, zoom: 13))) // Stanwood
                 break
             case 10:
-                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 47.86034, longitude: -121.812286)) // Sultan
-                mapView.animateToZoom(13)
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(47.86034, longitude: -121.812286, zoom: 13))) // Sultan
                 break
             case 11:
-                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 47.206275, longitude: -122.46254)) // Tacoma
-                mapView.animateToZoom(12)
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(47.206275, longitude: -122.46254, zoom: 12))) // Tacoma
                 break
             case 12:
-                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 46.2503607, longitude: -119.2063781)) // Tri-Cities
-                mapView.animateToZoom(11)
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(46.2503607, longitude: -119.2063781, zoom: 11))) // Tri-Cities
                 break
             case 13:
-                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 45.639968, longitude: -122.610512)) // Vancouver
-                mapView.animateToZoom(11)
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(45.639968, longitude: -122.610512, zoom: 11))) // Vancouver
                 break
             case 14:
-                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 47.435867, longitude: -120.309563)) // Wenatchee
-                mapView.animateToZoom(12)
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(47.435867, longitude: -120.309563, zoom: 12))) // Wenatchee
                 break
             case 15:
-                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 46.6063273, longitude: -120.4886952)) // Takima
-                mapView.animateToZoom(11)
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(46.6063273, longitude: -120.4886952, zoom: 11))) // Takima
                 break
             default:
                 break
             }
         }
     }
+
     
     // MARK: Camera marker logic
     func removeCameras(){

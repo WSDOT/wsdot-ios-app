@@ -88,40 +88,31 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         if let mapView = embeddedMapViewController.view as? GMSMapView{
             switch(index){
             case 0:
-                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 48.535868, longitude: -123.013808))
-                mapView.animateToZoom(10)
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(48.535868, longitude: -123.013808, zoom: 10)))
                 break
             case 1:
-                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 47.803096, longitude: -122.438718))
-                mapView.animateToZoom(12)
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(47.803096, longitude: -122.438718, zoom: 12)))
                 break
             case 2:
-                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 47.513625, longitude: -122.450820))
-                mapView.animateToZoom(12)
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(47.513625, longitude: -122.450820, zoom: 12)))
                 break
             case 3:
-                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 47.963857, longitude: -122.327721))
-                mapView.animateToZoom(13)
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(47.963857, longitude: -122.327721, zoom: 13)))
                 break
             case 4:
-                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 47.319040, longitude: -122.510890))
-                mapView.animateToZoom(13)
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(47.319040, longitude: -122.510890, zoom: 13)))
                 break
             case 5:
-                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 48.135562, longitude: -122.714449))
-                mapView.animateToZoom(12)
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(48.135562, longitude: -122.714449, zoom: 12)))
                 break
             case 6:
-                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 48.557233, longitude: -122.897078))
-                mapView.animateToZoom(12)
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(48.557233, longitude: -122.897078, zoom: 12)))
                 break
             case 7:
-                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 47.565125, longitude: -122.480508))
-                mapView.animateToZoom(11)
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(47.565125, longitude: -122.480508, zoom: 11)))
                 break
             case 8:
-                mapView.animateToLocation(CLLocationCoordinate2D(latitude: 47.600325, longitude: -122.437249))
-                mapView.animateToZoom(11)
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(47.600325, longitude: -122.437249, zoom: 11)))
                 break
             default:
                 break
