@@ -21,7 +21,17 @@ import UIKit
 import CoreLocation
 import GoogleMaps
 
-class MapViewController: UIViewController, CLLocationManagerDelegate{
+class MapViewController: UIViewController, CLLocationManagerDelegate, GMUClusterRendererDelegate {
+    
+    var clusterManager: GMUClusterManager!
+    
+    let clusterIcons = [UIImage(named: "icCameraCluster1"),
+                        UIImage(named: "icCameraCluster2"),
+                        UIImage(named: "icCameraCluster3"),
+                        UIImage(named: "icCameraCluster4"),
+                        UIImage(named: "icCameraCluster5")]
+    
+    let cameraClusterOpenableIcon = UIImage(named: "icCameraClusterOpen")
     
     weak var markerDelegate: MapMarkerDelegate? = nil
     weak var mapDelegate: GMSMapViewDelegate? = nil
@@ -33,10 +43,23 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
             mapView.clear()
             mapView.delegate = nil
         }
+        
         view.removeFromSuperview()
         locationManager.delegate = nil
         markerDelegate = nil
         mapDelegate = nil
+    }
+    
+    func addClusterableMarker(item: CameraClusterItem){
+        clusterManager.addItem(item)
+    }
+    
+    func removeClusterItems(){
+        clusterManager.clearItems()
+    }
+    
+    func clusterReady(){
+        clusterManager.cluster()
     }
     
     override func loadView() {
@@ -62,6 +85,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
         mapView.trafficEnabled = true
         
         mapView.delegate = mapDelegate
+        
+        // Set up the cluster manager with the supplied icon generator and
+        // renderer.
+        let iconGenerator = GMUDefaultClusterIconGenerator()
+        let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm()
+        let renderer = GMUDefaultClusterRenderer(mapView: mapView,
+                                                 clusterIconGenerator: iconGenerator)
+        renderer.delegate = self
+        clusterManager = GMUClusterManager(map: mapView, algorithm: algorithm,
+                                           renderer: renderer)
         
         view = mapView
         
@@ -127,6 +160,38 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
                     parentViewController!.presentViewController(AlertMessages.getAlert("You're moving too fast.", message: "Please don't use the app while driving."), animated: true, completion: { })
                 }
             }
+        }
+    }
+    
+    // GMUClusterRendererDelegate
+    func renderer(renderer: GMUClusterRenderer, willRenderMarker marker: GMSMarker) {
+        if let cluster = marker.userData as? GMUCluster {
+            if let mapView = view as? GMSMapView{
+                if mapView.camera.zoom > Utils.maxClusterOpenZoom {
+                    marker.icon = Utils.textToImage(String(cluster.count), inImage: cameraClusterOpenableIcon!, fontSize: 13.0)
+                } else {
+                    marker.icon = getClusterImage(cluster.count)
+                }
+            }
+            
+        } else if marker.userData is CameraClusterItem {
+            marker.icon = UIImage(named: "icMapCamera")
+        }
+    }
+    
+    func getClusterImage(clusterCount: UInt) -> UIImage {
+        if clusterCount > 1000 {
+            return Utils.textToImage("1000+", inImage: clusterIcons[4]!, fontSize: 13.0)
+        } else if clusterCount > 200 {
+            return Utils.textToImage("200+", inImage: clusterIcons[3]!, fontSize: 13.0)
+        } else if clusterCount > 100 {
+            return Utils.textToImage("100+", inImage: clusterIcons[2]!, fontSize: 13.0)
+        } else if clusterCount > 50 {
+            return Utils.textToImage("50+", inImage: clusterIcons[1]!, fontSize: 13.0)
+        } else if clusterCount > 10 {
+            return Utils.textToImage("10+", inImage: clusterIcons[0]!, fontSize: 13.0)
+        } else {
+            return Utils.textToImage(String(clusterCount), inImage: clusterIcons[0]!, fontSize: 13.0)
         }
     }
 }

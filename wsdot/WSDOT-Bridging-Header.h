@@ -21,5 +21,5 @@
 #ifndef WSDOT_Bridging_Header_h
 #define WSDOT_Bridging_Header_h
 #import <Google/Analytics.h>
-
+#import "GMUMarkerClustering.h"
 #endif /* WSDOT_Bridging_Header_h */
