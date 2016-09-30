@@ -16,7 +16,7 @@ languages([
 ])
 
 # The name of the scheme which contains the UI Tests
-scheme "WSDOT"
+scheme "WSDOTSnapshot"
 
 # Where should the resulting screenshots be stored?
 output_directory "./screenshots"

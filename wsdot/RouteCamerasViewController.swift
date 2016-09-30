@@ -44,7 +44,6 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
         tableView.addSubview(refreshControl)
         
         self.tableView.contentOffset = CGPointMake(0, -self.refreshControl.frame.size.height)
-        refreshControl.beginRefreshing()
         refresh(false)
         
     }

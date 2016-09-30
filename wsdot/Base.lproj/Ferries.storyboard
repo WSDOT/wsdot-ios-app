@@ -946,6 +946,7 @@
                                     <action selector="selectAccountAction:" destination="Whq-2K-wR1" eventType="touchUpInside" id="h4z-Zv-45U"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="2sB-gh-yRe"/>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -953,12 +954,15 @@
                             <constraint firstItem="D0y-2V-duT" firstAttribute="top" secondItem="A7Y-kt-IV5" secondAttribute="bottom" constant="8" symbolic="YES" id="D7b-K3-fT2"/>
                             <constraint firstItem="D0y-2V-duT" firstAttribute="leading" secondItem="OXS-G6-73x" secondAttribute="leadingMargin" id="PmD-gg-SRe"/>
                             <constraint firstItem="ea4-dX-pgd" firstAttribute="bottom" secondItem="fEC-xW-GrM" secondAttribute="top" id="Q7T-bJ-nUK"/>
+                            <constraint firstItem="2sB-gh-yRe" firstAttribute="centerX" secondItem="D0y-2V-duT" secondAttribute="centerX" id="aV9-eg-EtR"/>
                             <constraint firstItem="D0y-2V-duT" firstAttribute="centerX" secondItem="ea4-dX-pgd" secondAttribute="centerX" id="cCc-0k-KQZ"/>
+                            <constraint firstItem="2sB-gh-yRe" firstAttribute="centerY" secondItem="OXS-G6-73x" secondAttribute="centerY" id="kEy-Bj-Hq0"/>
                             <constraint firstItem="ea4-dX-pgd" firstAttribute="top" secondItem="D0y-2V-duT" secondAttribute="bottom" constant="8" symbolic="YES" id="nGl-Xt-ucZ"/>
                             <constraint firstAttribute="trailing" secondItem="ea4-dX-pgd" secondAttribute="trailing" id="op5-Tv-uuB"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="2sB-gh-yRe" id="v4g-iw-ZNd"/>
                         <outlet property="dateButton" destination="D0y-2V-duT" id="9gd-cT-tvH"/>
                         <outlet property="departuresHeader" destination="tvM-vn-PsU" id="CNd-kc-6zn"/>
                         <outlet property="tableView" destination="ea4-dX-pgd" id="d2t-oj-YXQ"/>
