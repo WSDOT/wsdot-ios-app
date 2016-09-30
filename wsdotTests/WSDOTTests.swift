@@ -20,7 +20,7 @@ class WSDOTTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    /*
+
     func testGetMinsFromString() {
         assert(TimeUtils.getMinsFromString("aaa 02 HR and 49 MIN") == 169.0)
         assert(TimeUtils.getMinsFromString("aaa aaa 49 MIN") == 49.0)
@@ -56,5 +56,5 @@ class WSDOTTests: XCTestCase {
             }
         }
     }
-    */
+
 }

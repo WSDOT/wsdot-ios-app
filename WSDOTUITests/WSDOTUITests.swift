@@ -28,6 +28,9 @@ class WSDOTUITests: XCTestCase {
         let exists = NSPredicate(format: "exists == true")
 
         tablesQuery.cells.elementBoundByIndex(0).doubleTap()
+        app.toolbars.buttons["Go To Location"].tap()
+        app.tables.staticTexts["Seattle"].tap()
+        
         sleep(5)
         snapshot("01TrafficMap")
         
