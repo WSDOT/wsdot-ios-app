@@ -65,7 +65,7 @@ class TwitterStore {
             
             post.link = "https://twitter.com/" + post.screenName + "/status/" + post.id
             post.mediaUrl = postJson["entities"]["media"][0]["media_url"].string
-            post.published = TimeUtils.postPubDateToNSDate(postJson["created_at"].stringValue, formatStr: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+            post.published = TimeUtils.postPubDateToNSDate(postJson["created_at"].stringValue, formatStr: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", isUTC: true)
             
             tweets.append(post)
         }

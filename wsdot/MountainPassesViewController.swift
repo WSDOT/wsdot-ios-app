@@ -126,7 +126,7 @@ class MountainPassesViewController: UIViewController, UITableViewDelegate, UITab
             cell.weatherImage.image = nil
         }
         
-        cell.updatedLabel.text = TimeUtils.fullTimeStamp(passItem.dateUpdated)
+        cell.updatedLabel.text = TimeUtils.timeAgoSinceDate(passItem.dateUpdated, numericDates: true)
      
         return cell
     }

@@ -53,7 +53,7 @@ class NewsStore {
             
             post.title = postJson["title"].stringValue
             post.link = postJson["link"].stringValue
-            post.published = TimeUtils.postPubDateToNSDate(postJson["pubdate"].stringValue, formatStr: "E, d MMM yyyy HH:mm:ss Z")
+            post.published = TimeUtils.postPubDateToNSDate(postJson["pubdate"].stringValue, formatStr: "E, d MMM yyyy HH:mm:ss Z", isUTC: true)
             
             newsItems.append(post)
         }

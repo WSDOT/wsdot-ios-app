@@ -120,7 +120,7 @@ class NewsViewController: UIViewController, UITabBarDelegate, UITableViewDataSou
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! NewsCell
         
         cell.titleLabel.text = newsItems[indexPath.row].title
-        cell.publishedLabel.text = TimeUtils.fullTimeStamp(newsItems[indexPath.row].published)
+        cell.publishedLabel.text = TimeUtils.formatTime(newsItems[indexPath.row].published, format: "MMMM dd, YYYY h:mm a")
 
         return cell
     }

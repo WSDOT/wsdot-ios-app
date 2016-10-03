@@ -48,7 +48,7 @@ class TimeUtils {
         }
     }
     
-    
+
     // formates a /Date(1468516282113-0700)/ date into a Int64
     static func parseJSONDate(date: String) -> Int64{
         let parseDateString = date[date.startIndex.advancedBy(6)..<date.startIndex.advancedBy(16)]
@@ -58,7 +58,7 @@ class TimeUtils {
             return 0
         }
     }
-    
+
     static func getTimeOfDay(date: NSDate) -> String{
         //Get Short Time String
         let formatter = NSDateFormatter()
@@ -67,9 +67,7 @@ class TimeUtils {
         
         //Return Short Time String
         return timeString
-        
     }
-    
     
     // Returns an array of the days of the week starting with the current day
     static func nextSevenDaysStrings(date: NSDate) -> [String]{
@@ -89,15 +87,11 @@ class TimeUtils {
     static func formatTimeStamp(timestamp: String) throws -> NSDate{
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
-        
         guard let time = dateFormatter.dateFromString(timestamp) else {
             throw TimeUtilsError.InvalidTimeString
         }
-        
         return time
     }
-    
-    
     
     static func getDateFromJSONArray(time: [JSON]) -> NSDate{
         let dateFormatter = NSDateFormatter()
@@ -112,20 +106,16 @@ class TimeUtils {
     }
     
     // Converts blogger pub date format into an NSDate object (ex. 2016-08-26T09:24:00.000-07:00)
-    static func postPubDateToNSDate(time: String, formatStr: String) -> NSDate{
+    static func postPubDateToNSDate(time: String, formatStr: String, isUTC: Bool) -> NSDate{
         let dateFormatter = NSDateFormatter()
+        if (isUTC){
+            dateFormatter.timeZone = NSTimeZone(name: "UTC")
+        }
         dateFormatter.dateFormat = formatStr
         return dateFormatter.dateFromString(time)!
     }
-    
-    // returns a date string with the format MMMM DD, YYYY H:MM a
-    static func fullTimeStamp(date: NSDate) -> String {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MMMM dd, YYYY H:MM a"
-        return dateFormatter.stringFromDate(date)
-    }
-    
-    // returns a date string with the format MMMM DD, YYYY H:MM a
+
+    // returns a date string with the format MMMM DD, YYYY H:mm a
     static func formatTime(date: NSDate, format: String) -> String {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = format
