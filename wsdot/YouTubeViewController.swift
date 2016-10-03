@@ -122,7 +122,7 @@ class YouTubeViewController: UIViewController, UITabBarDelegate, UITableViewData
         let video = videoItems[indexPath.row]
         
         cell.titleLabel.text = video.title
-        cell.publishedLabel.text = TimeUtils.fullTimeStamp(video.published)
+        cell.publishedLabel.text = TimeUtils.formatTime(video.published, format: "MMMM dd, YYYY h:mm a")
         cell.videoThumbnailView.sd_setImageWithURL(NSURL(string: video.thumbnailLink), placeholderImage: UIImage(named: "imagePlaceholderSmall"), options: .RefreshCached)
         cell.videoThumbnailView.layer.cornerRadius = 8.0
         

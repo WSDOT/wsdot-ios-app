@@ -118,7 +118,7 @@ class BloggerViewController: UIViewController, UITabBarDelegate, UITableViewData
         
         cell.title.text = posts[indexPath.row].title
         cell.content.text = posts[indexPath.row].content
-        cell.updated.text = TimeUtils.fullTimeStamp(posts[indexPath.row].published)
+        cell.updated.text = TimeUtils.formatTime(posts[indexPath.row].published, format: "MMMM dd, YYYY h:mm a")
         cell.imageView!.sd_setImageWithURL(NSURL(string: posts[indexPath.row].imageUrl), placeholderImage: UIImage(named: "imagePlaceholderSmall"), options: .RefreshCached)
         cell.imageView?.backgroundColor = UIColor.clearColor()
         

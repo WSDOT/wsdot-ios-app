@@ -59,7 +59,7 @@ class BloggerStore {
                 .stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
  
             post.link = postJson["link"][4]["href"].stringValue
-            post.published = TimeUtils.postPubDateToNSDate(postJson["published"]["$t"].stringValue, formatStr: "yyyy-MM-dd'T'HH:mm:ss.sssZ")
+            post.published = TimeUtils.postPubDateToNSDate(postJson["published"]["$t"].stringValue, formatStr: "yyyy-MM-dd'T'HH:mm:ss.SSSz", isUTC: true)
             post.imageUrl = postJson["media$thumbnail"]["url"].stringValue
             
             posts.append(post)

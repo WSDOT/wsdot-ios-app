@@ -176,7 +176,7 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
         cell.contentLabel.attributedText = attrStr
         cell.contentLabel.delegate = self
         
-        cell.publishedLabel.text = TimeUtils.fullTimeStamp(tweet.published)
+        cell.publishedLabel.text = TimeUtils.formatTime(tweet.published, format: "MMMM dd, YYYY h:mm a")
         
         if let iconName = accountIconNames[tweet.screenName] {
             cell.iconView.image = UIImage(named: iconName)
