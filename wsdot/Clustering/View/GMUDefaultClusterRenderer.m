@@ -25,11 +25,11 @@
 #import "../Algo/GMUWrappingDictionaryKey.h"
 
 // Clusters smaller than this threshold will be expanded.
-static const NSUInteger kGMUMinClusterSize = 2;
+static const NSUInteger kGMUMinClusterSize = 4;
 
 // At zooms above this level, clusters will be expanded.
 // This is to prevent cases where items are so close to each other than they are always grouped.
-static const float kGMUMaxClusterZoom = INFINITY;
+static const float kGMUMaxClusterZoom = 20;
 
 // Animation duration for marker splitting/merging effects.
 static const double kGMUAnimationDuration = 0.5;  // seconds.

@@ -1,5 +1,5 @@
 //
-//  MyClusterRenderer.swift
+//  WSDOTClusterRenderer.swift
 //  WSDOT
 //
 //  Copyright (c) 2016 Washington State Department of Transportation
@@ -20,22 +20,33 @@
 
 import Foundation
 
-// Custom Renderer to override shouldCluster so that users can turn clustering on/off
-class MyClusterRenderer: GMUDefaultClusterRenderer {
+// Custom Renderer to override shouldCluster.
+// Adds prefrence logic so that users can turn clustering on/off.
+// Adds some custom cluster logic for cameras in the same place.
+class WSDOTClusterRenderer: GMUDefaultClusterRenderer {
 
     override func shouldRenderAsCluster(cluster: GMUCluster, atZoom zoom: Float) -> Bool {
-    
+
         // Set defualt value for camera display if there is none
         if (NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.shouldCluster) == nil){
             NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.shouldCluster)
         }
     
         let shouldCluster = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.shouldCluster)
-    
-        if shouldCluster == "on" {
-            return super.shouldRenderAsCluster(cluster, atZoom: zoom)
+        if shouldCluster == "off" {
+            return false
         }
-        return false
-
+        
+        // If all cameras are in the same spot always cluster.
+        // Hard cap at 10 so we don't loop over lots of cameras. 
+        // This assumes we don't have more than 10 cameras in the same place.
+        if cluster.count < 10 && cluster.count > 1{
+            if let firstCamera = cluster.items[0] as? CameraClusterItem {
+                if !cluster.items.contains({(($0 as! CameraClusterItem).camera.latitude != firstCamera.camera.latitude) || (($0 as! CameraClusterItem).camera.longitude != firstCamera.camera.longitude)}) {
+                    return true
+                }
+            }
+        }
+        return super.shouldRenderAsCluster(cluster, atZoom: zoom)
     }
 }

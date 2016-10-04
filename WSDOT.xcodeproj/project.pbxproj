@@ -95,7 +95,7 @@
 		9A7BC0D61DA3F31B00EF760C /* GMUDefaultClusterRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BC0CE1DA3F31B00EF760C /* GMUDefaultClusterRenderer.m */; };
 		9A7BC0DF1DA3F32400EF760C /* GQTPointQuadTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BC0DB1DA3F32400EF760C /* GQTPointQuadTree.m */; };
 		9A7BC0E01DA3F32400EF760C /* GQTPointQuadTreeChild.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BC0DD1DA3F32400EF760C /* GQTPointQuadTreeChild.m */; };
-		9A7BC0E21DA434F700EF760C /* MyClusterRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BC0E11DA434F700EF760C /* MyClusterRenderer.swift */; };
+		9A7BC0E21DA434F700EF760C /* WSDOTClusterRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BC0E11DA434F700EF760C /* WSDOTClusterRenderer.swift */; };
 		9A81A5781D4AC5710049913A /* RouteTimesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5771D4AC5710049913A /* RouteTimesViewController.swift */; };
 		9A81A57A1D4AC5840049913A /* RouteCamerasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A5791D4AC5840049913A /* RouteCamerasViewController.swift */; };
 		9A81A57C1D4BB41B0049913A /* LatLonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */; };
@@ -304,7 +304,7 @@
 		9A7BC0DC1DA3F32400EF760C /* GQTPointQuadTreeChild.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQTPointQuadTreeChild.h; sourceTree = "<group>"; };
 		9A7BC0DD1DA3F32400EF760C /* GQTPointQuadTreeChild.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQTPointQuadTreeChild.m; sourceTree = "<group>"; };
 		9A7BC0DE1DA3F32400EF760C /* GQTPointQuadTreeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQTPointQuadTreeItem.h; sourceTree = "<group>"; };
-		9A7BC0E11DA434F700EF760C /* MyClusterRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyClusterRenderer.swift; sourceTree = "<group>"; };
+		9A7BC0E11DA434F700EF760C /* WSDOTClusterRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WSDOTClusterRenderer.swift; sourceTree = "<group>"; };
 		9A81A5771D4AC5710049913A /* RouteTimesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTimesViewController.swift; sourceTree = "<group>"; };
 		9A81A5791D4AC5840049913A /* RouteCamerasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteCamerasViewController.swift; sourceTree = "<group>"; };
 		9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatLonUtils.swift; sourceTree = "<group>"; };
@@ -442,7 +442,7 @@
 				9A06167B1D622AE800126520 /* MapViewController.swift */,
 				9A06167E1D62602500126520 /* MapMarkerDelegate.swift */,
 				9A7BC0AB1D9DBAB400EF760C /* CameraClusterItem.swift */,
-				9A7BC0E11DA434F700EF760C /* MyClusterRenderer.swift */,
+				9A7BC0E11DA434F700EF760C /* WSDOTClusterRenderer.swift */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -1676,7 +1676,7 @@
 				9AEF4DB11D77435B003ECA34 /* TwitterStore.swift in Sources */,
 				9A0616B71D63674500126520 /* VesselWatchStore.swift in Sources */,
 				9A7BC0D21DA3F31B00EF760C /* GMUWrappingDictionaryKey.m in Sources */,
-				9A7BC0E21DA434F700EF760C /* MyClusterRenderer.swift in Sources */,
+				9A7BC0E21DA434F700EF760C /* WSDOTClusterRenderer.swift in Sources */,
 				9A7BC0B21DA30BD400EF760C /* CameraClusterViewController.swift in Sources */,
 				9A6FBD1F1D6DF91300CDCE16 /* BorderWaitItem.swift in Sources */,
 				9A6FBD391D6E4A4700CDCE16 /* ForcastItem.swift in Sources */,
