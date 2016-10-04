@@ -724,6 +724,9 @@
                                                         <constraint firstAttribute="height" constant="24" id="cbD-G8-82F"/>
                                                     </constraints>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hz3-wG-ETH">
+                                                    <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="s7j-DD-Rr7" firstAttribute="top" secondItem="orx-hg-QW8" secondAttribute="topMargin" constant="2" id="BRV-Sa-mLr"/>
@@ -731,11 +734,14 @@
                                                 <constraint firstItem="D9p-uc-0TU" firstAttribute="leading" secondItem="orx-hg-QW8" secondAttribute="leadingMargin" constant="8" id="XXC-Xn-dSw"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="owa-9R-fe1" secondAttribute="trailing" constant="10" id="dWQ-Lv-cUw"/>
                                                 <constraint firstItem="D9p-uc-0TU" firstAttribute="centerY" secondItem="orx-hg-QW8" secondAttribute="centerY" id="lkv-sg-SUs"/>
+                                                <constraint firstItem="Hz3-wG-ETH" firstAttribute="leading" secondItem="D9p-uc-0TU" secondAttribute="trailing" constant="8" symbolic="YES" id="ssT-Bl-eOZ"/>
                                                 <constraint firstItem="s7j-DD-Rr7" firstAttribute="trailing" secondItem="owa-9R-fe1" secondAttribute="trailing" id="vOb-qw-p6n"/>
+                                                <constraint firstItem="Hz3-wG-ETH" firstAttribute="top" secondItem="s7j-DD-Rr7" secondAttribute="top" id="wAq-FW-w0n"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="favoriteImageView" destination="s7j-DD-Rr7" id="uyi-BI-rI6"/>
+                                            <outlet property="infoButton" destination="Hz3-wG-ETH" id="cRY-Gh-t9a"/>
                                             <outlet property="settingLabel" destination="D9p-uc-0TU" id="hgt-TC-c22"/>
                                             <outlet property="settingSwitch" destination="owa-9R-fe1" id="n4N-bP-P9h"/>
                                         </connections>

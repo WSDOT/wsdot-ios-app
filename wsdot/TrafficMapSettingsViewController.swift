@@ -34,6 +34,7 @@ class TrafficMapSettingsViewController: UIViewController {
         menu_options = ["Show Highway Alerts",
                         "Show Rest Areas",
                         "Show JBLM",
+                        "Cluster Camera Icons",
                         "Favorite Current Map Location"]
     }
     
@@ -62,7 +63,7 @@ class TrafficMapSettingsViewController: UIViewController {
         cell.settingLabel.text = menu_options[indexPath.row]
         
         switch(menu_options[indexPath.row]){
-            
+
         case menu_options[0]:
             let alertsPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.alerts)
             if let alertsVisible = alertsPref {
@@ -77,6 +78,7 @@ class TrafficMapSettingsViewController: UIViewController {
             cell.settingSwitch.hidden = false
             cell.selectionStyle = .None
             cell.favoriteImageView.hidden = true
+            cell.infoButton.hidden = true
             break
         case menu_options[1]:
             let restAreaPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.restAreas)
@@ -92,6 +94,7 @@ class TrafficMapSettingsViewController: UIViewController {
             cell.settingSwitch.hidden = false
             cell.selectionStyle = .None
             cell.favoriteImageView.hidden = true
+            cell.infoButton.hidden = true
             break
         case menu_options[2]:
             let jblmPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.jblmCallout)
@@ -106,11 +109,29 @@ class TrafficMapSettingsViewController: UIViewController {
             cell.settingSwitch.hidden = false
             cell.selectionStyle = .None
             cell.favoriteImageView.hidden = true
+            cell.infoButton.hidden = true
             break
         case menu_options[3]:
+            let clusterPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.shouldCluster)
+            if let clusterVisible = clusterPref {
+                if (clusterVisible == "on") {
+                    cell.settingSwitch.on = true
+                } else {
+                    cell.settingSwitch.on = false
+                }
+            }
+            cell.settingSwitch.addTarget(self, action: #selector(TrafficMapSettingsViewController.changeClusterPref(_:)), forControlEvents: .ValueChanged)
+            cell.settingSwitch.hidden = false
+            cell.selectionStyle = .None
+            cell.favoriteImageView.hidden = true
+            cell.infoButton.hidden = false
+            cell.infoButton.addTarget(self, action: #selector(TrafficMapSettingsViewController.clusterInfoAlert(_:)), forControlEvents: .TouchUpInside)
+            break
+        case menu_options[4]:
             cell.selectionStyle = .Blue
             cell.settingSwitch.hidden = true
             cell.favoriteImageView.hidden = false
+            cell.infoButton.hidden = true
             break
         default: break
             
@@ -122,7 +143,7 @@ class TrafficMapSettingsViewController: UIViewController {
     // MARK: Table View Delegate Methods
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch (indexPath.row) {
-        case 3:
+        case 4:
             favoriteLocationAction()
         default:
             break
@@ -136,6 +157,20 @@ class TrafficMapSettingsViewController: UIViewController {
     }
     
     // MARK: Prefrence functions
+    func changeClusterPref(sender: UISwitch){
+        let clusterPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.shouldCluster)
+        if let clusterVisible = clusterPref {
+            if (clusterVisible == "on") {
+                GoogleAnalytics.event("Traffic Map", action: "UIAction", label: "Camera Clustering Off")
+                NSUserDefaults.standardUserDefaults().setObject("off", forKey: UserDefaultsKeys.shouldCluster)
+            } else {
+                GoogleAnalytics.event("Traffic Map", action: "UIAction", label: "Camera Clustering On")
+                NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.shouldCluster)
+            }
+            parent!.resetMapCamera()
+        }
+    }
+    
     func changeAlertsPref(sender: UISwitch){
         let alertsPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.alerts)
         if let alertsVisible = alertsPref {
@@ -179,5 +214,9 @@ class TrafficMapSettingsViewController: UIViewController {
                 parent!.drawJBLM()
             }
         }
+    }
+    
+    func clusterInfoAlert(sender: UIButton){
+        self.presentViewController(AlertMessages.getAlert("Camera Icon Clustering", message: "Clustering camera icons can help remove clutter from the Traffic map and improve performace. Blue camera clusters can be tapped to zoom in on that cluster. When zoomed in enough clusters will turn green and can be tapped to view a list of all cameras in that cluster."), animated: true, completion: nil)
     }
 }

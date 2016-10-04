@@ -49,7 +49,7 @@ struct AlertMessages {
 
 struct Utils {
     
-    static let maxClusterOpenZoom: Float = 15.0
+    static let maxClusterOpenZoom: Float = 16.0
     
     static func textToImage(drawText: NSString, inImage: UIImage, fontSize: CGFloat) -> UIImage{
         

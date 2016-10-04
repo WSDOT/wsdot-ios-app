@@ -155,6 +155,16 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         performSegueWithIdentifier(SegueSettingsPopover, sender: self)
     }
     
+    // zoom in and out to reload icons for when clustering is toggled
+    func resetMapCamera() {
+        if let mapView = embeddedMapViewController.view as? GMSMapView{
+            let camera = mapView.camera
+            let camera2 = GMSCameraPosition.cameraWithLatitude(camera.target.latitude, longitude: camera.target.longitude, zoom: camera.zoom - 1.0)
+            mapView.moveCamera(GMSCameraUpdate.setCamera(camera2))
+            mapView.moveCamera(GMSCameraUpdate.setCamera(camera))
+        }
+    }
+    
     func goTo(index: Int){
         if let mapView = embeddedMapViewController.view as? GMSMapView{
             switch(index){
@@ -245,7 +255,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         let cameras = CamerasStore.getAllCameras()
         for camera in cameras{
             let position = CLLocationCoordinate2D(latitude: camera.latitude, longitude: camera.longitude)
-            cameraMarkers.insert(CameraClusterItem(position: position, name: "test", camera: camera))
+            cameraMarkers.insert(CameraClusterItem(position: position, name: "camera", camera: camera))
         }
         
     }
@@ -516,7 +526,6 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
 
     func mapView(mapView: GMSMapView, didChangeCameraPosition position: GMSCameraPosition) {
-        //drawCameras()
         drawAlerts()
     }
     

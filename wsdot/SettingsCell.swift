@@ -24,6 +24,6 @@ class SettingsCell: UITableViewCell {
 
     @IBOutlet weak var settingLabel: UILabel!
     @IBOutlet weak var settingSwitch: UISwitch!
-    
+    @IBOutlet weak var infoButton: UIButton!
     @IBOutlet weak var favoriteImageView: UIImageView!
 }
