@@ -27,13 +27,12 @@ class RouteAlertsViewController: UIViewController, UITableViewDataSource, UITabl
     
     let cellIdentifier = "RouteAlerts"
 
-    var alertItems = List<FerryAlertItem>()
+    var alertItems = [FerryAlertItem]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let routeTabBarContoller = self.tabBarController as! RouteTabBarViewController
-        alertItems = routeTabBarContoller.routeItem.routeAlerts
-        
+        alertItems = routeTabBarContoller.routeItem.routeAlerts.sort({$0.publishDate  > $1.publishDate})
         tableView.rowHeight = UITableViewAutomaticDimension
     }
     
