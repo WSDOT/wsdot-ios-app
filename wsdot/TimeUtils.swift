@@ -198,12 +198,12 @@ class TimeUtils {
             if (numericDates){
                 return "1 minute ago"
             } else {
-                return "A minute ago"
+                return "a minute ago"
             }
         } else if (components.second >= 3) {
             return "\(components.second) seconds ago"
         } else {
-            return "Just now"
+            return "just now"
         }
     }
 }

@@ -156,7 +156,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                     cell.avaliableSpacesBar.hidden = false
                     cell.avaliableSpacesBar.progress = spaceItem.percentAvaliable
                     cell.spacesDisclaimer.hidden = false
-                    cell.updated.text = TimeUtils.timeAgoSinceDate(updatedAt, numericDates: true)
+                    cell.updated.text = "Drive-up spaces updated " + TimeUtils.timeAgoSinceDate(updatedAt, numericDates: true)
                 }
             }
         }
@@ -203,7 +203,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         
         if (cell.sailingSpaces) != nil {
             cell.accessibilityLabel = cell.accessibilityLabel! + cell.sailingSpaces.text! + " " + cell.spacesDisclaimer.text! + ". "
-            cell.accessibilityLabel = cell.accessibilityLabel! + "Sailing spaces updated " + cell.updated.text!
+            cell.accessibilityLabel = cell.accessibilityLabel! + cell.updated.text!
         }
         cell.isAccessibilityElement = true
         
