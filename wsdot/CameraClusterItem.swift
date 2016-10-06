@@ -1,5 +1,5 @@
 //
-//  SettingsCell.swift
+//  CameraClusterItem.swift
 //  WSDOT
 //
 //  Copyright (c) 2016 Washington State Department of Transportation
@@ -18,12 +18,17 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
 
-import UIKit
+import Foundation
 
-class SettingsCell: UITableViewCell {
+/// Point of Interest Item which implements the GMUClusterItem protocol.
+class CameraClusterItem: NSObject, GMUClusterItem {
+  var position: CLLocationCoordinate2D
+  var name: String!
+  var camera: CameraItem
 
-    @IBOutlet weak var settingLabel: UILabel!
-    @IBOutlet weak var settingSwitch: UISwitch!
-    @IBOutlet weak var infoButton: UIButton!
-    @IBOutlet weak var favoriteImageView: UIImageView!
+  init(position: CLLocationCoordinate2D, name: String, camera: CameraItem) {
+    self.position = position
+    self.name = name
+    self.camera = camera
+  }
 }

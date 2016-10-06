@@ -46,3 +46,50 @@ struct AlertMessages {
         return alert
     }
 }
+
+struct Utils {
+    
+    static let maxClusterOpenZoom: Float = 16.0
+    
+    static func textToImage(drawText: NSString, inImage: UIImage, fontSize: CGFloat) -> UIImage{
+        
+        // Setup the font specific variables
+        let textColor = UIColor.whiteColor()
+        let textFont = UIFont(name: "Helvetica Bold", size: fontSize)!
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .Center
+        
+        // Setup the image context using the passed image
+        let scale = UIScreen.mainScreen().scale
+        UIGraphicsBeginImageContextWithOptions(inImage.size, false, scale)
+        
+        // Setup the font attributes that will be later used to dictate how the text should be drawn
+        let textFontAttributes = [
+            NSFontAttributeName: textFont,
+            NSForegroundColorAttributeName: textColor,
+            NSParagraphStyleAttributeName: paragraphStyle
+            ]
+
+        // Put the image into a rectangle as large as the original image
+        inImage.drawInRect(CGRectMake(0, 0, inImage.size.width, inImage.size.height))
+        
+        let atPoint = CGPointMake(0, (inImage.size.height-fontSize)/2.0)
+        
+        // Create a point within the space that is as bit as the image
+        let rect = CGRectMake(atPoint.x, atPoint.y, inImage.size.width, inImage.size.height)
+        
+        // Draw the text into an image
+        drawText.drawInRect(rect, withAttributes: textFontAttributes)
+        
+        // Create a new image out of the images we have created
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        
+        // End the context now that we have the image we need
+        UIGraphicsEndImageContext()
+        
+        //Pass the image back up to the caller
+        return newImage!
+    }
+    
+}
+

@@ -31,5 +31,7 @@ class UserDefaultsKeys {
     static let mapZoom = "MapZoom"
     
     static let hasSeenWarning = "HasSeenWarning"
+    
+    static let shouldCluster = "shouldClusterCameraIcons"
 
 }

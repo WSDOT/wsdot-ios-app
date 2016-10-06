@@ -23,7 +23,7 @@ import UIKit
 import GoogleMaps
 import GoogleMobileAds
 
-class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewDelegate {
+class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewDelegate, GMUClusterManagerDelegate {
     
     let serviceGroup = dispatch_group_create()
     
@@ -31,6 +31,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     let SegueAlertsInArea = "AlertsInAreaViewController"
     let SegueSettingsPopover = "TrafficMapSettingsViewController"
     let SegueTravlerInfoViewController = "TravelerInfoViewController"
+    let SegueCameraClusterViewController = "CameraClusterViewController"
     
     // Marker Segues
     let SegueCamerasViewController = "CamerasViewController"
@@ -39,7 +40,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     let SegueCalloutViewController = "CalloutViewController"
     
     private var alertMarkers = Set<GMSMarker>()
-    private var cameraMarkers = Set<GMSMarker>()
+    private var cameraMarkers = Set<CameraClusterItem>()
     private var restAreaMarkers = Set<GMSMarker>()
     
     private let JBLMMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: 47.103033, longitude: -122.584394))
@@ -84,6 +85,8 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         JBLMMarker.icon = UIImage(named: "icMapJBLM")
         JBLMMarker.snippet = "jblm"
         JBLMMarker.userData = "http://images.wsdot.wa.gov/traffic/flowmaps/jblm.png"
+        
+        embeddedMapViewController.clusterManager.setDelegate(self, mapDelegate: self)
         
         // Ad Banner
         bannerView.adUnitID = ApiKeys.wsdot_ad_string
@@ -152,7 +155,17 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         performSegueWithIdentifier(SegueSettingsPopover, sender: self)
     }
     
-func goTo(index: Int){
+    // zoom in and out to reload icons for when clustering is toggled
+    func resetMapCamera() {
+        if let mapView = embeddedMapViewController.view as? GMSMapView{
+            let camera = mapView.camera
+            let camera2 = GMSCameraPosition.cameraWithLatitude(camera.target.latitude, longitude: camera.target.longitude, zoom: camera.zoom - 1.0)
+            mapView.moveCamera(GMSCameraUpdate.setCamera(camera2))
+            mapView.moveCamera(GMSCameraUpdate.setCamera(camera))
+        }
+    }
+    
+    func goTo(index: Int){
         if let mapView = embeddedMapViewController.view as? GMSMapView{
             switch(index){
             case 0:
@@ -208,14 +221,6 @@ func goTo(index: Int){
             }
         }
     }
-
-    
-    // MARK: Camera marker logic
-    func removeCameras(){
-        for camera in cameraMarkers{
-            camera.map = nil
-        }
-    }
     
     func fetchCameras(force: Bool) {
         dispatch_group_enter(serviceGroup)
@@ -241,6 +246,7 @@ func goTo(index: Int){
         }
     }
     
+    // MARK: Camera marker logic
     func loadCameraMarkers(){
         
         removeCameras()
@@ -248,33 +254,25 @@ func goTo(index: Int){
         
         let cameras = CamerasStore.getAllCameras()
         for camera in cameras{
-            let cameraLocation = CLLocationCoordinate2D(latitude: camera.latitude, longitude: camera.longitude)
-            let marker = GMSMarker(position: cameraLocation)
-            marker.snippet = "camera"
-            marker.icon = cameraIconImage
-            marker.userData = camera
-            cameraMarkers.insert(marker)
+            let position = CLLocationCoordinate2D(latitude: camera.latitude, longitude: camera.longitude)
+            cameraMarkers.insert(CameraClusterItem(position: position, name: "camera", camera: camera))
         }
         
     }
     
     func drawCameras(){
-        if let mapView = embeddedMapViewController.view as? GMSMapView{
-            let camerasPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.cameras)
-            
-            if (camerasPref! == "on") {
-                for cameraMarker in cameraMarkers{
-                    
-                    let bounds = GMSCoordinateBounds(coordinate: mapView.projection.visibleRegion().farLeft, coordinate: mapView.projection.visibleRegion().nearRight)
-                    
-                    if (bounds.containsCoordinate(cameraMarker.position)){
-                        cameraMarker.map = mapView
-                    } else {
-                        cameraMarker.map = nil
-                    }
-                }
+        let camerasPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.cameras)
+
+        if (camerasPref! == "on") {
+            for camera in cameraMarkers {
+                embeddedMapViewController.addClusterableMarker(camera)
             }
+            embeddedMapViewController.clusterReady()
         }
+    }
+    
+    func removeCameras(){
+        embeddedMapViewController.removeClusterItems()
     }
     
     // MARK: Alerts marker logic
@@ -526,13 +524,8 @@ func goTo(index: Int){
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    /*
-     func mapView(mapView: GMSMapView, idleAtCameraPosition position: GMSCameraPosition) {
-     drawCameras()
-     }
-     */
+
     func mapView(mapView: GMSMapView, didChangeCameraPosition position: GMSCameraPosition) {
-        drawCameras()
         drawAlerts()
     }
     
@@ -552,13 +545,26 @@ func goTo(index: Int){
         }
     }
     
+    // MARK: GMUClusterManagerDelegate
+    // If a cluster has less then 11 cameras go to a list view will all cameras, otherwise zoom in.
+    func clusterManager(clusterManager: GMUClusterManager, didTapCluster cluster: GMUCluster) {
+        if let mapView = embeddedMapViewController.view as? GMSMapView{
+            if mapView.camera.zoom > Utils.maxClusterOpenZoom {
+                performSegueWithIdentifier(SegueCameraClusterViewController, sender: cluster)
+            } else {
+                let newCamera = GMSCameraPosition.cameraWithTarget(cluster.position, zoom: mapView.camera.zoom + 1)
+                mapView.animateToCameraPosition(newCamera)
+            }
+        }
+    }
+    
     // MARK: GMSMapViewDelegate
     func mapView(mapView: GMSMapView, didTapMarker marker: GMSMarker) -> Bool {
+        if (marker.userData as? CameraClusterItem) != nil {
+            performSegueWithIdentifier(SegueCamerasViewController, sender: marker)
+        }
         if marker.snippet == "alert" {
             performSegueWithIdentifier(SegueHighwayAlertViewController, sender: marker)
-        }
-        if marker.snippet == "camera" {
-            performSegueWithIdentifier(SegueCamerasViewController, sender: marker)
         }
         if marker.snippet == "restarea" {
             performSegueWithIdentifier(SegueRestAreaViewController, sender: marker)
@@ -566,6 +572,7 @@ func goTo(index: Int){
         if marker.snippet == "jblm" {
             performSegueWithIdentifier(SegueCalloutViewController, sender: marker)
         }
+        
         return true
     }
     
@@ -610,9 +617,21 @@ func goTo(index: Int){
         }
         
         if segue.identifier == SegueCamerasViewController {
-            let cameraItem = ((sender as! GMSMarker).userData as! CameraItem)
+            let poiItem = ((sender as! GMSMarker).userData as! CameraClusterItem)
+            let cameraItem = poiItem.camera
             let destinationViewController = segue.destinationViewController as! CameraViewController
             destinationViewController.cameraItem = cameraItem
+        }
+        
+        if segue.identifier == SegueCameraClusterViewController {
+            let cameraCluster = ((sender as! GMUCluster)).items
+            var cameras = [CameraItem]()
+            for clusterItem in cameraCluster {
+                let camera = (clusterItem as! CameraClusterItem).camera
+                cameras.append(camera)
+            }
+            let destinationViewController = segue.destinationViewController as! CameraClusterViewController
+            destinationViewController.cameraItems = cameras
         }
         
         if segue.identifier == SegueRestAreaViewController {

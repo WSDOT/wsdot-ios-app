@@ -33,10 +33,6 @@ class RouteDeparturesViewController: UIViewController {
     // set by previous view controller
     var currentSailing = FerryTerminalPairItem()
     var sailingsByDate = List<FerryScheduleDateItem>()
-        
-    deinit {
-        print("RouteDeparturesViewController is being deallocated")
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
