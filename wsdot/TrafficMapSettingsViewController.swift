@@ -16,7 +16,6 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
-//
 
 import UIKit
 
@@ -217,6 +216,6 @@ class TrafficMapSettingsViewController: UIViewController {
     }
     
     func clusterInfoAlert(sender: UIButton){
-        self.presentViewController(AlertMessages.getAlert("Camera Icon Clustering", message: "Clustering camera icons can help remove clutter from the Traffic map and improve performace. Blue camera clusters can be tapped to zoom in on that cluster. When zoomed in enough clusters will turn green and can be tapped to view a list of all cameras in that cluster."), animated: true, completion: nil)
+        self.presentViewController(AlertMessages.getAlert("Camera Icon Clustering", message: "When turned on nearby cameras will automatically be gruoped togther based on the maps zoom level. Blue camera clusters can be tapped to zoom in one level on that cluster. When zoomed in far enough clusters turn green and can be tapped to view a list of all cameras in that cluster."), animated: true, completion: nil)
     }
 }

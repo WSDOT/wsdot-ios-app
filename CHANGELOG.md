@@ -7,10 +7,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [5.0.0]
 
 ### Added
-* Better layout for iPhone Plus and iPad screens. 
+* Camera icons on the Traffic Map can now be clustered.
+* Split screen layout for iPhone Plus landscape and iPad screens. 
 * Can now toggle all map markers on/off.
 * New origanization of Pass Reports.
 * New Amtrak Schedules. Now Shows all legs of a trip in detail. 
-* Ferry Alert tabs now have a badge showing the number of active alerts.
+* Ferry Alert tabs now displays a badge with the number of active alerts.
 * Added WSDOT Flickr account to Social Media Section.
 * Bug report template added in the About section.
