@@ -168,7 +168,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
         if let cluster = marker.userData as? GMUCluster {
             if let mapView = view as? GMSMapView{
                 if mapView.camera.zoom > Utils.maxClusterOpenZoom {
-                    marker.icon = Utils.textToImage(String(cluster.count), inImage: cameraClusterOpenableIcon!, fontSize: 13.0)
+                    marker.icon = UIImage(named: "icCameraClusterOpen")
                 } else {
                     marker.icon = getClusterImage(cluster.count)
                 }

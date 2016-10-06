@@ -33,7 +33,7 @@ class TrafficMapSettingsViewController: UIViewController {
         menu_options = ["Show Highway Alerts",
                         "Show Rest Areas",
                         "Show JBLM",
-                        "Cluster Camera Icons",
+                        "Cluster Camera Markers",
                         "Favorite Current Map Location"]
     }
     
@@ -216,6 +216,6 @@ class TrafficMapSettingsViewController: UIViewController {
     }
     
     func clusterInfoAlert(sender: UIButton){
-        self.presentViewController(AlertMessages.getAlert("Camera Icon Clustering", message: "When turned on nearby cameras will automatically be gruoped togther based on the maps zoom level. Blue camera clusters can be tapped to zoom in one level on that cluster. When zoomed in far enough clusters turn green and can be tapped to view a list of all cameras in that cluster."), animated: true, completion: nil)
+        self.presentViewController(AlertMessages.getAlert("Camera Marker Clustering", message: "By turning clustering on, large numbers of camera markers will gather together in clusters at low zoom levels. When viewing the map at a high zoom level, individual camera markers will show on the map and can be clicked to view that camera."), animated: true, completion: nil)
     }
 }
