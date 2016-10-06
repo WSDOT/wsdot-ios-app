@@ -57,7 +57,13 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        if let sailingsByDateValue = sailingsByDate {
+            if let firstSailingDateValue = sailingsByDateValue.first {
+                dayData = TimeUtils.nextSevenDaysStrings(firstSailingDateValue.date)
+            }
+        }
+
         dateButton.layer.cornerRadius = 8.0
         dateButton.setTitle(dayData[0], forState: .Normal)
         dateButton.accessibilityHint = "double tap to change sailing day"
@@ -83,7 +89,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func refresh(refreshControl: UIRefreshControl) {
-        if (currentDay == 0){
+        if (currentDay == 0) && (displayedSailing != nil){
             let departingId = displayedSailing!.departingTerminalId
             let arrivingId = displayedSailing!.arrivingTerminalId
         
@@ -114,9 +120,11 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
             }
         }else{
             self.refreshControl.endRefreshing()
+            self.activityIndicator.stopAnimating()
+            self.activityIndicator.hidden = true
         }
     }
-
+    
     @IBAction func selectAccountAction(sender: UIButton) {
         performSegueWithIdentifier(segueDepartureDaySelectionViewController, sender: self)
     }
@@ -223,8 +231,12 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     // MARK: Helper functions
     private func setDisplayedSailing(day: Int){
         
+        var sailings = List<FerrySailingsItem>()
+        
         // get sailings for selected day
-        let sailings = sailingsByDate![day].sailings
+        if let sailingsByDateValue = sailingsByDate {
+            sailings = sailingsByDateValue[day].sailings
+        }
         
         // get sailings for current route
         for sailing in sailings {
@@ -236,9 +248,11 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         displayedTimes.removeAll()
         
         // make list of displayable times
-        for time in displayedSailing!.times {
-            if (time.departingTime.compare(NSDate()) == .OrderedDescending) {
-                displayedTimes.append(time)
+        if displayedSailing != nil {
+            for time in displayedSailing!.times {
+                if (time.departingTime.compare(NSDate()) == .OrderedDescending) {
+                    displayedTimes.append(time)
+                }
             }
         }
     }
