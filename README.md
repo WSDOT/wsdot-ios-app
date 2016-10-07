@@ -7,7 +7,7 @@ Washington State Traveler information provide by The Washington State Department
 
 Features
 --------
-* Traffic Map with real-time alerts and conditions.
+* Traffic Map with highway cameras, real-time alerts and traffic conditions.
 * Ferry schedules, alerts and VesselWatch.
 * Mountain Pass condition and weather reports.
 * WSDOT Social media feeds for the latest news.
@@ -28,6 +28,7 @@ Dependencies
 * [Firebase/Core](https://firebase.google.com/docs/ios/setup)
 * [Firebase/AdMob](https://firebase.google.com/docs/admob/)
 * [GoogleMaps](https://developers.google.com/maps/documentation/ios-sdk/)
+* [Google Maps iOS Utils](https://github.com/googlemaps/google-maps-ios-utils)
 * [GoogleAnalytics](https://developers.google.com/analytics/devguides/collection/ios/v3/?ver=swift)
 * [Alamofire 3.4.1](https://github.com/Alamofire/Alamofire)
 * [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)

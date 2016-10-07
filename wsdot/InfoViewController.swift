@@ -49,14 +49,14 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
     
     @IBAction func composeFeedbackMessage(sender: UIButton) {
     
-        //let bundle = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"]
-        //let version = bundle as! String
+        let bundle = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"]
+        let version = bundle as! String
     
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
-            mail.setToRecipients(["simsl@wsdot.wa.gov"])
-            mail.setSubject("TestFlight feedback for WSDOT.")
+            mail.setToRecipients(["webfeedback@wsdot.wa.gov"])
+            mail.setSubject("WSDOT iOS v\(version) Feedback")
             presentViewController(mail, animated: true, completion: nil)
         } else {
             UIApplication.sharedApplication().openURL(NSURL(string: "mailto:")!)
@@ -66,15 +66,15 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
     
     @IBAction func composeBugReport(sender: UIButton) {
     
-        //let bundle = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"]
-        //let version = bundle as! String
+        let bundle = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"]
+        let version = bundle as! String
     
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
-            mail.setToRecipients(["simsl@wsdot.wa.gov"])
-            mail.setSubject("TestFlight feedback for WSDOT.")
-            mail.setMessageBody("<b>Issue Description:<b><br><br> <b>Steps to Reproduce (if possible):</b><br><br>", isHTML: true)
+            mail.setToRecipients(["webfeedback@wsdot.wa.gov"])
+            mail.setSubject("WSDOT iOS v\(version) Issue Report")
+            mail.setMessageBody("<b>Issue Description:<b><br><br> <b>Steps to Reproduce Issue (if applicable):</b><br><br>", isHTML: true)
             presentViewController(mail, animated: true, completion: nil)
         } else {
             UIApplication.sharedApplication().openURL(NSURL(string: "mailto:")!)

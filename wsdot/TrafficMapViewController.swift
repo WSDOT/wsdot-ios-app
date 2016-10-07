@@ -587,8 +587,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     // MARK: Naviagtion
     // Get refrence to child VC
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let vc = segue.destinationViewController as? MapViewController
-            where segue.identifier == "EmbedMapSegue" {
+        if let vc = segue.destinationViewController as? MapViewController where segue.identifier == "EmbedMapSegue" {
             vc.markerDelegate = self
             vc.mapDelegate = self
             self.embeddedMapViewController = vc
