@@ -746,6 +746,26 @@
                                             <outlet property="settingSwitch" destination="owa-9R-fe1" id="n4N-bP-P9h"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LegendCell" rowHeight="142" id="TiE-d8-6yO" customClass="CameraImageCustomCell" customModule="WSDOT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="72" width="600" height="142"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TiE-d8-6yO" id="SjZ-mk-j4A">
+                                            <frame key="frameInset" width="600" height="141"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="66t-d1-UqZ"/>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="66t-d1-UqZ" firstAttribute="top" secondItem="SjZ-mk-j4A" secondAttribute="topMargin" id="NmJ-zK-ZoG"/>
+                                                <constraint firstItem="66t-d1-UqZ" firstAttribute="bottom" secondItem="SjZ-mk-j4A" secondAttribute="bottomMargin" id="lUt-Sz-Hkm"/>
+                                                <constraint firstItem="66t-d1-UqZ" firstAttribute="leading" secondItem="SjZ-mk-j4A" secondAttribute="leadingMargin" id="rLl-Hz-IPR"/>
+                                                <constraint firstItem="66t-d1-UqZ" firstAttribute="trailing" secondItem="SjZ-mk-j4A" secondAttribute="trailingMargin" id="sNV-gI-fhD"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="CameraImage" destination="66t-d1-UqZ" id="6ki-Q3-IKR"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="iX4-th-1S0" id="3vB-Wo-Xd5"/>
@@ -767,7 +787,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3vj-RS-3sD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1155" y="1196"/>
+            <point key="canvasLocation" x="1153.5999999999999" y="1195.5022488755624"/>
         </scene>
     </scenes>
     <resources>
