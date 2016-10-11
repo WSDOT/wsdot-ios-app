@@ -37,7 +37,7 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
 
     let accountData: [(name:String, screenName:String?)] =
         [("All Accounts", nil), ("Ferries", "wsferries"), ("Good To Go!", "GoodToGoWSDOT"),
-        ("Snoqualmie Pass", "SnoqualmiePass"), ("WSDOT", "wsdot"), ("WSDOT Jobs", "WSDOTjobs"), ("WSDOT Southwest", "wsdot_sw"),
+        ("Snoqualmie Pass", "SnoqualmiePass"), ("WSDOT", "wsdot"), ("WSDOT Jobs", "WSDOTjobs"), ("WSDOT North Traffic", "wsdot_north"), ("WSDOT Southwest", "wsdot_sw"),
         ("WSDOT Tacoma","wsdot_tacoma"), ("WSDOT Traffic","wsdot_traffic")]
     
     let accountIconNames: Dictionary<String, String> = [
@@ -46,6 +46,7 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
         "SnoqualmiePass":"icTwitterSnoqualmie",
         "wsdot":"icTwitterWsdot",
         "WSDOTjobs":"icTwitterJobs",
+        "wsdot_north":"icTwitterWsdotNorth",
         "wsdot_sw":"icTwitterWsdotSW",
         "wsdot_tacoma":"icTwitterTacoma",
         "wsdot_traffic":"icTwitterTraffic"
