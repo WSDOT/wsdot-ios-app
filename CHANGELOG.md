@@ -13,5 +13,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * New origanization of Pass Reports.
 * New Amtrak Schedules. Now Shows all legs of a trip in detail. 
 * Ferry Alert tabs now displays a badge with the number of active alerts.
+* Added WSDOT North Traffic Twitter account. 
 * Added WSDOT Flickr account to Social Media Section.
 * Bug report template added in the About section.
