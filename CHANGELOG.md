@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]: 
 
+### Fixed
+* App correclty uses cached data when offline.
+
+
 ## [5.0.0] - 2016-10-12
 ### Added
 * New Codebase.

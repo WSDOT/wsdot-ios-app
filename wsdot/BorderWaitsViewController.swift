@@ -58,6 +58,10 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
         
         showOverlay(self.view)
         
+        self.northboundWaits = BorderWaitStore.getNorthboundWaits()
+        self.southboundWaits = BorderWaitStore.getSouthboundWaits()
+        self.tableView.reloadData()
+        
         refresh(false)
         tableView.rowHeight = UITableViewAutomaticDimension
         
