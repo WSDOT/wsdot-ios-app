@@ -4,9 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]: 
 
-## [5.0.0]
-
+## [5.0.0] - 2016-10-12
 ### Added
+* New Codebase.
 * Camera icons on the Traffic Map can now be clustered.
 * Split screen layout for iPhone Plus landscape and iPad screens. 
 * Can now toggle all map markers on/off.
