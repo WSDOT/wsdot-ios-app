@@ -40,9 +40,13 @@ class MountainPassesViewController: UIViewController, UITableViewDelegate, UITab
         tableView.addSubview(refreshControl)
         
         showOverlay(self.view)
+        
+        self.passItems = MountainPassStore.getPasses()
+        self.tableView.reloadData()
+        
         refresh(false)
         tableView.rowHeight = UITableViewAutomaticDimension
-    
+        
     }
     
     override func viewWillAppear(animated: Bool) {

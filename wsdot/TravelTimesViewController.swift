@@ -55,6 +55,10 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.addSubview(refreshControl)
         
         showOverlay(self.view)
+        
+        self.travelTimes = TravelTimesStore.getAllTravelTimes()
+        self.tableView.reloadData()
+        
         refresh(false)
         tableView.rowHeight = UITableViewAutomaticDimension
     }

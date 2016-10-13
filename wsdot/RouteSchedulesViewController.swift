@@ -34,12 +34,15 @@ class RouteSchedulesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Route Schedules"
-
+        
         showOverlay(self.view)
+        
+        self.routes = FerryRealmStore.findAllSchedules()
+        self.tableView.reloadData()
         
         self.refresh(false)
     }
-
+    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)

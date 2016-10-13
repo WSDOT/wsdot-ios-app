@@ -86,6 +86,11 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         JBLMMarker.snippet = "jblm"
         JBLMMarker.userData = "http://images.wsdot.wa.gov/traffic/flowmaps/jblm.png"
         
+        self.loadCameraMarkers()
+        self.drawCameras()
+        self.loadAlertMarkers()
+        self.drawAlerts()
+        
         embeddedMapViewController.clusterManager.setDelegate(self, mapDelegate: self)
         
         // Ad Banner
