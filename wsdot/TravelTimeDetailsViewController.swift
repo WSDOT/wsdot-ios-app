@@ -46,7 +46,11 @@ class TravelTimeDetailsViewController: UIViewController {
             "N/A"
         }
         
-        currentTime.text = String(travelTime.currentTime) + " min"
+        if travelTime.currentTime == 0{
+            currentTime.text = "N/A"
+        } else {
+            currentTime.text = String(travelTime.currentTime) + " min"
+        }
  
         if (travelTime.averageTime > travelTime.currentTime){
             currentTime.textColor = Colors.tintColor
