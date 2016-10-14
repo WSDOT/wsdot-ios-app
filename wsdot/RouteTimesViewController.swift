@@ -160,9 +160,15 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                 if displayedTimes[indexPath.row].departingTime == spaceItem.date {
                     cell = tableView.dequeueReusableCellWithIdentifier(departuresSailingSpacesCellIdentifier) as! DeparturesCustomCell
                     cell.sailingSpaces.hidden = false
-                    cell.sailingSpaces.text = String(spaceItem.remainingSpaces) + " Drive-up spaces"
+                    cell.sailingSpaces.text = String(spaceItem.remainingSpaces) + " Drive-up Spaces"
                     cell.avaliableSpacesBar.hidden = false
+                    
                     cell.avaliableSpacesBar.progress = spaceItem.percentAvaliable
+                    
+                    cell.avaliableSpacesBar.transform = UIProgressView().transform
+                    cell.avaliableSpacesBar.transform = CGAffineTransformScale(cell.avaliableSpacesBar.transform, 1, 3)
+                    
+                    
                     cell.spacesDisclaimer.hidden = false
                     cell.updated.text = "Drive-up spaces updated " + TimeUtils.timeAgoSinceDate(updatedAt, numericDates: true)
                 }
