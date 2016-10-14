@@ -5,8 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 [Unreleased]: 
 
 ### Fixed
-* App correclty uses cached data when offline.
-
+* App correctly uses cached data when offline.
+* Traffic Alerts are now sorted by most recent.
+* Full-screen button now shows on app start up.
+* VoiceOver improvements for ad banners and alerts ticker.
+* Travel times with no data now show "N/A" instead of "0 min".
+* The sailing spaces graphic height has been increased.
 
 ## [5.0.0] - 2016-10-12
 ### Added
