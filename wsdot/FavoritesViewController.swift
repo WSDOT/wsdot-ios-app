@@ -59,6 +59,9 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         
         favoritesTable.rowHeight = UITableViewAutomaticDimension
         
+        self.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+        self.navigationItem.leftItemsSupplementBackButton = true
+        
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
  
     }
