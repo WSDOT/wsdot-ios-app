@@ -42,6 +42,8 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
         UIPageControl.appearance().pageIndicatorTintColor = UIColor.whiteColor()
         UIPageControl.appearance().currentPageIndicatorTintColor = Colors.tintColor
         
+        
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -95,10 +97,14 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
             page.alertText = "Failed to load alerts"
             pages.append(page)
         }else {
+            var alertNumber = 1
             for alert in alertItems {
                 let page: AlertContentViewController! = storyboard?.instantiateViewControllerWithIdentifier("AlertContentViewController") as! AlertContentViewController
                 page.alert = alert
                 page.alertText = alert.headlineDesc
+                page.alertCount = alertItems.count
+                page.alertNumber = alertNumber
+                alertNumber = alertNumber + 1
                 pages.append(page)
             }
             if (pages.count == 0){

@@ -26,6 +26,8 @@ class AlertContentViewController: UIViewController{
     var alertText = ""
     var loadingPage = false
     var alert = HighwayAlertItem()
+    var alertCount = 1
+    var alertNumber = 1
     let SegueHighwayAlertViewController = "HighwayAlertViewController"
     
     @IBOutlet var alertLabel: UILabel!
@@ -36,13 +38,13 @@ class AlertContentViewController: UIViewController{
         self.view.backgroundColor = Colors.lightGrey
         self.view.frame = parentViewController!.view.frame
         
-        
-        
         if loadingPage {
             progressIndicator.startAnimating()
             alertLabel.hidden = true
         }else {
             alertLabel.text = alertText
+            
+            alertLabel.accessibilityLabel = "highest impact alert " + String(alertNumber) + " of " + String(alertCount) + ". " + alertText
             
             if (alert.alertId != 0){
                 let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AlertContentViewController.labelAction(_:)))
