@@ -21,7 +21,7 @@
 import UIKit
 import GoogleMobileAds
 
-class MountainPassReportViewController: UIViewController {
+class MountainPassReportViewController: UIViewController, GADBannerViewDelegate {
 
     @IBOutlet weak var bannerView: GADBannerView!
     
@@ -68,7 +68,13 @@ class MountainPassReportViewController: UIViewController {
         bannerView.adUnitID = ApiKeys.wsdot_ad_string
         bannerView.rootViewController = self
         bannerView.loadRequest(GADRequest())
- 
+        bannerView.delegate = self
+        
+    }
+    
+    func adViewDidReceiveAd(bannerView: GADBannerView!) {
+        bannerView.isAccessibilityElement = true
+        bannerView.accessibilityLabel = "advertisement banner."
     }
     
     override func viewWillAppear(animated: Bool) {

@@ -23,7 +23,7 @@ import UIKit
 import GoogleMaps
 import GoogleMobileAds
 
-class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapViewDelegate{
+class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapViewDelegate, GADBannerViewDelegate{
     
     let serviceGroup = dispatch_group_create()
     
@@ -67,7 +67,13 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         bannerView.adUnitID = ApiKeys.wsdot_ad_string
         bannerView.rootViewController = self
         bannerView.loadRequest(GADRequest())
+        bannerView.delegate = self
         
+    }
+    
+    func adViewDidReceiveAd(bannerView: GADBannerView!) {
+        bannerView.isAccessibilityElement = true
+        bannerView.accessibilityLabel = "advertisement banner."
     }
     
     override func viewWillAppear(animated: Bool) {

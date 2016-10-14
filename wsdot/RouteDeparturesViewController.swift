@@ -21,7 +21,7 @@ import UIKit
 import GoogleMobileAds
 import RealmSwift
 
-class RouteDeparturesViewController: UIViewController {
+class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
     
     let timesViewSegue = "timesViewSegue"
     let camerasViewSegue = "camerasViewSegue"
@@ -46,6 +46,13 @@ class RouteDeparturesViewController: UIViewController {
         bannerView.rootViewController = self
         bannerView.loadRequest(GADRequest())
         
+        bannerView.delegate = self
+        
+    }
+    
+    func adViewDidReceiveAd(bannerView: GADBannerView!) {
+        bannerView.isAccessibilityElement = true
+        bannerView.accessibilityLabel = "advertisement banner."
     }
 
     
