@@ -21,7 +21,7 @@
 import UIKit
 import GoogleMobileAds
 
-class CameraViewController: UIViewController {
+class CameraViewController: UIViewController, GADBannerViewDelegate{
     
     @IBOutlet weak var cameraImage: UIImageView!
     @IBOutlet weak var favoriteBarButton: UIBarButtonItem!
@@ -48,6 +48,13 @@ class CameraViewController: UIViewController {
         bannerView.adUnitID = ApiKeys.wsdot_ad_string
         bannerView.rootViewController = self
         bannerView.loadRequest(GADRequest())
+        bannerView.delegate = self
+        
+    }
+    
+    func adViewDidReceiveAd(bannerView: GADBannerView!) {
+        bannerView.isAccessibilityElement = true
+        bannerView.accessibilityLabel = "advertisement banner."
     }
     
     override func viewWillAppear(animated: Bool) {
