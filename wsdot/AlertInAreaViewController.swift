@@ -48,6 +48,10 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
             }
         }
 
+        trafficAlerts = trafficAlerts.sort({$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
+        constructionAlerts = constructionAlerts.sort({$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
+        specialEvents = specialEvents.sort({$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
+
         tableView.rowHeight = UITableViewAutomaticDimension
         
     }
