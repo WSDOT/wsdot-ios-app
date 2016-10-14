@@ -11,7 +11,7 @@
         <scene sceneID="DNA-5x-hOF">
             <objects>
                 <navigationController title="Traffic Map" id="Lbb-0l-yJu" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="W5B-QB-ecH">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="W5B-QB-ecH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -26,7 +26,7 @@
                 <navigationController id="2hQ-5G-m4N" sceneMemberID="viewController">
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="kcl-MV-c3g">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kcl-MV-c3g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -41,7 +41,7 @@
                 <navigationController id="WL1-dY-1AO" sceneMemberID="viewController">
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="SIV-Fi-8Ne">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SIV-Fi-8Ne">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -157,7 +157,7 @@
                 <navigationController id="YHC-Qx-tw0" sceneMemberID="viewController">
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="YTv-g7-o1w">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YTv-g7-o1w">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -280,7 +280,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="EaH-rk-NDh">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="EaH-rk-NDh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -353,7 +353,7 @@
                 <navigationController id="hWU-I4-pRH" sceneMemberID="viewController">
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="j1f-AA-9fB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="j1f-AA-9fB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -673,7 +673,7 @@
         <scene sceneID="4jB-de-pq1">
             <objects>
                 <navigationController id="2KS-rG-GP2" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="x3X-h0-jze">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="x3X-h0-jze">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -686,7 +686,7 @@
         <scene sceneID="lR4-nq-Ooh">
             <objects>
                 <navigationController id="uTf-Sh-CaL" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="wkt-De-pW0">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wkt-De-pW0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -701,7 +701,7 @@
                 <navigationController id="20J-Fp-3B8" sceneMemberID="viewController">
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="71P-6a-v4j">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="71P-6a-v4j">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -716,7 +716,7 @@
                 <navigationController id="vad-gT-B16" sceneMemberID="viewController">
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Zjl-Hg-wm2">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Zjl-Hg-wm2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
