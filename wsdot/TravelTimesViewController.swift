@@ -152,7 +152,11 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
             cell.updatedLabel.text = "N/A"
         }
         
-        cell.currentTimeLabel.text = String(travelTime.currentTime) + " min"
+        if travelTime.currentTime == 0{
+            cell.currentTimeLabel.text = "N/A"
+        } else {
+            cell.currentTimeLabel.text = String(travelTime.currentTime) + " min"
+        }
         
         if (travelTime.averageTime > travelTime.currentTime){
             cell.currentTimeLabel.textColor = Colors.tintColor
