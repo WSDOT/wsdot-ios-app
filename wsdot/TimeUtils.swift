@@ -29,7 +29,10 @@ class TimeUtils {
     
     static let updateTime: Int = 900
     static let cameraUpdateTime: Int = 604800
+    
     static let vesselUpdateTime: NSTimeInterval = 30
+    static let spacesUpdateTime: NSTimeInterval = 60
+    
     static let alertsUpdateTime: NSTimeInterval = 60
     
     static var currentTime: Int64{

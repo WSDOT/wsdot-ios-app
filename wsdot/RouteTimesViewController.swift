@@ -42,6 +42,8 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     
     var dayData = TimeUtils.nextSevenDaysStrings(NSDate())
     
+    private var timer: NSTimer?
+    
     let refreshControl = UIRefreshControl()
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -50,7 +52,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var departuresHeader: UIView!
         
     deinit {
-        print("RouteTimesViewController is being deallocated")
         displayedSailing = nil
         sailingSpaces = nil
     }
@@ -79,13 +80,24 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         activityIndicator.startAnimating()
         
         tableView.addSubview(refreshControl)
-
+        
+        timer = NSTimer.scheduledTimerWithTimeInterval(TimeUtils.spacesUpdateTime, target: self, selector: #selector(RouteTimesViewController.spacesTimerTask), userInfo: nil, repeats: true)
+        print("timer start")
         refresh(self.refreshControl)
     }
-
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Ferries/Schedules/Sailings/Departures")
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        timer?.invalidate()
+    }
+    
+    func spacesTimerTask(timer:NSTimer) {
+        refresh(self.refreshControl)
     }
     
     func refresh(refreshControl: UIRefreshControl) {
