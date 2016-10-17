@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * VoiceOver improvements for ad banners and alerts ticker.
 * Travel times with no data now show "N/A" instead of "0 min".
 * The sailing spaces graphic height has been increased.
+* Fixed text cut off in Route Schedules on small screens.
 
 ## [5.0.0] - 2016-10-12
 ### Added
