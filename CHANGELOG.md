@@ -6,6 +6,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 * App correctly uses cached data when offline.
+* Sailing spaces now auto update every minute.
+* Departure annotations will now show with sailing spaces.
 * Traffic Alerts are now sorted by most recent.
 * Full-screen button now shows on app start up.
 * VoiceOver improvements for ad banners and alerts ticker.
