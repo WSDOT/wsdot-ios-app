@@ -39,10 +39,8 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
         
         view.backgroundColor = Colors.lightGrey
         
-        UIPageControl.appearance().pageIndicatorTintColor = UIColor.whiteColor()
+        UIPageControl.appearance().pageIndicatorTintColor = UIColor.grayColor()
         UIPageControl.appearance().currentPageIndicatorTintColor = Colors.tintColor
-        
-        
         
     }
     
