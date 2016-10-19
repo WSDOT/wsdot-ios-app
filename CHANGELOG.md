@@ -14,6 +14,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * Travel times with no data now show "N/A" instead of "0 min".
 * The sailing spaces graphic height has been increased.
 * Fixed text cut off in Route Schedules on small screens.
+* Highest alerts page indicator is now gray for better contrast.
 
 ## [5.0.0] - 2016-10-12
 ### Added
