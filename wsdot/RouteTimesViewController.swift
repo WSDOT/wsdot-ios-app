@@ -82,7 +82,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         tableView.addSubview(refreshControl)
         
         timer = NSTimer.scheduledTimerWithTimeInterval(TimeUtils.spacesUpdateTime, target: self, selector: #selector(RouteTimesViewController.spacesTimerTask), userInfo: nil, repeats: true)
-        print("timer start")
         refresh(self.refreshControl)
     }
     
@@ -203,7 +202,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         var annotationsString = ""
         
         for indexObj in displayedTimes[indexPath.row].annotationIndexes{
-            print(displayedSailing!.annotations[indexObj.index].message)
             annotationsString += displayedSailing!.annotations[indexObj.index].message + " "
         }
         
@@ -219,7 +217,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
             cell.annotations.attributedText = nil
             cell.annotations.text = nil
         }
-        print(cell.annotations.attributedText)
         
         // Accessibility Setup
         cell.accessibilityLabel = "departing " + cell.departingTime.text! + ". arriving " + cell.arrivingTime.accessibilityLabel! + ". "
