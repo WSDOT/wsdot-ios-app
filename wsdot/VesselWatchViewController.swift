@@ -62,6 +62,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         if (NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.cameras) == "on"){
             cameraBarButton.image = cameraHighlightBarButtonImage
         }
+
         
         // Ad Banner
         bannerView.adUnitID = ApiKeys.wsdot_ad_string
@@ -69,6 +70,13 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         bannerView.loadRequest(GADRequest())
         bannerView.delegate = self
         
+    }
+    
+    override func willMoveToParentViewController(parent: UIViewController?) {
+        if parent == nil {
+            timer?.invalidate()
+            self.embeddedMapViewController = nil
+        }
     }
     
     func adViewDidReceiveAd(bannerView: GADBannerView!) {
@@ -79,11 +87,6 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Ferries/VesselWatch")
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        timer?.invalidate()
     }
     
     @IBAction func goToLocation(sender: UIBarButtonItem) {
