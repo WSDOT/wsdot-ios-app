@@ -5,8 +5,8 @@ Washington State Traveler information provide by The Washington State Department
 * Written in Swift 2.3
 * Developed with Xcode 8.0
 
-Features
---------
+Features - [View on the App Store](https://itunes.apple.com/us/app/wsdot/id387209224?mt=8)
+----------------------------------
 * Traffic Map with highway cameras, real-time alerts and traffic conditions.
 * Ferry schedules, alerts and VesselWatch.
 * Mountain Pass condition and weather reports.
