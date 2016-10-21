@@ -4,6 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]: 
 
+## [5.0.1] - 2016-10-20
 ### Fixed
 * App correctly uses cached data when offline.
 * Sailing spaces now auto update every minute.
@@ -22,9 +23,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * Camera icons on the Traffic Map can now be clustered.
 * Split screen layout for iPhone Plus landscape and iPad screens. 
 * Can now toggle all map markers on/off.
-* New origanization of Pass Reports.
+* New organization of Pass Reports.
 * New Amtrak Schedules. Now Shows all legs of a trip in detail. 
-* Ferry Alert tabs now displays a badge with the number of active alerts.
+* Ferry Alert tabs now will display a badge with the number of active alerts.
 * Added WSDOT North Traffic Twitter account. 
 * Added WSDOT Flickr account to Social Media Section.
 * Bug report template added in the About section.
