@@ -99,37 +99,19 @@ class TimeUtils {
     static func getDateFromJSONArray(time: [JSON]) -> NSDate{
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-M-d H:mm"
-        
-        var year = "0"
-        var month = "1"
-        var day = "1"
-        var hour = "0"
-        var min = "0"
-        
-        if time.indices.contains(0){
-            year = time[0].stringValue
-        }
-        
-        if time.indices.contains(1){
-            month = time[1].stringValue
-        }
-        
-        if time.indices.contains(2){
-            day = time[2].stringValue
-        }
-        
-        if time.indices.contains(3){
-            hour = time[3].stringValue
-        }
-        
-        if time.indices.contains(4){
-            min = time[4].stringValue
-        }
-
+        let year = time[0].stringValue
+        let month = time[1].stringValue
+        let day = time[2].stringValue
+        let hour = time[3].stringValue
+        let min = time[4].stringValue
         let dateString =  year + "-" + month + "-" + day + " " + hour + ":" + min
-        return dateFormatter.dateFromString(dateString)!
+        
+        if let date = dateFormatter.dateFromString(dateString){
+            return date
+        } else {
+            return NSDate.init(timeIntervalSince1970: 0)
+        }
     }
-    
     // Converts blogger pub date format into an NSDate object (ex. 2016-08-26T09:24:00.000-07:00)
     static func postPubDateToNSDate(time: String, formatStr: String, isUTC: Bool) -> NSDate{
         let dateFormatter = NSDateFormatter()

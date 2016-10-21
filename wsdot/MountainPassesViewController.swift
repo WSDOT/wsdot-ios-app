@@ -130,7 +130,11 @@ class MountainPassesViewController: UIViewController, UITableViewDelegate, UITab
             cell.weatherImage.image = nil
         }
         
-        cell.updatedLabel.text = TimeUtils.timeAgoSinceDate(passItem.dateUpdated, numericDates: true)
+        if passItem.dateUpdated == NSDate.init(timeIntervalSince1970: 0){
+            cell.updatedLabel.text = "Not Available"
+        }else {
+            cell.updatedLabel.text = TimeUtils.timeAgoSinceDate(passItem.dateUpdated, numericDates: true)
+        }
      
         return cell
     }
