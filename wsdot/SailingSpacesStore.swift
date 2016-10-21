@@ -32,7 +32,7 @@ class SailingSpacesStore {
     // Returns sailing space data from API. 
     static func getSailingSpacesForTerminal(departingId: Int, arrivingId: Int, completion: FetchSailingSpaceCompletion) {
         
-        Alamofire.request(.GET, "http://www.wsdot.wa.gov/ferries/api/terminals/rest/terminalsailingspace?apiaccesscode=" + ApiKeys.wsdot_key).validate().responseJSON { response in
+        Alamofire.request(.GET, "http://www.wsdot.wa.gov/ferries/api/terminals/rest/terminalsailingspace/" + String(departingId) + "?apiaccesscode=" + ApiKeys.wsdot_key).validate().responseJSON { response in
             switch response.result {
             case .Success:
                 if let value = response.result.value {
@@ -52,39 +52,35 @@ class SailingSpacesStore {
         
         var sailingSpaces = [SailingSpacesItem]()
         var hasSailingSpace = false
-        
-        for (_,subJson):(String, JSON) in json {
-            if (subJson["TerminalID"].int == departingId){
-                
-                for (_,departure):(String, JSON) in subJson["DepartingSpaces"] {
+
+        for (_,departure):(String, JSON) in json["DepartingSpaces"] {
                     
-                    for (_,arrivingTerminalSpace):(String, JSON) in departure["SpaceForArrivalTerminals"] {
+            for (_,arrivingTerminalSpace):(String, JSON) in departure["SpaceForArrivalTerminals"] {
                         
-                        let sailingSpaceItem = SailingSpacesItem()
-                        hasSailingSpace = false
+                let sailingSpaceItem = SailingSpacesItem()
+                hasSailingSpace = false
                         
-                        for (_,arrivalTermials):(String, JSON) in arrivingTerminalSpace["ArrivalTerminalIDs"]{
-                            if( arrivalTermials.intValue == arrivingId){
-                                hasSailingSpace = true
-                                sailingSpaceItem.date = TimeUtils.parseJSONDateToNSDate(departure["Departure"].stringValue)
-                                sailingSpaceItem.maxSpace = arrivingTerminalSpace["MaxSpaceCount"].intValue
-                                sailingSpaceItem.remainingSpaces = arrivingTerminalSpace["DriveUpSpaceCount"].intValue
-                            }
-                        }
-                        
-                        if (arrivingTerminalSpace["TerminalID"].int == arrivingId){
-                            hasSailingSpace = true
-                            sailingSpaceItem.date = TimeUtils.parseJSONDateToNSDate(departure["Departure"].stringValue)
-                            sailingSpaceItem.maxSpace = arrivingTerminalSpace["MaxSpaceCount"].intValue
-                            sailingSpaceItem.remainingSpaces = arrivingTerminalSpace["DriveUpSpaceCount"].intValue
-                        }
-                        
-                        if (hasSailingSpace){
-                            sailingSpaces.append(sailingSpaceItem)
-                        }
+                for (_,arrivalTermials):(String, JSON) in arrivingTerminalSpace["ArrivalTerminalIDs"]{
+                    if( arrivalTermials.intValue == arrivingId){
+                        hasSailingSpace = true
+                        sailingSpaceItem.date = TimeUtils.parseJSONDateToNSDate(departure["Departure"].stringValue)
+                        sailingSpaceItem.maxSpace = arrivingTerminalSpace["MaxSpaceCount"].intValue
+                        sailingSpaceItem.remainingSpaces = arrivingTerminalSpace["DriveUpSpaceCount"].intValue
                     }
                 }
+                        
+                if (arrivingTerminalSpace["TerminalID"].int == arrivingId){
+                    hasSailingSpace = true
+                    sailingSpaceItem.date = TimeUtils.parseJSONDateToNSDate(departure["Departure"].stringValue)
+                    sailingSpaceItem.maxSpace = arrivingTerminalSpace["MaxSpaceCount"].intValue
+                    sailingSpaceItem.remainingSpaces = arrivingTerminalSpace["DriveUpSpaceCount"].intValue
+                }
+                        
+                if (hasSailingSpace){
+                    sailingSpaces.append(sailingSpaceItem)
+                }
             }
+  
         }
         return sailingSpaces
     }
