@@ -107,10 +107,21 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
 
         let serviceGroup = dispatch_group_create();
         
-        self.requestFavoriteFerries(force, serviceGroup: serviceGroup)
-        self.requestFavoriteCameras(force, serviceGroup: serviceGroup)
-        self.requestFavoriteTravelTimes(force, serviceGroup: serviceGroup)
-        self.requestFavoriteMountainPasses(force, serviceGroup: serviceGroup)
+        if (self.favoriteRoutes.count > 0){
+            self.requestFavoriteFerries(force, serviceGroup: serviceGroup)
+        }
+        
+        if (self.favoriteCameras.count > 0){
+            self.requestFavoriteCameras(force, serviceGroup: serviceGroup)
+        }
+        
+        if (self.favoriteTravelTimes.count > 0) {
+            self.requestFavoriteTravelTimes(force, serviceGroup: serviceGroup)
+        }
+        
+        if (self.favoritePasses.count > 0){
+            self.requestFavoriteMountainPasses(force, serviceGroup: serviceGroup)
+        }
         
         dispatch_group_notify(serviceGroup, dispatch_get_main_queue()) {
             
