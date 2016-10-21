@@ -4,18 +4,32 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]: 
 
+### Changed
+* Sailing spaces now only pulls spaces for that route.
+* Now only loads favorites data that users actually favorited. Used to load all data for all possible favorite items.
+* Updated pods.
+
+### Fixed
+* Updated to Firebase 3.7.1 (Fixed an issue that causes a crash for some apps that call FirebaseAnalytics. Stack traces show that the crash occurs in -[FIRAAlarm cancel])
+* Possible fix for a crash when updated mountain pass information.
+
 ## [5.0.1] - 2016-10-20
+
+### Added
+* VoiceOver improvements for ad banners and alerts ticker.
+* Sailing spaces now auto update every minute.
+
+### Changed
+* Highest alerts page indicator is now gray for better contrast.
+* The sailing spaces graphic height has been increased.
+* Traffic Alerts are now sorted by most recent.
+
 ### Fixed
 * App correctly uses cached data when offline.
-* Sailing spaces now auto update every minute.
 * Departure annotations will now show with sailing spaces.
-* Traffic Alerts are now sorted by most recent.
 * Full-screen button now shows on app start up.
-* VoiceOver improvements for ad banners and alerts ticker.
 * Travel times with no data now show "N/A" instead of "0 min".
-* The sailing spaces graphic height has been increased.
 * Fixed text cut off in Route Schedules on small screens.
-* Highest alerts page indicator is now gray for better contrast.
 
 ## [5.0.0] - 2016-10-12
 ### Added
