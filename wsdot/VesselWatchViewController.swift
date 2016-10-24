@@ -31,9 +31,9 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     let SegueVesselDetailsViewController = "VesselDetailsViewController"
     let SegueGoToPopover = "GoToViewController"
 
-    private var timer: NSTimer?
+    private weak var timer: NSTimer?
 
-    private var embeddedMapViewController: MapViewController!
+    private weak var embeddedMapViewController: MapViewController!
     
     private var terminalCameraMarkers = Set<GMSMarker>()
     private var vesselMarkers = Set<GMSMarker>()
@@ -62,7 +62,6 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         if (NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.cameras) == "on"){
             cameraBarButton.image = cameraHighlightBarButtonImage
         }
-
         
         // Ad Banner
         bannerView.adUnitID = ApiKeys.wsdot_ad_string
@@ -72,13 +71,17 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         
     }
     
-    override func willMoveToParentViewController(parent: UIViewController?) {
-        if parent == nil {
-            timer?.invalidate()
-            self.embeddedMapViewController = nil
+    override func viewWillDisappear(animated: Bool) {
+
+        if self.isBeingDismissed() || self.isMovingFromParentViewController() {
+            print("invalidating timer")
+            if timer != nil {
+                self.timer?.invalidate()
+            }
         }
+
     }
-    
+
     func adViewDidReceiveAd(bannerView: GADBannerView!) {
         bannerView.isAccessibilityElement = true
         bannerView.accessibilityLabel = "advertisement banner."
@@ -208,12 +211,14 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     }
     
     func drawCameras(){
-        if let mapView = embeddedMapViewController.view as? GMSMapView{
-            let camerasPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.cameras)
+        if embeddedMapViewController != nil {
+            if let mapView = embeddedMapViewController.view as? GMSMapView{
+                let camerasPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.cameras)
             
-            if (camerasPref! == "on") {
-                for cameraMarker in terminalCameraMarkers{
-                    cameraMarker.map = mapView
+                if (camerasPref! == "on") {
+                    for cameraMarker in terminalCameraMarkers{
+                        cameraMarker.map = mapView
+                    }
                 }
             }
         }
@@ -278,9 +283,11 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     }
 
     func drawVessels(){
-        if let mapView = embeddedMapViewController.view as? GMSMapView{
-            for vesselMarker in vesselMarkers{
-                vesselMarker.map = mapView
+        if embeddedMapViewController != nil {
+            if let mapView = embeddedMapViewController.view as? GMSMapView{
+                for vesselMarker in vesselMarkers{
+                    vesselMarker.map = mapView
+                }
             }
         }
     }
