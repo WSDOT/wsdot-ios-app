@@ -44,6 +44,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     
     private var timer: NSTimer?
     
+    var showConnectionAlert = true
     let refreshControl = UIRefreshControl()
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -73,7 +74,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         tableView.rowHeight = UITableViewAutomaticDimension
         
         // refresh controller
-        refreshControl.addTarget(self, action: #selector(RouteTimesViewController.refresh(_:)), forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(RouteTimesViewController.refreshAction(_:)), forControlEvents: .ValueChanged)
         refreshControl.attributedTitle = NSAttributedString.init(string: "loading sailing spaces")
 
         activityIndicator.color = UIColor.grayColor()
@@ -82,7 +83,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         tableView.addSubview(refreshControl)
         
         timer = NSTimer.scheduledTimerWithTimeInterval(TimeUtils.spacesUpdateTime, target: self, selector: #selector(RouteTimesViewController.spacesTimerTask), userInfo: nil, repeats: true)
-        refresh(self.refreshControl)
+        refresh()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -96,10 +97,15 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func spacesTimerTask(timer:NSTimer) {
-        refresh(self.refreshControl)
+        refresh()
     }
     
-    func refresh(refreshControl: UIRefreshControl) {
+    func refreshAction(refreshControl: UIRefreshControl) {
+        showConnectionAlert = true
+        refresh()
+    }
+    
+    func refresh() {
         if (currentDay == 0) && (displayedSailing != nil){
             let departingId = displayedSailing!.departingTerminalId
             let arrivingId = displayedSailing!.arrivingTerminalId
@@ -123,7 +129,10 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                                 selfValue.refreshControl.endRefreshing()
                                 selfValue.activityIndicator.stopAnimating()
                                 selfValue.activityIndicator.hidden = true
-                                selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                                if (selfValue.showConnectionAlert){
+                                    selfValue.showConnectionAlert = false
+                                    selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                                }
                             }
                         }
                     }
