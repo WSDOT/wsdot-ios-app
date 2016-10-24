@@ -44,6 +44,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     
     private var timer: NSTimer?
     
+    var hasConnectionAlert = false
     let refreshControl = UIRefreshControl()
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -123,7 +124,10 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                                 selfValue.refreshControl.endRefreshing()
                                 selfValue.activityIndicator.stopAnimating()
                                 selfValue.activityIndicator.hidden = true
-                                selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                                if (!selfValue.hasConnectionAlert){
+                                    selfValue.hasConnectionAlert = true
+                                    selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                                }
                             }
                         }
                     }
