@@ -8,10 +8,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * Sailing spaces now only pulls spaces for that route.
 * Now only loads favorites data that users actually favorited. Used to load all data for all possible favorite items.
 * Updated pods.
+* NSTimer deinit logic in Vessel Watch. 
+* Better connection error handling for sailing spaces. Use to report internet connectino error for every failed update timer task.
 
 ### Fixed
 * Updated to Firebase 3.7.1 (Fixed an issue that causes a crash for some apps that call FirebaseAnalytics. Stack traces show that the crash occurs in -[FIRAAlarm cancel])
-* Possible fix for a crash when updated mountain pass information.
+* Possible fix for a crash when updated mountain pass information. Date format crash.
 
 ## [5.0.1] - 2016-10-20
 
