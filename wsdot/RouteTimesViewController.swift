@@ -188,7 +188,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                     cell.avaliableSpacesBar.transform = UIProgressView().transform
                     cell.avaliableSpacesBar.transform = CGAffineTransformScale(cell.avaliableSpacesBar.transform, 1, 3)
                     
-                    
                     cell.spacesDisclaimer.hidden = false
                     cell.updated.text = "Drive-up spaces updated " + TimeUtils.timeAgoSinceDate(updatedAt, numericDates: true)
                 }

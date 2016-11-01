@@ -66,8 +66,8 @@ class TimeUtils {
         //Get Short Time String
         let formatter = NSDateFormatter()
         formatter.timeStyle = .ShortStyle
+        formatter.timeZone = NSTimeZone(abbreviation: "PDT")
         let timeString = formatter.stringFromDate(date)
-        
         //Return Short Time String
         return timeString
     }
@@ -89,6 +89,7 @@ class TimeUtils {
     // Returns an NSDate object form a date string with the given format "yyyy-MM-dd hh:mm a"
     static func formatTimeStamp(timestamp: String) throws -> NSDate{
         let dateFormatter = NSDateFormatter()
+        dateFormatter.timeZone = NSTimeZone(abbreviation: "PDT")
         dateFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
         guard let time = dateFormatter.dateFromString(timestamp) else {
             throw TimeUtilsError.InvalidTimeString
@@ -99,6 +100,7 @@ class TimeUtils {
     static func getDateFromJSONArray(time: [JSON]) -> NSDate{
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-M-d H:mm"
+        dateFormatter.timeZone = NSTimeZone(abbreviation: "PDT")
         let year = time[0].stringValue
         let month = time[1].stringValue
         let day = time[2].stringValue
@@ -116,7 +118,7 @@ class TimeUtils {
     static func postPubDateToNSDate(time: String, formatStr: String, isUTC: Bool) -> NSDate{
         let dateFormatter = NSDateFormatter()
         if (isUTC){
-            dateFormatter.timeZone = NSTimeZone(name: "UTC")
+            dateFormatter.timeZone = NSTimeZone(abbreviation: "UTC")
         }
         dateFormatter.dateFormat = formatStr
         return dateFormatter.dateFromString(time)!
@@ -125,6 +127,7 @@ class TimeUtils {
     // returns a date string with the format MMMM DD, YYYY H:mm a
     static func formatTime(date: NSDate, format: String) -> String {
         let dateFormatter = NSDateFormatter()
+        dateFormatter.timeZone = NSTimeZone(abbreviation: "PDT")
         dateFormatter.dateFormat = format
         return dateFormatter.stringFromDate(date)
     }
