@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 * Ferry and Amtrak schedules no longer conevrt to users timezone.
+* Updated Realm Swift to version 2.0.3
 
 ## [5.0.2] - 2016-10-26
 
