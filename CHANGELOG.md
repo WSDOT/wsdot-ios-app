@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 [Unreleased]: 
 
 ### Changed
+* Ferry and Amtrak schedules no longer conevrt to users timezone.
+
+## [5.0.2] - 2016-10-26
+
+### Changed
 * Sailing spaces now only pulls spaces for that route.
 * Now only loads favorites data that users actually favorited. Used to load all data for all possible favorite items.
 * Updated pods.
