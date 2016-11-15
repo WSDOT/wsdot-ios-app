@@ -277,6 +277,7 @@ class AmtrakCascadesStore {
         510: "Amtrak Cascades Train",
         511: "Amtrak Cascades Train",
         513: "Amtrak Cascades Train",
+        516: "Amtrak Cascades Train",
         517: "Amtrak Cascades Train"
     ]
 
