@@ -4,6 +4,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]: 
 
+## [5.0.4] - 2016-11-15
+
+## Fixed
+* Amtrak Cascades 516 train is longer labeled as a bus servcie.
+
+## [5.0.3] - 2016-10-31
+
 ### Changed
 * Ferry and Amtrak schedules no longer conevrt to users timezone.
 * Updated Realm Swift to version 2.0.3
