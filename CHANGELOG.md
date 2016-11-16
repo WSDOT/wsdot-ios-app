@@ -4,10 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]: 
 
-## [5.0.4] - 2016-11-15
+## [5.0.4] - 2016-11-16
 
 ## Fixed
 * Amtrak Cascades 516 train is longer labeled as a bus servcie.
+* Pass reports now correctly save temperatures from the json feed. 
 
 ## [5.0.3] - 2016-10-31
 
