@@ -135,6 +135,7 @@ class MountainPassStore {
             pass.name = subJson["MountainPassName"].stringValue
             pass.dateUpdated = TimeUtils.getDateFromJSONArray(subJson["DateUpdated"].arrayValue)
             pass.elevationInFeet = subJson["ElevationInFeet"].intValue
+            pass.temperatureInFahrenheit.value = subJson["TemperatureInFahrenheit"].int
             pass.weatherCondition = subJson["WeatherCondition"].stringValue
             pass.travelAdvisoryActive = subJson["TravelAdvisoryActive"].boolValue
             pass.latitude = subJson["Latitude"].doubleValue
