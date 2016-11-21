@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]: 
 
+## [5.0.5] - 2016-11
+
 ## Fixed
 * Added timestamp to camera urls to prevent SDWebImage from agressively caching camera images. 
 
