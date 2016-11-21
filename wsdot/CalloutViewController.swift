@@ -26,7 +26,9 @@ class CalloutViewController: UIViewController {
     var calloutURL = ""
     
     override func viewDidAppear(animated: Bool) {
-        calloutImageView.sd_setImageWithURL(NSURL(string: calloutURL), placeholderImage: UIImage(named: "imagePlaceholder"), options: .RefreshCached)
+        // Add timestamp to help prevent caching
+        let urlString = calloutURL + "?" + String(NSDate().timeIntervalSince1970 / 60000)
+        calloutImageView.sd_setImageWithURL(NSURL(string: urlString), placeholderImage: UIImage(named: "imagePlaceholder"), options: .RefreshCached)
     }
     
     override func viewWillAppear(animated: Bool) {

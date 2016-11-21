@@ -34,7 +34,9 @@ class CameraViewController: UIViewController, GADBannerViewDelegate{
         super.viewDidLoad()
         self.navigationItem.title = cameraItem.title;
         
-        cameraImage.sd_setImageWithURL(NSURL(string: cameraItem.url), placeholderImage: UIImage(named: "imagePlaceholder"), options: .RefreshCached)
+        // Add timestamp to help prevent caching
+        let urlString = cameraItem.url + "?" + String(NSDate().timeIntervalSince1970 / 60000)
+        cameraImage.sd_setImageWithURL(NSURL(string: urlString), placeholderImage: UIImage(named: "imagePlaceholder"), options: .RefreshCached)
         
         if (cameraItem.selected){
             favoriteBarButton.image = UIImage(named: "icStarSmallFilled")
