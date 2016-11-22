@@ -125,9 +125,10 @@ class MountainPassCamerasViewController: UIViewController, UITableViewDataSource
         let cell = tableView.dequeueReusableCellWithIdentifier(camerasCellIdentifier) as! CameraImageCustomCell
         
         // Add timestamp to help prevent caching
-        let urlString = cameras[indexPath.row].url + "?" + String(NSDate().timeIntervalSince1970 / 60000)
+        let urlString = cameras[indexPath.row].url + "?" + String(Int(NSDate().timeIntervalSince1970 / 60))
         cell.CameraImage.sd_setImageWithURL(NSURL(string: urlString), placeholderImage: UIImage(named: "imagePlaceholder"), options: .RefreshCached)
-        
+               
+        print(urlString)
         return cell
     }
     

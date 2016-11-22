@@ -61,7 +61,7 @@ class CameraClusterViewController: UIViewController, UITableViewDataSource, UITa
         let cell = tableView.dequeueReusableCellWithIdentifier(camerasCellIdentifier) as! CameraImageCustomCell
         
         // Add timestamp to help prevent caching
-        let urlString = cameraItems[indexPath.row].url + "?" + String(NSDate().timeIntervalSince1970 / 60000)
+        let urlString = cameraItems[indexPath.row].url + "?" + String(Int(NSDate().timeIntervalSince1970 / 60))
         cell.CameraImage.sd_setImageWithURL(NSURL(string: urlString), placeholderImage: UIImage(named: "imagePlaceholder"), options: .RefreshCached)
         
         return cell

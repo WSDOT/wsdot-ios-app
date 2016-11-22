@@ -35,7 +35,7 @@ class CameraViewController: UIViewController, GADBannerViewDelegate{
         self.navigationItem.title = cameraItem.title;
         
         // Add timestamp to help prevent caching
-        let urlString = cameraItem.url + "?" + String(NSDate().timeIntervalSince1970 / 60000)
+        let urlString = cameraItem.url + "?" + String(Int(NSDate().timeIntervalSince1970 / 60))
         cameraImage.sd_setImageWithURL(NSURL(string: urlString), placeholderImage: UIImage(named: "imagePlaceholder"), options: .RefreshCached)
         
         if (cameraItem.selected){
