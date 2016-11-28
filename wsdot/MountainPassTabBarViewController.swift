@@ -36,7 +36,7 @@ class MountainPassTabBarViewController: UITabBarController{
             self.tabBar.items?[1].enabled = false
         }
         
-        if (passItem.cameras.count == 0){
+        if (passItem.cameraIds.count == 0){
             self.tabBar.items?[2].enabled = false
         }
         

@@ -71,7 +71,7 @@ class MountainPassCamerasViewController: UIViewController, UITableViewDataSource
                         if let selfValue = self{
                         
                             var ids = [Int]()
-                            for camera in selfValue.passItem.cameras{
+                            for camera in selfValue.passItem.cameraIds{
                                 ids.append(camera.cameraId)
                             }
                             selfValue.cameras = CamerasStore.getCamerasByID(ids)

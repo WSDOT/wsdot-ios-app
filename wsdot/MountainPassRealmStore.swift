@@ -147,31 +147,23 @@ class MountainPassStore {
             pass.restrictionTwoTravelDirection = subJson["RestrictionTwo"]["TravelDirection"].stringValue
         
             for camera in parseCameraJSON(subJson["Cameras"]){
-                pass.cameras.append(camera)
+                pass.cameraIds.append(camera)
             }
-
             for forcast in parseForecastJSON(subJson["Forecast"]){
                 pass.forecast.append(forcast)
             }
-            
             passItems.append(pass)
         }
-        
         return passItems
     }
     
-    private static func parseCameraJSON(json: JSON) -> List<CameraItem> {
-        let cameras = List<CameraItem>()
+    private static func parseCameraJSON(json: JSON) -> List<PassCameraIDItem> {
+        let cameras = List<PassCameraIDItem>()
         for(_,cameraJSON):(String, JSON) in json {
-            let camera = CameraItem()
+            let camera = PassCameraIDItem()
             camera.cameraId = cameraJSON["id"].intValue
-            camera.latitude = cameraJSON["lat"].doubleValue
-            camera.longitude = cameraJSON["lon"].doubleValue
-            camera.url = cameraJSON["url"].stringValue
-            camera.title = cameraJSON["title"].stringValue
             cameras.append(camera)
         }
-        
         return cameras
     }
     

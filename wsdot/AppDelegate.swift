@@ -21,6 +21,9 @@
 import UIKit
 import Firebase
 import GoogleMaps
+import RealmSwift
+import Realm
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -29,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        migrateRealm()
         CachesStore.initCacheItem()
         
         GMSServices.provideAPIKey(ApiKeys.google_key)
@@ -71,5 +75,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CamerasStore.flushOldData()
         TravelTimesStore.flushOldData()
         HighwayAlertsStore.flushOldData()
+    }
+    
+    func migrateRealm(){
+        Realm.Configuration.defaultConfiguration = Realm.Configuration(
+            schemaVersion: 1,
+            migrationBlock: { migration, oldSchemaVersion in
+                if (oldSchemaVersion < 1) {
+                
+                    let newPassCameraId = migration.create(PassCameraIDItem.className())
+                
+                    // The enumerateObjects(ofType:_:) method iterates
+                    // over every MountainPassItem object stored in the Realm file
+                    migration.enumerate(MountainPassItem.className()) { oldObject, newObject in
+                        // pull the camera ids from the old field and place it into the new
+                        let oldCameras = oldObject!["cameras"] as! List<DynamicObject>
+                        let passCameraIds = newObject!["cameraIds"] as! List<DynamicObject>
+                        for camera in oldCameras {
+                            newPassCameraId["cameraId"] = camera["cameraId"] as! Int
+                            passCameraIds.append(newPassCameraId)
+                        }
+                    }
+                }
+        })
     }
 }
