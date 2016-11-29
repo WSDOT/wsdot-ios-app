@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A0360481DECBC6100B88466 /* PassCameraIDItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0360471DECBC6100B88466 /* PassCameraIDItem.swift */; };
 		9A06167A1D62285A00126520 /* VesselWatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616791D62285A00126520 /* VesselWatchViewController.swift */; };
 		9A06167C1D622AE800126520 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A06167B1D622AE800126520 /* MapViewController.swift */; };
 		9A06167F1D62602500126520 /* MapMarkerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A06167E1D62602500126520 /* MapMarkerDelegate.swift */; };
@@ -194,6 +195,7 @@
 		3F733049676C72FA80F317B5 /* Pods-WSDOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.debug.xcconfig"; sourceTree = "<group>"; };
 		65D6D46116E71C14DDDD1497 /* Pods-WSDOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.release.xcconfig"; sourceTree = "<group>"; };
 		690E6882E64B87BDA185B4DC /* Pods_WSDOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WSDOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A0360471DECBC6100B88466 /* PassCameraIDItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassCameraIDItem.swift; sourceTree = "<group>"; };
 		9A0616791D62285A00126520 /* VesselWatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VesselWatchViewController.swift; sourceTree = "<group>"; };
 		9A06167B1D622AE800126520 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		9A06167E1D62602500126520 /* MapMarkerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapMarkerDelegate.swift; sourceTree = "<group>"; };
@@ -872,6 +874,7 @@
 				9A6FBD381D6E4A4700CDCE16 /* ForcastItem.swift */,
 				9A6FBD341D6E3EAE00CDCE16 /* MountainPassRealmStore.swift */,
 				9AEEDDA51D6F3EC50032F5EC /* WeatherUtils.swift */,
+				9A0360471DECBC6100B88466 /* PassCameraIDItem.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1014,8 +1017,8 @@
 				9A6FBD2A1D6E3E5800CDCE16 /* MountainPasses */,
 				9A6FBCC61D6B517400CDCE16 /* RestAreas */,
 				9AEEDDB91D74B0330032F5EC /* SocialMedia */,
-				9A0616C31D66018100126520 /* TollRates */,
 				9A0616DD1D676F5500126520 /* TrafficMap */,
+				9A0616C31D66018100126520 /* TollRates */,
 				9A6FBD101D6CEE0400CDCE16 /* TravelTimeDetails */,
 				9ADEAE4B1D270CBB00BA7DD4 /* Helpers */,
 				9AD32E1F1D231749000AEC28 /* Models */,
@@ -1374,7 +1377,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = WSDOT;
 				TargetAttributes = {
 					9AD32DF81D23172C000AEC28 = {
@@ -1681,6 +1684,7 @@
 				9A6FBD1F1D6DF91300CDCE16 /* BorderWaitItem.swift in Sources */,
 				9A6FBD391D6E4A4700CDCE16 /* ForcastItem.swift in Sources */,
 				9A8486F41D81B2510026F1CF /* AmtrakCascadesSelectionViewController.swift in Sources */,
+				9A0360481DECBC6100B88466 /* PassCameraIDItem.swift in Sources */,
 				9AEF4D9E1D773040003ECA34 /* NewsViewController.swift in Sources */,
 				9A0719351D4274B8007BB4C5 /* LinkCell.swift in Sources */,
 				9A0616D71D664D2300126520 /* FourColTableViewCell.swift in Sources */,
