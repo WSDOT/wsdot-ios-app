@@ -457,9 +457,9 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
             marker.snippet = "restarea"
           
             if (restarea.hasDump){
-                marker.icon = restAreaIconImage
-            }else{
                 marker.icon = restAreaDumpIconImage
+            }else{
+                marker.icon = restAreaIconImage
             }
             
             marker.userData = restarea
