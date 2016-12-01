@@ -4,9 +4,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]: 
 
+## [5.0.6] - 2016-12
+
+## Changed
 * Migrated Realm DB to version 1. Changed pass items to only hold a list of camera IDs and not cameraItems so as to keep from overwriting data pulled in from the CamerasStore.
 
-## [5.0.5] - 2016-11
+## Fixed
+* Pass cameras will now save to favorites and plot correctly because of the above change.
+* Pass report text cut issue fixed.
+* Rest areas now show correct icon.
+
+## [5.0.5] - 2016-11-28
 
 ## Fixed
 * Added timestamp to camera urls to prevent SDWebImage from agressively caching camera images. 
