@@ -60,13 +60,13 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
         title = "WSDOT on Twitter"
         
         accountButton.layer.cornerRadius = 8.0
-        accountButton.setTitle("All Accounts", forState: .Normal)
+        accountButton.setTitle("All Accounts", for: UIControlState())
         accountButton.accessibilityHint = "double tap to change account"
         
         tableView.rowHeight = UITableViewAutomaticDimension
         
         // refresh controller
-        refreshControl.addTarget(self, action: #selector(TwitterViewController.refreshAction(_:)), forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(TwitterViewController.refreshAction(_:)), for: .valueChanged)
         
         tableView.addSubview(refreshControl)
         
@@ -75,24 +75,24 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
         refresh(accountData[self.currentAccountIndex].screenName)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Social Media/Twitter")
     }
     
-    func refreshAction(sender: UIRefreshControl){
+    func refreshAction(_ sender: UIRefreshControl){
         refresh(accountData[self.currentAccountIndex].screenName)
     }
     
-    func refresh(account: String?) {
+    func refresh(_ account: String?) {
         
         tweets.removeAll()
         tableView.reloadData()
         
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) { [weak self] in
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async { [weak self] in
             TwitterStore.getTweets(account, completion: { data, error in
                 if let validData = data {
-                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                    DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
                             selfValue.tweets = validData
                             selfValue.tableView.reloadData()
@@ -101,11 +101,11 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
                         }
                     }
                 } else {
-                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                    DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
                             selfValue.refreshControl.endRefreshing()
                             selfValue.hideOverlayView()
-                            selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                         }
                     }
                 }
@@ -113,15 +113,15 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
         }
     }
     
-    func showOverlay(view: UIView) {
-        activityIndicator.frame = CGRectMake(0, 0, 40, 40)
-        activityIndicator.activityIndicatorViewStyle = .WhiteLarge
-        activityIndicator.color = UIColor.grayColor()
+    func showOverlay(_ view: UIView) {
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.color = UIColor.gray
         
-        if self.splitViewController!.collapsed {
-            activityIndicator.center = CGPointMake(view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
+        if self.splitViewController!.isCollapsed {
+            activityIndicator.center = CGPoint(x: view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
         } else {
-            activityIndicator.center = CGPointMake(view.center.x - self.splitViewController!.viewControllers[0].view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
+            activityIndicator.center = CGPoint(x: view.center.x - self.splitViewController!.viewControllers[0].view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
         }
         
         view.addSubview(activityIndicator)
@@ -134,34 +134,34 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
         activityIndicator.removeFromSuperview()
     }
     
-    @IBAction func selectAccountAction(sender: UIButton) {
-        performSegueWithIdentifier(segueTwitterAccountSelectionViewController, sender: self)
+    @IBAction func selectAccountAction(_ sender: UIButton) {
+        performSegue(withIdentifier: segueTwitterAccountSelectionViewController, sender: self)
     }
     
-    func accountSelected(index: Int){
+    func accountSelected(_ index: Int){
         currentAccountIndex = index
-        accountButton.setTitle(accountData[currentAccountIndex].name, forState: .Normal)
+        accountButton.setTitle(accountData[currentAccountIndex].name, for: UIControlState())
         showOverlay(self.view)
         refresh(accountData[self.currentAccountIndex].screenName)
     }
     
     
     // MARK: Table View Data Source Methods
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tweets.count
         
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! TwitterCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! TwitterCell
         
         let tweet = tweets[indexPath.row]
         
@@ -170,7 +170,7 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
         let htmlString = htmlStyleString + tweet.text
         
         let attrStr = try! NSMutableAttributedString(
-            data: htmlString.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: false)!,
+            data: htmlString.data(using: String.Encoding.unicode, allowLossyConversion: false)!,
             options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
             documentAttributes: nil)
         
@@ -184,43 +184,43 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
         }
         
         if let mediaUrl = tweet.mediaUrl {
-            cell.mediaImageView.sd_setImageWithURL(NSURL(string: mediaUrl), placeholderImage: UIImage(named: "imagePlaceholder"), options: .RefreshCached)
+            cell.mediaImageView.sd_setImage(with: URL(string: mediaUrl), placeholderImage: UIImage(named: "imagePlaceholder"), options: .refreshCached)
             cell.mediaImageView.layer.cornerRadius = 8.0
         }else{
-            cell.mediaImageView.sd_setImageWithURL(nil)
+            cell.mediaImageView.sd_setImage(with: nil)
         }
         
         return cell
     }
     
     // MARK: Table View Delegate Methods
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        UIApplication.sharedApplication().openURL(NSURL(string: tweets[indexPath.row].link)!)
+    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        UIApplication.shared.openURL(URL(string: tweets[indexPath.row].link)!)
     }
     
     // MARK: Naviagtion
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == segueTwitterAccountSelectionViewController {
-            let destinationViewController = segue.destinationViewController as! TwitterAccountSelectionViewController
+            let destinationViewController = segue.destination as! TwitterAccountSelectionViewController
             destinationViewController.parent = self
             destinationViewController.selectedIndex = currentAccountIndex
         }
     }
     
     // MARK: INDLinkLabelDelegate
-    func linkLabel(label: INDLinkLabel, didLongPressLinkWithURL URL: NSURL) {
-        dispatch_async(dispatch_get_main_queue()) { [weak self] in
+    func linkLabel(_ label: INDLinkLabel, didLongPressLinkWithURL URL: Foundation.URL) {
+        DispatchQueue.main.async { [weak self] in
             let activityController = UIActivityViewController(activityItems: [URL], applicationActivities: nil)
             if let selfValue = self{
-                selfValue.presentViewController(activityController, animated: true, completion: nil)
+                selfValue.present(activityController, animated: true, completion: nil)
             }
         }
     }
     
-    func linkLabel(label: INDLinkLabel, didTapLinkWithURL URL: NSURL) {
-        dispatch_async(dispatch_get_main_queue()) {
-                UIApplication.sharedApplication().openURL(URL)
+    func linkLabel(_ label: INDLinkLabel, didTapLinkWithURL URL: Foundation.URL) {
+        DispatchQueue.main.async {
+                UIApplication.shared.openURL(URL)
         }
     }
 }

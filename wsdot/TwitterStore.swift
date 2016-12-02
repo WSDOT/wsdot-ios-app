@@ -24,9 +24,9 @@ import SwiftyJSON
 
 class TwitterStore {
 
-    typealias FetchTweetsCompletion = (data: [TwitterItem]?, error: NSError?) -> ()
+    typealias FetchTweetsCompletion = (_ data: [TwitterItem]?, _ error: NSError?) -> ()
     
-    static func getTweets(screenName: String?, completion: FetchTweetsCompletion) {
+    static func getTweets(_ screenName: String?, completion: @escaping FetchTweetsCompletion) {
         
         var url = "http://www.wsdot.wa.gov/news/socialroom/posts/twitter/"
         
@@ -49,7 +49,7 @@ class TwitterStore {
         }
     }
     
-    private static func parsePostsJSON(json: JSON) ->[TwitterItem]{
+    fileprivate static func parsePostsJSON(_ json: JSON) ->[TwitterItem]{
         
         var tweets = [TwitterItem]()
         

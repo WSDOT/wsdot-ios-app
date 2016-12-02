@@ -38,26 +38,26 @@ class FacebookViewController: UIViewController, UITabBarDelegate, UITableViewDat
         tableView.rowHeight = UITableViewAutomaticDimension
         
         // refresh controller
-        refreshControl.addTarget(self, action: #selector(FacebookViewController.refreshAction(_:)), forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(FacebookViewController.refreshAction(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
         showOverlay(self.view)
         refresh()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Social Media/Facebook")
     }
     
-    func refreshAction(sender: UIRefreshControl){
+    func refreshAction(_ sender: UIRefreshControl){
         refresh()
     }
     
     func refresh() {
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) { [weak self] in
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async { [weak self] in
             FacebookStore.getPosts({ data, error in
                 if let validData = data {
-                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                    DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
                             selfValue.posts = validData
                             selfValue.tableView.reloadData()
@@ -66,11 +66,11 @@ class FacebookViewController: UIViewController, UITabBarDelegate, UITableViewDat
                         }
                     }
                 } else {
-                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                    DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
                             selfValue.refreshControl.endRefreshing()
                             selfValue.hideOverlayView()
-                            selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                             
                         }
                     }
@@ -79,15 +79,15 @@ class FacebookViewController: UIViewController, UITabBarDelegate, UITableViewDat
         }
     }
     
-    func showOverlay(view: UIView) {
-        activityIndicator.frame = CGRectMake(0, 0, 40, 40)
-        activityIndicator.activityIndicatorViewStyle = .WhiteLarge
-        activityIndicator.color = UIColor.grayColor()
+    func showOverlay(_ view: UIView) {
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.color = UIColor.gray
         
-        if self.splitViewController!.collapsed {
-            activityIndicator.center = CGPointMake(view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
+        if self.splitViewController!.isCollapsed {
+            activityIndicator.center = CGPoint(x: view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
         } else {
-            activityIndicator.center = CGPointMake(view.center.x - self.splitViewController!.viewControllers[0].view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
+            activityIndicator.center = CGPoint(x: view.center.x - self.splitViewController!.viewControllers[0].view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
         }
         
         view.addSubview(activityIndicator)
@@ -101,20 +101,20 @@ class FacebookViewController: UIViewController, UITabBarDelegate, UITableViewDat
     }
     
     // MARK: Table View Data Source Methods
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! FacebookCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! FacebookCell
         
         let post = posts[indexPath.row]
         
@@ -123,7 +123,7 @@ class FacebookViewController: UIViewController, UITabBarDelegate, UITableViewDat
         let htmlString = htmlStyleString + post.message
         
         let attrStr = try! NSMutableAttributedString(
-            data: htmlString.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: false)!,
+            data: htmlString.data(using: String.Encoding.unicode, allowLossyConversion: false)!,
             options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
             documentAttributes: nil)
         
@@ -134,18 +134,18 @@ class FacebookViewController: UIViewController, UITabBarDelegate, UITableViewDat
     }
     
     // MARK: Table View Delegate Methods
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        UIApplication.sharedApplication().openURL(NSURL(string: "https://facebook.com/" + posts[indexPath.row].id)!)
+    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        UIApplication.shared.openURL(URL(string: "https://facebook.com/" + posts[indexPath.row].id)!)
     }
     
     // MARK: INDLinkLabelDelegate
-    func linkLabel(label: INDLinkLabel, didLongPressLinkWithURL URL: NSURL) {
+    func linkLabel(_ label: INDLinkLabel, didLongPressLinkWithURL URL: Foundation.URL) {
         let activityController = UIActivityViewController(activityItems: [URL], applicationActivities: nil)
-        self.presentViewController(activityController, animated: true, completion: nil)
+        self.present(activityController, animated: true, completion: nil)
     }
     
-    func linkLabel(label: INDLinkLabel, didTapLinkWithURL URL: NSURL) {
-        UIApplication.sharedApplication().openURL(URL)
+    func linkLabel(_ label: INDLinkLabel, didTapLinkWithURL URL: Foundation.URL) {
+        UIApplication.shared.openURL(URL)
     }
 }

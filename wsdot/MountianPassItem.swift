@@ -31,7 +31,7 @@ class MountainPassItem: Object {
     dynamic var latitude: Double = 0.0
     dynamic var longitude: Double = 0.0
     dynamic var roadCondition: String = ""
-    dynamic var dateUpdated: NSDate = NSDate(timeIntervalSince1970: 0)
+    dynamic var dateUpdated: Date = Date(timeIntervalSince1970: 0)
     dynamic var restrictionOneText: String = ""
     dynamic var restrictionOneTravelDirection: String = ""
     dynamic var restrictionTwoText: String = ""

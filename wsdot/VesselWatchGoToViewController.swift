@@ -41,26 +41,26 @@ class VesselWatchGoToViewController: UIViewController, UITableViewDataSource, UI
                         "Seattle / Bainbridge"]
     }
 
-    @IBAction func closeAction(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: {()->Void in});
+    @IBAction func closeAction(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: {()->Void in});
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Ferries/VesselWatch/GoTo Location")
     }
     
     // MARK: Table View Data Source Methods
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menu_options.count
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
         // Configure Cell
         cell.textLabel?.text = menu_options[indexPath.row]
@@ -69,8 +69,8 @@ class VesselWatchGoToViewController: UIViewController, UITableViewDataSource, UI
     }
     
     // MARK: Table View Delegate Methods
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.dismissViewControllerAnimated(true, completion: {()->Void in});
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.dismiss(animated: true, completion: {()->Void in});
         GoogleAnalytics.screenView("/Ferries/VesselWatch/GoTo Location/" + menu_options[indexPath.row])
         parent?.goTo(indexPath.row)
     }

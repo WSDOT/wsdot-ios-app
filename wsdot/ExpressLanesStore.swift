@@ -24,9 +24,9 @@ import Alamofire
 
 class ExpressLanesStore {
 
-    typealias FetchExpressLanesCompletion = (data: [ExpressLaneItem]?, error: NSError?) -> ()
+    typealias FetchExpressLanesCompletion = (_ data: [ExpressLaneItem]?, _ error: NSError?) -> ()
     
-    static func getExpressLanes(completion: FetchExpressLanesCompletion) {
+    static func getExpressLanes(_ completion: @escaping FetchExpressLanesCompletion) {
         
         Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/ExpressLanes.js").validate().responseJSON { response in
             switch response.result {
@@ -44,7 +44,7 @@ class ExpressLanesStore {
     }
     
     //Converts JSON from api into and array of FerriesRouteScheduleItems
-    private static func parseExpressLanesJSON(json: JSON) ->[ExpressLaneItem]{
+    fileprivate static func parseExpressLanesJSON(_ json: JSON) ->[ExpressLaneItem]{
         
         var expressLanes = [ExpressLaneItem]()
         

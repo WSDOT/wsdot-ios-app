@@ -23,9 +23,9 @@ import SwiftyJSON
 
 class FlickrStore {
     
-    typealias FetchFlickrPostsCompletion = (data: [FlickrItem]?, error: NSError?) -> ()
+    typealias FetchFlickrPostsCompletion = (_ data: [FlickrItem]?, _ error: NSError?) -> ()
     
-    static func getPosts(completion: FetchFlickrPostsCompletion) {
+    static func getPosts(_ completion: @escaping FetchFlickrPostsCompletion) {
         
         Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/FlickrPhotos.js").validate().responseString  { response in
             switch response.result {
@@ -45,7 +45,7 @@ class FlickrStore {
         }
     }
     
-    private static func parsePostsJSON(json: JSON) ->[FlickrItem]{
+    fileprivate static func parsePostsJSON(_ json: JSON) ->[FlickrItem]{
         
         var posts = [FlickrItem]()
         

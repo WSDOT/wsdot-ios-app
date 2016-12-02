@@ -36,7 +36,7 @@ class MountainPassesViewController: UIViewController, UITableViewDelegate, UITab
         super.viewDidLoad()
     
         // refresh controller
-        refreshControl.addTarget(self, action: #selector(MountainPassesViewController.refreshAction(_:)), forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(MountainPassesViewController.refreshAction(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
         
         showOverlay(self.view)
@@ -49,17 +49,17 @@ class MountainPassesViewController: UIViewController, UITableViewDelegate, UITab
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Mountain Passes")
     }
     
-    func refresh(force: Bool){
-      dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak self] in
+    func refresh(_ force: Bool){
+      DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { [weak self] in
             MountainPassStore.updatePasses(force, completion: { error in
                 if (error == nil) {
                     // Reload tableview on UI thread
-                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                    DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
                             selfValue.passItems = MountainPassStore.getPasses()
                             selfValue.tableView.reloadData()
@@ -69,11 +69,11 @@ class MountainPassesViewController: UIViewController, UITableViewDelegate, UITab
                         }
                     }
                 } else {
-                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                    DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
                             selfValue.refreshControl.endRefreshing()
                             selfValue.hideOverlayView()
-                            selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                         }
                     }
                 }
@@ -81,19 +81,19 @@ class MountainPassesViewController: UIViewController, UITableViewDelegate, UITab
         }
     }
     
-    func refreshAction(sender: UIRefreshControl) {
+    func refreshAction(_ sender: UIRefreshControl) {
         refresh(true)
     }
 
-    func showOverlay(view: UIView) {
-        activityIndicator.frame = CGRectMake(0, 0, 40, 40)
-        activityIndicator.activityIndicatorViewStyle = .WhiteLarge
-        activityIndicator.color = UIColor.grayColor()
+    func showOverlay(_ view: UIView) {
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.color = UIColor.gray
         
-        if self.splitViewController!.collapsed {
-            activityIndicator.center = CGPointMake(view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
+        if self.splitViewController!.isCollapsed {
+            activityIndicator.center = CGPoint(x: view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
         } else {
-            activityIndicator.center = CGPointMake(view.center.x - self.splitViewController!.viewControllers[0].view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
+            activityIndicator.center = CGPoint(x: view.center.x - self.splitViewController!.viewControllers[0].view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
         }
         
         view.addSubview(activityIndicator)
@@ -107,16 +107,16 @@ class MountainPassesViewController: UIViewController, UITableViewDelegate, UITab
     }
 
     // MARK: Table View Data Source Methods
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return passItems.count
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! MountainPassCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! MountainPassCell
         
         let passItem = passItems[indexPath.row]
         
@@ -130,7 +130,7 @@ class MountainPassesViewController: UIViewController, UITableViewDelegate, UITab
             cell.weatherImage.image = nil
         }
         
-        if passItem.dateUpdated == NSDate.init(timeIntervalSince1970: 0){
+        if passItem.dateUpdated as Date == Date.init(timeIntervalSince1970: 0){
             cell.updatedLabel.text = "Not Available"
         }else {
             cell.updatedLabel.text = TimeUtils.timeAgoSinceDate(passItem.dateUpdated, numericDates: true)
@@ -139,22 +139,22 @@ class MountainPassesViewController: UIViewController, UITableViewDelegate, UITab
         return cell
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
     // MARK: Table View Delegate Methods
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Perform Segue
-        performSegueWithIdentifier(segueMountainPassDetailsViewController, sender: self)
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        performSegue(withIdentifier: segueMountainPassDetailsViewController, sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == segueMountainPassDetailsViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let passItem = self.passItems[indexPath.row] as MountainPassItem
-                let destinationViewController = segue.destinationViewController as! MountainPassTabBarViewController
+                let destinationViewController = segue.destination as! MountainPassTabBarViewController
                 destinationViewController.passItem = passItem
                 let backItem = UIBarButtonItem()
                 backItem.title = "Back"

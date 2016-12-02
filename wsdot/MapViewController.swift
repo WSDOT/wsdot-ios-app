@@ -50,8 +50,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
         mapDelegate = nil
     }
     
-    func addClusterableMarker(item: CameraClusterItem){
-        clusterManager.addItem(item)
+    func addClusterableMarker(_ item: CameraClusterItem){
+        clusterManager.add(item)
     }
     
     func removeClusterItems(){
@@ -66,9 +66,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
         super.loadView()
         locationManager.delegate = self
         
-        var lat = NSUserDefaults.standardUserDefaults().doubleForKey(UserDefaultsKeys.mapLat)
-        var lon = NSUserDefaults.standardUserDefaults().doubleForKey(UserDefaultsKeys.mapLon)
-        var zoom = NSUserDefaults.standardUserDefaults().floatForKey(UserDefaultsKeys.mapZoom)
+        var lat = UserDefaults.standard.double(forKey: UserDefaultsKeys.mapLat)
+        var lon = UserDefaults.standard.double(forKey: UserDefaultsKeys.mapLon)
+        var zoom = UserDefaults.standard.float(forKey: UserDefaultsKeys.mapZoom)
         
         if lat == 0 {
             lat = 47.5990
@@ -80,9 +80,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
             zoom = 12
         }
         
-        let mapView = GMSMapView.mapWithFrame(CGRect.zero, camera: GMSCameraPosition.cameraWithLatitude(lat, longitude: lon, zoom: zoom))
+        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: GMSCameraPosition.camera(withLatitude: lat, longitude: lon, zoom: zoom))
         
-        mapView.trafficEnabled = true
+        mapView.isTrafficEnabled = true
         
         mapView.delegate = mapDelegate
         
@@ -103,12 +103,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
         }
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if let mapView = view as? GMSMapView{
-            NSUserDefaults.standardUserDefaults().setObject(mapView.camera.target.latitude, forKey: UserDefaultsKeys.mapLat)
-            NSUserDefaults.standardUserDefaults().setObject(mapView.camera.target.longitude, forKey: UserDefaultsKeys.mapLon)
-            NSUserDefaults.standardUserDefaults().setObject(mapView.camera.zoom, forKey: UserDefaultsKeys.mapZoom)
+            UserDefaults.standard.set(mapView.camera.target.latitude, forKey: UserDefaultsKeys.mapLat)
+            UserDefaults.standard.set(mapView.camera.target.longitude, forKey: UserDefaultsKeys.mapLon)
+            UserDefaults.standard.set(mapView.camera.zoom, forKey: UserDefaultsKeys.mapZoom)
         }
     }
     
@@ -116,21 +116,21 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
         super.viewDidLoad()
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         locationManager.stopUpdatingLocation()
     }
     
     func goToUsersLocation(){
         if let mapView = view as? GMSMapView{
-            if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse{
+            if CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
                 if let location = locationManager.location?.coordinate {
-                    mapView.animateToLocation(location)
+                    mapView.animate(toLocation: location)
                 }
             } else if !CLLocationManager.locationServicesEnabled() {
-                self.presentViewController(AlertMessages.getAlert("Location Services Are Disabled", message: "You can enable location services from Settings."), animated: true, completion: nil)
-            } else if CLLocationManager.authorizationStatus() == .Denied {
-                self.presentViewController(AlertMessages.getAlert("\"WSDOT\" Doesn't Have Permission To Use Your Location", message: "You can enable location services for this app in Settings"), animated: true, completion: nil)
+                self.present(AlertMessages.getAlert("Location Services Are Disabled", message: "You can enable location services from Settings."), animated: true, completion: nil)
+            } else if CLLocationManager.authorizationStatus() == .denied {
+                self.present(AlertMessages.getAlert("\"WSDOT\" Doesn't Have Permission To Use Your Location", message: "You can enable location services for this app in Settings"), animated: true, completion: nil)
             } else {
                 self.locationManager.requestWhenInUseAuthorization()
             }
@@ -138,33 +138,33 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
     }
     
     // CLLocationManagerDelegate methods
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if let mapView = view as? GMSMapView{
-            if status == .AuthorizedWhenInUse {
+            if status == .authorizedWhenInUse {
                 manager.startUpdatingLocation()
-                mapView.myLocationEnabled = true
+                mapView.isMyLocationEnabled = true
             }else{
-                mapView.myLocationEnabled = false
+                mapView.isMyLocationEnabled = false
             }
         }
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 
-        let hasSeenWarning = NSUserDefaults.standardUserDefaults().boolForKey(UserDefaultsKeys.hasSeenWarning)
+        let hasSeenWarning = UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasSeenWarning)
         
         if (!hasSeenWarning){
             if let location = manager.location {
                 if location.speed > 11 {
-                    NSUserDefaults.standardUserDefaults().setObject(true, forKey: UserDefaultsKeys.hasSeenWarning)
-                    parentViewController!.presentViewController(AlertMessages.getAlert("You're moving too fast.", message: "Please don't use the app while driving."), animated: true, completion: { })
+                    UserDefaults.standard.set(true, forKey: UserDefaultsKeys.hasSeenWarning)
+                    parent!.present(AlertMessages.getAlert("You're moving too fast.", message: "Please don't use the app while driving."), animated: true, completion: { })
                 }
             }
         }
     }
     
     // GMUClusterRendererDelegate
-    func renderer(renderer: GMUClusterRenderer, willRenderMarker marker: GMSMarker) {
+    func renderer(_ renderer: GMUClusterRenderer, willRenderMarker marker: GMSMarker) {
         if let cluster = marker.userData as? GMUCluster {
             if let mapView = view as? GMSMapView{
                 if mapView.camera.zoom > Utils.maxClusterOpenZoom {
@@ -179,7 +179,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
         }
     }
     
-    func getClusterImage(clusterCount: UInt) -> UIImage {
+    func getClusterImage(_ clusterCount: UInt) -> UIImage {
         if clusterCount > 1000 {
             return Utils.textToImage("1000+", inImage: clusterIcons[4]!, fontSize: 13.0)
         } else if clusterCount > 200 {

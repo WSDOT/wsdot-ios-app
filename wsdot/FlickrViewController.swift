@@ -37,26 +37,26 @@ class FlickrViewController: UIViewController, UICollectionViewDataSource, UIColl
         title = "WSDOT on Flickr"
            
         // refresh controller
-        refreshControl.addTarget(self, action: #selector(FacebookViewController.refreshAction(_:)), forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(FacebookViewController.refreshAction(_:)), for: .valueChanged)
         collectionView.addSubview(refreshControl)
         showOverlay(self.view)
         refresh()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Social Media/Flickr")
     }
     
-    func refreshAction(sender: UIRefreshControl){
+    func refreshAction(_ sender: UIRefreshControl){
         refresh()
     }
     
     func refresh() {
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) { [weak self] in
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async { [weak self] in
             FlickrStore.getPosts({ data, error in
                 if let validData = data {
-                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                    DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
                             selfValue.photos = validData
                             selfValue.collectionView.reloadData()
@@ -65,11 +65,11 @@ class FlickrViewController: UIViewController, UICollectionViewDataSource, UIColl
                         }
                     }
                 } else {
-                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                    DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
                             selfValue.hideOverlayView()
                             selfValue.refreshControl.endRefreshing()
-                            selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                             
                         }
                     }
@@ -78,15 +78,15 @@ class FlickrViewController: UIViewController, UICollectionViewDataSource, UIColl
         }
     }
     
-    func showOverlay(view: UIView) {
-        activityIndicator.frame = CGRectMake(0, 0, 40, 40)
-        activityIndicator.activityIndicatorViewStyle = .WhiteLarge
-        activityIndicator.color = UIColor.grayColor()
+    func showOverlay(_ view: UIView) {
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.color = UIColor.gray
         
-        if self.splitViewController!.collapsed {
-            activityIndicator.center = CGPointMake(view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
+        if self.splitViewController!.isCollapsed {
+            activityIndicator.center = CGPoint(x: view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
         } else {
-            activityIndicator.center = CGPointMake(view.center.x - self.splitViewController!.viewControllers[0].view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
+            activityIndicator.center = CGPoint(x: view.center.x - self.splitViewController!.viewControllers[0].view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
         }
         
         view.addSubview(activityIndicator)
@@ -101,9 +101,9 @@ class FlickrViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     // MARK: - UICollectionViewDataSource protocol
     
-    func collectionView(collectionView: UICollectionView,
+    func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
-                               sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+                               sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         
         let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
         let totalSpace = flowLayout.sectionInset.left
@@ -114,18 +114,18 @@ class FlickrViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     // tell the collection view how many cells to make
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photos.count
     }
     
     // make a cell for each cell index path
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         // get a reference to our storyboard cell
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! FlickrCollectionCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FlickrCollectionCell
         let post = photos[indexPath.row]
         
-        cell.postImage.sd_setImageWithURL(NSURL(string: post.mediaLink), placeholderImage: UIImage(named: "imagePlaceholder"), options: .RefreshCached)
+        cell.postImage.sd_setImage(with: URL(string: post.mediaLink), placeholderImage: UIImage(named: "imagePlaceholder"), options: .refreshCached)
         
         cell.imageTitle.text = post.title
 
@@ -134,9 +134,9 @@ class FlickrViewController: UIViewController, UICollectionViewDataSource, UIColl
 
     // MARK: - UICollectionViewDelegate protocol
 
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        UIApplication.sharedApplication().openURL(NSURL(string: photos[indexPath.row].link)!)
+        UIApplication.shared.openURL(URL(string: photos[indexPath.row].link)!)
         
         print("You selected cell #\(indexPath.item)!")
     }

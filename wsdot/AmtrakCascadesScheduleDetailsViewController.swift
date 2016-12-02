@@ -26,7 +26,7 @@ class AmtrakCascadesScheduleDetailsViewController: UIViewController, UITabBarDel
     
     @IBOutlet weak var tableView: UITableView!
     
-    var date = NSDate()
+    var date = Date()
     var originId = ""
     var destId = ""
     
@@ -40,7 +40,7 @@ class AmtrakCascadesScheduleDetailsViewController: UIViewController, UITabBarDel
         super.viewDidLoad()
         
         // refresh controller
-        refreshControl.addTarget(self, action: #selector(AmtrakCascadesScheduleDetailsViewController.refreshAction(_:)), forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(AmtrakCascadesScheduleDetailsViewController.refreshAction(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
      
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -50,12 +50,12 @@ class AmtrakCascadesScheduleDetailsViewController: UIViewController, UITabBarDel
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Amtrak Cascades/Schedules/Details")
     }
     
-    func refreshAction(sender: UIRefreshControl){
+    func refreshAction(_ sender: UIRefreshControl){
         refresh()
     }
     
@@ -64,10 +64,10 @@ class AmtrakCascadesScheduleDetailsViewController: UIViewController, UITabBarDel
         let origin = self.originId
         let dest = self.destId
         
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) { [weak self] in
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async { [weak self] in
             AmtrakCascadesStore.getSchedule(date, originId: origin, destId: dest, completion: { data, error in
                 if let validData = data {
-                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                    DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
                             selfValue.tripItems = validData
                             selfValue.tableView.reloadData()
@@ -77,11 +77,11 @@ class AmtrakCascadesScheduleDetailsViewController: UIViewController, UITabBarDel
                         }
                     }
                 } else {
-                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                    DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
                             selfValue.refreshControl.endRefreshing()
                             selfValue.hideOverlayView()
-                            selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                             
                         }
                     }
@@ -90,15 +90,15 @@ class AmtrakCascadesScheduleDetailsViewController: UIViewController, UITabBarDel
         }
     }
     
-    func showOverlay(view: UIView) {
-        activityIndicator.frame = CGRectMake(0, 0, 40, 40)
-        activityIndicator.activityIndicatorViewStyle = .WhiteLarge
-        activityIndicator.color = UIColor.grayColor()
+    func showOverlay(_ view: UIView) {
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.color = UIColor.gray
         
-        if self.splitViewController!.collapsed {
-            activityIndicator.center = CGPointMake(view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
+        if self.splitViewController!.isCollapsed {
+            activityIndicator.center = CGPoint(x: view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
         } else {
-            activityIndicator.center = CGPointMake(view.center.x - self.splitViewController!.viewControllers[0].view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
+            activityIndicator.center = CGPoint(x: view.center.x - self.splitViewController!.viewControllers[0].view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
         }
         
         view.addSubview(activityIndicator)
@@ -113,24 +113,24 @@ class AmtrakCascadesScheduleDetailsViewController: UIViewController, UITabBarDel
     
     
     // MARK: Table View Data Source Methods
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    func tableView( tableView : UITableView,  titleForHeaderInSection section: Int)->String? {
+    func tableView( _ tableView : UITableView,  titleForHeaderInSection section: Int)->String? {
         return "Trip " + String(section+1)
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return tripItems.count
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tripItems[section].count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! AmtrakCascadesDetailsCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! AmtrakCascadesDetailsCell
         
         let originService = tripItems[indexPath.section][indexPath.row].0
 

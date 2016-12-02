@@ -40,28 +40,28 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
         tableView.rowHeight = UITableViewAutomaticDimension
         
         // refresh controller
-        refreshControl.addTarget(self, action: #selector(RouteCamerasViewController.refreshAction(_:)), forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(RouteCamerasViewController.refreshAction(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
         
-        self.tableView.contentOffset = CGPointMake(0, -self.refreshControl.frame.size.height)
+        self.tableView.contentOffset = CGPoint(x: 0, y: -self.refreshControl.frame.size.height)
         refresh(false)
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Ferries/Schedules/Sailings/Cameras")
     }
     
-    func refreshAction(refreshControl: UIRefreshControl) {
+    func refreshAction(_ refreshControl: UIRefreshControl) {
         refresh(true)
     }
     
-    func refresh(force: Bool) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {[weak self] in
+    func refresh(_ force: Bool) {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {[weak self] in
             CamerasStore.updateCameras(force, completion: { error in
                 if (error == nil){
-                    dispatch_async(dispatch_get_main_queue()) {[weak self] in
+                    DispatchQueue.main.async {[weak self] in
                         if let selfValue = self{
                             selfValue.cameras = selfValue.filterCameras(CamerasStore.getCamerasByRoadName("Ferries"))
                             selfValue.tableView.reloadData()
@@ -69,10 +69,10 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
                         }
                     }
                 }else{
-                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                    DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
                             selfValue.refreshControl.endRefreshing()
-                            selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                         }
                     }
                 }
@@ -81,42 +81,42 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     // MARK: Table View Data source methods
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cameras.count
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(camerasCellIdentifier) as! CameraImageCustomCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: camerasCellIdentifier) as! CameraImageCustomCell
         
         // Add timestamp to help prevent caching
-        let urlString = cameras[indexPath.row].url + "?" + String(Int(NSDate().timeIntervalSince1970 / 60))
-        cell.CameraImage.sd_setImageWithURL(NSURL(string: urlString), placeholderImage: UIImage(named: "imagePlaceholder"), options: .RefreshCached)
+        let urlString = cameras[indexPath.row].url + "?" + String(Int(Date().timeIntervalSince1970 / 60))
+        cell.CameraImage.sd_setImage(with: URL(string: urlString), placeholderImage: UIImage(named: "imagePlaceholder"), options: .refreshCached)
         
         return cell
     }
     
     // MARK: Table View Delegate
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         // Perform Segue
-        performSegueWithIdentifier(SegueCamerasViewController, sender: self)
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        performSegue(withIdentifier: SegueCamerasViewController, sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
         
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueCamerasViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let cameraItem = self.cameras[indexPath.row] as CameraItem
-                let destinationViewController = segue.destinationViewController as! CameraViewController
+                let destinationViewController = segue.destination as! CameraViewController
                 destinationViewController.cameraItem = cameraItem
             }
         }
@@ -124,7 +124,7 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
     
     // MARK: -
     // MARK: Helper functinos
-    func filterCameras(cameras: [CameraItem]) -> [CameraItem] {
+    func filterCameras(_ cameras: [CameraItem]) -> [CameraItem] {
     
         var filteredCameras = [CameraItem]()
         for camera in cameras {

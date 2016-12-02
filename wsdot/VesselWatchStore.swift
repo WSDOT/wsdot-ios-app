@@ -27,9 +27,9 @@ import SwiftyJSON
  */
 class VesselWatchStore {
 
-    typealias FetchVesselsCompletion = (data: [VesselItem]?, error: NSError?) -> ()
+    typealias FetchVesselsCompletion = (_ data: [VesselItem]?, _ error: NSError?) -> ()
     
-    static func getVessels(completion: FetchVesselsCompletion) {
+    static func getVessels(_ completion: @escaping FetchVesselsCompletion) {
         
         Alamofire.request(.GET, "http://www.wsdot.wa.gov/ferries/api/vessels/rest/vessellocations?apiaccesscode=" + ApiKeys.wsdot_key).validate().responseJSON { response in
             switch response.result {
@@ -47,7 +47,7 @@ class VesselWatchStore {
     }
     
     //Converts JSON from api into and array of FerriesRouteScheduleItems
-    private static func parseVesselsJSON(json: JSON) ->[VesselItem]{
+    fileprivate static func parseVesselsJSON(_ json: JSON) ->[VesselItem]{
         
         var vessels = [VesselItem]()
         

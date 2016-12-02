@@ -35,8 +35,8 @@ class CameraViewController: UIViewController, GADBannerViewDelegate{
         self.navigationItem.title = cameraItem.title;
         
         // Add timestamp to help prevent caching
-        let urlString = cameraItem.url + "?" + String(Int(NSDate().timeIntervalSince1970 / 60))
-        cameraImage.sd_setImageWithURL(NSURL(string: urlString), placeholderImage: UIImage(named: "imagePlaceholder"), options: .RefreshCached)
+        let urlString = cameraItem.url + "?" + String(Int(Date().timeIntervalSince1970 / 60))
+        cameraImage.sd_setImage(with: URL(string: urlString), placeholderImage: UIImage(named: "imagePlaceholder"), options: .refreshCached)
         
         if (cameraItem.selected){
             favoriteBarButton.image = UIImage(named: "icStarSmallFilled")
@@ -49,22 +49,22 @@ class CameraViewController: UIViewController, GADBannerViewDelegate{
         // Ad Banner
         bannerView.adUnitID = ApiKeys.wsdot_ad_string
         bannerView.rootViewController = self
-        bannerView.loadRequest(GADRequest())
+        bannerView.load(GADRequest())
         bannerView.delegate = self
         
     }
     
-    func adViewDidReceiveAd(bannerView: GADBannerView!) {
+    func adViewDidReceiveAd(_ bannerView: GADBannerView!) {
         bannerView.isAccessibilityElement = true
         bannerView.accessibilityLabel = "advertisement banner."
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Camera Details")
     }
     
-    @IBAction func updateFavorite(sender: UIBarButtonItem) {
+    @IBAction func updateFavorite(_ sender: UIBarButtonItem) {
         if (cameraItem.selected){
             CamerasStore.updateFavorite(cameraItem, newValue: false)
             favoriteBarButton.image = UIImage(named: "icStarSmall")

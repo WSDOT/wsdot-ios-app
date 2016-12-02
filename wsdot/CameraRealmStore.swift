@@ -23,7 +23,7 @@ import RealmSwift
 
 class CamerasStore {
     
-    typealias UpdateCamerasCompletion = (error: NSError?) -> ()
+    typealias UpdateCamerasCompletion = (_ error: NSError?) -> ()
     
     static func getAllCameras() -> [CameraItem]{
         let realm = try! Realm()
@@ -37,13 +37,13 @@ class CamerasStore {
         return Array(cameraItems)
     }
     
-    static func getCamerasByRoadName(roadName : String) -> [CameraItem]{
+    static func getCamerasByRoadName(_ roadName : String) -> [CameraItem]{
         let realm = try! Realm()
         let cameraItems = realm.objects(CameraItem.self).filter("roadName == \"\(roadName)\"").filter("delete == false")
         return Array(cameraItems)
     }
     
-    static func getCamerasByID(ids: [Int]) -> [CameraItem]{
+    static func getCamerasByID(_ ids: [Int]) -> [CameraItem]{
         let realm = try! Realm()
         
         var predicats = [NSPredicate]()
@@ -52,13 +52,13 @@ class CamerasStore {
             predicats.append(NSPredicate(format: "cameraId = \(id)"))
         }
         
-        let query = NSCompoundPredicate(type: .OrPredicateType, subpredicates: predicats)
+        let query = NSCompoundPredicate(type: .or, subpredicates: predicats)
         let cameraItems = realm.objects(CameraItem.self).filter(query).filter("delete == false")
         
         return Array(cameraItems)
     }
     
-    static func updateFavorite(camera: CameraItem, newValue: Bool){
+    static func updateFavorite(_ camera: CameraItem, newValue: Bool){
         let realm = try! Realm()
         do {
             try realm.write{
@@ -69,9 +69,9 @@ class CamerasStore {
         }
     }
     
-    static func updateCameras(force: Bool, completion: UpdateCamerasCompletion) {
+    static func updateCameras(_ force: Bool, completion: @escaping UpdateCamerasCompletion) {
         
-        let deltaUpdated = NSCalendar.currentCalendar().components(.Second, fromDate: CachesStore.getUpdatedTime(CachedData.Cameras), toDate: NSDate(), options: []).second
+        let deltaUpdated = (Calendar.current as NSCalendar).components(.second, from: CachesStore.getUpdatedTime(CachedData.cameras), to: Date(), options: []).second
         
         if ((deltaUpdated > TimeUtils.cameraUpdateTime) || force){
             
@@ -92,12 +92,12 @@ class CamerasStore {
                 }
             }
         }else{
-            completion(error: nil)
+            completion(nil)
         }
     }
     
     
-    private static func saveCameras(json: JSON){
+    fileprivate static func saveCameras(_ json: JSON){
         
         let realm = try! Realm()
         

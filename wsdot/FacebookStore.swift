@@ -24,9 +24,9 @@ import SwiftyJSON
 
 class FacebookStore {
 
-    typealias FetchPostsCompletion = (data: [FacebookItem]?, error: NSError?) -> ()
+    typealias FetchPostsCompletion = (_ data: [FacebookItem]?, _ error: NSError?) -> ()
     
-    static func getPosts(completion: FetchPostsCompletion) {
+    static func getPosts(_ completion: @escaping FetchPostsCompletion) {
         
         Alamofire.request(.GET, "http://www.wsdot.wa.gov/news/socialroom/posts/facebook").validate().responseJSON { response in
             switch response.result {
@@ -43,7 +43,7 @@ class FacebookStore {
         }
     }
     
-    private static func parsePostsJSON(json: JSON) ->[FacebookItem]{
+    fileprivate static func parsePostsJSON(_ json: JSON) ->[FacebookItem]{
         
         var posts = [FacebookItem]()
         

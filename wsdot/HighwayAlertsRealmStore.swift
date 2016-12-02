@@ -25,7 +25,7 @@ import SwiftyJSON
 
 class HighwayAlertsStore {
 
-    typealias UpdateHighwayAlertsCompletion = (error: NSError?) -> ()
+    typealias UpdateHighwayAlertsCompletion = (_ error: NSError?) -> ()
     
     static func getAllAlerts() -> [HighwayAlertItem]{
         let realm = try! Realm()
@@ -39,9 +39,9 @@ class HighwayAlertsStore {
         return Array(alertItems)
     }
     
-    static func updateAlerts(force: Bool, completion: UpdateHighwayAlertsCompletion) {
+    static func updateAlerts(_ force: Bool, completion: @escaping UpdateHighwayAlertsCompletion) {
         
-        let deltaUpdated = NSCalendar.currentCalendar().components(.Second, fromDate: CachesStore.getUpdatedTime(CachedData.HighwayAlerts), toDate: NSDate(), options: []).second
+        let deltaUpdated = (Calendar.current as NSCalendar).components(.second, from: CachesStore.getUpdatedTime(CachedData.highwayAlerts), to: Date(), options: []).second
         
         if ((deltaUpdated > TimeUtils.updateTime) || force){
             
@@ -62,11 +62,11 @@ class HighwayAlertsStore {
                 }
             }
         }else{
-            completion(error: nil)
+            completion(nil)
         }
     }
     
-    private static func saveAlerts(json: JSON){
+    fileprivate static func saveAlerts(_ json: JSON){
         
         let realm = try! Realm()
         

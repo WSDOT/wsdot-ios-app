@@ -23,9 +23,9 @@ import SwiftyJSON
 
 class YouTubeStore {
 
-    typealias FetchVideosCompletion = (data: [YouTubeItem]?, error: NSError?) -> ()
+    typealias FetchVideosCompletion = (_ data: [YouTubeItem]?, _ error: NSError?) -> ()
     
-    static func getVideos(completion: FetchVideosCompletion) {
+    static func getVideos(_ completion: @escaping FetchVideosCompletion) {
         
         Alamofire.request(.GET, "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=UUmWr7UYgRp4v_HvRfEgquXg&key=" + ApiKeys.google_key).validate().responseJSON { response in
             switch response.result {
@@ -42,7 +42,7 @@ class YouTubeStore {
         }
     }
     
-    private static func parsePostsJSON(json: JSON) ->[YouTubeItem]{
+    fileprivate static func parsePostsJSON(_ json: JSON) ->[YouTubeItem]{
         
         var videoItems = [YouTubeItem]()
         

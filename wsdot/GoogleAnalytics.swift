@@ -25,20 +25,20 @@ class GoogleAnalytics {
     static let analytics_enabled = false
     static let analytics_dryrun = true
     
-    static func screenView(screenName: String){
+    static func screenView(_ screenName: String){
         if (GoogleAnalytics.analytics_enabled){
             let tracker = GAI.sharedInstance().defaultTracker
-            tracker.set(kGAIScreenName, value: screenName)
+            tracker?.set(kGAIScreenName, value: screenName)
             
             let builder = GAIDictionaryBuilder.createScreenView()
-            tracker.send(builder.build() as [NSObject : AnyObject])
+            tracker?.send(builder?.build() as [AnyHashable: Any])
         }
     }
     
-    static func event(category: String, action: String, label: String){
+    static func event(_ category: String, action: String, label: String){
         if (GoogleAnalytics.analytics_enabled){
             let tracker = GAI.sharedInstance().defaultTracker
-            tracker.send(GAIDictionaryBuilder.createEventWithCategory(category, action: action, label: label, value: nil).build() as [NSObject : AnyObject])
+            tracker?.send(GAIDictionaryBuilder.createEvent(withCategory: category, action: action, label: label, value: nil).build() as [AnyHashable: Any])
         }
     }
 }

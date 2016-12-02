@@ -35,14 +35,14 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     var sailingsByDate: List<FerryScheduleDateItem>?
     
     var currentDay = 0
-    var updatedAt = NSDate()
+    var updatedAt = Date()
     
     var displayedSailing: FerrySailingsItem?
     var displayedTimes = List<FerryDepartureTimeItem>()
     
-    var dayData = TimeUtils.nextSevenDaysStrings(NSDate())
+    var dayData = TimeUtils.nextSevenDaysStrings(Date())
     
-    private var timer: NSTimer?
+    fileprivate var timer: Timer?
     
     var showConnectionAlert = true
     let refreshControl = UIRefreshControl()
@@ -67,40 +67,40 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         }
 
         dateButton.layer.cornerRadius = 8.0
-        dateButton.setTitle(dayData[0], forState: .Normal)
+        dateButton.setTitle(dayData[0], for: UIControlState())
         dateButton.accessibilityHint = "double tap to change sailing day"
         
         setDisplayedSailing(0)
         tableView.rowHeight = UITableViewAutomaticDimension
         
         // refresh controller
-        refreshControl.addTarget(self, action: #selector(RouteTimesViewController.refreshAction(_:)), forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(RouteTimesViewController.refreshAction(_:)), for: .valueChanged)
         refreshControl.attributedTitle = NSAttributedString.init(string: "loading sailing spaces")
 
-        activityIndicator.color = UIColor.grayColor()
+        activityIndicator.color = UIColor.gray
         activityIndicator.startAnimating()
         
         tableView.addSubview(refreshControl)
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(TimeUtils.spacesUpdateTime, target: self, selector: #selector(RouteTimesViewController.spacesTimerTask), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: TimeUtils.spacesUpdateTime, target: self, selector: #selector(RouteTimesViewController.spacesTimerTask), userInfo: nil, repeats: true)
         refresh()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Ferries/Schedules/Sailings/Departures")
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         timer?.invalidate()
     }
     
-    func spacesTimerTask(timer:NSTimer) {
+    func spacesTimerTask(_ timer:Timer) {
         refresh()
     }
     
-    func refreshAction(refreshControl: UIRefreshControl) {
+    func refreshAction(_ refreshControl: UIRefreshControl) {
         showConnectionAlert = true
         refresh()
     }
@@ -110,28 +110,28 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
             let departingId = displayedSailing!.departingTerminalId
             let arrivingId = displayedSailing!.arrivingTerminalId
         
-            dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) { [weak self] in
+            DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async { [weak self] in
                 SailingSpacesStore.getSailingSpacesForTerminal(departingId, arrivingId: arrivingId, completion: { data, error in
                     if let validData = data {
-                        dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                        DispatchQueue.main.async { [weak self] in
                             if let selfValue = self{
                                 selfValue.sailingSpaces = validData
-                                selfValue.updatedAt = NSDate()
+                                selfValue.updatedAt = Date()
                                 selfValue.tableView.reloadData()
                                 selfValue.refreshControl.endRefreshing()
                                 selfValue.activityIndicator.stopAnimating()
-                                selfValue.activityIndicator.hidden = true
+                                selfValue.activityIndicator.isHidden = true
                             }
                         }
                     } else {
-                        dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                        DispatchQueue.main.async { [weak self] in
                             if let selfValue = self{
                                 selfValue.refreshControl.endRefreshing()
                                 selfValue.activityIndicator.stopAnimating()
-                                selfValue.activityIndicator.hidden = true
+                                selfValue.activityIndicator.isHidden = true
                                 if (selfValue.showConnectionAlert){
                                     selfValue.showConnectionAlert = false
-                                    selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                                    selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                                 }
                             }
                         }
@@ -141,54 +141,54 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         }else{
             self.refreshControl.endRefreshing()
             self.activityIndicator.stopAnimating()
-            self.activityIndicator.hidden = true
+            self.activityIndicator.isHidden = true
         }
     }
     
-    @IBAction func selectAccountAction(sender: UIButton) {
-        performSegueWithIdentifier(segueDepartureDaySelectionViewController, sender: self)
+    @IBAction func selectAccountAction(_ sender: UIButton) {
+        performSegue(withIdentifier: segueDepartureDaySelectionViewController, sender: self)
     }
     
-    func daySelected(index: Int) {
+    func daySelected(_ index: Int) {
         currentDay = index
-        dateButton.setTitle(dayData[currentDay], forState: .Normal)
+        dateButton.setTitle(dayData[currentDay], for: UIControlState())
         setDisplayedSailing(currentDay)
         self.tableView.reloadData()
     }
     
     // MARK: -
     // MARK: Table View Delegate & data source methods
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return displayedTimes.count
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(departureCellIdentifier) as! DeparturesCustomCell
+        var cell = tableView.dequeueReusableCell(withIdentifier: departureCellIdentifier) as! DeparturesCustomCell
         
         // Check if sailing space information is avaliable. If so change prototype cell.
         if let sailingSpacesValue = sailingSpaces{
             for spaceItem: SailingSpacesItem in sailingSpacesValue {
                 if displayedTimes[indexPath.row].departingTime == spaceItem.date {
-                    cell = tableView.dequeueReusableCellWithIdentifier(departuresSailingSpacesCellIdentifier) as! DeparturesCustomCell
-                    cell.sailingSpaces.hidden = false
+                    cell = tableView.dequeueReusableCell(withIdentifier: departuresSailingSpacesCellIdentifier) as! DeparturesCustomCell
+                    cell.sailingSpaces.isHidden = false
                     cell.sailingSpaces.text = String(spaceItem.remainingSpaces) + " Drive-up Spaces"
-                    cell.avaliableSpacesBar.hidden = false
+                    cell.avaliableSpacesBar.isHidden = false
                     
                     cell.avaliableSpacesBar.progress = spaceItem.percentAvaliable
                     
                     cell.avaliableSpacesBar.transform = UIProgressView().transform
-                    cell.avaliableSpacesBar.transform = CGAffineTransformScale(cell.avaliableSpacesBar.transform, 1, 3)
+                    cell.avaliableSpacesBar.transform = cell.avaliableSpacesBar.transform.scaledBy(x: 1, y: 3)
                     
-                    cell.spacesDisclaimer.hidden = false
+                    cell.spacesDisclaimer.isHidden = false
                     cell.updated.text = "Drive-up spaces updated " + TimeUtils.timeAgoSinceDate(updatedAt, numericDates: true)
                 }
             }
@@ -216,10 +216,10 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         if (annotationsString != ""){
             let htmlStyleString = "<style>body{font-family: '\(cell.annotations.font.fontName)'; font-size:\(cell.annotations.font.pointSize)px;}</style>"
             let attrAnnotationsStr = try! NSMutableAttributedString(
-                data: (htmlStyleString + annotationsString).dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: false)!,
+                data: (htmlStyleString + annotationsString).data(using: String.Encoding.unicode, allowLossyConversion: false)!,
                 options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 17)!],
                 documentAttributes: nil)
-            cell.annotations.hidden = false
+            cell.annotations.isHidden = false
             cell.annotations.attributedText = attrAnnotationsStr
         }else {
             cell.annotations.attributedText = nil
@@ -243,9 +243,9 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     // MARK: Naviagtion
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == segueDepartureDaySelectionViewController {
-            let destinationViewController = segue.destinationViewController as! DepartureDaySelectionViewController
+            let destinationViewController = segue.destination as! DepartureDaySelectionViewController
             destinationViewController.parent = self
             destinationViewController.menu_options = dayData
             destinationViewController.selectedIndex = currentDay
@@ -253,7 +253,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     // MARK: Helper functions
-    private func setDisplayedSailing(day: Int){
+    fileprivate func setDisplayedSailing(_ day: Int){
         
         var sailings = List<FerrySailingsItem>()
         
@@ -274,7 +274,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         // make list of displayable times
         if displayedSailing != nil {
             for time in displayedSailing!.times {
-                if (time.departingTime.compare(NSDate()) == .OrderedDescending) {
+                if (time.departingTime.compare(NSDate() as Date) == .orderedDescending) {
                     displayedTimes.append(time)
                 }
             }

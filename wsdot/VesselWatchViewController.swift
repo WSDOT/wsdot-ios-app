@@ -25,23 +25,23 @@ import GoogleMobileAds
 
 class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapViewDelegate, GADBannerViewDelegate{
     
-    let serviceGroup = dispatch_group_create()
+    let serviceGroup = DispatchGroup()
     
     let SegueCamerasViewController = "CamerasViewController"
     let SegueVesselDetailsViewController = "VesselDetailsViewController"
     let SegueGoToPopover = "GoToViewController"
 
-    private weak var timer: NSTimer?
+    fileprivate weak var timer: Timer?
 
-    private weak var embeddedMapViewController: MapViewController!
+    fileprivate weak var embeddedMapViewController: MapViewController!
     
-    private var terminalCameraMarkers = Set<GMSMarker>()
-    private var vesselMarkers = Set<GMSMarker>()
+    fileprivate var terminalCameraMarkers = Set<GMSMarker>()
+    fileprivate var vesselMarkers = Set<GMSMarker>()
     
-    private let cameraIconImage = UIImage(named: "icMapCamera")
+    fileprivate let cameraIconImage = UIImage(named: "icMapCamera")
     
-    private let cameraBarButtonImage = UIImage(named: "icCamera")
-    private let cameraHighlightBarButtonImage = UIImage(named: "icCameraHighlight")
+    fileprivate let cameraBarButtonImage = UIImage(named: "icCamera")
+    fileprivate let cameraHighlightBarButtonImage = UIImage(named: "icCameraHighlight")
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
@@ -55,25 +55,25 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         title = "Vessel Watch"
         
         // Set defualt value for camera display if there is none
-        if (NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.cameras) == nil){
-            NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.cameras)
+        if (UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras) == nil){
+            UserDefaults.standard.set("on", forKey: UserDefaultsKeys.cameras)
         }
         
-        if (NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.cameras) == "on"){
+        if (UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras) == "on"){
             cameraBarButton.image = cameraHighlightBarButtonImage
         }
         
         // Ad Banner
         bannerView.adUnitID = ApiKeys.wsdot_ad_string
         bannerView.rootViewController = self
-        bannerView.loadRequest(GADRequest())
+        bannerView.load(GADRequest())
         bannerView.delegate = self
         
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
 
-        if self.isBeingDismissed() || self.isMovingFromParentViewController() {
+        if self.isBeingDismissed || self.isMovingFromParentViewController {
             print("invalidating timer")
             if timer != nil {
                 self.timer?.invalidate()
@@ -82,49 +82,49 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
 
     }
 
-    func adViewDidReceiveAd(bannerView: GADBannerView!) {
+    func adViewDidReceiveAd(_ bannerView: GADBannerView!) {
         bannerView.isAccessibilityElement = true
         bannerView.accessibilityLabel = "advertisement banner."
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Ferries/VesselWatch")
     }
     
-    @IBAction func goToLocation(sender: UIBarButtonItem) {
-        performSegueWithIdentifier(SegueGoToPopover, sender: self)
+    @IBAction func goToLocation(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: SegueGoToPopover, sender: self)
     }
     
-    func goTo(index: Int){
+    func goTo(_ index: Int){
         if let mapView = embeddedMapViewController.view as? GMSMapView{
             switch(index){
             case 0:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(48.535868, longitude: -123.013808, zoom: 10)))
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 48.535868, longitude: -123.013808, zoom: 10)))
                 break
             case 1:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(47.803096, longitude: -122.438718, zoom: 12)))
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 47.803096, longitude: -122.438718, zoom: 12)))
                 break
             case 2:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(47.513625, longitude: -122.450820, zoom: 12)))
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 47.513625, longitude: -122.450820, zoom: 12)))
                 break
             case 3:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(47.963857, longitude: -122.327721, zoom: 13)))
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 47.963857, longitude: -122.327721, zoom: 13)))
                 break
             case 4:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(47.319040, longitude: -122.510890, zoom: 13)))
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 47.319040, longitude: -122.510890, zoom: 13)))
                 break
             case 5:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(48.135562, longitude: -122.714449, zoom: 12)))
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 48.135562, longitude: -122.714449, zoom: 12)))
                 break
             case 6:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(48.557233, longitude: -122.897078, zoom: 12)))
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 48.557233, longitude: -122.897078, zoom: 12)))
                 break
             case 7:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(47.565125, longitude: -122.480508, zoom: 11)))
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 47.565125, longitude: -122.480508, zoom: 11)))
                 break
             case 8:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.cameraWithLatitude(47.600325, longitude: -122.437249, zoom: 11)))
+                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 47.600325, longitude: -122.437249, zoom: 11)))
                 break
             default:
                 break
@@ -132,33 +132,33 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         }
     }
     
-    @IBAction func myLocationButtonPressed(sender: UIBarButtonItem) {
+    @IBAction func myLocationButtonPressed(_ sender: UIBarButtonItem) {
     
         GoogleAnalytics.event("Vessel Watch", action: "UIAction", label: "My Location")
         
-        if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse{
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
             embeddedMapViewController.goToUsersLocation()
         } else if !CLLocationManager.locationServicesEnabled() {
-            self.presentViewController(AlertMessages.getAlert("Location Services Are Disabled", message: "You can enable location services from Settings."), animated: true, completion: nil)
-        } else if CLLocationManager.authorizationStatus() == .Denied {
-            self.presentViewController(AlertMessages.getAlert("\"WSDOT\" Doesn't Have Permission To Use Your Location", message: "You can enable location services for this app in Settings"), animated: true, completion: nil)
+            self.present(AlertMessages.getAlert("Location Services Are Disabled", message: "You can enable location services from Settings."), animated: true, completion: nil)
+        } else if CLLocationManager.authorizationStatus() == .denied {
+            self.present(AlertMessages.getAlert("\"WSDOT\" Doesn't Have Permission To Use Your Location", message: "You can enable location services for this app in Settings"), animated: true, completion: nil)
         } else {
             CLLocationManager().requestWhenInUseAuthorization()
         }
  
     }
     
-    @IBAction func cameraToggleButtonPressed(sender: UIBarButtonItem) {
-        let camerasPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.cameras)
+    @IBAction func cameraToggleButtonPressed(_ sender: UIBarButtonItem) {
+        let camerasPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras)
         if let camerasVisible = camerasPref {
             if (camerasVisible == "on") {
-                NSUserDefaults.standardUserDefaults().setObject("off", forKey: UserDefaultsKeys.cameras)
+                UserDefaults.standard.set("off", forKey: UserDefaultsKeys.cameras)
                 sender.image = cameraBarButtonImage
                 removeCameras()
                 
             } else {
                 sender.image = cameraHighlightBarButtonImage
-                NSUserDefaults.standardUserDefaults().setObject("on", forKey: UserDefaultsKeys.cameras)
+                UserDefaults.standard.set("on", forKey: UserDefaultsKeys.cameras)
                 drawCameras()
             }
         }
@@ -170,24 +170,24 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         }
     }
     
-    func fetchCameras(force: Bool) {
-        dispatch_group_enter(serviceGroup)
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {[weak self] in
+    func fetchCameras(_ force: Bool) {
+        serviceGroup.enter()
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {[weak self] in
             CamerasStore.updateCameras(force, completion: { error in
                 if (error == nil){
-                    dispatch_async(dispatch_get_main_queue()) {[weak self] in
+                    DispatchQueue.main.async {[weak self] in
                         if let selfValue = self{
-                            dispatch_group_leave(selfValue.serviceGroup)
+                            selfValue.serviceGroup.leave()
                             selfValue.loadCameraMarkers()
                             selfValue.drawCameras()
                             
                         }
                     }
                 }else{
-                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                    DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
-                            dispatch_group_leave(selfValue.serviceGroup)
-                            selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                            selfValue.serviceGroup.leave()
+                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                         }
                     }
                 }
@@ -213,7 +213,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     func drawCameras(){
         if embeddedMapViewController != nil {
             if let mapView = embeddedMapViewController.view as? GMSMapView{
-                let camerasPref = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.cameras)
+                let camerasPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras)
             
                 if (camerasPref! == "on") {
                     for cameraMarker in terminalCameraMarkers{
@@ -224,32 +224,32 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         }
     }
     
-    func fetchVessels(updateWithGroup: Bool){
+    func fetchVessels(_ updateWithGroup: Bool){
         
         if updateWithGroup{
-            dispatch_group_enter(serviceGroup)
+            serviceGroup.enter()
         }
         
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) { [weak self] in
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async { [weak self] in
             VesselWatchStore.getVessels({ data, error in
                 if let validData = data {
-                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                    DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
                             selfValue.loadVesselMarkers(validData)
                             selfValue.drawVessels()
                             if updateWithGroup{
-                                dispatch_group_leave(selfValue.serviceGroup)
+                                selfValue.serviceGroup.leave()
 
                             }
                         }
                     }
                 } else {
-                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                    DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
                             if updateWithGroup{
-                                dispatch_group_leave(selfValue.serviceGroup)
+                                selfValue.serviceGroup.leave()
                             }
-                            selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                         }
                     }
                 }
@@ -258,7 +258,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         }
     }
     
-    func loadVesselMarkers(vesselItems: [VesselItem]){
+    func loadVesselMarkers(_ vesselItems: [VesselItem]){
         
         removeVessels()
         vesselMarkers.removeAll()
@@ -292,7 +292,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         }
     }
     
-    func vesselUpdateTask(timer:NSTimer) {
+    func vesselUpdateTask(_ timer:Timer) {
         fetchVessels(false)
     }
     
@@ -304,37 +304,36 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         fetchVessels(true)
         fetchCameras(false)
 
-        dispatch_group_notify(serviceGroup, dispatch_get_main_queue()) {
+        serviceGroup.notify(queue: DispatchQueue.main) {
             self.activityIndicator.stopAnimating()
-            self.activityIndicator.hidden = true
-            self.timer = NSTimer.scheduledTimerWithTimeInterval(TimeUtils.vesselUpdateTime, target: self, selector: #selector(VesselWatchViewController.vesselUpdateTask(_:)), userInfo: nil, repeats: true)
+            self.activityIndicator.isHidden = true
+            self.timer = Timer.scheduledTimer(timeInterval: TimeUtils.vesselUpdateTime, target: self, selector: #selector(VesselWatchViewController.vesselUpdateTask(_:)), userInfo: nil, repeats: true)
         }
     }
     
     // MARK: GMSMapViewDelegate
-    func mapView(mapView: GMSMapView, didTapMarker marker: GMSMarker) -> Bool {
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         
         if marker.snippet == "camera" {
-            performSegueWithIdentifier(SegueCamerasViewController, sender: marker)
+            performSegue(withIdentifier: SegueCamerasViewController, sender: marker)
         }else if marker.snippet == "vessel" {
-            performSegueWithIdentifier(SegueVesselDetailsViewController, sender: marker)
+            performSegue(withIdentifier: SegueVesselDetailsViewController, sender: marker)
         }
         return true
     }
     
-    func mapViewDidStartTileRendering(mapView: GMSMapView) {
-        dispatch_group_enter(serviceGroup)
+    func mapViewDidStartTileRendering(_ mapView: GMSMapView) {
+        serviceGroup.enter()
     }
     
-    func mapViewDidFinishTileRendering(mapView: GMSMapView) {
-        dispatch_group_leave(serviceGroup)
+    func mapViewDidFinishTileRendering(_ mapView: GMSMapView) {
+        serviceGroup.leave()
     }
     
     // MARK: Naviagtion
     // Get refrence to child VC
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let vc = segue.destinationViewController as? MapViewController
-            where segue.identifier == "EmbedMapSegue" {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? MapViewController, segue.identifier == "EmbedMapSegue" {
             vc.markerDelegate = self
             vc.mapDelegate = self
             self.embeddedMapViewController = vc
@@ -342,18 +341,18 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         
         if segue.identifier == SegueCamerasViewController {
             let cameraItem = ((sender as! GMSMarker).userData as! CameraItem)
-            let destinationViewController = segue.destinationViewController as! CameraViewController
+            let destinationViewController = segue.destination as! CameraViewController
             destinationViewController.cameraItem = cameraItem
         }
         
         if segue.identifier == SegueVesselDetailsViewController {
             let vesselItem = ((sender as! GMSMarker).userData as! VesselItem)
-            let destinationViewController = segue.destinationViewController as! VesselDetailsViewController
+            let destinationViewController = segue.destination as! VesselDetailsViewController
             destinationViewController.vesselItem = vesselItem
         }
         
         if segue.identifier == SegueGoToPopover {
-            let destinationViewController = segue.destinationViewController as! VesselWatchGoToViewController
+            let destinationViewController = segue.destination as! VesselWatchGoToViewController
             destinationViewController.parent = self
         }
     }

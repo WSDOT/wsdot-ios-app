@@ -36,11 +36,11 @@ class AlertContentViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = Colors.lightGrey
-        self.view.frame = parentViewController!.view.frame
+        self.view.frame = parent!.view.frame
         
         if loadingPage {
             progressIndicator.startAnimating()
-            alertLabel.hidden = true
+            alertLabel.isHidden = true
         }else {
             alertLabel.text = alertText
             
@@ -49,23 +49,23 @@ class AlertContentViewController: UIViewController{
             if (alert.alertId != 0){
                 let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AlertContentViewController.labelAction(_:)))
                 tapGesture.numberOfTapsRequired = 1
-                alertLabel.userInteractionEnabled =  true
+                alertLabel.isUserInteractionEnabled =  true
                 alertLabel.addGestureRecognizer(tapGesture)
             }
-            progressIndicator.hidden = true
+            progressIndicator.isHidden = true
             progressIndicator.isAccessibilityElement = false
         }
     }
     
-    func labelAction(sender: UILabel){
-        performSegueWithIdentifier(SegueHighwayAlertViewController, sender: self)
+    func labelAction(_ sender: UILabel){
+        performSegue(withIdentifier: SegueHighwayAlertViewController, sender: self)
     }
     
      // MARK: Naviagtion
     // Get refrence to child VC
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueHighwayAlertViewController {
-            let destinationViewController = segue.destinationViewController as! HighwayAlertViewController
+            let destinationViewController = segue.destination as! HighwayAlertViewController
             destinationViewController.alertItem = alert
         }
     }

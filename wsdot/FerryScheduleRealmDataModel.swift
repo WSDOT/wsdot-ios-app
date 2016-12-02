@@ -26,7 +26,7 @@ class FerryScheduleItem: Object {
     dynamic var routeDescription = ""
     dynamic var selected = false
     dynamic var crossingTime: String? = nil
-    dynamic var cacheDate = NSDate(timeIntervalSince1970: 0)
+    dynamic var cacheDate = Date(timeIntervalSince1970: 0)
     let routeAlerts = List<FerryAlertItem>()
     let scheduleDates = List<FerryScheduleDateItem>()
     let terminalPairs = List<FerryTerminalPairItem>()
@@ -54,7 +54,7 @@ class FerryTerminalPairItem: Object {
 }
 
 class FerryScheduleDateItem: Object {
-    dynamic var date = NSDate(timeIntervalSince1970: 0)
+    dynamic var date = Date(timeIntervalSince1970: 0)
     let sailings = List<FerrySailingsItem>()
 }
 
@@ -68,8 +68,8 @@ class FerrySailingsItem: Object {
 }
 
 class FerryDepartureTimeItem: Object {
-    dynamic var departingTime = NSDate(timeIntervalSince1970: 0)
-    dynamic var  arrivingTime: NSDate? = nil
+    dynamic var departingTime = Date(timeIntervalSince1970: 0)
+    dynamic var  arrivingTime: Date? = nil
     let annotationIndexes = List<AnnotationIndex>()
 
 }

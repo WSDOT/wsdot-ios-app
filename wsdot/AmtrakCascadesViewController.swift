@@ -27,22 +27,22 @@ class AmtrakCascadesViewController: UIViewController, UITableViewDelegate, UITab
 
     let menu_options = ["Buy Tickets on Amtrak.com", "Check Schedules and Status"]
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Amtrak Cascades")
     }
 
     // MARK: Table View Data Source Methods
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menu_options.count
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
         cell.textLabel?.text = menu_options[indexPath.row]
      
@@ -50,18 +50,18 @@ class AmtrakCascadesViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     // MARK: Table View Delegate Methods
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Perform Segue
         switch (indexPath.row) {
         case 0:
             GoogleAnalytics.screenView("/Amtrak Cascades/Buy Tickets")
-            UIApplication.sharedApplication().openURL(NSURL(string: "http://m.amtrak.com")!)
+            UIApplication.shared.openURL(URL(string: "http://m.amtrak.com")!)
             break
         case 1:
-            performSegueWithIdentifier(segueAmtrakSchedulesViewController, sender: self)
+            performSegue(withIdentifier: segueAmtrakSchedulesViewController, sender: self)
         default:
             break
         }
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

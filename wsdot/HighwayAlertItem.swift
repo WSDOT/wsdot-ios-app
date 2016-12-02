@@ -28,9 +28,9 @@ class HighwayAlertItem: Object {
     dynamic var headlineDesc: String = ""
     dynamic var eventStatus: String = ""
     dynamic var startDirection: String = ""
-    dynamic var lastUpdatedTime = NSDate()
+    dynamic var lastUpdatedTime = Date()
 
-    dynamic var startTime = NSDate()
+    dynamic var startTime = Date()
     
     dynamic var startLatitude: Double = 0.0
     dynamic var startLongitude: Double = 0.0
@@ -38,7 +38,7 @@ class HighwayAlertItem: Object {
     dynamic var endLongitude: Double = 0.0
     
     dynamic var county: String? = nil
-    dynamic var endTime: NSDate? = nil
+    dynamic var endTime: Date? = nil
     dynamic var extendedDesc: String? = nil
     
     dynamic var delete = false

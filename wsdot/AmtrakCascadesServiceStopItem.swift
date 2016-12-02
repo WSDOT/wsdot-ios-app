@@ -33,9 +33,9 @@ class AmtrakCascadesServiceStopItem{
     var arrivalComment: String? = nil
     var departureComment: String? = nil
     
-    var scheduledArrivalTime: NSDate? = nil
-    var scheduledDepartureTime: NSDate? = nil
+    var scheduledArrivalTime: Date? = nil
+    var scheduledDepartureTime: Date? = nil
     
-    var updated = NSDate(timeIntervalSince1970: 0)
+    var updated = Date(timeIntervalSince1970: 0)
 
 }

@@ -25,9 +25,9 @@ import Foundation
 
 class MountainPassStore {
 
-   typealias UpdatePassesCompletion = (error: NSError?) -> ()
+   typealias UpdatePassesCompletion = (_ error: NSError?) -> ()
     
-    static func updateFavorite(pass: MountainPassItem, newValue: Bool){
+    static func updateFavorite(_ pass: MountainPassItem, newValue: Bool){
         
         do {
             let realm = try Realm()
@@ -52,9 +52,9 @@ class MountainPassStore {
         return Array(favoritePassItems)
     }
     
-    static func updatePasses(force: Bool, completion: UpdatePassesCompletion) {
+    static func updatePasses(_ force: Bool, completion: @escaping UpdatePassesCompletion) {
         
-        let deltaUpdated = NSCalendar.currentCalendar().components(.Second, fromDate: CachesStore.getUpdatedTime(CachedData.MountainPasses), toDate: NSDate(), options: []).second
+        let deltaUpdated = (Calendar.current as NSCalendar).components(.second, from: CachesStore.getUpdatedTime(CachedData.mountainPasses), to: Date(), options: []).second
         
         if ((deltaUpdated > TimeUtils.updateTime) || force){
             
@@ -76,13 +76,13 @@ class MountainPassStore {
                 }
             }
         }else {
-            completion(error: nil)
+            completion(nil)
         }
     }
 
     
     // TODO: Make this smarter
-    private static func savePasses(passes: [MountainPassItem]){
+    fileprivate static func savePasses(_ passes: [MountainPassItem]){
         
         let realm = try! Realm()
         
@@ -124,7 +124,7 @@ class MountainPassStore {
         }
     }
     
-    private static func parsePassesJSON(json: JSON) ->[MountainPassItem]{
+    fileprivate static func parsePassesJSON(_ json: JSON) ->[MountainPassItem]{
         var passItems = [MountainPassItem]()
         
         for (_,subJson):(String, JSON) in json["GetMountainPassConditionsResult"]["PassCondition"] {
@@ -157,7 +157,7 @@ class MountainPassStore {
         return passItems
     }
     
-    private static func parseCameraJSON(json: JSON) -> List<PassCameraIDItem> {
+    fileprivate static func parseCameraJSON(_ json: JSON) -> List<PassCameraIDItem> {
         let cameras = List<PassCameraIDItem>()
         for(_,cameraJSON):(String, JSON) in json {
             let camera = PassCameraIDItem()
@@ -167,7 +167,7 @@ class MountainPassStore {
         return cameras
     }
     
-    private static func parseForecastJSON(json: JSON) -> List<ForecastItem> {
+    fileprivate static func parseForecastJSON(_ json: JSON) -> List<ForecastItem> {
         let forecastItems = List<ForecastItem>()
         for(_,forecastJSON):(String, JSON) in json {
             let forecast = ForecastItem()

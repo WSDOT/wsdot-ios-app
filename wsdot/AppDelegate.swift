@@ -30,14 +30,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         migrateRealm()
         CachesStore.initCacheItem()
         
         GMSServices.provideAPIKey(ApiKeys.google_key)
         FIRApp.configure()
-        GADMobileAds.configureWithApplicationID(ApiKeys.wsdot_ad_string);
+        GADMobileAds.configure(withApplicationID: ApiKeys.wsdot_ad_string);
         
         if (GoogleAnalytics.analytics_enabled){
             
@@ -50,27 +50,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let gai = GAI.sharedInstance()
             
             if (GoogleAnalytics.analytics_dryrun){
-                gai.dryRun = GoogleAnalytics.analytics_dryrun
-                gai.logger.logLevel = GAILogLevel.Verbose
+                gai?.dryRun = GoogleAnalytics.analytics_dryrun
+                gai?.logger.logLevel = GAILogLevel.verbose
             }
-            gai.trackUncaughtExceptions = true  // report uncaught exceptions
+            gai?.trackUncaughtExceptions = true  // report uncaught exceptions
             
         }
         
         // Reset Warning each time app starts
-        NSUserDefaults.standardUserDefaults().setObject(false, forKey: UserDefaultsKeys.hasSeenWarning)
+        UserDefaults.standard.set(false, forKey: UserDefaultsKeys.hasSeenWarning)
         
         return true
     }
     
-    func applicationDidFinishLaunching(application: UIApplication) {
+    func applicationDidFinishLaunching(_ application: UIApplication) {
         FerryRealmStore.flushOldData()
         CamerasStore.flushOldData()
         TravelTimesStore.flushOldData()
         HighwayAlertsStore.flushOldData()
     }
     
-    func applicationWillTerminate(application: UIApplication) {
+    func applicationWillTerminate(_ application: UIApplication) {
         FerryRealmStore.flushOldData()
         CamerasStore.flushOldData()
         TravelTimesStore.flushOldData()
@@ -85,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                     // The enumerateObjects(ofType:_:) method iterates
                     // over every MountainPassItem object stored in the Realm file
-                    migration.enumerate(MountainPassItem.className()) { oldObject, newObject in
+                    migration.enumerateObjects(ofType: MountainPassItem.className()) { oldObject, newObject in
                         // pull the camera ids from the old field and place it into the new
                         let oldCameras = oldObject!["cameras"] as! List<DynamicObject>
                         let passCameraIds = newObject!["cameraIds"] as! List<DynamicObject>

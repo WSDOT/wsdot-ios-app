@@ -25,7 +25,7 @@ import SwiftyJSON
 
 class BorderWaitStore{
 
-    typealias getBorderWaitsCompletion = (error: NSError?) -> ()
+    typealias getBorderWaitsCompletion = (_ error: NSError?) -> ()
 
     static func getNorthboundWaits() -> [BorderWaitItem]{
         let realm = try! Realm()
@@ -39,9 +39,9 @@ class BorderWaitStore{
         return Array(waitItems)
     }
     
-    static func updateWaits(force: Bool, completion: getBorderWaitsCompletion) {
+    static func updateWaits(_ force: Bool, completion: @escaping getBorderWaitsCompletion) {
         
-        let deltaUpdated = NSCalendar.currentCalendar().components(.Second, fromDate: CachesStore.getUpdatedTime(CachedData.BorderWaits), toDate: NSDate(), options: []).second
+        let deltaUpdated = (Calendar.current as NSCalendar).components(.second, from: CachesStore.getUpdatedTime(CachedData.borderWaits), to: Date(), options: []).second
         
         if ((deltaUpdated > TimeUtils.updateTime) || force){
             
@@ -64,11 +64,11 @@ class BorderWaitStore{
                 
             }
         }else {
-            completion(error: nil)
+            completion(nil)
         }
     }
     
-    private static func saveWaits(waits: [BorderWaitItem]){
+    fileprivate static func saveWaits(_ waits: [BorderWaitItem]){
         
         let realm = try! Realm()
 
@@ -81,7 +81,7 @@ class BorderWaitStore{
         }
     }
     
-    private static func parseBorderWaitsJSON(json: JSON) ->[BorderWaitItem]{
+    fileprivate static func parseBorderWaitsJSON(_ json: JSON) ->[BorderWaitItem]{
         var waits = [BorderWaitItem]()
         
         for (_,subJson):(String, JSON) in json["waittimes"]["items"] {

@@ -22,12 +22,12 @@ import Foundation
 import RealmSwift
 
 enum CachedData {
-    case TravelTimes
-    case HighwayAlerts
-    case Ferries
-    case Cameras
-    case BorderWaits
-    case MountainPasses
+    case travelTimes
+    case highwayAlerts
+    case ferries
+    case cameras
+    case borderWaits
+    case mountainPasses
 }
 
 class CachesStore {
@@ -48,28 +48,28 @@ class CachesStore {
         }
     }
     
-    static func getUpdatedTime(data: CachedData) -> NSDate {
+    static func getUpdatedTime(_ data: CachedData) -> Date {
         
         let realm = try! Realm()
         let cacheItem = realm.objects(CacheItem.self).first
         
         switch(data){
-        case .TravelTimes:
-            return cacheItem!.travelTimesLastUpdate
-        case .HighwayAlerts:
-            return cacheItem!.highwayAlertsLastUpdate
-        case .Ferries:
-            return cacheItem!.ferriesLastUpdate
-        case .Cameras:
-            return cacheItem!.camerasLastUpdate
-        case .BorderWaits:
-            return cacheItem!.borderWaitsLastUpdate
-        case .MountainPasses:
-            return cacheItem!.mountainPassesLastUpdate
+        case .travelTimes:
+            return cacheItem!.travelTimesLastUpdate as Date
+        case .highwayAlerts:
+            return cacheItem!.highwayAlertsLastUpdate as Date
+        case .ferries:
+            return cacheItem!.ferriesLastUpdate as Date
+        case .cameras:
+            return cacheItem!.camerasLastUpdate as Date
+        case .borderWaits:
+            return cacheItem!.borderWaitsLastUpdate as Date
+        case .mountainPasses:
+            return cacheItem!.mountainPassesLastUpdate as Date
         }
     }
 
-    static func updateTime(data: CachedData, updated: NSDate){
+    static func updateTime(_ data: CachedData, updated: Date){
         let realm = try! Realm()
         let cacheItem = realm.objects(CacheItem.self).first
         

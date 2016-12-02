@@ -53,7 +53,7 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
         displayedWaits = northboundWaits
 
         // refresh controller
-        refreshControl.addTarget(self, action: #selector(BorderWaitsViewController.refreshAction(_:)), forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(BorderWaitsViewController.refreshAction(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
         
         showOverlay(self.view)
@@ -68,26 +68,26 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
         // Ad Banner
         bannerView.adUnitID = ApiKeys.wsdot_ad_string
         bannerView.rootViewController = self
-        bannerView.loadRequest(GADRequest())
+        bannerView.load(GADRequest())
         bannerView.delegate = self
         
     }
     
-    func adViewDidReceiveAd(bannerView: GADBannerView!) {
+    func adViewDidReceiveAd(_ bannerView: GADBannerView!) {
         bannerView.isAccessibilityElement = true
         bannerView.accessibilityLabel = "advertisement banner."
     }
     
-    func refreshAction(refreshControl: UIRefreshControl) {
+    func refreshAction(_ refreshControl: UIRefreshControl) {
         refresh(true)
     }
     
-    func refresh(force: Bool){
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak self] in
+    func refresh(_ force: Bool){
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { [weak self] in
             BorderWaitStore.updateWaits(force, completion: { error in
                 if (error == nil) {
                     // Reload tableview on UI thread
-                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                    DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
                             selfValue.northboundWaits = BorderWaitStore.getNorthboundWaits()
                             selfValue.southboundWaits = BorderWaitStore.getSouthboundWaits()
@@ -102,11 +102,11 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
                         }
                     }
                 } else {
-                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                    DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
                             selfValue.hideOverlayView()
                             selfValue.refreshControl.endRefreshing()
-                            selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                         }
                     }
                 }
@@ -114,15 +114,15 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    func showOverlay(view: UIView) {
-        activityIndicator.frame = CGRectMake(0, 0, 40, 40)
-        activityIndicator.activityIndicatorViewStyle = .WhiteLarge
-        activityIndicator.color = UIColor.grayColor()
+    func showOverlay(_ view: UIView) {
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.color = UIColor.gray
         
-        if self.splitViewController!.collapsed {
-            activityIndicator.center = CGPointMake(view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
+        if self.splitViewController!.isCollapsed {
+            activityIndicator.center = CGPoint(x: view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
         } else {
-            activityIndicator.center = CGPointMake(view.center.x - self.splitViewController!.viewControllers[0].view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
+            activityIndicator.center = CGPoint(x: view.center.x - self.splitViewController!.viewControllers[0].view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
         }
         
         view.addSubview(activityIndicator)
@@ -136,21 +136,21 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     // MARK: Table View Data Source Methods
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return displayedWaits.count
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! BorderWaitCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! BorderWaitCell
         
         let wait = displayedWaits[indexPath.row]
         
@@ -159,7 +159,7 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
         do {
             let updated = try TimeUtils.timeAgoSinceDate(TimeUtils.formatTimeStamp(wait.updated), numericDates: false)
             cell.updatedLabel.text = updated
-        } catch TimeUtils.TimeUtilsError.InvalidTimeString {
+        } catch TimeUtils.TimeUtilsError.invalidTimeString {
             cell.updatedLabel.text = "N/A"
         } catch {
             cell.updatedLabel.text = "N/A"
@@ -178,7 +178,7 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
         return cell
     }
     
-    func getIcon(route: Int) -> UIImage?{
+    func getIcon(_ route: Int) -> UIImage?{
         
         if (segmentedControlView.selectedSegmentIndex == 0){
             switch(route){
@@ -201,20 +201,20 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     // Remove and add hairline for nav bar
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Border Waits")
         let img = UIImage()
         self.navigationController?.navigationBar.shadowImage = img
-        self.navigationController?.navigationBar.setBackgroundImage(img, forBarMetrics: .Default)
+        self.navigationController?.navigationBar.setBackgroundImage(img, for: .default)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.shadowImage = nil
-        self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: .Default)
+        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
     }
     
-    @IBAction func indexChanged(sender: UISegmentedControl) {
+    @IBAction func indexChanged(_ sender: UISegmentedControl) {
         switch (sender.selectedSegmentIndex){
         case 0:
             displayedWaits = northboundWaits

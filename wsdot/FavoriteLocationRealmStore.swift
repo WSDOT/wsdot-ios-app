@@ -29,7 +29,7 @@ class FavoriteLocationStore{
     }
     
     // Saves a favorite location, giving it a unique ID based on the current time
-    static func saveFavorite(favorite: FavoriteLocationItem){
+    static func saveFavorite(_ favorite: FavoriteLocationItem){
         
         favorite.id = TimeUtils.currentTime
         
@@ -44,7 +44,7 @@ class FavoriteLocationStore{
     }
     
     // Removes a favorite item from Realm
-    static func deleteFavorite(favorite: FavoriteLocationItem){
+    static func deleteFavorite(_ favorite: FavoriteLocationItem){
         let realm = try! Realm()
         do {
             try realm.write{

@@ -53,7 +53,7 @@ class I405ViewController: UIViewController, UITextViewDelegate{
 	    "<p>Visit GoodToGo405.org for more information.</p>"
         
         let attrStr = try! NSMutableAttributedString(
-            data: htmlString.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: false)!,
+            data: htmlString.data(using: String.Encoding.unicode, allowLossyConversion: false)!,
             options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
             documentAttributes: nil)
         
@@ -65,11 +65,11 @@ class I405ViewController: UIViewController, UITextViewDelegate{
     }
     
     override func viewWillLayoutSubviews() {
-        textView.setContentOffset(CGPointZero, animated: false)
+        textView.setContentOffset(CGPoint.zero, animated: false)
     }
     
-    func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {
-        UIApplication.sharedApplication().openURL(URL)
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
+        UIApplication.shared.openURL(URL)
 		return false
 	}
     

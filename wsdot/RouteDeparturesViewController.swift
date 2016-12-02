@@ -39,68 +39,68 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
         
         title = currentSailing.aTerminalName + " to " + currentSailing.bTterminalName
         
-        self.camerasContainerView.hidden = true
+        self.camerasContainerView.isHidden = true
         
         // Ad Banner
         bannerView.adUnitID = ApiKeys.wsdot_ad_string
         bannerView.rootViewController = self
-        bannerView.loadRequest(GADRequest())
+        bannerView.load(GADRequest())
         
         bannerView.delegate = self
         
     }
     
-    func adViewDidReceiveAd(bannerView: GADBannerView!) {
+    func adViewDidReceiveAd(_ bannerView: GADBannerView!) {
         bannerView.isAccessibilityElement = true
         bannerView.accessibilityLabel = "advertisement banner."
     }
 
     
     // Remove and add hairline for nav bar
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let img = UIImage()
         self.navigationController?.navigationBar.shadowImage = img
-        self.navigationController?.navigationBar.setBackgroundImage(img, forBarMetrics: .Default)
+        self.navigationController?.navigationBar.setBackgroundImage(img, for: .default)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.navigationBar.shadowImage = nil
-        self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: .Default)
+        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == timesViewSegue {
-            let dest: RouteTimesViewController = segue.destinationViewController as! RouteTimesViewController
+            let dest: RouteTimesViewController = segue.destination as! RouteTimesViewController
             dest.currentSailing = self.currentSailing
             dest.sailingsByDate = self.sailingsByDate
         }
         
         if segue.identifier == camerasViewSegue {
-            let dest: RouteCamerasViewController = segue.destinationViewController as! RouteCamerasViewController
+            let dest: RouteCamerasViewController = segue.destination as! RouteCamerasViewController
             dest.departingTerminalId = getDepartingId()
         }
     }
     
-    @IBAction func indexChanged(sender: UISegmentedControl) {
+    @IBAction func indexChanged(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
-            UIView.animateWithDuration(0.3, animations: {
-                self.timesContainerView.hidden = false
-                self.camerasContainerView.hidden = true
+            UIView.animate(withDuration: 0.3, animations: {
+                self.timesContainerView.isHidden = false
+                self.camerasContainerView.isHidden = true
             })
         } else {
-            UIView.animateWithDuration(0.3, animations: {
-                self.timesContainerView.hidden = true
-                self.camerasContainerView.hidden = false
+            UIView.animate(withDuration: 0.3, animations: {
+                self.timesContainerView.isHidden = true
+                self.camerasContainerView.isHidden = false
             })
         }
     }
     
     // MARK: -
     // MARK: Helper functions
-    private func getDepartingId() -> Int{
+    fileprivate func getDepartingId() -> Int{
         
         // get sailings for selected day
         let sailings = sailingsByDate[0].sailings

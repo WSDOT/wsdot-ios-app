@@ -39,7 +39,7 @@ class AmtrakCascadesScheduleViewController: UITableViewController, CLLocationMan
     
     var originTableData = AmtrakCascadesStore.getOriginData()
     var destinationTableData = AmtrakCascadesStore.getDestinationData()
-    var dayTableData = TimeUtils.nextSevenDaysStrings(NSDate())
+    var dayTableData = TimeUtils.nextSevenDaysStrings(Date())
     
     var dayIndex = 0
     var originIndex = 0
@@ -61,48 +61,48 @@ class AmtrakCascadesScheduleViewController: UITableViewController, CLLocationMan
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Amtrak Cascades/Schedules")
     }
 
 
     // The following 3 methods are called by the AmtrakCascadesSelectionViewContorller to set the selected option.
-    func daySelected(index: Int){
+    func daySelected(_ index: Int){
         dayIndex = index
         dayCell.selection.text = dayTableData[dayIndex]
     }
     
-    func originSelected(index: Int){
+    func originSelected(_ index: Int){
         originIndex = index
         originCell.selection.text = originTableData[originIndex]
     }
     
-    func destinationSelected(index: Int){
+    func destinationSelected(_ index: Int){
         destinationIndex = index
         destinationCell.selection.text = destinationTableData[destinationIndex]
     }
 
     // MARK: Table View Delegate Methods
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 1:
             if AmtrakCascadesStore.stationIdsMap[originTableData[originIndex]]! == AmtrakCascadesStore.stationIdsMap[destinationTableData[destinationIndex]]! {
                 destinationIndex = 0
             }
-            performSegueWithIdentifier(segueAmtrakCascadesScheduleDetailsViewController, sender: self)
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            performSegue(withIdentifier: segueAmtrakCascadesScheduleDetailsViewController, sender: self)
+            tableView.deselectRow(at: indexPath, animated: true)
             break
         default:
             selectionType = indexPath.row
-            performSegueWithIdentifier(segueAmtrakCascadesSelectionViewController, sender: self)
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            performSegue(withIdentifier: segueAmtrakCascadesSelectionViewController, sender: self)
+            tableView.deselectRow(at: indexPath, animated: true)
         }
     }
     
     
     // MARK: CLLocationManagerDelegate methods
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         usersLocation = manager.location
         
         let userLat: Double = usersLocation!.coordinate.latitude
@@ -121,7 +121,7 @@ class AmtrakCascadesScheduleViewController: UITableViewController, CLLocationMan
         
         }
         
-        let index = originTableData.indexOf(closest.station.name)
+        let index = originTableData.index(of: closest.station.name)
         
         originCell.selection.text = originTableData[index!]
         originIndex = index!
@@ -129,20 +129,20 @@ class AmtrakCascadesScheduleViewController: UITableViewController, CLLocationMan
         manager.stopUpdatingLocation()
     }
     
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         //print("failed to get location")
     }
     
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if status == .AuthorizedWhenInUse {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
             manager.startUpdatingLocation()
         }
     }
     
     // MARK: Naviagtion
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == segueAmtrakCascadesSelectionViewController {
-            let destinationViewController = segue.destinationViewController as! AmtrakCascadesSelectionViewController
+            let destinationViewController = segue.destination as! AmtrakCascadesSelectionViewController
             destinationViewController.parent = self
             destinationViewController.selectionType = selectionType
             
@@ -150,18 +150,18 @@ class AmtrakCascadesScheduleViewController: UITableViewController, CLLocationMan
             case 0: // day selection
                 destinationViewController.titleText = "Departure Day"
                 destinationViewController.menu_options = dayTableData
-                destinationViewController.selectedIndex = dayTableData.indexOf(dayCell.selection.text!)!
+                destinationViewController.selectedIndex = dayTableData.index(of: dayCell.selection.text!)!
                 break
             case 1: // Origin selection
             
                 destinationViewController.titleText = "Origin"
                 destinationViewController.menu_options = originTableData
-                destinationViewController.selectedIndex = originTableData.indexOf(originCell.selection.text!)!
+                destinationViewController.selectedIndex = originTableData.index(of: originCell.selection.text!)!
                 break
             case 2: // Destination selection
                 destinationViewController.titleText = "Destination"
                 destinationViewController.menu_options = destinationTableData
-                destinationViewController.selectedIndex = destinationTableData.indexOf(destinationCell.selection.text!)!
+                destinationViewController.selectedIndex = destinationTableData.index(of: destinationCell.selection.text!)!
                 break
             default: break
             }
@@ -169,18 +169,18 @@ class AmtrakCascadesScheduleViewController: UITableViewController, CLLocationMan
         
         
         if segue.identifier == segueAmtrakCascadesScheduleDetailsViewController {
-            let destinationViewController = segue.destinationViewController as! AmtrakCascadesScheduleDetailsViewController
+            let destinationViewController = segue.destination as! AmtrakCascadesScheduleDetailsViewController
             
-            let interval = NSTimeInterval(60 * 60 * 24 * dayIndex)
+            let interval = TimeInterval(60 * 60 * 24 * dayIndex)
         
-            destinationViewController.date = NSDate().dateByAddingTimeInterval(interval)
+            destinationViewController.date = Date().addingTimeInterval(interval)
             
             destinationViewController.originId = AmtrakCascadesStore.stationIdsMap[originTableData[originIndex]]!
             
             destinationViewController.destId = AmtrakCascadesStore.stationIdsMap[destinationTableData[destinationIndex]]!
         
             if destinationViewController.destId == "N/A" {
-                destinationViewController.title = "Departing " + originTableData[originTableData.indexOf(originCell.selection.text!)!]
+                destinationViewController.title = "Departing " + originTableData[originTableData.index(of: originCell.selection.text!)!]
             } else {
                 destinationViewController.title = originTableData[originIndex] + " to " + destinationTableData[destinationIndex]
             }
@@ -188,7 +188,7 @@ class AmtrakCascadesScheduleViewController: UITableViewController, CLLocationMan
     }
     
     // MARK: Presentation
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        return UIModalPresentationStyle.None
+    func adaptivePresentationStyleForPresentationController(_ controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
     }
 }

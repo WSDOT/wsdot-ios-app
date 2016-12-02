@@ -24,9 +24,9 @@ import Alamofire
 
 class TravelTimesStore{
     
-    typealias getTravelTimesCompletion = (error: NSError?) -> ()
+    typealias getTravelTimesCompletion = (_ error: NSError?) -> ()
     
-    static func updateFavorite(route: TravelTimeItem, newValue: Bool){
+    static func updateFavorite(_ route: TravelTimeItem, newValue: Bool){
         do {
             let realm = try Realm()
             try realm.write{
@@ -49,9 +49,9 @@ class TravelTimesStore{
         return Array(favoriteTimeItems)
     }
     
-    static func updateTravelTimes(force: Bool, completion: getTravelTimesCompletion) {
+    static func updateTravelTimes(_ force: Bool, completion: @escaping getTravelTimesCompletion) {
         
-        let deltaUpdated = NSCalendar.currentCalendar().components(.Second, fromDate: CachesStore.getUpdatedTime(CachedData.TravelTimes), toDate: NSDate(), options: []).second
+        let deltaUpdated = (Calendar.current as NSCalendar).components(.second, from: CachesStore.getUpdatedTime(CachedData.travelTimes), to: Date(), options: []).second
         
         if ((deltaUpdated > TimeUtils.updateTime) || force){
             
@@ -74,12 +74,12 @@ class TravelTimesStore{
                 
             }
         }else {
-            completion(error: nil)
+            completion(nil)
         }
     }
     
     // TODO: Make this smarter
-    private static func saveTravelTimes(travelTimes: [TravelTimeItem]){
+    fileprivate static func saveTravelTimes(_ travelTimes: [TravelTimeItem]){
         
         let realm = try! Realm()
         
@@ -121,7 +121,7 @@ class TravelTimesStore{
         }
     }
     
-    private static func parseTravelTimesJSON(json: JSON) ->[TravelTimeItem]{
+    fileprivate static func parseTravelTimesJSON(_ json: JSON) ->[TravelTimeItem]{
         var travelTimes = [TravelTimeItem]()
         
         for (_,subJson):(String, JSON) in json["traveltimes"]["items"] {

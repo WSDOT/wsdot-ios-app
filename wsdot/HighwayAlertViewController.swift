@@ -39,7 +39,7 @@ class HighwayAlertViewController: UIViewController, INDLinkLabelDelegate {
         let htmlString = htmlStyleString + alertItem.headlineDesc
         
         let attrStr = try! NSMutableAttributedString(
-            data: htmlString.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: false)!,
+            data: htmlString.data(using: String.Encoding.unicode, allowLossyConversion: false)!,
             options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
             documentAttributes: nil)
         
@@ -54,24 +54,24 @@ class HighwayAlertViewController: UIViewController, INDLinkLabelDelegate {
             + "&key=" + ApiKeys.google_key
         
         
-        mapImage.sd_setImageWithURL(NSURL(string: staticMapUrl), placeholderImage: UIImage(named: "imagePlaceholder"), options: .RefreshCached)
+        mapImage.sd_setImage(with: URL(string: staticMapUrl), placeholderImage: UIImage(named: "imagePlaceholder"), options: .refreshCached)
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Highway Alert")
     }
     
     // MARK: INDLinkLabelDelegate
     
-    func linkLabel(label: INDLinkLabel, didLongPressLinkWithURL URL: NSURL) {
+    func linkLabel(_ label: INDLinkLabel, didLongPressLinkWithURL URL: Foundation.URL) {
         let activityController = UIActivityViewController(activityItems: [URL], applicationActivities: nil)
-        self.presentViewController(activityController, animated: true, completion: nil)
+        self.present(activityController, animated: true, completion: nil)
     }
     
-    func linkLabel(label: INDLinkLabel, didTapLinkWithURL URL: NSURL) {
-        UIApplication.sharedApplication().openURL(URL)
+    func linkLabel(_ label: INDLinkLabel, didTapLinkWithURL URL: Foundation.URL) {
+        UIApplication.shared.openURL(URL)
     }
     
 }

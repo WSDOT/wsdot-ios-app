@@ -22,9 +22,9 @@ import UIKit
 
 class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
 
-        private var pages = [AlertContentViewController]()
-        private var alertItems = [HighwayAlertItem]()
-        private var timer: NSTimer?
+        fileprivate var pages = [AlertContentViewController]()
+        fileprivate var alertItems = [HighwayAlertItem]()
+        fileprivate var timer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,44 +32,44 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
         self.delegate = self
         self.dataSource = self
         
-        let page: AlertContentViewController! = storyboard?.instantiateViewControllerWithIdentifier("AlertContentViewController") as! AlertContentViewController
+        let page: AlertContentViewController! = storyboard?.instantiateViewController(withIdentifier: "AlertContentViewController") as! AlertContentViewController
         page.loadingPage = true
         pages.append(page)
-        setViewControllers([pages[0]], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
+        setViewControllers([pages[0]], direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
         
         view.backgroundColor = Colors.lightGrey
         
-        UIPageControl.appearance().pageIndicatorTintColor = UIColor.grayColor()
+        UIPageControl.appearance().pageIndicatorTintColor = UIColor.gray
         UIPageControl.appearance().currentPageIndicatorTintColor = Colors.tintColor
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         pages.removeAll()
-        let page: AlertContentViewController! = storyboard?.instantiateViewControllerWithIdentifier("AlertContentViewController") as! AlertContentViewController
+        let page: AlertContentViewController! = storyboard?.instantiateViewController(withIdentifier: "AlertContentViewController") as! AlertContentViewController
         page.loadingPage = true
         pages.append(page)
-        setViewControllers([pages[0]], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
+        setViewControllers([pages[0]], direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
         fetchAlerts(false)
-        timer = NSTimer.scheduledTimerWithTimeInterval(TimeUtils.alertsUpdateTime, target: self, selector: #selector(AlertPagerViewController.updateAlerts(_:)), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: TimeUtils.alertsUpdateTime, target: self, selector: #selector(AlertPagerViewController.updateAlerts(_:)), userInfo: nil, repeats: true)
 
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         timer?.invalidate()
     }
     
-    func updateAlerts(sender: NSTimer){
+    func updateAlerts(_ sender: Timer){
         fetchAlerts(false)
     }
     
-    private func fetchAlerts(force: Bool) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {[weak self] in
+    fileprivate func fetchAlerts(_ force: Bool) {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {[weak self] in
             HighwayAlertsStore.updateAlerts(force, completion: { error in
                 if (error == nil){
-                    dispatch_async(dispatch_get_main_queue()) {[weak self] in
+                    DispatchQueue.main.async {[weak self] in
                         if let selfValue = self{
                             selfValue.pages.removeAll()
                             selfValue.alertItems = HighwayAlertsStore.getHighestPriorityAlerts()
@@ -77,7 +77,7 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
                         }
                     }
                 }else{
-                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                    DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
                             selfValue.pages.removeAll()
                             selfValue.setUpContent(true)
@@ -88,16 +88,16 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
         }
     }
     
-    func setUpContent(failed: Bool){
+    func setUpContent(_ failed: Bool){
         
         if (failed){
-            let page: AlertContentViewController! = storyboard?.instantiateViewControllerWithIdentifier("AlertContentViewController") as! AlertContentViewController
+            let page: AlertContentViewController! = storyboard?.instantiateViewController(withIdentifier: "AlertContentViewController") as! AlertContentViewController
             page.alertText = "Failed to load alerts"
             pages.append(page)
         }else {
             var alertNumber = 1
             for alert in alertItems {
-                let page: AlertContentViewController! = storyboard?.instantiateViewControllerWithIdentifier("AlertContentViewController") as! AlertContentViewController
+                let page: AlertContentViewController! = storyboard?.instantiateViewController(withIdentifier: "AlertContentViewController") as! AlertContentViewController
                 page.alert = alert
                 page.alertText = alert.headlineDesc
                 page.alertCount = alertItems.count
@@ -106,42 +106,42 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
                 pages.append(page)
             }
             if (pages.count == 0){
-                let page: AlertContentViewController! = storyboard?.instantiateViewControllerWithIdentifier("AlertContentViewController") as! AlertContentViewController
+                let page: AlertContentViewController! = storyboard?.instantiateViewController(withIdentifier: "AlertContentViewController") as! AlertContentViewController
                 page.alertText = "No highest impact alerts"
                 pages.append(page)
             }
         }
-        setViewControllers([pages[0]], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
+        setViewControllers([pages[0]], direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
         
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
         if (pages.count == 1){
             return nil
         }
         
-        let currentIndex = pages.indexOf(viewController as! AlertContentViewController)!
+        let currentIndex = pages.index(of: viewController as! AlertContentViewController)!
         let previousIndex = abs((currentIndex - 1) % pages.count)
         return pages[previousIndex]
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
         if (pages.count == 1){
             return nil
         }
         
-        let currentIndex = pages.indexOf(viewController as! AlertContentViewController)!
+        let currentIndex = pages.index(of: viewController as! AlertContentViewController)!
         let nextIndex = abs((currentIndex + 1) % pages.count)
         return pages[nextIndex]
     }
     
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
         return pages.count
     }
     
-    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         return 0
     }
     

@@ -27,10 +27,10 @@ import SwiftyJSON
  */
 class SailingSpacesStore {
 
-    typealias FetchSailingSpaceCompletion = (data: [SailingSpacesItem]?, error: NSError?) -> ()
+    typealias FetchSailingSpaceCompletion = (_ data: [SailingSpacesItem]?, _ error: NSError?) -> ()
     
     // Returns sailing space data from API. 
-    static func getSailingSpacesForTerminal(departingId: Int, arrivingId: Int, completion: FetchSailingSpaceCompletion) {
+    static func getSailingSpacesForTerminal(_ departingId: Int, arrivingId: Int, completion: @escaping FetchSailingSpaceCompletion) {
         
         Alamofire.request(.GET, "http://www.wsdot.wa.gov/ferries/api/terminals/rest/terminalsailingspace/" + String(departingId) + "?apiaccesscode=" + ApiKeys.wsdot_key).validate().responseJSON { response in
             switch response.result {
@@ -55,7 +55,7 @@ class SailingSpacesStore {
     }
     
     //Converts JSON from api into and array of FerriesRouteScheduleItems
-    private static func parseSailingSpacesJSON(departingId: Int, arrivingId: Int, json: JSON) ->[SailingSpacesItem]{
+    fileprivate static func parseSailingSpacesJSON(_ departingId: Int, arrivingId: Int, json: JSON) ->[SailingSpacesItem]{
         
         var sailingSpaces = [SailingSpacesItem]()
         var hasSailingSpace = false

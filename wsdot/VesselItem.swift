@@ -26,11 +26,11 @@ class VesselItem {
     let vesselName: String
     let inService: Bool
     
-    private let directions = ["N", "NxE", "E", "SxE", "S", "SxW", "W", "NxW", "N"]
+    fileprivate let directions = ["N", "NxE", "E", "SxE", "S", "SxW", "W", "NxW", "N"]
     
     var headText: String {
         get {
-            return directions[Int(round(((Double(heading) % 360) / 45)))]
+            return directions[Int(round(((Double(heading).truncatingRemainder(dividingBy: 360)) / 45)))]
         }
     }
     
@@ -44,17 +44,17 @@ class VesselItem {
     let lat: Double
     let lon: Double
     let speed: Float
-    let updateTime: NSDate
+    let updateTime: Date
    
     var route: String = "Not available"
     var arrivingTerminal = "Not available"
     var departingTerminal = "Not available"
     
-    var nextDeparture: NSDate? = nil
-    var leftDock: NSDate? = nil
-    var eta: NSDate? = nil
+    var nextDeparture: Date? = nil
+    var leftDock: Date? = nil
+    var eta: Date? = nil
     
-    init(id: Int, name: String, lat: Double, lon: Double, heading: Int, speed: Float, inService: Bool, updated: NSDate) {
+    init(id: Int, name: String, lat: Double, lon: Double, heading: Int, speed: Float, inService: Bool, updated: Date) {
         self.vesselName = name
         self.vesselID = id
         self.lat = lat

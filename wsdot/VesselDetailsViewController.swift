@@ -71,13 +71,13 @@ class VesselDetailsViewController: UIViewController{
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Ferries/VesselWatch/Vessel Details/" + self.title!)
     }
     
-    @IBAction func linkAction(sender: UIBarButtonItem) {
-        UIApplication.sharedApplication().openURL(NSURL(string: "http://www.wsdot.com/ferries/vesselwatch/VesselDetail.aspx?vessel_id=" + String((vesselItem?.vesselID)!))!)
+    @IBAction func linkAction(_ sender: UIBarButtonItem) {
+        UIApplication.shared.openURL(URL(string: "http://www.wsdot.com/ferries/vesselwatch/VesselDetail.aspx?vessel_id=" + String((vesselItem?.vesselID)!))!)
     }
     
 }

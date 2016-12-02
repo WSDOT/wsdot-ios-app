@@ -31,7 +31,7 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        let bundle = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"]
+        let bundle = Bundle.main.infoDictionary!["CFBundleShortVersionString"]
         version = bundle as! String
     
         aboutText.sizeToFit()
@@ -42,14 +42,14 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
     
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/About")
     }
     
-    @IBAction func composeFeedbackMessage(sender: UIButton) {
+    @IBAction func composeFeedbackMessage(_ sender: UIButton) {
     
-        let bundle = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"]
+        let bundle = Bundle.main.infoDictionary!["CFBundleShortVersionString"]
         let version = bundle as! String
     
         if MFMailComposeViewController.canSendMail() {
@@ -57,16 +57,16 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
             mail.mailComposeDelegate = self
             mail.setToRecipients(["webfeedback@wsdot.wa.gov"])
             mail.setSubject("WSDOT iOS v\(version) Feedback")
-            presentViewController(mail, animated: true, completion: nil)
+            present(mail, animated: true, completion: nil)
         } else {
-            UIApplication.sharedApplication().openURL(NSURL(string: "mailto:")!)
+            UIApplication.shared.openURL(URL(string: "mailto:")!)
         }
         
     }
     
-    @IBAction func composeBugReport(sender: UIButton) {
+    @IBAction func composeBugReport(_ sender: UIButton) {
     
-        let bundle = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"]
+        let bundle = Bundle.main.infoDictionary!["CFBundleShortVersionString"]
         let version = bundle as! String
     
         if MFMailComposeViewController.canSendMail() {
@@ -75,26 +75,26 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
             mail.setToRecipients(["webfeedback@wsdot.wa.gov"])
             mail.setSubject("WSDOT iOS v\(version) Issue Report")
             mail.setMessageBody("<b>Issue Description:<b><br><br> <b>Steps to Reproduce Issue (if applicable):</b><br><br>", isHTML: true)
-            presentViewController(mail, animated: true, completion: nil)
+            present(mail, animated: true, completion: nil)
         } else {
-            UIApplication.sharedApplication().openURL(NSURL(string: "mailto:")!)
+            UIApplication.shared.openURL(URL(string: "mailto:")!)
         }
     }
     
     // MARK: - MFMailComposeViewControllerDelegate
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         switch result.rawValue {
-        case MFMailComposeResult.Cancelled.rawValue:
+        case MFMailComposeResult.cancelled.rawValue:
             print("Cancelled")
-        case MFMailComposeResult.Saved.rawValue:
+        case MFMailComposeResult.saved.rawValue:
             print("Saved")
-        case MFMailComposeResult.Sent.rawValue:
+        case MFMailComposeResult.sent.rawValue:
             print("Sent")
-        case MFMailComposeResult.Failed.rawValue:
+        case MFMailComposeResult.failed.rawValue:
             print("Error: \(error?.localizedDescription)")
         default:
             break
         }
-        controller.dismissViewControllerAnimated(true, completion: nil)
+        controller.dismiss(animated: true, completion: nil)
     }
 }

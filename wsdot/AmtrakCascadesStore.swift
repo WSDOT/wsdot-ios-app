@@ -24,9 +24,9 @@ import SwiftyJSON
 
 class AmtrakCascadesStore {
     
-    typealias FetchAmtrakSchedulesCompletion = (data: [[(AmtrakCascadesServiceStopItem,AmtrakCascadesServiceStopItem?)]]?, error: NSError?) -> ()
+    typealias FetchAmtrakSchedulesCompletion = (_ data: [[(AmtrakCascadesServiceStopItem,AmtrakCascadesServiceStopItem?)]]?, _ error: NSError?) -> ()
     
-    static func getSchedule(date: NSDate, originId: String, destId: String, completion: FetchAmtrakSchedulesCompletion) {
+    static func getSchedule(_ date: Date, originId: String, destId: String, completion: @escaping FetchAmtrakSchedulesCompletion) {
         
         let URL = "http://www.wsdot.wa.gov/traffic/api/amtrak/Schedulerest.svc/GetScheduleAsJson?AccessCode=" + ApiKeys.wsdot_key + "&StatusDate="
             + TimeUtils.formatTime(date, format: "MM/dd/yyyy") + "&TrainNumber=-1&FromLocation=" + originId + "&ToLocation=" + destId
@@ -47,7 +47,7 @@ class AmtrakCascadesStore {
         }
     }
     
-    private static func parseServiceItemsJSON(json: JSON) -> [[AmtrakCascadesServiceStopItem]] {
+    fileprivate static func parseServiceItemsJSON(_ json: JSON) -> [[AmtrakCascadesServiceStopItem]] {
         var tripItems = [[AmtrakCascadesServiceStopItem]]()
     
         var currentTripNum = -1 // current trip number - not the same as trip index b/c trips don't have to start at 0 or 1
@@ -131,7 +131,7 @@ class AmtrakCascadesStore {
     
     // Creates origin-destination pairs from parsed JSON items of type [[AmtrakCascadesServiceStopItem]]
     // !!! Special case to consider is when the destination is not selected. In this case the pairs will have the destination value nil.
-    static func getServiceStopPairs(servicesArrays: [[AmtrakCascadesServiceStopItem]]) -> [[(AmtrakCascadesServiceStopItem,AmtrakCascadesServiceStopItem?)]]{
+    static func getServiceStopPairs(_ servicesArrays: [[AmtrakCascadesServiceStopItem]]) -> [[(AmtrakCascadesServiceStopItem,AmtrakCascadesServiceStopItem?)]]{
     
         var servicePairs = [[(AmtrakCascadesServiceStopItem,AmtrakCascadesServiceStopItem?)]]()
         var pairIndex = 0
@@ -181,7 +181,7 @@ class AmtrakCascadesStore {
         stations.append(AmtrakCascadesStationItem(id: "SLM", name: "Salem, OR", lat: 44.9323665, lon: -123.0281591))
         stations.append(AmtrakCascadesStationItem(id: "ALY", name: "Albany, OR", lat: 44.6300975, lon: -123.1041787))
         stations.append(AmtrakCascadesStationItem(id: "EUG", name: "Eugene, OR", lat: 44.055506, lon: -123.094523))
-        return stations.sort({$0.name > $1.name})
+        return stations.sorted(by: {$0.name > $1.name})
     }
     
     // Used to populate the destination selection
@@ -205,8 +205,8 @@ class AmtrakCascadesStore {
         dest.append("Salem, OR")
         dest.append("Albany, OR")
         dest.append("Eugene, OR")
-        dest.sortInPlace()
-        dest.insert("All", atIndex: 0)
+        dest.sort()
+        dest.insert("All", at: 0)
         return dest
     }
     
@@ -231,7 +231,7 @@ class AmtrakCascadesStore {
         origins.append("Salem, OR")
         origins.append("Albany, OR")
         origins.append("Eugene, OR")
-        return origins.sort()
+        return origins.sorted()
     }
     
     // Station names to ID mapping.

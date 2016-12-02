@@ -33,22 +33,22 @@ class FerriesHomeViewController: UITableViewController {
         menu_options = ["Route Schedules", "Vehicle Reservations Website", "VesselWatch"]
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView("/Ferries")
     }
 
     // MARK: Table View Data Source Methods
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menu_options.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
         // Configure Cell
         cell.textLabel?.text = menu_options[indexPath.row]
@@ -57,24 +57,24 @@ class FerriesHomeViewController: UITableViewController {
     }
     
     // MARK: Table View Delegate Methods
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Perform Segue
         switch (indexPath.row) {
         case 0:
-            performSegueWithIdentifier(SegueRouteSchedulesViewController, sender: self)
+            performSegue(withIdentifier: SegueRouteSchedulesViewController, sender: self)
             break
         case 1:
             GoogleAnalytics.screenView("/Ferries/Vehicle Reservations")
-            UIApplication.sharedApplication().openURL(NSURL(string: "https://secureapps.wsdot.wa.gov/Ferries/Reservations/Vehicle/default.aspx")!)
+            UIApplication.shared.openURL(URL(string: "https://secureapps.wsdot.wa.gov/Ferries/Reservations/Vehicle/default.aspx")!)
             break
         case 2:
-            NSUserDefaults.standardUserDefaults().setObject(47.565125, forKey: UserDefaultsKeys.mapLat)
-            NSUserDefaults.standardUserDefaults().setObject(-122.480508, forKey: UserDefaultsKeys.mapLon)
-            NSUserDefaults.standardUserDefaults().setObject(11, forKey: UserDefaultsKeys.mapZoom)
-            performSegueWithIdentifier(SegueVesselWatchViewController, sender: self)
+            UserDefaults.standard.set(47.565125, forKey: UserDefaultsKeys.mapLat)
+            UserDefaults.standard.set(-122.480508, forKey: UserDefaultsKeys.mapLon)
+            UserDefaults.standard.set(11, forKey: UserDefaultsKeys.mapZoom)
+            performSegue(withIdentifier: SegueVesselWatchViewController, sender: self)
         default:
             break
         }
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

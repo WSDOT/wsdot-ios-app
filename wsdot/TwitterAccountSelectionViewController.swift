@@ -17,38 +17,38 @@ class TwitterAccountSelectionViewController: UIViewController, UITableViewDelega
     var menu_options: [String] = ["All Accounts", "Ferries", "Good To Go!", "Snoqualmie Pass", "WSDOT", "WSDOT Jobs", "WSDOT North Traffic", "WSDOT Southwest", "WSDOT Tacoma", "WSDOT Traffic"]
     var selectedIndex = 0
     
-    @IBAction func cancelAction(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: {()->Void in});
+    @IBAction func cancelAction(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: {()->Void in});
     }
     
     // MARK: Table View Data Source Methods
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menu_options.count
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
         // Configure Cell
         cell.textLabel?.text = menu_options[indexPath.row]
      
         if (indexPath.row == selectedIndex){
-            cell.accessoryType = .Checkmark
+            cell.accessoryType = .checkmark
         } else {
-            cell.accessoryType = .None
+            cell.accessoryType = .none
         }
         
         return cell
     }
     
     // MARK: Table View Delegate Methods
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         parent!.accountSelected(indexPath.row)
-        self.dismissViewControllerAnimated(true, completion: {()->Void in});
+        self.dismiss(animated: true, completion: {()->Void in});
     }
 }
 
