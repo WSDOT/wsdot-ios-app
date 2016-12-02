@@ -12,7 +12,7 @@ class TwitterAccountSelectionViewController: UIViewController, UITableViewDelega
 
     let cellIdentifier = "accountCell"
 
-    var parent: TwitterViewController? = nil
+    var my_parent: TwitterViewController? = nil
 
     var menu_options: [String] = ["All Accounts", "Ferries", "Good To Go!", "Snoqualmie Pass", "WSDOT", "WSDOT Jobs", "WSDOT North Traffic", "WSDOT Southwest", "WSDOT Tacoma", "WSDOT Traffic"]
     var selectedIndex = 0
@@ -47,7 +47,7 @@ class TwitterAccountSelectionViewController: UIViewController, UITableViewDelega
     
     // MARK: Table View Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        parent!.accountSelected(indexPath.row)
+        my_parent!.accountSelected(indexPath.row)
         self.dismiss(animated: true, completion: {()->Void in});
     }
 }

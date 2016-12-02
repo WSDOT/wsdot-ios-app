@@ -23,7 +23,7 @@ class VesselWatchGoToViewController: UIViewController, UITableViewDataSource, UI
 
     let cellIdentifier = "GoToCell"
     
-    var parent: VesselWatchViewController? = nil
+    var my_parent: VesselWatchViewController? = nil
     
     var menu_options: [String] = []
     
@@ -47,7 +47,7 @@ class VesselWatchGoToViewController: UIViewController, UITableViewDataSource, UI
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Ferries/VesselWatch/GoTo Location")
+        GoogleAnalytics.screenView(screenName: "/Ferries/VesselWatch/GoTo Location")
     }
     
     // MARK: Table View Data Source Methods
@@ -71,7 +71,7 @@ class VesselWatchGoToViewController: UIViewController, UITableViewDataSource, UI
     // MARK: Table View Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.dismiss(animated: true, completion: {()->Void in});
-        GoogleAnalytics.screenView("/Ferries/VesselWatch/GoTo Location/" + menu_options[indexPath.row])
-        parent?.goTo(indexPath.row)
+        GoogleAnalytics.screenView(screenName: "/Ferries/VesselWatch/GoTo Location/" + menu_options[indexPath.row])
+        my_parent?.goTo(indexPath.row)
     }
 }

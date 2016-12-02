@@ -24,7 +24,7 @@ class TrafficMapGoToViewController: UIViewController, UITableViewDataSource, UIT
 
     let cellIdentifier = "GoToCell"
     
-    var parent: TrafficMapViewController? = nil
+    var my_parent: TrafficMapViewController? = nil
     
     var menu_options: [String] = []
     
@@ -51,7 +51,7 @@ class TrafficMapGoToViewController: UIViewController, UITableViewDataSource, UIT
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Traffic Map/GoTo Location")
+        GoogleAnalytics.screenView(screenName: "/Traffic Map/GoTo Location")
     }
     
     @IBAction func closeAction(_ sender: AnyObject) {
@@ -79,8 +79,8 @@ class TrafficMapGoToViewController: UIViewController, UITableViewDataSource, UIT
     // MARK: -
     // MARK: Table View Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        GoogleAnalytics.screenView("/Traffic Map/GoTo Location/" + menu_options[indexPath.row])
+        GoogleAnalytics.screenView(screenName: "/Traffic Map/GoTo Location/" + menu_options[indexPath.row])
         self.dismiss(animated: true, completion: {()->Void in});
-        parent?.goTo(indexPath.row)
+        my_parent?.goTo(indexPath.row)
     }
 }

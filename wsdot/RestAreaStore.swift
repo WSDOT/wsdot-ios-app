@@ -27,7 +27,7 @@ class RestAreaStore {
         var restareas = [RestAreaItem]()
         if let path = Bundle.main.path(forResource: "restareas", ofType: "json"){
             let data = try? Data(contentsOf: URL(fileURLWithPath: path))
-            let json = JSON(data: data!, options: JSONSerialization.ReadingOptions.AllowFragments, error: nil)
+            let json = JSON(data: data!, options: JSONSerialization.ReadingOptions.allowFragments, error: nil)
             for (_,restareaJson):(String, JSON) in json {
                 let restarea = RestAreaItem(route: restareaJson["route"].stringValue,
                                             location: restareaJson["location"].stringValue,
