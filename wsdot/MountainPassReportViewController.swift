@@ -79,7 +79,7 @@ class MountainPassReportViewController: UIViewController, GADBannerViewDelegate 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Mountain Passes/Report")
+        GoogleAnalytics.screenView(screenName: "/Mountain Passes/Report")
     }
     
 }

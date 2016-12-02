@@ -203,7 +203,7 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
     // Remove and add hairline for nav bar
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Border Waits")
+        GoogleAnalytics.screenView(screenName: "/Border Waits")
         let img = UIImage()
         self.navigationController?.navigationBar.shadowImage = img
         self.navigationController?.navigationBar.setBackgroundImage(img, for: .default)

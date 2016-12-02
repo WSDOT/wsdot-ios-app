@@ -21,7 +21,7 @@
 import UIKit
 import Foundation
 
-class BloggerViewController: UIViewController, UITabBarDelegate, UITableViewDataSource, UITableViewDelegate {
+class BloggerViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     let cellIdentifier = "blogCell"
     

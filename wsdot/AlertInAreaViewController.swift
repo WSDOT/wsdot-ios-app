@@ -58,7 +58,7 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Traffic Map/Area Alerts")
+        GoogleAnalytics.screenView(screenName: "/Traffic Map/Area Alerts")
     }
     
     // MARK: Table View Data Source Methods

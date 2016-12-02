@@ -21,7 +21,7 @@
 import UIKit
 import Foundation
 
-class FacebookViewController: UIViewController, UITabBarDelegate, UITableViewDataSource, UITableViewDelegate, INDLinkLabelDelegate {
+class FacebookViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, INDLinkLabelDelegate {
     
     let cellIdentifier = "postCell"
     

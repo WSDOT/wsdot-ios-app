@@ -45,7 +45,7 @@ class FlickrViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Social Media/Flickr")
+        GoogleAnalytics.screenView(screenName: "/Social Media/Flickr")
     }
     
     func refreshAction(_ sender: UIRefreshControl){

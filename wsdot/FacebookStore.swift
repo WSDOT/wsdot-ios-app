@@ -53,7 +53,7 @@ class FacebookStore {
             post.id = postJson["id"].stringValue
             
             post.message = postJson["message"].stringValue
-                .stringByReplacingOccurrencesOfString("(https?:\\/\\/[-a-zA-Z0-9._~:\\/?#@!$&\'()*+,;=%]+)", withString: "<a href=\"$1\">$1</a>", options: .RegularExpressionSearch, range: nil)
+                .replacingOccurrences(of: "(https?:\\/\\/[-a-zA-Z0-9._~:\\/?#@!$&\'()*+,;=%]+)", with: "<a href=\"$1\">$1</a>", options: .regularExpression, range: nil)
             
             post.createdAt = TimeUtils.postPubDateToNSDate(postJson["created_time"].stringValue, formatStr: "yyyy-MM-dd'T'HH:mm:ssZ", isUTC: true)
             

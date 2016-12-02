@@ -70,7 +70,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     // if they do check if they favorites should be updated, if not display no favorites screen
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Favorites")
+        GoogleAnalytics.screenView(screenName: "/Favorites")
         
         self.favoriteTravelTimes = TravelTimesStore.findFavoriteTimes()
         self.favoriteRoutes = FerryRealmStore.findFavoriteSchedules()

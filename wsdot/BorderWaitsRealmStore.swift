@@ -40,10 +40,14 @@ class BorderWaitStore{
     }
     
     static func updateWaits(_ force: Bool, completion: @escaping getBorderWaitsCompletion) {
-        
+        var delta = TimeUtils.updateTime
         let deltaUpdated = (Calendar.current as NSCalendar).components(.second, from: CachesStore.getUpdatedTime(CachedData.borderWaits), to: Date(), options: []).second
         
-        if ((deltaUpdated > TimeUtils.updateTime) || force){
+        if let deltaValue = deltaUpdated {
+            delta = deltaValue
+        }
+         
+        if ((delta > TimeUtils.updateTime) || force){
             
             Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/BorderCrossings.js").validate().responseJSON { response in
                 switch response.result {

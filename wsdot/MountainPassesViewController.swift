@@ -51,7 +51,7 @@ class MountainPassesViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Mountain Passes")
+        GoogleAnalytics.screenView(screenName: "/Mountain Passes")
     }
     
     func refresh(_ force: Bool){

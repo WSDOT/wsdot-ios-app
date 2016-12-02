@@ -50,7 +50,7 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Ferries/Schedules/Sailings/Cameras")
+        GoogleAnalytics.screenView(screenName: "/Ferries/Schedules/Sailings/Cameras")
     }
     
     func refreshAction(_ refreshControl: UIRefreshControl) {
@@ -58,7 +58,7 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func refresh(_ force: Bool) {
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {[weak self] in
+        DispatchQueue.global().async {[weak self] in
             CamerasStore.updateCameras(force, completion: { error in
                 if (error == nil){
                     DispatchQueue.main.async {[weak self] in

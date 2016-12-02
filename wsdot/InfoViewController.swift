@@ -44,7 +44,7 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/About")
+        GoogleAnalytics.screenView(screenName: "/About")
     }
     
     @IBAction func composeFeedbackMessage(_ sender: UIButton) {

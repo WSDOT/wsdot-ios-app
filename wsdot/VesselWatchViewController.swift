@@ -172,7 +172,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     
     func fetchCameras(_ force: Bool) {
         serviceGroup.enter()
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {[weak self] in
+        DispatchQueue.global().async {[weak self] in
             CamerasStore.updateCameras(force, completion: { error in
                 if (error == nil){
                     DispatchQueue.main.async {[weak self] in

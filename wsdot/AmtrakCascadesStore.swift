@@ -91,14 +91,14 @@ class AmtrakCascadesStore {
             }
 
             if let arrivComments = stationJson["ArrivalComment"].string {
-                if (arrivComments.lowercaseString.containsString("late")){
+                if (arrivComments.lowercased().contains("late")){
                     let mins = TimeUtils.getMinsFromString(arrivComments)
-                    service.arrivalComment = "Estimated " + arrivComments.lowercaseString + " at " + TimeUtils.getTimeOfDay(service.scheduledArrivalTime!.dateByAddingTimeInterval(mins * 60))
-                } else if (arrivComments.lowercaseString.containsString("early")){
+                    service.arrivalComment = "Estimated " + arrivComments.lowercased() + " at " + TimeUtils.getTimeOfDay(service.scheduledArrivalTime!.addingTimeInterval(mins * 60))
+                } else if (arrivComments.lowercased().contains("early")){
                     let mins = TimeUtils.getMinsFromString(arrivComments)
-                    service.arrivalComment = "Estimated " + arrivComments.lowercaseString + " at " + TimeUtils.getTimeOfDay(service.scheduledArrivalTime!.dateByAddingTimeInterval(mins * -60))
+                    service.arrivalComment = "Estimated " + arrivComments.lowercased() + " at " + TimeUtils.getTimeOfDay(service.scheduledArrivalTime!.addingTimeInterval(mins * -60))
                 } else {
-                    service.arrivalComment = "Estimated " + arrivComments.lowercaseString
+                    service.arrivalComment = "Estimated " + arrivComments.lowercased()
                 }
             } else {
                 service.arrivalComment = ""
@@ -106,14 +106,14 @@ class AmtrakCascadesStore {
             
             
             if let departComments = stationJson["ArrivalComment"].string {
-                if (departComments.lowercaseString.containsString("late")){
+                if (departComments.lowercased().contains("late")){
                     let mins = TimeUtils.getMinsFromString(departComments)
-                    service.departureComment = "Estimated " + departComments.lowercaseString + " at " + TimeUtils.getTimeOfDay(service.scheduledDepartureTime!.dateByAddingTimeInterval(mins * 60))
-                } else if (departComments.lowercaseString.containsString("early")){
+                    service.departureComment = "Estimated " + departComments.lowercased() + " at " + TimeUtils.getTimeOfDay(service.scheduledDepartureTime!.addingTimeInterval(mins * 60))
+                } else if (departComments.lowercased().contains("early")){
                     let mins = TimeUtils.getMinsFromString(departComments)
-                    service.departureComment = "Estimated " + departComments.lowercaseString + " at " + TimeUtils.getTimeOfDay(service.scheduledDepartureTime!.dateByAddingTimeInterval(mins * -60))
+                    service.departureComment = "Estimated " + departComments.lowercased() + " at " + TimeUtils.getTimeOfDay(service.scheduledDepartureTime!.addingTimeInterval(mins * -60))
                 } else {
-                    service.departureComment = "Estimated " + departComments.lowercaseString
+                    service.departureComment = "Estimated " + departComments.lowercased()
                 }
             } else {
                 service.departureComment = ""

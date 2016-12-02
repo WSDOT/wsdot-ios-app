@@ -65,7 +65,7 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Traffic Map/Traveler Information/Travel Times")
+        GoogleAnalytics.screenView(screenName: "/Traffic Map/Traveler Information/Travel Times")
     }
     
     func refreshAction(_ refreshControl: UIRefreshControl) {

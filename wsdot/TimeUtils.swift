@@ -108,7 +108,7 @@ class TimeUtils {
         let min = time[4].stringValue
         let dateString =  year + "-" + month + "-" + day + " " + hour + ":" + min
         
-        if let date = dateFormatter.dateFromString(dateString){
+        if let date = dateFormatter.date(from: dateString){
             return date
         } else {
             return NSDate.init(timeIntervalSince1970: 0)

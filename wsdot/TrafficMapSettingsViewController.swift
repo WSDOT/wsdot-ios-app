@@ -24,7 +24,7 @@ class TrafficMapSettingsViewController: UIViewController {
     let cellIdentifier = "SettingCell"
     let legendCellIdentifier = "LegendCell"
     
-    var parent: TrafficMapViewController? = nil
+    var my_parent: TrafficMapViewController? = nil
     
     var menu_options: [String] = []
     
@@ -40,7 +40,7 @@ class TrafficMapSettingsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Traffic Map/More")
+        GoogleAnalytics.screenView(screenName: "/Traffic Map/More")
     }
     
     @IBAction func closeAction(_ sender: AnyObject) {
@@ -169,7 +169,7 @@ class TrafficMapSettingsViewController: UIViewController {
     
     func favoriteLocationAction(){
         self.dismiss(animated: true, completion: {()->Void in});
-        parent!.saveCurrentLocation()
+        my_parent!.saveCurrentLocation()
     }
     
     // MARK: Prefrence functions
@@ -177,13 +177,13 @@ class TrafficMapSettingsViewController: UIViewController {
         let clusterPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.shouldCluster)
         if let clusterVisible = clusterPref {
             if (clusterVisible == "on") {
-                GoogleAnalytics.event("Traffic Map", action: "UIAction", label: "Camera Clustering Off")
+                GoogleAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Camera Clustering Off")
                 UserDefaults.standard.set("off", forKey: UserDefaultsKeys.shouldCluster)
             } else {
-                GoogleAnalytics.event("Traffic Map", action: "UIAction", label: "Camera Clustering On")
+                GoogleAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Camera Clustering On")
                 UserDefaults.standard.set("on", forKey: UserDefaultsKeys.shouldCluster)
             }
-            parent!.resetMapCamera()
+            my_parent!.resetMapCamera()
         }
     }
     
@@ -191,13 +191,13 @@ class TrafficMapSettingsViewController: UIViewController {
         let alertsPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.alerts)
         if let alertsVisible = alertsPref {
             if (alertsVisible == "on") {
-                GoogleAnalytics.event("Traffic Map", action: "UIAction", label: "Hide Alerts")
+                GoogleAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Hide Alerts")
                 UserDefaults.standard.set("off", forKey: UserDefaultsKeys.alerts)
-                parent!.removeAlerts()
+                my_parent!.removeAlerts()
             } else {
-                GoogleAnalytics.event("Traffic Map", action: "UIAction", label: "Show Alerts")
+                GoogleAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Show Alerts")
                 UserDefaults.standard.set("on", forKey: UserDefaultsKeys.alerts)
-                parent!.drawAlerts()
+                my_parent!.drawAlerts()
             }
         }
     }
@@ -206,13 +206,13 @@ class TrafficMapSettingsViewController: UIViewController {
         let restAreaPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.restAreas)
         if let restAreaVisible = restAreaPref {
             if (restAreaVisible == "on") {
-                GoogleAnalytics.event("Traffic Map", action: "UIAction", label: "Hide Rest Areas")
+                GoogleAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Hide Rest Areas")
                 UserDefaults.standard.set("off", forKey: UserDefaultsKeys.restAreas)
-                parent!.removeRestAreas()
+                my_parent!.removeRestAreas()
             } else {
-                GoogleAnalytics.event("Traffic Map", action: "UIAction", label: "Show Rest Areas")
+                GoogleAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Show Rest Areas")
                 UserDefaults.standard.set("on", forKey: UserDefaultsKeys.restAreas)
-                parent!.drawRestArea()
+                my_parent!.drawRestArea()
             }
         }
     }
@@ -221,13 +221,13 @@ class TrafficMapSettingsViewController: UIViewController {
         let jblmPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.jblmCallout)
         if let jblmVisible = jblmPref {
             if (jblmVisible == "on") {
-                GoogleAnalytics.event("Traffic Map", action: "UIAction", label: "Hide JBLM")
+                GoogleAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Hide JBLM")
                 UserDefaults.standard.set("off", forKey: UserDefaultsKeys.jblmCallout)
-                parent!.removeJBLM()
+                my_parent!.removeJBLM()
             } else {
-                GoogleAnalytics.event("Traffic Map", action: "UIAction", label: "Show JBLM")
+                GoogleAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Show JBLM")
                 UserDefaults.standard.set("on", forKey: UserDefaultsKeys.jblmCallout)
-                parent!.drawJBLM()
+                my_parent!.drawJBLM()
             }
         }
     }

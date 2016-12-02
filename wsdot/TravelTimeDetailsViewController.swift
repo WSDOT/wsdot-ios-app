@@ -41,9 +41,9 @@ class TravelTimeDetailsViewController: UIViewController {
             let updatedText = try TimeUtils.timeAgoSinceDate(TimeUtils.formatTimeStamp(travelTime.updated), numericDates: false)
             updated.text = updatedText
         } catch TimeUtils.TimeUtilsError.invalidTimeString {
-            "N/A"
+            updated.text = "N/A"
         } catch {
-            "N/A"
+            updated.text = "N/A"
         }
         
         if travelTime.currentTime == 0{
@@ -69,7 +69,7 @@ class TravelTimeDetailsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Travel Time Details")
+        GoogleAnalytics.screenView(screenName: "/Travel Time Details")
     }
     
     @IBAction func updateFavorite(_ sender: UIBarButtonItem) {

@@ -88,7 +88,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Ferries/Schedules/Sailings/Departures")
+        GoogleAnalytics.screenView(screenName: "/Ferries/Schedules/Sailings/Departures")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -246,7 +246,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == segueDepartureDaySelectionViewController {
             let destinationViewController = segue.destination as! DepartureDaySelectionViewController
-            destinationViewController.parent = self
+            destinationViewController.my_parent = self
             destinationViewController.menu_options = dayData
             destinationViewController.selectedIndex = currentDay
         }

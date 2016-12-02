@@ -23,7 +23,7 @@ import Foundation
 import UIKit
 import Foundation
 
-class YouTubeViewController: UIViewController, UITabBarDelegate, UITableViewDataSource {
+class YouTubeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let cellIdentifier = "YouTubeCell"
     
@@ -49,7 +49,7 @@ class YouTubeViewController: UIViewController, UITabBarDelegate, UITableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Social Media/YouTube")
+        GoogleAnalytics.screenView(screenName: "/Social Media/YouTube")
     }
     
     func refreshAction(_ sender: UIRefreshControl){
@@ -104,7 +104,7 @@ class YouTubeViewController: UIViewController, UITabBarDelegate, UITableViewData
     }
     
     // MARK: Table View Data Source Methods
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
@@ -130,7 +130,7 @@ class YouTubeViewController: UIViewController, UITabBarDelegate, UITableViewData
     }
     
     // MARK: Table View Delegate Methods
-    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         UIApplication.shared.openURL(URL(string: videoItems[indexPath.row].link)!)
         

@@ -52,11 +52,11 @@ class BloggerStore {
             
             post.title = postJson["title"]["$t"].stringValue
             post.content = postJson["content"]["$t"].stringValue
-                .stringByReplacingOccurrencesOfString("<i>(.*)</i><br /><br />", withString: "", options: .RegularExpressionSearch, range: nil)
-                .stringByReplacingOccurrencesOfString("<em>(.*)</em><br /><br />", withString: "", options: .RegularExpressionSearch, range: nil)
-                .stringByReplacingOccurrencesOfString("<table(.*?)>.*?</table>", withString: "", options: .RegularExpressionSearch, range: nil)
-                .stringByReplacingOccurrencesOfString("&nbsp;", withString:" ")
-                .stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
+                .replacingOccurrences(of: "<i>(.*)</i><br /><br />", with: "", options: .regularExpression, range: nil)
+                .replacingOccurrences(of: "<em>(.*)</em><br /><br />", with: "", options: .regularExpression, range: nil)
+                .replacingOccurrences(of: "<table(.*?)>.*?</table>", with: "", options: .regularExpression, range: nil)
+                .replacingOccurrences(of: "&nbsp;", with:" ")
+                .replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
  
             post.link = postJson["link"][4]["href"].stringValue
             post.published = TimeUtils.postPubDateToNSDate(postJson["published"]["$t"].stringValue, formatStr: "yyyy-MM-dd'T'HH:mm:ss.SSSz", isUTC: true)

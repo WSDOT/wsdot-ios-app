@@ -46,7 +46,7 @@ class RouteSchedulesViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Ferries/Schedules")
+        GoogleAnalytics.screenView(screenName: "/Ferries/Schedules")
     }
     
     func refresh(_ force: Bool){

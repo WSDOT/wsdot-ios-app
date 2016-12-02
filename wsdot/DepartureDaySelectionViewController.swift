@@ -12,7 +12,7 @@ class DepartureDaySelectionViewController: UIViewController, UITableViewDelegate
 
     let cellIdentifier = "dayCell"
 
-    var parent: RouteTimesViewController? = nil
+    var my_parent: RouteTimesViewController? = nil
 
     var menu_options: [String] = []
     var selectedIndex = 0
@@ -47,7 +47,7 @@ class DepartureDaySelectionViewController: UIViewController, UITableViewDelegate
     
     // MARK: Table View Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        parent!.daySelected(indexPath.row)
+        my_parent!.daySelected(indexPath.row)
         self.dismiss(animated: true, completion: {()->Void in});
     }
 }

@@ -21,7 +21,7 @@
 import Foundation
 import UIKit
 
-class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewDataSource, INDLinkLabelDelegate {
+class TwitterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, INDLinkLabelDelegate {
     
     let cellIdentifier = "TwitterCell"
     
@@ -77,7 +77,7 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Social Media/Twitter")
+        GoogleAnalytics.screenView(screenName: "/Social Media/Twitter")
     }
     
     func refreshAction(_ sender: UIRefreshControl){
@@ -147,7 +147,7 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
     
     
     // MARK: Table View Data Source Methods
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
@@ -194,7 +194,7 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
     }
     
     // MARK: Table View Delegate Methods
-    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         UIApplication.shared.openURL(URL(string: tweets[indexPath.row].link)!)
     }
@@ -203,7 +203,7 @@ class TwitterViewController: UIViewController, UITabBarDelegate, UITableViewData
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == segueTwitterAccountSelectionViewController {
             let destinationViewController = segue.destination as! TwitterAccountSelectionViewController
-            destinationViewController.parent = self
+            destinationViewController.my_parent = self
             destinationViewController.selectedIndex = currentAccountIndex
         }
     }

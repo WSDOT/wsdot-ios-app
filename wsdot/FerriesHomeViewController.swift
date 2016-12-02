@@ -35,7 +35,7 @@ class FerriesHomeViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Ferries")
+        GoogleAnalytics.screenView(screenName: "/Ferries")
     }
 
     // MARK: Table View Data Source Methods
@@ -64,7 +64,7 @@ class FerriesHomeViewController: UITableViewController {
             performSegue(withIdentifier: SegueRouteSchedulesViewController, sender: self)
             break
         case 1:
-            GoogleAnalytics.screenView("/Ferries/Vehicle Reservations")
+            GoogleAnalytics.screenView(screenName: "/Ferries/Vehicle Reservations")
             UIApplication.shared.openURL(URL(string: "https://secureapps.wsdot.wa.gov/Ferries/Reservations/Vehicle/default.aspx")!)
             break
         case 2:

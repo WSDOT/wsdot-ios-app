@@ -61,7 +61,7 @@ class TwitterStore {
             post.name = postJson["user"]["name"].stringValue
             post.screenName = postJson["user"]["screen_name"].stringValue
             
-            post.text = postJson["text"].stringValue.stringByReplacingOccurrencesOfString("(https?:\\/\\/[-a-zA-Z0-9._~:\\/?#@!$&\'()*+,;=%]+)", withString: "<a href=\"$1\">$1</a>", options: .RegularExpressionSearch, range: nil).stringByReplacingOccurrencesOfString("&amp;", withString:"&")
+            post.text = postJson["text"].stringValue.replacingOccurrences(of: "(https?:\\/\\/[-a-zA-Z0-9._~:\\/?#@!$&\'()*+,;=%]+)", with: "<a href=\"$1\">$1</a>", options: .regularExpression, range: nil).replacingOccurrences(of: "&amp;", with:"&")
             
             post.link = "https://twitter.com/" + post.screenName + "/status/" + post.id
             post.mediaUrl = postJson["entities"]["media"][0]["media_url"].string

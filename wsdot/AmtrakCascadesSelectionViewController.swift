@@ -20,7 +20,7 @@ class AmtrakCascadesSelectionViewController: UIViewController, UITableViewDelega
 
     let cellIdentifier = "cell"
 
-    var parent: AmtrakCascadesScheduleViewController? = nil
+    var my_parent: AmtrakCascadesScheduleViewController? = nil
 
     var selectionType = 0
     var menu_options: [String] = []
@@ -65,13 +65,13 @@ class AmtrakCascadesSelectionViewController: UIViewController, UITableViewDelega
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (selectionType){
         case SelectionType.day.rawValue:
-            parent!.daySelected(indexPath.row)
+            my_parent!.daySelected(indexPath.row)
             break
         case SelectionType.origin.rawValue:
-            parent!.originSelected(indexPath.row)
+            my_parent!.originSelected(indexPath.row)
             break
         case SelectionType.destination.rawValue:
-            parent!.destinationSelected(indexPath.row)
+            my_parent!.destinationSelected(indexPath.row)
             break
         default: break
         }

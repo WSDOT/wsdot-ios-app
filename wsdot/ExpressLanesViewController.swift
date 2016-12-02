@@ -49,7 +49,7 @@ class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITable
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Traffic Map/Traveler Information/Express Lanes")
+        GoogleAnalytics.screenView(screenName: "/Traffic Map/Traveler Information/Express Lanes")
     }
 
     func refresh(_ refreshControl: UIRefreshControl) {
@@ -143,7 +143,7 @@ class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.row) {
         case expressLanes.count:
-            GoogleAnalytics.screenView("/Traffic Map/Traveler Information/Express Lanes/Express Lanes Schedule Website")
+            GoogleAnalytics.screenView(screenName: "/Traffic Map/Traveler Information/Express Lanes/Express Lanes Schedule Website")
             UIApplication.shared.openURL(URL(string: "http://www.wsdot.wa.gov/Northwest/King/ExpressLanes")!)
             break
         default:

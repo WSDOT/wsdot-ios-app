@@ -63,7 +63,7 @@ class RestAreaViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Traffic Map/Rest Area Details")
+        GoogleAnalytics.screenView(screenName: "/Traffic Map/Rest Area Details")
     }
 
 }

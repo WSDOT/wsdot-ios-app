@@ -38,7 +38,7 @@ class RouteSailingsViewController: UIViewController, UITableViewDataSource, UITa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Ferries/Schedules/Sailings")
+        GoogleAnalytics.screenView(screenName: "/Ferries/Schedules/Sailings")
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {

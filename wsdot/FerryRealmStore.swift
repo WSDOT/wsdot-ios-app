@@ -55,10 +55,14 @@ class FerryRealmStore {
     }
     
     static func updateRouteSchedules(_ force: Bool, completion: @escaping UpdateRoutesCompletion) {
-        
+    
+        var delta = TimeUtils.updateTime
         let deltaUpdated = (Calendar.current as NSCalendar).components(.second, from: CachesStore.getUpdatedTime(CachedData.ferries), to: Date(), options: []).second
+        if let deltaValue = deltaUpdated {
+            delta = deltaValue
+        }
         
-        if ((deltaUpdated > TimeUtils.updateTime) || force){
+        if ((delta > TimeUtils.updateTime) || force){
             
             Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js").validate().responseJSON { response in
                 switch response.result {
@@ -136,7 +140,7 @@ class FerryRealmStore {
             
             var crossingTime: String? = nil
             
-            if (subJson["CrossingTime"] != nil){
+            if (subJson["CrossingTime"] != JSON.null){
                 crossingTime = subJson["CrossingTime"].stringValue
             }
             
@@ -251,7 +255,7 @@ class FerryRealmStore {
         for(_, timeJSON):(String, JSON) in json {
             let time = FerryDepartureTimeItem()
             
-            if (timeJSON["ArrivingTime"] != nil){
+            if (timeJSON["ArrivingTime"] !=  JSON.null){
                 time.arrivingTime = TimeUtils.parseJSONDateToNSDate(timeJSON["ArrivingTime"].stringValue)
             }
             time.departingTime = TimeUtils.parseJSONDateToNSDate(timeJSON["DepartingTime"].stringValue)

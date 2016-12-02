@@ -50,10 +50,14 @@ class TravelTimesStore{
     }
     
     static func updateTravelTimes(_ force: Bool, completion: @escaping getTravelTimesCompletion) {
-        
+        var delta = TimeUtils.updateTime
         let deltaUpdated = (Calendar.current as NSCalendar).components(.second, from: CachesStore.getUpdatedTime(CachedData.travelTimes), to: Date(), options: []).second
         
-        if ((deltaUpdated > TimeUtils.updateTime) || force){
+        if let deltaValue = deltaUpdated {
+            delta = deltaValue
+        }
+         
+        if ((delta > TimeUtils.updateTime) || force){
             
             Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/TravelTimes.js").validate().responseJSON { response in
                 switch response.result {

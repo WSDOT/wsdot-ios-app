@@ -52,7 +52,7 @@ class AmtrakCascadesScheduleDetailsViewController: UIViewController, UITabBarDel
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Amtrak Cascades/Schedules/Details")
+        GoogleAnalytics.screenView(screenName: "/Amtrak Cascades/Schedules/Details")
     }
     
     func refreshAction(_ sender: UIRefreshControl){

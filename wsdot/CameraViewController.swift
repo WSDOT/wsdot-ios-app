@@ -61,7 +61,7 @@ class CameraViewController: UIViewController, GADBannerViewDelegate{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Camera Details")
+        GoogleAnalytics.screenView(screenName: "/Camera Details")
     }
     
     @IBAction func updateFavorite(_ sender: UIBarButtonItem) {

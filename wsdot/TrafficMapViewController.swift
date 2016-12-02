@@ -108,12 +108,12 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Traffic Map")
+        GoogleAnalytics.screenView(screenName: "/Traffic Map")
     }
     
     @IBAction func refreshPressed(_ sender: UIBarButtonItem) {
     
-        GoogleAnalytics.event("Traffic Map", action: "UIAction", label: "Refresh")
+        GoogleAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Refresh")
     
         self.activityIndicatorView.isHidden = false
         activityIndicatorView.startAnimating()
@@ -129,7 +129,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     }
     
     @IBAction func myLocationButtonPressed(_ sender: UIBarButtonItem) {
-        GoogleAnalytics.event("Traffic Map", action: "UIAction", label: "My Location")
+        GoogleAnalytics.event(category: "Traffic Map", action: "UIAction", label: "My Location")
         embeddedMapViewController.goToUsersLocation()
     }
     
@@ -145,12 +145,12 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         let camerasPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras)
         if let camerasVisible = camerasPref {
             if (camerasVisible == "on") {
-                GoogleAnalytics.event("Traffic Map", action: "UIAction", label: "Hide Cameras")
+                GoogleAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Hide Cameras")
                 UserDefaults.standard.set("off", forKey: UserDefaultsKeys.cameras)
                 sender.image = cameraBarButtonImage
                 removeCameras()
             } else {
-                GoogleAnalytics.event("Traffic Map", action: "UIAction", label: "Show Cameras")
+                GoogleAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Show Cameras")
                 sender.image = cameraHighlightBarButtonImage
                 UserDefaults.standard.set("on", forKey: UserDefaultsKeys.cameras)
                 drawCameras()
@@ -235,7 +235,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     func fetchCameras(_ force: Bool) {
         serviceGroup.enter()
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {[weak self] in
+        DispatchQueue.global().async {[weak self] in
             CamerasStore.updateCameras(force, completion: { error in
                 if (error == nil){
                     DispatchQueue.main.async {[weak self] in
@@ -295,7 +295,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     func fetchAlerts(_ force: Bool) {
         serviceGroup.enter()
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {[weak self] in
+        DispatchQueue.global().async {[weak self] in
             HighwayAlertsStore.updateAlerts(force, completion: { error in
                 if (error == nil){
                     DispatchQueue.main.async {[weak self] in
@@ -521,7 +521,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
         
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler:{ (alertAction:UIAlertAction!) in
-            GoogleAnalytics.event("Traffic Map", action: "UIAction", label: "Favorite Location Saved")
+            GoogleAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Favorite Location Saved")
             let textf = alert.textFields![0] as UITextField
             if let mapView = self.embeddedMapViewController.view as? GMSMapView{
                 let favoriteLocation = FavoriteLocationItem()
@@ -606,7 +606,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
 
         if segue.identifier == SegueGoToPopover {
             let destinationViewController = segue.destination as! TrafficMapGoToViewController
-            destinationViewController.parent = self
+            destinationViewController.my_parent = self
         }
         
         if segue.identifier == SegueAlertsInArea {
@@ -617,7 +617,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         
         if segue.identifier == SegueSettingsPopover {
             let destinationViewController = segue.destination as! TrafficMapSettingsViewController
-            destinationViewController.parent = self
+            destinationViewController.my_parent = self
         }
         
         if segue.identifier == SegueHighwayAlertViewController {

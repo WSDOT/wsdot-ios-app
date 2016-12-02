@@ -85,7 +85,7 @@ class VesselWatchStore {
             let routes = vesselJson["OpRouteAbbrev"].arrayValue
             
             if (routes.count > 0){
-                vessel.route = routes[0].stringValue.capitalizedString
+                vessel.route = routes[0].stringValue.uppercased()
             }
             
             vessels.append(vessel)

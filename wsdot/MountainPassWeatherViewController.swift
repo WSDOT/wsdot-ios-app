@@ -41,7 +41,7 @@ class MountainPassWeatherViewController: UIViewController, UITableViewDelegate, 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Mountain Passes/Forecast")
+        GoogleAnalytics.screenView(screenName: "/Mountain Passes/Forecast")
     }
     
     // MARK: Table View Data source methods

@@ -32,7 +32,7 @@ class TollRatesViewController: UIViewController{
     // Remove and add hairline for nav bar
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Toll Rates/SR520")
+        GoogleAnalytics.screenView(screenName: "/Toll Rates/SR520")
     
         let img = UIImage()
         self.navigationController?.navigationBar.shadowImage = img
@@ -49,28 +49,28 @@ class TollRatesViewController: UIViewController{
         switch (sender.selectedSegmentIndex){
             
         case 0:
-            GoogleAnalytics.screenView("/Toll Rates/SR520")
+            GoogleAnalytics.screenView(screenName: "/Toll Rates/SR520")
             SR520ContainerView.isHidden = false
             SR16ContainerView.isHidden = true
             SR167ContainerView.isHidden = true
             I405ContainerView.isHidden = true
             break
         case 1:
-            GoogleAnalytics.screenView("/Toll Rates/SR16")
+            GoogleAnalytics.screenView(screenName: "/Toll Rates/SR16")
             SR520ContainerView.isHidden = true
             SR16ContainerView.isHidden = false
             SR167ContainerView.isHidden = true
             I405ContainerView.isHidden = true
             break
         case 2:
-            GoogleAnalytics.screenView("/Toll Rates/SR167")
+            GoogleAnalytics.screenView(screenName: "/Toll Rates/SR167")
             SR520ContainerView.isHidden = true
             SR16ContainerView.isHidden = true
             SR167ContainerView.isHidden = false
             I405ContainerView.isHidden = true
             break
         case 3:
-            GoogleAnalytics.screenView("/Toll Rates/I405")
+            GoogleAnalytics.screenView(screenName: "/Toll Rates/I405")
             SR520ContainerView.isHidden = true
             SR16ContainerView.isHidden = true
             SR167ContainerView.isHidden = true

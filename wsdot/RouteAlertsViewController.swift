@@ -38,7 +38,7 @@ class RouteAlertsViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Ferries/Schedules/Alerts")
+        GoogleAnalytics.screenView(screenName: "/Ferries/Schedules/Alerts")
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {

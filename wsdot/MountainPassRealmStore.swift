@@ -53,10 +53,14 @@ class MountainPassStore {
     }
     
     static func updatePasses(_ force: Bool, completion: @escaping UpdatePassesCompletion) {
-        
+        var delta = TimeUtils.updateTime
         let deltaUpdated = (Calendar.current as NSCalendar).components(.second, from: CachesStore.getUpdatedTime(CachedData.mountainPasses), to: Date(), options: []).second
         
-        if ((deltaUpdated > TimeUtils.updateTime) || force){
+        if let deltaValue = deltaUpdated {
+             delta = deltaValue
+        }
+         
+        if ((delta > TimeUtils.updateTime) || force){
             
             Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/MountainPassConditions.js").validate().responseJSON { response in
                 switch response.result {

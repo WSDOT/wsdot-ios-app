@@ -29,7 +29,7 @@ class AmtrakCascadesViewController: UIViewController, UITableViewDelegate, UITab
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Amtrak Cascades")
+        GoogleAnalytics.screenView(screenName: "/Amtrak Cascades")
     }
 
     // MARK: Table View Data Source Methods
@@ -54,7 +54,7 @@ class AmtrakCascadesViewController: UIViewController, UITableViewDelegate, UITab
         // Perform Segue
         switch (indexPath.row) {
         case 0:
-            GoogleAnalytics.screenView("/Amtrak Cascades/Buy Tickets")
+            GoogleAnalytics.screenView(screenName: "/Amtrak Cascades/Buy Tickets")
             UIApplication.shared.openURL(URL(string: "http://m.amtrak.com")!)
             break
         case 1:

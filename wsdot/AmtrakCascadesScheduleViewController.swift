@@ -63,7 +63,7 @@ class AmtrakCascadesScheduleViewController: UITableViewController, CLLocationMan
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Amtrak Cascades/Schedules")
+        GoogleAnalytics.screenView(screenName: "/Amtrak Cascades/Schedules")
     }
 
 
@@ -143,7 +143,7 @@ class AmtrakCascadesScheduleViewController: UITableViewController, CLLocationMan
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == segueAmtrakCascadesSelectionViewController {
             let destinationViewController = segue.destination as! AmtrakCascadesSelectionViewController
-            destinationViewController.parent = self
+            destinationViewController.my_parent = self
             destinationViewController.selectionType = selectionType
             
             switch (selectionType){

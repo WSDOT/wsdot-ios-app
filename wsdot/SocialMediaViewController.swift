@@ -40,7 +40,7 @@ class SocialMediaViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Social Media")
+        GoogleAnalytics.screenView(screenName: "/Social Media")
     }
     
     // MARK: Table View Data Source Methods

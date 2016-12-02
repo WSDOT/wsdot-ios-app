@@ -23,7 +23,7 @@ import Foundation
 import UIKit
 import Foundation
 
-class NewsViewController: UIViewController, UITabBarDelegate, UITableViewDataSource {
+class NewsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let cellIdentifier = "NewsCell"
     
@@ -49,7 +49,7 @@ class NewsViewController: UIViewController, UITabBarDelegate, UITableViewDataSou
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Social Media/News")
+        GoogleAnalytics.screenView(screenName: "/Social Media/News")
     }
     
     func refreshAction(_ sender: UIRefreshControl){
@@ -104,7 +104,7 @@ class NewsViewController: UIViewController, UITabBarDelegate, UITableViewDataSou
     }
     
     // MARK: Table View Data Source Methods
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
@@ -126,7 +126,7 @@ class NewsViewController: UIViewController, UITabBarDelegate, UITableViewDataSou
     }
     
     // MARK: Table View Delegate Methods
-    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         UIApplication.shared.openURL(URL(string: newsItems[indexPath.row].link)!)
         

@@ -66,7 +66,7 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
     }
     
     fileprivate func fetchAlerts(_ force: Bool) {
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {[weak self] in
+        DispatchQueue.global().async {[weak self] in
             HighwayAlertsStore.updateAlerts(force, completion: { error in
                 if (error == nil){
                     DispatchQueue.main.async {[weak self] in
