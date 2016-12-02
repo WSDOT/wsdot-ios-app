@@ -7,9 +7,9 @@ target 'WSDOT' do
     pod 'Firebase/AdMob'
     pod 'GoogleMaps'
     pod 'Google/Analytics'
-    pod 'RealmSwift', '~> 2.0.3'
-    pod 'Alamofire', '~> 3.5.0'
-    pod 'SwiftyJSON', '~> 2.3.2'
+    pod 'RealmSwift', '~> 2.1.0'
+    pod 'Alamofire', '~> 4.2.0'
+    pod 'SwiftyJSON', '~> 3.1.3'
     pod 'SDWebImage'
 end
 
@@ -18,16 +18,16 @@ target 'WSDOTTests' do
     pod 'Firebase/AdMob'
     pod 'GoogleMaps'
     pod 'Google/Analytics'
-    pod 'RealmSwift', '~> 2.0.3'
-    pod 'Alamofire', '~> 3.5.0'
-    pod 'SwiftyJSON', '~> 2.3.2'
+    pod 'RealmSwift', '~> 2.1.0'
+    pod 'Alamofire', '~> 4.2.0'
+    pod 'SwiftyJSON', '~> 3.1.3'
     pod 'SDWebImage'
 end
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
-      config.build_settings['SWIFT_VERSION'] = '2.3' # or '3.0'
+      config.build_settings['SWIFT_VERSION'] = '3.0'
     end
   end
 end
