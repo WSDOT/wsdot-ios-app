@@ -47,16 +47,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             assert(configureError == nil, "Error configuring Google services: \(configureError)")
             
             // Optional: configure GAI options.
-            let gai = GAI.sharedInstance()
-            
-            if (GoogleAnalytics.analytics_dryrun){
-                gai?.dryRun = GoogleAnalytics.analytics_dryrun
-                gai?.logger.logLevel = GAILogLevel.verbose
+            if let gai = GAI.sharedInstance() {
+                 if (GoogleAnalytics.analytics_dryrun){
+                     gai.dryRun = GoogleAnalytics.analytics_dryrun
+                     gai.logger.logLevel = GAILogLevel.verbose
+                 }
+                 gai.trackUncaughtExceptions = true  // report uncaught exceptions
             }
-            gai?.trackUncaughtExceptions = true  // report uncaught exceptions
-            
         }
-        
         // Reset Warning each time app starts
         UserDefaults.standard.set(false, forKey: UserDefaultsKeys.hasSeenWarning)
         
