@@ -76,22 +76,22 @@ class CachesStore {
         do {
             try realm.write{
                 switch(data){
-                case .TravelTimes:
+                case .travelTimes:
                     cacheItem?.travelTimesLastUpdate = updated
                     break
-                case .HighwayAlerts:
+                case .highwayAlerts:
                     cacheItem?.highwayAlertsLastUpdate = updated
                     break
-                case .Ferries:
+                case .ferries:
                     cacheItem?.ferriesLastUpdate = updated
                     break
-                case .Cameras:
+                case .cameras:
                     cacheItem?.camerasLastUpdate = updated
                     break
-                case .BorderWaits:
+                case .borderWaits:
                     cacheItem?.borderWaitsLastUpdate = updated
                     break
-                case .MountainPasses:
+                case .mountainPasses:
                     cacheItem?.mountainPassesLastUpdate = updated
                     break
                 }

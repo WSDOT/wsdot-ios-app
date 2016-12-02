@@ -89,7 +89,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Ferries/VesselWatch")
+        GoogleAnalytics.screenView(screenName: "/Ferries/VesselWatch")
     }
     
     @IBAction func goToLocation(_ sender: UIBarButtonItem) {
@@ -134,7 +134,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     
     @IBAction func myLocationButtonPressed(_ sender: UIBarButtonItem) {
     
-        GoogleAnalytics.event("Vessel Watch", action: "UIAction", label: "My Location")
+        GoogleAnalytics.event(category: "Vessel Watch", action: "UIAction", label: "My Location")
         
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
             embeddedMapViewController.goToUsersLocation()
@@ -353,7 +353,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         
         if segue.identifier == SegueGoToPopover {
             let destinationViewController = segue.destination as! VesselWatchGoToViewController
-            destinationViewController.parent = self
+            destinationViewController.my_parent = self
         }
     }
 }

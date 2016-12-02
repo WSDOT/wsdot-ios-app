@@ -21,7 +21,7 @@
 import UIKit
 import Foundation
 
-class BloggerViewController: UIViewController, UITabBarDelegate, UITableViewDataSource {
+class BloggerViewController: UIViewController, UITabBarDelegate, UITableViewDataSource, UITableViewDelegate {
     
     let cellIdentifier = "blogCell"
     
@@ -46,7 +46,7 @@ class BloggerViewController: UIViewController, UITabBarDelegate, UITableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Social Media/Blogger")
+        GoogleAnalytics.screenView(screenName: "/Social Media/Blogger")
     }
     
     func refreshAction(_ sender: UIRefreshControl){
@@ -101,7 +101,7 @@ class BloggerViewController: UIViewController, UITabBarDelegate, UITableViewData
     }
     
     // MARK: Table View Data Source Methods
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
@@ -126,7 +126,7 @@ class BloggerViewController: UIViewController, UITabBarDelegate, UITableViewData
     }
     
     // MARK: Table View Delegate Methods
-    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         UIApplication.shared.openURL(URL(string: posts[indexPath.row].link)!)
         
