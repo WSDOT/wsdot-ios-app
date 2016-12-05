@@ -191,7 +191,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
         } else if clusterCount > 10 {
             return Utils.textToImage("10+", inImage: clusterIcons[0]!, fontSize: 13.0)
         } else {
-            return Utils.textToImage(String(clusterCount), inImage: clusterIcons[0]!, fontSize: 13.0)
+            return Utils.textToImage(String(clusterCount) as NSString, inImage: clusterIcons[0]!, fontSize: 13.0)
         }
     }
 }

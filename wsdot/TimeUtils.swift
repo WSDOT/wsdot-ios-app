@@ -111,7 +111,7 @@ class TimeUtils {
         if let date = dateFormatter.date(from: dateString){
             return date
         } else {
-            return NSDate.init(timeIntervalSince1970: 0)
+            return NSDate.init(timeIntervalSince1970: 0) as Date
         }
     }
     // Converts blogger pub date format into an NSDate object (ex. 2016-08-26T09:24:00.000-07:00)
