@@ -24,21 +24,21 @@ import SwiftyJSON
 
 class NewsStore {
 
-    typealias FetchNewsCompletion = (_ data: [NewsItem]?, _ error: NSError?) -> ()
+    typealias FetchNewsCompletion = (_ data: [NewsItem]?, _ error: Error?) -> ()
     
     static func getNews(_ completion: @escaping FetchNewsCompletion) {
         
-        Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/News.js").validate().responseJSON { response in
+        Alamofire.request("http://data.wsdot.wa.gov/mobile/News.js").validate().responseJSON { response in
             switch response.result {
-            case .Success:
+            case .success:
                 if let value = response.result.value {
                     let json = JSON(value)
                     let posts = parsePostsJSON(json)
-                    completion(data: posts, error: nil)
+                    completion(posts, nil)
                 }
-            case .Failure(let error):
+            case .failure(let error):
                 print(error)
-                completion(data: nil, error: error)
+                completion(nil, error)
             }
         }
     }

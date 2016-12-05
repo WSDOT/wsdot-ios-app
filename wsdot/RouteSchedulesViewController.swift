@@ -126,7 +126,7 @@ class RouteSchedulesViewController: UITableViewController {
             cell.subTitleOne.isHidden = true
         }
 
-        cell.subTitleTwo.text = TimeUtils.timeAgoSinceDate(self.routes[indexPath.row].cacheDate, numericDates: false)
+        cell.subTitleTwo.text = TimeUtils.timeAgoSinceDate(date: self.routes[indexPath.row].cacheDate, numericDates: false)
      
         return cell
     }

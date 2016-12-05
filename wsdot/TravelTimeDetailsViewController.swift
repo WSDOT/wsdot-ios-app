@@ -38,7 +38,7 @@ class TravelTimeDetailsViewController: UIViewController {
         subTitle.text = String(travelTime.distance) + " miles / " + String(travelTime.averageTime) + " min"
         
         do {
-            let updatedText = try TimeUtils.timeAgoSinceDate(TimeUtils.formatTimeStamp(travelTime.updated), numericDates: false)
+            let updatedText = try TimeUtils.timeAgoSinceDate(date: TimeUtils.formatTimeStamp(travelTime.updated), numericDates: false)
             updated.text = updatedText
         } catch TimeUtils.TimeUtilsError.invalidTimeString {
             updated.text = "N/A"

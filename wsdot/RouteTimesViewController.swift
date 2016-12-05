@@ -189,7 +189,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                     cell.avaliableSpacesBar.transform = cell.avaliableSpacesBar.transform.scaledBy(x: 1, y: 3)
                     
                     cell.spacesDisclaimer.isHidden = false
-                    cell.updated.text = "Drive-up spaces updated " + TimeUtils.timeAgoSinceDate(updatedAt, numericDates: true)
+                    cell.updated.text = "Drive-up spaces updated " + TimeUtils.timeAgoSinceDate(date: updatedAt, numericDates: true)
                 }
             }
         }

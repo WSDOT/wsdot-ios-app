@@ -23,24 +23,24 @@ import SwiftyJSON
 
 class FlickrStore {
     
-    typealias FetchFlickrPostsCompletion = (_ data: [FlickrItem]?, _ error: NSError?) -> ()
+    typealias FetchFlickrPostsCompletion = (_ data: [FlickrItem]?, _ error: Error?) -> ()
     
     static func getPosts(_ completion: @escaping FetchFlickrPostsCompletion) {
         
-        Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/FlickrPhotos.js").validate().responseString  { response in
+        Alamofire.request("http://data.wsdot.wa.gov/mobile/FlickrPhotos.js").validate().responseString  { response in
             switch response.result {
-            case .Success:
+            case .success:
                 if let value = response.result.value {
                     
-                    // Flickr JSON uses invalid josn characters fo standard RFC 4627, remove them here.
-                    let json = JSON.parse(value.stringByReplacingOccurrencesOfString("\\'", withString: "'", options: NSStringCompareOptions.LiteralSearch, range: nil))
+                    // Flickr JSON uses invalid josn characters for standard RFC 4627, remove them here.
+                    let json = JSON.parse(value.replacingOccurrences(of: "\\'", with: "'", options: .literal))
      
                     let posts = parsePostsJSON(json)
-                    completion(data: posts, error: nil)
+                    completion(posts, nil)
                 }
-            case .Failure(let error):
+            case .failure(let error):
                 print(error)
-                completion(data: nil, error: error)
+                completion(nil, error)
             }
         }
     }

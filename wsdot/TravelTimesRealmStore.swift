@@ -24,7 +24,7 @@ import Alamofire
 
 class TravelTimesStore{
     
-    typealias getTravelTimesCompletion = (_ error: NSError?) -> ()
+    typealias getTravelTimesCompletion = (_ error: Error?) -> ()
     
     static func updateFavorite(_ route: TravelTimeItem, newValue: Bool){
         do {
@@ -59,21 +59,21 @@ class TravelTimesStore{
          
         if ((delta > TimeUtils.updateTime) || force){
             
-            Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/TravelTimes.js").validate().responseJSON { response in
+            Alamofire.request("http://data.wsdot.wa.gov/mobile/TravelTimes.js").validate().responseJSON { response in
                 switch response.result {
-                case .Success:
+                case .success:
                     if let value = response.result.value {
-                        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) {
+                        DispatchQueue.global().async {
                             let json = JSON(value)
                             let travelTimes = TravelTimesStore.parseTravelTimesJSON(json)
                             saveTravelTimes(travelTimes)
-                            CachesStore.updateTime(CachedData.TravelTimes, updated: NSDate())
-                            completion(error: nil)
+                            CachesStore.updateTime(CachedData.travelTimes, updated: Date())
+                            completion(nil)
                         }
                     }
-                case .Failure(let error):
+                case .failure(let error):
                     print(error)
-                    completion(error: error)
+                    completion(error)
                 }
                 
             }

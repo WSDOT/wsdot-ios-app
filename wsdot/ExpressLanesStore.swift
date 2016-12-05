@@ -24,21 +24,21 @@ import Alamofire
 
 class ExpressLanesStore {
 
-    typealias FetchExpressLanesCompletion = (_ data: [ExpressLaneItem]?, _ error: NSError?) -> ()
+    typealias FetchExpressLanesCompletion = (_ data: [ExpressLaneItem]?, _ error: Error?) -> ()
     
     static func getExpressLanes(_ completion: @escaping FetchExpressLanesCompletion) {
         
-        Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/ExpressLanes.js").validate().responseJSON { response in
+        Alamofire.request("http://data.wsdot.wa.gov/mobile/ExpressLanes.js").validate().responseJSON { response in
             switch response.result {
-            case .Success:
+            case .success:
                 if let value = response.result.value {
                     let json = JSON(value)
                     let expressLanes = parseExpressLanesJSON(json)
-                    completion(data: expressLanes, error: nil)
+                    completion(expressLanes, nil)
                 }
-            case .Failure(let error):
+            case .failure(let error):
                 print(error)
-                completion(data: nil, error: error)
+                completion(nil, error)
             }
         }
     }

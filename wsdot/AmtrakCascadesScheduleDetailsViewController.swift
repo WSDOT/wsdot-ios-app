@@ -146,7 +146,7 @@ class AmtrakCascadesScheduleDetailsViewController: UIViewController, UITabBarDel
             cell.trainDetailsLabel.text = String(originService.trainNumber) + " Bus Service"
         }
         
-        cell.updatedLabel.text = TimeUtils.timeAgoSinceDate(originService.updated, numericDates: false)
+        cell.updatedLabel.text = TimeUtils.timeAgoSinceDate(date: originService.updated, numericDates: false)
         
         if let destinationService = tripItems[indexPath.section][indexPath.row].1 {
             

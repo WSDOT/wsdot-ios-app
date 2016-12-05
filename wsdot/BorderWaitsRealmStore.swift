@@ -25,7 +25,7 @@ import SwiftyJSON
 
 class BorderWaitStore{
 
-    typealias getBorderWaitsCompletion = (_ error: NSError?) -> ()
+    typealias getBorderWaitsCompletion = (_ error: Error?) -> ()
 
     static func getNorthboundWaits() -> [BorderWaitItem]{
         let realm = try! Realm()
@@ -49,21 +49,21 @@ class BorderWaitStore{
          
         if ((delta > TimeUtils.updateTime) || force){
             
-            Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/BorderCrossings.js").validate().responseJSON { response in
+            Alamofire.request("http://data.wsdot.wa.gov/mobile/BorderCrossings.js").validate().responseJSON { response in
                 switch response.result {
-                case .Success:
+                case .success:
                     if let value = response.result.value {
-                        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) {
+                        DispatchQueue.global().async {
                             let json = JSON(value)
                             let waits = BorderWaitStore.parseBorderWaitsJSON(json)
                             saveWaits(waits)
-                            CachesStore.updateTime(CachedData.BorderWaits, updated: NSDate())
-                            completion(error: nil)
+                            CachesStore.updateTime(CachedData.borderWaits, updated: Date())
+                            completion(nil)
                         }
                     }
-                case .Failure(let error):
+                case .failure(let error):
                     print(error)
-                    completion(error: error)
+                    completion(error)
                 }
                 
             }

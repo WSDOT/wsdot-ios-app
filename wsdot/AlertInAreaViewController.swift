@@ -108,15 +108,15 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
         
         switch indexPath.section{
         case 0:
-            cell.updateTime.text = TimeUtils.timeAgoSinceDate(trafficAlerts[indexPath.row].lastUpdatedTime, numericDates: false)
+            cell.updateTime.text = TimeUtils.timeAgoSinceDate(date: trafficAlerts[indexPath.row].lastUpdatedTime, numericDates: false)
             htmlString = htmlStyleString + trafficAlerts[indexPath.row].headlineDesc
             break
         case 1:
-            cell.updateTime.text = TimeUtils.timeAgoSinceDate(constructionAlerts[indexPath.row].lastUpdatedTime, numericDates: false)
+            cell.updateTime.text = TimeUtils.timeAgoSinceDate(date: constructionAlerts[indexPath.row].lastUpdatedTime, numericDates: false)
             htmlString = htmlStyleString + constructionAlerts[indexPath.row].headlineDesc
             break
         case 2:
-            cell.updateTime.text = TimeUtils.timeAgoSinceDate(specialEvents[indexPath.row].lastUpdatedTime, numericDates: false)
+            cell.updateTime.text = TimeUtils.timeAgoSinceDate(date: specialEvents[indexPath.row].lastUpdatedTime, numericDates: false)
             htmlString = htmlStyleString + specialEvents[indexPath.row].headlineDesc
             break
         default:

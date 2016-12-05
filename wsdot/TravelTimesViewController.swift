@@ -144,7 +144,7 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
         cell.subtitleLabel.text = String(travelTime.distance) + " miles / " + String(travelTime.averageTime) + " min"
         
         do {
-            let updated = try TimeUtils.timeAgoSinceDate(TimeUtils.formatTimeStamp(travelTime.updated), numericDates: false)
+            let updated = try TimeUtils.timeAgoSinceDate(date: TimeUtils.formatTimeStamp(travelTime.updated), numericDates: false)
             cell.updatedLabel.text = updated
         } catch TimeUtils.TimeUtilsError.invalidTimeString {
             cell.updatedLabel.text = "N/A"

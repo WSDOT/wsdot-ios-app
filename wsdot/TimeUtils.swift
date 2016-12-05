@@ -17,7 +17,6 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
-
 import Foundation
 import SwiftyJSON
 
@@ -111,7 +110,7 @@ class TimeUtils {
         if let date = dateFormatter.date(from: dateString){
             return date
         } else {
-            return NSDate.init(timeIntervalSince1970: 0) as Date
+            return Date.init(timeIntervalSince1970: 0)
         }
     }
     // Converts blogger pub date format into an NSDate object (ex. 2016-08-26T09:24:00.000-07:00)
@@ -154,16 +153,17 @@ class TimeUtils {
     }
     
     // Returns a string timestamp since a given time in miliseconds.
-    // Source: https://gist.github.com/jacks205/4a77fb1703632eb9ae79
-    static func timeAgoSinceDate(_ date:Date, numericDates:Bool) -> String {
-        let calendar = Calendar.current
-        let now = Date()
-        let earliest = (now as NSDate).earlierDate(date)
-        let latest = (earliest == now) ? date : now
-        let components:DateComponents = (calendar as NSCalendar).components([NSCalendar.Unit.minute , NSCalendar.Unit.hour , NSCalendar.Unit.day , NSCalendar.Unit.weekOfYear , NSCalendar.Unit.month , NSCalendar.Unit.year , NSCalendar.Unit.second], from: earliest, to: latest, options: NSCalendar.Options())
-        
+    // Source: https://gist.github.com/chashmeetsingh/736b4898d0988888a2e6695455cb8edc
+    static  func timeAgoSinceDate(date:Date, numericDates:Bool) -> String {
+        let calendar = NSCalendar.current
+        let unitFlags: Set<Calendar.Component> = [.minute, .hour, .day, .weekOfYear, .month, .year, .second]
+        let now = NSDate()
+        let earliest = now.earlierDate(date as Date)
+        let latest = (earliest == now as Date) ? date : now as Date
+        let components = calendar.dateComponents(unitFlags, from: earliest as Date,  to: latest as Date)
+
         if (components.year! >= 2) {
-            return "\(components.year) years ago"
+            return "\(components.year!) years ago"
         } else if (components.year! >= 1){
             if (numericDates){
                 return "1 year ago"
@@ -171,7 +171,7 @@ class TimeUtils {
                 return "Last year"
             }
         } else if (components.month! >= 2) {
-            return "\(components.month) months ago"
+            return "\(components.month!) months ago"
         } else if (components.month! >= 1){
             if (numericDates){
                 return "1 month ago"
@@ -179,7 +179,7 @@ class TimeUtils {
                 return "Last month"
             }
         } else if (components.weekOfYear! >= 2) {
-            return "\(components.weekOfYear) weeks ago"
+            return "\(components.weekOfYear!) weeks ago"
         } else if (components.weekOfYear! >= 1){
             if (numericDates){
                 return "1 week ago"
@@ -187,7 +187,7 @@ class TimeUtils {
                 return "Last week"
             }
         } else if (components.day! >= 2) {
-            return "\(components.day) days ago"
+            return "\(components.day!) days ago"
         } else if (components.day! >= 1){
             if (numericDates){
                 return "1 day ago"
@@ -195,7 +195,7 @@ class TimeUtils {
                 return "Yesterday"
             }
         } else if (components.hour! >= 2) {
-            return "\(components.hour) hours ago"
+            return "\(components.hour!) hours ago"
         } else if (components.hour! >= 1){
             if (numericDates){
                 return "1 hour ago"
@@ -203,17 +203,18 @@ class TimeUtils {
                 return "An hour ago"
             }
         } else if (components.minute! >= 2) {
-            return "\(components.minute) minutes ago"
+            return "\(components.minute!) minutes ago"
         } else if (components.minute! >= 1){
             if (numericDates){
                 return "1 minute ago"
             } else {
-                return "a minute ago"
+                return "A minute ago"
             }
         } else if (components.second! >= 3) {
-            return "\(components.second) seconds ago"
+            return "\(components.second!) seconds ago"
         } else {
-            return "just now"
+            return "Just now"
         }
+
     }
 }

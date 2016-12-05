@@ -126,7 +126,7 @@ class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITable
             cell.directionLabel.text = expressLanes[indexPath.row].direction
             
             do {
-                let updated = try TimeUtils.timeAgoSinceDate(TimeUtils.formatTimeStamp(expressLanes[indexPath.row].updated), numericDates: false)
+                let updated = try TimeUtils.timeAgoSinceDate(date: TimeUtils.formatTimeStamp(expressLanes[indexPath.row].updated), numericDates: false)
                 cell.updatedLabel.text = updated
             } catch TimeUtils.TimeUtilsError.invalidTimeString {
                 cell.updatedLabel.text = "N/A"

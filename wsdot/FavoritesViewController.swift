@@ -310,7 +310,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
                 ferryCell.subTitleOne.isHidden = true
             }
             
-            ferryCell.subTitleTwo.text = TimeUtils.timeAgoSinceDate(self.favoriteRoutes[indexPath.row].cacheDate, numericDates: true)
+            ferryCell.subTitleTwo.text = TimeUtils.timeAgoSinceDate(date: self.favoriteRoutes[indexPath.row].cacheDate, numericDates: true)
             
             return ferryCell
             
@@ -329,7 +329,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
                 passCell.weatherImage.image = nil
             }
             
-            passCell.updatedLabel.text = TimeUtils.timeAgoSinceDate(passItem.dateUpdated, numericDates: false)
+            passCell.updatedLabel.text = TimeUtils.timeAgoSinceDate(date: passItem.dateUpdated, numericDates: false)
             
             return passCell
             
@@ -344,7 +344,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             travelTimeCell.subtitleLabel.text = String(travelTime.distance) + " miles / " + String(travelTime.averageTime) + " min"
 
             do {
-                let updated = try TimeUtils.timeAgoSinceDate(TimeUtils.formatTimeStamp(travelTime.updated), numericDates: false)
+                let updated = try TimeUtils.timeAgoSinceDate(date: TimeUtils.formatTimeStamp(travelTime.updated), numericDates: false)
                 travelTimeCell.updatedLabel.text = updated
             } catch TimeUtils.TimeUtilsError.invalidTimeString {
                 travelTimeCell.updatedLabel.text = "N/A"

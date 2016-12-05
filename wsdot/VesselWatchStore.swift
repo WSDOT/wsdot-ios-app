@@ -27,21 +27,21 @@ import SwiftyJSON
  */
 class VesselWatchStore {
 
-    typealias FetchVesselsCompletion = (_ data: [VesselItem]?, _ error: NSError?) -> ()
+    typealias FetchVesselsCompletion = (_ data: [VesselItem]?, _ error: Error?) -> ()
     
     static func getVessels(_ completion: @escaping FetchVesselsCompletion) {
         
-        Alamofire.request(.GET, "http://www.wsdot.wa.gov/ferries/api/vessels/rest/vessellocations?apiaccesscode=" + ApiKeys.wsdot_key).validate().responseJSON { response in
+        Alamofire.request("http://www.wsdot.wa.gov/ferries/api/vessels/rest/vessellocations?apiaccesscode=" + ApiKeys.wsdot_key).validate().responseJSON { response in
             switch response.result {
-            case .Success:
+            case .success:
                 if let value = response.result.value {
                     let json = JSON(value)
                     let vessels = parseVesselsJSON(json)
-                    completion(data: vessels, error: nil)
+                    completion(vessels, nil)
                 }
-            case .Failure(let error):
+            case .failure(let error):
                 print(error)
-                completion(data: nil, error: error)
+                completion(nil, error)
             }
         }
     }

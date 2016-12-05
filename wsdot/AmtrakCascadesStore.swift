@@ -24,25 +24,25 @@ import SwiftyJSON
 
 class AmtrakCascadesStore {
     
-    typealias FetchAmtrakSchedulesCompletion = (_ data: [[(AmtrakCascadesServiceStopItem,AmtrakCascadesServiceStopItem?)]]?, _ error: NSError?) -> ()
+    typealias FetchAmtrakSchedulesCompletion = (_ data: [[(AmtrakCascadesServiceStopItem,AmtrakCascadesServiceStopItem?)]]?, _ error: Error?) -> ()
     
     static func getSchedule(_ date: Date, originId: String, destId: String, completion: @escaping FetchAmtrakSchedulesCompletion) {
         
         let URL = "http://www.wsdot.wa.gov/traffic/api/amtrak/Schedulerest.svc/GetScheduleAsJson?AccessCode=" + ApiKeys.wsdot_key + "&StatusDate="
             + TimeUtils.formatTime(date, format: "MM/dd/yyyy") + "&TrainNumber=-1&FromLocation=" + originId + "&ToLocation=" + destId
         
-        Alamofire.request(.GET, URL).validate().responseJSON { response in
+        Alamofire.request(URL).validate().responseJSON { response in
             switch response.result {
-            case .Success:
+            case .success:
                 if let value = response.result.value {
                     let json = JSON(value)
                     let serviceArrays = parseServiceItemsJSON(json)
                     let servicePairs = getServiceStopPairs(serviceArrays)
-                    completion(data: servicePairs, error: nil)
+                    completion(servicePairs, nil)
                 }
-            case .Failure(let error):
+            case .failure(let error):
                 print(error)
-                completion(data: nil, error: error)
+                completion(nil, error)
             }
         }
     }

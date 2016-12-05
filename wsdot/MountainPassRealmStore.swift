@@ -25,7 +25,7 @@ import Foundation
 
 class MountainPassStore {
 
-   typealias UpdatePassesCompletion = (_ error: NSError?) -> ()
+   typealias UpdatePassesCompletion = (_ error: Error?) -> ()
     
     static func updateFavorite(_ pass: MountainPassItem, newValue: Bool){
         
@@ -62,21 +62,21 @@ class MountainPassStore {
          
         if ((delta > TimeUtils.updateTime) || force){
             
-            Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/MountainPassConditions.js").validate().responseJSON { response in
+            Alamofire.request("http://data.wsdot.wa.gov/mobile/MountainPassConditions.js").validate().responseJSON { response in
                 switch response.result {
-                case .Success:
+                case .success:
                     if let value = response.result.value {
-                        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) {
+                        DispatchQueue.global().async {
                             let json = JSON(value)
                             let passItems =  MountainPassStore.parsePassesJSON(json)
                             savePasses(passItems)
-                            CachesStore.updateTime(CachedData.MountainPasses, updated: NSDate())
-                            completion(error: nil)
+                            CachesStore.updateTime(CachedData.mountainPasses, updated: Date())
+                            completion(nil)
                         }
                     }
-                case .Failure(let error):
+                case .failure(let error):
                     print(error)
-                    completion(error: error)
+                    completion(error)
                 }
             }
         }else {

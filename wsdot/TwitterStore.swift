@@ -24,7 +24,7 @@ import SwiftyJSON
 
 class TwitterStore {
 
-    typealias FetchTweetsCompletion = (_ data: [TwitterItem]?, _ error: NSError?) -> ()
+    typealias FetchTweetsCompletion = (_ data: [TwitterItem]?, _ error: Error?) -> ()
     
     static func getTweets(_ screenName: String?, completion: @escaping FetchTweetsCompletion) {
         
@@ -34,17 +34,17 @@ class TwitterStore {
             url = url + screenNameValue
         }
         
-        Alamofire.request(.GET, url).validate().responseJSON { response in
+        Alamofire.request(url).validate().responseJSON { response in
             switch response.result {
-            case .Success:
+            case .success:
                 if let value = response.result.value {
                     let json = JSON(value)
                     let videoItems = parsePostsJSON(json)
-                    completion(data: videoItems, error: nil)
+                    completion(videoItems, nil)
                 }
-            case .Failure(let error):
+            case .failure(let error):
                 print(error)
-                completion(data: nil, error: error)
+                completion(nil, error)
             }
         }
     }

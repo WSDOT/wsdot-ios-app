@@ -23,21 +23,21 @@ import SwiftyJSON
 
 class BloggerStore {
 
-    typealias FetchBlogPostsCompletion = (_ data: [BlogItem]?, _ error: NSError?) -> ()
+    typealias FetchBlogPostsCompletion = (_ data: [BlogItem]?, _ error: Error?) -> ()
     
     static func getBlogPosts(_ completion: @escaping FetchBlogPostsCompletion) {
         
-        Alamofire.request(.GET, "http://wsdotblog.blogspot.com/feeds/posts/default?alt=json&max-results=10").validate().responseJSON { response in
+        Alamofire.request("http://wsdotblog.blogspot.com/feeds/posts/default?alt=json&max-results=10").validate().responseJSON { response in
             switch response.result {
-            case .Success:
+            case .success:
                 if let value = response.result.value {
                     let json = JSON(value)
                     let posts = parsePostsJSON(json)
-                    completion(data: posts, error: nil)
+                    completion(posts, nil)
                 }
-            case .Failure(let error):
+            case .failure(let error):
                 print(error)
-                completion(data: nil, error: error)
+                completion(nil, error)
             }
         }
     }

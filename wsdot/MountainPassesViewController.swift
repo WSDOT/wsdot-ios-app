@@ -133,7 +133,7 @@ class MountainPassesViewController: UIViewController, UITableViewDelegate, UITab
         if passItem.dateUpdated as Date == Date.init(timeIntervalSince1970: 0){
             cell.updatedLabel.text = "Not Available"
         }else {
-            cell.updatedLabel.text = TimeUtils.timeAgoSinceDate(passItem.dateUpdated, numericDates: true)
+            cell.updatedLabel.text = TimeUtils.timeAgoSinceDate(date: passItem.dateUpdated, numericDates: true)
         }
      
         return cell
