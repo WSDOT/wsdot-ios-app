@@ -83,8 +83,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
                 
-                    let newPassCameraId = migration.create(PassCameraIDItem.className())
-                
                     // The enumerateObjects(ofType:_:) method iterates
                     // over every MountainPassItem object stored in the Realm file
                     migration.enumerate(MountainPassItem.className()) { oldObject, newObject in
@@ -92,6 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         let oldCameras = oldObject!["cameras"] as! List<DynamicObject>
                         let passCameraIds = newObject!["cameraIds"] as! List<DynamicObject>
                         for camera in oldCameras {
+                            let newPassCameraId = migration.create(PassCameraIDItem.className())
                             newPassCameraId["cameraId"] = camera["cameraId"] as! Int
                             passCameraIds.append(newPassCameraId)
                         }
