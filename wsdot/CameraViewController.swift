@@ -54,7 +54,7 @@ class CameraViewController: UIViewController, GADBannerViewDelegate{
         
     }
     
-    func adViewDidReceiveAd(_ bannerView: GADBannerView!) {
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         bannerView.isAccessibilityElement = true
         bannerView.accessibilityLabel = "advertisement banner."
     }

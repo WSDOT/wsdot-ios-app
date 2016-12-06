@@ -101,7 +101,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         
     }
     
-    func adViewDidReceiveAd(_ bannerView: GADBannerView!) {
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         bannerView.isAccessibilityElement = true
         bannerView.accessibilityLabel = "advertisement banner."
     }

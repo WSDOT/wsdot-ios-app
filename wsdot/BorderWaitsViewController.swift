@@ -73,7 +73,7 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
         
     }
     
-    func adViewDidReceiveAd(_ bannerView: GADBannerView!) {
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         bannerView.isAccessibilityElement = true
         bannerView.accessibilityLabel = "advertisement banner."
     }
