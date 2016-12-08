@@ -27,35 +27,35 @@ import SwiftyJSON
  */
 class SailingSpacesStore {
 
-    typealias FetchSailingSpaceCompletion = (data: [SailingSpacesItem]?, error: NSError?) -> ()
+    typealias FetchSailingSpaceCompletion = (_ data: [SailingSpacesItem]?, _ error: Error?) -> ()
     
     // Returns sailing space data from API. 
-    static func getSailingSpacesForTerminal(departingId: Int, arrivingId: Int, completion: FetchSailingSpaceCompletion) {
+    static func getSailingSpacesForTerminal(_ departingId: Int, arrivingId: Int, completion: @escaping FetchSailingSpaceCompletion) {
         
-        Alamofire.request(.GET, "http://www.wsdot.wa.gov/ferries/api/terminals/rest/terminalsailingspace/" + String(departingId) + "?apiaccesscode=" + ApiKeys.wsdot_key).validate().responseJSON { response in
+        Alamofire.request("http://www.wsdot.wa.gov/ferries/api/terminals/rest/terminalsailingspace/" + String(departingId) + "?apiaccesscode=" + ApiKeys.wsdot_key).validate().responseJSON { response in
             switch response.result {
-            case .Success:
+            case .success:
                 if let value = response.result.value {
                     let json = JSON(value)
                     let sailingSpaces = parseSailingSpacesJSON(departingId, arrivingId: arrivingId, json: json)
-                    completion(data: sailingSpaces, error: nil)
+                    completion(sailingSpaces, nil)
                 }
-            case .Failure(let error):
+            case .failure(let error):
                 if let code = response.response?.statusCode {
                     if code == 400{
-                        completion(data: [SailingSpacesItem](), error: error)
+                        completion([SailingSpacesItem](), error)
                     } else {
-                        completion(data: nil, error: error)
+                        completion(nil, error)
                     }
                 } else {
-                    completion(data: nil, error: error)
+                    completion(nil, error)
                 }
             }
         }
     }
     
     //Converts JSON from api into and array of FerriesRouteScheduleItems
-    private static func parseSailingSpacesJSON(departingId: Int, arrivingId: Int, json: JSON) ->[SailingSpacesItem]{
+    fileprivate static func parseSailingSpacesJSON(_ departingId: Int, arrivingId: Int, json: JSON) ->[SailingSpacesItem]{
         
         var sailingSpaces = [SailingSpacesItem]()
         var hasSailingSpace = false

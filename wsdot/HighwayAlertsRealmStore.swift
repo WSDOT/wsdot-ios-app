@@ -25,7 +25,7 @@ import SwiftyJSON
 
 class HighwayAlertsStore {
 
-    typealias UpdateHighwayAlertsCompletion = (error: NSError?) -> ()
+    typealias UpdateHighwayAlertsCompletion = (_ error: Error?) -> ()
     
     static func getAllAlerts() -> [HighwayAlertItem]{
         let realm = try! Realm()
@@ -39,34 +39,38 @@ class HighwayAlertsStore {
         return Array(alertItems)
     }
     
-    static func updateAlerts(force: Bool, completion: UpdateHighwayAlertsCompletion) {
+    static func updateAlerts(_ force: Bool, completion: @escaping UpdateHighwayAlertsCompletion) {
+        var delta = TimeUtils.updateTime
+        let deltaUpdated = (Calendar.current as NSCalendar).components(.second, from: CachesStore.getUpdatedTime(CachedData.highwayAlerts), to: Date(), options: []).second
         
-        let deltaUpdated = NSCalendar.currentCalendar().components(.Second, fromDate: CachesStore.getUpdatedTime(CachedData.HighwayAlerts), toDate: NSDate(), options: []).second
-        
-        if ((deltaUpdated > TimeUtils.updateTime) || force){
+        if let deltaValue = deltaUpdated {
+            delta = deltaValue
+        }
+         
+        if ((delta > TimeUtils.updateTime) || force){
             
-            Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/HighwayAlerts.js").validate().responseJSON { response in
+            Alamofire.request("http://data.wsdot.wa.gov/mobile/HighwayAlerts.js").validate().responseJSON { response in
                 switch response.result {
-                case .Success:
+                case .success:
                     if let value = response.result.value {
-                        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) {
+                        DispatchQueue.global().async {
                             let json = JSON(value)
                             self.saveAlerts(json)
-                            CachesStore.updateTime(CachedData.HighwayAlerts, updated: NSDate())
-                            completion(error: nil)
+                            CachesStore.updateTime(CachedData.highwayAlerts, updated: Date())
+                            completion(nil)
                         }
                     }
-                case .Failure(let error):
+                case .failure(let error):
                     print(error)
-                    completion(error: error)
+                    completion(error)
                 }
             }
         }else{
-            completion(error: nil)
+            completion(nil)
         }
     }
     
-    private static func saveAlerts(json: JSON){
+    fileprivate static func saveAlerts(_ json: JSON){
         
         let realm = try! Realm()
         

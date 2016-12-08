@@ -25,7 +25,7 @@ import SwiftyJSON
 
 class BorderWaitStore{
 
-    typealias getBorderWaitsCompletion = (error: NSError?) -> ()
+    typealias getBorderWaitsCompletion = (_ error: Error?) -> ()
 
     static func getNorthboundWaits() -> [BorderWaitItem]{
         let realm = try! Realm()
@@ -39,36 +39,40 @@ class BorderWaitStore{
         return Array(waitItems)
     }
     
-    static func updateWaits(force: Bool, completion: getBorderWaitsCompletion) {
+    static func updateWaits(_ force: Bool, completion: @escaping getBorderWaitsCompletion) {
+        var delta = TimeUtils.updateTime
+        let deltaUpdated = (Calendar.current as NSCalendar).components(.second, from: CachesStore.getUpdatedTime(CachedData.borderWaits), to: Date(), options: []).second
         
-        let deltaUpdated = NSCalendar.currentCalendar().components(.Second, fromDate: CachesStore.getUpdatedTime(CachedData.BorderWaits), toDate: NSDate(), options: []).second
-        
-        if ((deltaUpdated > TimeUtils.updateTime) || force){
+        if let deltaValue = deltaUpdated {
+            delta = deltaValue
+        }
+         
+        if ((delta > TimeUtils.updateTime) || force){
             
-            Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/BorderCrossings.js").validate().responseJSON { response in
+            Alamofire.request("http://data.wsdot.wa.gov/mobile/BorderCrossings.js").validate().responseJSON { response in
                 switch response.result {
-                case .Success:
+                case .success:
                     if let value = response.result.value {
-                        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) {
+                        DispatchQueue.global().async {
                             let json = JSON(value)
                             let waits = BorderWaitStore.parseBorderWaitsJSON(json)
                             saveWaits(waits)
-                            CachesStore.updateTime(CachedData.BorderWaits, updated: NSDate())
-                            completion(error: nil)
+                            CachesStore.updateTime(CachedData.borderWaits, updated: Date())
+                            completion(nil)
                         }
                     }
-                case .Failure(let error):
+                case .failure(let error):
                     print(error)
-                    completion(error: error)
+                    completion(error)
                 }
                 
             }
         }else {
-            completion(error: nil)
+            completion(nil)
         }
     }
     
-    private static func saveWaits(waits: [BorderWaitItem]){
+    fileprivate static func saveWaits(_ waits: [BorderWaitItem]){
         
         let realm = try! Realm()
 
@@ -81,7 +85,7 @@ class BorderWaitStore{
         }
     }
     
-    private static func parseBorderWaitsJSON(json: JSON) ->[BorderWaitItem]{
+    fileprivate static func parseBorderWaitsJSON(_ json: JSON) ->[BorderWaitItem]{
         var waits = [BorderWaitItem]()
         
         for (_,subJson):(String, JSON) in json["waittimes"]["items"] {

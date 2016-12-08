@@ -32,41 +32,41 @@ class RouteAlertsViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         let routeTabBarContoller = self.tabBarController as! RouteTabBarViewController
-        alertItems = routeTabBarContoller.routeItem.routeAlerts.sort({$0.publishDate  > $1.publishDate})
+        alertItems = routeTabBarContoller.routeItem.routeAlerts.sorted(by: {$0.publishDate  > $1.publishDate})
         tableView.rowHeight = UITableViewAutomaticDimension
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Ferries/Schedules/Alerts")
+        GoogleAnalytics.screenView(screenName: "/Ferries/Schedules/Alerts")
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return alertItems.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! LinkCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! LinkCell
         
         let htmlStyleString = "<style>body{font-family: '\(cell.linkLabel.font.fontName)'; font-size:\(cell.linkLabel.font.pointSize)px;}</style>"
         
         let htmlString = htmlStyleString + alertItems[indexPath.row].alertFullText
         
         let attrStr = try! NSMutableAttributedString(
-            data: htmlString.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: false)!,
+            data: htmlString.data(using: String.Encoding.unicode, allowLossyConversion: false)!,
             options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
             documentAttributes: nil)
         
         let alertPubDate = TimeUtils.parseJSONDateToNSDate(alertItems[indexPath.row].publishDate)
-        cell.updateTime.text = TimeUtils.timeAgoSinceDate(alertPubDate, numericDates: false)
+        cell.updateTime.text = TimeUtils.timeAgoSinceDate(date: alertPubDate, numericDates: false)
         
         cell.linkLabel.attributedText = attrStr
         cell.linkLabel.delegate = self
@@ -76,13 +76,13 @@ class RouteAlertsViewController: UIViewController, UITableViewDataSource, UITabl
     
     // MARK: INDLinkLabelDelegate
     
-    func linkLabel(label: INDLinkLabel, didLongPressLinkWithURL URL: NSURL) {
+    func linkLabel(_ label: INDLinkLabel, didLongPressLinkWithURL URL: Foundation.URL) {
         let activityController = UIActivityViewController(activityItems: [URL], applicationActivities: nil)
-        self.presentViewController(activityController, animated: true, completion: nil)
+        self.present(activityController, animated: true, completion: nil)
     }
     
-    func linkLabel(label: INDLinkLabel, didTapLinkWithURL URL: NSURL) {
-        UIApplication.sharedApplication().openURL(URL)
+    func linkLabel(_ label: INDLinkLabel, didTapLinkWithURL URL: Foundation.URL) {
+        UIApplication.shared.openURL(URL)
     }
 }
 

@@ -31,7 +31,7 @@ class LatLonUtils {
      * http://en.wikipedia.org/wiki/Haversine_formula
      *
      */
-    static func haversine(latA: Double, lonA: Double, latB: Double, lonB: Double) -> Int {
+    static func haversine(_ latA: Double, lonA: Double, latB: Double, lonB: Double) -> Int {
         
         let radius: Double = 20902200; // feet
         
@@ -44,7 +44,7 @@ class LatLonUtils {
         
     }
     
-    private static func toRadians (degrees: Double) -> Double {
+    fileprivate static func toRadians (_ degrees: Double) -> Double {
         return degrees * M_PI / 180
     }
     

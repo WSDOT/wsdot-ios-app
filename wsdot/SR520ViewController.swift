@@ -33,30 +33,30 @@ class SR520ViewController: UIViewController {
     }
     
     // MARK: Table View Data Source Methods
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(_ tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! ThreeColTableCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! ThreeColTableCell
 
         cell.colOneLabel.text = data[indexPath.row].colOne
         cell.colTwoLabel.text = data[indexPath.row].colTwo
         cell.colThreeLabel.text = data[indexPath.row].colThree
         
         if (data[indexPath.row].header){
-            cell.backgroundColor = UIColor.groupTableViewBackgroundColor()
+            cell.backgroundColor = UIColor.groupTableViewBackground
         } else {
-            cell.backgroundColor = UIColor.lightTextColor()
+            cell.backgroundColor = UIColor.lightText
         }
                 
         return cell

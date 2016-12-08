@@ -33,21 +33,21 @@ class SR16ViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     // MARK: Table View Data Source Methods
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! FourColTableCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! FourColTableCell
 
         cell.colOneLabel.text = data[indexPath.row].colOne
         cell.colTwoLabel.text = data[indexPath.row].colTwo
@@ -55,9 +55,9 @@ class SR16ViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.colFourLabel.text = data[indexPath.row].colFour
         
         if (data[indexPath.row].header){
-            cell.backgroundColor = UIColor.groupTableViewBackgroundColor()
+            cell.backgroundColor = UIColor.groupTableViewBackground
         } else {
-            cell.backgroundColor = UIColor.lightTextColor()
+            cell.backgroundColor = UIColor.lightText
         }
                 
         return cell

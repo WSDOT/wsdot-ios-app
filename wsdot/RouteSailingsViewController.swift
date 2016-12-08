@@ -36,21 +36,21 @@ class RouteSailingsViewController: UIViewController, UITableViewDataSource, UITa
         routeItem = routeTabBarContoller.routeItem
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Ferries/Schedules/Sailings")
+        GoogleAnalytics.screenView(screenName: "/Ferries/Schedules/Sailings")
     }
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return routeItem.terminalPairs.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
         let sailing = routeItem.terminalPairs[indexPath.row]
         
@@ -61,16 +61,16 @@ class RouteSailingsViewController: UIViewController, UITableViewDataSource, UITa
     
     // MARK: -
     // MARK: Table View Delegate Methods
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Perform Segue
-        performSegueWithIdentifier(SegueRouteDeparturesViewController, sender: self)
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        performSegue(withIdentifier: SegueRouteDeparturesViewController, sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueRouteDeparturesViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
-                let destinationViewController = segue.destinationViewController as! RouteDeparturesViewController
+                let destinationViewController = segue.destination as! RouteDeparturesViewController
                 
                 destinationViewController.sailingsByDate = routeItem.scheduleDates
                 destinationViewController.currentSailing = routeItem.terminalPairs[indexPath.row]

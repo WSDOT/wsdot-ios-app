@@ -23,26 +23,26 @@ import SwiftyJSON
 
 class BloggerStore {
 
-    typealias FetchBlogPostsCompletion = (data: [BlogItem]?, error: NSError?) -> ()
+    typealias FetchBlogPostsCompletion = (_ data: [BlogItem]?, _ error: Error?) -> ()
     
-    static func getBlogPosts(completion: FetchBlogPostsCompletion) {
+    static func getBlogPosts(_ completion: @escaping FetchBlogPostsCompletion) {
         
-        Alamofire.request(.GET, "http://wsdotblog.blogspot.com/feeds/posts/default?alt=json&max-results=10").validate().responseJSON { response in
+        Alamofire.request("http://wsdotblog.blogspot.com/feeds/posts/default?alt=json&max-results=10").validate().responseJSON { response in
             switch response.result {
-            case .Success:
+            case .success:
                 if let value = response.result.value {
                     let json = JSON(value)
                     let posts = parsePostsJSON(json)
-                    completion(data: posts, error: nil)
+                    completion(posts, nil)
                 }
-            case .Failure(let error):
+            case .failure(let error):
                 print(error)
-                completion(data: nil, error: error)
+                completion(nil, error)
             }
         }
     }
     
-    private static func parsePostsJSON(json: JSON) ->[BlogItem]{
+    fileprivate static func parsePostsJSON(_ json: JSON) ->[BlogItem]{
         
         var posts = [BlogItem]()
         
@@ -52,11 +52,11 @@ class BloggerStore {
             
             post.title = postJson["title"]["$t"].stringValue
             post.content = postJson["content"]["$t"].stringValue
-                .stringByReplacingOccurrencesOfString("<i>(.*)</i><br /><br />", withString: "", options: .RegularExpressionSearch, range: nil)
-                .stringByReplacingOccurrencesOfString("<em>(.*)</em><br /><br />", withString: "", options: .RegularExpressionSearch, range: nil)
-                .stringByReplacingOccurrencesOfString("<table(.*?)>.*?</table>", withString: "", options: .RegularExpressionSearch, range: nil)
-                .stringByReplacingOccurrencesOfString("&nbsp;", withString:" ")
-                .stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
+                .replacingOccurrences(of: "<i>(.*)</i><br /><br />", with: "", options: .regularExpression, range: nil)
+                .replacingOccurrences(of: "<em>(.*)</em><br /><br />", with: "", options: .regularExpression, range: nil)
+                .replacingOccurrences(of: "<table(.*?)>.*?</table>", with: "", options: .regularExpression, range: nil)
+                .replacingOccurrences(of: "&nbsp;", with:" ")
+                .replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
  
             post.link = postJson["link"][4]["href"].stringValue
             post.published = TimeUtils.postPubDateToNSDate(postJson["published"]["$t"].stringValue, formatStr: "yyyy-MM-dd'T'HH:mm:ss.SSSz", isUTC: true)

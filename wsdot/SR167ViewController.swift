@@ -42,7 +42,7 @@ class SR167ViewController: UIViewController{
 
 
         let attrStr = try! NSMutableAttributedString(
-            data: htmlString.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: false)!,
+            data: htmlString.data(using: String.Encoding.unicode, allowLossyConversion: false)!,
             options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
             documentAttributes: nil)
         
@@ -51,7 +51,7 @@ class SR167ViewController: UIViewController{
     }
     
     override func viewWillLayoutSubviews() {
-        textView.setContentOffset(CGPointZero, animated: false)
+        textView.setContentOffset(CGPoint.zero, animated: false)
     }
 
 

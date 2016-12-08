@@ -37,7 +37,7 @@ class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITable
         title = "Express Lanes"
         
         // refresh controller
-        refreshControl.addTarget(self, action: #selector(ExpressLanesViewController.refresh(_:)), forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(ExpressLanesViewController.refresh(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
         
         showOverlay(self.view)
@@ -47,17 +47,17 @@ class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITable
         
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Traffic Map/Traveler Information/Express Lanes")
+        GoogleAnalytics.screenView(screenName: "/Traffic Map/Traveler Information/Express Lanes")
     }
 
-    func refresh(refreshControl: UIRefreshControl) {
+    func refresh(_ refreshControl: UIRefreshControl) {
         
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) { [weak self] in
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async { [weak self] in
             ExpressLanesStore.getExpressLanes({ data, error in
                 if let validData = data {
-                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                    DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
                             selfValue.expressLanes = validData
                             selfValue.tableView.reloadData()
@@ -66,11 +66,11 @@ class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITable
                         }
                     }
                 } else {
-                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                    DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
                             selfValue.refreshControl.endRefreshing()
                             selfValue.hideOverlayView()
-                            selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                         }
                     }
                 }
@@ -78,15 +78,15 @@ class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
-    func showOverlay(view: UIView) {
-        activityIndicator.frame = CGRectMake(0, 0, 40, 40)
-        activityIndicator.activityIndicatorViewStyle = .WhiteLarge
-        activityIndicator.color = UIColor.grayColor()
+    func showOverlay(_ view: UIView) {
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.color = UIColor.gray
         
-        if self.splitViewController!.collapsed {
-            activityIndicator.center = CGPointMake(view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
+        if self.splitViewController!.isCollapsed {
+            activityIndicator.center = CGPoint(x: view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
         } else {
-            activityIndicator.center = CGPointMake(view.center.x - self.splitViewController!.viewControllers[0].view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
+            activityIndicator.center = CGPoint(x: view.center.x - self.splitViewController!.viewControllers[0].view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
         }
         
         view.addSubview(activityIndicator)
@@ -100,55 +100,55 @@ class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITable
     }
 
     // MARK: Table View Data Source Methods
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return expressLanes.count + 1
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if (indexPath.row == expressLanes.count){
-            let cell = tableView.dequeueReusableCellWithIdentifier(webLinkcellIdentifier, forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: webLinkcellIdentifier, for: indexPath)
             cell.textLabel?.text = "Express Lanes Schedule Website"
-            cell.accessoryType = .DisclosureIndicator
-            cell.selectionStyle = .Blue
+            cell.accessoryType = .disclosureIndicator
+            cell.selectionStyle = .blue
             return cell
         }else{
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! ExpressLaneCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! ExpressLaneCell
             cell.routeLabel.text = expressLanes[indexPath.row].route
             cell.directionLabel.text = expressLanes[indexPath.row].direction
             
             do {
-                let updated = try TimeUtils.timeAgoSinceDate(TimeUtils.formatTimeStamp(expressLanes[indexPath.row].updated), numericDates: false)
+                let updated = try TimeUtils.timeAgoSinceDate(date: TimeUtils.formatTimeStamp(expressLanes[indexPath.row].updated), numericDates: false)
                 cell.updatedLabel.text = updated
-            } catch TimeUtils.TimeUtilsError.InvalidTimeString {
+            } catch TimeUtils.TimeUtilsError.invalidTimeString {
                 cell.updatedLabel.text = "N/A"
             } catch {
                 cell.updatedLabel.text = "N/A"
             }
             
-            cell.selectionStyle = .None
+            cell.selectionStyle = .none
             return cell
         }
     }
     
     // MARK: Table View Delegate Methods
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.row) {
         case expressLanes.count:
-            GoogleAnalytics.screenView("/Traffic Map/Traveler Information/Express Lanes/Express Lanes Schedule Website")
-            UIApplication.sharedApplication().openURL(NSURL(string: "http://www.wsdot.wa.gov/Northwest/King/ExpressLanes")!)
+            GoogleAnalytics.screenView(screenName: "/Traffic Map/Traveler Information/Express Lanes/Express Lanes Schedule Website")
+            UIApplication.shared.openURL(URL(string: "http://www.wsdot.wa.gov/Northwest/King/ExpressLanes")!)
             break
         default:
             break
         }
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

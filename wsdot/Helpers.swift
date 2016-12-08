@@ -26,23 +26,23 @@ struct Colors {
 
 struct AlertMessages {
     static func getConnectionAlert() ->  UIAlertController{
-        let alert = UIAlertController(title: "Connection Error", message: "Please check your connection", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Connection Error", message: "Please check your connection", preferredStyle: UIAlertControllerStyle.alert)
         alert.view.tintColor = Colors.tintColor
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         return alert
     }
     
     static func getMailAlert() -> UIAlertController{
-        let alert = UIAlertController(title: "Cannot Compose Message", message: "Please add a mail account", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Cannot Compose Message", message: "Please add a mail account", preferredStyle: UIAlertControllerStyle.alert)
         alert.view.tintColor = Colors.tintColor
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         return alert
     }
     
-    static func getAlert(title: String, message: String) -> UIAlertController{
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+    static func getAlert(_ title: String, message: String) -> UIAlertController{
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.view.tintColor = Colors.tintColor
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         return alert
     }
 }
@@ -51,16 +51,16 @@ struct Utils {
     
     static let maxClusterOpenZoom: Float = 16.0
     
-    static func textToImage(drawText: NSString, inImage: UIImage, fontSize: CGFloat) -> UIImage{
+    static func textToImage(_ drawText: NSString, inImage: UIImage, fontSize: CGFloat) -> UIImage{
         
         // Setup the font specific variables
-        let textColor = UIColor.whiteColor()
+        let textColor = UIColor.white
         let textFont = UIFont(name: "Helvetica Bold", size: fontSize)!
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = .Center
+        paragraphStyle.alignment = .center
         
         // Setup the image context using the passed image
-        let scale = UIScreen.mainScreen().scale
+        let scale = UIScreen.main.scale
         UIGraphicsBeginImageContextWithOptions(inImage.size, false, scale)
         
         // Setup the font attributes that will be later used to dictate how the text should be drawn
@@ -71,15 +71,15 @@ struct Utils {
             ]
 
         // Put the image into a rectangle as large as the original image
-        inImage.drawInRect(CGRectMake(0, 0, inImage.size.width, inImage.size.height))
+        inImage.draw(in: CGRect(x: 0, y: 0, width: inImage.size.width, height: inImage.size.height))
         
-        let atPoint = CGPointMake(0, (inImage.size.height-fontSize)/2.0)
+        let atPoint = CGPoint(x: 0, y: (inImage.size.height-fontSize)/2.0)
         
         // Create a point within the space that is as bit as the image
-        let rect = CGRectMake(atPoint.x, atPoint.y, inImage.size.width, inImage.size.height)
+        let rect = CGRect(x: atPoint.x, y: atPoint.y, width: inImage.size.width, height: inImage.size.height)
         
         // Draw the text into an image
-        drawText.drawInRect(rect, withAttributes: textFontAttributes)
+        drawText.draw(in: rect, withAttributes: textFontAttributes)
         
         // Create a new image out of the images we have created
         let newImage = UIGraphicsGetImageFromCurrentImageContext()

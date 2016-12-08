@@ -38,12 +38,12 @@ class TravelTimeDetailsViewController: UIViewController {
         subTitle.text = String(travelTime.distance) + " miles / " + String(travelTime.averageTime) + " min"
         
         do {
-            let updatedText = try TimeUtils.timeAgoSinceDate(TimeUtils.formatTimeStamp(travelTime.updated), numericDates: false)
+            let updatedText = try TimeUtils.timeAgoSinceDate(date: TimeUtils.formatTimeStamp(travelTime.updated), numericDates: false)
             updated.text = updatedText
-        } catch TimeUtils.TimeUtilsError.InvalidTimeString {
-            "N/A"
+        } catch TimeUtils.TimeUtilsError.invalidTimeString {
+            updated.text = "N/A"
         } catch {
-            "N/A"
+            updated.text = "N/A"
         }
         
         if travelTime.currentTime == 0{
@@ -55,9 +55,9 @@ class TravelTimeDetailsViewController: UIViewController {
         if (travelTime.averageTime > travelTime.currentTime){
             currentTime.textColor = Colors.tintColor
         } else if (travelTime.averageTime < travelTime.currentTime){
-            currentTime.textColor = UIColor.redColor()
+            currentTime.textColor = UIColor.red
         } else {
-            currentTime.textColor = UIColor.darkTextColor()
+            currentTime.textColor = UIColor.darkText
         }
         
         if (travelTime.selected){
@@ -67,12 +67,12 @@ class TravelTimeDetailsViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Travel Time Details")
+        GoogleAnalytics.screenView(screenName: "/Travel Time Details")
     }
     
-    @IBAction func updateFavorite(sender: UIBarButtonItem) {
+    @IBAction func updateFavorite(_ sender: UIBarButtonItem) {
         if (travelTime.selected){
             TravelTimesStore.updateFavorite(travelTime, newValue: false)
             favoriteTabBarButton.image = UIImage(named: "icStarSmall")

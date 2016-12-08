@@ -30,51 +30,51 @@ class TollRatesViewController: UIViewController{
     @IBOutlet weak var I405ContainerView: UIView!
     
     // Remove and add hairline for nav bar
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Toll Rates/SR520")
+        GoogleAnalytics.screenView(screenName: "/Toll Rates/SR520")
     
         let img = UIImage()
         self.navigationController?.navigationBar.shadowImage = img
-        self.navigationController?.navigationBar.setBackgroundImage(img, forBarMetrics: .Default)
+        self.navigationController?.navigationBar.setBackgroundImage(img, for: .default)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.shadowImage = nil
-        self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: .Default)
+        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
     }
     
-    @IBAction func indexChanged(sender: UISegmentedControl) {
+    @IBAction func indexChanged(_ sender: UISegmentedControl) {
         
         switch (sender.selectedSegmentIndex){
             
         case 0:
-            GoogleAnalytics.screenView("/Toll Rates/SR520")
-            SR520ContainerView.hidden = false
-            SR16ContainerView.hidden = true
-            SR167ContainerView.hidden = true
-            I405ContainerView.hidden = true
+            GoogleAnalytics.screenView(screenName: "/Toll Rates/SR520")
+            SR520ContainerView.isHidden = false
+            SR16ContainerView.isHidden = true
+            SR167ContainerView.isHidden = true
+            I405ContainerView.isHidden = true
             break
         case 1:
-            GoogleAnalytics.screenView("/Toll Rates/SR16")
-            SR520ContainerView.hidden = true
-            SR16ContainerView.hidden = false
-            SR167ContainerView.hidden = true
-            I405ContainerView.hidden = true
+            GoogleAnalytics.screenView(screenName: "/Toll Rates/SR16")
+            SR520ContainerView.isHidden = true
+            SR16ContainerView.isHidden = false
+            SR167ContainerView.isHidden = true
+            I405ContainerView.isHidden = true
             break
         case 2:
-            GoogleAnalytics.screenView("/Toll Rates/SR167")
-            SR520ContainerView.hidden = true
-            SR16ContainerView.hidden = true
-            SR167ContainerView.hidden = false
-            I405ContainerView.hidden = true
+            GoogleAnalytics.screenView(screenName: "/Toll Rates/SR167")
+            SR520ContainerView.isHidden = true
+            SR16ContainerView.isHidden = true
+            SR167ContainerView.isHidden = false
+            I405ContainerView.isHidden = true
             break
         case 3:
-            GoogleAnalytics.screenView("/Toll Rates/I405")
-            SR520ContainerView.hidden = true
-            SR16ContainerView.hidden = true
-            SR167ContainerView.hidden = true
-            I405ContainerView.hidden = false
+            GoogleAnalytics.screenView(screenName: "/Toll Rates/I405")
+            SR520ContainerView.isHidden = true
+            SR16ContainerView.isHidden = true
+            SR167ContainerView.isHidden = true
+            I405ContainerView.isHidden = false
             break
         default:
             break

@@ -17,44 +17,43 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
-
 import Foundation
 import SwiftyJSON
 
 class TimeUtils {
     
-    enum TimeUtilsError: ErrorType {
-        case InvalidTimeString
+    enum TimeUtilsError: Error {
+        case invalidTimeString
     }
     
     static let updateTime: Int = 900
     static let cameraUpdateTime: Int = 604800
     
-    static let vesselUpdateTime: NSTimeInterval = 30
-    static let spacesUpdateTime: NSTimeInterval = 60
+    static let vesselUpdateTime: TimeInterval = 30
+    static let spacesUpdateTime: TimeInterval = 60
     
-    static let alertsUpdateTime: NSTimeInterval = 60
+    static let alertsUpdateTime: TimeInterval = 60
     
     static var currentTime: Int64{
         get {
-            return Int64(floor(NSDate().timeIntervalSince1970 * 1000))
+            return Int64(floor(Date().timeIntervalSince1970 * 1000))
         }
     }
     
     // formates a /Date(1468516282113-0700)/ date into NSDate
-    static func parseJSONDateToNSDate(date: String) -> NSDate{
-        let parseDateString = date[date.startIndex.advancedBy(6)..<date.startIndex.advancedBy(16)]
+    static func parseJSONDateToNSDate(_ date: String) -> Date{
+        let parseDateString = date[date.characters.index(date.startIndex, offsetBy: 6)..<date.characters.index(date.startIndex, offsetBy: 16)]
         if let date = Double(parseDateString) {
-            return NSDate(timeIntervalSince1970: date)
+            return Date(timeIntervalSince1970: date)
         } else {
-            return NSDate(timeIntervalSince1970: 0)
+            return Date(timeIntervalSince1970: 0)
         }
     }
     
 
     // formates a /Date(1468516282113-0700)/ date into a Int64
-    static func parseJSONDate(date: String) -> Int64{
-        let parseDateString = date[date.startIndex.advancedBy(6)..<date.startIndex.advancedBy(16)]
+    static func parseJSONDate(_ date: String) -> Int64{
+        let parseDateString = date[date.characters.index(date.startIndex, offsetBy: 6)..<date.characters.index(date.startIndex, offsetBy: 16)]
         if let date = Int64(parseDateString) {
             return date
         } else {
@@ -62,45 +61,45 @@ class TimeUtils {
         }
     }
 
-    static func getTimeOfDay(date: NSDate) -> String{
+    static func getTimeOfDay(_ date: Date) -> String{
         //Get Short Time String
-        let formatter = NSDateFormatter()
-        formatter.timeStyle = .ShortStyle
-        formatter.timeZone = NSTimeZone(abbreviation: "PDT")
-        let timeString = formatter.stringFromDate(date)
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        formatter.timeZone = TimeZone(abbreviation: "PDT")
+        let timeString = formatter.string(from: date)
         //Return Short Time String
         return timeString
     }
     
     // Returns an array of the days of the week starting with the current day
-    static func nextSevenDaysStrings(date: NSDate) -> [String]{
-        let weekdays = NSDateFormatter().weekdaySymbols
+    static func nextSevenDaysStrings(_ date: Date) -> [String]{
+        let weekdays = DateFormatter().weekdaySymbols
         let dayOfWeekInt = getDayOfWeek(date)
-        return Array(weekdays[dayOfWeekInt-1..<weekdays.count]) + weekdays[0..<dayOfWeekInt-1]
+        return Array(weekdays![dayOfWeekInt-1..<weekdays!.count]) + weekdays![0..<dayOfWeekInt-1]
     }
     
-    private static func getDayOfWeek(date: NSDate)->Int {
-        let myCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-        let myComponents = myCalendar.components(.Weekday, fromDate: date)
+    fileprivate static func getDayOfWeek(_ date: Date)->Int {
+        let myCalendar = Calendar(identifier: Calendar.Identifier.gregorian)
+        let myComponents = (myCalendar as NSCalendar).components(.weekday, from: date)
         let weekDay = myComponents.weekday
-        return weekDay
+        return weekDay!
     }
     
     // Returns an NSDate object form a date string with the given format "yyyy-MM-dd hh:mm a"
-    static func formatTimeStamp(timestamp: String) throws -> NSDate{
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.timeZone = NSTimeZone(abbreviation: "PDT")
+    static func formatTimeStamp(_ timestamp: String) throws -> Date{
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "PDT")
         dateFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
-        guard let time = dateFormatter.dateFromString(timestamp) else {
-            throw TimeUtilsError.InvalidTimeString
+        guard let time = dateFormatter.date(from: timestamp) else {
+            throw TimeUtilsError.invalidTimeString
         }
         return time
     }
     
-    static func getDateFromJSONArray(time: [JSON]) -> NSDate{
-        let dateFormatter = NSDateFormatter()
+    static func getDateFromJSONArray(_ time: [JSON]) -> Date{
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-M-d H:mm"
-        dateFormatter.timeZone = NSTimeZone(abbreviation: "PDT")
+        dateFormatter.timeZone = TimeZone(abbreviation: "PDT")
         let year = time[0].stringValue
         let month = time[1].stringValue
         let day = time[2].stringValue
@@ -108,38 +107,38 @@ class TimeUtils {
         let min = time[4].stringValue
         let dateString =  year + "-" + month + "-" + day + " " + hour + ":" + min
         
-        if let date = dateFormatter.dateFromString(dateString){
+        if let date = dateFormatter.date(from: dateString){
             return date
         } else {
-            return NSDate.init(timeIntervalSince1970: 0)
+            return Date.init(timeIntervalSince1970: 0)
         }
     }
     // Converts blogger pub date format into an NSDate object (ex. 2016-08-26T09:24:00.000-07:00)
-    static func postPubDateToNSDate(time: String, formatStr: String, isUTC: Bool) -> NSDate{
-        let dateFormatter = NSDateFormatter()
+    static func postPubDateToNSDate(_ time: String, formatStr: String, isUTC: Bool) -> Date{
+        let dateFormatter = DateFormatter()
         if (isUTC){
-            dateFormatter.timeZone = NSTimeZone(abbreviation: "UTC")
+            dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         }
         dateFormatter.dateFormat = formatStr
-        return dateFormatter.dateFromString(time)!
+        return dateFormatter.date(from: time)!
     }
 
     // returns a date string with the format MMMM DD, YYYY H:mm a
-    static func formatTime(date: NSDate, format: String) -> String {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.timeZone = NSTimeZone(abbreviation: "PDT")
+    static func formatTime(_ date: Date, format: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "PDT")
         dateFormatter.dateFormat = format
-        return dateFormatter.stringFromDate(date)
+        return dateFormatter.string(from: date)
     }
     
     // Calculates the number of mins mentions in a string. Assumes string format XX HR XX MIN, XX MIN, XX HR
-    static func getMinsFromString(string: String) -> Double {
+    static func getMinsFromString(_ string: String) -> Double {
         let stringArr = string.characters.split{$0 == " "}.map(String.init)
         var index = 0
         var mins = 0.0
         
         for string in stringArr {
-            if (string.rangeOfCharacterFromSet(NSCharacterSet.decimalDigitCharacterSet(), options: NSStringCompareOptions(), range: nil) != nil) {
+            if (string.rangeOfCharacter(from: CharacterSet.decimalDigits, options: NSString.CompareOptions(), range: nil) != nil) {
                 if Double(string) != nil {
                     if stringArr[index + 1] == "HR" {
                         mins += Double(string)! * 60
@@ -154,66 +153,68 @@ class TimeUtils {
     }
     
     // Returns a string timestamp since a given time in miliseconds.
-    // Source: https://gist.github.com/jacks205/4a77fb1703632eb9ae79
-    static func timeAgoSinceDate(date:NSDate, numericDates:Bool) -> String {
-        let calendar = NSCalendar.currentCalendar()
+    // Source: https://gist.github.com/chashmeetsingh/736b4898d0988888a2e6695455cb8edc
+    static  func timeAgoSinceDate(date:Date, numericDates:Bool) -> String {
+        let calendar = NSCalendar.current
+        let unitFlags: Set<Calendar.Component> = [.minute, .hour, .day, .weekOfYear, .month, .year, .second]
         let now = NSDate()
-        let earliest = now.earlierDate(date)
-        let latest = (earliest == now) ? date : now
-        let components:NSDateComponents = calendar.components([NSCalendarUnit.Minute , NSCalendarUnit.Hour , NSCalendarUnit.Day , NSCalendarUnit.WeekOfYear , NSCalendarUnit.Month , NSCalendarUnit.Year , NSCalendarUnit.Second], fromDate: earliest, toDate: latest, options: NSCalendarOptions())
-        
-        if (components.year >= 2) {
-            return "\(components.year) years ago"
-        } else if (components.year >= 1){
+        let earliest = now.earlierDate(date as Date)
+        let latest = (earliest == now as Date) ? date : now as Date
+        let components = calendar.dateComponents(unitFlags, from: earliest as Date,  to: latest as Date)
+
+        if (components.year! >= 2) {
+            return "\(components.year!) years ago"
+        } else if (components.year! >= 1){
             if (numericDates){
                 return "1 year ago"
             } else {
                 return "Last year"
             }
-        } else if (components.month >= 2) {
-            return "\(components.month) months ago"
-        } else if (components.month >= 1){
+        } else if (components.month! >= 2) {
+            return "\(components.month!) months ago"
+        } else if (components.month! >= 1){
             if (numericDates){
                 return "1 month ago"
             } else {
                 return "Last month"
             }
-        } else if (components.weekOfYear >= 2) {
-            return "\(components.weekOfYear) weeks ago"
-        } else if (components.weekOfYear >= 1){
+        } else if (components.weekOfYear! >= 2) {
+            return "\(components.weekOfYear!) weeks ago"
+        } else if (components.weekOfYear! >= 1){
             if (numericDates){
                 return "1 week ago"
             } else {
                 return "Last week"
             }
-        } else if (components.day >= 2) {
-            return "\(components.day) days ago"
-        } else if (components.day >= 1){
+        } else if (components.day! >= 2) {
+            return "\(components.day!) days ago"
+        } else if (components.day! >= 1){
             if (numericDates){
                 return "1 day ago"
             } else {
                 return "Yesterday"
             }
-        } else if (components.hour >= 2) {
-            return "\(components.hour) hours ago"
-        } else if (components.hour >= 1){
+        } else if (components.hour! >= 2) {
+            return "\(components.hour!) hours ago"
+        } else if (components.hour! >= 1){
             if (numericDates){
                 return "1 hour ago"
             } else {
                 return "An hour ago"
             }
-        } else if (components.minute >= 2) {
-            return "\(components.minute) minutes ago"
-        } else if (components.minute >= 1){
+        } else if (components.minute! >= 2) {
+            return "\(components.minute!) minutes ago"
+        } else if (components.minute! >= 1){
             if (numericDates){
                 return "1 minute ago"
             } else {
-                return "a minute ago"
+                return "A minute ago"
             }
-        } else if (components.second >= 3) {
-            return "\(components.second) seconds ago"
+        } else if (components.second! >= 3) {
+            return "\(components.second!) seconds ago"
         } else {
-            return "just now"
+            return "Just now"
         }
+
     }
 }

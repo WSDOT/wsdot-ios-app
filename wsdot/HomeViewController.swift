@@ -45,33 +45,33 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         menu_options = ["Traffic Map", "Ferries", "Mountain Passes", "Social Media", "Toll Rates", "Border Waits", "Amtrak Cascades", "Favorites"]
         menu_icon_names = ["icHomeTraffic","icHomeFerries","icHomePasses","icHomeSocialMedia","icHomeTollRates","icHomeBorderWaits","icHomeAmtrakCascades", "icHomeFavorites"]
         
-        self.navigationController!.navigationBar.translucent = false
-        self.navigationController!.navigationBar.barTintColor = UIColor.whiteColor()
+        self.navigationController!.navigationBar.isTranslucent = false
+        self.navigationController!.navigationBar.barTintColor = UIColor.white
         self.navigationController!.navigationBar.tintColor = Colors.tintColor
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Home")
+        GoogleAnalytics.screenView(screenName: "/Home")
     }
     
  
-    @IBAction func infoBarButtonPressed(sender: UIBarButtonItem) {
-        performSegueWithIdentifier(SegueInfoViewController, sender: self)
+    @IBAction func infoBarButtonPressed(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: SegueInfoViewController, sender: self)
     }
     
     // MARK: Table View Data Source Methods
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menu_options.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! IconCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! IconCell
         
         cell.label?.text = menu_options[indexPath.row]
         cell.iconView.image = UIImage(named: menu_icon_names[indexPath.row])
@@ -80,63 +80,63 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     // MARK: Table View Delegate Methods
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Perform Segue
         switch (indexPath.row) {
         case 0:
-            performSegueWithIdentifier(SegueTrafficMapViewController, sender: self)
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            performSegue(withIdentifier: SegueTrafficMapViewController, sender: self)
+            tableView.deselectRow(at: indexPath, animated: true)
             break
         case 1:
-            performSegueWithIdentifier(SegueFerriesHomeViewController, sender: self)
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            performSegue(withIdentifier: SegueFerriesHomeViewController, sender: self)
+            tableView.deselectRow(at: indexPath, animated: true)
             break
         case 2:
-            performSegueWithIdentifier(SegueMountainPassesViewController, sender: self)
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            performSegue(withIdentifier: SegueMountainPassesViewController, sender: self)
+            tableView.deselectRow(at: indexPath, animated: true)
             break
         case 3:
-            performSegueWithIdentifier(SegueSocialMediaViewController, sender: self)
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            performSegue(withIdentifier: SegueSocialMediaViewController, sender: self)
+            tableView.deselectRow(at: indexPath, animated: true)
             break
         case 4:
-            performSegueWithIdentifier(SegueTollRatesViewController, sender: self)
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            performSegue(withIdentifier: SegueTollRatesViewController, sender: self)
+            tableView.deselectRow(at: indexPath, animated: true)
             break
         case 5:
-            performSegueWithIdentifier(SegueBorderWaitsViewController, sender: self)
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            performSegue(withIdentifier: SegueBorderWaitsViewController, sender: self)
+            tableView.deselectRow(at: indexPath, animated: true)
             break
         case 6:
-            performSegueWithIdentifier(SegueAmtrakCascadesViewController, sender: self)
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            performSegue(withIdentifier: SegueAmtrakCascadesViewController, sender: self)
+            tableView.deselectRow(at: indexPath, animated: true)
             break
         case 7:
-            performSegueWithIdentifier(SegueFavoritesViewController, sender: self)
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            performSegue(withIdentifier: SegueFavoritesViewController, sender: self)
+            tableView.deselectRow(at: indexPath, animated: true)
         default:
             break
         }
     }
     
     // MARK: Navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.destinationViewController is UINavigationController {
-            let destinationViewController = segue.destinationViewController as! UINavigationController
-            destinationViewController.navigationBar.translucent = false
-            destinationViewController.navigationBar.barTintColor = UIColor.whiteColor()
+        if segue.destination is UINavigationController {
+            let destinationViewController = segue.destination as! UINavigationController
+            destinationViewController.navigationBar.isTranslucent = false
+            destinationViewController.navigationBar.barTintColor = UIColor.white
             destinationViewController.navigationBar.tintColor = Colors.tintColor
             
             if segue.identifier == SegueInfoViewController {
-                destinationViewController.viewControllers[0].navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                destinationViewController.viewControllers[0].navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
                 destinationViewController.viewControllers[0].navigationItem.leftItemsSupplementBackButton = true
             }
             
             if segue.identifier == SegueTrafficMapViewController {
                 let storyboard = UIStoryboard(name: "TrafficMap", bundle: nil)
-                let trafficMapViewController = storyboard.instantiateViewControllerWithIdentifier("TrafficMapViewController") as? TrafficMapViewController
-                trafficMapViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                let trafficMapViewController = storyboard.instantiateViewController(withIdentifier: "TrafficMapViewController") as? TrafficMapViewController
+                trafficMapViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
                 trafficMapViewController!.navigationItem.leftItemsSupplementBackButton = true
                 trafficMapViewController!.navigationItem.title = "Traffic Map"
                 if !destinationViewController.viewControllers.contains(trafficMapViewController!){
@@ -146,8 +146,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             if segue.identifier == SegueFerriesHomeViewController {
                 let storyboard = UIStoryboard(name: "Ferries", bundle: nil)
-                let ferriesHomeViewController = storyboard.instantiateViewControllerWithIdentifier("FerriesHomeViewController") as? FerriesHomeViewController
-                ferriesHomeViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                let ferriesHomeViewController = storyboard.instantiateViewController(withIdentifier: "FerriesHomeViewController") as? FerriesHomeViewController
+                ferriesHomeViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
                 ferriesHomeViewController!.navigationItem.leftItemsSupplementBackButton = true
                 ferriesHomeViewController!.navigationItem.title = "Ferries"
                 if !destinationViewController.viewControllers.contains(ferriesHomeViewController!){
@@ -156,14 +156,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             
             if segue.identifier == SegueFavoritesViewController {
-                destinationViewController.viewControllers[0].navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                destinationViewController.viewControllers[0].navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
                 destinationViewController.viewControllers[0].navigationItem.leftItemsSupplementBackButton = true
             }
             
             if segue.identifier == SegueMountainPassesViewController {
                 let storyboard = UIStoryboard(name: "MountainPasses", bundle: nil)
-                let mountainPassesViewController = storyboard.instantiateViewControllerWithIdentifier("MountainPassesViewController") as? MountainPassesViewController
-                mountainPassesViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                let mountainPassesViewController = storyboard.instantiateViewController(withIdentifier: "MountainPassesViewController") as? MountainPassesViewController
+                mountainPassesViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
                 mountainPassesViewController!.navigationItem.leftItemsSupplementBackButton = true
                 mountainPassesViewController!.navigationItem.title = "Mountain Passes"
                 if !destinationViewController.viewControllers.contains(mountainPassesViewController!){
@@ -173,8 +173,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             if segue.identifier == SegueSocialMediaViewController {
                 let storyboard = UIStoryboard(name: "SocialMedia", bundle: nil)
-                let socialMediaViewController = storyboard.instantiateViewControllerWithIdentifier("SocialMediaViewController") as? SocialMediaViewController
-                socialMediaViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                let socialMediaViewController = storyboard.instantiateViewController(withIdentifier: "SocialMediaViewController") as? SocialMediaViewController
+                socialMediaViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
                 socialMediaViewController!.navigationItem.leftItemsSupplementBackButton = true
                 socialMediaViewController!.navigationItem.title = "Social Media"
                 if !destinationViewController.viewControllers.contains(socialMediaViewController!) {
@@ -184,8 +184,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             if segue.identifier == SegueTollRatesViewController {
                 let storyboard = UIStoryboard(name: "TollRates", bundle: nil)
-                let tollRatesViewController = storyboard.instantiateViewControllerWithIdentifier("TollRatesViewController") as? TollRatesViewController
-                tollRatesViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                let tollRatesViewController = storyboard.instantiateViewController(withIdentifier: "TollRatesViewController") as? TollRatesViewController
+                tollRatesViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
                 tollRatesViewController!.navigationItem.leftItemsSupplementBackButton = true
                 tollRatesViewController!.navigationItem.title = "Toll Rates"
                 if !destinationViewController.viewControllers.contains(tollRatesViewController!) {
@@ -195,9 +195,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             if segue.identifier == SegueBorderWaitsViewController {
                 let storyboard = UIStoryboard(name: "BorderWaits", bundle: nil)
-                let borderWaitsViewController = storyboard.instantiateViewControllerWithIdentifier("BorderWaitsViewController") as? BorderWaitsViewController
+                let borderWaitsViewController = storyboard.instantiateViewController(withIdentifier: "BorderWaitsViewController") as? BorderWaitsViewController
                 destinationViewController.viewControllers = [borderWaitsViewController!]
-                borderWaitsViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                borderWaitsViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
                 borderWaitsViewController!.navigationItem.leftItemsSupplementBackButton = true
                 borderWaitsViewController!.navigationItem.title = "Border Waits"
                 if !destinationViewController.viewControllers.contains(borderWaitsViewController!) {
@@ -207,9 +207,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             if segue.identifier == SegueAmtrakCascadesViewController {
                 let storyboard = UIStoryboard(name: "AmtrakCascades", bundle: nil)
-                let amtrakCascadesViewController = storyboard.instantiateViewControllerWithIdentifier("AmtrakCascadesViewController") as? AmtrakCascadesViewController
+                let amtrakCascadesViewController = storyboard.instantiateViewController(withIdentifier: "AmtrakCascadesViewController") as? AmtrakCascadesViewController
                 destinationViewController.viewControllers = [amtrakCascadesViewController!]
-                amtrakCascadesViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                amtrakCascadesViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
                 amtrakCascadesViewController!.navigationItem.leftItemsSupplementBackButton = true
                 amtrakCascadesViewController!.navigationItem.title = "Amtrak Cascades"
                 if !destinationViewController.viewControllers.contains(amtrakCascadesViewController!) {

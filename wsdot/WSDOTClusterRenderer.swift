@@ -25,14 +25,14 @@ import Foundation
 // Adds some custom cluster logic for cameras in the same place.
 class WSDOTClusterRenderer: GMUDefaultClusterRenderer {
 
-    override func shouldRenderAsCluster(cluster: GMUCluster, atZoom zoom: Float) -> Bool {
+    override func shouldRender(as cluster: GMUCluster, atZoom zoom: Float) -> Bool {
 
         // Set defualt value for camera display if there is none
-        if (NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.shouldCluster) == nil){
-            NSUserDefaults.standardUserDefaults().setObject("off", forKey: UserDefaultsKeys.shouldCluster)
+        if (UserDefaults.standard.string(forKey: UserDefaultsKeys.shouldCluster) == nil){
+            UserDefaults.standard.set("off", forKey: UserDefaultsKeys.shouldCluster)
         }
     
-        let shouldCluster = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.shouldCluster)
+        let shouldCluster = UserDefaults.standard.string(forKey: UserDefaultsKeys.shouldCluster)
         if shouldCluster == "off" {
             return false
         }
@@ -42,11 +42,11 @@ class WSDOTClusterRenderer: GMUDefaultClusterRenderer {
         // This assumes we don't have more than 10 cameras in the same place.
         if cluster.count < 10 && cluster.count > 1{
             if let firstCamera = cluster.items[0] as? CameraClusterItem {
-                if !cluster.items.contains({(($0 as! CameraClusterItem).camera.latitude != firstCamera.camera.latitude) || (($0 as! CameraClusterItem).camera.longitude != firstCamera.camera.longitude)}) {
+                if !cluster.items.contains(where: {(($0 as! CameraClusterItem).camera.latitude != firstCamera.camera.latitude) || (($0 as! CameraClusterItem).camera.longitude != firstCamera.camera.longitude)}) {
                     return true
                 }
             }
         }
-        return super.shouldRenderAsCluster(cluster, atZoom: zoom)
+        return super.shouldRender(as: cluster, atZoom: zoom)
     }
 }

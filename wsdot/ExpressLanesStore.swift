@@ -24,27 +24,27 @@ import Alamofire
 
 class ExpressLanesStore {
 
-    typealias FetchExpressLanesCompletion = (data: [ExpressLaneItem]?, error: NSError?) -> ()
+    typealias FetchExpressLanesCompletion = (_ data: [ExpressLaneItem]?, _ error: Error?) -> ()
     
-    static func getExpressLanes(completion: FetchExpressLanesCompletion) {
+    static func getExpressLanes(_ completion: @escaping FetchExpressLanesCompletion) {
         
-        Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/ExpressLanes.js").validate().responseJSON { response in
+        Alamofire.request("http://data.wsdot.wa.gov/mobile/ExpressLanes.js").validate().responseJSON { response in
             switch response.result {
-            case .Success:
+            case .success:
                 if let value = response.result.value {
                     let json = JSON(value)
                     let expressLanes = parseExpressLanesJSON(json)
-                    completion(data: expressLanes, error: nil)
+                    completion(expressLanes, nil)
                 }
-            case .Failure(let error):
+            case .failure(let error):
                 print(error)
-                completion(data: nil, error: error)
+                completion(nil, error)
             }
         }
     }
     
     //Converts JSON from api into and array of FerriesRouteScheduleItems
-    private static func parseExpressLanesJSON(json: JSON) ->[ExpressLaneItem]{
+    fileprivate static func parseExpressLanesJSON(_ json: JSON) ->[ExpressLaneItem]{
         
         var expressLanes = [ExpressLaneItem]()
         

@@ -23,7 +23,7 @@ import Foundation
 class NewsItem {
 
     var title: String = ""
-    var published = NSDate()
+    var published = Date()
     var link: String = ""
 
 }

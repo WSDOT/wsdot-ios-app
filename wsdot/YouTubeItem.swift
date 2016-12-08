@@ -25,6 +25,6 @@ class YouTubeItem {
     var title: String = ""
     var link: String = ""
     var thumbnailLink = ""
-    var published = NSDate()
+    var published = Date()
 
 }

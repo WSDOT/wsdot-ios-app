@@ -39,7 +39,7 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
         title = "Alerts In This Area"
         
         for alert in alerts{
-            if alert.headlineDesc.containsString("construction") || alert.eventCategory == "Construction"{
+            if alert.headlineDesc.contains("construction") || alert.eventCategory == "Construction"{
                 constructionAlerts.append(alert)
             }else if alert.eventCategory == "Special Event"{
                 specialEvents.append(alert)
@@ -48,29 +48,29 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
             }
         }
 
-        trafficAlerts = trafficAlerts.sort({$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
-        constructionAlerts = constructionAlerts.sort({$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
-        specialEvents = specialEvents.sort({$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
+        trafficAlerts = trafficAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
+        constructionAlerts = constructionAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
+        specialEvents = specialEvents.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
 
         tableView.rowHeight = UITableViewAutomaticDimension
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Traffic Map/Area Alerts")
+        GoogleAnalytics.screenView(screenName: "/Traffic Map/Area Alerts")
     }
     
     // MARK: Table View Data Source Methods
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         switch(section){
         case 0:
@@ -85,7 +85,7 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch(section){
             
@@ -100,23 +100,23 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! LinkCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! LinkCell
         
         let htmlStyleString = "<style>body{font-family: '\(cell.linkLabel.font.fontName)'; font-size:\(cell.linkLabel.font.pointSize)px;}</style>"
         var htmlString = ""
         
         switch indexPath.section{
         case 0:
-            cell.updateTime.text = TimeUtils.timeAgoSinceDate(trafficAlerts[indexPath.row].lastUpdatedTime, numericDates: false)
+            cell.updateTime.text = TimeUtils.timeAgoSinceDate(date: trafficAlerts[indexPath.row].lastUpdatedTime, numericDates: false)
             htmlString = htmlStyleString + trafficAlerts[indexPath.row].headlineDesc
             break
         case 1:
-            cell.updateTime.text = TimeUtils.timeAgoSinceDate(constructionAlerts[indexPath.row].lastUpdatedTime, numericDates: false)
+            cell.updateTime.text = TimeUtils.timeAgoSinceDate(date: constructionAlerts[indexPath.row].lastUpdatedTime, numericDates: false)
             htmlString = htmlStyleString + constructionAlerts[indexPath.row].headlineDesc
             break
         case 2:
-            cell.updateTime.text = TimeUtils.timeAgoSinceDate(specialEvents[indexPath.row].lastUpdatedTime, numericDates: false)
+            cell.updateTime.text = TimeUtils.timeAgoSinceDate(date: specialEvents[indexPath.row].lastUpdatedTime, numericDates: false)
             htmlString = htmlStyleString + specialEvents[indexPath.row].headlineDesc
             break
         default:
@@ -124,7 +124,7 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
         }
         
         let attrStr = try! NSMutableAttributedString(
-            data: htmlString.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: false)!,
+            data: htmlString.data(using: String.Encoding.unicode, allowLossyConversion: false)!,
             options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
             documentAttributes: nil)
         
@@ -135,43 +135,43 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     // MARK: Table View Delegate Methods
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         switch(indexPath.section){
         case 0:
-            performSegueWithIdentifier(SegueHighwayAlertViewController, sender: trafficAlerts[indexPath.row])
+            performSegue(withIdentifier: SegueHighwayAlertViewController, sender: trafficAlerts[indexPath.row])
             break
         case 1:
-            performSegueWithIdentifier(SegueHighwayAlertViewController, sender: constructionAlerts[indexPath.row])
+            performSegue(withIdentifier: SegueHighwayAlertViewController, sender: constructionAlerts[indexPath.row])
             break
         case 2:
-            performSegueWithIdentifier(SegueHighwayAlertViewController, sender: specialEvents[indexPath.row])
+            performSegue(withIdentifier: SegueHighwayAlertViewController, sender: specialEvents[indexPath.row])
             break
         default: break
         }
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // MARK: Naviagtion
     // Get refrence to child VC
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == SegueHighwayAlertViewController {
             let alertItem = (sender as! HighwayAlertItem)
-            let destinationViewController = segue.destinationViewController as! HighwayAlertViewController
+            let destinationViewController = segue.destination as! HighwayAlertViewController
             destinationViewController.alertItem = alertItem
         }
     }
     
     // MARK: INDLinkLabelDelegate
-    func linkLabel(label: INDLinkLabel, didLongPressLinkWithURL URL: NSURL) {
+    func linkLabel(_ label: INDLinkLabel, didLongPressLinkWithURL URL: Foundation.URL) {
         let activityController = UIActivityViewController(activityItems: [URL], applicationActivities: nil)
-        self.presentViewController(activityController, animated: true, completion: nil)
+        self.present(activityController, animated: true, completion: nil)
     }
     
-    func linkLabel(label: INDLinkLabel, didTapLinkWithURL URL: NSURL) {
-        UIApplication.sharedApplication().openURL(URL)
+    func linkLabel(_ label: INDLinkLabel, didTapLinkWithURL URL: Foundation.URL) {
+        UIApplication.shared.openURL(URL)
     }
     
     

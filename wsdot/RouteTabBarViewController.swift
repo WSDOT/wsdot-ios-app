@@ -38,7 +38,7 @@ class RouteTabBarViewController: UITabBarController {
         if (routeItem.routeAlerts.count > 0){
             self.tabBar.items?[1].badgeValue = String(routeItem.routeAlerts.count)
         } else {
-            self.tabBar.items?[1].enabled = false
+            self.tabBar.items?[1].isEnabled = false
         }
         
         favoriteBarButton.action = #selector(RouteTabBarViewController.updateFavorite(_:))
@@ -55,7 +55,7 @@ class RouteTabBarViewController: UITabBarController {
         self.navigationItem.rightBarButtonItem = favoriteBarButton
     }
     
-    func updateFavorite(sender: UIBarButtonItem) {
+    func updateFavorite(_ sender: UIBarButtonItem) {
         if (routeItem.selected){
             FerryRealmStore.updateFavorite(routeItem, newValue: false)
             favoriteBarButton.image = UIImage(named: "icStarSmall")

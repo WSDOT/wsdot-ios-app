@@ -25,9 +25,9 @@ import Foundation
 
 class MountainPassStore {
 
-   typealias UpdatePassesCompletion = (error: NSError?) -> ()
+   typealias UpdatePassesCompletion = (_ error: Error?) -> ()
     
-    static func updateFavorite(pass: MountainPassItem, newValue: Bool){
+    static func updateFavorite(_ pass: MountainPassItem, newValue: Bool){
         
         do {
             let realm = try Realm()
@@ -52,37 +52,41 @@ class MountainPassStore {
         return Array(favoritePassItems)
     }
     
-    static func updatePasses(force: Bool, completion: UpdatePassesCompletion) {
+    static func updatePasses(_ force: Bool, completion: @escaping UpdatePassesCompletion) {
+        var delta = TimeUtils.updateTime
+        let deltaUpdated = (Calendar.current as NSCalendar).components(.second, from: CachesStore.getUpdatedTime(CachedData.mountainPasses), to: Date(), options: []).second
         
-        let deltaUpdated = NSCalendar.currentCalendar().components(.Second, fromDate: CachesStore.getUpdatedTime(CachedData.MountainPasses), toDate: NSDate(), options: []).second
-        
-        if ((deltaUpdated > TimeUtils.updateTime) || force){
+        if let deltaValue = deltaUpdated {
+             delta = deltaValue
+        }
+         
+        if ((delta > TimeUtils.updateTime) || force){
             
-            Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/MountainPassConditions.js").validate().responseJSON { response in
+            Alamofire.request("http://data.wsdot.wa.gov/mobile/MountainPassConditions.js").validate().responseJSON { response in
                 switch response.result {
-                case .Success:
+                case .success:
                     if let value = response.result.value {
-                        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) {
+                        DispatchQueue.global().async {
                             let json = JSON(value)
                             let passItems =  MountainPassStore.parsePassesJSON(json)
                             savePasses(passItems)
-                            CachesStore.updateTime(CachedData.MountainPasses, updated: NSDate())
-                            completion(error: nil)
+                            CachesStore.updateTime(CachedData.mountainPasses, updated: Date())
+                            completion(nil)
                         }
                     }
-                case .Failure(let error):
+                case .failure(let error):
                     print(error)
-                    completion(error: error)
+                    completion(error)
                 }
             }
         }else {
-            completion(error: nil)
+            completion(nil)
         }
     }
 
     
     // TODO: Make this smarter
-    private static func savePasses(passes: [MountainPassItem]){
+    fileprivate static func savePasses(_ passes: [MountainPassItem]){
         
         let realm = try! Realm()
         
@@ -124,7 +128,7 @@ class MountainPassStore {
         }
     }
     
-    private static func parsePassesJSON(json: JSON) ->[MountainPassItem]{
+    fileprivate static func parsePassesJSON(_ json: JSON) ->[MountainPassItem]{
         var passItems = [MountainPassItem]()
         
         for (_,subJson):(String, JSON) in json["GetMountainPassConditionsResult"]["PassCondition"] {
@@ -157,7 +161,7 @@ class MountainPassStore {
         return passItems
     }
     
-    private static func parseCameraJSON(json: JSON) -> List<PassCameraIDItem> {
+    fileprivate static func parseCameraJSON(_ json: JSON) -> List<PassCameraIDItem> {
         let cameras = List<PassCameraIDItem>()
         for(_,cameraJSON):(String, JSON) in json {
             let camera = PassCameraIDItem()
@@ -167,7 +171,7 @@ class MountainPassStore {
         return cameras
     }
     
-    private static func parseForecastJSON(json: JSON) -> List<ForecastItem> {
+    fileprivate static func parseForecastJSON(_ json: JSON) -> List<ForecastItem> {
         let forecastItems = List<ForecastItem>()
         for(_,forecastJSON):(String, JSON) in json {
             let forecast = ForecastItem()

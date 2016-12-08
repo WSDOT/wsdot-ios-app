@@ -25,9 +25,9 @@ class RestAreaStore {
     static func readRestAreas() -> [RestAreaItem] {
     
         var restareas = [RestAreaItem]()
-        if let path = NSBundle.mainBundle().pathForResource("restareas", ofType: "json"){
-            let data = NSData(contentsOfFile: path)
-            let json = JSON(data: data!, options: NSJSONReadingOptions.AllowFragments, error: nil)
+        if let path = Bundle.main.path(forResource: "restareas", ofType: "json"){
+            let data = try? Data(contentsOf: URL(fileURLWithPath: path))
+            let json = JSON(data: data!, options: JSONSerialization.ReadingOptions.allowFragments, error: nil)
             for (_,restareaJson):(String, JSON) in json {
                 let restarea = RestAreaItem(route: restareaJson["route"].stringValue,
                                             location: restareaJson["location"].stringValue,

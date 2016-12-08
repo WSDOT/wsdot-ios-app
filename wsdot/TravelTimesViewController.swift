@@ -51,7 +51,7 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
         definesPresentationContext = true
         
         // refresh controller
-        refreshControl.addTarget(self, action: #selector(TravelTimesViewController.refreshAction(_:)), forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(TravelTimesViewController.refreshAction(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
         
         showOverlay(self.view)
@@ -63,21 +63,21 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.rowHeight = UITableViewAutomaticDimension
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Traffic Map/Traveler Information/Travel Times")
+        GoogleAnalytics.screenView(screenName: "/Traffic Map/Traveler Information/Travel Times")
     }
     
-    func refreshAction(refreshControl: UIRefreshControl) {
+    func refreshAction(_ refreshControl: UIRefreshControl) {
         refresh(true)
     }
     
-    func refresh(force: Bool){
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak self] in
+    func refresh(_ force: Bool){
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { [weak self] in
             TravelTimesStore.updateTravelTimes(force, completion: { error in
                 if (error == nil) {
                     // Reload tableview on UI thread
-                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                    DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
                             selfValue.travelTimes = TravelTimesStore.getAllTravelTimes()
                             selfValue.filtered = selfValue.travelTimes
@@ -87,11 +87,11 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
                         }
                     }
                 } else {
-                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                    DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
                             selfValue.refreshControl.endRefreshing()
                             selfValue.hideOverlayView()
-                            selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                         }
                     }
                 }
@@ -99,15 +99,15 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    func showOverlay(view: UIView) {
-        activityIndicator.frame = CGRectMake(0, 0, 40, 40)
-        activityIndicator.activityIndicatorViewStyle = .WhiteLarge
-        activityIndicator.color = UIColor.grayColor()
+    func showOverlay(_ view: UIView) {
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.color = UIColor.gray
         
-        if self.splitViewController!.collapsed {
-            activityIndicator.center = CGPointMake(view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
+        if self.splitViewController!.isCollapsed {
+            activityIndicator.center = CGPoint(x: view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
         } else {
-            activityIndicator.center = CGPointMake(view.center.x - self.splitViewController!.viewControllers[0].view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
+            activityIndicator.center = CGPoint(x: view.center.x - self.splitViewController!.viewControllers[0].view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
         }
         
         view.addSubview(activityIndicator)
@@ -121,21 +121,21 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     // MARK: Table View Data Source Methods
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filtered.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! TravelTimeCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! TravelTimeCell
 
         let travelTime = filtered[indexPath.row]
         
@@ -144,9 +144,9 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
         cell.subtitleLabel.text = String(travelTime.distance) + " miles / " + String(travelTime.averageTime) + " min"
         
         do {
-            let updated = try TimeUtils.timeAgoSinceDate(TimeUtils.formatTimeStamp(travelTime.updated), numericDates: false)
+            let updated = try TimeUtils.timeAgoSinceDate(date: TimeUtils.formatTimeStamp(travelTime.updated), numericDates: false)
             cell.updatedLabel.text = updated
-        } catch TimeUtils.TimeUtilsError.InvalidTimeString {
+        } catch TimeUtils.TimeUtilsError.invalidTimeString {
             cell.updatedLabel.text = "N/A"
         } catch {
             cell.updatedLabel.text = "N/A"
@@ -161,9 +161,9 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
         if (travelTime.averageTime > travelTime.currentTime){
             cell.currentTimeLabel.textColor = Colors.tintColor
         } else if (travelTime.averageTime < travelTime.currentTime){
-            cell.currentTimeLabel.textColor = UIColor.redColor()
+            cell.currentTimeLabel.textColor = UIColor.red
         } else {
-            cell.currentTimeLabel.textColor = UIColor.darkTextColor()
+            cell.currentTimeLabel.textColor = UIColor.darkText
         }
 
         cell.sizeToFit()
@@ -173,26 +173,26 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
     
 
     // MARK: Table View Delegate Methods
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier(segueTravelTimesViewController, sender: nil)
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: segueTravelTimesViewController, sender: nil)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // MARK: UISearchBar Delegate Methods
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {
             filtered = searchText.isEmpty ? travelTimes : travelTimes.filter({(travelTime: TravelTimeItem) -> Bool in
-                return travelTime.title.rangeOfString(searchText, options: .CaseInsensitiveSearch) != nil
+                return travelTime.title.range(of: searchText, options: .caseInsensitive) != nil
             })
             tableView.reloadData()
         }
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == segueTravelTimesViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let travelTimeItem = self.filtered[indexPath.row] as TravelTimeItem
-                let destinationViewController = segue.destinationViewController as! TravelTimeDetailsViewController
+                let destinationViewController = segue.destination as! TravelTimeDetailsViewController
                 destinationViewController.travelTime = travelTimeItem
             }
         }

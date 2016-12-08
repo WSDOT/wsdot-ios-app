@@ -25,14 +25,14 @@ class CalloutViewController: UIViewController {
     @IBOutlet weak var calloutImageView: UIImageView!
     var calloutURL = ""
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         // Add timestamp to help prevent caching
-        let urlString = calloutURL + "?" + String(Int(NSDate().timeIntervalSince1970 / 60))
-        calloutImageView.sd_setImageWithURL(NSURL(string: urlString), placeholderImage: UIImage(named: "imagePlaceholder"), options: .RefreshCached)
+        let urlString = calloutURL + "?" + String(Int(Date().timeIntervalSince1970 / 60))
+        calloutImageView.sd_setImage(with: URL(string: urlString), placeholderImage: UIImage(named: "imagePlaceholder"), options: .refreshCached)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Traffic Map/JBLM Flow Map")
+        GoogleAnalytics.screenView(screenName: "/Traffic Map/JBLM Flow Map")
     }
 }

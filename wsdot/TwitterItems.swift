@@ -27,7 +27,7 @@ class TwitterItem {
     var screenName: String = ""
     var text: String = ""
     var link: String = ""
-    var published = NSDate()
+    var published = Date()
     var mediaUrl: String? = nil
     
 

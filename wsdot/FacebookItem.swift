@@ -22,5 +22,5 @@ import Foundation
 class FacebookItem {
     var id: String = ""
     var message: String = ""
-    var createdAt = NSDate()
+    var createdAt = Date()
 }

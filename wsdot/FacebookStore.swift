@@ -24,26 +24,26 @@ import SwiftyJSON
 
 class FacebookStore {
 
-    typealias FetchPostsCompletion = (data: [FacebookItem]?, error: NSError?) -> ()
+    typealias FetchPostsCompletion = (_ data: [FacebookItem]?, _ error: Error?) -> ()
     
-    static func getPosts(completion: FetchPostsCompletion) {
+    static func getPosts(_ completion: @escaping FetchPostsCompletion) {
         
-        Alamofire.request(.GET, "http://www.wsdot.wa.gov/news/socialroom/posts/facebook").validate().responseJSON { response in
+        Alamofire.request("http://www.wsdot.wa.gov/news/socialroom/posts/facebook").validate().responseJSON { response in
             switch response.result {
-            case .Success:
+            case .success:
                 if let value = response.result.value {
                     let json = JSON(value)
                     let posts = parsePostsJSON(json)
-                    completion(data: posts, error: nil)
+                    completion(posts, nil)
                 }
-            case .Failure(let error):
+            case .failure(let error):
                 print(error)
-                completion(data: nil, error: error)
+                completion(nil, error)
             }
         }
     }
     
-    private static func parsePostsJSON(json: JSON) ->[FacebookItem]{
+    fileprivate static func parsePostsJSON(_ json: JSON) ->[FacebookItem]{
         
         var posts = [FacebookItem]()
         
@@ -53,7 +53,7 @@ class FacebookStore {
             post.id = postJson["id"].stringValue
             
             post.message = postJson["message"].stringValue
-                .stringByReplacingOccurrencesOfString("(https?:\\/\\/[-a-zA-Z0-9._~:\\/?#@!$&\'()*+,;=%]+)", withString: "<a href=\"$1\">$1</a>", options: .RegularExpressionSearch, range: nil)
+                .replacingOccurrences(of: "(https?:\\/\\/[-a-zA-Z0-9._~:\\/?#@!$&\'()*+,;=%]+)", with: "<a href=\"$1\">$1</a>", options: .regularExpression, range: nil)
             
             post.createdAt = TimeUtils.postPubDateToNSDate(postJson["created_time"].stringValue, formatStr: "yyyy-MM-dd'T'HH:mm:ssZ", isUTC: true)
             

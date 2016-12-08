@@ -27,27 +27,27 @@ import SwiftyJSON
  */
 class VesselWatchStore {
 
-    typealias FetchVesselsCompletion = (data: [VesselItem]?, error: NSError?) -> ()
+    typealias FetchVesselsCompletion = (_ data: [VesselItem]?, _ error: Error?) -> ()
     
-    static func getVessels(completion: FetchVesselsCompletion) {
+    static func getVessels(_ completion: @escaping FetchVesselsCompletion) {
         
-        Alamofire.request(.GET, "http://www.wsdot.wa.gov/ferries/api/vessels/rest/vessellocations?apiaccesscode=" + ApiKeys.wsdot_key).validate().responseJSON { response in
+        Alamofire.request("http://www.wsdot.wa.gov/ferries/api/vessels/rest/vessellocations?apiaccesscode=" + ApiKeys.wsdot_key).validate().responseJSON { response in
             switch response.result {
-            case .Success:
+            case .success:
                 if let value = response.result.value {
                     let json = JSON(value)
                     let vessels = parseVesselsJSON(json)
-                    completion(data: vessels, error: nil)
+                    completion(vessels, nil)
                 }
-            case .Failure(let error):
+            case .failure(let error):
                 print(error)
-                completion(data: nil, error: error)
+                completion(nil, error)
             }
         }
     }
     
     //Converts JSON from api into and array of FerriesRouteScheduleItems
-    private static func parseVesselsJSON(json: JSON) ->[VesselItem]{
+    fileprivate static func parseVesselsJSON(_ json: JSON) ->[VesselItem]{
         
         var vessels = [VesselItem]()
         
@@ -85,7 +85,7 @@ class VesselWatchStore {
             let routes = vesselJson["OpRouteAbbrev"].arrayValue
             
             if (routes.count > 0){
-                vessel.route = routes[0].stringValue.capitalizedString
+                vessel.route = routes[0].stringValue.uppercased()
             }
             
             vessels.append(vessel)

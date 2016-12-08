@@ -27,9 +27,9 @@ import RealmSwift
  */
 class FerryRealmStore {
     
-    typealias UpdateRoutesCompletion = (error: NSError?) -> ()
+    typealias UpdateRoutesCompletion = (_ error: Error?) -> ()
     
-    static func updateFavorite(route: FerryScheduleItem, newValue: Bool){
+    static func updateFavorite(_ route: FerryScheduleItem, newValue: Bool){
         
         do {
             let realm = try Realm()
@@ -54,39 +54,43 @@ class FerryRealmStore {
         return Array(favoriteScheduleItems)
     }
     
-    static func updateRouteSchedules(force: Bool, completion: UpdateRoutesCompletion) {
+    static func updateRouteSchedules(_ force: Bool, completion: @escaping UpdateRoutesCompletion) {
+    
+        var delta = TimeUtils.updateTime
+        let deltaUpdated = (Calendar.current as NSCalendar).components(.second, from: CachesStore.getUpdatedTime(CachedData.ferries), to: Date(), options: []).second
+        if let deltaValue = deltaUpdated {
+            delta = deltaValue
+        }
         
-        let deltaUpdated = NSCalendar.currentCalendar().components(.Second, fromDate: CachesStore.getUpdatedTime(CachedData.Ferries), toDate: NSDate(), options: []).second
-        
-        if ((deltaUpdated > TimeUtils.updateTime) || force){
+        if ((delta > TimeUtils.updateTime) || force){
             
-            Alamofire.request(.GET, "http://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js").validate().responseJSON { response in
+            Alamofire.request("http://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js").validate().responseJSON { response in
                 switch response.result {
-                case .Success:
+                case .success:
                     if let value = response.result.value {
-                        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) {
+                        DispatchQueue.global().async {
                             let json = JSON(value)
                             let routeSchedules = FerryRealmStore.parseRouteSchedulesJSON(json)
                             saveRouteSchedules(routeSchedules)
-                            CachesStore.updateTime(CachedData.Ferries, updated: NSDate())
-                            completion(error: nil)
+                            CachesStore.updateTime(CachedData.ferries, updated: Date())
+                            completion(nil)
                         }
                     }
-                case .Failure(let error):
+                case .failure(let error):
                     print(error)
-                    completion(error: error)
+                    completion(error)
                 }
                 
             }
         }else {
-            completion(error: nil)
+            completion(nil)
         }
     }
 
     
     
     // Saves new route schedules. tags old routes for deletion if not updated.
-    private static func saveRouteSchedules(routeSchedules: [FerryScheduleItem]){
+    fileprivate static func saveRouteSchedules(_ routeSchedules: [FerryScheduleItem]){
         
         let realm = try! Realm()
         
@@ -130,13 +134,13 @@ class FerryRealmStore {
     }
     
     //Converts JSON from api into and array of FerriesRouteScheduleItems
-    private static func parseRouteSchedulesJSON(json: JSON) ->[FerryScheduleItem]{
+    fileprivate static func parseRouteSchedulesJSON(_ json: JSON) ->[FerryScheduleItem]{
         var routeSchedules = [FerryScheduleItem]()
         for (_,subJson):(String, JSON) in json {
             
             var crossingTime: String? = nil
             
-            if (subJson["CrossingTime"] != nil){
+            if (subJson["CrossingTime"] != JSON.null){
                 crossingTime = subJson["CrossingTime"].stringValue
             }
             
@@ -167,7 +171,7 @@ class FerryRealmStore {
         return routeSchedules
     }
     
-    private static func getTerminalPairs(scheduleDates: List<FerryScheduleDateItem>) -> [FerryTerminalPairItem]{
+    fileprivate static func getTerminalPairs(_ scheduleDates: List<FerryScheduleDateItem>) -> [FerryTerminalPairItem]{
         let terminalPairs = List<FerryTerminalPairItem>()
         
         for index in 0...scheduleDates.count-1 {
@@ -182,18 +186,18 @@ class FerryRealmStore {
                 }
             }
         }
-        return terminalPairs.sort({ (a, b) -> Bool in
+        return terminalPairs.sorted(by: { (a, b) -> Bool in
             return a.aTerminalName < b.aTerminalName
         })
     }
     
     
-    private static func containsTerminal(terms: List<FerryTerminalPairItem>, term: FerryTerminalPairItem) -> Bool{
+    fileprivate static func containsTerminal(_ terms: List<FerryTerminalPairItem>, term: FerryTerminalPairItem) -> Bool{
         for terminal in terms {if terminal.aTerminalId == term.aTerminalId && terminal.bTerminalId == term.bTerminalId { return true } }
         return false
     }
     
-    private static func parseAlertsJSON(json: JSON) -> List<FerryAlertItem> {
+    fileprivate static func parseAlertsJSON(_ json: JSON) -> List<FerryAlertItem> {
         let routeAlerts = List<FerryAlertItem>()
     
         for(_,alertJSON):(String, JSON) in json {
@@ -208,7 +212,7 @@ class FerryRealmStore {
         return routeAlerts
     }
  
-    private static func parseDateJSON(json: JSON) -> List<FerryScheduleDateItem> {
+    fileprivate static func parseDateJSON(_ json: JSON) -> List<FerryScheduleDateItem> {
         let scheduleDates = List<FerryScheduleDateItem>()
         for(_,dateJSON):(String, JSON) in json {
             let scheduleDate = FerryScheduleDateItem()
@@ -221,7 +225,7 @@ class FerryRealmStore {
         return scheduleDates
     }
     
-    private static func parseSailingsJSON(json: JSON) -> List<FerrySailingsItem>{
+    fileprivate static func parseSailingsJSON(_ json: JSON) -> List<FerrySailingsItem>{
         let sailings = List<FerrySailingsItem>()
         for(_, sailingJSON):(String, JSON) in json {
             let sailing = FerrySailingsItem()
@@ -246,12 +250,12 @@ class FerryRealmStore {
         return sailings
     }
     
-    private static func parseDepartureTimesJSON(json: JSON) -> List<FerryDepartureTimeItem>{
+    fileprivate static func parseDepartureTimesJSON(_ json: JSON) -> List<FerryDepartureTimeItem>{
         let times = List<FerryDepartureTimeItem>()
         for(_, timeJSON):(String, JSON) in json {
             let time = FerryDepartureTimeItem()
             
-            if (timeJSON["ArrivingTime"] != nil){
+            if (timeJSON["ArrivingTime"] !=  JSON.null){
                 time.arrivingTime = TimeUtils.parseJSONDateToNSDate(timeJSON["ArrivingTime"].stringValue)
             }
             time.departingTime = TimeUtils.parseJSONDateToNSDate(timeJSON["DepartingTime"].stringValue)

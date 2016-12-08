@@ -45,7 +45,7 @@ class RestAreaViewController: UIViewController {
         amenities.text? = ""
         
         for amenity in restAreaItem!.amenities {
-            amenities.text?.appendContentsOf("• " + amenity + "\n")
+            amenities.text?.append("• " + amenity + "\n")
         }
         
         let staticMapUrl = "http://maps.googleapis.com/maps/api/staticmap?center="
@@ -54,16 +54,16 @@ class RestAreaViewController: UIViewController {
             + String(restAreaItem!.latitude) + "," + String(restAreaItem!.longitude)
             + "&key=" + ApiKeys.google_key
         
-        mapImage.sd_setImageWithURL(NSURL(string: staticMapUrl), placeholderImage: UIImage(named: "imagePlaceholder"), options: .RefreshCached)
+        mapImage.sd_setImage(with: URL(string: staticMapUrl), placeholderImage: UIImage(named: "imagePlaceholder"), options: .refreshCached)
         
-        scrollView.contentMode = .ScaleAspectFit
+        scrollView.contentMode = .scaleAspectFit
         mapImage.sizeToFit()
-        scrollView.contentSize = CGSizeMake(mapImage.frame.size.width, mapImage.frame.size.height)
+        scrollView.contentSize = CGSize(width: mapImage.frame.size.width, height: mapImage.frame.size.height)
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Traffic Map/Rest Area Details")
+        GoogleAnalytics.screenView(screenName: "/Traffic Map/Rest Area Details")
     }
 
 }

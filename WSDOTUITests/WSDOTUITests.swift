@@ -27,7 +27,7 @@ class WSDOTUITests: XCTestCase {
         let tablesQuery = app.tables
         let exists = NSPredicate(format: "exists == true")
 
-        tablesQuery.cells.elementBoundByIndex(0).doubleTap()
+        tablesQuery.cells.element(boundBy: 0).doubleTap()
         app.toolbars.buttons["Go To Location"].tap()
         app.tables.staticTexts["Seattle"].tap()
         
@@ -36,8 +36,8 @@ class WSDOTUITests: XCTestCase {
         
         app.navigationBars["Traffic Map"].buttons["Menu"].doubleTap()
         
-        expectationForPredicate(exists, evaluatedWithObject: tablesQuery.cells.staticTexts["Travel Times"], handler: nil)
-        waitForExpectationsWithTimeout(5, handler: nil)
+        expectation(for: exists, evaluatedWith: tablesQuery.cells.staticTexts["Travel Times"], handler: nil)
+        waitForExpectations(timeout: 5, handler: nil)
         tablesQuery.cells.staticTexts["Travel Times"].doubleTap()
         snapshot("02TravelTimes")
     }
@@ -48,10 +48,10 @@ class WSDOTUITests: XCTestCase {
         let tablesQuery = app.tables
         let exists = NSPredicate(format: "exists == true")
 
-        tablesQuery.cells.elementBoundByIndex(2).tap()
+        tablesQuery.cells.element(boundBy: 2).tap()
         
-        expectationForPredicate(exists, evaluatedWithObject: tablesQuery.staticTexts["Blewett Pass US97"], handler: nil)
-        waitForExpectationsWithTimeout(5, handler: nil)
+        expectation(for: exists, evaluatedWith: tablesQuery.staticTexts["Blewett Pass US97"], handler: nil)
+        waitForExpectations(timeout: 5, handler: nil)
         tablesQuery.staticTexts["Blewett Pass US97"].doubleTap()
         snapshot("03PassReport")
     }
@@ -60,15 +60,15 @@ class WSDOTUITests: XCTestCase {
         let app = XCUIApplication()
         let tablesQuery = app.tables
         let exists = NSPredicate(format: "exists == true")
-        expectationForPredicate(exists, evaluatedWithObject: tablesQuery.cells.elementBoundByIndex(5), handler: nil)
-        waitForExpectationsWithTimeout(5, handler: nil)
-        tablesQuery.cells.elementBoundByIndex(1).doubleTap()
-        expectationForPredicate(exists, evaluatedWithObject: tablesQuery.staticTexts["Route Schedules"], handler: nil)
-        waitForExpectationsWithTimeout(5, handler: nil)
+        expectation(for: exists, evaluatedWith: tablesQuery.cells.element(boundBy: 5), handler: nil)
+        waitForExpectations(timeout: 5, handler: nil)
+        tablesQuery.cells.element(boundBy: 1).doubleTap()
+        expectation(for: exists, evaluatedWith: tablesQuery.staticTexts["Route Schedules"], handler: nil)
+        waitForExpectations(timeout: 5, handler: nil)
         
         tablesQuery.staticTexts["Route Schedules"].doubleTap()
-        expectationForPredicate(exists, evaluatedWithObject: tablesQuery.staticTexts["Seattle / Bremerton"], handler: nil)
-        waitForExpectationsWithTimeout(5, handler: nil)
+        expectation(for: exists, evaluatedWith: tablesQuery.staticTexts["Seattle / Bremerton"], handler: nil)
+        waitForExpectations(timeout: 5, handler: nil)
         
         tablesQuery.staticTexts["Seattle / Bremerton"].doubleTap()
         tablesQuery.staticTexts["Seattle to Bremerton"].doubleTap()
@@ -80,11 +80,11 @@ class WSDOTUITests: XCTestCase {
         let app = XCUIApplication()
         let tablesQuery = app.tables
         
-        tablesQuery.cells.elementBoundByIndex(6).doubleTap()
+        tablesQuery.cells.element(boundBy: 6).doubleTap()
         
         tablesQuery.staticTexts["Check Schedules and Status"].doubleTap()
         
-        addUIInterruptionMonitorWithDescription("Allow “WSDOT” to access your location while you use the app?") { (alert) -> Bool in
+        addUIInterruptionMonitor(withDescription: "Allow “WSDOT” to access your location while you use the app?") { (alert) -> Bool in
             alert.buttons["Allow"].doubleTap()
             return true
         }

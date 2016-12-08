@@ -37,51 +37,51 @@ class CameraClusterViewController: UIViewController, UITableViewDataSource, UITa
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Traffic Map/Camera Cluster List")
+        GoogleAnalytics.screenView(screenName: "/Traffic Map/Camera Cluster List")
     }
 
     
     // MARK: -
     // MARK: Table View Data source methods
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cameraItems.count
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(camerasCellIdentifier) as! CameraImageCustomCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: camerasCellIdentifier) as! CameraImageCustomCell
         
         // Add timestamp to help prevent caching
-        let urlString = cameraItems[indexPath.row].url + "?" + String(Int(NSDate().timeIntervalSince1970 / 60))
-        cell.CameraImage.sd_setImageWithURL(NSURL(string: urlString), placeholderImage: UIImage(named: "imagePlaceholder"), options: .RefreshCached)
+        let urlString = cameraItems[indexPath.row].url + "?" + String(Int(Date().timeIntervalSince1970 / 60))
+        cell.CameraImage.sd_setImage(with: URL(string: urlString), placeholderImage: UIImage(named: "imagePlaceholder"), options: .refreshCached)
         
         return cell
     }
     
     // MARK: -
     // MARK: Table View Delegate
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         // Perform Segue
-        performSegueWithIdentifier(SegueCamerasViewController, sender: self)
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        performSegue(withIdentifier: SegueCamerasViewController, sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
         
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueCamerasViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let cameraItem = self.cameraItems[indexPath.row] as CameraItem
-                let destinationViewController = segue.destinationViewController as! CameraViewController
+                let destinationViewController = segue.destination as! CameraViewController
                 destinationViewController.cameraItem = cameraItem
             }
         }

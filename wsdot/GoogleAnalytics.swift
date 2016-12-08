@@ -27,18 +27,20 @@ class GoogleAnalytics {
     
     static func screenView(screenName: String){
         if (GoogleAnalytics.analytics_enabled){
-            let tracker = GAI.sharedInstance().defaultTracker
-            tracker.set(kGAIScreenName, value: screenName)
-            
-            let builder = GAIDictionaryBuilder.createScreenView()
-            tracker.send(builder.build() as [NSObject : AnyObject])
+            if let tracker = GAI.sharedInstance().defaultTracker {
+                tracker.set(kGAIScreenName, value: screenName)
+                if let builder = GAIDictionaryBuilder.createScreenView() {
+                    tracker.send(builder.build() as [NSObject : AnyObject])
+                }
+            }
         }
     }
     
     static func event(category: String, action: String, label: String){
         if (GoogleAnalytics.analytics_enabled){
-            let tracker = GAI.sharedInstance().defaultTracker
-            tracker.send(GAIDictionaryBuilder.createEventWithCategory(category, action: action, label: label, value: nil).build() as [NSObject : AnyObject])
+            if let tracker = GAI.sharedInstance().defaultTracker {
+                tracker.send(GAIDictionaryBuilder.createEvent(withCategory: category, action: action, label: label, value: nil).build() as [NSObject : AnyObject])
+            }
         }
     }
 }

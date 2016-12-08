@@ -24,5 +24,5 @@ class BlogItem {
     var content: String = ""
     var link: String = ""
     var imageUrl: String = ""
-    var published = NSDate()
+    var published = Date()
 }

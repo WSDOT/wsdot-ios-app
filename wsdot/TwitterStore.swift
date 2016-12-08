@@ -24,9 +24,9 @@ import SwiftyJSON
 
 class TwitterStore {
 
-    typealias FetchTweetsCompletion = (data: [TwitterItem]?, error: NSError?) -> ()
+    typealias FetchTweetsCompletion = (_ data: [TwitterItem]?, _ error: Error?) -> ()
     
-    static func getTweets(screenName: String?, completion: FetchTweetsCompletion) {
+    static func getTweets(_ screenName: String?, completion: @escaping FetchTweetsCompletion) {
         
         var url = "http://www.wsdot.wa.gov/news/socialroom/posts/twitter/"
         
@@ -34,22 +34,22 @@ class TwitterStore {
             url = url + screenNameValue
         }
         
-        Alamofire.request(.GET, url).validate().responseJSON { response in
+        Alamofire.request(url).validate().responseJSON { response in
             switch response.result {
-            case .Success:
+            case .success:
                 if let value = response.result.value {
                     let json = JSON(value)
                     let videoItems = parsePostsJSON(json)
-                    completion(data: videoItems, error: nil)
+                    completion(videoItems, nil)
                 }
-            case .Failure(let error):
+            case .failure(let error):
                 print(error)
-                completion(data: nil, error: error)
+                completion(nil, error)
             }
         }
     }
     
-    private static func parsePostsJSON(json: JSON) ->[TwitterItem]{
+    fileprivate static func parsePostsJSON(_ json: JSON) ->[TwitterItem]{
         
         var tweets = [TwitterItem]()
         
@@ -61,7 +61,7 @@ class TwitterStore {
             post.name = postJson["user"]["name"].stringValue
             post.screenName = postJson["user"]["screen_name"].stringValue
             
-            post.text = postJson["text"].stringValue.stringByReplacingOccurrencesOfString("(https?:\\/\\/[-a-zA-Z0-9._~:\\/?#@!$&\'()*+,;=%]+)", withString: "<a href=\"$1\">$1</a>", options: .RegularExpressionSearch, range: nil).stringByReplacingOccurrencesOfString("&amp;", withString:"&")
+            post.text = postJson["text"].stringValue.replacingOccurrences(of: "(https?:\\/\\/[-a-zA-Z0-9._~:\\/?#@!$&\'()*+,;=%]+)", with: "<a href=\"$1\">$1</a>", options: .regularExpression, range: nil).replacingOccurrences(of: "&amp;", with:"&")
             
             post.link = "https://twitter.com/" + post.screenName + "/status/" + post.id
             post.mediaUrl = postJson["entities"]["media"][0]["media_url"].string

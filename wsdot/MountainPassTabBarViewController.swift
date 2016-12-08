@@ -33,11 +33,11 @@ class MountainPassTabBarViewController: UITabBarController{
         title = passItem.name
         
         if (passItem.forecast.count == 0){
-            self.tabBar.items?[1].enabled = false
+            self.tabBar.items?[1].isEnabled = false
         }
         
         if (passItem.cameraIds.count == 0){
-            self.tabBar.items?[2].enabled = false
+            self.tabBar.items?[2].isEnabled = false
         }
         
         favoriteBarButton.action = #selector(MountainPassTabBarViewController.updateFavorite(_:))
@@ -53,7 +53,7 @@ class MountainPassTabBarViewController: UITabBarController{
         self.navigationItem.rightBarButtonItem = favoriteBarButton
     }
     
-    func updateFavorite(sender: UIBarButtonItem) {
+    func updateFavorite(_ sender: UIBarButtonItem) {
         if (passItem.selected){
             MountainPassStore.updateFavorite(passItem, newValue: false)
             favoriteBarButton.image = UIImage(named: "icStarSmall")

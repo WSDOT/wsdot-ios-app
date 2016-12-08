@@ -38,23 +38,23 @@ class SocialMediaViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewDidLoad()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Social Media")
+        GoogleAnalytics.screenView(screenName: "/Social Media")
     }
     
     // MARK: Table View Data Source Methods
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menu_options.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! IconCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! IconCell
         
         cell.label?.text = menu_options[indexPath.row]
         cell.iconView.image = UIImage(named: menu_icon_names[indexPath.row])
@@ -63,32 +63,32 @@ class SocialMediaViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     // MARK: Table View Delegate Methods
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Perform Segue
         switch (indexPath.row) {
         case 0:
-            performSegueWithIdentifier(segueBlogger, sender: self)
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            performSegue(withIdentifier: segueBlogger, sender: self)
+            tableView.deselectRow(at: indexPath, animated: true)
             break
         case 1:
-            performSegueWithIdentifier(segueFacebook, sender: self)
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            performSegue(withIdentifier: segueFacebook, sender: self)
+            tableView.deselectRow(at: indexPath, animated: true)
             break
         case 2:
-            performSegueWithIdentifier(segueFlickr, sender: self)
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            performSegue(withIdentifier: segueFlickr, sender: self)
+            tableView.deselectRow(at: indexPath, animated: true)
             break
         case 3:
-            performSegueWithIdentifier(segueNews, sender: self)
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            performSegue(withIdentifier: segueNews, sender: self)
+            tableView.deselectRow(at: indexPath, animated: true)
             break
         case 4:
-            performSegueWithIdentifier(segueTwitter, sender: self)
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            performSegue(withIdentifier: segueTwitter, sender: self)
+            tableView.deselectRow(at: indexPath, animated: true)
             break
         case 5:
-            performSegueWithIdentifier(segueYouTube, sender: self)
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            performSegue(withIdentifier: segueYouTube, sender: self)
+            tableView.deselectRow(at: indexPath, animated: true)
             
         default:
             break

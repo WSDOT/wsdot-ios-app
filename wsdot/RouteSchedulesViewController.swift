@@ -44,20 +44,20 @@ class RouteSchedulesViewController: UITableViewController {
     }
     
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView("/Ferries/Schedules")
+        GoogleAnalytics.screenView(screenName: "/Ferries/Schedules")
     }
     
-    func refresh(force: Bool){
+    func refresh(_ force: Bool){
 
         
         //UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, "Loading Ferry Routes")
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak self] in
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { [weak self] in
             FerryRealmStore.updateRouteSchedules(force, completion: { error in
                 if (error == nil) {
                     // Reload tableview on UI thread
-                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                    DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
                             selfValue.routes = FerryRealmStore.findAllSchedules()
                             selfValue.tableView.reloadData()
@@ -67,11 +67,11 @@ class RouteSchedulesViewController: UITableViewController {
                         }
                     }
                 } else {
-                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                    DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
                             selfValue.hideOverlayView()
                             selfValue.refreshControl?.endRefreshing()
-                            selfValue.presentViewController(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                         }
                     }
                 }
@@ -79,15 +79,15 @@ class RouteSchedulesViewController: UITableViewController {
         }
     }
     
-    func showOverlay(view: UIView) {
-        activityIndicator.frame = CGRectMake(0, 0, 40, 40)
-        activityIndicator.activityIndicatorViewStyle = .WhiteLarge
-        activityIndicator.color = UIColor.grayColor()
+    func showOverlay(_ view: UIView) {
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.color = UIColor.gray
         
-        if self.splitViewController!.collapsed {
-            activityIndicator.center = CGPointMake(view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
+        if self.splitViewController!.isCollapsed {
+            activityIndicator.center = CGPoint(x: view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
         } else {
-            activityIndicator.center = CGPointMake(view.center.x - self.splitViewController!.viewControllers[0].view.center.x, view.center.y - self.navigationController!.navigationBar.frame.size.height)
+            activityIndicator.center = CGPoint(x: view.center.x - self.splitViewController!.viewControllers[0].view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
         }
         
         view.addSubview(activityIndicator)
@@ -105,45 +105,45 @@ class RouteSchedulesViewController: UITableViewController {
     }
     
     // MARK: Table View Data Source Methods
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return routes.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! RoutesCustomCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! RoutesCustomCell
         
         cell.title.text = routes[indexPath.row].routeDescription
         
         if self.routes[indexPath.row].crossingTime != nil {
-            cell.subTitleOne.hidden = false
+            cell.subTitleOne.isHidden = false
             cell.subTitleOne.text = "Crossing time: ~ " + self.routes[indexPath.row].crossingTime! + " min"
         } else {
-            cell.subTitleOne.hidden = true
+            cell.subTitleOne.isHidden = true
         }
 
-        cell.subTitleTwo.text = TimeUtils.timeAgoSinceDate(self.routes[indexPath.row].cacheDate, numericDates: false)
+        cell.subTitleTwo.text = TimeUtils.timeAgoSinceDate(date: self.routes[indexPath.row].cacheDate, numericDates: false)
      
         return cell
     }
 
     // MARK: Table View Delegate Methods
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Perform Segue
-        performSegueWithIdentifier(SegueRouteDeparturesViewController, sender: self)
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        performSegue(withIdentifier: SegueRouteDeparturesViewController, sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // MARK: Naviagtion
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueRouteDeparturesViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let routeItem = self.routes[indexPath.row] as FerryScheduleItem
-                let destinationViewController: RouteTabBarViewController = segue.destinationViewController as! RouteTabBarViewController
+                let destinationViewController: RouteTabBarViewController = segue.destination as! RouteTabBarViewController
                 destinationViewController.routeItem = routeItem
             }
         }
