@@ -338,7 +338,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
                 let marker = GMSMarker(position: alertLocation)
                 marker.snippet = "alert"
                 
-                if alert.headlineDesc.contains("construction") || alert.eventCategory == "Construction"{
+                if alert.headlineDesc.lowercased().contains("construction") {
                     switch alert.priority {
                     case "Moderate":
                         marker.icon = constructionModerateIconImage
@@ -354,7 +354,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
                         break
                     }
                     
-                }else if alert.headlineDesc.contains("road closure") || alert.eventCategory.contains("Road Closure"){
+                }else if alert.headlineDesc.lowercased().contains("road closure") || alert.eventCategory.lowercased().contains("closure"){
                     marker.icon = closedIconImage
                 }else {
                     switch alert.priority {

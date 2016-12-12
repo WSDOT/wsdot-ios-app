@@ -39,9 +39,9 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
         title = "Alerts In This Area"
         
         for alert in alerts{
-            if alert.headlineDesc.contains("construction") || alert.eventCategory == "Construction"{
+            if alert.headlineDesc.lowercased().contains("construction") {
                 constructionAlerts.append(alert)
-            }else if alert.eventCategory == "Special Event"{
+            }else if alert.eventCategory.lowercased() == "special event"{
                 specialEvents.append(alert)
             }else {
                 trafficAlerts.append(alert)
