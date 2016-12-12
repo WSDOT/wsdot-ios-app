@@ -39,17 +39,17 @@ class WSDOTTests: XCTestCase {
                 if stationA.id != stationB.id {
                     
                     // Declare our expectation
-                    let readyExpectation = expectationWithDescription("ready")
+                    let readyExpectation = expectation(description: "ready")
                     print("testing " + stationA.id + " to " + stationB.id)
                     
-                    AmtrakCascadesStore.getSchedule(NSDate(), originId: stationA.id, destId: stationB.id, completion: { data, error in
+                    AmtrakCascadesStore.getSchedule(Date(), originId: stationA.id, destId: stationB.id, completion: { data, error in
                         assert(data != nil)
                         print(stationA.id + " to " + stationB.id + " passed")
                         readyExpectation.fulfill()
                     })
                     
                     // Loop until the expectation is fulfilled
-                    waitForExpectationsWithTimeout(5, handler: { error in
+                    waitForExpectations(timeout: 5, handler: { error in
                         XCTAssertNil(error, "Error")
                     })
                 }
