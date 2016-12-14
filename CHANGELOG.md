@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]: 
 
+## Fixed
+* Crash when adding a favorite location on iOS 8.3.
+* Layout improvments for small and large screens.
+
 ## [5.0.6] - 2016-12
 
 ## Changed
