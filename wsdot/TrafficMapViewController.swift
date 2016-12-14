@@ -509,20 +509,19 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     // MARK: favorite location
     func saveCurrentLocation(){
         
-        let alert = UIAlertController(title: "New Favorite Location", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        let alertController = UIAlertController(title: "New Favorite Location", message:nil, preferredStyle: .alert)
         
-        alert.view.tintColor = Colors.tintColor
+        alertController.addTextField { (textfield) in
+            textfield.placeholder = "Name"
+        }
         
-        alert.addTextField(configurationHandler: {(textField: UITextField!) in
-            textField.placeholder = "Name"
-            textField.isSecureTextEntry = false
-        })
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-        
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler:{ (alertAction:UIAlertAction!) in
+        alertController.view.tintColor = Colors.tintColor
+
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+
+        let okAction = UIAlertAction(title: "Ok", style: .default) { (_) -> Void in
             GoogleAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Favorite Location Saved")
-            let textf = alert.textFields![0] as UITextField
+            let textf = alertController.textFields![0] as UITextField
             if let mapView = self.embeddedMapViewController.view as? GMSMapView{
                 let favoriteLocation = FavoriteLocationItem()
                 favoriteLocation.name = textf.text!
@@ -531,10 +530,11 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
                 favoriteLocation.zoom = mapView.camera.zoom
                 FavoriteLocationStore.saveFavorite(favoriteLocation)
             }
-        }))
-        self.present(alert, animated: true, completion: nil)
+        }
+        alertController.addAction(okAction)
+
+        present(alertController, animated: false, completion: nil)
     }
-    
 
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
         drawAlerts()

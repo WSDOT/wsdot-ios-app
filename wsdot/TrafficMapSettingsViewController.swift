@@ -168,8 +168,9 @@ class TrafficMapSettingsViewController: UIViewController {
     }
     
     func favoriteLocationAction(){
-        self.dismiss(animated: true, completion: {()->Void in});
-        my_parent!.saveCurrentLocation()
+        self.dismiss(animated: true) {
+            self.my_parent!.saveCurrentLocation()
+        }
     }
     
     // MARK: Prefrence functions

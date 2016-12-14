@@ -1377,7 +1377,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = WSDOT;
 				TargetAttributes = {
 					9AD32DF81D23172C000AEC28 = {
