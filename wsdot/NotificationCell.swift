@@ -1,5 +1,5 @@
 //
-//  UserDefaultsKeys.swift
+//  NotificationCell.swift
 //  WSDOT
 //
 //  Copyright (c) 2016 Washington State Department of Transportation
@@ -19,21 +19,10 @@
 //
 
 import Foundation
-class UserDefaultsKeys {
-    
-    static let emergencyNotifications = "EmergencyNotifications"
-    
-    static let cameras = "CameraMarkerPref"
-    static let alerts = "AlertsMarkerPref"
-    static let restAreas = "RestAreaMarkerPref"
-    static let jblmCallout = "JBLMMarkerPref"
-    
-    static let mapLat = "MapLatitudeBound"
-    static let mapLon = "MapLongitudeBound"
-    static let mapZoom = "MapZoom"
-    
-    static let hasSeenWarning = "HasSeenWarning"
-    
-    static let shouldCluster = "shouldClusterCameraIcons"
+import UIKit
 
+class NotificationCell: UITableViewCell {
+    @IBOutlet weak var settingSwitch: UISwitch!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
 }

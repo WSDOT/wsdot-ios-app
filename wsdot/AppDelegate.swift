@@ -189,14 +189,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if error != nil {
                 print("Unable to connect with FCM. \(error)")
             } else {
-                FIRMessaging.messaging().subscribe(toTopic: "/topics/test")
                 print("Connected to FCM.")
             }
         }
     }
     // [END connect_to_fcm]
     
-
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("Unable to register for remote notifications: \(error.localizedDescription)")
     }
@@ -213,7 +211,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     // [END disconnect_from_fcm]
     
-    
 }
 
 // [START ios_10_message_handling]
@@ -224,6 +221,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        
         let userInfo = notification.request.content.userInfo
         // Print message ID.
         if let messageID = userInfo[gcmMessageIDKey] {
@@ -240,6 +238,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
+        
         let userInfo = response.notification.request.content.userInfo
         // Print message ID.
         if let messageID = userInfo[gcmMessageIDKey] {

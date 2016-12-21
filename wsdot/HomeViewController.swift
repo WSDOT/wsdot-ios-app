@@ -29,6 +29,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     let SegueTollRatesViewController = "TollRatesViewController"
     let SegueBorderWaitsViewController = "BorderWaitsViewController"
     let SegueInfoViewController = "InfoViewController"
+    let SegueSettingsViewController = "SettingsViewController"
     let SegueMountainPassesViewController = "MountainPassesViewController"
     let SegueSocialMediaViewController = "SocialMediaViewController"
     let SegueAmtrakCascadesViewController = "AmtrakCascadesViewController"
@@ -58,6 +59,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
  
     @IBAction func infoBarButtonPressed(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: SegueInfoViewController, sender: self)
+    }
+    
+    
+    @IBAction func settingsBarButtonPressed(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: SegueSettingsViewController, sender: self)
     }
     
     // MARK: Table View Data Source Methods
@@ -128,7 +134,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             destinationViewController.navigationBar.barTintColor = UIColor.white
             destinationViewController.navigationBar.tintColor = Colors.tintColor
             
-            if segue.identifier == SegueInfoViewController {
+            if segue.identifier == SegueInfoViewController || segue.identifier == SegueSettingsViewController {
                 destinationViewController.viewControllers[0].navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
                 destinationViewController.viewControllers[0].navigationItem.leftItemsSupplementBackButton = true
             }
