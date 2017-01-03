@@ -19,12 +19,17 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseInstanceID
 import FirebaseMessaging
+
+import UserNotifications
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     let cellIdentifier = "NotificationCell"
     
+    @IBOutlet var tableView: UITableView!
     var menu_options: [String] = []
     
     override func viewDidLoad() {
@@ -32,10 +37,30 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         menu_options = ["Emergency Notifications"]
 
+        // Register for remote notifications. This shows a permission dialog on first run, to
+        // show the dialog at a more appropriate time move this registration accordingly.
+        // [START register_for_notifications]
+        if #available(iOS 10.0, *) {
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in
+                    if (!UIApplication.shared.isRegisteredForRemoteNotifications) {
+                        UserDefaults.standard.set("off", forKey: UserDefaultsKeys.emergencyNotifications)
+                    }
+                })
+        } else {
+            let settings: UIUserNotificationSettings =
+            UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            UIApplication.shared.registerUserNotificationSettings(settings)
+        }
+        UIApplication.shared.registerForRemoteNotifications()
+
         // Set defualt values
         if (UserDefaults.standard.string(forKey: UserDefaultsKeys.emergencyNotifications) == nil){
             UserDefaults.standard.set("off", forKey: UserDefaultsKeys.emergencyNotifications)
         }
+
 
     }
     
@@ -43,7 +68,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView(screenName: "/Settings")
     }
-    
 
     // MARK: Table View Data Source Methods
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -90,6 +114,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 cell.settingSwitch.isHidden = false
                 cell.selectionStyle = .none
                 
+                //cell.settingSwitch.isEnabled = UIApplication.shared.isRegisteredForRemoteNotifications
+                
                 cell.titleLabel.text = menu_options[0]
                 cell.descriptionLabel.text = "Receive alerts about major road way closures and incidents"
                 
@@ -98,21 +124,31 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 return tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! NotificationCell
         
         }
-        
     }
     
     // MARK: Prefrence functions
     func changeEmergencyNotificationPref(_ sender: UISwitch){
+    
         let emergencyNotificationsPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.emergencyNotifications)
         if let value = emergencyNotificationsPref {
-            if (value == "on") {
+            if (value == "off") {
+            
+                if UIApplication.shared.isRegisteredForRemoteNotifications {
+                    print("registered")
+                    GoogleAnalytics.event(category: "Settings", action: "UIAction", label: "Subscribe from Emergency Alerts")
+                    UserDefaults.standard.set("on", forKey: UserDefaultsKeys.emergencyNotifications)
+                    FIRMessaging.messaging().subscribe(toTopic: "/topics/test")
+                } else {
+                    print("not registered")
+                    self.present(AlertMessages.getAlert("Notifications Are Disabled", message: "You can turn on notifications in Settings."), animated: true, completion: nil)
+                    sender.isOn = false
+                }
+                
+            } else {
+
                 GoogleAnalytics.event(category: "Settings", action: "UIAction", label: "Unsubscribe from Emergency Alerts")
                 UserDefaults.standard.set("off", forKey: UserDefaultsKeys.emergencyNotifications)
                 FIRMessaging.messaging().unsubscribe(fromTopic: "/topics/test")
-            } else {
-                GoogleAnalytics.event(category: "Settings", action: "UIAction", label: "Subscribe to Emergency Alerts")
-                UserDefaults.standard.set("on", forKey: UserDefaultsKeys.emergencyNotifications)
-                FIRMessaging.messaging().subscribe(toTopic: "/topics/test")
             }
         }
     }
