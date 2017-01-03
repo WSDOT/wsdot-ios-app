@@ -30,6 +30,8 @@ import GoogleMaps
 import RealmSwift
 import Realm
 
+import SwiftyJSON
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate{
@@ -57,8 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
                                                selector: #selector(self.tokenRefreshNotification),
                                                name: .firInstanceIDTokenRefresh,
                                                object: nil)
-        
-
         
         GADMobileAds.configure(withApplicationID: ApiKeys.wsdot_ad_string);
         
@@ -122,35 +122,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     
     // MARK: FCM
     // [START receive_message]
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-        // If you are receiving a notification message while your app is in the background,
-        // this callback will not be fired till the user taps on the notification launching the application.
-        // TODO: Handle data of notification
-        // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
-        }
-        
-        // Print full message.
-        print(userInfo)
-    }
-    
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         // If you are receiving a notification message while your app is in the background,
         // this callback will not be fired till the user taps on the notification launching the application.
-        // TODO: Handle data of notification
-        // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
-        }
+
+        let notif = JSON(userInfo)
         
-        // Print full message.
-        print(userInfo)
+        if let presentingVC = UIApplication.shared.keyWindow?.rootViewController {
+            presentingVC.present(AlertMessages.getAlert("WSDOT Alert", message: notif["aps"]["alert"].stringValue), animated: true, completion: nil)
+        }
         
         completionHandler(UIBackgroundFetchResult.newData)
     }
     // [END receive_message]
+    
     // [START refresh_token]
     func tokenRefreshNotification(_ notification: Notification) {
         if let refreshedToken = FIRInstanceID.instanceID().token() {
@@ -203,39 +189,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
 @available(iOS 10, *)
 extension AppDelegate : UNUserNotificationCenterDelegate {
     
-    // Receive displayed notifications for iOS 10 devices.
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                willPresent notification: UNNotification,
-                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        
-        let userInfo = notification.request.content.userInfo
-        // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
-        }
-        
-        // Print full message.
-        print(userInfo)
-        
-        // Change this to your preferred presentation option
-        completionHandler([])
-    }
-    
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
-        
+
         let userInfo = response.notification.request.content.userInfo
-        // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
+        let notif = JSON(userInfo)
+        
+        if let presentingVC = UIApplication.shared.keyWindow?.rootViewController {
+            presentingVC.present(AlertMessages.getAlert("WSDOT Alert", message: notif["aps"]["alert"].stringValue), animated: true, completion: nil)
         }
-        
-        // Print full message.
-        print(userInfo)
-        
         completionHandler()
     }
+ 
 }
 // [END ios_10_message_handling]
 // [START ios_10_data_message_handling]
@@ -246,4 +212,3 @@ extension AppDelegate : FIRMessagingDelegate {
     }
 }
 // [END ios_10_data_message_handling]
-

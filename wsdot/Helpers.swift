@@ -42,7 +42,7 @@ struct AlertMessages {
     static func getAlert(_ title: String, message: String) -> UIAlertController{
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.view.tintColor = Colors.tintColor
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
         return alert
     }
 }

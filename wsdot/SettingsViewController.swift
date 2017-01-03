@@ -114,8 +114,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 cell.settingSwitch.isHidden = false
                 cell.selectionStyle = .none
                 
-                //cell.settingSwitch.isEnabled = UIApplication.shared.isRegisteredForRemoteNotifications
-                
                 cell.titleLabel.text = menu_options[0]
                 cell.descriptionLabel.text = "Receive alerts about major road way closures and incidents"
                 
