@@ -4,12 +4,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]: 
 
+### Added
+* Emergency push notifications
+
+## [5.0.7] - 2017-01-03
+
 ## Fixed
 * Crash when adding a favorite location on iOS 8.3.
-* Layout improvments for small and large screens.
-* Dislpayed correct alert icon for road closures. 
+* Layout improvements for small and large screens.
+* Displayed correct alert icon for road closures. 
 
-## [5.0.6] - 2016-12
+## [5.0.6] - 2016-12-08
 
 ## Changed
 * Migrated Realm DB to version 1. Changed pass items to only hold a list of camera IDs and not cameraItems so as to keep from overwriting data pulled in from the CamerasStore.
