@@ -80,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         }
         // Reset Warning each time app starts
         UserDefaults.standard.set(false, forKey: UserDefaultsKeys.hasSeenWarning)
-        
+
         return true
     }
     

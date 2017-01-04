@@ -138,7 +138,22 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                     FIRMessaging.messaging().subscribe(toTopic: "/topics/test")
                 } else {
                     print("not registered")
-                    self.present(AlertMessages.getAlert("Notifications Are Disabled", message: "You can turn on notifications in Settings."), animated: true, completion: nil)
+                    
+                    let alert = UIAlertController(title: "Notifications Are Disabled", message: "WSDOT needs permission to send you notifications. You can turn on notifications in Settings.", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.view.tintColor = Colors.tintColor
+                    alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.cancel, handler: nil))
+                    
+                    let settingsAction = UIAlertAction(title: "Open Settings", style: .default) { (_) -> Void in
+                        guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
+                            return
+                        }
+                        if UIApplication.shared.canOpenURL(settingsUrl) {
+                            UIApplication.shared.openURL(settingsUrl)
+                        }
+                    }
+                    alert.addAction(settingsAction)
+
+                    self.present(alert, animated: true, completion: nil)
                     sender.isOn = false
                 }
                 
