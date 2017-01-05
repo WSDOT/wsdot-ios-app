@@ -135,7 +135,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                     print("registered")
                     GoogleAnalytics.event(category: "Settings", action: "UIAction", label: "Subscribe from Emergency Alerts")
                     UserDefaults.standard.set("on", forKey: UserDefaultsKeys.emergencyNotifications)
-                    FIRMessaging.messaging().subscribe(toTopic: "/topics/test")
+                    FIRMessaging.messaging().subscribe(toTopic: "/topics/emergency_notifications")
                 } else {
                     print("not registered")
                     
@@ -161,7 +161,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
                 GoogleAnalytics.event(category: "Settings", action: "UIAction", label: "Unsubscribe from Emergency Alerts")
                 UserDefaults.standard.set("off", forKey: UserDefaultsKeys.emergencyNotifications)
-                FIRMessaging.messaging().unsubscribe(fromTopic: "/topics/test")
+                FIRMessaging.messaging().unsubscribe(fromTopic: "/topics/emergency_notifications")
             }
         }
     }
