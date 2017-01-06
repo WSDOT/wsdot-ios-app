@@ -138,9 +138,9 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
             embeddedMapViewController.goToUsersLocation()
         } else if !CLLocationManager.locationServicesEnabled() {
-            self.present(AlertMessages.getAlert("Location Services Are Disabled", message: "You can enable location services from Settings."), animated: true, completion: nil)
+            self.present(AlertMessages.getAlert("Location Services Are Disabled", message: "You can enable location services from Settings.", confirm: "OK"), animated: true, completion: nil)
         } else if CLLocationManager.authorizationStatus() == .denied {
-            self.present(AlertMessages.getAlert("\"WSDOT\" Doesn't Have Permission To Use Your Location", message: "You can enable location services for this app in Settings"), animated: true, completion: nil)
+            self.present(AlertMessages.getAlert("\"WSDOT\" Doesn't Have Permission To Use Your Location", message: "You can enable location services for this app in Settings", confirm: "OK"), animated: true, completion: nil)
         } else {
             CLLocationManager().requestWhenInUseAuthorization()
         }
