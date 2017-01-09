@@ -128,9 +128,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
                     mapView.animate(toLocation: location)
                 }
             } else if !CLLocationManager.locationServicesEnabled() {
-                self.present(AlertMessages.getAlert("Location Services Are Disabled", message: "You can enable location services from Settings."), animated: true, completion: nil)
+                self.present(AlertMessages.getAlert("Location Services Are Disabled", message: "You can enable location services from Settings.", confirm: "OK"), animated: true, completion: nil)
             } else if CLLocationManager.authorizationStatus() == .denied {
-                self.present(AlertMessages.getAlert("\"WSDOT\" Doesn't Have Permission To Use Your Location", message: "You can enable location services for this app in Settings"), animated: true, completion: nil)
+                self.present(AlertMessages.getAlert("\"WSDOT\" Doesn't Have Permission To Use Your Location", message: "You can enable location services for this app in Settings", confirm: "OK"), animated: true, completion: nil)
             } else {
                 self.locationManager.requestWhenInUseAuthorization()
             }
@@ -157,7 +157,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
             if let location = manager.location {
                 if location.speed > 11 {
                     UserDefaults.standard.set(true, forKey: UserDefaultsKeys.hasSeenWarning)
-                    parent!.present(AlertMessages.getAlert("You're moving too fast.", message: "Please don't use the app while driving."), animated: true, completion: { })
+                    parent!.present(AlertMessages.getAlert("You're moving fast.", message: "Please do not use the app while driving.", confirm: "I'm a Passenger"), animated: true, completion: { })
                 }
             }
         }

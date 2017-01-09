@@ -234,6 +234,6 @@ class TrafficMapSettingsViewController: UIViewController {
     }
     
     func clusterInfoAlert(_ sender: UIButton){
-        self.present(AlertMessages.getAlert("Camera Marker Clustering", message: "By turning clustering on, large numbers of camera markers will gather together in clusters at low zoom levels. When viewing the map at a high zoom level, individual camera markers will show on the map."), animated: true, completion: nil)
+        self.present(AlertMessages.getAlert("Camera Marker Clustering", message: "By turning clustering on, large numbers of camera markers will gather together in clusters at low zoom levels. When viewing the map at a high zoom level, individual camera markers will show on the map.", confirm: "OK"), animated: true, completion: nil)
     }
 }
