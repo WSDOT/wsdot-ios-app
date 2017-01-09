@@ -130,7 +130,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         let notif = JSON(userInfo)
         
         if let presentingVC = UIApplication.shared.keyWindow?.rootViewController {
-            presentingVC.present(AlertMessages.getAlert("WSDOT Alert", message: notif["aps"]["alert"].stringValue), animated: true, completion: nil)
+            presentingVC.present(AlertMessages.getAlert("WSDOT Alert", message: notif["aps"]["alert"].stringValue, confirm: "Dismiss"), animated: true, completion: nil)
         }
         
         completionHandler(UIBackgroundFetchResult.newData)
@@ -197,7 +197,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         let notif = JSON(userInfo)
         
         if let presentingVC = UIApplication.shared.keyWindow?.rootViewController {
-            presentingVC.present(AlertMessages.getAlert("WSDOT Alert", message: notif["aps"]["alert"].stringValue), animated: true, completion: nil)
+            presentingVC.present(AlertMessages.getAlert("WSDOT Alert", message: notif["aps"]["alert"].stringValue, confirm: "Dismiss"), animated: true, completion: nil)
         }
         completionHandler()
     }
