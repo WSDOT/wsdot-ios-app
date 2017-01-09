@@ -5,7 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 [Unreleased]: 
 
 ### Added
-* Emergency push notifications
+* Emergency push notifications.
 
 ## [5.0.7] - 2017-01-03
 

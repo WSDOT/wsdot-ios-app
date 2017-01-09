@@ -34,6 +34,7 @@ Dependencies
 * [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
 * [RealmSwift](https://realm.io/docs/swift/latest/)
 * [SDWebImage](https://github.com/rs/SDWebImage)
+* [EasyTipView](https://github.com/teodorpatras/EasyTipView)
 
 Contributing
 ------------

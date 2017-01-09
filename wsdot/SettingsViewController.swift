@@ -133,7 +133,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             
                 if UIApplication.shared.isRegisteredForRemoteNotifications {
                     print("registered")
-                    GoogleAnalytics.event(category: "Settings", action: "UIAction", label: "Subscribe from Emergency Alerts")
+                    GoogleAnalytics.event(category: "Settings", action: "UIAction", label: "Subscribed to Emergency Alerts")
                     UserDefaults.standard.set("on", forKey: UserDefaultsKeys.emergencyNotifications)
                     FIRMessaging.messaging().subscribe(toTopic: "/topics/emergency_notifications")
                 } else {
@@ -159,7 +159,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 
             } else {
 
-                GoogleAnalytics.event(category: "Settings", action: "UIAction", label: "Unsubscribe from Emergency Alerts")
+                GoogleAnalytics.event(category: "Settings", action: "UIAction", label: "Unsubscribed from Emergency Alerts")
                 UserDefaults.standard.set("off", forKey: UserDefaultsKeys.emergencyNotifications)
                 FIRMessaging.messaging().unsubscribe(fromTopic: "/topics/emergency_notifications")
             }
