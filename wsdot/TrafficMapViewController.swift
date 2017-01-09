@@ -22,8 +22,9 @@ import UIKit
 import UIKit
 import GoogleMaps
 import GoogleMobileAds
+import EasyTipView
 
-class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewDelegate, GMUClusterManagerDelegate, GADBannerViewDelegate {
+class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewDelegate, GMUClusterManagerDelegate, GADBannerViewDelegate, EasyTipViewDelegate {
     
     let serviceGroup = DispatchGroup()
     
@@ -64,11 +65,14 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     fileprivate let closedIconImage = UIImage(named: "icMapClosed")
     
+    @IBOutlet weak var mapOptionsBarButton: UIBarButtonItem!
     @IBOutlet weak var cameraBarButton: UIBarButtonItem!
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     weak fileprivate var embeddedMapViewController: MapViewController!
+    
+    var tipView : EasyTipView? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,6 +113,33 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView(screenName: "/Traffic Map")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Check UserDefaults to see if they have seen the tooltip before. Display if they haven't
+        let hasSeenClusteringTip = UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasSeenCameraClusteringTip)
+        if (!hasSeenClusteringTip){
+            // Setup easy tip
+            var preferences = EasyTipView.Preferences()
+            preferences.drawing.font = UIFont(name: "Arial", size: 13)!
+            preferences.drawing.foregroundColor = UIColor.white
+            preferences.drawing.backgroundColor = UIColor(hue: 0.4639, saturation: 1, brightness: 0.47, alpha: 1.0) /* #00795f */
+            preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.bottom
+        
+            tipView = EasyTipView(text: "Turn on Camera Marker Clustering to automatically group nearby cameras.", preferences: preferences, delegate: self)
+            tipView!.show(forItem: self.mapOptionsBarButton, withinSuperView: self.view)
+            UserDefaults.standard.set(true, forKey: UserDefaultsKeys.hasSeenCameraClusteringTip)
+        }
+    
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if tipView != nil {
+            tipView!.dismiss()
+        }
     }
     
     @IBAction func refreshPressed(_ sender: UIBarButtonItem) {
@@ -656,5 +687,9 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
             destinationViewController.calloutURL = calloutURL
             destinationViewController.title = "JBLM"
         }
+    }
+        
+    func easyTipViewDidDismiss(_ tipView : EasyTipView){
+        //TODO: Save to pref that we've seen the tip
     }
 }

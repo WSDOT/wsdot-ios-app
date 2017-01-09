@@ -1,11 +1,15 @@
 PODS:
   - Alamofire (4.2.0)
+  - EasyTipView (1.0.2)
   - Firebase/AdMob (3.10.0):
     - Firebase/Core
     - Google-Mobile-Ads-SDK (= 7.15.0)
   - Firebase/Core (3.10.0):
     - FirebaseAnalytics (= 3.6.0)
     - FirebaseCore (= 3.4.5)
+  - Firebase/Messaging (3.10.0):
+    - Firebase/Core
+    - FirebaseMessaging (= 1.2.1)
   - FirebaseAnalytics (3.6.0):
     - FirebaseCore (~> 3.4)
     - FirebaseInstanceID (~> 1.0)
@@ -16,6 +20,12 @@ PODS:
     - GoogleInterchangeUtilities (~> 1.2)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
   - FirebaseInstanceID (1.0.8)
+  - FirebaseMessaging (1.2.1):
+    - FirebaseAnalytics (~> 3.4)
+    - FirebaseInstanceID (~> 1.0)
+    - GoogleInterchangeUtilities (~> 1.2)
+    - GoogleSymbolUtilities (~> 1.1)
+    - GoogleToolboxForMac/Logger (~> 2.1)
   - Google-Mobile-Ads-SDK (7.15.0)
   - Google/Analytics (3.0.3):
     - Google/Core
@@ -32,6 +42,8 @@ PODS:
     - GoogleMaps/Base
   - GoogleSymbolUtilities (1.1.2)
   - GoogleToolboxForMac/Defines (2.1.0)
+  - GoogleToolboxForMac/Logger (2.1.0):
+    - GoogleToolboxForMac/Defines (= 2.1.0)
   - GoogleToolboxForMac/NSData+zlib (2.1.0):
     - GoogleToolboxForMac/Defines (= 2.1.0)
   - Realm (2.1.1):
@@ -46,8 +58,10 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.2.0)
+  - EasyTipView (~> 1.0.2)
   - Firebase/AdMob
   - Firebase/Core
+  - Firebase/Messaging
   - Google/Analytics
   - GoogleMaps
   - RealmSwift (~> 2.1.0)
@@ -56,10 +70,12 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
+  EasyTipView: b93a19be981cc2221d6d7191d49872f547e0bebf
   Firebase: 387f37c7dca894a02708da9ff35ba147040eae9e
   FirebaseAnalytics: 9c67af0ebeb8d2146c9b4ea2616439affa947b58
   FirebaseCore: 1e383fdfe37b6b5d6ff88e84204bdee30276af0f
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
+  FirebaseMessaging: acf66347e43c5637c697060c3001d25c809a4131
   Google: 813c467362eabc11385f5a5cc9ad0cb651a58f4e
   Google-Mobile-Ads-SDK: 75d41dfcf06f7666ab211573d212768b0f766c5d
   GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
@@ -72,6 +88,6 @@ SPEC CHECKSUMS:
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SwiftyJSON: 38a8ea2006779c0fc4c310cb2ee8195327740faf
 
-PODFILE CHECKSUM: fd46260d52a9b2a852807b2742ef769199f77ab1
+PODFILE CHECKSUM: bf92b39114342e6bdb115b39c87a4e603b99d114
 
 COCOAPODS: 1.0.1

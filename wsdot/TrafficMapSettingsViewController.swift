@@ -34,7 +34,7 @@ class TrafficMapSettingsViewController: UIViewController {
         menu_options = ["Show Highway Alerts",
                         "Show Rest Areas",
                         "Show JBLM",
-                        "Cluster Camera Markers",
+                        "Camera Marker Clustering",
                         "Favorite Current Map Location"]
     }
     
