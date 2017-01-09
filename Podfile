@@ -12,6 +12,7 @@ target 'WSDOT' do
     pod 'Alamofire', '~> 4.2.0'
     pod 'SwiftyJSON', '~> 3.1.3'
     pod 'SDWebImage'
+    pod 'EasyTipView', '~> 1.0.2'
 end
 
 target 'WSDOTTests' do
@@ -24,6 +25,7 @@ target 'WSDOTTests' do
     pod 'Alamofire', '~> 4.2.0'
     pod 'SwiftyJSON', '~> 3.1.3'
     pod 'SDWebImage'
+    pod 'EasyTipView', '~> 1.0.2'
 end
 
 post_install do |installer|

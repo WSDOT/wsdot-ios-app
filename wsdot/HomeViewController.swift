@@ -19,8 +19,9 @@
 //
 
 import UIKit
+import EasyTipView
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, EasyTipViewDelegate {
     
     let cellIdentifier = "HomeCell"
     
@@ -38,6 +39,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var menu_options: [String] = []
     var menu_icon_names: [String] = []
     
+    @IBOutlet weak var settingsButton: UIBarButtonItem!
+    
+    var tipView: EasyTipView? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Set Title
@@ -49,6 +54,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.navigationController!.navigationBar.isTranslucent = false
         self.navigationController!.navigationBar.barTintColor = UIColor.white
         self.navigationController!.navigationBar.tintColor = Colors.tintColor
+    
+
+     
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,14 +64,52 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         GoogleAnalytics.screenView(screenName: "/Home")
     }
     
- 
-    @IBAction func infoBarButtonPressed(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: SegueInfoViewController, sender: self)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+         // Check UserDefaults to see if they have seen the tooltip before. Display if they haven't
+        let hasSeenNotificationTip = UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasSeenNotificationTip)
+        if (!hasSeenNotificationTip){
+            // Setup easy tip
+            var preferences = EasyTipView.Preferences()
+            preferences.drawing.font = UIFont(name: "Arial", size: 13)!
+            preferences.drawing.foregroundColor = UIColor.white
+            preferences.drawing.backgroundColor = UIColor(hue: 0.4639, saturation: 1, brightness: 0.47, alpha: 1.0) /* #00795f */
+            preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.top
+        
+            tipView = EasyTipView(text: "Sign up for push notification to recieve alerts about major traffic incidents.", preferences: preferences, delegate: self)
+            tipView!.show(forItem: self.settingsButton, withinSuperView: self.navigationController?.view)
+            UserDefaults.standard.set(true, forKey: UserDefaultsKeys.hasSeenNotificationTip)
+        }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        if (tipView != nil){
+            tipView!.dismiss()
+        }
+    }
+ 
+    @IBAction func infoBarButtonPressed(_ sender: UIBarButtonItem) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let infoViewController = storyboard.instantiateViewController(withIdentifier: "InfoViewController") as? InfoViewController
+        infoViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
+        infoViewController!.navigationItem.leftItemsSupplementBackButton = true
+        infoViewController!.navigationItem.title = "Settings"
+        
+        showDetailViewController(infoViewController!, sender: self)
+    }
     
     @IBAction func settingsBarButtonPressed(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: SegueSettingsViewController, sender: self)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let settingsViewController = storyboard.instantiateViewController(withIdentifier: "SettingsViewController") as? SettingsViewController
+        settingsViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
+        settingsViewController!.navigationItem.leftItemsSupplementBackButton = true
+        settingsViewController!.navigationItem.title = "Settings"
+        
+        showDetailViewController(settingsViewController!, sender: self)
+    
     }
     
     // MARK: Table View Data Source Methods
@@ -87,6 +133,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // MARK: Table View Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
         // Perform Segue
         switch (indexPath.row) {
         case 0:
@@ -133,11 +180,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             destinationViewController.navigationBar.isTranslucent = false
             destinationViewController.navigationBar.barTintColor = UIColor.white
             destinationViewController.navigationBar.tintColor = Colors.tintColor
-            
-            if segue.identifier == SegueInfoViewController || segue.identifier == SegueSettingsViewController {
-                destinationViewController.viewControllers[0].navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-                destinationViewController.viewControllers[0].navigationItem.leftItemsSupplementBackButton = true
-            }
             
             if segue.identifier == SegueTrafficMapViewController {
                 let storyboard = UIStoryboard(name: "TrafficMap", bundle: nil)
@@ -224,5 +266,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             
         }
+    }
+    
+    func easyTipViewDidDismiss(_ tipView : EasyTipView){
+        //TODO: Save to pref that we've seen the tip
     }
 }
