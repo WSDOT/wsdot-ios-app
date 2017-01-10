@@ -36,10 +36,9 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Alerts In This Area"
         
         for alert in alerts{
-            if alert.headlineDesc.lowercased().contains("construction") {
+            if alert.headlineDesc.lowercased().contains("construction") || alert.eventCategory.lowercased().contains("construction") {
                 constructionAlerts.append(alert)
             }else if alert.eventCategory.lowercased() == "special event"{
                 specialEvents.append(alert)
@@ -74,11 +73,11 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
         
         switch(section){
         case 0:
-            return "Traffic Alerts" + (trafficAlerts.count == 0 ? " - None Reported": "")
+            return "Traffic Incidents" + (self.title != "Alert" && (trafficAlerts.count == 0) ? " - None Reported": "")
         case 1:
-            return "Construction"  + (constructionAlerts.count == 0 ? " - None Reported": "")
+            return "Construction"  + (self.title != "Alert" && (constructionAlerts.count == 0) ? " - None Reported": "")
         case 2:
-            return "Special Events"  + (specialEvents.count == 0 ? " - None Reported": "")
+            return "Special Events"  + (self.title != "Alert" &&  (specialEvents.count == 0) ? " - None Reported": "")
         default:
             return nil
         }

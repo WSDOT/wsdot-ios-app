@@ -34,6 +34,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     let SegueTravlerInfoViewController = "TravelerInfoViewController"
     let SegueCameraClusterViewController = "CameraClusterViewController"
     
+    
     // Marker Segues
     let SegueCamerasViewController = "CamerasViewController"
     let SegueRestAreaViewController = "RestAreaViewController"
@@ -165,7 +166,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     }
     
     @IBAction func alertsInAreaButtonPressed(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: SegueAlertsInArea, sender: self)
+        performSegue(withIdentifier: SegueAlertsInArea, sender: sender)
     }
     
     @IBAction func goToLocation(_ sender: UIBarButtonItem) {
@@ -369,7 +370,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
                 let marker = GMSMarker(position: alertLocation)
                 marker.snippet = "alert"
                 
-                if alert.headlineDesc.lowercased().contains("construction") {
+                if alert.headlineDesc.lowercased().contains("construction") || alert.eventCategory.lowercased().contains("construction"){
                     switch alert.priority {
                     case "Moderate":
                         marker.icon = constructionModerateIconImage
@@ -405,6 +406,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
                 }
                 
                 marker.userData = alert
+                
                 alertMarkers.insert(marker)
                 
             }
@@ -458,6 +460,14 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
                     alerts.append(alertMarker.userData as! HighwayAlertItem)
                 }
             }
+        }
+        return alerts
+    }
+    
+    func convertAlertMarkersToHighwayAlertItems(markers: [GMSMarker]) -> [HighwayAlertItem] {
+        var alerts = [HighwayAlertItem]()
+        for alertMarker in markers{
+           alerts.append(alertMarker.userData as! HighwayAlertItem)
         }
         return alerts
     }
@@ -606,7 +616,16 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
             performSegue(withIdentifier: SegueCamerasViewController, sender: marker)
         }
         if marker.snippet == "alert" {
-            performSegue(withIdentifier: SegueHighwayAlertViewController, sender: marker)
+        
+            // Check for overlapping markers.
+            var markers = alertMarkers
+            markers.remove(marker)
+            if markers.contains(where: {($0.position.latitude == marker.position.latitude) && ($0.position.latitude == marker.position.latitude)}) {
+                performSegue(withIdentifier: SegueAlertsInArea, sender: marker)
+            }else {
+                performSegue(withIdentifier: SegueHighwayAlertViewController, sender: marker)
+            }
+        
         }
         if marker.snippet == "restarea" {
             performSegue(withIdentifier: SegueRestAreaViewController, sender: marker)
@@ -641,9 +660,21 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         }
         
         if segue.identifier == SegueAlertsInArea {
-            let alerts = getAlertsOnScreen()
-            let destinationViewController = segue.destination as! AlertsInAreaViewController
-            destinationViewController.alerts = alerts
+        
+            //Check sender - could be alertsInArea button or a marker with overlap.
+            if let marker = sender as? GMSMarker {
+                // Get the overlapping markers
+                let alerts = convertAlertMarkersToHighwayAlertItems(markers: alertMarkers.filter({($0.position.latitude == marker.position.latitude) && ($0.position.latitude == marker.position.latitude)}))
+                let destinationViewController = segue.destination as! AlertsInAreaViewController
+                destinationViewController.alerts = alerts
+                destinationViewController.title = "Alert"
+            
+            } else {
+                let alerts = getAlertsOnScreen()
+                let destinationViewController = segue.destination as! AlertsInAreaViewController
+                destinationViewController.alerts = alerts
+                destinationViewController.title = "Alerts In This Area"
+            }
         }
         
         if segue.identifier == SegueSettingsPopover {
