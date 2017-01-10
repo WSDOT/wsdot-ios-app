@@ -689,7 +689,5 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         }
     }
         
-    func easyTipViewDidDismiss(_ tipView : EasyTipView){
-        //TODO: Save to pref that we've seen the tip
-    }
+    func easyTipViewDidDismiss(_ tipView : EasyTipView){}
 }

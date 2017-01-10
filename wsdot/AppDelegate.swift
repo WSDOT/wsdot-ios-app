@@ -23,6 +23,7 @@ import UIKit
 import Firebase
 import FirebaseInstanceID
 import FirebaseMessaging
+import GoogleMobileAds
 
 import UserNotifications
 
@@ -166,6 +167,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         }
     }
     // [END connect_to_fcm]
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        //FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: FIRInstanceIDAPNSTokenType.sandbox)
+        FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: FIRInstanceIDAPNSTokenType.prod)
+    }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("Unable to register for remote notifications: \(error.localizedDescription)")

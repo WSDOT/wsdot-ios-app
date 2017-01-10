@@ -33,7 +33,7 @@ class FlickrStore {
                 if let value = response.result.value {
                     
                     // Flickr JSON uses invalid josn characters for standard RFC 4627, remove them here.
-                    let json = JSON.parse(value.replacingOccurrences(of: "\\'", with: "'", options: .literal))
+                    let json = JSON(parse: value.replacingOccurrences(of: "\\'", with: "'", options: .literal))
      
                     let posts = parsePostsJSON(json)
                     completion(posts, nil)
