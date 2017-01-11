@@ -5,7 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 [Unreleased]: 
 
 ### Added
-* Emergency push notifications.
+* Emergency traffic alert push notifications.
+* When tapping a traffic alert with overlapping alerts, opens a list with all the overlapping alerts. 
+* Added one time tip views as a call to action for new features in the app.
+
+### Changed
+* Changed speed alert text.
 
 ## [5.0.7] - 2017-01-03
 

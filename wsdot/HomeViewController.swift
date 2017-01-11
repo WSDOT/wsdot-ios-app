@@ -54,8 +54,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.navigationController!.navigationBar.isTranslucent = false
         self.navigationController!.navigationBar.barTintColor = UIColor.white
         self.navigationController!.navigationBar.tintColor = Colors.tintColor
-    
-
      
     }
     
@@ -77,7 +75,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             preferences.drawing.backgroundColor = UIColor(hue: 0.4639, saturation: 1, brightness: 0.47, alpha: 1.0) /* #00795f */
             preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.top
         
-            tipView = EasyTipView(text: "Sign up for push notification to recieve alerts about major traffic incidents.", preferences: preferences, delegate: self)
+            tipView = EasyTipView(text: "Turn on notifications to receive alerts about major statewide traffic incidents.", preferences: preferences, delegate: self)
             tipView!.show(forItem: self.settingsButton, withinSuperView: self.navigationController?.view)
             UserDefaults.standard.set(true, forKey: UserDefaultsKeys.hasSeenNotificationTip)
         }
