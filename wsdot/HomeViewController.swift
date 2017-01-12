@@ -24,6 +24,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     let cellIdentifier = "HomeCell"
     
+    let SegueMyRouteViewController = "MyRouteViewController"
+    
     let SegueTrafficMapViewController = "TrafficMapViewController"
     let SegueFerriesHomeViewController = "FerriesHomeViewController"
     let SegueTollRatesViewController = "TollRatesViewController"
@@ -36,6 +38,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var menu_options: [String] = []
     var menu_icon_names: [String] = []
+
+    @IBOutlet weak var myRouteButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +48,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         menu_options = ["Traffic Map", "Ferries", "Mountain Passes", "Social Media", "Toll Rates", "Border Waits", "Amtrak Cascades", "Favorites"]
         menu_icon_names = ["icHomeTraffic","icHomeFerries","icHomePasses","icHomeSocialMedia","icHomeTollRates","icHomeBorderWaits","icHomeAmtrakCascades", "icHomeFavorites"]
+
         
         self.navigationController!.navigationBar.isTranslucent = false
         self.navigationController!.navigationBar.barTintColor = UIColor.white
@@ -54,6 +59,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView(screenName: "/Home")
+    }
+ 
+    @IBAction func myRouteButtonPressed(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: SegueMyRouteViewController, sender: self)
     }
  
     @IBAction func infoBarButtonPressed(_ sender: UIBarButtonItem) {

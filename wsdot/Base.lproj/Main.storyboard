@@ -54,6 +54,14 @@
             </objects>
             <point key="canvasLocation" x="-78" y="1809"/>
         </scene>
+        <!--MyRoute-->
+        <scene sceneID="ZRg-Sp-fEO">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MyRoute" id="2tm-iO-I2S" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Woy-Zb-Oyl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1627" y="410"/>
+        </scene>
         <!--Home View Controller-->
         <scene sceneID="515-et-fK2">
             <objects>
@@ -133,6 +141,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Xpe-Fb-HQB">
+                        <barButtonItem key="leftBarButtonItem" title="My Route" id="Ejb-wh-GPG">
+                            <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.16429793400000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="myRouteButtonPressed:" destination="4jS-98-Vld" id="ww4-Fp-meO"/>
+                                <segue destination="2tm-iO-I2S" kind="show" identifier="MyRouteViewController" id="n8j-zD-Q7y"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="icInfo" id="t4G-kd-S5C">
                             <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                             <userDefinedRuntimeAttributes>
@@ -144,6 +159,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="myRouteButton" destination="Ejb-wh-GPG" id="nvl-pv-oWa"/>
                         <segue destination="Lbb-0l-yJu" kind="showDetail" identifier="TrafficMapViewController" id="MA0-S9-Pje"/>
                         <segue destination="2hQ-5G-m4N" kind="showDetail" identifier="FerriesHomeViewController" id="RUR-VH-irQ"/>
                         <segue destination="YHC-Qx-tw0" kind="showDetail" identifier="InfoViewController" id="nAK-Qt-76l"/>
