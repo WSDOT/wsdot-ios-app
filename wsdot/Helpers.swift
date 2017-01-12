@@ -18,7 +18,6 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
 import UIKit
-import EasyTipView
 
 struct Colors {
     static let tintColor = UIColor.init(red: 0.0/255.0, green: 174.0/255.0, blue: 65.0/255.0, alpha: 1)

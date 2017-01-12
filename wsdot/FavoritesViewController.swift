@@ -85,6 +85,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             self.showOverlay(self.view)
             self.loadFavorites(false)
         }
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -96,6 +97,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             self.favoritesTable.setEditing(false, animated: false)
         }
     }
+    
     
     func loadFavoritesAction(_ refreshController: UIRefreshControl){
         loadFavorites(true)

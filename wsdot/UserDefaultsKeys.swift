@@ -20,11 +20,6 @@
 
 import Foundation
 class UserDefaultsKeys {
-
-    static let hasSeenNotificationTip = "hasSeenNotificationTooltip"
-    static let hasSeenCameraClusteringTip = "hasSeenCameraClusteringToolTip"
-    
-    static let emergencyNotifications = "EmergencyNotifications"
     
     static let cameras = "CameraMarkerPref"
     static let alerts = "AlertsMarkerPref"

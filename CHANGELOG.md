@@ -5,9 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 [Unreleased]: 
 
 ### Added
-* Emergency traffic alert push notifications.
 * When tapping a traffic alert with overlapping alerts, opens a list with all the overlapping alerts. 
-* Added one time tip views as a call to action for new features in the app.
 
 ### Changed
 * Changed speed alert text.
@@ -16,10 +14,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Fixed
 * Crash when adding a favorite location on iOS 8.3.
-* Layout improvements for small and large screens.
-* Displayed correct alert icon for road closures. 
+* Layout improvments for small and large screens.
+* Dislpayed correct alert icon for road closures. 
 
-## [5.0.6] - 2016-12-08
+## [5.0.6] - 2016-12
 
 ## Changed
 * Migrated Realm DB to version 1. Changed pass items to only hold a list of camera IDs and not cameraItems so as to keep from overwriting data pulled in from the CamerasStore.

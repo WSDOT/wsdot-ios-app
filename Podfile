@@ -5,27 +5,23 @@ use_frameworks!
 target 'WSDOT' do
     pod 'Firebase/Core'
     pod 'Firebase/AdMob'
-    pod 'Firebase/Messaging'
     pod 'GoogleMaps'
     pod 'Google/Analytics'
     pod 'RealmSwift', '~> 2.1.0'
     pod 'Alamofire', '~> 4.2.0'
     pod 'SwiftyJSON', '~> 3.1.3'
     pod 'SDWebImage'
-    pod 'EasyTipView', '~> 1.0.2'
 end
 
 target 'WSDOTTests' do
     pod 'Firebase/Core'
     pod 'Firebase/AdMob'
-    pod 'Firebase/Messaging'
     pod 'GoogleMaps'
     pod 'Google/Analytics'
     pod 'RealmSwift', '~> 2.1.0'
     pod 'Alamofire', '~> 4.2.0'
     pod 'SwiftyJSON', '~> 3.1.3'
     pod 'SDWebImage'
-    pod 'EasyTipView', '~> 1.0.2'
 end
 
 post_install do |installer|
