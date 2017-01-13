@@ -24,7 +24,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     let cellIdentifier = "HomeCell"
     
-    let SegueMyRouteViewController = "MyRouteViewController"
+    let SegueMyCommuteViewController = "MyCommuteViewController"
     
     let SegueTrafficMapViewController = "TrafficMapViewController"
     let SegueFerriesHomeViewController = "FerriesHomeViewController"
@@ -39,7 +39,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var menu_options: [String] = []
     var menu_icon_names: [String] = []
 
-    @IBOutlet weak var myRouteButton: UIBarButtonItem!
+    @IBOutlet weak var MyCommuteButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,8 +62,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         (self.splitViewController as! HomeSplitViewController).setShouldCollapseFalse()
     }
  
-    @IBAction func myRouteButtonPressed(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: SegueMyRouteViewController, sender: self)
+    @IBAction func MyCommuteButtonPressed(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: SegueMyCommuteViewController, sender: self)
     }
  
     @IBAction func infoBarButtonPressed(_ sender: UIBarButtonItem) {

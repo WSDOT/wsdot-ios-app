@@ -1,14 +1,16 @@
 //
-//  MyRouteSettingsViewController.swift
+//  MyCommuteDetailsViewController.swift
 //  WSDOT
 //
-//  Created by Logan Sims on 1/11/17.
+//  Created by Logan Sims on 1/12/17.
 //  Copyright © 2017 WSDOT. All rights reserved.
 //
 
 import UIKit
 
-class MyRouteSettingsViewController: UIViewController {
+class MyCommuteDetailsViewController: UIViewController {
+
+    var route = [CLLocation]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +23,7 @@ class MyRouteSettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
     // MARK: - Navigation
 
