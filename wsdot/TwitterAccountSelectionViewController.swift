@@ -14,7 +14,7 @@ class TwitterAccountSelectionViewController: UIViewController, UITableViewDelega
 
     var my_parent: TwitterViewController? = nil
 
-    var menu_options: [String] = ["All Accounts", "Ferries", "Good To Go!", "Snoqualmie Pass", "WSDOT", "WSDOT Jobs", "WSDOT North Traffic", "WSDOT Southwest", "WSDOT Tacoma", "WSDOT Traffic"]
+    var menu_options: [String] = ["All Accounts", "Ferries", "Good To Go!", "Snoqualmie Pass", "WSDOT", "WSDOT East", "WSDOT Jobs", "WSDOT North Traffic", "WSDOT Southwest", "WSDOT Tacoma", "WSDOT Traffic"]
     var selectedIndex = 0
     
     @IBAction func cancelAction(_ sender: UIBarButtonItem) {
