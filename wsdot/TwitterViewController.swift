@@ -36,15 +36,24 @@ class TwitterViewController: UIViewController, UITableViewDelegate, UITableViewD
     var activityIndicator = UIActivityIndicatorView()
 
     let accountData: [(name:String, screenName:String?)] =
-        [("All Accounts", nil), ("Ferries", "wsferries"), ("Good To Go!", "GoodToGoWSDOT"),
-        ("Snoqualmie Pass", "SnoqualmiePass"), ("WSDOT", "wsdot"), ("WSDOT Jobs", "WSDOTjobs"), ("WSDOT North Traffic", "wsdot_north"), ("WSDOT Southwest", "wsdot_sw"),
-        ("WSDOT Tacoma","wsdot_tacoma"), ("WSDOT Traffic","wsdot_traffic")]
+        [("All Accounts", nil),
+         ("Ferries", "wsferries"),
+         ("Good To Go!", "GoodToGoWSDOT"),
+         ("Snoqualmie Pass", "SnoqualmiePass"),
+         ("WSDOT", "wsdot"),
+         ("WSDOT East","WSDOT_East"),
+         ("WSDOT Jobs", "WSDOTjobs"),
+         ("WSDOT North Traffic", "wsdot_north"),
+         ("WSDOT Southwest", "wsdot_sw"),
+         ("WSDOT Tacoma","wsdot_tacoma"),
+         ("WSDOT Traffic","wsdot_traffic")]
     
     let accountIconNames: Dictionary<String, String> = [
         "wsferries":"icTwitterFerries",
         "GoodToGoWSDOT":"icTwitterGoodToGo",
         "SnoqualmiePass":"icTwitterSnoqualmie",
         "wsdot":"icTwitterWsdot",
+        "WSDOT_East":"icTwitterWsdotEast",
         "WSDOTjobs":"icTwitterJobs",
         "wsdot_north":"icTwitterWsdotNorth",
         "wsdot_sw":"icTwitterWsdotSW",
