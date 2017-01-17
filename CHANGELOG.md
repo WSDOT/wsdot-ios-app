@@ -4,11 +4,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]: 
 
+## [5.1.0] 2017-01-
 ### Added
-* When tapping a traffic alert with overlapping alerts, opens a list with all the overlapping alerts. 
+* When tapping overlapping traffic alerts, a list of all the overlapping alerts will open.
+* WSDOT East Twitter account.
 
 ### Changed
 * Changed speed alert text.
+
+### Fixed
+* Flickr feed was requesting JSON response as a string, not a JSON object. This has been fixed.
 
 ## [5.0.7] - 2017-01-03
 

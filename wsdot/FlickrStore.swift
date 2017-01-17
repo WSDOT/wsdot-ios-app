@@ -27,13 +27,12 @@ class FlickrStore {
     
     static func getPosts(_ completion: @escaping FetchFlickrPostsCompletion) {
         
-        Alamofire.request("http://data.wsdot.wa.gov/mobile/FlickrPhotos.js").validate().responseString  { response in
+        Alamofire.request("http://data.wsdot.wa.gov/mobile/FlickrPhotos.js").validate().responseJSON  { response in
             switch response.result {
             case .success:
                 if let value = response.result.value {
                     
-                    // Flickr JSON uses invalid josn characters for standard RFC 4627, remove them here.
-                    let json = JSON(parse: value.replacingOccurrences(of: "\\'", with: "'", options: .literal))
+                    let json = JSON(value)
      
                     let posts = parsePostsJSON(json)
                     completion(posts, nil)
