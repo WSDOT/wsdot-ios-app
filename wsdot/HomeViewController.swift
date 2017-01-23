@@ -24,7 +24,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     let cellIdentifier = "HomeCell"
     
-    let SegueMyCommuteViewController = "MyCommuteViewController"
+    let SegueMyRouteViewController = "MyRouteViewController"
     
     let SegueTrafficMapViewController = "TrafficMapViewController"
     let SegueFerriesHomeViewController = "FerriesHomeViewController"
@@ -39,7 +39,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var menu_options: [String] = []
     var menu_icon_names: [String] = []
 
-    @IBOutlet weak var MyCommuteButton: UIBarButtonItem!
+    @IBOutlet weak var MyRouteButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,8 +61,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         GoogleAnalytics.screenView(screenName: "/Home")
     }
  
-    @IBAction func MyCommuteButtonPressed(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: SegueMyCommuteViewController, sender: self)
+    @IBAction func MyRouteButtonPressed(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: SegueMyRouteViewController, sender: self)
     }
  
     @IBAction func infoBarButtonPressed(_ sender: UIBarButtonItem) {

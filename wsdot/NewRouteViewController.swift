@@ -1,5 +1,5 @@
 //
-//  NewMyCommuteViewController.swift
+//  NewRouteViewController.swift
 //  WSDOT
 //
 //  Copyright (c) 2016 Washington State Department of Transportation
@@ -24,11 +24,9 @@ import HealthKit
 import GoogleMaps
 
 /**
- * Handles creation of new MyCommutes
+ * Handles creation of new MyRoutes
  */
-class NewMyCommuteViewController: UIViewController {
-
-    let SegueMyCommuteDetailsViewController = "MyCommuteDetailsViewController"
+class NewRouteViewController: UIViewController {
 
     var distance = 0.0
 
@@ -177,11 +175,17 @@ class NewMyCommuteViewController: UIViewController {
         let resultsAction = UIAlertAction(title: "View Route Results", style: .default, handler: {(_) -> Void in
             self.hideRecordingView(duration: 0.5)
             
-            self.displayRouteOnMap(locations: self.locations)
+            if (self.displayRouteOnMap(locations: self.locations)){
             
-            self.startButton.isHidden = true
-            self.saveButton.isHidden = false
-            self.discardButton.isHidden = false
+                self.startButton.isHidden = true
+                self.saveButton.isHidden = false
+                self.discardButton.isHidden = false
+            
+                self.mapView.settings.scrollGestures = false
+                self.mapView.settings.zoomGestures = false
+            }else {
+                self.present(AlertMessages.getAlert("Not Enough Location Data to Save a Route", message: "", confirm: "OK"), animated: true)
+            }
         })
         
         actionSheet.addAction(resultsAction)
@@ -204,30 +208,46 @@ class NewMyCommuteViewController: UIViewController {
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         stopLocationUpdates()
         
-        let alertController = UIAlertController(title: "Name This Route", message:nil, preferredStyle: .alert)
+        mapView.settings.scrollGestures = true
+        mapView.settings.zoomGestures = true
+        
+        let alertController = UIAlertController(title: "Name This Route", message:"This name will display on your favorites list.", preferredStyle: .alert)
         alertController.addTextField { (textfield) in
-            textfield.placeholder = "Name"
+            textfield.placeholder = "My Route"
         }
         alertController.view.tintColor = Colors.tintColor
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
 
         let okAction = UIAlertAction(title: "Ok", style: .default) { (_) -> Void in
         
             let textf = alertController.textFields![0] as UITextField
-            let name = textf.text!
-        
-            do {
-                
-                _ = try MyCommuteRealmStore.save(route: self.locations, name: name)
-                _ = self.navigationController?.popViewController(animated: true)
-                
-            } catch {
-                self.present(AlertMessages.getAlert("There was an error saving your route", message: "", confirm: "OK"), animated: true, completion: nil)
-                // TODO: try saving again?
+            var name = textf.text!
+            if name.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "" {
+                name = "My Route"
             }
         
+            _ =  MyRouteStore.save(route: self.locations, name: name,
+                                        displayLat: self.mapView.projection.coordinate(for: self.mapView.center).latitude,
+                                        displayLong: self.mapView.projection.coordinate(for: self.mapView.center).longitude,
+                                        displayZoom: self.mapView.camera.zoom)
+                
+            let alertController = UIAlertController(title: "Automaticlly Add Items on This Route to Favorites?", message:"Traffic cameras, travel times, pass reports, and other favoritable items will be automatically added to your favorites if they are on this route.", preferredStyle: .alert)
+            alertController.view.tintColor = Colors.tintColor
 
-        
+            let noAction = UIAlertAction(title: "No", style: .default) { (_) -> Void in
+    
+                _ = MyRouteStore.turnOffFindNearby(route: MyRouteStore.getSavedRoute()!)
+                _ = self.navigationController?.popViewController(animated: true)
+            }
+                
+            let yesAction = UIAlertAction(title: "Yes", style: .default) { (_) -> Void in
+                _ = self.navigationController?.popViewController(animated: true)
+            }
+                
+            alertController.addAction(noAction)
+            alertController.addAction(yesAction)
+            
+            self.present(alertController, animated: false, completion: nil)
+
         }
         alertController.addAction(okAction)
 
@@ -344,7 +364,8 @@ class NewMyCommuteViewController: UIViewController {
      * Description: sets mapView camera to show all of the newly recording route if there is data.
      * Parameters: locations: Array of CLLocations that make up the route.
      */
-    func displayRouteOnMap(locations: [CLLocation]){
+    func displayRouteOnMap(locations: [CLLocation]) -> Bool {
+        
         if let region = getRouteMapRegion(locations: self.locations) {
             
             // set Map Bounds
@@ -358,17 +379,17 @@ class NewMyCommuteViewController: UIViewController {
                 myPath.add(location.coordinate)
             }
             
-            let MyCommute = GMSPolyline(path: myPath)
+            let MyRoute = GMSPolyline(path: myPath)
             
-            MyCommute.spans = [GMSStyleSpan(color: UIColor(red: 0, green: 0.6588, blue: 0.9176, alpha: 1.0))] /* #00a8ea */
-            MyCommute.strokeWidth = 4
-            MyCommute.map = mapView
+            MyRoute.spans = [GMSStyleSpan(color: UIColor(red: 0, green: 0.6588, blue: 0.9176, alpha: 1.0))] /* #00a8ea */
+            MyRoute.strokeWidth = 4
+            MyRoute.map = mapView
             mapView.animate(toZoom: (camera?.zoom)! - 0.5)
-            
-        } else {
-            // TODO: failed to record a route
-        }
         
+            return true
+        } else {
+            return false
+        }
     }
     
     /**
@@ -418,10 +439,10 @@ class NewMyCommuteViewController: UIViewController {
     }
 }
 
-extension NewMyCommuteViewController: GMSMapViewDelegate {}
+extension NewRouteViewController: GMSMapViewDelegate {}
 
 // MARK: - CLLocationManagerDelegate
-extension NewMyCommuteViewController: CLLocationManagerDelegate {
+extension NewRouteViewController: CLLocationManagerDelegate {
     
     /**
      * When new location information is available check it's timestamp and accuracy, if it meets

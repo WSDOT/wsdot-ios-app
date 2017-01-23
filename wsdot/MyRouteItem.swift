@@ -1,8 +1,8 @@
 //
-//  UserDefaultsKeys.swift
+//  MyRouteItem.swift
 //  WSDOT
 //
-//  Copyright (c) 2016 Washington State Department of Transportation
+//  Copyright (c) 2017 Washington State Department of Transportation
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -19,21 +19,22 @@
 //
 
 import Foundation
-class UserDefaultsKeys {
-    
-    static let cameras = "CameraMarkerPref"
-    static let alerts = "AlertsMarkerPref"
-    static let restAreas = "RestAreaMarkerPref"
-    static let jblmCallout = "JBLMMarkerPref"
-    
-    static let favoritesOrder = "FavoritesSectionOrderArray"
-    
-    static let mapLat = "MapLatitudeBound"
-    static let mapLon = "MapLongitudeBound"
-    static let mapZoom = "MapZoom"
-    
-    static let hasSeenWarning = "HasSeenWarning"
-    
-    static let shouldCluster = "shouldClusterCameraIcons"
+import RealmSwift
 
+class MyRouteItem: Object {
+    
+    dynamic var id = 1
+    dynamic var name = ""
+    dynamic var hasFoundNearbyItems = false
+    dynamic var displayLatitude = 0.0
+    dynamic var displayLongitude = 0.0
+    dynamic var displayZoom = 0.0
+    
+    dynamic var selected = false
+    
+    let route = List<MyRouteLocationItem>()
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }
