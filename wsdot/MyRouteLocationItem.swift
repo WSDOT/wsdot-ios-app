@@ -1,5 +1,5 @@
 //
-//  MyCommuteLocationItem.swift
+//  MyRouteLocationItem.swift
 //  WSDOT
 //
 //  Copyright (c) 2017 Washington State Department of Transportation
@@ -21,7 +21,7 @@
 import Foundation
 import RealmSwift
 
-class MyCommuteLocationItem: Object {
+class MyRouteLocationItem: Object {
     dynamic var lat: Double = 0.0
     dynamic var long: Double = 0.0
 }

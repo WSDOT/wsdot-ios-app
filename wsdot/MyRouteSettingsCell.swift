@@ -1,8 +1,8 @@
 //
-//  MyCommuteItem.swift
+//  MyRouteSettingsCell.swift
 //  WSDOT
 //
-//  Copyright (c) 2017 Washington State Department of Transportation
+//  Copyright (c) 2016 Washington State Department of Transportation
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -18,18 +18,10 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
 
-import Foundation
-import RealmSwift
+import UIKit
 
-class MyCommuteItem: Object {
-    
-    dynamic var id = 1
-    dynamic var name = ""
-    dynamic var hasFoundNearbyItems = false
-    
-    let route = List<MyCommuteLocationItem>()
-    
-    override static func primaryKey() -> String? {
-        return "id"
-    }
+class MyRouteSettingsCell: UITableViewCell {
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var setButton: UIButton!
 }

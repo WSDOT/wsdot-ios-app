@@ -54,13 +54,13 @@
             </objects>
             <point key="canvasLocation" x="-78" y="1809"/>
         </scene>
-        <!--MyCommute-->
+        <!--MyRoute-->
         <scene sceneID="ZRg-Sp-fEO">
             <objects>
-                <viewControllerPlaceholder storyboardName="MyCommute" id="2tm-iO-I2S" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="MyRoute" id="2tm-iO-I2S" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Woy-Zb-Oyl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1627" y="410"/>
+            <point key="canvasLocation" x="1806" y="416"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="515-et-fK2">
@@ -141,11 +141,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Xpe-Fb-HQB">
-                        <barButtonItem key="leftBarButtonItem" title="My Commute" id="Ejb-wh-GPG">
+                        <barButtonItem key="leftBarButtonItem" title="My Route" id="Ejb-wh-GPG">
                             <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.16429793400000001" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="MyCommuteButtonPressed:" destination="4jS-98-Vld" id="ww4-Fp-meO"/>
-                                <segue destination="2tm-iO-I2S" kind="show" identifier="MyCommuteViewController" id="n8j-zD-Q7y"/>
+                                <action selector="MyRouteButtonPressed:" destination="4jS-98-Vld" id="ww4-Fp-meO"/>
+                                <segue destination="2tm-iO-I2S" kind="show" identifier="MyRouteViewController" id="n8j-zD-Q7y"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="icInfo" id="t4G-kd-S5C">
@@ -159,7 +159,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="MyCommuteButton" destination="Ejb-wh-GPG" id="nvl-pv-oWa"/>
+                        <outlet property="MyRouteButton" destination="Ejb-wh-GPG" id="nvl-pv-oWa"/>
                         <segue destination="Lbb-0l-yJu" kind="showDetail" identifier="TrafficMapViewController" id="MA0-S9-Pje"/>
                         <segue destination="2hQ-5G-m4N" kind="showDetail" identifier="FerriesHomeViewController" id="RUR-VH-irQ"/>
                         <segue destination="YHC-Qx-tw0" kind="showDetail" identifier="InfoViewController" id="nAK-Qt-76l"/>
@@ -704,7 +704,7 @@
                 <viewControllerPlaceholder storyboardName="TravelTimeDetails" id="eBn-UT-5Bf" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fNe-4P-Gqv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3338" y="1607"/>
+            <point key="canvasLocation" x="3338" y="1600"/>
         </scene>
         <!--MountainPassTabBarViewController-->
         <scene sceneID="nYn-oR-VSx">
@@ -712,7 +712,7 @@
                 <viewControllerPlaceholder storyboardName="MountainPasses" referencedIdentifier="MountainPassTabBarViewController" id="CZ3-Ns-p7U" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z6E-YC-F0U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3425" y="1651"/>
+            <point key="canvasLocation" x="3425" y="1653"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4jB-de-pq1">
