@@ -133,6 +133,13 @@ class TravelTimesStore{
             let time = TravelTimeItem()
             time.routeid = subJson["routeid"].intValue
             time.title = subJson["title"].stringValue
+            
+            time.startLatitude = subJson["startLatitude"].doubleValue
+            time.startLongitude = subJson["startLongitude"].doubleValue
+            
+            time.endLatitude = subJson["endLatitude"].doubleValue
+            time.endLongitude = subJson["endLongitude"].doubleValue
+            
             time.distance = subJson["distance"].floatValue
             time.averageTime = subJson["average"].intValue
             time.currentTime = subJson["current"].intValue

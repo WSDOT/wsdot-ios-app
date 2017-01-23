@@ -20,6 +20,31 @@
 
 import RealmSwift
 
+
+// v2
+class TravelTimeItem: Object {
+    dynamic var routeid: Int = 0
+    dynamic var title: String = ""
+    
+    dynamic var startLatitude: Double = 0.0
+    dynamic var endLatitude: Double = 0.0
+    dynamic var startLongitude: Double = 0.0
+    dynamic var endLongitude: Double = 0.0
+    
+    dynamic var distance: Float = 0.0
+    dynamic var averageTime: Int = 0
+    dynamic var currentTime: Int = 0
+    dynamic var updated: String = ""
+    dynamic var selected: Bool = false
+    dynamic var delete: Bool = false
+    
+    override static func primaryKey() -> String? {
+        return "routeid"
+    }
+}
+
+
+/* v1
 class TravelTimeItem: Object {
     dynamic var routeid: Int = 0
     dynamic var title: String = ""
@@ -33,6 +58,5 @@ class TravelTimeItem: Object {
     override static func primaryKey() -> String? {
         return "routeid"
     }
-    
 }
-
+*/

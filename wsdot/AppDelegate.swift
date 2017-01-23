@@ -79,10 +79,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func migrateRealm(){
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
-            schemaVersion: 1,
+            schemaVersion: 2,
+            
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
-                
                     // The enumerateObjects(ofType:_:) method iterates
                     // over every MountainPassItem object stored in the Realm file
                     migration.enumerateObjects(ofType: MountainPassItem.className()) { oldObject, newObject in
@@ -94,6 +94,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             newPassCameraId["cameraId"] = camera["cameraId"] as! Int
                             passCameraIds.append(newPassCameraId)
                         }
+                    }
+                }
+                
+                if (oldSchemaVersion < 2) {
+                    // The enumerateObjects(ofType:_:) method iterates
+                    // over every TravelTime object stored in the Realm file
+                    migration.enumerateObjects(ofType: TravelTimeItem.className()) { oldObject, newObject in
+                        // Add start/end lat/long to travel times
+                        newObject!["startLatitude"] = 0.0
+                        newObject!["endLatitude"] = 0.0
+                        newObject!["startLongitude"] = 0.0
+                        newObject!["endLongitude"] = 0.0
                     }
                 }
         })
