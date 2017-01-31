@@ -37,7 +37,6 @@ class FavoritesHomeViewController: UIViewController {
     let segueTravelTimeViewController = "TravelTimeViewController"
     let segueMountainPassDetailsViewController = "MountianPassDetailsViewController"
 
-    //let alertCellIdentifier = "HighwayAlertCell"
     let textCellIdentifier = "TextCell"
     let myRouteCellIdentifier = "MyRouteCell"
     let travelTimesCellIdentifier = "TravelTimeCell"
@@ -45,7 +44,6 @@ class FavoritesHomeViewController: UIViewController {
     let mountainPassCellIdentifier = "MountainPassCell"
 
     var cameras = [CameraItem]()
-    //var alerts = [HighwayAlertItem]()
     var travelTimes = [TravelTimeItem]()
     var ferrySchedules = [FerryScheduleItem]()
     var mountainPasses = [MountainPassItem]()
@@ -102,8 +100,6 @@ class FavoritesHomeViewController: UIViewController {
     func getNumberOfRows(inSection: Int) -> Int {
         switch (getType(forSection: inSection)){
         
-        //case .alert:
-        //    return alerts.count
         case .camera:
             return cameras.count
         case .travelTime:
@@ -138,14 +134,6 @@ class FavoritesHomeViewController: UIViewController {
         switch (sectionTypes[forSection] ) {
         case .route:
             return myRoute == nil ? "" : MyRouteStore.sectionTitles[FavoritesContent.route.rawValue]
-       // case .alert:
-      //      if myRoute == nil {
-      //          return ""
-      //      } else if alerts.count > 0 {
-      //          return MyRouteStore.sectionTitles[FavoritesContent.alert.rawValue]
-      //      } else {
-      //          return "No Reported Alerts on Route"
-      //      }
         case .camera:
             return cameras.count > 0 ? MyRouteStore.sectionTitles[FavoritesContent.camera.rawValue] : ""
         case .travelTime:
@@ -172,7 +160,6 @@ class FavoritesHomeViewController: UIViewController {
         // init section
         if sectionTypesOrderRawArray.count == 0 {
             sectionTypesOrderRawArray.append(FavoritesContent.route.rawValue)
-            //sectionTypesOrderRawArray.append(FavoritesContent.alert.rawValue)
             sectionTypesOrderRawArray.append(FavoritesContent.ferrySchedule.rawValue)
             sectionTypesOrderRawArray.append(FavoritesContent.mountainPass.rawValue)
             sectionTypesOrderRawArray.append(FavoritesContent.mapLocation.rawValue)
@@ -246,45 +233,16 @@ extension FavoritesHomeViewController {
                     
                     _ = MyRouteStore.turnOffFindNearby(route: self.myRoute!)
                     
-                    //self.getContent(false)
                     self.loadSelectedContent(false)
                 }
             } else {
-                //getContent(false)
                 loadSelectedContent(false)
             }
         } else {
-            //getContent(false)
             loadSelectedContent(false)
         }
     }
 
-    /**
-     * Method name: getContent
-     * Description: Calls loadSelectedContent() after checking for alerts on users route if they have one set.
-     * Parameters: force: True if we should ignore chache time when updating alerts & other data.
-     */
-     /*
-    func getContent(_ force: Bool){
-    
-         Check if user made a route
-        if let value = MyRouteStore.getSavedRoute() {
-            myRoute = value
-            
-            let serviceGroup = DispatchGroup();
-                
-            requestAlertsUpdate(force, serviceGroup: serviceGroup)
-                
-            serviceGroup.notify(queue: DispatchQueue.main) {
-                self.alerts = MyRouteStore.selectNearbyAlerts(forRoute: self.myRoute!, withAlerts: HighwayAlertsStore.getAllAlerts())
-                self.loadSelectedContent(force)
-            }
-        } else {
-            loadSelectedContent(force)
-        }
-        loadSelectedContent(force)
-    }
-    */
     /**
      * Method name: loadSelectedContent
      * Description: collects data from Stores to build favorites list. Uses a serviceGroup to collect data async.
@@ -351,7 +309,6 @@ extension FavoritesHomeViewController {
     }
 
     func refreshAction(_ refreshController: UIRefreshControl){
-        //getContent(true)
         loadSelectedContent(true)
     }
 
@@ -362,7 +319,6 @@ extension FavoritesHomeViewController {
     func tableEmpty() -> Bool {
         return
             (self.cameras.count == 0) &&
-           // (self.alerts.count == 0) &&
             (self.travelTimes.count == 0) &&
             (self.ferrySchedules.count == 0) &&
             (self.mountainPasses.count == 0) &&
@@ -469,39 +425,6 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         switch getType(forSection: indexPath.section) {
-       /*
-        case .alert:
-        
-            let alertCell = tableView.dequeueReusableCell(withIdentifier: alertCellIdentifier, for: indexPath) as! LinkCell
-            let htmlStyleString = "<style>body{font-family: '\(alertCell.linkLabel.font.fontName)'; font-size:\(alertCell.linkLabel.font.pointSize)px;}</style>"
-            var htmlString = ""
-            
-            //cell.updateTime.text = TimeUtils.timeAgoSinceDate(date: trafficAlerts[indexPath.row].lastUpdatedTime, numericDates: false)
-            htmlString = htmlStyleString + alerts[indexPath.row].headlineDesc
-            let attrStr = try! NSMutableAttributedString(
-                data: htmlString.data(using: String.Encoding.unicode, allowLossyConversion: false)!,
-                options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
-                documentAttributes: nil)
-        
-            switch (alerts[indexPath.row].priority){
-            
-            case "highest":
-                alertCell.backgroundColor = UIColor(red: 255/255, green: 232/255, blue: 232/255, alpha: 1.0) /* #ffe8e8 */
-                break
-            case "high":
-                alertCell.backgroundColor = UIColor(red: 255/255, green: 244/255, blue: 232/255, alpha: 1.0) /* #fff4e8 */
-                break
-            default:
-                alertCell.backgroundColor = UIColor(red: 255/255, green: 254/255, blue: 232/255, alpha: 1.0) /* #fffee8 */
-            }
-        
-            alertCell.linkLabel.attributedText = attrStr
-            alertCell.linkLabel.delegate = self
-        
-            alertCell.updateTime.text = TimeUtils.timeAgoSinceDate(date: alerts[indexPath.row].lastUpdatedTime, numericDates: false)
-            
-            return alertCell
-        */
         case .camera:
         
             let cameraCell = tableView.dequeueReusableCell(withIdentifier: textCellIdentifier, for: indexPath)
@@ -604,7 +527,6 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
     }
 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        //return getType(forSection: indexPath.section) != .alert
         return true
     }
     
@@ -655,10 +577,6 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 self.savedLocations.remove(at: indexPath.row)
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
                 break
-          /*  case .alert:
-                self.alerts.remove(at: indexPath.row)
-                self.tableView.deleteRows(at: [indexPath], with: .fade)
-                break */
             case .camera:
                 CamerasStore.updateFavorite(self.cameras[indexPath.row], newValue: false)
                 self.cameras.remove(at: indexPath.row)
@@ -684,7 +602,6 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 alertController.view.tintColor = Colors.tintColor
 
                 let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (_) -> Void in
-                   // self.alerts.removeAll()
                     tableView.reloadData()
                 
                     _ = MyRouteStore.delete(route: self.myRoute!)
@@ -721,10 +638,6 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
  // MARK: - Navigation
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (getType(forSection: indexPath.section)){
-       /* case .alert:
-            performSegue(withIdentifier: segueHighwayAlertViewController, sender: self)
-            tableView.deselectRow(at: indexPath, animated: true)
-            break */
         case .mapLocation:
             performSegue(withIdentifier: segueTrafficMapViewController, sender: nil)
             tableView.deselectRow(at: indexPath, animated: true)
