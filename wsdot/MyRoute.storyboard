@@ -237,8 +237,11 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Hk-S7-uDX">
-                                                    <rect key="frame" x="238" y="6" width="96" height="28"/>
+                                                    <rect key="frame" x="238" y="0.0" width="96" height="40"/>
                                                     <color key="backgroundColor" red="0.0" green="0.68235294120000001" blue="0.16429793400000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="gtF-oy-koJ"/>
+                                                    </constraints>
                                                     <inset key="contentEdgeInsets" minX="4" minY="5" maxX="4" maxY="5"/>
                                                     <state key="normal" title="Check Alerts">
                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -246,8 +249,9 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="2Hk-S7-uDX" firstAttribute="trailing" secondItem="0d8-XZ-D9p" secondAttribute="trailingMargin" id="LjF-62-WmD"/>
-                                                <constraint firstItem="2Hk-S7-uDX" firstAttribute="centerY" secondItem="0d8-XZ-D9p" secondAttribute="centerY" id="QAI-Th-Cee"/>
+                                                <constraint firstItem="2Hk-S7-uDX" firstAttribute="trailing" secondItem="0d8-XZ-D9p" secondAttribute="trailingMargin" id="1fW-LB-yoQ"/>
+                                                <constraint firstAttribute="bottom" secondItem="2Hk-S7-uDX" secondAttribute="bottom" id="LYy-aF-RoB"/>
+                                                <constraint firstItem="2Hk-S7-uDX" firstAttribute="top" secondItem="0d8-XZ-D9p" secondAttribute="top" id="WMY-vy-Y1b"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -308,6 +312,11 @@
                             <constraint firstItem="70U-Fz-khP" firstAttribute="bottom" secondItem="Kg7-rv-Fv5" secondAttribute="top" id="l6L-GE-p9P"/>
                             <constraint firstItem="70U-Fz-khP" firstAttribute="trailing" secondItem="y2u-Z5-KoA" secondAttribute="trailing" id="z12-C0-Cc0"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="70U-Fz-khP"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Favorites" id="aSt-Ai-e5J">
                         <rightBarButtonItems>
