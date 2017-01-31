@@ -141,7 +141,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Xpe-Fb-HQB">
-                        <barButtonItem key="leftBarButtonItem" title="My Route" id="Ejb-wh-GPG">
+                        <barButtonItem key="leftBarButtonItem" title="Favorites" id="Ejb-wh-GPG">
                             <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.16429793400000001" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="MyRouteButtonPressed:" destination="4jS-98-Vld" id="ww4-Fp-meO"/>

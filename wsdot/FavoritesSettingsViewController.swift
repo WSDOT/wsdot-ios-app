@@ -25,7 +25,7 @@ class FavoritesSettingsViewController: UIViewController {
     let sectionCellIdentifier = "SectionCell"
     let routeCellIdentifier = "RouteCell"
     
-    let numFavoriteSections = 7
+    let numFavoriteSections = 6
     
     var sectionTypesOrderRawArray = UserDefaults.standard.array(forKey: UserDefaultsKeys.favoritesOrder) as? [Int] ?? [Int]()
     
@@ -64,7 +64,6 @@ class FavoritesSettingsViewController: UIViewController {
         self.present(alertController, animated: false, completion: nil)
     
     }
-    
 }
 
 // MARK: - TableView
