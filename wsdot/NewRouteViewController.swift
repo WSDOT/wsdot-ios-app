@@ -175,6 +175,10 @@ class NewRouteViewController: UIViewController {
         let resultsAction = UIAlertAction(title: "View Route Results", style: .default, handler: {(_) -> Void in
             self.hideRecordingView(duration: 0.5)
             
+            // TEST
+            self.locations = MyRouteStore.getFakeData()
+            
+            
             if (self.displayRouteOnMap(locations: self.locations)){
             
                 self.startButton.isHidden = true

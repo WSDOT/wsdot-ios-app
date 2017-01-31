@@ -229,6 +229,31 @@
                                             <outlet property="weatherImage" destination="bQ7-DG-KBi" id="fXa-9c-qSX"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyRouteCell" rowHeight="41" id="OeY-Ui-hxY" customClass="MyRouteCell" customModule="WSDOT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="442" width="375" height="41"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OeY-Ui-hxY" id="0d8-XZ-D9p">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="40"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Hk-S7-uDX">
+                                                    <rect key="frame" x="238" y="6" width="96" height="28"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.68235294120000001" blue="0.16429793400000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <inset key="contentEdgeInsets" minX="4" minY="5" maxX="4" maxY="5"/>
+                                                    <state key="normal" title="Check Alerts">
+                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="2Hk-S7-uDX" firstAttribute="trailing" secondItem="0d8-XZ-D9p" secondAttribute="trailingMargin" id="LjF-62-WmD"/>
+                                                <constraint firstItem="2Hk-S7-uDX" firstAttribute="centerY" secondItem="0d8-XZ-D9p" secondAttribute="centerY" id="QAI-Th-Cee"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="checkAlertsButton" destination="2Hk-S7-uDX" id="SN6-b6-Tha"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="Sow-AE-mpU" id="YXd-bU-8eW"/>
@@ -313,7 +338,7 @@
                         <segue destination="fds-7b-6dM" kind="show" identifier="TrafficMapViewController" id="CHj-Cw-w4r"/>
                         <segue destination="1c8-xN-GDc" kind="show" identifier="TravelTimeViewController" id="z4a-wG-wX3"/>
                         <segue destination="HBz-Ys-0pP" kind="show" identifier="MountianPassDetailsViewController" id="2Xi-uu-lpF"/>
-                        <segue destination="Q2z-Np-ryV" kind="show" identifier="HighwayAlertViewController" id="DxD-OF-xvF"/>
+                        <segue destination="l6l-fh-LqO" kind="show" identifier="MyRouteAlertsViewController" id="ouF-Gr-SRX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IWz-d1-mpb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -562,7 +587,90 @@
                 <viewControllerPlaceholder storyboardName="MountainPasses" referencedIdentifier="MountainPassTabBarViewController" id="HBz-Ys-0pP" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OB5-eq-UJa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="892" y="343"/>
+            <point key="canvasLocation" x="892" y="307"/>
+        </scene>
+        <!--My Route Alerts View Controller-->
+        <scene sceneID="wuo-NN-BSR">
+            <objects>
+                <viewController id="l6l-fh-LqO" customClass="MyRouteAlertsViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eJ8-pU-G3Y"/>
+                        <viewControllerLayoutGuide type="bottom" id="3P8-hc-sFf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZEW-sR-bCH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="AlertCell" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uaa-5v-TNM">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="AlertCell" rowHeight="72" id="xO8-8g-dvI" customClass="LinkCell" customModule="WSDOT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="72"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xO8-8g-dvI" id="RKz-gy-ipy">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="71"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQl-Cp-usJ" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
+                                                    <rect key="frame" x="16" y="8" width="318" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kf4-rc-KeQ">
+                                                    <rect key="frame" x="16" y="37" width="318" height="26.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="wQl-Cp-usJ" firstAttribute="leading" secondItem="RKz-gy-ipy" secondAttribute="leadingMargin" constant="8" id="59Q-BC-rWB"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="kf4-rc-KeQ" secondAttribute="bottom" id="JmQ-CG-8hW"/>
+                                                <constraint firstItem="wQl-Cp-usJ" firstAttribute="leading" secondItem="kf4-rc-KeQ" secondAttribute="leading" id="O9i-Yp-NhL"/>
+                                                <constraint firstItem="kf4-rc-KeQ" firstAttribute="top" secondItem="wQl-Cp-usJ" secondAttribute="bottom" constant="8" symbolic="YES" id="Vz7-gm-jPH"/>
+                                                <constraint firstItem="wQl-Cp-usJ" firstAttribute="trailing" secondItem="kf4-rc-KeQ" secondAttribute="trailing" id="Yyt-lM-NZR"/>
+                                                <constraint firstItem="wQl-Cp-usJ" firstAttribute="trailing" secondItem="RKz-gy-ipy" secondAttribute="trailingMargin" id="clz-0y-rc9"/>
+                                                <constraint firstItem="wQl-Cp-usJ" firstAttribute="top" secondItem="RKz-gy-ipy" secondAttribute="topMargin" id="kDO-Kh-MPC"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="linkLabel" destination="wQl-Cp-usJ" id="a7K-4l-7Yj"/>
+                                            <outlet property="updateTime" destination="kf4-rc-KeQ" id="YvU-9x-hLx"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="l6l-fh-LqO" id="lZB-WW-gYU"/>
+                                    <outlet property="delegate" destination="l6l-fh-LqO" id="5oS-qF-U9d"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uaa-5v-TNM" firstAttribute="top" secondItem="eJ8-pU-G3Y" secondAttribute="bottom" id="ATv-Ae-chz"/>
+                            <constraint firstAttribute="trailing" secondItem="uaa-5v-TNM" secondAttribute="trailing" id="WiS-pS-89S"/>
+                            <constraint firstItem="uaa-5v-TNM" firstAttribute="leading" secondItem="ZEW-sR-bCH" secondAttribute="leading" id="Xqt-3H-lV8"/>
+                            <constraint firstItem="uaa-5v-TNM" firstAttribute="bottom" secondItem="3P8-hc-sFf" secondAttribute="top" id="nW3-hq-nmL"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="uaa-5v-TNM" id="1hX-va-0SP"/>
+                        <segue destination="WQr-lU-0Kb" kind="show" identifier="HighwayAlertViewController" id="8YP-zi-g2n"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PFu-pC-lLF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="892" y="813.64317841079469"/>
+        </scene>
+        <!--HighwayAlert-->
+        <scene sceneID="aFy-Qe-aDT">
+            <objects>
+                <viewControllerPlaceholder storyboardName="HighwayAlert" id="WQr-lU-0Kb" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KYS-RO-Un9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1470" y="813"/>
         </scene>
         <!--TravelTimeDetails-->
         <scene sceneID="PYm-kO-ivx">
@@ -595,14 +703,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BPU-z4-cjU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="852" y="160"/>
-        </scene>
-        <!--HighwayAlert-->
-        <scene sceneID="Dv3-Dt-KY5">
-            <objects>
-                <viewControllerPlaceholder storyboardName="HighwayAlert" id="Q2z-Np-ryV" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZSx-7A-vrh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="784" y="305"/>
         </scene>
     </scenes>
     <resources>
