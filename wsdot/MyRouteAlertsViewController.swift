@@ -19,6 +19,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MyRouteAlertsViewController: UIViewController {
 
@@ -54,20 +55,10 @@ class MyRouteAlertsViewController: UIViewController {
             route = value
             
             let serviceGroup = DispatchGroup();
-                
+            
             requestAlertsUpdate(force, serviceGroup: serviceGroup)
                 
             serviceGroup.notify(queue: DispatchQueue.main) {
-                
-                let alerts = HighwayAlertsStore.getAllAlerts()
-                
-                
-                self.alerts = MyRouteStore.selectNearbyAlerts(forRoute: self.route!, withAlerts: alerts)
-                
-                
-                
-                
-                self.alerts = self.alerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
                 self.tableView.reloadData()
                 self.hideOverlayView()
                 self.refreshControl.endRefreshing()
@@ -77,9 +68,43 @@ class MyRouteAlertsViewController: UIViewController {
 
     fileprivate func requestAlertsUpdate(_ force: Bool, serviceGroup: DispatchGroup) {
         serviceGroup.enter()
+        
+        let routeRef = ThreadSafeReference(to: self.route!)
+        
         DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async {[weak self] in
             HighwayAlertsStore.updateAlerts(force, completion: { error in
                 if (error == nil){
+                
+                    let routeItem = try! Realm().resolve(routeRef)
+                    let nearbyAlerts = MyRouteStore.getNearbyAlerts(forRoute: routeItem!, withAlerts: HighwayAlertsStore.getAllAlerts())
+                    
+                    self!.alerts.removeAll()
+                    
+                    // copy alerts to unmanaged Realm object so we can access on main thread.
+                    for alert in nearbyAlerts {
+                        let tempAlert = HighwayAlertItem()
+                        tempAlert.alertId = alert.alertId
+                        tempAlert.county = alert.county
+                        tempAlert.delete = alert.delete
+                        tempAlert.endLatitude = alert.endLatitude
+                        tempAlert.endLongitude = alert.endLongitude
+                        tempAlert.endTime = alert.endTime
+                        tempAlert.eventCategory = alert.eventCategory
+                        tempAlert.eventStatus = alert.eventStatus
+                        tempAlert.extendedDesc = alert.extendedDesc
+                        tempAlert.headlineDesc = alert.headlineDesc
+                        tempAlert.lastUpdatedTime = alert.lastUpdatedTime
+                        tempAlert.priority = alert.priority
+                        tempAlert.region = alert.region
+                        tempAlert.startDirection = alert.startDirection
+                        tempAlert.startLatitude = alert.startLatitude
+                        tempAlert.startLongitude = alert.startLongitude
+                        tempAlert.startTime = alert.startTime
+                        self!.alerts.append(tempAlert)
+                    }
+
+                    self!.alerts = self!.alerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
+                    
                     serviceGroup.leave()
                 }else{
                     serviceGroup.leave()
@@ -121,7 +146,6 @@ class MyRouteAlertsViewController: UIViewController {
     // MARK: Naviagtion
     // Get refrence to child VC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if segue.identifier == segueHighwayAlertViewController {
             let alertItem = (sender as! HighwayAlertItem)
             let destinationViewController = segue.destination as! HighwayAlertViewController
@@ -130,8 +154,6 @@ class MyRouteAlertsViewController: UIViewController {
     }
 
 }
-
-
 
 // MARK: - TableView
 extension MyRouteAlertsViewController:  UITableViewDataSource, UITableViewDelegate {
