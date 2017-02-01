@@ -228,7 +228,7 @@ class NewRouteViewController: UIViewController {
                 name = "My Route"
             }
         
-            _ =  MyRouteStore.save(route: self.locations, name: name,
+            let id =  MyRouteStore.save(route: self.locations, name: name,
                                         displayLat: self.mapView.projection.coordinate(for: self.mapView.center).latitude,
                                         displayLong: self.mapView.projection.coordinate(for: self.mapView.center).longitude,
                                         displayZoom: self.mapView.camera.zoom)
@@ -238,7 +238,7 @@ class NewRouteViewController: UIViewController {
 
             let noAction = UIAlertAction(title: "No", style: .default) { (_) -> Void in
     
-                _ = MyRouteStore.turnOffFindNearby(route: MyRouteStore.getSavedRoute()!)
+                _ = MyRouteStore.turnOffFindNearby(route: MyRouteStore.getRouteById(id)!)
                 _ = self.navigationController?.popViewController(animated: true)
             }
                 

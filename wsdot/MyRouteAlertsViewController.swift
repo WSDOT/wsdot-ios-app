@@ -51,8 +51,7 @@ class MyRouteAlertsViewController: UIViewController {
 
     func loadAlerts(force: Bool){
         
-        if let value = MyRouteStore.getSavedRoute() {
-            route = value
+        if route != nil {
             
             let serviceGroup = DispatchGroup();
             

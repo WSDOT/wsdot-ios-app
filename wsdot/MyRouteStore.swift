@@ -37,22 +37,26 @@ enum FavoritesContent: Int {
 class MyRouteStore {
     
     // titles for each content type section.
-    static let sectionTitles = ["Saved Route", "Ferry Schedules", "Mountain Passes", "Traffic Map Locations", "Cameras", "Travel Times"]
+    static let sectionTitles = ["Saved Routes", "Ferry Schedules", "Mountain Passes", "Traffic Map Locations", "Cameras", "Travel Times"]
     
     static func getRoutes() -> [MyRouteItem] {
         let realm = try! Realm()
         return Array(realm.objects(MyRouteItem.self))
     }
     
-    static func getSavedRoute() -> MyRouteItem? {
+    static func getRouteById(_ id: Int) -> MyRouteItem? {
         let realm = try! Realm()
-        let selectedRoute = realm.objects(MyRouteItem.self).filter("selected == true")
-        return selectedRoute.first
+        return realm.object(ofType: MyRouteItem.self, forPrimaryKey: id)
     }
     
-
-    // Creates a new MyRouteItem, sets selected to true, while setting selected to false for all other routes.
-    static func save(route: [CLLocation], name: String, displayLat: Double, displayLong: Double, displayZoom: Float) -> Bool {
+    static func getSelectedRoutes() -> [MyRouteItem] {
+        let realm = try! Realm()
+        let selectedRoutes = realm.objects(MyRouteItem.self).filter("selected == true")
+        return Array(selectedRoutes)
+    }
+    
+    // Creates a new MyRouteItem, returns the id of the newly saved route, or -1 on error
+    static func save(route: [CLLocation], name: String, displayLat: Double, displayLong: Double, displayZoom: Float) -> Int {
     
         let myRouteItem = MyRouteItem()
         
@@ -83,10 +87,10 @@ class MyRouteStore {
                 realm.add(myRouteItem, update: true)
             }
         } catch {
-            return false
+            return -1
         }
         
-        return true
+        return myRouteItem.id
     }
     
     fileprivate static func getSavedRouteId() -> Int {
@@ -130,17 +134,13 @@ class MyRouteStore {
         return true
     }
     
-    static func setSelected(_ selectedRoute: MyRouteItem) -> Bool {
+    static func toggleSelected(_ selectedRoute: MyRouteItem) -> Bool {
     
         let realm = try! Realm()
-        let routes = getRoutes()
         
         do {
             try realm.write{
-                for route in routes {
-                    route.selected = false
-                }
-                selectedRoute.selected = true
+                selectedRoute.selected = !selectedRoute.selected
             }
             return true
         } catch {
@@ -315,7 +315,7 @@ class MyRouteStore {
         }
         return false
     }
-/*
+
     static func getFakeData() -> [CLLocation] {
     
         var route = [CLLocation]()
@@ -13780,5 +13780,5 @@ class MyRouteStore {
     
     return route
     }
-*/
+
 }

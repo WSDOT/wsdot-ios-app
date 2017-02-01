@@ -178,6 +178,7 @@
 		9AFA0A871E300AEA000D0C70 /* MyRouteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA0A861E300AEA000D0C70 /* MyRouteStore.swift */; };
 		9AFDEA761E410626008DD51E /* MyRouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFDEA751E410626008DD51E /* MyRouteCell.swift */; };
 		9AFDEA781E410BF9008DD51E /* MyRouteAlertsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFDEA771E410BF9008DD51E /* MyRouteAlertsViewController.swift */; };
+		9AFDEA7A1E428970008DD51E /* MyRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFDEA791E428970008DD51E /* MyRouteViewController.swift */; };
 		9AFEECE11D3925400078A781 /* CachesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFEECE01D3925400078A781 /* CachesStore.swift */; };
 		C5EA6357148A1CD981855088 /* Pods_WSDOTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 690E6882E64B87BDA185B4DC /* Pods_WSDOTTests.framework */; };
 		E80A56DC6E52F237594FBD80 /* Pods_WSDOT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08B5584F4B8FFF1035CFBE34 /* Pods_WSDOT.framework */; };
@@ -405,6 +406,7 @@
 		9AFA0A861E300AEA000D0C70 /* MyRouteStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRouteStore.swift; sourceTree = "<group>"; };
 		9AFDEA751E410626008DD51E /* MyRouteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRouteCell.swift; sourceTree = "<group>"; };
 		9AFDEA771E410BF9008DD51E /* MyRouteAlertsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRouteAlertsViewController.swift; sourceTree = "<group>"; };
+		9AFDEA791E428970008DD51E /* MyRouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRouteViewController.swift; sourceTree = "<group>"; };
 		9AFEECE01D3925400078A781 /* CachesStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachesStore.swift; sourceTree = "<group>"; };
 		D8D316727AAA338CBCFCA3B1 /* Pods-WSDOTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOTTests/Pods-WSDOTTests.release.xcconfig"; sourceTree = "<group>"; };
 		DD91BB765A9161CFC06FF1DE /* Pods-WSDOTTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOTTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOTTests/Pods-WSDOTTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1325,6 +1327,7 @@
 				9AFDEA771E410BF9008DD51E /* MyRouteAlertsViewController.swift */,
 				9AFA0A7A1E280C31000D0C70 /* FavoritesSettingsViewController.swift */,
 				9AFA0A7C1E280C36000D0C70 /* NewRouteViewController.swift */,
+				9AFDEA791E428970008DD51E /* MyRouteViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1647,6 +1650,7 @@
 				9A1F5FA71D47E27200DA5F99 /* SailingSpacesItem.swift in Sources */,
 				9A06167A1D62285A00126520 /* VesselWatchViewController.swift in Sources */,
 				9A7BC0D41DA3F31B00EF760C /* GMUStaticCluster.m in Sources */,
+				9AFDEA7A1E428970008DD51E /* MyRouteViewController.swift in Sources */,
 				9AEF4D951D7608F7003ECA34 /* FlickrViewController.swift in Sources */,
 				9AEF4D8C1D75FEEC003ECA34 /* FacebookViewController.swift in Sources */,
 				9AEF4D851D75DC47003ECA34 /* BloggerCell.swift in Sources */,
