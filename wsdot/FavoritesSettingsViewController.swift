@@ -23,13 +23,10 @@ import UIKit
 class FavoritesSettingsViewController: UIViewController {
 
     let sectionCellIdentifier = "SectionCell"
-    let routeCellIdentifier = "RouteCell"
     
     let numFavoriteSections = 6
     
     var sectionTypesOrderRawArray = UserDefaults.standard.array(forKey: UserDefaultsKeys.favoritesOrder) as? [Int] ?? [Int]()
-    
-    var myRoutes = MyRouteStore.getRoutes()
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -39,31 +36,6 @@ class FavoritesSettingsViewController: UIViewController {
         tableView.allowsSelectionDuringEditing = true
     }
     
-    func setRoute(sender: UIButton) {
-        _ = MyRouteStore.setSelected(myRoutes[sender.tag])
-        tableView.reloadData()
-    }
-    
-    func deleteRoute(sender: UIButton){
-        let alertController = UIAlertController(title: "Are you sure you want to delete this route?", message:"This cannot be undone.", preferredStyle: .alert)
-
-        alertController.view.tintColor = Colors.tintColor
-
-        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (_) -> Void in
-            
-            _ = MyRouteStore.delete(route: self.myRoutes.remove(at: sender.tag))
-            self.tableView.reloadData()
-            
-        }
-            
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            
-        alertController.addAction(cancelAction)
-        alertController.addAction(deleteAction)
-            
-        self.present(alertController, animated: false, completion: nil)
-    
-    }
 }
 
 // MARK: - TableView
@@ -73,11 +45,7 @@ extension FavoritesSettingsViewController:  UITableViewDataSource, UITableViewDe
 
     func numberOfSections(in tableView: UITableView) -> Int {
     
-        var numSections = 1
-    
-        numSections += myRoutes.count != 0 ? 1 : 0
-    
-        return numSections
+        return 1
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -92,8 +60,6 @@ extension FavoritesSettingsViewController:  UITableViewDataSource, UITableViewDe
         switch section {
             case 0:
                 return "Organize Favorites"
-            case 1:
-                return "Manage Saved Routes"
             default:
                 return ""
         }
@@ -103,8 +69,6 @@ extension FavoritesSettingsViewController:  UITableViewDataSource, UITableViewDe
         switch section {
             case 0:
                 return numFavoriteSections
-            case 1:
-                return myRoutes.count
             default:
                 return 0
         }
@@ -121,46 +85,8 @@ extension FavoritesSettingsViewController:  UITableViewDataSource, UITableViewDe
             
             return sectionCell
             
-        case 1:
-        
-            let routeCell = tableView.dequeueReusableCell(withIdentifier: routeCellIdentifier, for: indexPath) as! MyRouteSettingsCell
-            
-            routeCell.titleLabel.text = myRoutes[indexPath.row].name
-            
-            routeCell.setButton.layer.cornerRadius = 5
-            
-            if myRoutes[indexPath.row].selected {
-                routeCell.setButton.layer.borderColor = Colors.tintColor.cgColor
-                routeCell.setButton.backgroundColor = Colors.tintColor
-                routeCell.setButton.tintColor = UIColor.white
-            } else {
-                routeCell.setButton.layer.borderColor = UIColor.clear.cgColor
-                routeCell.setButton.backgroundColor = UIColor.clear
-                routeCell.setButton.tintColor = Colors.tintColor
-            }
-            
-            routeCell.setButton.tag = indexPath.row
-            routeCell.setButton.addTarget(self, action:#selector(FavoritesSettingsViewController.setRoute), for: .touchUpInside)
-            
-            routeCell.deleteButton.tag = indexPath.row
-            routeCell.deleteButton.addTarget(self, action:#selector(FavoritesSettingsViewController.deleteRoute), for: .touchUpInside)
-            
-            return routeCell
-            
         default:
             return tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch (indexPath.section){
-        case 1:
-            _ = MyRouteStore.setSelected(myRoutes[indexPath.row])
-            tableView.reloadData()
-            tableView.deselectRow(at: indexPath, animated: true)
-            break
-        default:
-            break
         }
     }
     

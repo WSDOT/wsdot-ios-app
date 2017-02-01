@@ -24,12 +24,11 @@ class FavoritesHomeViewController: UIViewController {
     
     let refreshControl = UIRefreshControl()
     var activityIndicator = UIActivityIndicatorView()
-    var loadingRouteAlert = UIAlertController()
 
     // content types for the favorites list in order to appear on list.
     var sectionTypes: [FavoritesContent] = [.route, .ferrySchedule, .mountainPass, .camera, .travelTime]
 
-    let segueNewRouteViewController = "NewRouteViewController"
+    let segueMyRouteViewController = "MyRouteViewController"
     let segueMyRouteAlertsViewController = "MyRouteAlertsViewController"
     let segueFavoritesSettingsViewController = "FavoritesSettingsViewController"
     let segueTrafficMapViewController = "TrafficMapViewController"
@@ -49,8 +48,7 @@ class FavoritesHomeViewController: UIViewController {
     var ferrySchedules = [FerryScheduleItem]()
     var mountainPasses = [MountainPassItem]()
     var savedLocations = [FavoriteLocationItem]()
-
-    var myRoute: MyRouteItem? = nil
+    var myRoutes = [MyRouteItem]()
 
     @IBOutlet weak var emptyFavoritesView: UIView!
     @IBOutlet weak var tableView: UITableView!
@@ -76,12 +74,7 @@ class FavoritesHomeViewController: UIViewController {
     }
     
     @IBAction func createNewRouteButtonPressed(_ sender: UIBarButtonItem) {
-    
-        if MyRouteStore.getRoutes().count == 3 {
-            self.present(AlertMessages.getAlert("Max Number of Routes Saved", message: "Please delete a saved route before making a new one", confirm: "OK"), animated: true, completion: nil)
-        } else {
-            performSegue(withIdentifier: segueNewRouteViewController, sender: self)
-        }
+        performSegue(withIdentifier: segueMyRouteViewController, sender: self)
     }
     
     /**
@@ -106,11 +99,7 @@ class FavoritesHomeViewController: UIViewController {
         case .travelTime:
             return travelTimes.count
         case .route:
-            if MyRouteStore.getSavedRoute() != nil {
-                return 1
-            } else {
-                return 0
-            }
+            return myRoutes.count
         case .ferrySchedule:
             return ferrySchedules.count
         case .mountainPass:
@@ -134,7 +123,7 @@ class FavoritesHomeViewController: UIViewController {
     
         switch (sectionTypes[forSection] ) {
         case .route:
-            return myRoute == nil ? "" : MyRouteStore.sectionTitles[FavoritesContent.route.rawValue]
+            return myRoutes.count > 0 ? MyRouteStore.sectionTitles[FavoritesContent.route.rawValue] : ""
         case .camera:
             return cameras.count > 0 ? MyRouteStore.sectionTitles[FavoritesContent.camera.rawValue] : ""
         case .travelTime:
@@ -183,7 +172,7 @@ class FavoritesHomeViewController: UIViewController {
      * Description: action func for check alerts button on a route cell
      */
     func checkAlerts(sender: UIButton){
-        performSegue(withIdentifier: segueMyRouteAlertsViewController, sender: self)
+        performSegue(withIdentifier: segueMyRouteAlertsViewController, sender: sender)
     }
 }
 
@@ -194,68 +183,25 @@ extension FavoritesHomeViewController {
 
     /**
      * Method name: initContent()
-     * Description: Starts loading favorites content, first by using users route to populate favorites if it hasen't already.
+     * Description: Starts loading favorites content
      */
     func initContent(){
     
-        // pick which overlay to display
-        myRoute = MyRouteStore.getSavedRoute()
-        
-        if let route = myRoute {
-            if !route.hasFoundNearbyItems {
-                showRouteOverlay()
-            } else {
-                showOverlay(self.view)
-            }
-        } else {
-            showOverlay(self.view)
-        }
-        
         // Check if we have any favorites to show already.
         cameras = CamerasStore.getFavoriteCameras()
         travelTimes = TravelTimesStore.findFavoriteTimes()
         ferrySchedules = FerryRealmStore.findFavoriteSchedules()
         mountainPasses = MountainPassStore.findFavoritePasses()
         savedLocations = FavoriteLocationStore.getFavorites()
+        myRoutes = MyRouteStore.getSelectedRoutes()
     
         if (tableEmpty()){
             emptyFavoritesView.isHidden = false
         }else {
             emptyFavoritesView.isHidden = true
         }
-    
-        if myRoute != nil {
-        
-            // First time loading this route, retrieve nearby items
-            if !myRoute!.hasFoundNearbyItems {
-                
-                let serviceGroup = DispatchGroup();
-                
-                requestFerriesUpdate(true, serviceGroup: serviceGroup)
-                requestCamerasUpdate(true, serviceGroup: serviceGroup)
-                requestTravelTimesUpdate(true, serviceGroup: serviceGroup)
-                requestMountainPassesUpdate(true, serviceGroup: serviceGroup)
-                
-                serviceGroup.notify(queue: DispatchQueue.main) {
-                    
-                    _ = MyRouteStore.selectNearbyCameras(forRoute: self.myRoute!)
-                    _ = MyRouteStore.selectNearbyTravelTimes(forRoute: self.myRoute!)
-                    _ = MyRouteStore.selectNearbyFerries(forRoute: self.myRoute!)
-                    _ = MyRouteStore.selectNearbyPasses(forRoute: self.myRoute!)
-                    
-                    _ = MyRouteStore.turnOffFindNearby(route: self.myRoute!)
-                    
-                    // dismiss the routeLoadingOverlay
-                    self.loadingRouteAlert.dismiss(animated: true, completion: nil)
-                    
-                    self.loadSelectedContent(false)
-                }
-            } else {
-                loadSelectedContent(false)
-            }
-        } else {
-            loadSelectedContent(false)
-        }
+
+        loadSelectedContent(force: false)
     }
 
     /**
@@ -263,7 +209,7 @@ extension FavoritesHomeViewController {
      * Description: collects data from Stores to build favorites list. Uses a serviceGroup to collect data async.
      * Parameters: force: setting true will force Stores to update their data.
      */
-    fileprivate func loadSelectedContent(_ force: Bool){
+    fileprivate func loadSelectedContent(force: Bool){
 
         let serviceGroup = DispatchGroup();
         
@@ -324,19 +270,8 @@ extension FavoritesHomeViewController {
         activityIndicator.removeFromSuperview()
     }
 
-    func showRouteOverlay(){
-        loadingRouteAlert = UIAlertController(title: nil, message: "Finding Favorites...", preferredStyle: .alert)
-        loadingRouteAlert.view.tintColor = UIColor.black
-        let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame:CGRect(x:10, y:5, width:50, height:50)) as UIActivityIndicatorView
-        loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-        loadingIndicator.startAnimating();
-        loadingRouteAlert.view.addSubview(loadingIndicator)
-        self.present(loadingRouteAlert, animated: true, completion: nil)
-    }
-
     func refreshAction(_ refreshController: UIRefreshControl){
-        loadSelectedContent(true)
+        loadSelectedContent(force: true)
     }
 
     /**
@@ -350,10 +285,10 @@ extension FavoritesHomeViewController {
             (self.ferrySchedules.count == 0) &&
             (self.mountainPasses.count == 0) &&
             (self.savedLocations.count == 0) &&
-            (self.myRoute == nil)
+            (self.myRoutes.count == 0)
     }
 
-    fileprivate func requestCamerasUpdate(_ force: Bool, serviceGroup: DispatchGroup) {
+    func requestCamerasUpdate(_ force: Bool, serviceGroup: DispatchGroup) {
         serviceGroup.enter()
         DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async {[weak self] in
             CamerasStore.updateCameras(force, completion: { error in
@@ -371,7 +306,7 @@ extension FavoritesHomeViewController {
         }
     }
     
-    fileprivate func requestTravelTimesUpdate(_ force: Bool, serviceGroup: DispatchGroup){
+    func requestTravelTimesUpdate(_ force: Bool, serviceGroup: DispatchGroup){
         serviceGroup.enter()
         DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async { [weak self] in
             TravelTimesStore.updateTravelTimes(force, completion: { error in
@@ -389,7 +324,7 @@ extension FavoritesHomeViewController {
         }
     }
     
-    fileprivate func requestFerriesUpdate(_ force: Bool, serviceGroup: DispatchGroup){
+    func requestFerriesUpdate(_ force: Bool, serviceGroup: DispatchGroup){
         serviceGroup.enter()
         DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async { [weak self] in
             FerryRealmStore.updateRouteSchedules(force, completion: { error in
@@ -407,7 +342,7 @@ extension FavoritesHomeViewController {
         }
     }
     
-    fileprivate func requestMountainPassesUpdate(_ force: Bool, serviceGroup: DispatchGroup){
+    func requestMountainPassesUpdate(_ force: Bool, serviceGroup: DispatchGroup){
         serviceGroup.enter()
         DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async {[weak self] in
             MountainPassStore.updatePasses(force, completion: { error in
@@ -547,7 +482,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             routeCell.checkAlertsButton.addTarget(self, action:#selector(FavoritesHomeViewController.checkAlerts), for: .touchUpInside)
             routeCell.checkAlertsButton.layer.cornerRadius = 3
             
-            routeCell.textLabel?.text = myRoute!.name
+            routeCell.textLabel?.text = myRoutes[indexPath.row].name
             return routeCell
         
         }
@@ -582,7 +517,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 if name.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "" {
                     name = "My Route"
                 }
-                _ = MyRouteStore.updateName(forRoute: MyRouteStore.getSavedRoute()!, name)
+                _ = MyRouteStore.updateName(forRoute: MyRouteStore.getSelectedRoutes()[indexPath.row], name)
                 self.tableView.reloadData()
             }
             
@@ -631,8 +566,8 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (_) -> Void in
                     tableView.reloadData()
                 
-                    _ = MyRouteStore.delete(route: self.myRoute!)
-                    self.myRoute = nil
+                    _ = MyRouteStore.delete(route: self.myRoutes[indexPath.row])
+                    self.myRoutes.remove(at: indexPath.row)
                     
                     self.tableView.deleteRows(at: [indexPath], with: .fade)
                     
@@ -695,9 +630,9 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             if let indexPath = tableView.indexPathForSelectedRow {
             
                 if getType(forSection: indexPath.section) == .route {
-                    UserDefaults.standard.set(myRoute!.displayLatitude, forKey: UserDefaultsKeys.mapLat)
-                    UserDefaults.standard.set(myRoute!.displayLongitude, forKey: UserDefaultsKeys.mapLon)
-                    UserDefaults.standard.set(myRoute!.displayZoom, forKey: UserDefaultsKeys.mapZoom)
+                    UserDefaults.standard.set(myRoutes[indexPath.row].displayLatitude, forKey: UserDefaultsKeys.mapLat)
+                    UserDefaults.standard.set(myRoutes[indexPath.row].displayLongitude, forKey: UserDefaultsKeys.mapLon)
+                    UserDefaults.standard.set(myRoutes[indexPath.row].displayZoom, forKey: UserDefaultsKeys.mapZoom)
                     segue.destination.title = "Traffic Map"
                 }else{
                     let locationItem = self.savedLocations[indexPath.row] as FavoriteLocationItem
@@ -710,7 +645,11 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
         }
        
         if segue.identifier == segueMyRouteAlertsViewController {
-            segue.destination.title = "Alerts On Route: \(myRoute!.name)"
+            if let alertButton =  sender as! UIButton? {
+                let destinationViewController = segue.destination as! MyRouteAlertsViewController
+                destinationViewController.title = "Alerts On Route: \(myRoutes[alertButton.tag].name)"
+                destinationViewController.route = myRoutes[alertButton.tag]
+            }
         }
         
         if segue.identifier == segueCameraViewController {

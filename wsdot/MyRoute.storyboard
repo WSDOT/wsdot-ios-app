@@ -229,18 +229,19 @@
                                             <outlet property="weatherImage" destination="bQ7-DG-KBi" id="fXa-9c-qSX"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyRouteCell" rowHeight="41" id="OeY-Ui-hxY" customClass="MyRouteCell" customModule="WSDOT" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="442" width="375" height="41"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyRouteCell" rowHeight="67" id="OeY-Ui-hxY" customClass="MyRouteCell" customModule="WSDOT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="442" width="375" height="67"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OeY-Ui-hxY" id="0d8-XZ-D9p">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="40"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="66"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Hk-S7-uDX">
-                                                    <rect key="frame" x="238" y="0.0" width="96" height="40"/>
+                                                    <rect key="frame" x="232" y="13" width="102" height="40"/>
                                                     <color key="backgroundColor" red="0.0" green="0.68235294120000001" blue="0.16429793400000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="40" id="gtF-oy-koJ"/>
+                                                        <constraint firstAttribute="height" constant="40" id="4em-67-TTW"/>
+                                                        <constraint firstAttribute="width" constant="102" id="Nf6-Rt-VT1"/>
                                                     </constraints>
                                                     <inset key="contentEdgeInsets" minX="4" minY="5" maxX="4" maxY="5"/>
                                                     <state key="normal" title="Check Alerts">
@@ -249,9 +250,8 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="2Hk-S7-uDX" firstAttribute="trailing" secondItem="0d8-XZ-D9p" secondAttribute="trailingMargin" id="1fW-LB-yoQ"/>
-                                                <constraint firstAttribute="bottom" secondItem="2Hk-S7-uDX" secondAttribute="bottom" id="LYy-aF-RoB"/>
-                                                <constraint firstItem="2Hk-S7-uDX" firstAttribute="top" secondItem="0d8-XZ-D9p" secondAttribute="top" id="WMY-vy-Y1b"/>
+                                                <constraint firstItem="2Hk-S7-uDX" firstAttribute="centerY" secondItem="0d8-XZ-D9p" secondAttribute="centerY" id="PHL-aG-yJR"/>
+                                                <constraint firstItem="2Hk-S7-uDX" firstAttribute="trailing" secondItem="0d8-XZ-D9p" secondAttribute="trailingMargin" id="fZ1-yA-Ubz"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -321,7 +321,7 @@
                                     <action selector="favoritesSettingButtonPressed:" destination="Sow-AE-mpU" id="NR5-1U-0yq"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="icNewRoute" id="hNi-oY-vcF">
+                            <barButtonItem image="icMyRoute" id="hNi-oY-vcF">
                                 <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.16429793400000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="createNewRouteButtonPressed:" destination="Sow-AE-mpU" id="OxU-HU-90t"/>
@@ -335,7 +335,6 @@
                     <connections>
                         <outlet property="emptyFavoritesView" destination="70U-Fz-khP" id="uh7-U7-JgV"/>
                         <outlet property="tableView" destination="y2u-Z5-KoA" id="u9I-TE-bPr"/>
-                        <segue destination="0Na-gD-JAb" kind="show" identifier="NewRouteViewController" id="29G-9i-TXQ"/>
                         <segue destination="XD5-yD-azC" kind="show" identifier="FavoritesSettingsViewController" id="DuL-k9-KAR"/>
                         <segue destination="seE-fV-6oe" kind="show" identifier="SailingsViewController" id="Jv8-z6-s2g"/>
                         <segue destination="hHk-Zh-SEc" kind="show" identifier="CameraViewController" id="p2d-g6-8fW"/>
@@ -343,11 +342,106 @@
                         <segue destination="1c8-xN-GDc" kind="show" identifier="TravelTimeViewController" id="z4a-wG-wX3"/>
                         <segue destination="HBz-Ys-0pP" kind="show" identifier="MountianPassDetailsViewController" id="2Xi-uu-lpF"/>
                         <segue destination="l6l-fh-LqO" kind="show" identifier="MyRouteAlertsViewController" id="ouF-Gr-SRX"/>
+                        <segue destination="Eg9-Ai-gUk" kind="show" identifier="MyRouteViewController" id="xbI-pa-zFX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IWz-d1-mpb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="184.80000000000001" y="85.907046476761622"/>
+        </scene>
+        <!--My Routes-->
+        <scene sceneID="sqI-bP-Kmg">
+            <objects>
+                <viewController id="Eg9-Ai-gUk" customClass="MyRouteViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qJ4-Mo-Oy2"/>
+                        <viewControllerLayoutGuide type="bottom" id="7sN-6Z-fxI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="an6-bx-iwA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YDU-yI-OVI">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RouteCell" id="gjX-Go-goH" customClass="MyRouteSettingsCell" customModule="WSDOT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gjX-Go-goH" id="Ii1-q0-4Xz">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sM4-x6-KKz">
+                                                    <rect key="frame" x="16" y="9" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="24" id="C0p-tZ-0lq"/>
+                                                        <constraint firstAttribute="height" constant="24" id="FY5-D4-gB7"/>
+                                                    </constraints>
+                                                    <state key="normal" image="icFavoriteDefault"/>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9YR-Dh-lzU">
+                                                    <rect key="frame" x="311" y="7" width="56" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="56" id="wkk-Vv-e0M"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Edit">
+                                                        <color key="titleColor" red="0.0" green="0.68235294120000001" blue="0.16429793400000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AUp-gY-Bfp">
+                                                    <rect key="frame" x="48" y="11" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="sM4-x6-KKz" firstAttribute="leading" secondItem="Ii1-q0-4Xz" secondAttribute="leadingMargin" constant="8" id="HAn-OK-2eL"/>
+                                                <constraint firstItem="sM4-x6-KKz" firstAttribute="centerY" secondItem="AUp-gY-Bfp" secondAttribute="centerY" id="Ru6-cz-rZY"/>
+                                                <constraint firstItem="9YR-Dh-lzU" firstAttribute="trailing" secondItem="Ii1-q0-4Xz" secondAttribute="trailingMargin" id="u0v-Pe-cVe"/>
+                                                <constraint firstItem="AUp-gY-Bfp" firstAttribute="leading" secondItem="sM4-x6-KKz" secondAttribute="trailing" constant="8" symbolic="YES" id="u2U-Rs-Mce"/>
+                                                <constraint firstItem="AUp-gY-Bfp" firstAttribute="baseline" secondItem="9YR-Dh-lzU" secondAttribute="baseline" id="vSe-CA-gwn"/>
+                                                <constraint firstItem="sM4-x6-KKz" firstAttribute="centerY" secondItem="Ii1-q0-4Xz" secondAttribute="centerY" id="xZt-hn-XQp"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="editButton" destination="9YR-Dh-lzU" id="CqY-D3-uX9"/>
+                                            <outlet property="setButton" destination="sM4-x6-KKz" id="wms-DJ-f5U"/>
+                                            <outlet property="titleLabel" destination="AUp-gY-Bfp" id="L6C-SG-dba"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Eg9-Ai-gUk" id="Fmy-Zy-tyc"/>
+                                    <outlet property="delegate" destination="Eg9-Ai-gUk" id="ixD-je-WLU"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YDU-yI-OVI" firstAttribute="top" secondItem="qJ4-Mo-Oy2" secondAttribute="bottom" id="7KQ-Jd-e7K"/>
+                            <constraint firstItem="YDU-yI-OVI" firstAttribute="bottom" secondItem="7sN-6Z-fxI" secondAttribute="top" id="awX-IK-ZM2"/>
+                            <constraint firstItem="YDU-yI-OVI" firstAttribute="leading" secondItem="an6-bx-iwA" secondAttribute="leading" id="c6g-be-mzl"/>
+                            <constraint firstAttribute="trailing" secondItem="YDU-yI-OVI" secondAttribute="trailing" id="mMu-0J-s7U"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="My Routes" id="kvg-nC-pKC">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="TRE-uI-K3p">
+                            <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.16429793400000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="newRouteButtonPressed:" destination="Eg9-Ai-gUk" id="NFs-fN-nHK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="YDU-yI-OVI" id="l25-Mz-QbM"/>
+                        <segue destination="0Na-gD-JAb" kind="show" identifier="NewRouteViewController" id="fQc-Eb-izU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iA6-On-w2i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="989.60000000000002" y="-640.02998500749629"/>
         </scene>
         <!--New Route-->
         <scene sceneID="XWH-5G-KqH">
@@ -490,7 +584,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eLo-ap-OG0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1573.5999999999999" y="-117.39130434782609"/>
+            <point key="canvasLocation" x="1788" y="-640"/>
         </scene>
         <!--Settings-->
         <scene sceneID="2G4-DK-jr3">
@@ -516,50 +610,6 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RouteCell" id="gjX-Go-goH" customClass="MyRouteSettingsCell" customModule="WSDOT" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="100" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gjX-Go-goH" id="Ii1-q0-4Xz">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sM4-x6-KKz">
-                                                    <rect key="frame" x="8" y="6" width="46" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="46" id="yBW-Td-slg"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Set"/>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9YR-Dh-lzU">
-                                                    <rect key="frame" x="321" y="6" width="46" height="30"/>
-                                                    <state key="normal" title="Delete">
-                                                        <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </state>
-                                                </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AUp-gY-Bfp">
-                                                    <rect key="frame" x="62" y="11" width="251" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="sM4-x6-KKz" firstAttribute="leading" secondItem="Ii1-q0-4Xz" secondAttribute="leadingMargin" id="FK8-fL-a8v"/>
-                                                <constraint firstItem="sM4-x6-KKz" firstAttribute="baseline" secondItem="9YR-Dh-lzU" secondAttribute="baseline" id="T9c-XW-NHW"/>
-                                                <constraint firstItem="9YR-Dh-lzU" firstAttribute="trailing" secondItem="Ii1-q0-4Xz" secondAttribute="trailingMargin" id="e72-bM-JCj"/>
-                                                <constraint firstItem="9YR-Dh-lzU" firstAttribute="leading" secondItem="AUp-gY-Bfp" secondAttribute="trailing" constant="8" symbolic="YES" id="ggn-UK-Ggi"/>
-                                                <constraint firstItem="AUp-gY-Bfp" firstAttribute="leading" secondItem="sM4-x6-KKz" secondAttribute="trailing" constant="8" symbolic="YES" id="jCC-ao-VrP"/>
-                                                <constraint firstItem="sM4-x6-KKz" firstAttribute="centerY" secondItem="Ii1-q0-4Xz" secondAttribute="centerY" id="lDe-aj-jK0"/>
-                                                <constraint firstItem="sM4-x6-KKz" firstAttribute="centerY" secondItem="AUp-gY-Bfp" secondAttribute="centerY" id="wY5-3q-p2W"/>
-                                                <constraint firstItem="AUp-gY-Bfp" firstAttribute="centerX" secondItem="Ii1-q0-4Xz" secondAttribute="centerX" id="xo2-Nn-HnY"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="deleteButton" destination="9YR-Dh-lzU" id="usy-Iq-n6y"/>
-                                            <outlet property="setButton" destination="sM4-x6-KKz" id="wms-DJ-f5U"/>
-                                            <outlet property="titleLabel" destination="AUp-gY-Bfp" id="L6C-SG-dba"/>
-                                        </connections>
-                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="XD5-yD-azC" id="qtk-dR-EKB"/>
@@ -583,7 +633,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ku-nw-fBJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="892" y="-508"/>
+            <point key="canvasLocation" x="1585" y="131"/>
         </scene>
         <!--MountainPassTabBarViewController-->
         <scene sceneID="oMs-Tn-cbj">
@@ -712,6 +762,6 @@
     <resources>
         <image name="icFavoriteDefault" width="32" height="32"/>
         <image name="icGear" width="24" height="24"/>
-        <image name="icNewRoute" width="24" height="24"/>
+        <image name="icMyRoute" width="24" height="24"/>
     </resources>
 </document>
