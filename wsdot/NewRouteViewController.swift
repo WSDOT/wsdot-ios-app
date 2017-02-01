@@ -176,8 +176,7 @@ class NewRouteViewController: UIViewController {
             self.hideRecordingView(duration: 0.5)
             
             // TEST
-            self.locations = MyRouteStore.getFakeData()
-            
+            // self.locations = MyRouteStore.getFakeData()
             
             if (self.displayRouteOnMap(locations: self.locations)){
             

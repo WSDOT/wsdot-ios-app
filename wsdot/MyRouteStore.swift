@@ -49,7 +49,7 @@ class MyRouteStore {
         let selectedRoute = realm.objects(MyRouteItem.self).filter("selected == true")
         return selectedRoute.first
     }
-
+    
 
     // Creates a new MyRouteItem, sets selected to true, while setting selected to false for all other routes.
     static func save(route: [CLLocation], name: String, displayLat: Double, displayLong: Double, displayZoom: Float) -> Bool {
@@ -315,7 +315,7 @@ class MyRouteStore {
         }
         return false
     }
-        
+/*
     static func getFakeData() -> [CLLocation] {
     
         var route = [CLLocation]()
@@ -13780,5 +13780,5 @@ class MyRouteStore {
     
     return route
     }
-
+*/
 }

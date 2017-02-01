@@ -17,7 +17,6 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
-
 import UIKit
 import Firebase
 import GoogleMobileAds
@@ -25,7 +24,6 @@ import UserNotifications
 import GoogleMaps
 import RealmSwift
 import Realm
-
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

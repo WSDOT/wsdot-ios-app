@@ -24,6 +24,7 @@ class FavoritesHomeViewController: UIViewController {
     
     let refreshControl = UIRefreshControl()
     var activityIndicator = UIActivityIndicatorView()
+    var loadingRouteAlert = UIAlertController()
 
     // content types for the favorites list in order to appear on list.
     var sectionTypes: [FavoritesContent] = [.route, .ferrySchedule, .mountainPass, .camera, .travelTime]
@@ -49,7 +50,7 @@ class FavoritesHomeViewController: UIViewController {
     var mountainPasses = [MountainPassItem]()
     var savedLocations = [FavoriteLocationItem]()
 
-    var myRoute: MyRouteItem?
+    var myRoute: MyRouteItem? = nil
 
     @IBOutlet weak var emptyFavoritesView: UIView!
     @IBOutlet weak var tableView: UITableView!
@@ -197,22 +198,33 @@ extension FavoritesHomeViewController {
      */
     func initContent(){
     
-        showOverlay(self.view)
+        // pick which overlay to display
+        myRoute = MyRouteStore.getSavedRoute()
         
+        if let route = myRoute {
+            if !route.hasFoundNearbyItems {
+                showRouteOverlay()
+            } else {
+                showOverlay(self.view)
+            }
+        } else {
+            showOverlay(self.view)
+        }
+        
+        // Check if we have any favorites to show already.
         cameras = CamerasStore.getFavoriteCameras()
         travelTimes = TravelTimesStore.findFavoriteTimes()
         ferrySchedules = FerryRealmStore.findFavoriteSchedules()
         mountainPasses = MountainPassStore.findFavoritePasses()
         savedLocations = FavoriteLocationStore.getFavorites()
-        
+    
         if (tableEmpty()){
             emptyFavoritesView.isHidden = false
         }else {
             emptyFavoritesView.isHidden = true
         }
     
-        if let value = MyRouteStore.getSavedRoute() {
-            myRoute = value
+        if myRoute != nil {
         
             // First time loading this route, retrieve nearby items
             if !myRoute!.hasFoundNearbyItems {
@@ -232,6 +244,9 @@ extension FavoritesHomeViewController {
                     _ = MyRouteStore.selectNearbyPasses(forRoute: self.myRoute!)
                     
                     _ = MyRouteStore.turnOffFindNearby(route: self.myRoute!)
+                    
+                    // dismiss the routeLoadingOverlay
+                    self.loadingRouteAlert.dismiss(animated: true, completion: nil)
                     
                     self.loadSelectedContent(false)
                 }
@@ -290,6 +305,7 @@ extension FavoritesHomeViewController {
      * Parameters: view: The view to display the loading indicator on.
      */
     func showOverlay(_ view: UIView) {
+    
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
         activityIndicator.activityIndicatorViewStyle = .whiteLarge
         activityIndicator.color = UIColor.gray
@@ -306,6 +322,17 @@ extension FavoritesHomeViewController {
     func hideOverlayView(){
         activityIndicator.stopAnimating()
         activityIndicator.removeFromSuperview()
+    }
+
+    func showRouteOverlay(){
+        loadingRouteAlert = UIAlertController(title: nil, message: "Finding Favorites...", preferredStyle: .alert)
+        loadingRouteAlert.view.tintColor = UIColor.black
+        let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame:CGRect(x:10, y:5, width:50, height:50)) as UIActivityIndicatorView
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        loadingIndicator.startAnimating();
+        loadingRouteAlert.view.addSubview(loadingIndicator)
+        self.present(loadingRouteAlert, animated: true, completion: nil)
     }
 
     func refreshAction(_ refreshController: UIRefreshControl){
