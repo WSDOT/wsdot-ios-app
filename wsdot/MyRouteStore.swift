@@ -201,7 +201,7 @@ class MyRouteStore {
         return true
     }
     
-    static func selectNearbyAlerts(forRoute: MyRouteItem, withAlerts: [HighwayAlertItem]) -> [HighwayAlertItem] {
+    static func getNearbyAlerts(forRoute: MyRouteItem, withAlerts: [HighwayAlertItem]) -> [HighwayAlertItem] {
     
         var nearbyAlerts = [HighwayAlertItem]()
         
