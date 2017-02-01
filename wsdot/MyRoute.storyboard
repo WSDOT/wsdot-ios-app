@@ -312,11 +312,6 @@
                             <constraint firstItem="70U-Fz-khP" firstAttribute="bottom" secondItem="Kg7-rv-Fv5" secondAttribute="top" id="l6L-GE-p9P"/>
                             <constraint firstItem="70U-Fz-khP" firstAttribute="trailing" secondItem="y2u-Z5-KoA" secondAttribute="trailing" id="z12-C0-Cc0"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="70U-Fz-khP"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Favorites" id="aSt-Ai-e5J">
                         <rightBarButtonItems>

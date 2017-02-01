@@ -58,10 +58,19 @@ class MyRouteAlertsViewController: UIViewController {
             requestAlertsUpdate(force, serviceGroup: serviceGroup)
                 
             serviceGroup.notify(queue: DispatchQueue.main) {
-                self.alerts = MyRouteStore.selectNearbyAlerts(forRoute: self.route!, withAlerts: HighwayAlertsStore.getAllAlerts())
+                
+                let alerts = HighwayAlertsStore.getAllAlerts()
+                
+                
+                self.alerts = MyRouteStore.selectNearbyAlerts(forRoute: self.route!, withAlerts: alerts)
+                
+                
+                
+                
                 self.alerts = self.alerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
                 self.tableView.reloadData()
                 self.hideOverlayView()
+                self.refreshControl.endRefreshing()
             }
         }
     }
@@ -83,6 +92,7 @@ class MyRouteAlertsViewController: UIViewController {
             })
         }
     }
+
 
     /**
      * Method name: showOverlay
