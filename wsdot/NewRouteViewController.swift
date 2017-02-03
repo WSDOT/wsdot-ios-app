@@ -91,6 +91,7 @@ class NewRouteViewController: UIViewController {
      * Parameters: duration: animation length in seconds.
      */
     func hideRecordingView(duration: Float) {
+        navigationItem.hidesBackButton = false
         UIView.animate(withDuration: TimeInterval(duration),
             animations: {
                 self.recordingViewTop.constant += self.view.frame.height
@@ -109,6 +110,7 @@ class NewRouteViewController: UIViewController {
      * Parameters: duration: animation length in seconds.
      */
     func showRecordingView(duration: Float){
+        navigationItem.hidesBackButton = true
         UIView.animate(withDuration: TimeInterval(duration), animations: {
             self.recordingView.isHidden = false
             self.recordingViewTop.constant = 0
