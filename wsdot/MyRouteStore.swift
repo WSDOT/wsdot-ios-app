@@ -134,13 +134,13 @@ class MyRouteStore {
         return true
     }
     
-    static func toggleSelected(_ selectedRoute: MyRouteItem) -> Bool {
+    static func updateSelected(_ selectedRoute: MyRouteItem, newValue: Bool) -> Bool {
     
         let realm = try! Realm()
         
         do {
             try realm.write{
-                selectedRoute.selected = !selectedRoute.selected
+                selectedRoute.selected = newValue
             }
             return true
         } catch {
