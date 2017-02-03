@@ -238,7 +238,7 @@ class NewRouteViewController: UIViewController {
 
             let noAction = UIAlertAction(title: "No", style: .default) { (_) -> Void in
     
-                _ = MyRouteStore.turnOffFindNearby(route: MyRouteStore.getRouteById(id)!)
+                _ = MyRouteStore.updateFindNearby(forRoute: MyRouteStore.getRouteById(id)!, withValue: true)
                 _ = self.navigationController?.popViewController(animated: true)
             }
                 

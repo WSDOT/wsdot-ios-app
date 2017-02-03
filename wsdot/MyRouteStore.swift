@@ -121,12 +121,12 @@ class MyRouteStore {
         return true
     }
     
-    static func turnOffFindNearby(route: MyRouteItem) -> Bool {
+    static func updateFindNearby(forRoute: MyRouteItem, withValue: Bool) -> Bool {
         let realm = try! Realm()
         
         do {
             try realm.write {
-                route.hasFoundNearbyItems = true
+                forRoute.hasFoundNearbyItems = withValue
             }
         }catch {
             return false
