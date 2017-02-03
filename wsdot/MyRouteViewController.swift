@@ -36,6 +36,7 @@ class MyRouteViewController: UIViewController {
         super.viewDidLoad()
         tableView.isEditing = true
         tableView.allowsSelectionDuringEditing = true
+        GoogleAnalytics.screenView(screenName: "/Favorites/My Routes")
     }
     
     override func viewWillAppear(_ animated: Bool) {

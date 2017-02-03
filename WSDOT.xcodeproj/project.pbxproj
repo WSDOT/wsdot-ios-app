@@ -122,7 +122,6 @@
 		9AD32E281D2421E4000AEC28 /* Ferries.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E271D2421E4000AEC28 /* Ferries.storyboard */; };
 		9AD32E2A1D24233D000AEC28 /* FerriesHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32E291D24233D000AEC28 /* FerriesHomeViewController.swift */; };
 		9AD32E2C1D242A5A000AEC28 /* RouteSchedulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32E2B1D242A5A000AEC28 /* RouteSchedulesViewController.swift */; };
-		9AD32E2E1D243260000AEC28 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32E2D1D243260000AEC28 /* FavoritesViewController.swift */; };
 		9ADEAE4D1D270CC800BA7DD4 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADEAE4C1D270CC800BA7DD4 /* Helpers.swift */; };
 		9ADF0E021D7F5EF600632F3D /* WSDOTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADF0E011D7F5EF600632F3D /* WSDOTUITests.swift */; };
 		9ADF0E0A1D7F5F8400632F3D /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADF0E091D7F5F8400632F3D /* SnapshotHelper.swift */; };
@@ -346,7 +345,6 @@
 		9AD32E271D2421E4000AEC28 /* Ferries.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Ferries.storyboard; path = Base.lproj/Ferries.storyboard; sourceTree = "<group>"; };
 		9AD32E291D24233D000AEC28 /* FerriesHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerriesHomeViewController.swift; sourceTree = "<group>"; };
 		9AD32E2B1D242A5A000AEC28 /* RouteSchedulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteSchedulesViewController.swift; sourceTree = "<group>"; };
-		9AD32E2D1D243260000AEC28 /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		9ADEAE4C1D270CC800BA7DD4 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		9ADF0DFF1D7F5EF600632F3D /* WSDOTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WSDOTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9ADF0E011D7F5EF600632F3D /* WSDOTUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSDOTUITests.swift; sourceTree = "<group>"; };
@@ -1348,7 +1346,6 @@
 				9AEEDDB81D74A9BC0032F5EC /* AlertsTicker */,
 				9AD32E001D23172C000AEC28 /* Main.storyboard */,
 				9AD32E211D241AF4000AEC28 /* HomeViewController.swift */,
-				9AD32E2D1D243260000AEC28 /* FavoritesViewController.swift */,
 				9A0616C11D651B1300126520 /* InfoViewController.swift */,
 				9A8DD9F71D946B6200CE0B76 /* HomeSplitViewController.swift */,
 			);
@@ -1734,7 +1731,6 @@
 				9A7BC0E01DA3F32400EF760C /* GQTPointQuadTreeChild.m in Sources */,
 				9A6FBCE31D6BA2DC00CDCE16 /* AlertInAreaViewController.swift in Sources */,
 				9AEF4DA61D773641003ECA34 /* YouTubeStore.swift in Sources */,
-				9AD32E2E1D243260000AEC28 /* FavoritesViewController.swift in Sources */,
 				9A0892A91E3A903800434AED /* MyRouteSettingsCell.swift in Sources */,
 				9A0616CE1D660CC800126520 /* SR16ViewController.swift in Sources */,
 				9AB549011D7874E000927F13 /* AmtrakCascadesStationItem.swift in Sources */,

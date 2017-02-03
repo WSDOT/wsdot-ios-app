@@ -59,6 +59,7 @@ class FavoritesHomeViewController: UIViewController {
         // refresh controller
         refreshControl.addTarget(self, action: #selector(FavoritesHomeViewController.refreshAction(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
+        GoogleAnalytics.screenView(screenName: "/Favorites")
     }
 
     override func viewWillAppear(_ animated: Bool) {
