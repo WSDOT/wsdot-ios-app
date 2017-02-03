@@ -65,6 +65,7 @@ class NewRouteViewController: UIViewController {
         if let myLocation = mapView.myLocation{
             mapView.animate(toLocation: myLocation.coordinate)
         }
+        GoogleAnalytics.screenView(screenName: "/Favorites/My Route/New Route")
     }
     
     override func viewDidLoad() {
@@ -124,6 +125,8 @@ class NewRouteViewController: UIViewController {
      * Parameters: sender: UIButton
      */
     @IBAction func startRoutePressed(_ sender: UIButton) {
+ 
+        GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Started Recording Route")
  
         if !CLLocationManager.locationServicesEnabled() {
         
@@ -223,6 +226,8 @@ class NewRouteViewController: UIViewController {
 
         let okAction = UIAlertAction(title: "Ok", style: .default) { (_) -> Void in
         
+            GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Saved Route")
+        
             let textf = alertController.textFields![0] as UITextField
             var name = textf.text!
             if name.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "" {
@@ -269,6 +274,7 @@ class NewRouteViewController: UIViewController {
         let alertController = UIAlertController(title: "Discard this route?", message: "This cannot be undone.", preferredStyle: .alert)
         
         let discardAction = UIAlertAction(title: "Discard", style: .destructive, handler: {(_) -> Void in
+            GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Discarded Route")
             self.mapView.clear()
             self.doneRecording()
         })

@@ -34,7 +34,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     let SegueMountainPassesViewController = "MountainPassesViewController"
     let SegueSocialMediaViewController = "SocialMediaViewController"
     let SegueAmtrakCascadesViewController = "AmtrakCascadesViewController"
-    let SegueFavoritesViewController = "FavoritesViewController"
     
     var menu_options: [String] = []
     var menu_icon_names: [String] = []
@@ -48,7 +47,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         menu_options = ["Traffic Map", "Ferries", "Mountain Passes", "Social Media", "Toll Rates", "Border Waits", "Amtrak Cascades", "Favorites"]
         menu_icon_names = ["icHomeTraffic","icHomeFerries","icHomePasses","icHomeSocialMedia","icHomeTollRates","icHomeBorderWaits","icHomeAmtrakCascades", "icHomeFavorites"]
-
         
         self.navigationController!.navigationBar.isTranslucent = false
         self.navigationController!.navigationBar.barTintColor = UIColor.white
@@ -59,10 +57,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView(screenName: "/Home")
-    }
- 
-    @IBAction func MyRouteButtonPressed(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: SegueMyRouteViewController, sender: self)
     }
  
     @IBAction func infoBarButtonPressed(_ sender: UIBarButtonItem) {
@@ -121,7 +115,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             tableView.deselectRow(at: indexPath, animated: true)
             break
         case 7:
-            performSegue(withIdentifier: SegueFavoritesViewController, sender: self)
+            performSegue(withIdentifier: SegueMyRouteViewController, sender: self)
             tableView.deselectRow(at: indexPath, animated: true)
         default:
             break
@@ -164,7 +158,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             }
             
-            if segue.identifier == SegueFavoritesViewController {
+            if segue.identifier == SegueMyRouteViewController {
                 destinationViewController.viewControllers[0].navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
                 destinationViewController.viewControllers[0].navigationItem.leftItemsSupplementBackButton = true
             }

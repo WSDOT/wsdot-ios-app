@@ -25,6 +25,10 @@ class HomeSplitViewController: UISplitViewController, UISplitViewControllerDeleg
     override func viewDidLoad() {
         self.delegate = self
         self.preferredDisplayMode = .allVisible
+        
+        let storyboard = UIStoryboard(name: "MyRoute", bundle: nil)
+        self.viewControllers.append(contentsOf: [storyboard.instantiateViewController(withIdentifier: "FavoritesNavigationController") as! UINavigationController])
+    
     }
 
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
