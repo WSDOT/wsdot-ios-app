@@ -160,7 +160,7 @@ class MyRouteViewController: UIViewController {
     }
     
     func setRoute(sender: UIButton) {
-        _ = MyRouteStore.toggleSelected(myRoutes[sender.tag])
+        _ = MyRouteStore.updateSelected(myRoutes[sender.tag], newValue: true)
         tableView.reloadData()
     }
     
@@ -313,7 +313,7 @@ extension MyRouteViewController:  UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.section){
         case 1:
-            _ = MyRouteStore.toggleSelected(myRoutes[indexPath.row])
+            _ = MyRouteStore.updateSelected(myRoutes[indexPath.row], newValue: !myRoutes[indexPath.row].selected)
             tableView.reloadData()
             tableView.deselectRow(at: indexPath, animated: true)
             break

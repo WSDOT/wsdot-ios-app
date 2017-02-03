@@ -23,6 +23,7 @@ import UIKit
 class FavoritesSettingsViewController: UIViewController {
 
     let sectionCellIdentifier = "SectionCell"
+    let textCellIdentifier = "TextCell"
     
     let numFavoriteSections = 6
     
@@ -36,6 +37,27 @@ class FavoritesSettingsViewController: UIViewController {
         tableView.allowsSelectionDuringEditing = true
     }
     
+    func clearFavorites(){
+        for camera in CamerasStore.getFavoriteCameras() {
+            CamerasStore.updateFavorite(camera, newValue: false)
+        }
+        for time in TravelTimesStore.findFavoriteTimes() {
+            TravelTimesStore.updateFavorite(time, newValue: false)
+        }
+        for schedule in FerryRealmStore.findFavoriteSchedules() {
+            FerryRealmStore.updateFavorite(schedule, newValue: false)
+        }
+        for pass in MountainPassStore.findFavoritePasses() {
+            MountainPassStore.updateFavorite(pass, newValue: false)
+        }
+        for location in FavoriteLocationStore.getFavorites() {
+            FavoriteLocationStore.deleteFavorite(location)
+        }
+        for route in MyRouteStore.getSelectedRoutes() {
+            _ = MyRouteStore.updateSelected(route, newValue: false)
+        }
+    }
+    
 }
 
 // MARK: - TableView
@@ -45,7 +67,7 @@ extension FavoritesSettingsViewController:  UITableViewDataSource, UITableViewDe
 
     func numberOfSections(in tableView: UITableView) -> Int {
     
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -60,6 +82,8 @@ extension FavoritesSettingsViewController:  UITableViewDataSource, UITableViewDe
         switch section {
             case 0:
                 return "Organize Favorites"
+            case 1:
+                return ""
             default:
                 return ""
         }
@@ -69,6 +93,8 @@ extension FavoritesSettingsViewController:  UITableViewDataSource, UITableViewDe
         switch section {
             case 0:
                 return numFavoriteSections
+            case 1:
+                return 1
             default:
                 return 0
         }
@@ -84,11 +110,50 @@ extension FavoritesSettingsViewController:  UITableViewDataSource, UITableViewDe
             sectionCell.textLabel?.text = MyRouteStore.sectionTitles[sectionTypesOrderRawArray[indexPath.row]]
             
             return sectionCell
+        
+        case 1:
+        
+            let deleteCell = tableView.dequeueReusableCell(withIdentifier: textCellIdentifier, for: indexPath)
+            deleteCell.textLabel?.text = "Clear Favorites"
+            deleteCell.textLabel?.textColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1.0)
+            
+            deleteCell.textLabel?.textAlignment = .center
+            
+            
+            return deleteCell
+            
             
         default:
             return tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
         }
     }
+    
+    // MARK: - Navigation
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section{
+        case 1: // Delete
+
+            let alertController = UIAlertController(title: "Clear Favorites?", message:"This cannot be undone. Any saved map locations will be deleted. Recorded routes will be kept.", preferredStyle: .alert)
+
+            alertController.view.tintColor = Colors.tintColor
+
+            let confirmDeleteAction = UIAlertAction(title: "Clear", style: .destructive) { (_) -> Void in
+                self.clearFavorites()
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            alertController.addAction(confirmDeleteAction)
+            
+            self.present(alertController, animated: false, completion: nil)
+
+            tableView.deselectRow(at: indexPath, animated: true)
+            break
+        default:
+            break
+        }
+    }
+    
+    // MARK: - Edit
     
     // Keep movable cells in their section
     func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
