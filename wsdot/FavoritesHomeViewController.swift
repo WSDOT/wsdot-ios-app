@@ -194,7 +194,7 @@ extension FavoritesHomeViewController {
         mountainPasses = MountainPassStore.findFavoritePasses()
         savedLocations = FavoriteLocationStore.getFavorites()
         myRoutes = MyRouteStore.getSelectedRoutes()
-    
+        
         if (tableEmpty()){
             emptyFavoritesView.isHidden = false
         }else {

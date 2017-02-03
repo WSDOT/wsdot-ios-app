@@ -63,13 +63,12 @@ class MyRouteViewController: UIViewController {
                     _ = MyRouteStore.selectNearbyFerries(forRoute: route)
                     _ = MyRouteStore.selectNearbyPasses(forRoute: route)
                     
-                    _ = MyRouteStore.turnOffFindNearby(route: route)
+                    _ = MyRouteStore.updateFindNearby(forRoute: route, withValue: true)
                     
                     // dismiss the routeLoadingOverlay
                     self.loadingRouteAlert.dismiss(animated: true, completion: nil)
                 }
             }
-            
         }
     }
 
@@ -218,12 +217,51 @@ class MyRouteViewController: UIViewController {
             self.present(alertController, animated: false, completion: nil)
         }
         
-        
-        
         // TODO: Add reload favorites action
-        
+        let reloadAction = UIAlertAction(title: "Find Favorites", style: .default) { (result : UIAlertAction) -> Void in
+            
+            let alertController = UIAlertController(title: "Check for favorites on this route?", message:nil, preferredStyle: .alert)
+            alertController.view.tintColor = Colors.tintColor
+
+            let okAction = UIAlertAction(title: "Yes", style: .default) { (_) -> Void in
+                
+                self.showRouteOverlay()
+                
+                let serviceGroup = DispatchGroup();
+                
+                self.requestFerriesUpdate(true, serviceGroup: serviceGroup)
+                self.requestCamerasUpdate(true, serviceGroup: serviceGroup)
+                self.requestTravelTimesUpdate(true, serviceGroup: serviceGroup)
+                self.requestMountainPassesUpdate(true, serviceGroup: serviceGroup)
+                
+                serviceGroup.notify(queue: DispatchQueue.main) {
+                    
+                    _ = MyRouteStore.selectNearbyCameras(forRoute: self.myRoutes[sender.tag])
+                    _ = MyRouteStore.selectNearbyTravelTimes(forRoute: self.myRoutes[sender.tag])
+                    _ = MyRouteStore.selectNearbyFerries(forRoute: self.myRoutes[sender.tag])
+                    _ = MyRouteStore.selectNearbyPasses(forRoute: self.myRoutes[sender.tag])
+                    
+                    _ = MyRouteStore.updateFindNearby(forRoute: self.myRoutes[sender.tag], withValue: true)
+                    
+                    // dismiss the routeLoadingOverlay
+                    self.loadingRouteAlert.dismiss(animated: true, completion: nil)
+                }
+
+                self.tableView.reloadData()
+            }
+            
+            let cancelAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+            
+            alertController.addAction(cancelAction)
+            alertController.addAction(okAction)
+            
+            self.present(alertController, animated: false, completion: nil)
+
+
+        }
         
         editController.addAction(cancelAction)
+        editController.addAction(reloadAction)
         editController.addAction(renameAction)
         editController.addAction(deleteAction)
   
