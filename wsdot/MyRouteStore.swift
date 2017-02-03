@@ -96,7 +96,7 @@ class MyRouteStore {
     fileprivate static func getSavedRouteId() -> Int {
         
         // IDs avaliable for a saved route.
-        var availableIds = [1, 2, 3]
+        var availableIds = [1, 2, 3, 4, 5]
 
         // Remove any IDs already in use
         for route in getRoutes() {

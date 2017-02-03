@@ -83,7 +83,6 @@ class NewRouteViewController: UIViewController {
         hideRecordingView(duration: 0.0)
     }
 
-
     /**
      * Method name: hideRecordingView(duration:)
      * Description: Removes the recording view from the screen with an animation. Edits the Storyboard layout constraints.
@@ -235,7 +234,7 @@ class NewRouteViewController: UIViewController {
                                         displayLong: self.mapView.projection.coordinate(for: self.mapView.center).longitude,
                                         displayZoom: self.mapView.camera.zoom)
                 
-            let alertController = UIAlertController(title: "Automaticlly Add Items on This Route to Favorites?", message:"Traffic cameras, travel times, pass reports, and other favoritable items will be automatically added to your favorites if they are on this route.", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Automaticlly Add Content on This Route to Favorites?", message:"Traffic cameras, travel times, pass reports, and other favoritable items will be automatically added to your favorites if they are on this route. \n\n You can do this later by tapping Edit on the My Routes screen.", preferredStyle: .alert)
             alertController.view.tintColor = Colors.tintColor
 
             let noAction = UIAlertAction(title: "No", style: .default) { (_) -> Void in

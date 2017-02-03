@@ -32,6 +32,7 @@ class MyRouteAlertsViewController: UIViewController {
     let refreshControl = UIRefreshControl()
     var activityIndicator = UIActivityIndicatorView()
 
+    @IBOutlet weak var noAlertsView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -49,6 +50,12 @@ class MyRouteAlertsViewController: UIViewController {
         loadAlerts(force: true)
     }
 
+    @IBAction func checkAgainButtonPressed(_ sender: UIButton) {
+        noAlertsView.isHidden = true
+        showOverlay(self.view)
+        loadAlerts(force: true)
+    }
+    
     func loadAlerts(force: Bool){
         
         if route != nil {
@@ -58,6 +65,13 @@ class MyRouteAlertsViewController: UIViewController {
             requestAlertsUpdate(force, serviceGroup: serviceGroup)
                 
             serviceGroup.notify(queue: DispatchQueue.main) {
+            
+                if self.alerts.count == 0 {
+                    self.noAlertsView.isHidden = false
+                } else {
+                    self.noAlertsView.isHidden = true
+                }
+            
                 self.tableView.reloadData()
                 self.hideOverlayView()
                 self.refreshControl.endRefreshing()
