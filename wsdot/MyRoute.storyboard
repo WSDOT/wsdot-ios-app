@@ -238,12 +238,13 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Hk-S7-uDX">
                                                     <rect key="frame" x="232" y="13" width="102" height="40"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.68235294120000001" blue="0.16429793400000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="1" green="0.42352941179999998" blue="0.047058823530000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="4em-67-TTW"/>
                                                         <constraint firstAttribute="width" constant="102" id="Nf6-Rt-VT1"/>
                                                     </constraints>
-                                                    <inset key="contentEdgeInsets" minX="4" minY="5" maxX="4" maxY="5"/>
+                                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="16"/>
+                                                    <inset key="contentEdgeInsets" minX="4" minY="2" maxX="4" maxY="2"/>
                                                     <state key="normal" title="Check Alerts">
                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
@@ -417,13 +418,67 @@
                                     <outlet property="delegate" destination="Eg9-Ai-gUk" id="ixD-je-WLU"/>
                                 </connections>
                             </tableView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Es-82-m8x">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Record your drive to work or anywhere using your phone's GPS and add it to your favorites list." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AiI-b3-e0P">
+                                        <rect key="frame" x="19" y="46" width="336" height="69"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="69" id="xa6-yx-XAq"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Once added to your favorites, you can check for highway alerts on your route." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ItX-w5-q4I">
+                                        <rect key="frame" x="19" y="134" width="336" height="77"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="77" id="0dA-tE-9rw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can also let the WSDOT app automatically add items on your route to your favorites list." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gYH-2w-wyB">
+                                        <rect key="frame" x="19" y="251" width="336" height="61"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the Add (+) button to get started! " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XGc-hs-GMW">
+                                        <rect key="frame" x="19" y="424" width="336" height="22"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="ItX-w5-q4I" firstAttribute="leading" secondItem="gYH-2w-wyB" secondAttribute="leading" id="AUe-3o-I3u"/>
+                                    <constraint firstItem="AiI-b3-e0P" firstAttribute="leading" secondItem="ItX-w5-q4I" secondAttribute="leading" id="Fdz-Em-OeJ"/>
+                                    <constraint firstItem="AiI-b3-e0P" firstAttribute="centerX" secondItem="0Es-82-m8x" secondAttribute="centerX" id="GNx-cf-2PV"/>
+                                    <constraint firstItem="AiI-b3-e0P" firstAttribute="top" secondItem="0Es-82-m8x" secondAttribute="top" constant="46" id="KBh-ua-clV"/>
+                                    <constraint firstItem="XGc-hs-GMW" firstAttribute="leading" secondItem="gYH-2w-wyB" secondAttribute="leading" id="R9a-iv-lde"/>
+                                    <constraint firstItem="gYH-2w-wyB" firstAttribute="top" secondItem="ItX-w5-q4I" secondAttribute="bottom" constant="40" id="aRh-QS-gSc"/>
+                                    <constraint firstItem="AiI-b3-e0P" firstAttribute="trailing" secondItem="ItX-w5-q4I" secondAttribute="trailing" id="dRk-PT-KgO"/>
+                                    <constraint firstItem="XGc-hs-GMW" firstAttribute="trailing" secondItem="gYH-2w-wyB" secondAttribute="trailing" id="dwg-zT-aLe"/>
+                                    <constraint firstAttribute="bottom" secondItem="XGc-hs-GMW" secondAttribute="bottom" constant="157" id="raN-vG-D0u"/>
+                                    <constraint firstItem="AiI-b3-e0P" firstAttribute="leading" secondItem="0Es-82-m8x" secondAttribute="leading" constant="19" id="riP-TS-zIt"/>
+                                    <constraint firstItem="ItX-w5-q4I" firstAttribute="top" secondItem="AiI-b3-e0P" secondAttribute="bottom" constant="19" id="s1M-Yc-I0a"/>
+                                    <constraint firstItem="ItX-w5-q4I" firstAttribute="trailing" secondItem="gYH-2w-wyB" secondAttribute="trailing" id="tkA-Gj-fbA"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="YDU-yI-OVI" firstAttribute="top" secondItem="qJ4-Mo-Oy2" secondAttribute="bottom" id="7KQ-Jd-e7K"/>
+                            <constraint firstAttribute="trailing" secondItem="0Es-82-m8x" secondAttribute="trailing" id="Dxq-2j-br5"/>
+                            <constraint firstItem="0Es-82-m8x" firstAttribute="top" secondItem="qJ4-Mo-Oy2" secondAttribute="bottom" id="Ecn-1X-ZOe"/>
+                            <constraint firstItem="7sN-6Z-fxI" firstAttribute="top" secondItem="0Es-82-m8x" secondAttribute="bottom" id="LDM-FA-Rj9"/>
                             <constraint firstItem="YDU-yI-OVI" firstAttribute="bottom" secondItem="7sN-6Z-fxI" secondAttribute="top" id="awX-IK-ZM2"/>
                             <constraint firstItem="YDU-yI-OVI" firstAttribute="leading" secondItem="an6-bx-iwA" secondAttribute="leading" id="c6g-be-mzl"/>
                             <constraint firstAttribute="trailing" secondItem="YDU-yI-OVI" secondAttribute="trailing" id="mMu-0J-s7U"/>
+                            <constraint firstItem="0Es-82-m8x" firstAttribute="leading" secondItem="an6-bx-iwA" secondAttribute="leading" id="xa7-Zc-My3"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Routes" id="kvg-nC-pKC">
@@ -435,13 +490,14 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="noRoutesView" destination="0Es-82-m8x" id="8Iz-QF-vPH"/>
                         <outlet property="tableView" destination="YDU-yI-OVI" id="l25-Mz-QbM"/>
                         <segue destination="0Na-gD-JAb" kind="show" identifier="NewRouteViewController" id="fQc-Eb-izU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iA6-On-w2i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="989.60000000000002" y="-640.02998500749629"/>
+            <point key="canvasLocation" x="956" y="-564.46776611694156"/>
         </scene>
         <!--New Route-->
         <scene sceneID="XWH-5G-KqH">
@@ -584,7 +640,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eLo-ap-OG0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1788" y="-640.02998500749629"/>
+            <point key="canvasLocation" x="1678" y="-564"/>
         </scene>
         <!--Settings-->
         <scene sceneID="2G4-DK-jr3">
@@ -641,7 +697,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ku-nw-fBJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1585" y="131"/>
+            <point key="canvasLocation" x="1425" y="86"/>
         </scene>
         <!--MountainPassTabBarViewController-->
         <scene sceneID="oMs-Tn-cbj">
@@ -708,23 +764,62 @@
                                     <outlet property="delegate" destination="l6l-fh-LqO" id="5oS-qF-U9d"/>
                                 </connections>
                             </tableView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GJY-GW-vh4">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Alerts Reported on Route" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ir3-ZX-QM3">
+                                        <rect key="frame" x="88" y="53" width="198" height="67"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="67" id="uzB-Aj-9GM"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wqe-g3-SLr">
+                                        <rect key="frame" x="126" y="286" width="122" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="122" id="7A5-oU-aKZ"/>
+                                        </constraints>
+                                        <state key="normal" title="Check Again">
+                                            <color key="titleColor" red="0.0" green="0.68235294120000001" blue="0.16429793400000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="checkAgainButtonPressed:" destination="l6l-fh-LqO" eventType="touchUpInside" id="6tD-Lv-zb2"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="wqe-g3-SLr" firstAttribute="centerX" secondItem="Ir3-ZX-QM3" secondAttribute="centerX" id="4V3-Hc-GLV"/>
+                                    <constraint firstItem="wqe-g3-SLr" firstAttribute="centerY" secondItem="GJY-GW-vh4" secondAttribute="centerY" id="Jpu-2e-19w"/>
+                                    <constraint firstItem="Ir3-ZX-QM3" firstAttribute="leading" secondItem="GJY-GW-vh4" secondAttribute="leading" constant="88" id="Oil-RS-sqq"/>
+                                    <constraint firstItem="Ir3-ZX-QM3" firstAttribute="top" secondItem="GJY-GW-vh4" secondAttribute="top" constant="53" id="qlC-Uf-bxi"/>
+                                    <constraint firstItem="Ir3-ZX-QM3" firstAttribute="centerX" secondItem="GJY-GW-vh4" secondAttribute="centerX" id="vad-Eb-UoN"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="uaa-5v-TNM" firstAttribute="top" secondItem="eJ8-pU-G3Y" secondAttribute="bottom" id="ATv-Ae-chz"/>
                             <constraint firstAttribute="trailing" secondItem="uaa-5v-TNM" secondAttribute="trailing" id="WiS-pS-89S"/>
                             <constraint firstItem="uaa-5v-TNM" firstAttribute="leading" secondItem="ZEW-sR-bCH" secondAttribute="leading" id="Xqt-3H-lV8"/>
+                            <constraint firstItem="GJY-GW-vh4" firstAttribute="top" secondItem="eJ8-pU-G3Y" secondAttribute="bottom" id="fWe-cw-6tv"/>
+                            <constraint firstItem="GJY-GW-vh4" firstAttribute="leading" secondItem="ZEW-sR-bCH" secondAttribute="leading" id="kAU-nk-Lrv"/>
                             <constraint firstItem="uaa-5v-TNM" firstAttribute="bottom" secondItem="3P8-hc-sFf" secondAttribute="top" id="nW3-hq-nmL"/>
+                            <constraint firstAttribute="trailing" secondItem="GJY-GW-vh4" secondAttribute="trailing" id="pUK-7k-JyV"/>
+                            <constraint firstItem="3P8-hc-sFf" firstAttribute="top" secondItem="GJY-GW-vh4" secondAttribute="bottom" id="rqy-G5-P1J"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="noAlertsView" destination="GJY-GW-vh4" id="gdB-8e-FHF"/>
                         <outlet property="tableView" destination="uaa-5v-TNM" id="1hX-va-0SP"/>
                         <segue destination="WQr-lU-0Kb" kind="show" identifier="HighwayAlertViewController" id="8YP-zi-g2n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PFu-pC-lLF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="892" y="813.64317841079469"/>
+            <point key="canvasLocation" x="805.60000000000002" y="763.26836581709154"/>
         </scene>
         <!--HighwayAlert-->
         <scene sceneID="aFy-Qe-aDT">
@@ -732,7 +827,7 @@
                 <viewControllerPlaceholder storyboardName="HighwayAlert" id="WQr-lU-0Kb" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KYS-RO-Un9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1470" y="813"/>
+            <point key="canvasLocation" x="1315" y="764"/>
         </scene>
         <!--TravelTimeDetails-->
         <scene sceneID="PYm-kO-ivx">

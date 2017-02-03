@@ -29,6 +29,7 @@ class MyRouteViewController: UIViewController {
 
     var loadingRouteAlert = UIAlertController()
 
+    @IBOutlet weak var noRoutesView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -37,10 +38,17 @@ class MyRouteViewController: UIViewController {
         tableView.allowsSelectionDuringEditing = true
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
         myRoutes = MyRouteStore.getRoutes()
+        
+        if myRoutes.count == 0 {
+            noRoutesView.isHidden = false
+        } else {
+            noRoutesView.isHidden = true
+        }
+        
         tableView.reloadData()
 
         // Check if user has added a new route, and requested app favorites items on route
@@ -70,10 +78,22 @@ class MyRouteViewController: UIViewController {
                 }
             }
         }
+
     }
 
     @IBAction func newRouteButtonPressed(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: segueNewRouteViewController, sender: self)
+        if myRoutes.count < 5 {
+            performSegue(withIdentifier: segueNewRouteViewController, sender: self)
+        } else {
+            let alertController = UIAlertController(title: "Maxed Number of Routes Saved", message: "Please delete a route to record more.", preferredStyle: .alert)
+
+            alertController.view.tintColor = Colors.tintColor
+
+            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            
+            self.present(alertController, animated: false, completion: nil)
+        }
     }
     
     func requestCamerasUpdate(_ force: Bool, serviceGroup: DispatchGroup) {
@@ -160,7 +180,7 @@ class MyRouteViewController: UIViewController {
     }
     
     func setRoute(sender: UIButton) {
-        _ = MyRouteStore.updateSelected(myRoutes[sender.tag], newValue: true)
+        _ = MyRouteStore.updateSelected(myRoutes[sender.tag], newValue: !myRoutes[sender.tag].selected)
         tableView.reloadData()
     }
     
@@ -181,6 +201,9 @@ class MyRouteViewController: UIViewController {
 
             let confirmDeleteAction = UIAlertAction(title: "Delete", style: .destructive) { (_) -> Void in
                 _ = MyRouteStore.delete(route: self.myRoutes.remove(at: sender.tag))
+                if self.myRoutes.count == 0 {
+                    self.noRoutesView.isHidden = false
+                }
                 self.tableView.reloadData()
             }
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
