@@ -139,7 +139,10 @@ extension FavoritesSettingsViewController:  UITableViewDataSource, UITableViewDe
 
             let alertController = UIAlertController(title: "Clear Favorites?", message:"This cannot be undone. Any saved map locations will be deleted. Recorded routes will be kept.", preferredStyle: .alert)
 
-            alertController.view.tintColor = Colors.tintColor
+            // Setting tintColor on iOS < 9 leades to strange display behavior.
+            if #available(iOS 9.0, *) {
+                alertController.view.tintColor = Colors.tintColor
+            }
 
             let confirmDeleteAction = UIAlertAction(title: "Clear", style: .destructive) { (_) -> Void in
                 self.clearFavorites()
@@ -148,7 +151,7 @@ extension FavoritesSettingsViewController:  UITableViewDataSource, UITableViewDe
             alertController.addAction(cancelAction)
             alertController.addAction(confirmDeleteAction)
             
-            self.present(alertController, animated: false, completion: nil)
+            present(alertController, animated: false, completion: nil)
 
             tableView.deselectRow(at: indexPath, animated: true)
             break

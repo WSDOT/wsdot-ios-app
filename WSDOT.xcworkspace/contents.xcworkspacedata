@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:olympia_to_bellingham.gpx">
+      location = "group:bainbridge-ellensburg.gpx">
    </FileRef>
    <FileRef
       location = "group:seattle.gpx">

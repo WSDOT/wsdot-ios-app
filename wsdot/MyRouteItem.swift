@@ -25,7 +25,12 @@ class MyRouteItem: Object {
     
     dynamic var id = 1
     dynamic var name = ""
-    dynamic var hasFoundNearbyItems = false
+    
+    dynamic var foundTravelTimes = false
+    dynamic var foundCameras = false
+    dynamic var foundMountainPasses = false
+    dynamic var foundFerrySchedules = false
+    
     dynamic var displayLatitude = 0.0
     dynamic var displayLongitude = 0.0
     dynamic var displayZoom = 0.0
