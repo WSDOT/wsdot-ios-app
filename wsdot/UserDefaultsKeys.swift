@@ -35,5 +35,9 @@ class UserDefaultsKeys {
     static let hasSeenWarning = "HasSeenWarning"
     
     static let shouldCluster = "shouldClusterCameraIcons"
+    
+    // EasyTipView Keys
+    static let hasSeenClusterTipView = "hasSeenClusterTipView"
+    static let hasSeenMyRouteTipView = "hasSeenMyRouteTipView"
 
 }

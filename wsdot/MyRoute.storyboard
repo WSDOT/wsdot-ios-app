@@ -15,9 +15,8 @@
         <!--Navigation Controller-->
         <scene sceneID="E6A-9Y-sId">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ptd-1v-gIr" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="FavoritesNavigationController" id="0hy-HL-p0M" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="kyZ-Hl-ylo">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kyZ-Hl-ylo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -25,6 +24,7 @@
                         <segue destination="Sow-AE-mpU" kind="relationship" relationship="rootViewController" id="Cwq-fY-wjU"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ptd-1v-gIr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-817" y="86"/>
         </scene>
@@ -292,8 +292,8 @@
                                         <string key="text">No Favorites
 
 Tap star icons to add Favorites</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <color key="textColor" red="0.1176470588" green="0.1450980392" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aop-QR-uf7">
@@ -305,6 +305,9 @@ Tap star icons to add Favorites</string>
                                         <state key="normal" title="Button" image="icFavoriteDefault">
                                             <color key="titleColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="Favorite Star Icon Example"/>
+                                        </userDefinedRuntimeAttributes>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -333,12 +336,18 @@ Tap star icons to add Favorites</string>
                         <rightBarButtonItems>
                             <barButtonItem image="icGear" id="LJt-T3-lN6">
                                 <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.16429793400000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="Settings"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="favoritesSettingButtonPressed:" destination="Sow-AE-mpU" id="NR5-1U-0yq"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="icMyRoute" id="hNi-oY-vcF">
                                 <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.16429793400000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="My Saved Routes."/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="createNewRouteButtonPressed:" destination="Sow-AE-mpU" id="OxU-HU-90t"/>
                                 </connections>
@@ -350,6 +359,7 @@ Tap star icons to add Favorites</string>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="emptyFavoritesView" destination="70U-Fz-khP" id="uh7-U7-JgV"/>
+                        <outlet property="newRouteButton" destination="hNi-oY-vcF" id="7OV-dk-EtY"/>
                         <outlet property="tableView" destination="y2u-Z5-KoA" id="u9I-TE-bPr"/>
                         <segue destination="XD5-yD-azC" kind="show" identifier="FavoritesSettingsViewController" id="DuL-k9-KAR"/>
                         <segue destination="seE-fV-6oe" kind="show" identifier="SailingsViewController" id="Jv8-z6-s2g"/>
@@ -436,55 +446,68 @@ Tap star icons to add Favorites</string>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Es-82-m8x">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Record your drive to work or anywhere using your phone's GPS and add it to your favorites list." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AiI-b3-e0P">
-                                        <rect key="frame" x="19" y="28" width="336" height="69"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a custom route by tracking your drive using your phone's GPS. Once created, you can check for alerts on your route*." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AiI-b3-e0P">
+                                        <rect key="frame" x="8" y="41" width="359" height="70"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="69" id="UkK-Fz-FMf"/>
+                                            <constraint firstAttribute="height" constant="70" id="UtH-hF-Nsi"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <color key="textColor" red="0.11764705882352941" green="0.14509803921568626" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Once added to your favorites, you can check for highway alerts on your route." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ItX-w5-q4I">
-                                        <rect key="frame" x="19" y="105" width="336" height="77"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gYH-2w-wyB">
+                                        <rect key="frame" x="8" y="159" width="359" height="66"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="77" id="EOa-m8-dz0"/>
+                                            <constraint firstAttribute="height" constant="66" id="8pV-og-DkR"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <string key="text">The WSDOT app can also automatically save favorites on your route.
+</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <color key="textColor" red="0.1176470588" green="0.1450980392" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2AC-LL-neQ">
+                                        <rect key="frame" x="40" y="521" width="293" height="74"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="74" id="y5x-xH-QYI"/>
+                                        </constraints>
+                                        <string key="text">*Your route information is stored on your device and is not shared with anyone. 
+WSDOT provides traffic alert information for Washington State highways only.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can also let the WSDOT app automatically add items on your route to your favorites list." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gYH-2w-wyB">
-                                        <rect key="frame" x="19" y="196" width="336" height="61"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the Add (+) button to get started! " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XGc-hs-GMW">
-                                        <rect key="frame" x="19" y="286" width="336" height="22"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MJG-Gr-AXV">
+                                        <rect key="frame" x="106" y="315" width="163" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="163" id="Tcr-K9-u9z"/>
+                                        </constraints>
+                                        <state key="normal" title="Create Your First Route">
+                                            <color key="titleColor" red="0.18647282900000001" green="0.68235294120000001" blue="0.11432351139999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="firstNewRouteButtonPressed:" destination="Eg9-Ai-gUk" eventType="touchUpInside" id="Igm-eZ-bOJ"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="XGc-hs-GMW" firstAttribute="top" secondItem="gYH-2w-wyB" secondAttribute="bottom" constant="29" id="104-Se-TT5"/>
-                                    <constraint firstItem="AiI-b3-e0P" firstAttribute="centerX" secondItem="0Es-82-m8x" secondAttribute="centerX" id="58R-s1-Jv3"/>
-                                    <constraint firstItem="ItX-w5-q4I" firstAttribute="trailing" secondItem="gYH-2w-wyB" secondAttribute="trailing" id="CMy-5L-932"/>
-                                    <constraint firstItem="gYH-2w-wyB" firstAttribute="leading" secondItem="XGc-hs-GMW" secondAttribute="leading" id="GpG-bT-qVc"/>
-                                    <constraint firstItem="ItX-w5-q4I" firstAttribute="top" secondItem="AiI-b3-e0P" secondAttribute="bottom" constant="8" symbolic="YES" id="Mj7-de-khV"/>
-                                    <constraint firstItem="gYH-2w-wyB" firstAttribute="top" secondItem="ItX-w5-q4I" secondAttribute="bottom" constant="14" id="Td5-2f-QBT"/>
-                                    <constraint firstItem="AiI-b3-e0P" firstAttribute="top" secondItem="0Es-82-m8x" secondAttribute="top" constant="28" id="cgX-Tn-6Fc"/>
-                                    <constraint firstItem="ItX-w5-q4I" firstAttribute="leading" secondItem="gYH-2w-wyB" secondAttribute="leading" id="f0D-6h-qDx"/>
-                                    <constraint firstItem="AiI-b3-e0P" firstAttribute="leading" secondItem="ItX-w5-q4I" secondAttribute="leading" id="kVR-ch-3T0"/>
-                                    <constraint firstItem="AiI-b3-e0P" firstAttribute="leading" secondItem="0Es-82-m8x" secondAttribute="leading" constant="19" id="o0S-P3-4ie"/>
-                                    <constraint firstItem="gYH-2w-wyB" firstAttribute="trailing" secondItem="XGc-hs-GMW" secondAttribute="trailing" id="vN2-UK-DGs"/>
-                                    <constraint firstItem="AiI-b3-e0P" firstAttribute="trailing" secondItem="ItX-w5-q4I" secondAttribute="trailing" id="vTD-Tp-Pia"/>
+                                    <constraint firstItem="AiI-b3-e0P" firstAttribute="top" secondItem="0Es-82-m8x" secondAttribute="top" constant="41" id="4II-lI-lHx"/>
+                                    <constraint firstItem="AiI-b3-e0P" firstAttribute="trailing" secondItem="0Es-82-m8x" secondAttribute="trailingMargin" id="Ihx-nG-NPV"/>
+                                    <constraint firstItem="AiI-b3-e0P" firstAttribute="leading" secondItem="gYH-2w-wyB" secondAttribute="leading" id="Je6-Ur-31k"/>
+                                    <constraint firstItem="MJG-Gr-AXV" firstAttribute="centerX" secondItem="2AC-LL-neQ" secondAttribute="centerX" id="Pck-cF-VxH"/>
+                                    <constraint firstItem="2AC-LL-neQ" firstAttribute="leading" secondItem="0Es-82-m8x" secondAttribute="leading" constant="40" id="RR7-Kr-hLP"/>
+                                    <constraint firstItem="MJG-Gr-AXV" firstAttribute="top" secondItem="gYH-2w-wyB" secondAttribute="bottom" constant="90" id="cCG-3F-1uU"/>
+                                    <constraint firstItem="2AC-LL-neQ" firstAttribute="top" secondItem="MJG-Gr-AXV" secondAttribute="bottom" constant="176" id="dIa-Ky-m39"/>
+                                    <constraint firstItem="AiI-b3-e0P" firstAttribute="leading" secondItem="0Es-82-m8x" secondAttribute="leadingMargin" id="gzJ-t8-s0x"/>
+                                    <constraint firstItem="2AC-LL-neQ" firstAttribute="bottom" secondItem="0Es-82-m8x" secondAttribute="bottomMargin" id="l9C-cH-ptc"/>
+                                    <constraint firstItem="gYH-2w-wyB" firstAttribute="top" secondItem="AiI-b3-e0P" secondAttribute="bottom" constant="48" id="nQ1-MI-5Ml"/>
+                                    <constraint firstItem="gYH-2w-wyB" firstAttribute="centerX" secondItem="MJG-Gr-AXV" secondAttribute="centerX" id="nbL-nZ-Vah"/>
+                                    <constraint firstItem="AiI-b3-e0P" firstAttribute="trailing" secondItem="gYH-2w-wyB" secondAttribute="trailing" id="uoQ-RD-yjU"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="YDU-yI-OVI" firstAttribute="top" secondItem="qJ4-Mo-Oy2" secondAttribute="bottom" id="7KQ-Jd-e7K"/>
                             <constraint firstAttribute="trailing" secondItem="0Es-82-m8x" secondAttribute="trailing" id="Dxq-2j-br5"/>
@@ -499,6 +522,9 @@ Tap star icons to add Favorites</string>
                     <navigationItem key="navigationItem" title="My Routes" id="kvg-nC-pKC">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="TRE-uI-K3p">
                             <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.16429793400000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="Record A New Route"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="newRouteButtonPressed:" destination="Eg9-Ai-gUk" id="NFs-fN-nHK"/>
                             </connections>
@@ -561,7 +587,7 @@ Tap star icons to add Favorites</string>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
-                                <state key="normal" title="Start Recording Your Route">
+                                <state key="normal" title="Start Logging Your Route">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -575,10 +601,10 @@ Tap star icons to add Favorites</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="adN-4q-Tsd">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recording Route..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txU-D4-ugM">
-                                        <rect key="frame" x="8" y="70" width="359" height="50"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's Go!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txU-D4-ugM">
+                                        <rect key="frame" x="8" y="47" width="359" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="lFN-0p-rJF"/>
+                                            <constraint firstAttribute="height" constant="50" id="yUs-gB-Jkw"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -588,8 +614,8 @@ Tap star icons to add Favorites</string>
                                         <rect key="frame" x="100" y="178" width="174" height="174"/>
                                         <color key="backgroundColor" red="0.0" green="0.68235294120000001" blue="0.16429793400000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="174" id="584-uY-yJY"/>
-                                            <constraint firstAttribute="width" constant="174" id="ILa-ig-egO"/>
+                                            <constraint firstAttribute="width" constant="174" id="4YJ-aK-rNx"/>
+                                            <constraint firstAttribute="height" constant="174" id="9RC-z0-E39"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Finish">
@@ -599,23 +625,35 @@ Tap star icons to add Favorites</string>
                                             <action selector="stopRecordingPressed:" destination="0Na-gD-JAb" eventType="touchUpInside" id="mXB-wX-nTK"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you are driving, please do not use the WSDOT app while your route is recording." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHe-AT-SQz">
-                                        <rect key="frame" x="8" y="482" width="359" height="41"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you are driving, please do not use the WSDOT app while your route is saving." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHe-AT-SQz">
+                                        <rect key="frame" x="18" y="482" width="339" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap &quot;Finish&quot; to view the results of your drive." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8kE-9X-9FY">
+                                        <rect key="frame" x="18" y="112" width="339" height="42"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="42" id="fDd-QF-w9O"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.2922294556249912" green="0.57598157051282051" blue="0.54897502251232966" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="t07-XO-U4o" firstAttribute="top" secondItem="txU-D4-ugM" secondAttribute="bottom" constant="58" id="3CE-XI-p4D"/>
-                                    <constraint firstItem="t07-XO-U4o" firstAttribute="centerX" secondItem="adN-4q-Tsd" secondAttribute="centerX" id="5z0-5R-kqK"/>
-                                    <constraint firstItem="t07-XO-U4o" firstAttribute="centerX" secondItem="txU-D4-ugM" secondAttribute="centerX" id="7qU-ir-lNk"/>
-                                    <constraint firstItem="txU-D4-ugM" firstAttribute="leading" secondItem="adN-4q-Tsd" secondAttribute="leadingMargin" id="936-Yg-As5"/>
-                                    <constraint firstItem="CHe-AT-SQz" firstAttribute="top" secondItem="t07-XO-U4o" secondAttribute="bottom" constant="130" id="97f-mQ-VOx"/>
-                                    <constraint firstAttribute="trailing" secondItem="CHe-AT-SQz" secondAttribute="trailing" constant="8" id="AxL-nx-xIU"/>
-                                    <constraint firstItem="txU-D4-ugM" firstAttribute="top" secondItem="adN-4q-Tsd" secondAttribute="top" constant="70" id="mun-Xq-ZVy"/>
-                                    <constraint firstItem="CHe-AT-SQz" firstAttribute="leading" secondItem="adN-4q-Tsd" secondAttribute="leading" constant="8" id="uqS-ZZ-xF3"/>
+                                    <constraint firstItem="8kE-9X-9FY" firstAttribute="leading" secondItem="CHe-AT-SQz" secondAttribute="leading" id="0Gc-Ns-dhf"/>
+                                    <constraint firstItem="8kE-9X-9FY" firstAttribute="top" secondItem="txU-D4-ugM" secondAttribute="bottom" constant="15" id="6AP-X8-Hxv"/>
+                                    <constraint firstItem="8kE-9X-9FY" firstAttribute="centerX" secondItem="t07-XO-U4o" secondAttribute="centerX" id="7vB-J3-cMK"/>
+                                    <constraint firstItem="CHe-AT-SQz" firstAttribute="top" secondItem="t07-XO-U4o" secondAttribute="bottom" constant="130" id="CwY-VK-uEO"/>
+                                    <constraint firstItem="8kE-9X-9FY" firstAttribute="leading" secondItem="adN-4q-Tsd" secondAttribute="leading" constant="18" id="FVH-cf-9h8"/>
+                                    <constraint firstItem="txU-D4-ugM" firstAttribute="trailing" secondItem="adN-4q-Tsd" secondAttribute="trailingMargin" id="GsX-Tg-Xbg"/>
+                                    <constraint firstItem="txU-D4-ugM" firstAttribute="centerX" secondItem="8kE-9X-9FY" secondAttribute="centerX" id="coc-jO-Xjv"/>
+                                    <constraint firstItem="txU-D4-ugM" firstAttribute="leading" secondItem="adN-4q-Tsd" secondAttribute="leadingMargin" id="lA8-Bs-21s"/>
+                                    <constraint firstItem="txU-D4-ugM" firstAttribute="top" secondItem="adN-4q-Tsd" secondAttribute="top" constant="47" id="ow9-cm-yjK"/>
+                                    <constraint firstItem="8kE-9X-9FY" firstAttribute="trailing" secondItem="CHe-AT-SQz" secondAttribute="trailing" id="pXZ-QM-RmC"/>
+                                    <constraint firstItem="t07-XO-U4o" firstAttribute="top" secondItem="8kE-9X-9FY" secondAttribute="bottom" constant="24" id="zNp-Rp-4KB"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -655,7 +693,7 @@ Tap star icons to add Favorites</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eLo-ap-OG0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1678" y="-564"/>
+            <point key="canvasLocation" x="1677.5999999999999" y="-564.46776611694156"/>
         </scene>
         <!--Settings-->
         <scene sceneID="2G4-DK-jr3">
@@ -752,7 +790,7 @@ Tap star icons to add Favorites</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kf4-rc-KeQ">
-                                                    <rect key="frame" x="16" y="37" width="318" height="27"/>
+                                                    <rect key="frame" x="16" y="37" width="318" height="26"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -796,7 +834,7 @@ Tap star icons to add Favorites</string>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="122" id="7A5-oU-aKZ"/>
                                         </constraints>
-                                        <state key="normal" title="Check Again">
+                                        <state key="normal" title="Refresh">
                                             <color key="titleColor" red="0.0" green="0.68235294120000001" blue="0.16429793400000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
@@ -842,7 +880,7 @@ Tap star icons to add Favorites</string>
                 <viewControllerPlaceholder storyboardName="HighwayAlert" id="WQr-lU-0Kb" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KYS-RO-Un9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1315" y="764"/>
+            <point key="canvasLocation" x="1424" y="763"/>
         </scene>
         <!--TravelTimeDetails-->
         <scene sceneID="PYm-kO-ivx">

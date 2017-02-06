@@ -53,7 +53,7 @@ class MyRouteAlertsViewController: UIViewController {
     }
 
     @IBAction func checkAgainButtonPressed(_ sender: UIButton) {
-        noAlertsView.isHidden = true
+        //noAlertsView.isHidden = true
         showOverlay(self.view)
         loadAlerts(force: true)
     }
@@ -222,7 +222,6 @@ extension MyRouteAlertsViewController:  UITableViewDataSource, UITableViewDelega
         performSegue(withIdentifier: segueHighwayAlertViewController, sender: alerts[indexPath.row])
         tableView.deselectRow(at: indexPath, animated: true)
     }
-
 }
 
 extension MyRouteAlertsViewController:  INDLinkLabelDelegate {

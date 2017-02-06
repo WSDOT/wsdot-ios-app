@@ -19,6 +19,7 @@
 //
 
 import UIKit
+import EasyTipView
 
 class FavoritesHomeViewController: UIViewController {
     
@@ -52,6 +53,9 @@ class FavoritesHomeViewController: UIViewController {
 
     @IBOutlet weak var emptyFavoritesView: UIView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var newRouteButton: UIBarButtonItem!
+
+    var tipView = EasyTipView(text: "")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -685,3 +689,27 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
 
 
 }
+
+extension FavoritesHomeViewController: EasyTipViewDelegate {
+    
+    public func easyTipViewDidDismiss(_ tipView: EasyTipView) {
+         UserDefaults.standard.set(true, forKey: UserDefaultsKeys.hasSeenMyRouteTipView)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tipView.dismiss()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasSeenMyRouteTipView)){
+
+            tipView = EasyTipView(text: "Check for highway alerts important to you by creating a custom route.", delegate: self)
+            tipView.show(forItem: self.newRouteButton)
+           
+        }
+    }
+}
+

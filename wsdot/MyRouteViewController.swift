@@ -54,25 +54,25 @@ class MyRouteViewController: UIViewController {
 
         // Check if user has added a new route, and requested app favorites items on route
         for route in myRoutes {
-            if !route.hasFoundNearbyItems {
+            if !route.foundMountainPasses || !route.foundFerrySchedules || !route.foundCameras || !route.foundTravelTimes {
                 
                 showRouteOverlay()
                 
                 let serviceGroup = DispatchGroup();
                 
-                requestFerriesUpdate(true, serviceGroup: serviceGroup)
-                requestCamerasUpdate(true, serviceGroup: serviceGroup)
-                requestTravelTimesUpdate(true, serviceGroup: serviceGroup)
-                requestMountainPassesUpdate(true, serviceGroup: serviceGroup)
+                if !route.foundFerrySchedules { requestFerriesUpdate(true, serviceGroup: serviceGroup) }
+                if !route.foundCameras { requestCamerasUpdate(true, serviceGroup: serviceGroup) }
+                if !route.foundTravelTimes { requestTravelTimesUpdate(true, serviceGroup: serviceGroup) }
+                if !route.foundMountainPasses { requestMountainPassesUpdate(true, serviceGroup: serviceGroup) }
                 
                 serviceGroup.notify(queue: DispatchQueue.main) {
                     
-                    _ = MyRouteStore.selectNearbyCameras(forRoute: route)
-                    _ = MyRouteStore.selectNearbyTravelTimes(forRoute: route)
-                    _ = MyRouteStore.selectNearbyFerries(forRoute: route)
-                    _ = MyRouteStore.selectNearbyPasses(forRoute: route)
+                    if !route.foundCameras { _ = MyRouteStore.selectNearbyCameras(forRoute: route) }
+                    if !route.foundTravelTimes { _ = MyRouteStore.selectNearbyTravelTimes(forRoute: route) }
+                    if !route.foundFerrySchedules { _ = MyRouteStore.selectNearbyFerries(forRoute: route) }
+                    if !route.foundMountainPasses { _ = MyRouteStore.selectNearbyPasses(forRoute: route) }
                     
-                    _ = MyRouteStore.updateFindNearby(forRoute: route, withValue: true)
+                    _ = MyRouteStore.updateFindNearby(forRoute: route, foundCameras: true, foundTimes: true, foundFerries: true, foundPasses: true)
                     
                     // dismiss the routeLoadingOverlay
                     self.loadingRouteAlert.dismiss(animated: true, completion: nil)
@@ -84,6 +84,21 @@ class MyRouteViewController: UIViewController {
 
     @IBAction func newRouteButtonPressed(_ sender: UIBarButtonItem) {
         if myRoutes.count < 5 {
+            performSegue(withIdentifier: segueNewRouteViewController, sender: self)
+        } else {
+            let alertController = UIAlertController(title: "Maxed Number of Routes Saved", message: "Please delete a route to record more.", preferredStyle: .alert)
+
+            alertController.view.tintColor = Colors.tintColor
+
+            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            
+            self.present(alertController, animated: false, completion: nil)
+        }
+    }
+    
+    @IBAction func firstNewRouteButtonPressed(_ sender: UIButton) {
+            if myRoutes.count < 5 {
             performSegue(withIdentifier: segueNewRouteViewController, sender: self)
         } else {
             let alertController = UIAlertController(title: "Maxed Number of Routes Saved", message: "Please delete a route to record more.", preferredStyle: .alert)
@@ -170,7 +185,7 @@ class MyRouteViewController: UIViewController {
     }
     
     func showRouteOverlay(){
-        loadingRouteAlert = UIAlertController(title: nil, message: "Finding Favorites...", preferredStyle: .alert)
+        loadingRouteAlert = UIAlertController(title: nil, message: "Please wait.\nFinding Favorites...", preferredStyle: .alert)
         loadingRouteAlert.view.tintColor = UIColor.black
         let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame:CGRect(x:10, y:5, width:50, height:50)) as UIActivityIndicatorView
         loadingIndicator.hidesWhenStopped = true
@@ -265,8 +280,7 @@ class MyRouteViewController: UIViewController {
                     _ = MyRouteStore.selectNearbyFerries(forRoute: self.myRoutes[sender.tag])
                     _ = MyRouteStore.selectNearbyPasses(forRoute: self.myRoutes[sender.tag])
                     
-                    _ = MyRouteStore.updateFindNearby(forRoute: self.myRoutes[sender.tag], withValue: true)
-                    
+                    _ = MyRouteStore.updateFindNearby(forRoute: self.myRoutes[sender.tag], foundCameras: true, foundTimes: true, foundFerries: true, foundPasses: true)
                     // dismiss the routeLoadingOverlay
                     self.loadingRouteAlert.dismiss(animated: true, completion: nil)
                 }

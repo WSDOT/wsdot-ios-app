@@ -180,7 +180,7 @@ class NewRouteViewController: UIViewController {
             self.hideRecordingView(duration: 0.5)
             
             // TEST
-            // self.locations = MyRouteStore.getFakeData()
+             self.locations = MyRouteStore.getFakeData()
             
             if (self.displayRouteOnMap(locations: self.locations)){
             
@@ -222,7 +222,11 @@ class NewRouteViewController: UIViewController {
         alertController.addTextField { (textfield) in
             textfield.placeholder = "My Route"
         }
-        alertController.view.tintColor = Colors.tintColor
+
+        // Setting tintColor on iOS < 9 leades to strange display behavior.
+        if #available(iOS 9.0, *) {
+            alertController.view.tintColor = Colors.tintColor
+        }
 
         let okAction = UIAlertAction(title: "Ok", style: .default) { (_) -> Void in
         
@@ -240,11 +244,15 @@ class NewRouteViewController: UIViewController {
                                         displayZoom: self.mapView.camera.zoom)
                 
             let alertController = UIAlertController(title: "Automaticlly Add Content on This Route to Favorites?", message:"Traffic cameras, travel times, pass reports, and other favoritable items will be automatically added to your favorites if they are on this route. \n\n You can do this later by tapping Edit on the My Routes screen.", preferredStyle: .alert)
-            alertController.view.tintColor = Colors.tintColor
+
+            // Setting tintColor on iOS < 9 leades to strange display behavior.
+            if #available(iOS 9.0, *) {
+                alertController.view.tintColor = Colors.tintColor
+            }
 
             let noAction = UIAlertAction(title: "No", style: .default) { (_) -> Void in
     
-                _ = MyRouteStore.updateFindNearby(forRoute: MyRouteStore.getRouteById(id)!, withValue: true)
+                _ = MyRouteStore.updateFindNearby(forRoute: MyRouteStore.getRouteById(id)!, foundCameras: true, foundTimes: true, foundFerries: true, foundPasses: true)
                 _ = self.navigationController?.popViewController(animated: true)
             }
                 

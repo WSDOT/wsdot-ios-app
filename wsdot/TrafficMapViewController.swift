@@ -21,6 +21,7 @@
 import UIKit
 import GoogleMaps
 import GoogleMobileAds
+import EasyTipView
 
 class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewDelegate, GMUClusterManagerDelegate, GADBannerViewDelegate {
     
@@ -64,6 +65,9 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     fileprivate let closedIconImage = UIImage(named: "icMapClosed")
     
+    var tipView = EasyTipView(text: "")
+    
+    @IBOutlet weak var toolBarMenuButton: UIBarButtonItem!
     @IBOutlet weak var cameraBarButton: UIBarButtonItem!
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
@@ -110,6 +114,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView(screenName: "/Traffic Map")
     }
+
     
     @IBAction func refreshPressed(_ sender: UIBarButtonItem) {
     
@@ -688,4 +693,26 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         }
     }
 
+}
+
+extension TrafficMapViewController: EasyTipViewDelegate {
+    
+    public func easyTipViewDidDismiss(_ tipView: EasyTipView) {
+         UserDefaults.standard.set(true, forKey: UserDefaultsKeys.hasSeenClusterTipView)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tipView.dismiss()
+        
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasSeenClusterTipView)) {
+            tipView = EasyTipView(text: "Make the map eaiser to read in areas with a high density of cameras by turning on Camera Clustering.", delegate: self)
+            tipView.show(forItem: self.toolBarMenuButton)
+           
+        }
+    }
 }
