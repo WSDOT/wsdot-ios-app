@@ -20,6 +20,7 @@
 
 import UIKit
 import EasyTipView
+import SCLAlertView
 
 class FavoritesHomeViewController: UIViewController {
     
@@ -505,35 +506,56 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        let updateAction = UITableViewRowAction(style: .normal, title: "Rename") { action, index in
-            
-            tableView.reloadRows(at: [indexPath], with: .right)
-            
-            let alertController = UIAlertController(title: "New Name", message:nil, preferredStyle: .alert)
-            alertController.addTextField { (textfield) in
-                textfield.placeholder = "My Route"
-            }
-            alertController.view.tintColor = Colors.tintColor
-
-            let okAction = UIAlertAction(title: "Ok", style: .default) { (_) -> Void in
-        
-                let textf = alertController.textFields![0] as UITextField
-                var name = textf.text!
-                if name.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "" {
-                    name = "My Route"
+        let renameRouteAction = UITableViewRowAction(style: UITableViewRowActionStyle.normal, title: "Edit" , handler: { (action:UITableViewRowAction, indexPath:IndexPath) -> Void in
+            let nameRouteAlertView = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
+                showCloseButton: false,
+                showCircularIcon: false,
+                shouldAutoDismiss: false)
+            )
+            let name = nameRouteAlertView.addTextField(self.myRoutes[indexPath.row].name)
+            nameRouteAlertView.addButton("OK") {
+                nameRouteAlertView.hideView()
+                if name.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "" {
+                    name.text = self.myRoutes[indexPath.row].name
                 }
-                _ = MyRouteStore.updateName(forRoute: MyRouteStore.getSelectedRoutes()[indexPath.row], name)
+                _ = MyRouteStore.updateName(forRoute: self.myRoutes[indexPath.row], name.text!)
+                self.tableView.reloadData()
+            }
+            nameRouteAlertView.addButton("Cancel") {
+                nameRouteAlertView.hideView()
+            }
+            _ = nameRouteAlertView.showCustom("Edit Name", subTitle: "", color: Colors.tintColor, icon: UIImage(named:"icFavoritesTab")!)
+
+        })
+        
+        
+        let renameLocationAction = UITableViewRowAction(style: UITableViewRowActionStyle.normal, title: "Edit", handler: { (action:UITableViewRowAction,
+            indexPath:IndexPath) -> Void in
+            
+            let newLocationAlertView = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
+                showCloseButton: false,
+                showCircularIcon: false,
+                shouldAutoDismiss: false)
+            )
+            let name = newLocationAlertView.addTextField(self.savedLocations[indexPath.row].name)
+            newLocationAlertView.iconTintColor = UIColor.white
+        
+            newLocationAlertView.addButton("OK") {
+                
+                newLocationAlertView.hideView()
+                if name.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "" {
+                    name.text = self.savedLocations[indexPath.row].name
+                }
+                FavoriteLocationStore.updateName(self.savedLocations[indexPath.row], name: name.text!)
                 self.tableView.reloadData()
             }
             
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            newLocationAlertView.addButton("Cancel") {
+                newLocationAlertView.hideView()
+            }
             
-            alertController.addAction(cancelAction)
-            alertController.addAction(okAction)
-            
-            self.present(alertController, animated: false, completion: nil)
-            
-        }
+            _ = newLocationAlertView.showCustom("Edit Name", subTitle: "", color: Colors.tintColor, icon: UIImage(named:"icFavoritesTab")!)
+        })
         
         let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Remove" , handler: { (action:UITableViewRowAction, indexPath:IndexPath) -> Void in
         
@@ -564,7 +586,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 self.mountainPasses.remove(at: indexPath.row)
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
             case .route:
-                let alertController = UIAlertController(title: "Are you sure you want to delete this route?", message:"This cannot be undone.", preferredStyle: .alert)
+                let alertController = UIAlertController(title: "Delete route \(self.myRoutes[indexPath.row].name)?", message:"This cannot be undone.", preferredStyle: .alert)
 
                 alertController.view.tintColor = Colors.tintColor
 
@@ -596,7 +618,9 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             }
         })
         if getType(forSection: indexPath.section) == .route {
-            return [deleteAction, updateAction]
+            return [deleteAction, renameRouteAction]
+        } else if getType(forSection: indexPath.section) == .mapLocation {
+            return [deleteAction, renameLocationAction]
         } else {
             return [deleteAction]
         }

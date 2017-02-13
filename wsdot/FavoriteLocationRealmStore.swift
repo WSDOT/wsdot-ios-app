@@ -36,7 +36,18 @@ class FavoriteLocationStore{
         let realm = try! Realm()
         do {
             try realm.write{
-                realm.add(favorite)
+                realm.add(favorite, update: true)
+            }
+        }catch{
+            print("FavoriteLocationStore.saveFavorite: Realm write error")
+        }
+    }
+    
+    static func updateName(_ location: FavoriteLocationItem, name: String) {
+        let realm = try! Realm()
+        do {
+            try realm.write{
+                location.name = name
             }
         }catch{
             print("FavoriteLocationStore.saveFavorite: Realm write error")

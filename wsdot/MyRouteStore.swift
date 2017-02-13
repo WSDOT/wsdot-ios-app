@@ -77,13 +77,8 @@ class MyRouteStore {
         
         let realm = try! Realm()
         
-        let routes = getRoutes()
-        
         do {
             try realm.write{
-                for route in routes {
-                    route.selected = false
-                }
                 realm.add(myRouteItem, update: true)
             }
         } catch {

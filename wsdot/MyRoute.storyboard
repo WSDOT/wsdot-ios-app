@@ -16,7 +16,7 @@
         <scene sceneID="E6A-9Y-sId">
             <objects>
                 <navigationController storyboardIdentifier="FavoritesNavigationController" id="0hy-HL-p0M" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kyZ-Hl-ylo">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="kyZ-Hl-ylo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -446,42 +446,29 @@ Tap star icons to add Favorites</string>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Es-82-m8x">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a custom route by tracking your drive using your phone's GPS. Once created, you can check for alerts on your route*." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AiI-b3-e0P">
-                                        <rect key="frame" x="8" y="41" width="359" height="70"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AiI-b3-e0P">
+                                        <rect key="frame" x="8" y="170" width="359" height="85"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="70" id="UtH-hF-Nsi"/>
+                                            <constraint firstAttribute="height" constant="85" id="7ZP-cR-69i"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                        <color key="textColor" red="0.11764705882352941" green="0.14509803921568626" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
+                                        <attributedString key="attributedText">
+                                            <fragment>
+                                                <string key="content">Create a custom route by tracking your commute using your phone's GPS. Once created, you can check for alerts on your route* and automaticaly add content on your route to your favorites.</string>
+                                                <attributes>
+                                                    <color key="NSColor" red="0.11764705882352941" green="0.14509803921568626" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <font key="NSFont" size="15" name=".AppleSystemUIFont"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gYH-2w-wyB">
-                                        <rect key="frame" x="8" y="159" width="359" height="66"/>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MJG-Gr-AXV">
+                                        <rect key="frame" x="8" y="354" width="359" height="72"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="66" id="8pV-og-DkR"/>
+                                            <constraint firstAttribute="height" constant="72" id="IHr-Cq-k9a"/>
                                         </constraints>
-                                        <string key="text">The WSDOT app can also automatically save favorites on your route.
-</string>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                        <color key="textColor" red="0.1176470588" green="0.1450980392" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2AC-LL-neQ">
-                                        <rect key="frame" x="40" y="521" width="293" height="74"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="74" id="y5x-xH-QYI"/>
-                                        </constraints>
-                                        <string key="text">*Your route information is stored on your device and is not shared with anyone. 
-WSDOT provides traffic alert information for Washington State highways only.</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MJG-Gr-AXV">
-                                        <rect key="frame" x="106" y="315" width="163" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="163" id="Tcr-K9-u9z"/>
-                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <state key="normal" title="Create Your First Route">
                                             <color key="titleColor" red="0.18647282900000001" green="0.68235294120000001" blue="0.11432351139999999" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -489,21 +476,36 @@ WSDOT provides traffic alert information for Washington State highways only.</st
                                             <action selector="firstNewRouteButtonPressed:" destination="Eg9-Ai-gUk" eventType="touchUpInside" id="Igm-eZ-bOJ"/>
                                         </connections>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="icGreenCar" translatesAutoresizingMaskIntoConstraints="NO" id="w04-fA-8wH">
+                                        <rect key="frame" x="137" y="55" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="NZM-kN-H9q"/>
+                                            <constraint firstAttribute="height" constant="100" id="ybk-3j-q4A"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2AC-LL-neQ">
+                                        <rect key="frame" x="8" y="537" width="359" height="58"/>
+                                        <string key="text">*Your route information is stored on your device and is not shared with anyone. 
+WSDOT provides traffic alert information for Washington State highways only.</string>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="AiI-b3-e0P" firstAttribute="top" secondItem="0Es-82-m8x" secondAttribute="top" constant="41" id="4II-lI-lHx"/>
-                                    <constraint firstItem="AiI-b3-e0P" firstAttribute="trailing" secondItem="0Es-82-m8x" secondAttribute="trailingMargin" id="Ihx-nG-NPV"/>
-                                    <constraint firstItem="AiI-b3-e0P" firstAttribute="leading" secondItem="gYH-2w-wyB" secondAttribute="leading" id="Je6-Ur-31k"/>
-                                    <constraint firstItem="MJG-Gr-AXV" firstAttribute="centerX" secondItem="2AC-LL-neQ" secondAttribute="centerX" id="Pck-cF-VxH"/>
-                                    <constraint firstItem="2AC-LL-neQ" firstAttribute="leading" secondItem="0Es-82-m8x" secondAttribute="leading" constant="40" id="RR7-Kr-hLP"/>
-                                    <constraint firstItem="MJG-Gr-AXV" firstAttribute="top" secondItem="gYH-2w-wyB" secondAttribute="bottom" constant="90" id="cCG-3F-1uU"/>
-                                    <constraint firstItem="2AC-LL-neQ" firstAttribute="top" secondItem="MJG-Gr-AXV" secondAttribute="bottom" constant="176" id="dIa-Ky-m39"/>
-                                    <constraint firstItem="AiI-b3-e0P" firstAttribute="leading" secondItem="0Es-82-m8x" secondAttribute="leadingMargin" id="gzJ-t8-s0x"/>
-                                    <constraint firstItem="2AC-LL-neQ" firstAttribute="bottom" secondItem="0Es-82-m8x" secondAttribute="bottomMargin" id="l9C-cH-ptc"/>
-                                    <constraint firstItem="gYH-2w-wyB" firstAttribute="top" secondItem="AiI-b3-e0P" secondAttribute="bottom" constant="48" id="nQ1-MI-5Ml"/>
-                                    <constraint firstItem="gYH-2w-wyB" firstAttribute="centerX" secondItem="MJG-Gr-AXV" secondAttribute="centerX" id="nbL-nZ-Vah"/>
-                                    <constraint firstItem="AiI-b3-e0P" firstAttribute="trailing" secondItem="gYH-2w-wyB" secondAttribute="trailing" id="uoQ-RD-yjU"/>
+                                    <constraint firstItem="MJG-Gr-AXV" firstAttribute="trailing" secondItem="2AC-LL-neQ" secondAttribute="trailing" id="5LP-yY-GIs"/>
+                                    <constraint firstItem="AiI-b3-e0P" firstAttribute="trailing" secondItem="MJG-Gr-AXV" secondAttribute="trailing" id="6ly-VM-ZjP"/>
+                                    <constraint firstItem="MJG-Gr-AXV" firstAttribute="leading" secondItem="2AC-LL-neQ" secondAttribute="leading" id="CWD-TC-t9x"/>
+                                    <constraint firstItem="w04-fA-8wH" firstAttribute="top" secondItem="0Es-82-m8x" secondAttribute="top" constant="55" id="SVy-Pa-jL8"/>
+                                    <constraint firstAttribute="bottom" secondItem="2AC-LL-neQ" secondAttribute="bottom" constant="8" id="Uj8-DU-9SQ"/>
+                                    <constraint firstItem="w04-fA-8wH" firstAttribute="centerX" secondItem="AiI-b3-e0P" secondAttribute="centerX" id="ZQx-yp-3th"/>
+                                    <constraint firstItem="MJG-Gr-AXV" firstAttribute="top" relation="lessThanOrEqual" secondItem="AiI-b3-e0P" secondAttribute="bottom" constant="99" id="dmB-Wf-9RH"/>
+                                    <constraint firstItem="2AC-LL-neQ" firstAttribute="top" relation="lessThanOrEqual" secondItem="MJG-Gr-AXV" secondAttribute="bottom" constant="111.5" id="eh0-kS-Cbi"/>
+                                    <constraint firstItem="AiI-b3-e0P" firstAttribute="leading" secondItem="MJG-Gr-AXV" secondAttribute="leading" id="kPq-bq-DXP"/>
+                                    <constraint firstItem="AiI-b3-e0P" firstAttribute="leading" secondItem="0Es-82-m8x" secondAttribute="leadingMargin" id="oS5-xp-UMe"/>
+                                    <constraint firstItem="AiI-b3-e0P" firstAttribute="top" secondItem="w04-fA-8wH" secondAttribute="bottom" constant="15" id="t8k-lI-UUo"/>
+                                    <constraint firstItem="AiI-b3-e0P" firstAttribute="trailing" secondItem="0Es-82-m8x" secondAttribute="trailingMargin" id="z6m-ND-yMa"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -518,12 +520,17 @@ WSDOT provides traffic alert information for Washington State highways only.</st
                             <constraint firstAttribute="trailing" secondItem="YDU-yI-OVI" secondAttribute="trailing" id="mMu-0J-s7U"/>
                             <constraint firstItem="0Es-82-m8x" firstAttribute="leading" secondItem="an6-bx-iwA" secondAttribute="leading" id="xa7-Zc-My3"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="0Es-82-m8x"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="My Routes" id="kvg-nC-pKC">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="TRE-uI-K3p">
                             <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.16429793400000001" alpha="1" colorSpace="calibratedRGB"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="Record A New Route"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="Create A New Route"/>
                             </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="newRouteButtonPressed:" destination="Eg9-Ai-gUk" id="NFs-fN-nHK"/>
@@ -587,7 +594,7 @@ WSDOT provides traffic alert information for Washington State highways only.</st
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
-                                <state key="normal" title="Start Logging Your Route">
+                                <state key="normal" title="Start Creating A New Route">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -598,83 +605,21 @@ WSDOT provides traffic alert information for Washington State highways only.</st
                                 <rect key="frame" x="16" y="72" width="343" height="405"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="adN-4q-Tsd">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's Go!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txU-D4-ugM">
-                                        <rect key="frame" x="8" y="47" width="359" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="yUs-gB-Jkw"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t07-XO-U4o">
-                                        <rect key="frame" x="100" y="178" width="174" height="174"/>
-                                        <color key="backgroundColor" red="0.0" green="0.68235294120000001" blue="0.16429793400000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="174" id="4YJ-aK-rNx"/>
-                                            <constraint firstAttribute="height" constant="174" id="9RC-z0-E39"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <state key="normal" title="Finish">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="stopRecordingPressed:" destination="0Na-gD-JAb" eventType="touchUpInside" id="mXB-wX-nTK"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you are driving, please do not use the WSDOT app while your route is saving." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHe-AT-SQz">
-                                        <rect key="frame" x="18" y="482" width="339" height="41"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap &quot;Finish&quot; to view the results of your drive." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8kE-9X-9FY">
-                                        <rect key="frame" x="18" y="112" width="339" height="42"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="42" id="fDd-QF-w9O"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.2922294556249912" green="0.57598157051282051" blue="0.54897502251232966" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="8kE-9X-9FY" firstAttribute="leading" secondItem="CHe-AT-SQz" secondAttribute="leading" id="0Gc-Ns-dhf"/>
-                                    <constraint firstItem="8kE-9X-9FY" firstAttribute="top" secondItem="txU-D4-ugM" secondAttribute="bottom" constant="15" id="6AP-X8-Hxv"/>
-                                    <constraint firstItem="8kE-9X-9FY" firstAttribute="centerX" secondItem="t07-XO-U4o" secondAttribute="centerX" id="7vB-J3-cMK"/>
-                                    <constraint firstItem="CHe-AT-SQz" firstAttribute="top" secondItem="t07-XO-U4o" secondAttribute="bottom" constant="130" id="CwY-VK-uEO"/>
-                                    <constraint firstItem="8kE-9X-9FY" firstAttribute="leading" secondItem="adN-4q-Tsd" secondAttribute="leading" constant="18" id="FVH-cf-9h8"/>
-                                    <constraint firstItem="txU-D4-ugM" firstAttribute="trailing" secondItem="adN-4q-Tsd" secondAttribute="trailingMargin" id="GsX-Tg-Xbg"/>
-                                    <constraint firstItem="txU-D4-ugM" firstAttribute="centerX" secondItem="8kE-9X-9FY" secondAttribute="centerX" id="coc-jO-Xjv"/>
-                                    <constraint firstItem="txU-D4-ugM" firstAttribute="leading" secondItem="adN-4q-Tsd" secondAttribute="leadingMargin" id="lA8-Bs-21s"/>
-                                    <constraint firstItem="txU-D4-ugM" firstAttribute="top" secondItem="adN-4q-Tsd" secondAttribute="top" constant="47" id="ow9-cm-yjK"/>
-                                    <constraint firstItem="8kE-9X-9FY" firstAttribute="trailing" secondItem="CHe-AT-SQz" secondAttribute="trailing" id="pXZ-QM-RmC"/>
-                                    <constraint firstItem="t07-XO-U4o" firstAttribute="top" secondItem="8kE-9X-9FY" secondAttribute="bottom" constant="24" id="zNp-Rp-4KB"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="pEB-eG-Mzv" firstAttribute="top" secondItem="n9A-NS-dGg" secondAttribute="bottom" constant="8" symbolic="YES" id="43v-cx-Z6z"/>
-                            <constraint firstItem="adN-4q-Tsd" firstAttribute="top" secondItem="n9A-NS-dGg" secondAttribute="bottom" id="5XD-Ch-Tf8"/>
-                            <constraint firstItem="TSy-zs-dVd" firstAttribute="top" secondItem="adN-4q-Tsd" secondAttribute="bottom" id="9Ph-ls-mr6"/>
                             <constraint firstItem="Y9B-qJ-9S6" firstAttribute="trailing" secondItem="Foh-3z-Q7Y" secondAttribute="trailing" id="9pb-IZ-UaF"/>
                             <constraint firstItem="e03-eN-4op" firstAttribute="leading" secondItem="Y9B-qJ-9S6" secondAttribute="leading" id="FA1-xf-Crk"/>
                             <constraint firstAttribute="bottom" secondItem="Foh-3z-Q7Y" secondAttribute="bottom" constant="20" symbolic="YES" id="Fiq-2M-Br7"/>
                             <constraint firstItem="e03-eN-4op" firstAttribute="leading" secondItem="9Qk-yS-Uw0" secondAttribute="leadingMargin" constant="27" id="Hu4-nR-rq1"/>
                             <constraint firstItem="Y9B-qJ-9S6" firstAttribute="leading" secondItem="Foh-3z-Q7Y" secondAttribute="leading" id="JKs-oh-Zzl"/>
                             <constraint firstItem="Y9B-qJ-9S6" firstAttribute="top" secondItem="pEB-eG-Mzv" secondAttribute="bottom" constant="62" id="Ko8-22-DDE"/>
-                            <constraint firstItem="adN-4q-Tsd" firstAttribute="leading" secondItem="9Qk-yS-Uw0" secondAttribute="leading" id="LI7-Rs-Udh"/>
                             <constraint firstItem="pEB-eG-Mzv" firstAttribute="trailing" secondItem="9Qk-yS-Uw0" secondAttribute="trailingMargin" id="Mnx-WC-ZY2"/>
                             <constraint firstItem="TSy-zs-dVd" firstAttribute="top" secondItem="Y9B-qJ-9S6" secondAttribute="bottom" constant="67" id="SL1-Aa-tfm"/>
                             <constraint firstItem="e03-eN-4op" firstAttribute="trailing" secondItem="Y9B-qJ-9S6" secondAttribute="trailing" id="Z8V-vr-7QX"/>
                             <constraint firstItem="pEB-eG-Mzv" firstAttribute="centerX" secondItem="e03-eN-4op" secondAttribute="centerX" id="bWm-Cf-1in"/>
                             <constraint firstItem="Foh-3z-Q7Y" firstAttribute="top" secondItem="e03-eN-4op" secondAttribute="bottom" constant="24" id="gfF-lL-MTL"/>
-                            <constraint firstAttribute="trailing" secondItem="adN-4q-Tsd" secondAttribute="trailing" id="i8Q-WC-Qsb"/>
                             <constraint firstItem="e03-eN-4op" firstAttribute="top" secondItem="pEB-eG-Mzv" secondAttribute="bottom" constant="24" id="lD2-Qe-xHe"/>
                             <constraint firstItem="pEB-eG-Mzv" firstAttribute="leading" secondItem="9Qk-yS-Uw0" secondAttribute="leadingMargin" id="n3E-95-BBi"/>
                         </constraints>
@@ -684,11 +629,8 @@ WSDOT provides traffic alert information for Washington State highways only.</st
                     <connections>
                         <outlet property="discardButton" destination="Foh-3z-Q7Y" id="PJ1-LL-ngR"/>
                         <outlet property="mapView" destination="pEB-eG-Mzv" id="8WN-qh-F79"/>
-                        <outlet property="recordingView" destination="adN-4q-Tsd" id="yaS-OO-Ice"/>
-                        <outlet property="recordingViewTop" destination="5XD-Ch-Tf8" id="WEJ-PH-NOW"/>
                         <outlet property="saveButton" destination="e03-eN-4op" id="Ux3-vD-dEJ"/>
                         <outlet property="startButton" destination="Y9B-qJ-9S6" id="A7x-zI-e0z"/>
-                        <outlet property="stopButton" destination="t07-XO-U4o" id="bFZ-KN-8UE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eLo-ap-OG0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -918,6 +860,7 @@ WSDOT provides traffic alert information for Washington State highways only.</st
     <resources>
         <image name="icFavoriteDefault" width="32" height="32"/>
         <image name="icGear" width="24" height="24"/>
+        <image name="icGreenCar" width="240" height="240"/>
         <image name="icMyRoute" width="24" height="24"/>
     </resources>
 </document>
