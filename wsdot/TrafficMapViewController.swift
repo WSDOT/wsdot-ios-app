@@ -22,6 +22,7 @@ import UIKit
 import GoogleMaps
 import GoogleMobileAds
 import EasyTipView
+import SCLAlertView
 
 class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewDelegate, GMUClusterManagerDelegate, GADBannerViewDelegate {
     
@@ -523,31 +524,41 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     // MARK: favorite location
     func saveCurrentLocation(){
         
-        let alertController = UIAlertController(title: "New Favorite Location", message:nil, preferredStyle: .alert)
+        let newLocationAlertView = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
+            showCloseButton: false,
+            showCircularIcon: true,
+            shouldAutoDismiss: false)
+        )
         
-        alertController.addTextField { (textfield) in
-            textfield.placeholder = "Name"
-        }
+        let name = newLocationAlertView.addTextField("Saved Location")
+        newLocationAlertView.iconTintColor = UIColor.white
         
-        alertController.view.tintColor = Colors.tintColor
-
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-
-        let okAction = UIAlertAction(title: "Ok", style: .default) { (_) -> Void in
+        newLocationAlertView.addButton("OK") {
+                
             GoogleAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Favorite Location Saved")
-            let textf = alertController.textFields![0] as UITextField
+                
+            newLocationAlertView.hideView()
+            if name.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "" {
+                name.text = "Saved Location"
+            }
+            
+            
             if let mapView = self.embeddedMapViewController.view as? GMSMapView{
                 let favoriteLocation = FavoriteLocationItem()
-                favoriteLocation.name = textf.text!
+                favoriteLocation.name = name.text!
                 favoriteLocation.latitude = mapView.camera.target.latitude
                 favoriteLocation.longitude = mapView.camera.target.longitude
                 favoriteLocation.zoom = mapView.camera.zoom
                 FavoriteLocationStore.saveFavorite(favoriteLocation)
             }
         }
-        alertController.addAction(okAction)
+            
+        newLocationAlertView.addButton("Cancel") {
+            newLocationAlertView.hideView()
+        }
+            
+        _ = newLocationAlertView.showCustom("New Location", subTitle: "", color: Colors.tintColor, icon: UIImage(named:"icFavoritesTab")!)
 
-        present(alertController, animated: false, completion: nil)
     }
 
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
@@ -692,7 +703,6 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
             destinationViewController.title = "JBLM"
         }
     }
-
 }
 
 extension TrafficMapViewController: EasyTipViewDelegate {

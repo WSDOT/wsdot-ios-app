@@ -19,6 +19,7 @@
 //
 
 import UIKit
+import SCLAlertView
 
 class MyRouteViewController: UIViewController {
 
@@ -86,7 +87,7 @@ class MyRouteViewController: UIViewController {
         if myRoutes.count < 5 {
             performSegue(withIdentifier: segueNewRouteViewController, sender: self)
         } else {
-            let alertController = UIAlertController(title: "Maxed Number of Routes Saved", message: "Please delete a route to record more.", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Limit Reached", message: "Please delete a route to create a new one", preferredStyle: .alert)
 
             alertController.view.tintColor = Colors.tintColor
 
@@ -185,7 +186,7 @@ class MyRouteViewController: UIViewController {
     }
     
     func showRouteOverlay(){
-        loadingRouteAlert = UIAlertController(title: nil, message: "Please wait.\nFinding Favorites...", preferredStyle: .alert)
+        loadingRouteAlert = UIAlertController(title: nil, message: "Please wait.\nAdding Favorites...", preferredStyle: .alert)
         loadingRouteAlert.view.tintColor = UIColor.black
         let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame:CGRect(x:10, y:5, width:50, height:50)) as UIActivityIndicatorView
         loadingIndicator.hidesWhenStopped = true
@@ -211,7 +212,7 @@ class MyRouteViewController: UIViewController {
         }
         
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (result : UIAlertAction) -> Void in
-            let alertController = UIAlertController(title: "Are you sure you want to delete this route?", message:"This cannot be undone.", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Delete route \(self.myRoutes[sender.tag].name)?", message:"This cannot be undone", preferredStyle: .alert)
 
             alertController.view.tintColor = Colors.tintColor
 
@@ -231,78 +232,62 @@ class MyRouteViewController: UIViewController {
         
         let renameAction = UIAlertAction(title: "Rename", style: .default) { (result : UIAlertAction) -> Void in
         
-            let alertController = UIAlertController(title: "New Name", message:nil, preferredStyle: .alert)
-            alertController.addTextField { (textfield) in
-                textfield.placeholder = self.myRoutes[sender.tag].name
-            }
-            alertController.view.tintColor = Colors.tintColor
-
-            let okAction = UIAlertAction(title: "Ok", style: .default) { (_) -> Void in
+            let nameRouteAlertView = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
+                showCloseButton: false,
+                showCircularIcon: false,
+                shouldAutoDismiss: false)
+            )
         
-                let textf = alertController.textFields![0] as UITextField
-                var name = textf.text!
-                if name.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "" {
-                    name = self.myRoutes[sender.tag].name
+            let name = nameRouteAlertView.addTextField(self.myRoutes[sender.tag].name)
+        
+            nameRouteAlertView.addButton("OK") {
+                nameRouteAlertView.hideView()
+                if name.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "" {
+                    name.text = self.myRoutes[sender.tag].name
                 }
-                _ = MyRouteStore.updateName(forRoute: self.myRoutes[sender.tag], name)
+                _ = MyRouteStore.updateName(forRoute: self.myRoutes[sender.tag], name.text!)
                 self.tableView.reloadData()
             }
             
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            nameRouteAlertView.addButton("Cancel") {
+                nameRouteAlertView.hideView()
+            }
             
-            alertController.addAction(cancelAction)
-            alertController.addAction(okAction)
-            
-            self.present(alertController, animated: false, completion: nil)
+            _ = nameRouteAlertView.showCustom("New Name", subTitle: "", color: Colors.tintColor, icon: UIImage(named:"icFavoritesTab")!)
+
         }
         
-        // TODO: Add reload favorites action
-        let reloadAction = UIAlertAction(title: "Find Favorites", style: .default) { (result : UIAlertAction) -> Void in
-            
-            let alertController = UIAlertController(title: "Check for favorites on this route?", message:nil, preferredStyle: .alert)
-            alertController.view.tintColor = Colors.tintColor
-
-            let okAction = UIAlertAction(title: "Yes", style: .default) { (_) -> Void in
+        let reloadAction = UIAlertAction(title: "Add Favorites on Route", style: .default) { (result : UIAlertAction) -> Void in
                 
-                self.showRouteOverlay()
+            self.showRouteOverlay()
                 
-                let serviceGroup = DispatchGroup();
+            let serviceGroup = DispatchGroup();
                 
-                self.requestFerriesUpdate(true, serviceGroup: serviceGroup)
-                self.requestCamerasUpdate(true, serviceGroup: serviceGroup)
-                self.requestTravelTimesUpdate(true, serviceGroup: serviceGroup)
-                self.requestMountainPassesUpdate(true, serviceGroup: serviceGroup)
+            self.requestFerriesUpdate(true, serviceGroup: serviceGroup)
+            self.requestCamerasUpdate(true, serviceGroup: serviceGroup)
+            self.requestTravelTimesUpdate(true, serviceGroup: serviceGroup)
+            self.requestMountainPassesUpdate(true, serviceGroup: serviceGroup)
                 
-                serviceGroup.notify(queue: DispatchQueue.main) {
+            serviceGroup.notify(queue: DispatchQueue.main) {
                     
-                    _ = MyRouteStore.selectNearbyCameras(forRoute: self.myRoutes[sender.tag])
-                    _ = MyRouteStore.selectNearbyTravelTimes(forRoute: self.myRoutes[sender.tag])
-                    _ = MyRouteStore.selectNearbyFerries(forRoute: self.myRoutes[sender.tag])
-                    _ = MyRouteStore.selectNearbyPasses(forRoute: self.myRoutes[sender.tag])
+                _ = MyRouteStore.selectNearbyCameras(forRoute: self.myRoutes[sender.tag])
+                _ = MyRouteStore.selectNearbyTravelTimes(forRoute: self.myRoutes[sender.tag])
+                _ = MyRouteStore.selectNearbyFerries(forRoute: self.myRoutes[sender.tag])
+                _ = MyRouteStore.selectNearbyPasses(forRoute: self.myRoutes[sender.tag])
                     
-                    _ = MyRouteStore.updateFindNearby(forRoute: self.myRoutes[sender.tag], foundCameras: true, foundTimes: true, foundFerries: true, foundPasses: true)
-                    // dismiss the routeLoadingOverlay
-                    self.loadingRouteAlert.dismiss(animated: true, completion: nil)
-                }
-
-                self.tableView.reloadData()
+                _ = MyRouteStore.updateFindNearby(forRoute: self.myRoutes[sender.tag], foundCameras: true, foundTimes: true, foundFerries: true, foundPasses: true)
+                // dismiss the routeLoadingOverlay
+                self.loadingRouteAlert.dismiss(animated: true, completion: nil)
             }
-            
-            let cancelAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
-            
-            alertController.addAction(cancelAction)
-            alertController.addAction(okAction)
-            
-            self.present(alertController, animated: false, completion: nil)
 
+            self.tableView.reloadData()
 
         }
         
         editController.addAction(cancelAction)
-        editController.addAction(reloadAction)
-        editController.addAction(renameAction)
         editController.addAction(deleteAction)
-  
+        editController.addAction(renameAction)
+        editController.addAction(reloadAction)
     
         self.present(editController, animated: true, completion: nil)
 
@@ -334,8 +319,10 @@ extension MyRouteViewController:  UITableViewDataSource, UITableViewDelegate {
         
         if myRoutes[indexPath.row].selected {
             routeCell.setButton.setImage(UIImage(named: "icFavoriteSelected"), for: .normal)
+            routeCell.setButton.accessibilityLabel = "remove from favorites"
         } else {
             routeCell.setButton.setImage(UIImage(named: "icFavoriteDefault"), for: .normal)
+            routeCell.setButton.accessibilityLabel = "add to favorites"
         }
             
         routeCell.setButton.tag = indexPath.row

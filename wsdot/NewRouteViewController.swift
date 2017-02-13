@@ -22,7 +22,7 @@ import UIKit
 import CoreLocation
 import HealthKit
 import GoogleMaps
-
+import SCLAlertView
 /**
  * Handles creation of new MyRoutes
  */
@@ -40,14 +40,15 @@ class NewRouteViewController: UIViewController {
         return _locationManager
     }()
  
-    @IBOutlet weak var recordingView: UIView!
-
-    @IBOutlet weak var recordingViewTop: NSLayoutConstraint!
+    let recordingAlertView = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
+        showCloseButton: false,
+        showCircularIcon: true,
+        shouldAutoDismiss: false)
+    )
 
     lazy var locations = [CLLocation]()
 
     @IBOutlet weak var startButton: UIButton!
-    @IBOutlet weak var stopButton: UIButton!
     
     @IBOutlet weak var mapView: GMSMapView!
     
@@ -71,51 +72,50 @@ class NewRouteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         styleButtons()
-        styleRecordingView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         locationManager.requestWhenInUseAuthorization()
-        recordingView.isHidden = true
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        // remove recording view.
-        hideRecordingView(duration: 0.0)
     }
 
-    /**
-     * Method name: hideRecordingView(duration:)
-     * Description: Removes the recording view from the screen with an animation. Edits the Storyboard layout constraints.
-     *              Sets the top constarint constated to the height of the main view resulting in the recording view moving down off screen.
-     * Parameters: duration: animation length in seconds.
-     */
-    func hideRecordingView(duration: Float) {
-        navigationItem.hidesBackButton = false
-        UIView.animate(withDuration: TimeInterval(duration),
-            animations: {
-                self.recordingViewTop.constant += self.view.frame.height
-                self.view.layoutIfNeeded()
-            }, completion: { (value: Bool) in
-                if value {
-                    self.recordingView.isHidden = true
-                }
-            }
-        )
-    }
     
-    /**
-     * Method name: showRecordingView
-     * Description: Moves the recording view from bottom to top to cover the screen.
-     * Parameters: duration: animation length in seconds.
-     */
-    func showRecordingView(duration: Float){
+    func showRecordingAlert(){
+
+        let alertViewIcon = UIImage(named: "icCar")
+                    
+        // Creat the subview
+        let subview = UIView(frame: CGRect(x:0,y:0,width:216,height:70))
+
+        let x = (subview.frame.width - 180) / 2
+
+                    
+        let label = UILabel(frame: CGRect(x: x, y: 10, width:180, height:25))
+        label.textAlignment = .center
+        label.text = "Tracking route..."
+                    
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        activityIndicator.center = subview.center
+        activityIndicator.center.y = 55
+        activityIndicator.startAnimating()
+     
+        subview.addSubview(label)
+        subview.addSubview(activityIndicator)
+
+        // Add the subview to the alert's UI property
+        recordingAlertView.customSubview = subview
+
+        recordingAlertView.addButton("Finish") {
+            self.stopRecordingPressed()
+
+        }
+        
         navigationItem.hidesBackButton = true
-        UIView.animate(withDuration: TimeInterval(duration), animations: {
-            self.recordingView.isHidden = false
-            self.recordingViewTop.constant = 0
-            self.view.layoutIfNeeded()
-        })
+        self.view.accessibilityElementsHidden = true
+        
+        _ = recordingAlertView.showCustom("Let's Go!", subTitle: "", color: Colors.tintColor, icon: alertViewIcon!)
+
+        UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
+
     }
 
     /**
@@ -143,14 +143,14 @@ class NewRouteViewController: UIViewController {
                     
                     locations.removeAll()
                     startLocationUpdates()
-                    showRecordingView(duration: 0.5)
-                
+                    showRecordingAlert()
+            
                     break
                 case .authorizedAlways:
 
                     locations.removeAll()
                     startLocationUpdates()
-                    showRecordingView(duration: 0.5)
+                    showRecordingAlert()
                     
                     break
                 case .restricted:
@@ -167,20 +167,23 @@ class NewRouteViewController: UIViewController {
     }
 
     /**
-     * Method name: stopRecordingPressed(_:)
+     * Method name: stopRecordingPressed()
      * Description: Action for finish button while recording a route. DIsplays a comfirmation action sheet
      *              before recording is stopped. Shows & hides buttons to reflect curren state
      * Parameters: sender: UIButton
      */
-    @IBAction func stopRecordingPressed(_ sender: UIButton) {
+    func stopRecordingPressed() {
     
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
     
         let resultsAction = UIAlertAction(title: "View Route Results", style: .default, handler: {(_) -> Void in
-            self.hideRecordingView(duration: 0.5)
+            
+            self.recordingAlertView.hideView()
+            self.navigationItem.hidesBackButton = false
+            self.view.accessibilityElementsHidden = false
             
             // TEST
-             self.locations = MyRouteStore.getFakeData()
+            self.locations = MyRouteStore.getFakeData()
             
             if (self.displayRouteOnMap(locations: self.locations)){
             
@@ -190,6 +193,7 @@ class NewRouteViewController: UIViewController {
             
                 self.mapView.settings.scrollGestures = false
                 self.mapView.settings.zoomGestures = false
+                UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
             }else {
                 self.present(AlertMessages.getAlert("Not Enough Location Data to Save a Route", message: "", confirm: "OK"), animated: true)
             }
@@ -202,7 +206,7 @@ class NewRouteViewController: UIViewController {
         
         actionSheet.view.tintColor = Colors.tintColor
 
-        self.present(actionSheet, animated: true, completion: nil)
+        recordingAlertView.present(actionSheet, animated: true, completion: nil)
         
     }
     
@@ -218,58 +222,65 @@ class NewRouteViewController: UIViewController {
         mapView.settings.scrollGestures = true
         mapView.settings.zoomGestures = true
         
-        let alertController = UIAlertController(title: "Name This Route", message:"This name will display on your favorites list.", preferredStyle: .alert)
-        alertController.addTextField { (textfield) in
-            textfield.placeholder = "My Route"
-        }
-
-        // Setting tintColor on iOS < 9 leades to strange display behavior.
-        if #available(iOS 9.0, *) {
-            alertController.view.tintColor = Colors.tintColor
-        }
-
-        let okAction = UIAlertAction(title: "Ok", style: .default) { (_) -> Void in
+        let nameRouteAlertView = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
+            showCloseButton: false,
+            showCircularIcon: false,
+            shouldAutoDismiss: false)
+        )
         
+        let name = nameRouteAlertView.addTextField("My Route")
+        
+        nameRouteAlertView.addButton("OK") {
+            
+            nameRouteAlertView.hideView()
+            
             GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Saved Route")
         
-            let textf = alertController.textFields![0] as UITextField
-            var name = textf.text!
-            if name.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "" {
-                name = "My Route"
+            if name.text!.trimmingCharacters(in: .whitespaces) == "" {
+                name.text = "My Route"
             }
         
-            let id =  MyRouteStore.save(route: self.locations, name: name,
+            let id =  MyRouteStore.save(route: self.locations, name: name.text!,
                                         displayLat: self.mapView.projection.coordinate(for: self.mapView.center).latitude,
                                         displayLong: self.mapView.projection.coordinate(for: self.mapView.center).longitude,
                                         displayZoom: self.mapView.camera.zoom)
-                
-            let alertController = UIAlertController(title: "Automaticlly Add Content on This Route to Favorites?", message:"Traffic cameras, travel times, pass reports, and other favoritable items will be automatically added to your favorites if they are on this route. \n\n You can do this later by tapping Edit on the My Routes screen.", preferredStyle: .alert)
-
-            // Setting tintColor on iOS < 9 leades to strange display behavior.
-            if #available(iOS 9.0, *) {
-                alertController.view.tintColor = Colors.tintColor
+            
+            let addFavoritesAlertView = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
+                showCloseButton: false,
+                showCircularIcon: true,
+                shouldAutoDismiss: false)
+            )
+        
+            addFavoritesAlertView.addButton("Yes") {
+                addFavoritesAlertView.hideView()
+                self.navigationItem.hidesBackButton = false
+                self.view.accessibilityElementsHidden = false
+                _ = self.navigationController?.popViewController(animated: true)
             }
-
-            let noAction = UIAlertAction(title: "No", style: .default) { (_) -> Void in
-    
+            
+            addFavoritesAlertView.addButton("No"){
+                addFavoritesAlertView.hideView()
+                self.navigationItem.hidesBackButton = false
+                self.view.accessibilityElementsHidden = false
                 _ = MyRouteStore.updateFindNearby(forRoute: MyRouteStore.getRouteById(id)!, foundCameras: true, foundTimes: true, foundFerries: true, foundPasses: true)
                 _ = self.navigationController?.popViewController(animated: true)
             }
-                
-            let yesAction = UIAlertAction(title: "Yes", style: .default) { (_) -> Void in
-                _ = self.navigationController?.popViewController(animated: true)
-            }
-                
-            alertController.addAction(noAction)
-            alertController.addAction(yesAction)
             
-            self.present(alertController, animated: false, completion: nil)
-
+            let alertViewIcon = UIImage(named: "icFavoritesTab")
+            
+            addFavoritesAlertView.iconTintColor = UIColor.white
+            
+            _ = addFavoritesAlertView.showCustom("Add Favorites?",
+                    subTitle: "Traffic cameras, travel times, pass reports, and other content will be added to your favorites if they are on this route. \n\n You can do this later by tapping \"Edit\" on the My Routes screen.", color: Colors.tintColor, icon: alertViewIcon!)
+            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
         }
-        alertController.addAction(okAction)
-
-        present(alertController, animated: false, completion: nil)
-
+        
+        self.navigationItem.hidesBackButton = true
+        self.view.accessibilityElementsHidden = true
+        
+        _ = nameRouteAlertView.showCustom("Name This Route", subTitle: "This name will display on your favorites lists", color: Colors.tintColor, icon: UIImage(named:"icFavoritesTab")!)
+    
+        UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
     }
     
     /**
@@ -285,6 +296,7 @@ class NewRouteViewController: UIViewController {
             GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Discarded Route")
             self.mapView.clear()
             self.doneRecording()
+            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
         })
         
         alertController.addAction(discardAction)
@@ -341,41 +353,16 @@ class NewRouteViewController: UIViewController {
      * Description: programmatically styles button background, colors, etc...
      */
     func styleButtons() {
-        stopButton.layer.cornerRadius = 0.5 * stopButton.bounds.size.width
-        stopButton.clipsToBounds = true
-
-        stopButton.layer.borderWidth = 1
-        stopButton.layer.borderColor = UIColor.lightGray.cgColor
-        
-        startButton.layer.cornerRadius = 15
+        startButton.layer.cornerRadius = 5
         startButton.clipsToBounds = true
         
-        saveButton.layer.cornerRadius = 15
+        saveButton.layer.cornerRadius = 5
         saveButton.clipsToBounds = true
         
-        discardButton.layer.cornerRadius = 15
+        discardButton.layer.cornerRadius = 5
         discardButton.clipsToBounds = true
     }
     
-    /**
-     * Method name: styleRecordingView()
-     * Description: sets blur effect on recording view.
-     */
-    func styleRecordingView(){
-        if !UIAccessibilityIsReduceTransparencyEnabled() {
-            self.recordingView.backgroundColor = UIColor.clear
-
-            let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
-            let blurEffectView = UIVisualEffectView(effect: blurEffect)
-            //always fill the view
-            blurEffectView.frame = self.recordingView.bounds
-            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            self.recordingView.insertSubview(blurEffectView, at: 0)
-            
-        } else {
-            self.view.backgroundColor = UIColor.gray
-        }
-    }
     
     /**
      * Method name: displayRouteOnMap()
@@ -442,19 +429,6 @@ class NewRouteViewController: UIViewController {
         return nil
     }
     
-    /**
-     * Override this method to catpure orientaion changes to redraw recording view.
-     */
-    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        coordinator.animate(alongsideTransition: { (_) in
-        }, completion: { (UIViewControllerTransitionCoordinatorContext) -> Void in
-            if self.recordingView.isHidden {
-                self.recordingViewTop.constant = self.view.frame.height
-            }
-        })
-
-        super.willTransition(to: newCollection, with: coordinator)
-    }
 }
 
 extension NewRouteViewController: GMSMapViewDelegate {}

@@ -12,6 +12,7 @@ target 'WSDOT' do
     pod 'SwiftyJSON', '~> 3.1.3'
     pod 'SDWebImage'
     pod 'EasyTipView', '~> 1.0.2'
+    pod 'SCLAlertView'
 end
 
 target 'WSDOTTests' do
@@ -24,6 +25,7 @@ target 'WSDOTTests' do
     pod 'SwiftyJSON', '~> 3.1.3'
     pod 'SDWebImage'
     pod 'EasyTipView', '~> 1.0.2'
+    pod 'SCLAlertView'
 end
 
 post_install do |installer|
