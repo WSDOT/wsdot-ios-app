@@ -40,11 +40,7 @@ class NewRouteViewController: UIViewController {
         return _locationManager
     }()
  
-    let recordingAlertView = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
-        showCloseButton: false,
-        showCircularIcon: true,
-        shouldAutoDismiss: false)
-    )
+    var recordingAlertView = SCLAlertView()
 
     lazy var locations = [CLLocation]()
 
@@ -82,7 +78,13 @@ class NewRouteViewController: UIViewController {
     func showRecordingAlert(){
 
         let alertViewIcon = UIImage(named: "icCar")
-                    
+        
+        recordingAlertView = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
+            showCloseButton: false,
+            showCircularIcon: true,
+            shouldAutoDismiss: false)
+        )
+        
         // Creat the subview
         let subview = UIView(frame: CGRect(x:0,y:0,width:216,height:70))
 
@@ -174,16 +176,18 @@ class NewRouteViewController: UIViewController {
      */
     func stopRecordingPressed() {
     
-        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-    
-        let resultsAction = UIAlertAction(title: "View Route Results", style: .default, handler: {(_) -> Void in
+        let alert = UIAlertController(title: "View Results?", message: nil, preferredStyle: .alert)
+        
+        alert.view.tintColor = Colors.tintColor
+        
+        let resultsAction = UIAlertAction(title: "Yes", style: .default, handler: {(_) -> Void in
             
             self.recordingAlertView.hideView()
             self.navigationItem.hidesBackButton = false
             self.view.accessibilityElementsHidden = false
             
             // TEST
-            self.locations = MyRouteStore.getFakeData()
+            // self.locations = MyRouteStore.getFakeData()
             
             if (self.displayRouteOnMap(locations: self.locations)){
             
@@ -199,14 +203,12 @@ class NewRouteViewController: UIViewController {
             }
         })
         
-        actionSheet.addAction(resultsAction)
+        alert.addAction(resultsAction)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        actionSheet.addAction(cancelAction)
-        
-        actionSheet.view.tintColor = Colors.tintColor
+        alert.addAction(cancelAction)
 
-        recordingAlertView.present(actionSheet, animated: true, completion: nil)
+        recordingAlertView.present(alert, animated: true, completion: nil)
         
     }
     

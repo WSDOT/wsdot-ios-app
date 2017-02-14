@@ -520,11 +520,6 @@ WSDOT provides traffic alert information for Washington State highways only.</st
                             <constraint firstAttribute="trailing" secondItem="YDU-yI-OVI" secondAttribute="trailing" id="mMu-0J-s7U"/>
                             <constraint firstItem="0Es-82-m8x" firstAttribute="leading" secondItem="an6-bx-iwA" secondAttribute="leading" id="xa7-Zc-My3"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="0Es-82-m8x"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="My Routes" id="kvg-nC-pKC">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="TRE-uI-K3p">
