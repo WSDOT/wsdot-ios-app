@@ -24,7 +24,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     let cellIdentifier = "HomeCell"
     
-    let SegueMyRouteViewController = "MyRouteViewController"
+    let SegueFavoritesViewController = "MyRouteViewController"
     
     let SegueTrafficMapViewController = "TrafficMapViewController"
     let SegueFerriesHomeViewController = "FerriesHomeViewController"
@@ -116,7 +116,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             tableView.deselectRow(at: indexPath, animated: true)
             break
         case 7:
-            performSegue(withIdentifier: SegueMyRouteViewController, sender: self)
+            performSegue(withIdentifier: SegueFavoritesViewController, sender: self)
             tableView.deselectRow(at: indexPath, animated: true)
         default:
             break
@@ -159,7 +159,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             }
             
-            if segue.identifier == SegueMyRouteViewController {
+            if segue.identifier == SegueFavoritesViewController {
                 destinationViewController.viewControllers[0].navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
                 destinationViewController.viewControllers[0].navigationItem.leftItemsSupplementBackButton = true
             }
