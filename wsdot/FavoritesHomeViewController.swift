@@ -655,6 +655,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        
         if segue.identifier == segueTrafficMapViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
             
@@ -678,6 +679,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 let destinationViewController = segue.destination as! MyRouteAlertsViewController
                 destinationViewController.title = "Alerts On Route: \(myRoutes[alertButton.tag].name)"
                 destinationViewController.route = myRoutes[alertButton.tag]
+                destinationViewController.navigationController?.navigationBar.tintColor = Colors.tintColor
             }
         }
         

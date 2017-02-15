@@ -84,37 +84,15 @@ class NewRouteViewController: UIViewController {
             showCircularIcon: true,
             shouldAutoDismiss: false)
         )
-        
-        // Creat the subview
-        let subview = UIView(frame: CGRect(x:0,y:0,width:216,height:70))
-
-        let x = (subview.frame.width - 180) / 2
-
-                    
-        let label = UILabel(frame: CGRect(x: x, y: 10, width:180, height:25))
-        label.textAlignment = .center
-        label.text = "Tracking route..."
-                    
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-        activityIndicator.center = subview.center
-        activityIndicator.center.y = 55
-        activityIndicator.startAnimating()
-     
-        subview.addSubview(label)
-        subview.addSubview(activityIndicator)
-
-        // Add the subview to the alert's UI property
-        recordingAlertView.customSubview = subview
 
         recordingAlertView.addButton("Finish") {
             self.stopRecordingPressed()
-
         }
         
         navigationItem.hidesBackButton = true
         self.view.accessibilityElementsHidden = true
         
-        _ = recordingAlertView.showCustom("Let's Go!", subTitle: "", color: Colors.tintColor, icon: alertViewIcon!)
+        _ = recordingAlertView.showCustom("Let's Go!", subTitle: "\nTracking route...\n\n Please do not use the WSDOT app while you are driving.", color: Colors.tintColor, icon: alertViewIcon!)
 
         UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
 
