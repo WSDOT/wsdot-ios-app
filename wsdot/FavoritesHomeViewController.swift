@@ -506,55 +506,67 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        let renameRouteAction = UITableViewRowAction(style: UITableViewRowActionStyle.normal, title: "Edit" , handler: { (action:UITableViewRowAction, indexPath:IndexPath) -> Void in
-            let nameRouteAlertView = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
-                showCloseButton: false,
-                showCircularIcon: false,
-                shouldAutoDismiss: false)
-            )
-            let name = nameRouteAlertView.addTextField(self.myRoutes[indexPath.row].name)
-            nameRouteAlertView.addButton("OK") {
-                nameRouteAlertView.hideView()
-                if name.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "" {
-                    name.text = self.myRoutes[indexPath.row].name
+        let renameRouteAction = UITableViewRowAction(style: .normal, title: "Rename") { action, index in
+            
+            tableView.reloadRows(at: [indexPath], with: .right)
+            
+            let alertController = UIAlertController(title: "Edit Name", message:nil, preferredStyle: .alert)
+            alertController.addTextField { (textfield) in
+                textfield.placeholder = self.myRoutes[indexPath.row].name
+            }
+            alertController.view.tintColor = Colors.tintColor
+
+            let okAction = UIAlertAction(title: "Ok", style: .default) { (_) -> Void in
+        
+                let textf = alertController.textFields![0] as UITextField
+                var name = textf.text!
+                if name.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "" {
+                    name = self.myRoutes[indexPath.row].name
                 }
-                _ = MyRouteStore.updateName(forRoute: self.myRoutes[indexPath.row], name.text!)
+                
+                 _ = MyRouteStore.updateName(forRoute: self.myRoutes[indexPath.row], name)
                 self.tableView.reloadData()
             }
-            nameRouteAlertView.addButton("Cancel") {
-                nameRouteAlertView.hideView()
-            }
-            _ = nameRouteAlertView.showCustom("Edit Name", subTitle: "", color: Colors.tintColor, icon: UIImage(named:"icFavoritesTab")!)
-
-        })
-        
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            alertController.addAction(cancelAction)
+            alertController.addAction(okAction)
+            
+            self.present(alertController, animated: false, completion: nil)
+            
+        }
         
         let renameLocationAction = UITableViewRowAction(style: UITableViewRowActionStyle.normal, title: "Edit", handler: { (action:UITableViewRowAction,
             indexPath:IndexPath) -> Void in
             
-            let newLocationAlertView = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
-                showCloseButton: false,
-                showCircularIcon: false,
-                shouldAutoDismiss: false)
-            )
-            let name = newLocationAlertView.addTextField(self.savedLocations[indexPath.row].name)
-            newLocationAlertView.iconTintColor = UIColor.white
+            tableView.reloadRows(at: [indexPath], with: .right)
+            
+            let alertController = UIAlertController(title: "Edit Name", message:nil, preferredStyle: .alert)
+            alertController.addTextField { (textfield) in
+                textfield.placeholder = self.savedLocations[indexPath.row].name
+            }
+            alertController.view.tintColor = Colors.tintColor
+
+            let okAction = UIAlertAction(title: "Ok", style: .default) { (_) -> Void in
         
-            newLocationAlertView.addButton("OK") {
-                
-                newLocationAlertView.hideView()
-                if name.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "" {
-                    name.text = self.savedLocations[indexPath.row].name
+                let textf = alertController.textFields![0] as UITextField
+                var name = textf.text!
+                if name.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "" {
+                    name = self.savedLocations[indexPath.row].name
                 }
-                FavoriteLocationStore.updateName(self.savedLocations[indexPath.row], name: name.text!)
+                
+                FavoriteLocationStore.updateName(self.savedLocations[indexPath.row], name: name)
                 self.tableView.reloadData()
             }
             
-            newLocationAlertView.addButton("Cancel") {
-                newLocationAlertView.hideView()
-            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             
-            _ = newLocationAlertView.showCustom("Edit Name", subTitle: "", color: Colors.tintColor, icon: UIImage(named:"icFavoritesTab")!)
+            alertController.addAction(cancelAction)
+            alertController.addAction(okAction)
+            
+            self.present(alertController, animated: false, completion: nil)
+            
         })
         
         let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Remove" , handler: { (action:UITableViewRowAction, indexPath:IndexPath) -> Void in

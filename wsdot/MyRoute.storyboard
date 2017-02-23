@@ -16,7 +16,7 @@
         <scene sceneID="E6A-9Y-sId">
             <objects>
                 <navigationController storyboardIdentifier="FavoritesNavigationController" id="0hy-HL-p0M" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kyZ-Hl-ylo">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="kyZ-Hl-ylo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
