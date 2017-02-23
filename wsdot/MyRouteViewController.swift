@@ -232,28 +232,30 @@ class MyRouteViewController: UIViewController {
         
         let renameAction = UIAlertAction(title: "Rename", style: .default) { (result : UIAlertAction) -> Void in
         
-            let nameRouteAlertView = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
-                showCloseButton: false,
-                showCircularIcon: false,
-                shouldAutoDismiss: false)
-            )
+            let alertController = UIAlertController(title: "Edit Name", message:nil, preferredStyle: .alert)
+            alertController.addTextField { (textfield) in
+                textfield.placeholder = self.myRoutes[sender.tag].name
+            }
+            alertController.view.tintColor = Colors.tintColor
+
+            let okAction = UIAlertAction(title: "Ok", style: .default) { (_) -> Void in
         
-            let name = nameRouteAlertView.addTextField(self.myRoutes[sender.tag].name)
-        
-            nameRouteAlertView.addButton("OK") {
-                nameRouteAlertView.hideView()
-                if name.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "" {
-                    name.text = self.myRoutes[sender.tag].name
+                let textf = alertController.textFields![0] as UITextField
+                var name = textf.text!
+                if name.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "" {
+                    name = self.myRoutes[sender.tag].name
                 }
-                _ = MyRouteStore.updateName(forRoute: self.myRoutes[sender.tag], name.text!)
+                
+                _ = MyRouteStore.updateName(forRoute: self.myRoutes[sender.tag], name)
                 self.tableView.reloadData()
             }
             
-            nameRouteAlertView.addButton("Cancel") {
-                nameRouteAlertView.hideView()
-            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             
-            _ = nameRouteAlertView.showCustom("New Name", subTitle: "", color: Colors.tintColor, icon: UIImage(named:"icFavoritesTab")!)
+            alertController.addAction(cancelAction)
+            alertController.addAction(okAction)
+            
+            self.present(alertController, animated: false, completion: nil)
 
         }
         

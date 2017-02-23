@@ -85,16 +85,17 @@ class NewRouteViewController: UIViewController {
             shouldAutoDismiss: false)
         )
 
-        recordingAlertView.addButton("Finish") {
+        let button = recordingAlertView.addButton("Finish") {
             self.stopRecordingPressed()
         }
+        button.accessibilityHint = "Double Tap to stop tracking route."
         
         navigationItem.hidesBackButton = true
         self.view.accessibilityElementsHidden = true
         
         _ = recordingAlertView.showCustom("Let's Go!", subTitle: "\nTracking route...\n\n Please do not use the WSDOT app while you are driving.", color: Colors.tintColor, icon: alertViewIcon!)
 
-        UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
+        screenChange()
 
     }
 
@@ -165,7 +166,7 @@ class NewRouteViewController: UIViewController {
             self.view.accessibilityElementsHidden = false
             
             // TEST
-            // self.locations = MyRouteStore.getFakeData()
+            self.locations = MyRouteStore.getFakeData()
             
             if (self.displayRouteOnMap(locations: self.locations)){
             
@@ -202,65 +203,73 @@ class NewRouteViewController: UIViewController {
         mapView.settings.scrollGestures = true
         mapView.settings.zoomGestures = true
         
-        let nameRouteAlertView = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
-            showCloseButton: false,
-            showCircularIcon: false,
-            shouldAutoDismiss: false)
-        )
+        let alertController = UIAlertController(title: "Name This Route", message: "This name will display \n on your favorites list", preferredStyle: .alert)
+        alertController.addTextField { (textfield) in
+            textfield.placeholder = "My Route"
+        }
+        alertController.view.tintColor = Colors.tintColor
+
+        let okAction = UIAlertAction(title: "Ok", style: .default) { (_) -> Void in
         
-        let name = nameRouteAlertView.addTextField("My Route")
-        
-        nameRouteAlertView.addButton("OK") {
-            
-            nameRouteAlertView.hideView()
-            
-            GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Saved Route")
-        
-            if name.text!.trimmingCharacters(in: .whitespaces) == "" {
-                name.text = "My Route"
+            let textf = alertController.textFields![0] as UITextField
+            var name = textf.text!
+            if name.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "" {
+                name = "My Route"
             }
-        
-            let id =  MyRouteStore.save(route: self.locations, name: name.text!,
+                
+            GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Saved Route")
+
+            let id =  MyRouteStore.save(route: self.locations, name: name,
                                         displayLat: self.mapView.projection.coordinate(for: self.mapView.center).latitude,
                                         displayLong: self.mapView.projection.coordinate(for: self.mapView.center).longitude,
                                         displayZoom: self.mapView.camera.zoom)
             
-            let addFavoritesAlertView = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
-                showCloseButton: false,
-                showCircularIcon: true,
-                shouldAutoDismiss: false)
-            )
-        
-            addFavoritesAlertView.addButton("Yes") {
-                addFavoritesAlertView.hideView()
+            
+            
+            let addFavoritesAlertController = UIAlertController(title: "Add Favorites?", message:"Traffic cameras, travel times, pass reports, and other content will be added to your favorites if they are on this route. \n\n You can do this later by tapping Edit on the My Routes screen.", preferredStyle: .alert)
+            
+            
+            let addAction = UIAlertAction(title: "Yes", style: .default) { (_) -> Void in
                 self.navigationItem.hidesBackButton = false
                 self.view.accessibilityElementsHidden = false
                 _ = self.navigationController?.popViewController(animated: true)
             }
             
-            addFavoritesAlertView.addButton("No"){
-                addFavoritesAlertView.hideView()
+            let noAction = UIAlertAction(title: "No", style: .cancel) { (_) -> Void in
                 self.navigationItem.hidesBackButton = false
                 self.view.accessibilityElementsHidden = false
                 _ = MyRouteStore.updateFindNearby(forRoute: MyRouteStore.getRouteById(id)!, foundCameras: true, foundTimes: true, foundFerries: true, foundPasses: true)
                 _ = self.navigationController?.popViewController(animated: true)
             }
             
-            let alertViewIcon = UIImage(named: "icFavoritesTab")
+            addFavoritesAlertController.addAction(addAction)
+            addFavoritesAlertController.addAction(noAction)
             
-            addFavoritesAlertView.iconTintColor = UIColor.white
+            alertController.view.tintColor = Colors.tintColor
             
-            _ = addFavoritesAlertView.showCustom("Add Favorites?",
-                    subTitle: "Traffic cameras, travel times, pass reports, and other content will be added to your favorites if they are on this route. \n\n You can do this later by tapping \"Edit\" on the My Routes screen.", color: Colors.tintColor, icon: alertViewIcon!)
-            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
+            self.present(addFavoritesAlertController, animated: false, completion: nil)
+
         }
+            
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+            
+        self.present(alertController, animated: false, completion: nil)
+
         
-        self.navigationItem.hidesBackButton = true
-        self.view.accessibilityElementsHidden = true
-        
-        _ = nameRouteAlertView.showCustom("Name This Route", subTitle: "This name will display on your favorites lists", color: Colors.tintColor, icon: UIImage(named:"icFavoritesTab")!)
+    }
     
-        UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
+    func screenChange() {
+        DispatchQueue.main.async {
+            Timer.scheduledTimer(timeInterval: 1, target: self,
+                                   selector: #selector(self.timerDidFire(timer:)), userInfo: nil, repeats: false)
+        }
+    }
+
+    @objc private func timerDidFire(timer: Timer) {
+        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.navigationItem.titleView)
     }
     
     /**
@@ -269,6 +278,9 @@ class NewRouteViewController: UIViewController {
      * Parameters: sender: UIButton
      */
     @IBAction func discardButtonPressed(_ sender: UIButton) {
+
+        mapView.settings.scrollGestures = true
+        mapView.settings.zoomGestures = true
 
         let alertController = UIAlertController(title: "Discard this route?", message: "This cannot be undone.", preferredStyle: .alert)
         
@@ -338,9 +350,11 @@ class NewRouteViewController: UIViewController {
         
         saveButton.layer.cornerRadius = 5
         saveButton.clipsToBounds = true
+        saveButton.accessibilityHint = "Double tap to save newly recorded route."
         
         discardButton.layer.cornerRadius = 5
         discardButton.clipsToBounds = true
+        discardButton.accessibilityHint = "Double tap to delete newly recorded route."
     }
     
     
@@ -391,7 +405,6 @@ class NewRouteViewController: UIViewController {
             var minLng = initialLocValue.coordinate.longitude
             var maxLat = minLat
             var maxLng = minLng
-
 
             for location in locations {
                 minLat = min(minLat, location.coordinate.latitude)
@@ -445,5 +458,4 @@ extension NewRouteViewController: CLLocationManagerDelegate {
             mapView.isMyLocationEnabled = true
         }
     }
-    
 }

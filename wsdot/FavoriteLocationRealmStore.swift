@@ -36,14 +36,14 @@ class FavoriteLocationStore{
         let realm = try! Realm()
         do {
             try realm.write{
-                realm.add(favorite, update: true)
+                realm.add(favorite)
             }
         }catch{
             print("FavoriteLocationStore.saveFavorite: Realm write error")
         }
     }
     
-    static func updateName(_ location: FavoriteLocationItem, name: String) {
+    static func updateName(_ location: FavoriteLocationItem, name: String){
         let realm = try! Realm()
         do {
             try realm.write{
@@ -53,6 +53,7 @@ class FavoriteLocationStore{
             print("FavoriteLocationStore.saveFavorite: Realm write error")
         }
     }
+  
     
     // Removes a favorite item from Realm
     static func deleteFavorite(_ favorite: FavoriteLocationItem){
