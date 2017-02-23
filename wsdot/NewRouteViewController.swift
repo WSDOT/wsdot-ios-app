@@ -245,7 +245,7 @@ class NewRouteViewController: UIViewController {
             addFavoritesAlertController.addAction(addAction)
             addFavoritesAlertController.addAction(noAction)
             
-            alertController.view.tintColor = Colors.tintColor
+            addFavoritesAlertController.view.tintColor = Colors.tintColor
             
             self.present(addFavoritesAlertController, animated: false, completion: nil)
 
