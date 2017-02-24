@@ -605,29 +605,49 @@ WSDOT provides traffic alert information for Washington State highways only.</st
                                 <rect key="frame" x="16" y="72" width="343" height="405"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RfL-dJ-ZW0">
+                                <rect key="frame" x="16" y="264" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JWl-Jo-GcH">
+                                <rect key="frame" x="16" y="199" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.18647282900000001" green="0.68235294120000001" blue="0.11432351139999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="pEB-eG-Mzv" firstAttribute="top" secondItem="n9A-NS-dGg" secondAttribute="bottom" constant="8" symbolic="YES" id="43v-cx-Z6z"/>
                             <constraint firstItem="Y9B-qJ-9S6" firstAttribute="trailing" secondItem="Foh-3z-Q7Y" secondAttribute="trailing" id="9pb-IZ-UaF"/>
+                            <constraint firstItem="RfL-dJ-ZW0" firstAttribute="trailing" secondItem="pEB-eG-Mzv" secondAttribute="trailing" id="BP8-cG-b06"/>
                             <constraint firstItem="e03-eN-4op" firstAttribute="leading" secondItem="Y9B-qJ-9S6" secondAttribute="leading" id="FA1-xf-Crk"/>
                             <constraint firstAttribute="bottom" secondItem="Foh-3z-Q7Y" secondAttribute="bottom" constant="20" symbolic="YES" id="Fiq-2M-Br7"/>
                             <constraint firstItem="e03-eN-4op" firstAttribute="leading" secondItem="9Qk-yS-Uw0" secondAttribute="leadingMargin" constant="27" id="Hu4-nR-rq1"/>
                             <constraint firstItem="Y9B-qJ-9S6" firstAttribute="leading" secondItem="Foh-3z-Q7Y" secondAttribute="leading" id="JKs-oh-Zzl"/>
                             <constraint firstItem="Y9B-qJ-9S6" firstAttribute="top" secondItem="pEB-eG-Mzv" secondAttribute="bottom" constant="62" id="Ko8-22-DDE"/>
                             <constraint firstItem="pEB-eG-Mzv" firstAttribute="trailing" secondItem="9Qk-yS-Uw0" secondAttribute="trailingMargin" id="Mnx-WC-ZY2"/>
+                            <constraint firstItem="RfL-dJ-ZW0" firstAttribute="leading" secondItem="pEB-eG-Mzv" secondAttribute="leading" id="QvD-BK-5SV"/>
                             <constraint firstItem="TSy-zs-dVd" firstAttribute="top" secondItem="Y9B-qJ-9S6" secondAttribute="bottom" constant="67" id="SL1-Aa-tfm"/>
                             <constraint firstItem="e03-eN-4op" firstAttribute="trailing" secondItem="Y9B-qJ-9S6" secondAttribute="trailing" id="Z8V-vr-7QX"/>
+                            <constraint firstItem="RfL-dJ-ZW0" firstAttribute="top" secondItem="JWl-Jo-GcH" secondAttribute="bottom" constant="44" id="ZHY-cy-vww"/>
+                            <constraint firstItem="RfL-dJ-ZW0" firstAttribute="centerY" secondItem="pEB-eG-Mzv" secondAttribute="centerY" id="bCs-u9-UBF"/>
                             <constraint firstItem="pEB-eG-Mzv" firstAttribute="centerX" secondItem="e03-eN-4op" secondAttribute="centerX" id="bWm-Cf-1in"/>
                             <constraint firstItem="Foh-3z-Q7Y" firstAttribute="top" secondItem="e03-eN-4op" secondAttribute="bottom" constant="24" id="gfF-lL-MTL"/>
                             <constraint firstItem="e03-eN-4op" firstAttribute="top" secondItem="pEB-eG-Mzv" secondAttribute="bottom" constant="24" id="lD2-Qe-xHe"/>
                             <constraint firstItem="pEB-eG-Mzv" firstAttribute="leading" secondItem="9Qk-yS-Uw0" secondAttribute="leadingMargin" id="n3E-95-BBi"/>
+                            <constraint firstItem="JWl-Jo-GcH" firstAttribute="leading" secondItem="RfL-dJ-ZW0" secondAttribute="leading" id="tRS-mx-VEl"/>
+                            <constraint firstItem="JWl-Jo-GcH" firstAttribute="trailing" secondItem="RfL-dJ-ZW0" secondAttribute="trailing" id="vRI-00-65I"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New Route" id="yPY-zp-U0P"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="accessibilityCurrentLocationLabel" destination="JWl-Jo-GcH" id="Slc-PK-0cp"/>
+                        <outlet property="accessibilityMapLabel" destination="RfL-dJ-ZW0" id="hWU-C8-gLa"/>
                         <outlet property="discardButton" destination="Foh-3z-Q7Y" id="PJ1-LL-ngR"/>
                         <outlet property="mapView" destination="pEB-eG-Mzv" id="8WN-qh-F79"/>
                         <outlet property="saveButton" destination="e03-eN-4op" id="Ux3-vD-dEJ"/>

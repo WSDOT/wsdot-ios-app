@@ -51,6 +51,9 @@ class NewRouteViewController: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var discardButton: UIButton!
     
+    @IBOutlet weak var accessibilityCurrentLocationLabel: UILabel!
+    @IBOutlet weak var accessibilityMapLabel: UILabel!
+    
     override func loadView() {
         super.loadView()
         
@@ -62,6 +65,10 @@ class NewRouteViewController: UIViewController {
         if let myLocation = mapView.myLocation{
             mapView.animate(toLocation: myLocation.coordinate)
         }
+        
+        self.accessibilityCurrentLocationLabel.accessibilityLabel = "Finding location..."
+        self.accessibilityMapLabel.isHidden = true
+        
         GoogleAnalytics.screenView(screenName: "/Favorites/My Route/New Route")
     }
     
@@ -108,6 +115,7 @@ class NewRouteViewController: UIViewController {
     @IBAction func startRoutePressed(_ sender: UIButton) {
  
         GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Started Recording Route")
+        accessibilityCurrentLocationLabel.isHidden = true
  
         if !CLLocationManager.locationServicesEnabled() {
         
@@ -166,7 +174,7 @@ class NewRouteViewController: UIViewController {
             self.view.accessibilityElementsHidden = false
             
             // TEST
-            self.locations = MyRouteStore.getFakeData()
+             self.locations = MyRouteStore.getFakeData()
             
             if (self.displayRouteOnMap(locations: self.locations)){
             
@@ -203,9 +211,9 @@ class NewRouteViewController: UIViewController {
         mapView.settings.scrollGestures = true
         mapView.settings.zoomGestures = true
         
-        let alertController = UIAlertController(title: "Name This Route", message: "This name will display \n on your favorites list", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Saving Route", message: "This name will display \n on your favorites list", preferredStyle: .alert)
         alertController.addTextField { (textfield) in
-            textfield.placeholder = "My Route"
+            textfield.placeholder = "Name This Route"
         }
         alertController.view.tintColor = Colors.tintColor
 
@@ -260,17 +268,7 @@ class NewRouteViewController: UIViewController {
 
         
     }
-    
-    func screenChange() {
-        DispatchQueue.main.async {
-            Timer.scheduledTimer(timeInterval: 1, target: self,
-                                   selector: #selector(self.timerDidFire(timer:)), userInfo: nil, repeats: false)
-        }
-    }
 
-    @objc private func timerDidFire(timer: Timer) {
-        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.navigationItem.titleView)
-    }
     
     /**
      * Method name: discardButtonPressed(_:)
@@ -279,6 +277,8 @@ class NewRouteViewController: UIViewController {
      */
     @IBAction func discardButtonPressed(_ sender: UIButton) {
 
+        self.accessibilityMapLabel.isHidden = true
+        self.accessibilityCurrentLocationLabel.isHidden = false
         mapView.settings.scrollGestures = true
         mapView.settings.zoomGestures = true
 
@@ -380,6 +380,8 @@ class NewRouteViewController: UIViewController {
             
             let MyRoute = GMSPolyline(path: myPath)
             
+            setRouteAccessibilityLabel(locations: locations)
+            
             MyRoute.spans = [GMSStyleSpan(color: UIColor(red: 0, green: 0.6588, blue: 0.9176, alpha: 1.0))] /* #00a8ea */
             MyRoute.strokeWidth = 4
             MyRoute.map = mapView
@@ -442,6 +444,7 @@ extension NewRouteViewController: CLLocationManagerDelegate {
                 if location.horizontalAccuracy < 500 {
                     if !self.locations.contains(location){
                         self.locations.append(location)
+                        setLocationAccessibilityLabel(location)
                     }
                 }
             }
@@ -453,9 +456,97 @@ extension NewRouteViewController: CLLocationManagerDelegate {
      */
     // TODO: What if user cuts location services mid recording?
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        
         if let location = locationManager.location?.coordinate {
             mapView.animate(toLocation: location)
             mapView.isMyLocationEnabled = true
+            setLocationAccessibilityLabel(CLLocation(latitude:location.latitude, longitude: location.longitude))
+        } else {
+            self.accessibilityMapLabel.accessibilityLabel = "Unable to get current location"
         }
+    }
+}
+
+// Accessibility
+extension NewRouteViewController {
+
+    func setLocationAccessibilityLabel(_ location: CLLocation) {
+    
+        let geocoder = GMSGeocoder()
+        geocoder.reverseGeocodeCoordinate(location.coordinate) { response, error in
+            if let address = response?.firstResult() {
+                let lines = address.lines!
+                let currentAddress = lines.joined(separator: "\n")
+                
+                print("meters: \(location.horizontalAccuracy)")
+                print("feet: \(location.horizontalAccuracy * 3.28084)")
+                
+                self.accessibilityCurrentLocationLabel.accessibilityLabel = "Current location is \(currentAddress). Accuracy: \(location.horizontalAccuracy * 3.28084) feet."
+            } else {
+                self.accessibilityCurrentLocationLabel.accessibilityLabel = "Unable to get current location. Please try again later."
+            }
+            if (!self.accessibilityCurrentLocationLabel.isHidden){
+                UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, self.accessibilityCurrentLocationLabel)
+            }
+        }
+    }
+
+    func setRouteAccessibilityLabel(locations: [CLLocation]) {
+        
+        self.accessibilityMapLabel.isHidden = false
+        self.accessibilityMapLabel.accessibilityLabel = "Checking route start and end points..."
+        
+        if let firstLocation = locations.first {
+            
+            let geocoder = GMSGeocoder()
+            geocoder.reverseGeocodeCoordinate(firstLocation.coordinate) { response, error in
+                if let address = response?.firstResult() {
+ 
+                    let lines = address.lines!
+                    let startAddress = lines.joined(separator: "\n")
+                    
+                    if let endLocation = locations.last {
+                    
+                        geocoder.reverseGeocodeCoordinate(endLocation.coordinate) { response, error in
+                            if let address = response?.firstResult() {
+ 
+                                let lines = address.lines!
+                                let endAddress = lines.joined(separator: "\n")
+ 
+                                self.accessibilityMapLabel.accessibilityLabel = "Route starts near " + startAddress + " and ends near " + endAddress
+
+                            }
+                        }
+                    }else {
+                        self.accessibilityMapLabel.accessibilityLabel = "Route starts near " + startAddress + " and ends at an unknown location"
+                    }
+                } else {
+                    self.accessibilityMapLabel.accessibilityLabel = "Route recorded but unable to determine recorded route start and end points because of network issues. Double tap to try again."
+                    print(error ?? "no error found")
+
+                    let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tapResponse(_:)))
+                    tapGesture.numberOfTapsRequired = 1
+                    self.accessibilityMapLabel.isUserInteractionEnabled =  true
+                    self.accessibilityMapLabel.addGestureRecognizer(tapGesture)
+
+                }
+            }
+        }
+    }
+   
+    func tapResponse(_ recognizer: UITapGestureRecognizer) {
+        setRouteAccessibilityLabel(locations: locations)
+    
+    }
+    
+    func screenChange() {
+        DispatchQueue.main.async {
+            Timer.scheduledTimer(timeInterval: 1, target: self,
+                                   selector: #selector(self.timerDidFire(timer:)), userInfo: nil, repeats: false)
+        }
+    }
+
+    @objc private func timerDidFire(timer: Timer) {
+        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.navigationItem.titleView)
     }
 }
