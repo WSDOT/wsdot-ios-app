@@ -40,7 +40,7 @@ class FavoritesHomeViewController: UIViewController {
     let segueMountainPassDetailsViewController = "MountianPassDetailsViewController"
 
     let textCellIdentifier = "TextCell"
-    let myRouteCellIdentifier = "MyRouteCell"
+    let myRouteCellIdentifier = "MyRouteFavoritesCell"
     let travelTimesCellIdentifier = "TravelTimeCell"
     let ferryScheduleCellIdentifier = "FerryScheduleCell"
     let mountainPassCellIdentifier = "MountainPassCell"
@@ -56,6 +56,7 @@ class FavoritesHomeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var newRouteButton: UIBarButtonItem!
 
+    var loadingRouteAlert = UIAlertController()
     var tipView = EasyTipView(text: "")
 
     override func viewDidLoad() {
@@ -173,13 +174,8 @@ class FavoritesHomeViewController: UIViewController {
         return sections
     }
     
-    /**
-     * Method name: checkAlerts
-     * Description: action func for check alerts button on a route cell
-     */
-    func checkAlerts(sender: UIButton){
-        performSegue(withIdentifier: segueMyRouteAlertsViewController, sender: sender)
-    }
+
+    
 }
 
 extension FavoritesHomeViewController: INDLinkLabelDelegate {}
@@ -482,13 +478,15 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             
         case .route:
         
-            let routeCell = tableView.dequeueReusableCell(withIdentifier: myRouteCellIdentifier, for: indexPath) as! MyRouteCell
+            let routeCell = tableView.dequeueReusableCell(withIdentifier: myRouteCellIdentifier, for: indexPath) as! MyRouteFavoritesCell
             
             routeCell.checkAlertsButton.tag = indexPath.row
             routeCell.checkAlertsButton.addTarget(self, action:#selector(FavoritesHomeViewController.checkAlerts), for: .touchUpInside)
-            routeCell.checkAlertsButton.layer.cornerRadius = 3
             
-            routeCell.textLabel?.text = myRoutes[indexPath.row].name
+            routeCell.openTrafficMapButton.tag = indexPath.row
+            routeCell.openTrafficMapButton.addTarget(self, action: #selector(FavoritesHomeViewController.openMap), for: .touchUpInside)
+            
+            routeCell.routeNameLabel.text = myRoutes[indexPath.row].name
             return routeCell
         
         }
@@ -505,7 +503,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
      */
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
+
         let renameRouteAction = UITableViewRowAction(style: .normal, title: "Rename") { action, index in
             
             tableView.reloadRows(at: [indexPath], with: .right)
@@ -515,7 +513,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 textfield.placeholder = self.myRoutes[indexPath.row].name
             }
             alertController.view.tintColor = Colors.tintColor
-
+        
             let okAction = UIAlertAction(title: "Ok", style: .default) { (_) -> Void in
         
                 let textf = alertController.textFields![0] as UITextField
@@ -536,6 +534,8 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             self.present(alertController, animated: false, completion: nil)
             
         }
+        
+        
         
         let renameLocationAction = UITableViewRowAction(style: UITableViewRowActionStyle.normal, title: "Edit", handler: { (action:UITableViewRowAction,
             indexPath:IndexPath) -> Void in
@@ -625,7 +625,6 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 alertController.addAction(deleteAction)
             
                 self.present(alertController, animated: false, completion: nil)
-                
                 break
             }
         })
@@ -644,12 +643,9 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
         case .mapLocation:
             performSegue(withIdentifier: segueTrafficMapViewController, sender: nil)
             tableView.deselectRow(at: indexPath, animated: true)
+            break
         case .camera:
             performSegue(withIdentifier: segueCameraViewController, sender: nil)
-            tableView.deselectRow(at: indexPath, animated: true)
-            break
-        case .route:
-            performSegue(withIdentifier: segueTrafficMapViewController, sender: nil)
             tableView.deselectRow(at: indexPath, animated: true)
             break
         case .travelTime:
@@ -659,30 +655,32 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
         case .ferrySchedule:
             performSegue(withIdentifier: segueRouteDeparturesViewController, sender: nil)
             tableView.deselectRow(at: indexPath, animated: true)
+            break
         case .mountainPass:
             performSegue(withIdentifier: segueMountainPassDetailsViewController, sender: nil)
             tableView.deselectRow(at: indexPath, animated: true)
+            break
+        case .route:
+            tableView.deselectRow(at: indexPath, animated: true)
+            break
         }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        
         if segue.identifier == segueTrafficMapViewController {
-            if let indexPath = tableView.indexPathForSelectedRow {
-            
-                if getType(forSection: indexPath.section) == .route {
-                    UserDefaults.standard.set(myRoutes[indexPath.row].displayLatitude, forKey: UserDefaultsKeys.mapLat)
-                    UserDefaults.standard.set(myRoutes[indexPath.row].displayLongitude, forKey: UserDefaultsKeys.mapLon)
-                    UserDefaults.standard.set(myRoutes[indexPath.row].displayZoom, forKey: UserDefaultsKeys.mapZoom)
-                    segue.destination.title = "Traffic Map"
-                }else{
-                    let locationItem = self.savedLocations[indexPath.row] as FavoriteLocationItem
-                    UserDefaults.standard.set(locationItem.latitude, forKey: UserDefaultsKeys.mapLat)
-                    UserDefaults.standard.set(locationItem.longitude, forKey: UserDefaultsKeys.mapLon)
-                    UserDefaults.standard.set(locationItem.zoom, forKey: UserDefaultsKeys.mapZoom)
-                    segue.destination.title = "Traffic Map"
-                }
+        
+            if let mapButton = sender as! UIButton? {
+                UserDefaults.standard.set(myRoutes[mapButton.tag].displayLatitude, forKey: UserDefaultsKeys.mapLat)
+                UserDefaults.standard.set(myRoutes[mapButton.tag].displayLongitude, forKey: UserDefaultsKeys.mapLon)
+                UserDefaults.standard.set(myRoutes[mapButton.tag].displayZoom, forKey: UserDefaultsKeys.mapZoom)
+                segue.destination.title = "Traffic Map"
+            } else if let indexPath = tableView.indexPathForSelectedRow {
+                let locationItem = self.savedLocations[indexPath.row] as FavoriteLocationItem
+                UserDefaults.standard.set(locationItem.latitude, forKey: UserDefaultsKeys.mapLat)
+                UserDefaults.standard.set(locationItem.longitude, forKey: UserDefaultsKeys.mapLon)
+                UserDefaults.standard.set(locationItem.zoom, forKey: UserDefaultsKeys.mapZoom)
+                segue.destination.title = "Traffic Map"
             }
         }
        
@@ -727,6 +725,26 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
 
 
 }
+
+// MyRoute settings/options
+extension FavoritesHomeViewController {
+    /**
+     * Method name: checkAlerts
+     * Description: action func for check alerts button on a route cell
+     */
+    func checkAlerts(sender: UIButton){
+        performSegue(withIdentifier: segueMyRouteAlertsViewController, sender: sender)
+    }
+    
+    /**
+     * Method name: checkAlerts
+     * Description: action fun for openMap button on a route cell
+     */
+    func openMap(sender: UIButton){
+        performSegue(withIdentifier: segueTrafficMapViewController, sender: sender)
+    }
+}
+
 
 extension FavoritesHomeViewController: EasyTipViewDelegate {
     

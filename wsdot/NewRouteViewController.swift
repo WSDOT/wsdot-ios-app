@@ -66,6 +66,8 @@ class NewRouteViewController: UIViewController {
             mapView.animate(toLocation: myLocation.coordinate)
         }
         
+        mapView.isTrafficEnabled = true
+        
         self.accessibilityCurrentLocationLabel.accessibilityLabel = "Finding location..."
         self.accessibilityMapLabel.isHidden = true
         
@@ -365,7 +367,7 @@ class NewRouteViewController: UIViewController {
      */
     func displayRouteOnMap(locations: [CLLocation]) -> Bool {
         
-        if let region = getRouteMapRegion(locations: self.locations) {
+        if let region = MyRouteStore.getRouteMapRegion(locations: self.locations) {
             
             // set Map Bounds
             let bounds = GMSCoordinateBounds(coordinate: region.nearLeft,coordinate: region.farRight)
@@ -391,37 +393,6 @@ class NewRouteViewController: UIViewController {
         } else {
             return false
         }
-    }
-    
-    /**
-     * Method name: getRouteMapRegion
-     * Description: returns a region that contains all locations in the input array.
-     * Parameters: locations: Array of CLLocations that make up the route.
-     */
-    func getRouteMapRegion(locations: [CLLocation]) -> GMSVisibleRegion? {
-        let initialLoc = locations.first
- 
-        if let initialLocValue = initialLoc {
- 
-            var minLat = initialLocValue.coordinate.latitude
-            var minLng = initialLocValue.coordinate.longitude
-            var maxLat = minLat
-            var maxLng = minLng
-
-            for location in locations {
-                minLat = min(minLat, location.coordinate.latitude)
-                minLng = min(minLng, location.coordinate.longitude)
-                maxLat = max(maxLat, location.coordinate.latitude)
-                maxLng = max(maxLng, location.coordinate.longitude)
-            }
- 
-            var region: GMSVisibleRegion = GMSVisibleRegion()
-            region.nearLeft = CLLocationCoordinate2DMake(maxLat, minLng)
-            region.farRight = CLLocationCoordinate2DMake(minLat, maxLng)
-            
-            return region
-        }
-        return nil
     }
     
 }

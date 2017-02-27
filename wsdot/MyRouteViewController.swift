@@ -24,10 +24,11 @@ import SCLAlertView
 class MyRouteViewController: UIViewController {
 
     let segueNewRouteViewController = "NewRouteViewController"
+    let segueMyRouteMapViewController = "MyRouteMapViewController"
+    
     let routeCellIdentifier = "RouteCell"
     
     var myRoutes = MyRouteStore.getRoutes()
-
     var loadingRouteAlert = UIAlertController()
 
     @IBOutlet weak var noRoutesView: UIView!
@@ -283,16 +284,39 @@ class MyRouteViewController: UIViewController {
             }
 
             self.tableView.reloadData()
-
+        }
+        
+        let showRouteOnMapAction = UIAlertAction(title: "Check Route", style: .default) { (result : UIAlertAction) -> Void in
+            self.performSegue(withIdentifier: self.segueMyRouteMapViewController, sender: sender)
         }
         
         editController.addAction(cancelAction)
         editController.addAction(deleteAction)
         editController.addAction(renameAction)
         editController.addAction(reloadAction)
+        editController.addAction(showRouteOnMapAction)
     
         self.present(editController, animated: true, completion: nil)
 
+    }
+
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == segueMyRouteMapViewController {
+            if let mapButton =  sender as! UIButton? {
+                let destinationViewController = segue.destination as! MyRouteMapViewController
+                destinationViewController.title = "Route: \(myRoutes[mapButton.tag].name)"
+                
+                var locations = [CLLocation]()
+                
+                for location in myRoutes[mapButton.tag].route {
+                    locations.append(CLLocation(latitude: location.lat, longitude: location.long))
+                }
+            
+                destinationViewController.myRouteLocations = locations
+                destinationViewController.navigationController?.navigationBar.tintColor = Colors.tintColor
+            }
+        }
     }
 }
 
@@ -302,7 +326,6 @@ extension MyRouteViewController:  UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return myRoutes.count
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -315,7 +338,7 @@ extension MyRouteViewController:  UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let routeCell = tableView.dequeueReusableCell(withIdentifier: routeCellIdentifier, for: indexPath) as! MyRouteSettingsCell
+        let routeCell = tableView.dequeueReusableCell(withIdentifier: routeCellIdentifier, for: indexPath) as! MyRouteCell
             
         routeCell.titleLabel.text = myRoutes[indexPath.row].name
         
@@ -330,11 +353,10 @@ extension MyRouteViewController:  UITableViewDataSource, UITableViewDelegate {
         routeCell.setButton.tag = indexPath.row
         routeCell.setButton.addTarget(self, action:#selector(MyRouteViewController.setRoute), for: .touchUpInside)
             
-        routeCell.editButton.tag = indexPath.row
-        routeCell.editButton.addTarget(self, action:#selector(MyRouteViewController.editRoute), for: .touchUpInside)
+        routeCell.settingsButton.tag = indexPath.row
+        routeCell.settingsButton.addTarget(self, action:#selector(MyRouteViewController.editRoute), for: .touchUpInside)
             
         return routeCell
-  
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -348,8 +370,7 @@ extension MyRouteViewController:  UITableViewDataSource, UITableViewDelegate {
             break
         }
     }
-    
-    
+
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return false
     }

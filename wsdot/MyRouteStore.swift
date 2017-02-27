@@ -37,7 +37,7 @@ enum FavoritesContent: Int {
 class MyRouteStore {
     
     // titles for each content type section.
-    static let sectionTitles = ["Saved Routes", "Ferry Schedules", "Mountain Passes", "Traffic Map Locations", "Cameras", "Travel Times"]
+    static let sectionTitles = ["My Routes", "Ferry Schedules", "Mountain Passes", "Traffic Map Locations", "Cameras", "Travel Times"]
     
     static func getRoutes() -> [MyRouteItem] {
         let realm = try! Realm()
@@ -313,6 +313,45 @@ class MyRouteStore {
         }
         return false
     }
+
+
+    /**
+     * Method name: getRouteMapRegion
+     * Description: returns a region that contains all locations in the input array.
+     * Parameters: locations: Array of CLLocations that make up the route.
+     */
+    static func getRouteMapRegion(locations: [CLLocation]) -> GMSVisibleRegion? {
+        let initialLoc = locations.first
+ 
+        if let initialLocValue = initialLoc {
+ 
+            var minLat = initialLocValue.coordinate.latitude
+            var minLng = initialLocValue.coordinate.longitude
+            var maxLat = minLat
+            var maxLng = minLng
+
+            for location in locations {
+                minLat = min(minLat, location.coordinate.latitude)
+                minLng = min(minLng, location.coordinate.longitude)
+                maxLat = max(maxLat, location.coordinate.latitude)
+                maxLng = max(maxLng, location.coordinate.longitude)
+            }
+ 
+            var region: GMSVisibleRegion = GMSVisibleRegion()
+            region.nearLeft = CLLocationCoordinate2DMake(maxLat, minLng)
+            region.farRight = CLLocationCoordinate2DMake(minLat, maxLng)
+            
+            return region
+        }
+        return nil
+    }
+
+
+
+
+
+
+
 
     static func getFakeData() -> [CLLocation] {
     
