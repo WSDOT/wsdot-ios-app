@@ -197,3 +197,4 @@ extension FavoritesSettingsViewController:  UITableViewDataSource, UITableViewDe
         UserDefaults.standard.set(sectionTypesOrderRawArray, forKey: UserDefaultsKeys.favoritesOrder)
     }
 }
+

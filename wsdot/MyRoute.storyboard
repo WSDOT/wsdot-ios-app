@@ -16,7 +16,7 @@
         <scene sceneID="E6A-9Y-sId">
             <objects>
                 <navigationController storyboardIdentifier="FavoritesNavigationController" id="0hy-HL-p0M" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="kyZ-Hl-ylo">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kyZ-Hl-ylo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -248,34 +248,49 @@
                                             <outlet property="weatherImage" destination="bQ7-DG-KBi" id="fXa-9c-qSX"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyRouteCell" rowHeight="67" id="OeY-Ui-hxY" customClass="MyRouteCell" customModule="WSDOT" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="442" width="375" height="67"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyRouteFavoritesCell" rowHeight="55" id="OeY-Ui-hxY" customClass="MyRouteFavoritesCell" customModule="WSDOT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="442" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OeY-Ui-hxY" id="0d8-XZ-D9p">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="66"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Hk-S7-uDX">
-                                                    <rect key="frame" x="232" y="13" width="102" height="40"/>
-                                                    <color key="backgroundColor" red="1" green="0.42352941179999998" blue="0.047058823530000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vng-3f-W8s">
+                                                    <rect key="frame" x="17" y="17" width="220" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ytM-aX-YDP">
+                                                    <rect key="frame" x="324" y="15" width="24" height="24"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="40" id="4em-67-TTW"/>
-                                                        <constraint firstAttribute="width" constant="102" id="Nf6-Rt-VT1"/>
+                                                        <constraint firstAttribute="width" constant="24" id="lJU-Ac-c0g"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="16"/>
-                                                    <inset key="contentEdgeInsets" minX="4" minY="2" maxX="4" maxY="2"/>
-                                                    <state key="normal" title="Check Alerts">
-                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </state>
+                                                    <state key="normal" image="icMap"/>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="faX-sK-Lym">
+                                                    <rect key="frame" x="262" y="15" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="24" id="lPR-Q1-jO8"/>
+                                                    </constraints>
+                                                    <color key="tintColor" red="1" green="0.42352941179999998" blue="0.047058823530000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" image="icAlert"/>
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="2Hk-S7-uDX" firstAttribute="centerY" secondItem="0d8-XZ-D9p" secondAttribute="centerY" id="PHL-aG-yJR"/>
-                                                <constraint firstItem="2Hk-S7-uDX" firstAttribute="trailing" secondItem="0d8-XZ-D9p" secondAttribute="trailingMargin" id="fZ1-yA-Ubz"/>
+                                                <constraint firstItem="Vng-3f-W8s" firstAttribute="leading" secondItem="0d8-XZ-D9p" secondAttribute="leadingMargin" constant="9" id="1kX-BK-sKs"/>
+                                                <constraint firstItem="Vng-3f-W8s" firstAttribute="centerY" secondItem="0d8-XZ-D9p" secondAttribute="centerY" id="NLD-tT-C08"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ytM-aX-YDP" secondAttribute="trailing" constant="19" id="XI5-Un-Csx"/>
+                                                <constraint firstItem="faX-sK-Lym" firstAttribute="top" secondItem="ytM-aX-YDP" secondAttribute="top" id="XxT-DD-QX7"/>
+                                                <constraint firstItem="ytM-aX-YDP" firstAttribute="leading" secondItem="faX-sK-Lym" secondAttribute="trailing" constant="38" id="YIY-Tv-OYO"/>
+                                                <constraint firstItem="faX-sK-Lym" firstAttribute="leading" secondItem="Vng-3f-W8s" secondAttribute="trailing" constant="25" id="g2a-c0-eJc"/>
+                                                <constraint firstItem="Vng-3f-W8s" firstAttribute="centerY" secondItem="faX-sK-Lym" secondAttribute="centerY" id="jlo-pd-Atf"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="checkAlertsButton" destination="2Hk-S7-uDX" id="SN6-b6-Tha"/>
+                                            <outlet property="checkAlertsButton" destination="faX-sK-Lym" id="Csy-Ld-JVo"/>
+                                            <outlet property="openTrafficMapButton" destination="ytM-aX-YDP" id="Afz-da-TU7"/>
+                                            <outlet property="routeNameLabel" destination="Vng-3f-W8s" id="Xwv-IT-lOi"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -379,6 +394,49 @@ Tap star icons to add Favorites</string>
             </objects>
             <point key="canvasLocation" x="184.80000000000001" y="85.907046476761622"/>
         </scene>
+        <!--My Route Map View Controller-->
+        <scene sceneID="trX-AE-Vp8">
+            <objects>
+                <viewController id="rZk-Pw-bYT" customClass="MyRouteMapViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ipl-JT-1RE"/>
+                        <viewControllerLayoutGuide type="bottom" id="nyv-Lm-EYo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7Fb-JW-bKH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUm-iS-X40">
+                                <rect key="frame" x="8" y="323" width="359" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q8f-Fv-ots" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="q8f-Fv-ots" secondAttribute="trailing" id="0cS-kE-hAe"/>
+                            <constraint firstItem="q8f-Fv-ots" firstAttribute="leading" secondItem="7Fb-JW-bKH" secondAttribute="leading" id="FcB-2Z-J87"/>
+                            <constraint firstItem="q8f-Fv-ots" firstAttribute="bottom" secondItem="nyv-Lm-EYo" secondAttribute="top" id="N0A-u4-1DO"/>
+                            <constraint firstItem="q8f-Fv-ots" firstAttribute="top" secondItem="Ipl-JT-1RE" secondAttribute="bottom" id="ay4-mx-q8C"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="accessibilityMapLabel" destination="q8f-Fv-ots" id="VLL-LU-QLA"/>
+                        <outlet property="mapView" destination="q8f-Fv-ots" id="Ho7-lq-gNx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cCE-ZG-94G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="956" y="-1372"/>
+        </scene>
         <!--My Routes-->
         <scene sceneID="sqI-bP-Kmg">
             <objects>
@@ -395,50 +453,45 @@ Tap star icons to add Favorites</string>
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RouteCell" id="gjX-Go-goH" customClass="MyRouteSettingsCell" customModule="WSDOT" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RouteCell" rowHeight="43" id="QbJ-5N-Ni0" customClass="MyRouteCell" customModule="WSDOT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gjX-Go-goH" id="Ii1-q0-4Xz">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QbJ-5N-Ni0" id="NTI-zc-ime">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="42"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sM4-x6-KKz">
-                                                    <rect key="frame" x="16" y="9" width="24" height="24"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="24" id="C0p-tZ-0lq"/>
-                                                        <constraint firstAttribute="height" constant="24" id="FY5-D4-gB7"/>
-                                                    </constraints>
-                                                    <state key="normal" image="icFavoriteDefault"/>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9YR-Dh-lzU">
-                                                    <rect key="frame" x="311" y="7" width="56" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="56" id="wkk-Vv-e0M"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Edit">
-                                                        <color key="titleColor" red="0.0" green="0.68235294120000001" blue="0.16429793400000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </state>
-                                                </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AUp-gY-Bfp">
-                                                    <rect key="frame" x="48" y="11" width="42" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZVe-SS-DQ6">
+                                                    <rect key="frame" x="51" y="11" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TiZ-0C-QvV">
+                                                    <rect key="frame" x="327" y="10" width="24" height="24"/>
+                                                    <state key="normal" image="icGear" backgroundImage="icGear"/>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J51-lN-OhR">
+                                                    <rect key="frame" x="18" y="8" width="25" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="25" id="nFK-n5-7Sy"/>
+                                                        <constraint firstAttribute="height" constant="25" id="tKu-2q-6Ug"/>
+                                                    </constraints>
+                                                    <state key="normal" image="icFavoriteDefault"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="sM4-x6-KKz" firstAttribute="leading" secondItem="Ii1-q0-4Xz" secondAttribute="leadingMargin" constant="8" id="HAn-OK-2eL"/>
-                                                <constraint firstItem="sM4-x6-KKz" firstAttribute="centerY" secondItem="AUp-gY-Bfp" secondAttribute="centerY" id="Ru6-cz-rZY"/>
-                                                <constraint firstItem="9YR-Dh-lzU" firstAttribute="trailing" secondItem="Ii1-q0-4Xz" secondAttribute="trailingMargin" id="u0v-Pe-cVe"/>
-                                                <constraint firstItem="AUp-gY-Bfp" firstAttribute="leading" secondItem="sM4-x6-KKz" secondAttribute="trailing" constant="8" symbolic="YES" id="u2U-Rs-Mce"/>
-                                                <constraint firstItem="AUp-gY-Bfp" firstAttribute="baseline" secondItem="9YR-Dh-lzU" secondAttribute="baseline" id="vSe-CA-gwn"/>
-                                                <constraint firstItem="sM4-x6-KKz" firstAttribute="centerY" secondItem="Ii1-q0-4Xz" secondAttribute="centerY" id="xZt-hn-XQp"/>
+                                                <constraint firstItem="J51-lN-OhR" firstAttribute="top" secondItem="NTI-zc-ime" secondAttribute="topMargin" id="CaZ-Uj-ilV"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="TiZ-0C-QvV" secondAttribute="trailing" constant="16" id="RhB-XK-WGn"/>
+                                                <constraint firstItem="ZVe-SS-DQ6" firstAttribute="leading" secondItem="J51-lN-OhR" secondAttribute="trailing" constant="8" symbolic="YES" id="ceE-BG-7xH"/>
+                                                <constraint firstItem="J51-lN-OhR" firstAttribute="leading" secondItem="NTI-zc-ime" secondAttribute="leadingMargin" constant="10" id="szV-18-4oN"/>
+                                                <constraint firstItem="ZVe-SS-DQ6" firstAttribute="centerY" secondItem="TiZ-0C-QvV" secondAttribute="centerY" id="vHr-q8-4Uc"/>
+                                                <constraint firstItem="TiZ-0C-QvV" firstAttribute="bottom" secondItem="NTI-zc-ime" secondAttribute="bottomMargin" id="xch-AU-Pop"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="editButton" destination="9YR-Dh-lzU" id="CqY-D3-uX9"/>
-                                            <outlet property="setButton" destination="sM4-x6-KKz" id="wms-DJ-f5U"/>
-                                            <outlet property="titleLabel" destination="AUp-gY-Bfp" id="L6C-SG-dba"/>
+                                            <outlet property="setButton" destination="J51-lN-OhR" id="lrg-Ab-1yA"/>
+                                            <outlet property="settingsButton" destination="TiZ-0C-QvV" id="CfY-7e-4rY"/>
+                                            <outlet property="titleLabel" destination="ZVe-SS-DQ6" id="lhr-mH-zv6"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -541,6 +594,7 @@ WSDOT provides traffic alert information for Washington State highways only.</st
                         <outlet property="noRoutesView" destination="0Es-82-m8x" id="8Iz-QF-vPH"/>
                         <outlet property="tableView" destination="YDU-yI-OVI" id="l25-Mz-QbM"/>
                         <segue destination="0Na-gD-JAb" kind="show" identifier="NewRouteViewController" id="fQc-Eb-izU"/>
+                        <segue destination="rZk-Pw-bYT" kind="show" identifier="MyRouteMapViewController" id="Osl-On-y6Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iA6-On-w2i" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -714,7 +768,7 @@ WSDOT provides traffic alert information for Washington State highways only.</st
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ku-nw-fBJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1425" y="86"/>
+            <point key="canvasLocation" x="1447" y="161"/>
         </scene>
         <!--MountainPassTabBarViewController-->
         <scene sceneID="oMs-Tn-cbj">
@@ -880,9 +934,11 @@ WSDOT provides traffic alert information for Washington State highways only.</st
         </scene>
     </scenes>
     <resources>
+        <image name="icAlert" width="24" height="24"/>
         <image name="icFavoriteDefault" width="32" height="32"/>
         <image name="icGear" width="24" height="24"/>
         <image name="icGreenCar" width="240" height="240"/>
+        <image name="icMap" width="24" height="24"/>
         <image name="icMyRoute" width="24" height="24"/>
     </resources>
 </document>
