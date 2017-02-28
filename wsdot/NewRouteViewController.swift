@@ -176,7 +176,7 @@ class NewRouteViewController: UIViewController {
             self.view.accessibilityElementsHidden = false
             
             // TEST
-             self.locations = MyRouteStore.getFakeData()
+            // self.locations = MyRouteStore.getFakeData()
             
             if (self.displayRouteOnMap(locations: self.locations)){
             

@@ -16,7 +16,7 @@
         <scene sceneID="E6A-9Y-sId">
             <objects>
                 <navigationController storyboardIdentifier="FavoritesNavigationController" id="0hy-HL-p0M" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kyZ-Hl-ylo">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="kyZ-Hl-ylo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -461,31 +461,32 @@ Tap star icons to add Favorites</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZVe-SS-DQ6">
-                                                    <rect key="frame" x="51" y="11" width="42" height="21"/>
+                                                    <rect key="frame" x="47" y="10" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TiZ-0C-QvV">
-                                                    <rect key="frame" x="327" y="10" width="24" height="24"/>
+                                                    <rect key="frame" x="330" y="10" width="24" height="24"/>
                                                     <state key="normal" image="icGear" backgroundImage="icGear"/>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J51-lN-OhR">
-                                                    <rect key="frame" x="18" y="8" width="25" height="25"/>
+                                                    <rect key="frame" x="14" y="8" width="25" height="25"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="25" id="nFK-n5-7Sy"/>
-                                                        <constraint firstAttribute="height" constant="25" id="tKu-2q-6Ug"/>
+                                                        <constraint firstAttribute="height" constant="25" id="DDw-8w-NuM"/>
+                                                        <constraint firstAttribute="width" constant="25" id="F6G-Bo-qiT"/>
                                                     </constraints>
                                                     <state key="normal" image="icFavoriteDefault"/>
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="J51-lN-OhR" firstAttribute="top" secondItem="NTI-zc-ime" secondAttribute="topMargin" id="CaZ-Uj-ilV"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="TiZ-0C-QvV" secondAttribute="trailing" constant="16" id="RhB-XK-WGn"/>
-                                                <constraint firstItem="ZVe-SS-DQ6" firstAttribute="leading" secondItem="J51-lN-OhR" secondAttribute="trailing" constant="8" symbolic="YES" id="ceE-BG-7xH"/>
-                                                <constraint firstItem="J51-lN-OhR" firstAttribute="leading" secondItem="NTI-zc-ime" secondAttribute="leadingMargin" constant="10" id="szV-18-4oN"/>
-                                                <constraint firstItem="ZVe-SS-DQ6" firstAttribute="centerY" secondItem="TiZ-0C-QvV" secondAttribute="centerY" id="vHr-q8-4Uc"/>
-                                                <constraint firstItem="TiZ-0C-QvV" firstAttribute="bottom" secondItem="NTI-zc-ime" secondAttribute="bottomMargin" id="xch-AU-Pop"/>
+                                                <constraint firstItem="J51-lN-OhR" firstAttribute="leading" secondItem="NTI-zc-ime" secondAttribute="leadingMargin" constant="6" id="JLp-k2-wC9"/>
+                                                <constraint firstItem="J51-lN-OhR" firstAttribute="centerY" secondItem="ZVe-SS-DQ6" secondAttribute="centerY" id="f9N-ud-DbN"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="TiZ-0C-QvV" secondAttribute="trailing" constant="13" id="jYK-an-hIh"/>
+                                                <constraint firstItem="ZVe-SS-DQ6" firstAttribute="top" secondItem="TiZ-0C-QvV" secondAttribute="top" id="lLs-p1-Nz5"/>
+                                                <constraint firstItem="J51-lN-OhR" firstAttribute="top" secondItem="NTI-zc-ime" secondAttribute="topMargin" id="ndw-YT-WZ8"/>
+                                                <constraint firstItem="J51-lN-OhR" firstAttribute="centerY" secondItem="NTI-zc-ime" secondAttribute="centerY" id="uf5-KO-S0Y"/>
+                                                <constraint firstItem="ZVe-SS-DQ6" firstAttribute="leading" secondItem="J51-lN-OhR" secondAttribute="trailing" constant="8" symbolic="YES" id="vxd-R4-vMO"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
