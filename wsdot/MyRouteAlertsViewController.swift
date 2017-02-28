@@ -24,6 +24,11 @@ import RealmSwift
 class MyRouteAlertsViewController: UIViewController {
 
     var alerts = [HighwayAlertItem]()
+    
+    var trafficAlerts = [HighwayAlertItem]()
+    var constructionAlerts = [HighwayAlertItem]()
+    var specialEvents = [HighwayAlertItem]()
+    
     var route: MyRouteItem?
     
     let cellIdentifier = "AlertCell"
@@ -73,6 +78,22 @@ class MyRouteAlertsViewController: UIViewController {
                 } else {
                     self.noAlertsView.isHidden = true
                 }
+                
+                for alert in self.alerts{
+                    if alert.headlineDesc.lowercased().contains("construction") || alert.eventCategory.lowercased().contains("construction") {
+                        self.constructionAlerts.append(alert)
+                    }else if alert.eventCategory.lowercased() == "special event"{
+                        self.specialEvents.append(alert)
+                    }else {
+                        self.trafficAlerts.append(alert)
+                    }
+                }
+                
+                self.trafficAlerts = self.trafficAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
+                self.constructionAlerts = self.constructionAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
+                self.specialEvents = self.specialEvents.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
+
+                self.tableView.rowHeight = UITableViewAutomaticDimension
             
                 self.tableView.reloadData()
                 self.hideOverlayView()
@@ -182,18 +203,64 @@ extension MyRouteAlertsViewController:  UITableViewDataSource, UITableViewDelega
     }
     
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        switch(section){
+        case 0:
+            return "Traffic Incidents" + (self.title != "Alert" && (trafficAlerts.count == 0) ? " - None Reported": "")
+        case 1:
+            return "Construction"  + (self.title != "Alert" && (constructionAlerts.count == 0) ? " - None Reported": "")
+        case 2:
+            return "Special Events"  + (self.title != "Alert" &&  (specialEvents.count == 0) ? " - None Reported": "")
+        default:
+            return nil
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return alerts.count
+        
+        switch(section){
+            
+        case 0:
+            return trafficAlerts.count
+        case 1:
+            return constructionAlerts.count
+        case 2:
+            return specialEvents.count
+        default:
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! LinkCell
         
+
+        var alert = HighwayAlertItem()
+        
+        switch indexPath.section {
+            case 0:
+            alert = trafficAlerts[indexPath.row]
+            break
+            case 1:
+            alert = constructionAlerts[indexPath.row]
+            break
+            case 2:
+            alert = specialEvents[indexPath.row]
+            break
+            default:
+            break
+        }
+        
         let htmlStyleString = "<style>body{font-family: '\(cell.linkLabel.font.fontName)'; font-size:\(cell.linkLabel.font.pointSize)px;}</style>"
         var htmlString = ""
     
         cell.updateTime.text = TimeUtils.timeAgoSinceDate(date: alerts[indexPath.row].lastUpdatedTime, numericDates: false)
-        htmlString = htmlStyleString + alerts[indexPath.row].headlineDesc
+        htmlString = htmlStyleString + alert.headlineDesc
         
         let attrStr = try! NSMutableAttributedString(
             data: htmlString.data(using: String.Encoding.unicode, allowLossyConversion: false)!,
@@ -203,7 +270,7 @@ extension MyRouteAlertsViewController:  UITableViewDataSource, UITableViewDelega
         cell.linkLabel.attributedText = attrStr
         cell.linkLabel.delegate = self
         
-        switch (alerts[indexPath.row].priority){
+        switch (alert.priority){
             
         case "highest":
             cell.backgroundColor = UIColor(red: 255/255, green: 232/255, blue: 232/255, alpha: 1.0) /* #ffe8e8 */
