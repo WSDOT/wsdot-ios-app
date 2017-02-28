@@ -33,6 +33,7 @@ class TimeUtils {
     static let spacesUpdateTime: TimeInterval = 60
     
     static let alertsUpdateTime: TimeInterval = 60
+    static let alertsCacheTime: Int = 60
     
     static var currentTime: Int64{
         get {
