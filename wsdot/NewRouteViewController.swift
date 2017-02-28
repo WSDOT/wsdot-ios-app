@@ -165,7 +165,7 @@ class NewRouteViewController: UIViewController {
      */
     func stopRecordingPressed() {
     
-        let alert = UIAlertController(title: "View Results?", message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: "Finish?", message: nil, preferredStyle: .actionSheet)
         
         alert.view.tintColor = Colors.tintColor
         
@@ -176,7 +176,7 @@ class NewRouteViewController: UIViewController {
             self.view.accessibilityElementsHidden = false
             
             // TEST
-            // self.locations = MyRouteStore.getFakeData()
+            self.locations = MyRouteStore.getFakeData()
             
             if (self.displayRouteOnMap(locations: self.locations)){
             
@@ -194,7 +194,7 @@ class NewRouteViewController: UIViewController {
         
         alert.addAction(resultsAction)
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "Keep Tracking Route", style: .cancel, handler: nil)
         alert.addAction(cancelAction)
 
         recordingAlertView.present(alert, animated: true, completion: nil)
@@ -233,7 +233,6 @@ class NewRouteViewController: UIViewController {
                                         displayLat: self.mapView.projection.coordinate(for: self.mapView.center).latitude,
                                         displayLong: self.mapView.projection.coordinate(for: self.mapView.center).longitude,
                                         displayZoom: self.mapView.camera.zoom)
-            
             
             
             let addFavoritesAlertController = UIAlertController(title: "Add Favorites?", message:"Traffic cameras, travel times, pass reports, and other content will be added to your favorites if they are on this route. \n\n You can do this later by tapping Edit on the My Routes screen.", preferredStyle: .alert)
