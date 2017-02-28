@@ -259,7 +259,7 @@ extension MyRouteAlertsViewController:  UITableViewDataSource, UITableViewDelega
         let htmlStyleString = "<style>body{font-family: '\(cell.linkLabel.font.fontName)'; font-size:\(cell.linkLabel.font.pointSize)px;}</style>"
         var htmlString = ""
     
-        cell.updateTime.text = TimeUtils.timeAgoSinceDate(date: alerts[indexPath.row].lastUpdatedTime, numericDates: false)
+        cell.updateTime.text = TimeUtils.timeAgoSinceDate(date: alert.lastUpdatedTime, numericDates: false)
         htmlString = htmlStyleString + alert.headlineDesc
         
         let attrStr = try! NSMutableAttributedString(
