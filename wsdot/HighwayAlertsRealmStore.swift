@@ -47,7 +47,7 @@ class HighwayAlertsStore {
             delta = deltaValue
         }
          
-        if ((delta > TimeUtils.updateTime) || force){
+        if ((delta > TimeUtils.alertsCacheTime) || force){
             
             Alamofire.request("http://data.wsdot.wa.gov/mobile/HighwayAlerts.js").validate().responseJSON { response in
                 switch response.result {
@@ -73,8 +73,6 @@ class HighwayAlertsStore {
     fileprivate static func saveAlerts(_ json: JSON){
         
         let realm = try! Realm()
-        
-        
         
         let newAlerts = List<HighwayAlertItem>()
         
