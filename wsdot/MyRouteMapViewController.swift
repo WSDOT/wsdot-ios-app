@@ -12,7 +12,6 @@ class MyRouteMapViewController: UIViewController {
 
     var myRouteLocations: [CLLocation] = [CLLocation(latitude: 47.5990, longitude: -122.3350)]
 
-    
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var accessibilityMapLabel: UILabel!
     
@@ -22,7 +21,7 @@ class MyRouteMapViewController: UIViewController {
         // Prepare Google mapView
         mapView.delegate = self
         mapView.isMyLocationEnabled = true
-    
+        mapView.isTrafficEnabled = true
     
         _ = displayRouteOnMap(myRouteLocations)
     
