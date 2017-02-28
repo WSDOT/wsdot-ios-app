@@ -722,8 +722,6 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             }
         }
     }
-
-
 }
 
 // MyRoute settings/options
@@ -733,6 +731,7 @@ extension FavoritesHomeViewController {
      * Description: action func for check alerts button on a route cell
      */
     func checkAlerts(sender: UIButton){
+        GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Check Alerts")
         performSegue(withIdentifier: segueMyRouteAlertsViewController, sender: sender)
     }
     
@@ -741,6 +740,7 @@ extension FavoritesHomeViewController {
      * Description: action fun for openMap button on a route cell
      */
     func openMap(sender: UIButton){
+        GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Open Route")
         performSegue(withIdentifier: segueTrafficMapViewController, sender: sender)
     }
 }
@@ -762,7 +762,7 @@ extension FavoritesHomeViewController: EasyTipViewDelegate {
 
         if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasSeenMyRouteTipView)){
 
-            tipView = EasyTipView(text: "Check for highway alerts important to you by creating a custom route.", delegate: self)
+            tipView = EasyTipView(text: "Check for highway alerts important to you by creating your route.", delegate: self)
             tipView.show(forItem: self.newRouteButton)
            
         }

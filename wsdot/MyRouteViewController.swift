@@ -204,6 +204,8 @@ class MyRouteViewController: UIViewController {
     
     func editRoute(sender: UIButton){
     
+        GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Route Settings")
+    
         let editController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         editController.view.tintColor = Colors.tintColor
@@ -213,11 +215,17 @@ class MyRouteViewController: UIViewController {
         }
         
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (result : UIAlertAction) -> Void in
+        
+            GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Delete Route")
+        
             let alertController = UIAlertController(title: "Delete route \(self.myRoutes[sender.tag].name)?", message:"This cannot be undone", preferredStyle: .alert)
 
             alertController.view.tintColor = Colors.tintColor
 
             let confirmDeleteAction = UIAlertAction(title: "Delete", style: .destructive) { (_) -> Void in
+            
+                GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Delete Route Confirmed")
+            
                 _ = MyRouteStore.delete(route: self.myRoutes.remove(at: sender.tag))
                 if self.myRoutes.count == 0 {
                     self.noRoutesView.isHidden = false
@@ -232,6 +240,8 @@ class MyRouteViewController: UIViewController {
         }
         
         let renameAction = UIAlertAction(title: "Rename", style: .default) { (result : UIAlertAction) -> Void in
+        
+            GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Rename Route")
         
             let alertController = UIAlertController(title: "Edit Name", message:nil, preferredStyle: .alert)
             alertController.addTextField { (textfield) in
@@ -261,7 +271,9 @@ class MyRouteViewController: UIViewController {
         }
         
         let reloadAction = UIAlertAction(title: "Add Favorites on Route", style: .default) { (result : UIAlertAction) -> Void in
-                
+            
+            GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Reload Favorites")
+            
             self.showRouteOverlay()
                 
             let serviceGroup = DispatchGroup();
@@ -286,7 +298,8 @@ class MyRouteViewController: UIViewController {
             self.tableView.reloadData()
         }
         
-        let showRouteOnMapAction = UIAlertAction(title: "Check Route", style: .default) { (result : UIAlertAction) -> Void in
+        let showRouteOnMapAction = UIAlertAction(title: "View Route", style: .default) { (result : UIAlertAction) -> Void in
+            GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "View Route")
             self.performSegue(withIdentifier: self.segueMyRouteMapViewController, sender: sender)
         }
         
