@@ -14,7 +14,7 @@ class MyRouteMapViewController: UIViewController {
 
     
     @IBOutlet weak var mapView: GMSMapView!
-    @IBOutlet weak var accessibilityMapLabel: GMSMapView!
+    @IBOutlet weak var accessibilityMapLabel: UILabel!
     
     override func loadView() {
         super.loadView()
