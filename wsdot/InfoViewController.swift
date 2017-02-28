@@ -38,7 +38,7 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
         
         aboutText.text = "The mission of the Washington State Department of Transportation is to keep people and business moving by operating and improving the state's transportation systems vital to our taxpayers and communities. \n\nThe WSDOT mobile app was created to make it easier for you to know the latest about Washington's transportation system. \n\nQuestions, comments or suggestions about this app can be e-mailed to the WSDOT Communications Office at webfeedback@wsdot.wa.gov."
     
-        appVersionLabel.text = "App version: " + version + " Beta v2"
+        appVersionLabel.text = "App version: " + version + " Beta 3"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,7 +55,7 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
             mail.setToRecipients(["simsl@wsdot.wa.gov"])
-            mail.setSubject("WSDOT iOS v\(version) Beta Feedback")
+            mail.setSubject("WSDOT iOS v\(version) Beta 3 Feedback")
             present(mail, animated: true, completion: nil)
         } else {
             UIApplication.shared.openURL(URL(string: "mailto:")!)
