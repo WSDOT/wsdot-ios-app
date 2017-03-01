@@ -45,7 +45,6 @@ class FerryRealmStore {
             let realm = try! Realm()
             let scheduleItems = realm.objects(FerryScheduleItem.self).filter("delete == false")
             return Array(scheduleItems)
-
     }
     
     static func findFavoriteSchedules() -> [FerryScheduleItem]{

@@ -206,7 +206,7 @@ class MyRouteViewController: UIViewController {
     
         GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Route Settings")
     
-        let editController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let editController = UIAlertController(title: "Route: \(self.myRoutes[sender.tag].name)", message: nil, preferredStyle: .actionSheet)
         
         editController.view.tintColor = Colors.tintColor
         
