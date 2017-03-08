@@ -79,6 +79,10 @@ class MyRouteAlertsViewController: UIViewController {
                     self.noAlertsView.isHidden = true
                 }
                 
+                self.constructionAlerts.removeAll()
+                self.specialEvents.removeAll()
+                self.trafficAlerts.removeAll()
+                
                 for alert in self.alerts{
                     if alert.headlineDesc.lowercased().contains("construction") || alert.eventCategory.lowercased().contains("construction") {
                         self.constructionAlerts.append(alert)

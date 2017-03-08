@@ -16,7 +16,7 @@
         <scene sceneID="E6A-9Y-sId">
             <objects>
                 <navigationController storyboardIdentifier="FavoritesNavigationController" id="0hy-HL-p0M" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="kyZ-Hl-ylo">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kyZ-Hl-ylo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -51,7 +51,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pNN-gr-bno" id="fsq-jj-oby">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="71.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="71"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5P-1M-cIv" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
@@ -86,7 +86,7 @@
                                         <rect key="frame" x="0.0" y="100" width="375" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0OQ-73-FU3" id="LGR-uh-Tw5">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="45.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="45"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -94,7 +94,7 @@
                                         <rect key="frame" x="0.0" y="146" width="375" height="92"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1ro-D1-IE8" id="7pF-bP-Pih">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="91.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="91"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l4S-kW-DV6">
@@ -150,7 +150,7 @@
                                         <rect key="frame" x="0.0" y="238" width="375" height="102"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0vb-Dk-y4X" id="0Qp-7c-ZQx">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="101.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="101"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lKR-ce-07i">
@@ -197,7 +197,7 @@
                                         <rect key="frame" x="0.0" y="340" width="375" height="102"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yXh-ia-WXh" id="f2x-Kw-kDW">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="101.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="101"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bQ7-DG-KBi">
@@ -252,7 +252,7 @@
                                         <rect key="frame" x="0.0" y="442" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OeY-Ui-hxY" id="0d8-XZ-D9p">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vng-3f-W8s">
@@ -441,7 +441,7 @@ Tap star icons to add Favorites</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cCE-ZG-94G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="956" y="-1372"/>
+            <point key="canvasLocation" x="1678" y="-1273"/>
         </scene>
         <!--My Routes-->
         <scene sceneID="sqI-bP-Kmg">
@@ -463,7 +463,7 @@ Tap star icons to add Favorites</string>
                                         <rect key="frame" x="0.0" y="28" width="375" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QbJ-5N-Ni0" id="NTI-zc-ime">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="42.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="42"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZVe-SS-DQ6">
@@ -742,18 +742,18 @@ WSDOT provides traffic alert information for Washington State highways only.</st
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SectionCell" id="kxG-Hs-pZQ">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kxG-Hs-pZQ" id="gxH-Tc-HeR">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TextCell" id="9IR-bT-0uI">
-                                        <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="100" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9IR-bT-0uI" id="hiT-GA-Xl8">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -811,7 +811,7 @@ WSDOT provides traffic alert information for Washington State highways only.</st
                                         <rect key="frame" x="0.0" y="28" width="375" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xO8-8g-dvI" id="RKz-gy-ipy">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="71.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="71"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQl-Cp-usJ" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
@@ -903,7 +903,7 @@ WSDOT provides traffic alert information for Washington State highways only.</st
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PFu-pC-lLF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="805.60000000000002" y="763.26836581709154"/>
+            <point key="canvasLocation" x="185" y="858"/>
         </scene>
         <!--HighwayAlert-->
         <scene sceneID="aFy-Qe-aDT">
@@ -911,7 +911,7 @@ WSDOT provides traffic alert information for Washington State highways only.</st
                 <viewControllerPlaceholder storyboardName="HighwayAlert" id="WQr-lU-0Kb" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KYS-RO-Un9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1424" y="763"/>
+            <point key="canvasLocation" x="770" y="857"/>
         </scene>
         <!--TravelTimeDetails-->
         <scene sceneID="PYm-kO-ivx">
