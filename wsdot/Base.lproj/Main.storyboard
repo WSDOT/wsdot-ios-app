@@ -14,7 +14,7 @@
         <scene sceneID="DNA-5x-hOF">
             <objects>
                 <navigationController title="Traffic Map" id="Lbb-0l-yJu" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="W5B-QB-ecH">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="W5B-QB-ecH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -29,7 +29,7 @@
                 <navigationController id="2hQ-5G-m4N" sceneMemberID="viewController">
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kcl-MV-c3g">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="kcl-MV-c3g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -44,7 +44,7 @@
                 <navigationController id="WL1-dY-1AO" sceneMemberID="viewController">
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SIV-Fi-8Ne">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="SIV-Fi-8Ne">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -53,13 +53,21 @@
             </objects>
             <point key="canvasLocation" x="441" y="1507"/>
         </scene>
-        <!--MyRoute-->
+        <!--Favorites-->
         <scene sceneID="ZRg-Sp-fEO">
             <objects>
-                <viewControllerPlaceholder storyboardName="MyRoute" id="2tm-iO-I2S" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Favorites" id="2tm-iO-I2S" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Woy-Zb-Oyl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2528" y="1150"/>
+            <point key="canvasLocation" x="1770" y="1079"/>
+        </scene>
+        <!--MyRoute-->
+        <scene sceneID="hjP-cV-ULV">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MyRoute" id="SQf-24-A33" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9jU-jv-Ah1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="994" y="228"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="515-et-fK2">
@@ -142,6 +150,10 @@
                     <navigationItem key="navigationItem" id="Xpe-Fb-HQB">
                         <barButtonItem key="leftBarButtonItem" title="My Routes" id="vmG-5V-X3l">
                             <color key="tintColor" red="0.18647282900000001" green="0.68235294120000001" blue="0.11432351139999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="createNewRouteButtonPressed:" destination="4jS-98-Vld" id="tf9-ES-dWP"/>
+                                <segue destination="SQf-24-A33" kind="show" id="QgM-uu-7t2"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="icInfo" id="t4G-kd-S5C">
                             <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -154,6 +166,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="myRouteButton" destination="vmG-5V-X3l" id="700-vj-DZS"/>
                         <segue destination="Lbb-0l-yJu" kind="showDetail" identifier="TrafficMapViewController" id="MA0-S9-Pje"/>
                         <segue destination="2hQ-5G-m4N" kind="showDetail" identifier="FerriesHomeViewController" id="RUR-VH-irQ"/>
                         <segue destination="YHC-Qx-tw0" kind="showDetail" identifier="InfoViewController" id="nAK-Qt-76l"/>
@@ -162,7 +175,7 @@
                         <segue destination="2KS-rG-GP2" kind="showDetail" identifier="MountainPassesViewController" id="fHc-ZD-Gvm"/>
                         <segue destination="20J-Fp-3B8" kind="showDetail" identifier="SocialMediaViewController" id="VdT-Bj-GLf"/>
                         <segue destination="vad-gT-B16" kind="showDetail" identifier="AmtrakCascadesViewController" id="igx-qW-ejp"/>
-                        <segue destination="2tm-iO-I2S" kind="showDetail" identifier="MyRouteViewController" id="8EF-LD-jG6"/>
+                        <segue destination="2tm-iO-I2S" kind="showDetail" identifier="FavoritesViewController" id="8EF-LD-jG6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KTF-7j-ojf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -175,7 +188,7 @@
                 <navigationController id="YHC-Qx-tw0" sceneMemberID="viewController">
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YTv-g7-o1w">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="YTv-g7-o1w">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -301,7 +314,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="EaH-rk-NDh">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="EaH-rk-NDh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -375,7 +388,7 @@
         <scene sceneID="4jB-de-pq1">
             <objects>
                 <navigationController id="2KS-rG-GP2" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="x3X-h0-jze">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="x3X-h0-jze">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -388,7 +401,7 @@
         <scene sceneID="lR4-nq-Ooh">
             <objects>
                 <navigationController id="uTf-Sh-CaL" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wkt-De-pW0">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="wkt-De-pW0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -403,7 +416,7 @@
                 <navigationController id="20J-Fp-3B8" sceneMemberID="viewController">
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="71P-6a-v4j">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="71P-6a-v4j">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -418,7 +431,7 @@
                 <navigationController id="vad-gT-B16" sceneMemberID="viewController">
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Zjl-Hg-wm2">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Zjl-Hg-wm2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

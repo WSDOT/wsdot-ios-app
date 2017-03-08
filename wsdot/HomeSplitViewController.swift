@@ -28,7 +28,7 @@ class HomeSplitViewController: UISplitViewController, UISplitViewControllerDeleg
         self.delegate = self
         self.preferredDisplayMode = .allVisible
         
-        let storyboard = UIStoryboard(name: "MyRoute", bundle: nil)
+        let storyboard = UIStoryboard(name: "Favorites", bundle: nil)
         self.viewControllers.append(contentsOf: [storyboard.instantiateViewController(withIdentifier: "FavoritesNavigationController") as! UINavigationController])
     
     }
