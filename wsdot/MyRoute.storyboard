@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="uut-OW-qBo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="03C-G7-6I3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,7 +13,6 @@
         <!--My Route Map View Controller-->
         <scene sceneID="02x-Gs-30F">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ynO-95-4ZV" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="xFY-dz-YTB" customClass="MyRouteMapViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LwI-aY-Dts"/>
@@ -50,30 +49,14 @@
                         <outlet property="mapView" destination="Ib2-hv-gjb" id="AjK-Pi-gXk"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ynO-95-4ZV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1042" y="-1030"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="zrU-Ly-Mce">
-            <objects>
-                <navigationController id="uut-OW-qBo" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="2pu-mi-bqt">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="03C-G7-6I3" kind="relationship" relationship="rootViewController" id="hyL-sA-SiE"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Mdb-nf-YEd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-623" y="-322"/>
         </scene>
         <!--My Routes-->
         <scene sceneID="mcr-8J-X9j">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XJq-ei-9aR" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="03C-G7-6I3" customClass="MyRouteViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyRouteViewController" id="03C-G7-6I3" customClass="MyRouteViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YZP-tq-YsG"/>
                         <viewControllerLayoutGuide type="bottom" id="oEX-UY-6Bt"/>
@@ -83,7 +66,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qNq-WC-ZIi">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RouteCell" rowHeight="43" id="DVl-Tm-cta" customClass="MyRouteCell" customModule="WSDOT" customModuleProvider="target">
@@ -169,7 +152,7 @@
                                 </connections>
                             </tableView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JRB-7O-9tt">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hc0-K8-jcU">
                                         <rect key="frame" x="8" y="170" width="359" height="85"/>
@@ -216,7 +199,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjL-1O-N5b">
-                                        <rect key="frame" x="8" y="537" width="359" height="58"/>
+                                        <rect key="frame" x="8" y="537" width="359" height="102"/>
                                         <string key="text">*Your route information is stored on your device and is not shared with anyone. 
 WSDOT provides traffic alert information for Washington State highways only.</string>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
@@ -281,6 +264,7 @@ WSDOT provides traffic alert information for Washington State highways only.</st
                         <segue destination="RQ3-1C-pwc" kind="show" identifier="TrafficMapViewController" id="hOO-lL-RkG"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XJq-ei-9aR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="181.59999999999999" y="-322.48875562218893"/>
         </scene>
@@ -295,7 +279,6 @@ WSDOT provides traffic alert information for Washington State highways only.</st
         <!--New Route-->
         <scene sceneID="byz-t6-5c7">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NyC-CN-bjp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="c9n-7G-JFI" customClass="NewRouteViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0Bb-mR-BqC"/>
@@ -400,6 +383,7 @@ WSDOT provides traffic alert information for Washington State highways only.</st
                         <outlet property="startButton" destination="zaI-Dl-TN3" id="Ydi-h6-HDj"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NyC-CN-bjp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1042" y="-322"/>
         </scene>
@@ -416,7 +400,7 @@ WSDOT provides traffic alert information for Washington State highways only.</st
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="AlertCell" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aEY-fn-5Yo">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="AlertCell" rowHeight="72" id="9IH-LX-7la" customClass="LinkCell" customModule="WSDOT" customModuleProvider="target">
@@ -461,7 +445,7 @@ WSDOT provides traffic alert information for Washington State highways only.</st
                                 </connections>
                             </tableView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="txa-pf-c5A">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Alerts Reported on Route" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uv4-eZ-FPt">
                                         <rect key="frame" x="88" y="53" width="198" height="67"/>
@@ -473,7 +457,7 @@ WSDOT provides traffic alert information for Washington State highways only.</st
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PCt-PK-XVE">
-                                        <rect key="frame" x="126" y="286" width="122" height="30"/>
+                                        <rect key="frame" x="126" y="308" width="122" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="122" id="UNa-5J-0AQ"/>
                                         </constraints>

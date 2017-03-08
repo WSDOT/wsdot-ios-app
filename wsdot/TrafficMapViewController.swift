@@ -168,6 +168,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     }
 
     @IBAction func settingsAction(_ sender: UIBarButtonItem) {
+        tipView.dismiss()
         performSegue(withIdentifier: SegueSettingsPopover, sender: self)
     }
     
@@ -704,7 +705,6 @@ extension TrafficMapViewController: EasyTipViewDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tipView.dismiss()
-        
     }
 
     override func viewDidAppear(_ animated: Bool) {

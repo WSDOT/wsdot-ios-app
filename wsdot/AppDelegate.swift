@@ -47,10 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         preferences.drawing.backgroundColor = UIColor(hue:0.46, saturation:0.99, brightness:0.6, alpha:1)
         preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.top
 
-
         // Make these preferences global for all future EasyTipViews
         EasyTipView.globalPreferences = preferences
-        
         
         if (GoogleAnalytics.analytics_enabled){
             

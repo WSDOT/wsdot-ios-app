@@ -55,7 +55,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.navigationController!.navigationBar.isTranslucent = false
         self.navigationController!.navigationBar.barTintColor = UIColor.white
         self.navigationController!.navigationBar.tintColor = Colors.tintColor
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,7 +67,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         performSegue(withIdentifier: SegueInfoViewController, sender: self)
     }
     
-    @IBAction func createNewRouteButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction func myRouteButtonPressed(_ sender: UIBarButtonItem) {
+        tipView.dismiss()
         performSegue(withIdentifier: segueMyRouteViewController, sender: self)
     }
     

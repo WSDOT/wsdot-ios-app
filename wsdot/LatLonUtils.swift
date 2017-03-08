@@ -19,7 +19,6 @@
 //
 import Foundation
 
-
 class LatLonUtils {
     
     /*

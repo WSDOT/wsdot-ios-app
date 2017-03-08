@@ -59,15 +59,20 @@
                 <viewControllerPlaceholder storyboardName="Favorites" id="2tm-iO-I2S" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Woy-Zb-Oyl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1770" y="1079"/>
+            <point key="canvasLocation" x="1707" y="936"/>
         </scene>
-        <!--MyRoute-->
-        <scene sceneID="hjP-cV-ULV">
+        <!--Navigation Controller-->
+        <scene sceneID="YXO-fj-Sr3">
             <objects>
-                <viewControllerPlaceholder storyboardName="MyRoute" id="SQf-24-A33" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9jU-jv-Ah1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="Lkp-wV-tHJ" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Do6-3K-Nkk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XDZ-jz-Jjy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="994" y="228"/>
+            <point key="canvasLocation" x="1478" y="1506"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="515-et-fK2">
@@ -151,8 +156,7 @@
                         <barButtonItem key="leftBarButtonItem" title="My Routes" id="vmG-5V-X3l">
                             <color key="tintColor" red="0.18647282900000001" green="0.68235294120000001" blue="0.11432351139999999" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="createNewRouteButtonPressed:" destination="4jS-98-Vld" id="tf9-ES-dWP"/>
-                                <segue destination="SQf-24-A33" kind="show" id="QgM-uu-7t2"/>
+                                <action selector="myRouteButtonPressed:" destination="4jS-98-Vld" id="TYO-qD-1Pc"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="icInfo" id="t4G-kd-S5C">
@@ -176,6 +180,7 @@
                         <segue destination="20J-Fp-3B8" kind="showDetail" identifier="SocialMediaViewController" id="VdT-Bj-GLf"/>
                         <segue destination="vad-gT-B16" kind="showDetail" identifier="AmtrakCascadesViewController" id="igx-qW-ejp"/>
                         <segue destination="2tm-iO-I2S" kind="showDetail" identifier="FavoritesViewController" id="8EF-LD-jG6"/>
+                        <segue destination="Lkp-wV-tHJ" kind="showDetail" identifier="MyRouteViewController" id="CkL-4q-jDq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KTF-7j-ojf" userLabel="First Responder" sceneMemberID="firstResponder"/>
