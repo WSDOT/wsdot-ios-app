@@ -25,6 +25,8 @@ class MyRouteViewController: UIViewController {
 
     let segueNewRouteViewController = "NewRouteViewController"
     let segueMyRouteMapViewController = "MyRouteMapViewController"
+    let segueMyRouteAlertsViewController = "MyRouteAlertsViewController"
+    let segueTrafficMapViewController = "TrafficMapViewController"
     
     let routeCellIdentifier = "RouteCell"
     
@@ -315,6 +317,26 @@ class MyRouteViewController: UIViewController {
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == segueTrafficMapViewController {
+            if let mapButton = sender as! UIButton? {
+                UserDefaults.standard.set(myRoutes[mapButton.tag].displayLatitude, forKey: UserDefaultsKeys.mapLat)
+                UserDefaults.standard.set(myRoutes[mapButton.tag].displayLongitude, forKey: UserDefaultsKeys.mapLon)
+                UserDefaults.standard.set(myRoutes[mapButton.tag].displayZoom, forKey: UserDefaultsKeys.mapZoom)
+                segue.destination.title = "Traffic Map"
+            }
+        }
+       
+        if segue.identifier == segueMyRouteAlertsViewController {
+            if let alertButton =  sender as! UIButton? {
+                let destinationViewController = segue.destination as! MyRouteAlertsViewController
+                destinationViewController.title = "Alerts On Route: \(myRoutes[alertButton.tag].name)"
+                destinationViewController.route = myRoutes[alertButton.tag]
+                destinationViewController.navigationController?.navigationBar.tintColor = Colors.tintColor
+            }
+        }
+        
+        
         if segue.identifier == segueMyRouteMapViewController {
             if let mapButton =  sender as! UIButton? {
                 let destinationViewController = segue.destination as! MyRouteMapViewController
@@ -330,6 +352,24 @@ class MyRouteViewController: UIViewController {
                 destinationViewController.navigationController?.navigationBar.tintColor = Colors.tintColor
             }
         }
+    }
+    
+    /**
+     * Method name: checkAlerts
+     * Description: action func for check alerts button on a route cell
+     */
+    func checkAlerts(sender: UIButton){
+        GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Check Alerts")
+        performSegue(withIdentifier: segueMyRouteAlertsViewController, sender: sender)
+    }
+    
+    /**
+     * Method name: checkAlerts
+     * Description: action fun for openMap button on a route cell
+     */
+    func openMap(sender: UIButton){
+        GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Open Route")
+        performSegue(withIdentifier: segueTrafficMapViewController, sender: sender)
     }
 }
 
@@ -362,7 +402,13 @@ extension MyRouteViewController:  UITableViewDataSource, UITableViewDelegate {
             routeCell.setButton.setImage(UIImage(named: "icFavoriteDefault"), for: .normal)
             routeCell.setButton.accessibilityLabel = "add to favorites"
         }
+        
+        routeCell.checkAlertsButton.tag = indexPath.row
+        routeCell.checkAlertsButton.addTarget(self, action:#selector(MyRouteViewController.checkAlerts), for: .touchUpInside)
             
+        routeCell.checkMapButton.tag = indexPath.row
+        routeCell.checkMapButton.addTarget(self, action: #selector(MyRouteViewController.openMap), for: .touchUpInside)
+        
         routeCell.setButton.tag = indexPath.row
         routeCell.setButton.addTarget(self, action:#selector(MyRouteViewController.setRoute), for: .touchUpInside)
             

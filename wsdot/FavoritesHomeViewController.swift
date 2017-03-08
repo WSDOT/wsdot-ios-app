@@ -19,8 +19,6 @@
 //
 
 import UIKit
-import EasyTipView
-import SCLAlertView
 
 class FavoritesHomeViewController: UIViewController {
     
@@ -30,7 +28,6 @@ class FavoritesHomeViewController: UIViewController {
     // content types for the favorites list in order to appear on list.
     var sectionTypes: [FavoritesContent] = [.route, .ferrySchedule, .mountainPass, .camera, .travelTime]
 
-    let segueMyRouteViewController = "MyRouteViewController"
     let segueMyRouteAlertsViewController = "MyRouteAlertsViewController"
     let segueFavoritesSettingsViewController = "FavoritesSettingsViewController"
     let segueTrafficMapViewController = "TrafficMapViewController"
@@ -54,10 +51,8 @@ class FavoritesHomeViewController: UIViewController {
 
     @IBOutlet weak var emptyFavoritesView: UIView!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var newRouteButton: UIBarButtonItem!
 
     var loadingRouteAlert = UIAlertController()
-    var tipView = EasyTipView(text: "")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,10 +73,6 @@ class FavoritesHomeViewController: UIViewController {
 
     @IBAction func favoritesSettingButtonPressed(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: segueFavoritesSettingsViewController, sender: self)
-    }
-    
-    @IBAction func createNewRouteButtonPressed(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: segueMyRouteViewController, sender: self)
     }
     
     /**
@@ -742,30 +733,6 @@ extension FavoritesHomeViewController {
     func openMap(sender: UIButton){
         GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Open Route")
         performSegue(withIdentifier: segueTrafficMapViewController, sender: sender)
-    }
-}
-
-
-extension FavoritesHomeViewController: EasyTipViewDelegate {
-    
-    public func easyTipViewDidDismiss(_ tipView: EasyTipView) {
-         UserDefaults.standard.set(true, forKey: UserDefaultsKeys.hasSeenMyRouteTipView)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        tipView.dismiss()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasSeenMyRouteTipView)){
-
-            tipView = EasyTipView(text: "Check for highway alerts important to you by creating your route.", delegate: self)
-            tipView.show(forItem: self.newRouteButton)
-           
-        }
     }
 }
 

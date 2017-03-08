@@ -175,9 +175,6 @@ class NewRouteViewController: UIViewController {
             self.navigationItem.hidesBackButton = false
             self.view.accessibilityElementsHidden = false
             
-            // TEST
-            // self.locations = MyRouteStore.getFakeData()
-            
             if (self.displayRouteOnMap(locations: self.locations)){
             
                 self.startButton.isHidden = true

@@ -23,6 +23,8 @@ import UIKit
 class MyRouteCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var setButton: UIButton!
-    @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var checkAlertsButton: UIButton!
+    @IBOutlet weak var checkMapButton: UIButton!
+    @IBOutlet weak var settingsButton: UIButton!
+
 }

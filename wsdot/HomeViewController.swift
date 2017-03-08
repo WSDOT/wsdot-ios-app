@@ -19,12 +19,13 @@
 //
 
 import UIKit
+import EasyTipView
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let cellIdentifier = "HomeCell"
     
-    let SegueFavoritesViewController = "MyRouteViewController"
+    let SegueFavoritesViewController = "FavoritesViewController"
     
     let SegueTrafficMapViewController = "TrafficMapViewController"
     let SegueFerriesHomeViewController = "FerriesHomeViewController"
@@ -34,11 +35,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     let SegueMountainPassesViewController = "MountainPassesViewController"
     let SegueSocialMediaViewController = "SocialMediaViewController"
     let SegueAmtrakCascadesViewController = "AmtrakCascadesViewController"
+    let segueMyRouteViewController = "MyRouteViewController"
+    
+    var tipView = EasyTipView(text: "")
     
     var menu_options: [String] = []
     var menu_icon_names: [String] = []
 
-    @IBOutlet weak var MyRouteButton: UIBarButtonItem!
+    @IBOutlet weak var myRouteButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +65,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
  
     @IBAction func infoBarButtonPressed(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: SegueInfoViewController, sender: self)
+    }
+    
+    @IBAction func createNewRouteButtonPressed(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: segueMyRouteViewController, sender: self)
     }
     
     // MARK: Table View Data Source Methods
@@ -134,6 +142,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             if segue.identifier == SegueInfoViewController {
                 destinationViewController.viewControllers[0].navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
                 destinationViewController.viewControllers[0].navigationItem.leftItemsSupplementBackButton = true
+            }
+            
+            if segue.identifier == segueMyRouteViewController {
+                let storyboard = UIStoryboard(name: "MyRoute", bundle: nil)
+                let myRouteViewController = storyboard.instantiateViewController(withIdentifier: "MyRouteViewController") as? MyRouteViewController
+                myRouteViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
+                myRouteViewController!.navigationItem.leftItemsSupplementBackButton = true
+                myRouteViewController!.navigationItem.title = "My Route"
+                if !destinationViewController.viewControllers.contains(myRouteViewController!){
+                    destinationViewController.pushViewController(myRouteViewController!, animated: true)
+                }
             }
             
             if segue.identifier == SegueTrafficMapViewController {
@@ -219,7 +238,27 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     destinationViewController.pushViewController(amtrakCascadesViewController!, animated: true)
                 }
             }
-            
+        }
+    }
+}
+
+extension HomeViewController: EasyTipViewDelegate {
+    
+    public func easyTipViewDidDismiss(_ tipView: EasyTipView) {
+         UserDefaults.standard.set(true, forKey: UserDefaultsKeys.hasSeenMyRouteTipView)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tipView.dismiss()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasSeenMyRouteTipView)){
+            tipView = EasyTipView(text: "Check for highway alerts important to you by creating your own route.", delegate: self)
+            tipView.show(forItem: self.myRouteButton)
         }
     }
 }
