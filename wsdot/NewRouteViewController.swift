@@ -102,7 +102,7 @@ class NewRouteViewController: UIViewController {
         navigationItem.hidesBackButton = true
         self.view.accessibilityElementsHidden = true
         
-        _ = recordingAlertView.showCustom("Let's Go!", subTitle: "\nTracking route...\n\n Please do not use the WSDOT app while you are driving.", color: Colors.tintColor, icon: alertViewIcon!)
+        _ = recordingAlertView.showCustom("Let's Go!", subTitle: "\nTracking route...\n\nTap Finish when you have completed your route.\n\nPlease do not use the WSDOT app while you are driving.", color: Colors.tintColor, icon: alertViewIcon!)
 
         screenChange()
 
