@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="03C-G7-6I3">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina3_5" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -66,7 +66,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qNq-WC-ZIi">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RouteCell" rowHeight="43" id="DVl-Tm-cta" customClass="MyRouteCell" customModule="WSDOT" customModuleProvider="target">
@@ -92,10 +92,27 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B0T-Kn-eX4">
                                                     <rect key="frame" x="14" y="8" width="25" height="25"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="width" constant="25" id="Jkx-hU-SuS"/>
+                                                        <constraint firstAttribute="width" constant="25" id="q58-sj-We4"/>
                                                         <constraint firstAttribute="height" constant="25" id="rzR-Ke-3Yp"/>
                                                         <constraint firstAttribute="width" constant="25" id="tzg-Y1-avf"/>
+                                                        <constraint firstAttribute="width" constant="25" id="za2-xk-u0E"/>
                                                     </constraints>
                                                     <state key="normal" image="icFavoriteDefault"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="Jkx-hU-SuS"/>
+                                                            <exclude reference="q58-sj-We4"/>
+                                                            <exclude reference="za2-xk-u0E"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <variation key="heightClass=regular">
+                                                        <mask key="constraints">
+                                                            <include reference="Jkx-hU-SuS"/>
+                                                            <include reference="q58-sj-We4"/>
+                                                            <include reference="za2-xk-u0E"/>
+                                                        </mask>
+                                                    </variation>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UJe-JT-Ad7">
                                                     <rect key="frame" x="228" y="9" width="24" height="24"/>
@@ -125,17 +142,124 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="V5D-3z-fG7" secondAttribute="trailing" constant="13" id="1xt-kU-LOC"/>
+                                                <constraint firstItem="8l8-Ww-YNV" firstAttribute="top" secondItem="mHE-eN-ZZv" secondAttribute="top" id="355-5Q-sgC"/>
+                                                <constraint firstItem="B0T-Kn-eX4" firstAttribute="centerY" secondItem="8l8-Ww-YNV" secondAttribute="centerY" id="4jg-7z-MTM"/>
+                                                <constraint firstItem="B0T-Kn-eX4" firstAttribute="top" secondItem="qB2-s5-rin" secondAttribute="topMargin" id="51g-HQ-v87"/>
+                                                <constraint firstItem="8l8-Ww-YNV" firstAttribute="leading" secondItem="B0T-Kn-eX4" secondAttribute="trailing" constant="8" symbolic="YES" id="6hL-Y9-5wD"/>
                                                 <constraint firstItem="mHE-eN-ZZv" firstAttribute="leading" secondItem="UJe-JT-Ad7" secondAttribute="trailing" constant="27" id="8G7-Zm-4qj"/>
+                                                <constraint firstItem="mHE-eN-ZZv" firstAttribute="leading" secondItem="UJe-JT-Ad7" secondAttribute="trailing" constant="27" id="9hI-hN-OOB"/>
+                                                <constraint firstItem="B0T-Kn-eX4" firstAttribute="centerY" secondItem="qB2-s5-rin" secondAttribute="centerY" id="ClG-6F-nMA"/>
                                                 <constraint firstItem="B0T-Kn-eX4" firstAttribute="centerY" secondItem="qB2-s5-rin" secondAttribute="centerY" id="DBS-bz-0h7"/>
+                                                <constraint firstItem="mHE-eN-ZZv" firstAttribute="leading" secondItem="UJe-JT-Ad7" secondAttribute="trailing" constant="27" id="GG0-Cz-wwn"/>
+                                                <constraint firstItem="B0T-Kn-eX4" firstAttribute="bottom" secondItem="UJe-JT-Ad7" secondAttribute="bottom" id="JdS-d7-Nnc"/>
+                                                <constraint firstItem="B0T-Kn-eX4" firstAttribute="bottom" secondItem="UJe-JT-Ad7" secondAttribute="bottom" id="LgB-2I-gHD"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="V5D-3z-fG7" secondAttribute="trailing" constant="13" id="N5y-Ix-IeS"/>
+                                                <constraint firstItem="B0T-Kn-eX4" firstAttribute="bottom" secondItem="UJe-JT-Ad7" secondAttribute="bottom" id="Q7N-q2-ZaB"/>
                                                 <constraint firstItem="B0T-Kn-eX4" firstAttribute="centerY" secondItem="8l8-Ww-YNV" secondAttribute="centerY" id="RRt-A4-fcV"/>
+                                                <constraint firstItem="V5D-3z-fG7" firstAttribute="leading" secondItem="mHE-eN-ZZv" secondAttribute="trailing" constant="27" id="S2X-Ur-li4"/>
+                                                <constraint firstItem="B0T-Kn-eX4" firstAttribute="centerY" secondItem="qB2-s5-rin" secondAttribute="centerY" id="Wf3-4B-Rba"/>
                                                 <constraint firstItem="8l8-Ww-YNV" firstAttribute="leading" secondItem="B0T-Kn-eX4" secondAttribute="trailing" constant="8" symbolic="YES" id="Wpd-1K-QNL"/>
+                                                <constraint firstItem="8l8-Ww-YNV" firstAttribute="leading" secondItem="B0T-Kn-eX4" secondAttribute="trailing" constant="8" symbolic="YES" id="YXD-Xb-S6x"/>
+                                                <constraint firstItem="mHE-eN-ZZv" firstAttribute="leading" secondItem="UJe-JT-Ad7" secondAttribute="trailing" constant="27" id="aCy-ox-naw"/>
+                                                <constraint firstItem="8l8-Ww-YNV" firstAttribute="top" secondItem="mHE-eN-ZZv" secondAttribute="top" id="all-1c-DTo"/>
+                                                <constraint firstItem="mHE-eN-ZZv" firstAttribute="top" secondItem="V5D-3z-fG7" secondAttribute="top" id="asq-I0-1bu"/>
+                                                <constraint firstItem="V5D-3z-fG7" firstAttribute="leading" secondItem="mHE-eN-ZZv" secondAttribute="trailing" constant="27" id="bjT-5h-wuB"/>
+                                                <constraint firstItem="B0T-Kn-eX4" firstAttribute="leading" secondItem="qB2-s5-rin" secondAttribute="leadingMargin" constant="6" id="fBZ-LV-McG"/>
+                                                <constraint firstItem="B0T-Kn-eX4" firstAttribute="centerY" secondItem="qB2-s5-rin" secondAttribute="centerY" id="grm-lV-S1T"/>
+                                                <constraint firstItem="mHE-eN-ZZv" firstAttribute="top" secondItem="V5D-3z-fG7" secondAttribute="top" id="hXb-d3-nul"/>
+                                                <constraint firstItem="B0T-Kn-eX4" firstAttribute="centerY" secondItem="8l8-Ww-YNV" secondAttribute="centerY" id="ifh-lV-u2U"/>
+                                                <constraint firstItem="mHE-eN-ZZv" firstAttribute="top" secondItem="V5D-3z-fG7" secondAttribute="top" id="ioj-HD-g92"/>
+                                                <constraint firstItem="B0T-Kn-eX4" firstAttribute="top" secondItem="qB2-s5-rin" secondAttribute="topMargin" id="jZE-cL-tW5"/>
+                                                <constraint firstItem="B0T-Kn-eX4" firstAttribute="leading" secondItem="qB2-s5-rin" secondAttribute="leadingMargin" constant="6" id="kT7-TK-15n"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="V5D-3z-fG7" secondAttribute="trailing" constant="13" id="one-b3-b3t"/>
                                                 <constraint firstItem="B0T-Kn-eX4" firstAttribute="leading" secondItem="qB2-s5-rin" secondAttribute="leadingMargin" constant="6" id="qTr-zg-Kho"/>
+                                                <constraint firstItem="B0T-Kn-eX4" firstAttribute="leading" secondItem="qB2-s5-rin" secondAttribute="leadingMargin" constant="6" id="qqB-tI-22v"/>
+                                                <constraint firstItem="V5D-3z-fG7" firstAttribute="leading" secondItem="mHE-eN-ZZv" secondAttribute="trailing" constant="27" id="t59-j6-DeV"/>
                                                 <constraint firstItem="mHE-eN-ZZv" firstAttribute="top" secondItem="V5D-3z-fG7" secondAttribute="top" id="tFv-3b-Vn4"/>
+                                                <constraint firstItem="8l8-Ww-YNV" firstAttribute="top" secondItem="mHE-eN-ZZv" secondAttribute="top" id="tOZ-FS-G80"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="V5D-3z-fG7" secondAttribute="trailing" constant="13" id="vRA-d0-6cP"/>
                                                 <constraint firstItem="B0T-Kn-eX4" firstAttribute="top" secondItem="qB2-s5-rin" secondAttribute="topMargin" id="vx6-JS-BIY"/>
+                                                <constraint firstItem="8l8-Ww-YNV" firstAttribute="leading" secondItem="B0T-Kn-eX4" secondAttribute="trailing" constant="8" symbolic="YES" id="xUa-hp-AgY"/>
+                                                <constraint firstItem="B0T-Kn-eX4" firstAttribute="top" secondItem="qB2-s5-rin" secondAttribute="topMargin" id="y5a-2k-E1A"/>
                                                 <constraint firstItem="UJe-JT-Ad7" firstAttribute="bottom" secondItem="B0T-Kn-eX4" secondAttribute="bottom" id="yCE-Pg-tJQ"/>
                                                 <constraint firstItem="8l8-Ww-YNV" firstAttribute="top" secondItem="V5D-3z-fG7" secondAttribute="top" id="ywi-04-m38"/>
+                                                <constraint firstItem="B0T-Kn-eX4" firstAttribute="centerY" secondItem="8l8-Ww-YNV" secondAttribute="centerY" id="z0R-dj-KFd"/>
                                                 <constraint firstItem="V5D-3z-fG7" firstAttribute="leading" secondItem="mHE-eN-ZZv" secondAttribute="trailing" constant="27" id="zQt-2y-os0"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="4jg-7z-MTM"/>
+                                                    <exclude reference="51g-HQ-v87"/>
+                                                    <exclude reference="ClG-6F-nMA"/>
+                                                    <exclude reference="JdS-d7-Nnc"/>
+                                                    <exclude reference="LgB-2I-gHD"/>
+                                                    <exclude reference="Q7N-q2-ZaB"/>
+                                                    <exclude reference="Wf3-4B-Rba"/>
+                                                    <exclude reference="fBZ-LV-McG"/>
+                                                    <exclude reference="grm-lV-S1T"/>
+                                                    <exclude reference="ifh-lV-u2U"/>
+                                                    <exclude reference="jZE-cL-tW5"/>
+                                                    <exclude reference="kT7-TK-15n"/>
+                                                    <exclude reference="qqB-tI-22v"/>
+                                                    <exclude reference="y5a-2k-E1A"/>
+                                                    <exclude reference="z0R-dj-KFd"/>
+                                                    <exclude reference="355-5Q-sgC"/>
+                                                    <exclude reference="6hL-Y9-5wD"/>
+                                                    <exclude reference="YXD-Xb-S6x"/>
+                                                    <exclude reference="all-1c-DTo"/>
+                                                    <exclude reference="tOZ-FS-G80"/>
+                                                    <exclude reference="xUa-hp-AgY"/>
+                                                    <exclude reference="9hI-hN-OOB"/>
+                                                    <exclude reference="GG0-Cz-wwn"/>
+                                                    <exclude reference="aCy-ox-naw"/>
+                                                    <exclude reference="asq-I0-1bu"/>
+                                                    <exclude reference="hXb-d3-nul"/>
+                                                    <exclude reference="ioj-HD-g92"/>
+                                                    <exclude reference="N5y-Ix-IeS"/>
+                                                    <exclude reference="S2X-Ur-li4"/>
+                                                    <exclude reference="bjT-5h-wuB"/>
+                                                    <exclude reference="one-b3-b3t"/>
+                                                    <exclude reference="t59-j6-DeV"/>
+                                                    <exclude reference="vRA-d0-6cP"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular">
+                                                <mask key="constraints">
+                                                    <include reference="4jg-7z-MTM"/>
+                                                    <include reference="51g-HQ-v87"/>
+                                                    <include reference="ClG-6F-nMA"/>
+                                                    <include reference="JdS-d7-Nnc"/>
+                                                    <include reference="LgB-2I-gHD"/>
+                                                    <include reference="Q7N-q2-ZaB"/>
+                                                    <include reference="Wf3-4B-Rba"/>
+                                                    <include reference="fBZ-LV-McG"/>
+                                                    <include reference="grm-lV-S1T"/>
+                                                    <include reference="ifh-lV-u2U"/>
+                                                    <include reference="jZE-cL-tW5"/>
+                                                    <include reference="kT7-TK-15n"/>
+                                                    <include reference="qqB-tI-22v"/>
+                                                    <include reference="y5a-2k-E1A"/>
+                                                    <include reference="z0R-dj-KFd"/>
+                                                    <include reference="355-5Q-sgC"/>
+                                                    <include reference="6hL-Y9-5wD"/>
+                                                    <include reference="YXD-Xb-S6x"/>
+                                                    <include reference="all-1c-DTo"/>
+                                                    <include reference="tOZ-FS-G80"/>
+                                                    <include reference="xUa-hp-AgY"/>
+                                                    <include reference="9hI-hN-OOB"/>
+                                                    <include reference="GG0-Cz-wwn"/>
+                                                    <include reference="aCy-ox-naw"/>
+                                                    <include reference="asq-I0-1bu"/>
+                                                    <include reference="hXb-d3-nul"/>
+                                                    <include reference="ioj-HD-g92"/>
+                                                    <include reference="N5y-Ix-IeS"/>
+                                                    <include reference="S2X-Ur-li4"/>
+                                                    <include reference="bjT-5h-wuB"/>
+                                                    <include reference="one-b3-b3t"/>
+                                                    <include reference="t59-j6-DeV"/>
+                                                    <include reference="vRA-d0-6cP"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="checkAlertsButton" destination="UJe-JT-Ad7" id="mNX-Dd-XfD"/>
@@ -151,93 +275,125 @@
                                     <outlet property="delegate" destination="03C-G7-6I3" id="qEC-04-bi4"/>
                                 </connections>
                             </tableView>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JRB-7O-9tt">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lPD-Y6-jfx">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hc0-K8-jcU">
-                                        <rect key="frame" x="8" y="170" width="359" height="85"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Af5-gr-Ho8">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjL-1O-N5b">
+                                                <rect key="frame" x="8" y="537" width="359" height="58"/>
+                                                <string key="text">*Your route information is stored on your device and
+is not shared with anyone. 
+WSDOT provides traffic alert information for
+ Washington State highways only.</string>
+                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hc0-K8-jcU">
+                                                <rect key="frame" x="8" y="180" width="359" height="72"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment>
+                                                        <string key="content">Create a custom route by tracking your commute using your phone's GPS. Once created, you can check for alerts on your route and automatically add content on your route to your favorites.</string>
+                                                        <attributes>
+                                                            <color key="NSColor" red="0.11764705882352941" green="0.14509803921568626" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <font key="NSFont" size="15" name=".AppleSystemUIFont"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment content="*">
+                                                        <attributes>
+                                                            <color key="NSColor" red="0.11764705882352941" green="0.14509803921568629" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="heightClass=compact">
+                                                    <attributedString key="attributedText">
+                                                        <fragment>
+                                                            <string key="content">Create a custom route by tracking your commute using your phone's GPS. Once created, you can check for alerts on your route and automatically add content on your route to your favorites.</string>
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.11764705882352941" green="0.14509803921568626" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" size="15" name=".AppleSystemUIFont"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                        <fragment content="*">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.11764705882352941" green="0.14509803921568629" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </variation>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ejw-0o-DZu">
+                                                <rect key="frame" x="8" y="352" width="359" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="qIJ-ub-vNh"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <state key="normal" title="Create Your First Route">
+                                                    <color key="titleColor" red="0.18647282900000001" green="0.68235294120000001" blue="0.11432351139999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="firstNewRouteButtonPressed:" destination="03C-G7-6I3" eventType="touchUpInside" id="enp-Qt-XMq"/>
+                                                </connections>
+                                            </button>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="icGreenCar" translatesAutoresizingMaskIntoConstraints="NO" id="39k-hg-tXB">
+                                                <rect key="frame" x="137" y="40" width="100" height="100"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="4DL-0Z-jAi"/>
+                                                    <constraint firstAttribute="height" constant="100" id="Szs-Aq-BkK"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="85" id="K3G-ev-yGN"/>
+                                            <constraint firstItem="Hc0-K8-jcU" firstAttribute="top" secondItem="39k-hg-tXB" secondAttribute="bottom" priority="249" constant="40" id="1hF-yx-wdv"/>
+                                            <constraint firstItem="Ejw-0o-DZu" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Hc0-K8-jcU" secondAttribute="bottom" constant="4" id="59u-ud-fMv"/>
+                                            <constraint firstItem="39k-hg-tXB" firstAttribute="centerX" secondItem="Af5-gr-Ho8" secondAttribute="centerX" id="AS9-C1-9Yc"/>
+                                            <constraint firstItem="39k-hg-tXB" firstAttribute="top" secondItem="Af5-gr-Ho8" secondAttribute="top" priority="249" constant="40" id="CgH-kj-r9s"/>
+                                            <constraint firstAttribute="trailing" secondItem="xjL-1O-N5b" secondAttribute="trailing" constant="8" id="Cyc-ks-S0P"/>
+                                            <constraint firstItem="Hc0-K8-jcU" firstAttribute="leading" secondItem="Af5-gr-Ho8" secondAttribute="leading" constant="8" id="ERH-7L-InG"/>
+                                            <constraint firstItem="39k-hg-tXB" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Af5-gr-Ho8" secondAttribute="top" constant="4" id="KcQ-70-PMW"/>
+                                            <constraint firstItem="Ejw-0o-DZu" firstAttribute="leading" secondItem="Af5-gr-Ho8" secondAttribute="leading" constant="8" id="MgL-qg-Q5m"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ejw-0o-DZu" secondAttribute="trailing" constant="8" id="X0H-T1-f2R"/>
+                                            <constraint firstItem="xjL-1O-N5b" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Ejw-0o-DZu" secondAttribute="bottom" constant="4" id="Yjn-JY-5GE"/>
+                                            <constraint firstItem="xjL-1O-N5b" firstAttribute="leading" secondItem="Af5-gr-Ho8" secondAttribute="leading" constant="8" id="a6t-NV-OE8"/>
+                                            <constraint firstItem="Ejw-0o-DZu" firstAttribute="top" secondItem="Hc0-K8-jcU" secondAttribute="bottom" priority="249" constant="100" id="dra-BR-9sO"/>
+                                            <constraint firstItem="xjL-1O-N5b" firstAttribute="top" secondItem="Ejw-0o-DZu" secondAttribute="bottom" priority="249" constant="135" id="dwx-9T-OHh"/>
+                                            <constraint firstAttribute="bottom" secondItem="xjL-1O-N5b" secondAttribute="bottom" constant="8" id="iUp-nx-qBk"/>
+                                            <constraint firstAttribute="trailing" secondItem="Hc0-K8-jcU" secondAttribute="trailing" constant="8" id="kia-1v-lET"/>
+                                            <constraint firstItem="Hc0-K8-jcU" firstAttribute="top" relation="greaterThanOrEqual" secondItem="39k-hg-tXB" secondAttribute="bottom" constant="4" id="oy3-3o-TiY"/>
                                         </constraints>
-                                        <attributedString key="attributedText">
-                                            <fragment>
-                                                <string key="content">Create a custom route by tracking your commute using your phone's GPS. Once created, you can check for alerts on your route and automatically add content on your route to your favorites.</string>
-                                                <attributes>
-                                                    <color key="NSColor" red="0.11764705882352941" green="0.14509803921568626" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <font key="NSFont" size="15" name=".AppleSystemUIFont"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                </attributes>
-                                            </fragment>
-                                            <fragment content="*">
-                                                <attributes>
-                                                    <color key="NSColor" red="0.11764705882352941" green="0.14509803921568629" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <font key="NSFont" size="15" name="HelveticaNeue"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ejw-0o-DZu">
-                                        <rect key="frame" x="8" y="354" width="359" height="72"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="72" id="6kY-9e-vkZ"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Create Your First Route">
-                                            <color key="titleColor" red="0.18647282900000001" green="0.68235294120000001" blue="0.11432351139999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="firstNewRouteButtonPressed:" destination="03C-G7-6I3" eventType="touchUpInside" id="enp-Qt-XMq"/>
-                                        </connections>
-                                    </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="icGreenCar" translatesAutoresizingMaskIntoConstraints="NO" id="39k-hg-tXB">
-                                        <rect key="frame" x="137" y="55" width="100" height="100"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="22a-B6-Aqd"/>
-                                            <constraint firstAttribute="width" constant="100" id="Ceo-hk-fLf"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjL-1O-N5b">
-                                        <rect key="frame" x="8" y="537" width="359" height="102"/>
-                                        <string key="text">*Your route information is stored on your device and is not shared with anyone. 
-WSDOT provides traffic alert information for Washington State highways only.</string>
-                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    </view>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <bool key="isElement" value="YES"/>
-                                </accessibility>
                                 <constraints>
-                                    <constraint firstItem="xjL-1O-N5b" firstAttribute="top" relation="lessThanOrEqual" secondItem="Ejw-0o-DZu" secondAttribute="bottom" constant="111.5" id="62L-2i-fmI"/>
-                                    <constraint firstItem="39k-hg-tXB" firstAttribute="centerX" secondItem="Hc0-K8-jcU" secondAttribute="centerX" id="8kN-pk-XtO"/>
-                                    <constraint firstItem="Hc0-K8-jcU" firstAttribute="leading" secondItem="JRB-7O-9tt" secondAttribute="leadingMargin" id="Qyh-fc-0gH"/>
-                                    <constraint firstItem="39k-hg-tXB" firstAttribute="top" secondItem="JRB-7O-9tt" secondAttribute="top" constant="55" id="Rf9-VS-Vu7"/>
-                                    <constraint firstItem="Hc0-K8-jcU" firstAttribute="trailing" secondItem="Ejw-0o-DZu" secondAttribute="trailing" id="Ucv-vk-ZtG"/>
-                                    <constraint firstItem="Hc0-K8-jcU" firstAttribute="top" secondItem="39k-hg-tXB" secondAttribute="bottom" constant="15" id="ced-Ux-RSb"/>
-                                    <constraint firstItem="Hc0-K8-jcU" firstAttribute="trailing" secondItem="JRB-7O-9tt" secondAttribute="trailingMargin" id="jvo-9Q-ISy"/>
-                                    <constraint firstItem="Ejw-0o-DZu" firstAttribute="leading" secondItem="xjL-1O-N5b" secondAttribute="leading" id="kgk-HL-Gc6"/>
-                                    <constraint firstItem="Hc0-K8-jcU" firstAttribute="leading" secondItem="Ejw-0o-DZu" secondAttribute="leading" id="mXD-jX-0KV"/>
-                                    <constraint firstAttribute="bottom" secondItem="xjL-1O-N5b" secondAttribute="bottom" constant="8" id="mlI-C0-LNV"/>
-                                    <constraint firstItem="Ejw-0o-DZu" firstAttribute="trailing" secondItem="xjL-1O-N5b" secondAttribute="trailing" id="p8N-ga-Apz"/>
-                                    <constraint firstItem="Ejw-0o-DZu" firstAttribute="top" relation="lessThanOrEqual" secondItem="Hc0-K8-jcU" secondAttribute="bottom" constant="99" id="wSo-0E-kLi"/>
+                                    <constraint firstAttribute="bottom" secondItem="Af5-gr-Ho8" secondAttribute="bottom" id="W08-Nl-YSi"/>
+                                    <constraint firstAttribute="trailing" secondItem="Af5-gr-Ho8" secondAttribute="trailing" id="gUf-Sn-nab"/>
+                                    <constraint firstItem="Af5-gr-Ho8" firstAttribute="centerY" secondItem="lPD-Y6-jfx" secondAttribute="centerY" id="icU-f3-Fsf"/>
+                                    <constraint firstItem="Af5-gr-Ho8" firstAttribute="centerX" secondItem="lPD-Y6-jfx" secondAttribute="centerX" id="kGf-MO-LD4"/>
+                                    <constraint firstItem="Af5-gr-Ho8" firstAttribute="leading" secondItem="lPD-Y6-jfx" secondAttribute="leading" id="kRh-aQ-jDy"/>
+                                    <constraint firstItem="Af5-gr-Ho8" firstAttribute="top" secondItem="lPD-Y6-jfx" secondAttribute="top" id="x8W-R0-icC"/>
                                 </constraints>
-                            </view>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.18647282900000001" green="0.68235294120000001" blue="0.11432351139999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="qNq-WC-ZIi" firstAttribute="top" secondItem="YZP-tq-YsG" secondAttribute="bottom" id="TJy-px-UZf"/>
-                            <constraint firstItem="oEX-UY-6Bt" firstAttribute="top" secondItem="JRB-7O-9tt" secondAttribute="bottom" id="Z2A-Xm-A9O"/>
-                            <constraint firstItem="qNq-WC-ZIi" firstAttribute="leading" secondItem="olc-Tz-aX4" secondAttribute="leading" id="a3L-pV-vzD"/>
-                            <constraint firstItem="JRB-7O-9tt" firstAttribute="leading" secondItem="olc-Tz-aX4" secondAttribute="leading" id="aV5-7Z-OFY"/>
-                            <constraint firstAttribute="trailing" secondItem="qNq-WC-ZIi" secondAttribute="trailing" id="clf-cW-Axl"/>
-                            <constraint firstAttribute="trailing" secondItem="JRB-7O-9tt" secondAttribute="trailing" id="n5u-h3-JF4"/>
-                            <constraint firstItem="qNq-WC-ZIi" firstAttribute="bottom" secondItem="oEX-UY-6Bt" secondAttribute="top" id="vpc-Uf-Hku"/>
-                            <constraint firstItem="JRB-7O-9tt" firstAttribute="top" secondItem="YZP-tq-YsG" secondAttribute="bottom" id="w5o-O6-4nx"/>
+                            <constraint firstItem="lPD-Y6-jfx" firstAttribute="top" secondItem="qNq-WC-ZIi" secondAttribute="top" id="7ic-3O-ZBd"/>
+                            <constraint firstItem="lPD-Y6-jfx" firstAttribute="leading" secondItem="olc-Tz-aX4" secondAttribute="leading" id="86m-Rh-2B7"/>
+                            <constraint firstItem="lPD-Y6-jfx" firstAttribute="bottom" secondItem="oEX-UY-6Bt" secondAttribute="top" id="Bxc-cl-dGH"/>
+                            <constraint firstItem="lPD-Y6-jfx" firstAttribute="leading" secondItem="qNq-WC-ZIi" secondAttribute="leading" id="LjD-QL-Y6f"/>
+                            <constraint firstItem="lPD-Y6-jfx" firstAttribute="bottom" secondItem="qNq-WC-ZIi" secondAttribute="bottom" id="NkX-td-V7Q"/>
+                            <constraint firstAttribute="trailing" secondItem="lPD-Y6-jfx" secondAttribute="trailing" id="Uks-nO-AAA"/>
+                            <constraint firstItem="lPD-Y6-jfx" firstAttribute="top" secondItem="YZP-tq-YsG" secondAttribute="bottom" id="Zcd-PD-JSW"/>
+                            <constraint firstItem="lPD-Y6-jfx" firstAttribute="trailing" secondItem="qNq-WC-ZIi" secondAttribute="trailing" id="gP6-TE-AqY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Routes" id="Ggt-TW-Ae7">
@@ -251,9 +407,12 @@ WSDOT provides traffic alert information for Washington State highways only.</st
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
                     <connections>
-                        <outlet property="noRoutesView" destination="JRB-7O-9tt" id="Bbs-Bb-3gL"/>
-                        <outlet property="tableView" destination="qNq-WC-ZIi" id="NoL-h1-ZLK"/>
+                        <outlet property="noRoutesView" destination="lPD-Y6-jfx" id="qV6-ZI-3mS"/>
+                        <outlet property="tableView" destination="qNq-WC-ZIi" id="Ev7-bZ-2Vg"/>
                         <segue destination="c9n-7G-JFI" kind="show" identifier="NewRouteViewController" id="CHr-2u-UwI">
                             <nil key="action"/>
                         </segue>
@@ -266,7 +425,7 @@ WSDOT provides traffic alert information for Washington State highways only.</st
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XJq-ei-9aR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="181.59999999999999" y="-322.48875562218893"/>
+            <point key="canvasLocation" x="6.875" y="-874.6875"/>
         </scene>
         <!--TrafficMap-->
         <scene sceneID="waL-74-g2b">
@@ -400,7 +559,7 @@ WSDOT provides traffic alert information for Washington State highways only.</st
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="AlertCell" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aEY-fn-5Yo">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="AlertCell" rowHeight="72" id="9IH-LX-7la" customClass="LinkCell" customModule="WSDOT" customModuleProvider="target">
@@ -445,7 +604,7 @@ WSDOT provides traffic alert information for Washington State highways only.</st
                                 </connections>
                             </tableView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="txa-pf-c5A">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Alerts Reported on Route" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uv4-eZ-FPt">
                                         <rect key="frame" x="88" y="53" width="198" height="67"/>
@@ -457,7 +616,7 @@ WSDOT provides traffic alert information for Washington State highways only.</st
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PCt-PK-XVE">
-                                        <rect key="frame" x="126" y="308" width="122" height="30"/>
+                                        <rect key="frame" x="126" y="286" width="122" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="122" id="UNa-5J-0AQ"/>
                                         </constraints>

@@ -50,8 +50,10 @@ class MyRouteViewController: UIViewController {
         
         if myRoutes.count == 0 {
             noRoutesView.isHidden = false
+            tableView.isHidden = true
         } else {
             noRoutesView.isHidden = true
+            tableView.isHidden = false
         }
         
         tableView.reloadData()
@@ -231,6 +233,7 @@ class MyRouteViewController: UIViewController {
                 _ = MyRouteStore.delete(route: self.myRoutes.remove(at: sender.tag))
                 if self.myRoutes.count == 0 {
                     self.noRoutesView.isHidden = false
+                    self.tableView.isHidden = true
                 }
                 self.tableView.reloadData()
             }
