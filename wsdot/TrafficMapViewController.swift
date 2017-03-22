@@ -709,10 +709,9 @@ extension TrafficMapViewController: EasyTipViewDelegate {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasSeenClusterTipView)) {
+        if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasSeenClusterTipView) && !UIAccessibilityIsVoiceOverRunning()){
             tipView = EasyTipView(text: "Make the map eaiser to read in areas with a high density of cameras by turning on Camera Clustering.", delegate: self)
             tipView.show(forItem: self.toolBarMenuButton)
-           
         }
     }
 }

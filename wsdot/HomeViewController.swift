@@ -257,7 +257,7 @@ extension HomeViewController: EasyTipViewDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasSeenMyRouteTipView)){
+        if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasSeenMyRouteTipView) && !UIAccessibilityIsVoiceOverRunning()){
             tipView = EasyTipView(text: "Check for highway alerts important to you by creating your own route.", delegate: self)
             tipView.show(forItem: self.myRouteButton)
         }
