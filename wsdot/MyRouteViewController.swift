@@ -40,6 +40,7 @@ class MyRouteViewController: UIViewController {
         super.viewDidLoad()
         tableView.isEditing = true
         tableView.allowsSelectionDuringEditing = true
+        
         GoogleAnalytics.screenView(screenName: "/Favorites/My Routes")
     }
     
@@ -382,10 +383,6 @@ extension MyRouteViewController:  UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return myRoutes.count
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
     }
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
