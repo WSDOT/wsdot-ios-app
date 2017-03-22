@@ -303,7 +303,7 @@ class MyRouteViewController: UIViewController {
             self.tableView.reloadData()
         }
         
-        let showRouteOnMapAction = UIAlertAction(title: "View Route", style: .default) { (result : UIAlertAction) -> Void in
+        let showRouteOnMapAction = UIAlertAction(title: "Check Route on Map", style: .default) { (result : UIAlertAction) -> Void in
             GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "View Route")
             self.performSegue(withIdentifier: self.segueMyRouteMapViewController, sender: sender)
         }
@@ -397,6 +397,8 @@ extension MyRouteViewController:  UITableViewDataSource, UITableViewDelegate {
         let routeCell = tableView.dequeueReusableCell(withIdentifier: routeCellIdentifier, for: indexPath) as! MyRouteCell
             
         routeCell.titleLabel.text = myRoutes[indexPath.row].name
+        
+        routeCell.titleLabel.accessibilityLabel = "Route " + myRoutes[indexPath.row].name + ". Swipe right for options."
         
         if myRoutes[indexPath.row].selected {
             routeCell.setButton.setImage(UIImage(named: "icFavoriteSelected"), for: .normal)
