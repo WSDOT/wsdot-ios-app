@@ -51,7 +51,7 @@ class HighwayAlertViewController: UIViewController, INDLinkLabelDelegate {
             + String(alertItem.startLatitude) + "," + String(alertItem.startLongitude)
             + "&zoom=15&size=320x320&maptype=roadmap&markers="
             + String(alertItem.startLatitude) + "," + String(alertItem.startLongitude)
-            + "&key=" + ApiKeys.google_key
+            + "&key=" + ApiKeys.getGoogleAPIKey()
         
         
         mapImage.sd_setImage(with: URL(string: staticMapUrl), placeholderImage: UIImage(named: "imagePlaceholder"), options: .refreshCached)

@@ -28,7 +28,7 @@ class AmtrakCascadesStore {
     
     static func getSchedule(_ date: Date, originId: String, destId: String, completion: @escaping FetchAmtrakSchedulesCompletion) {
         
-        let URL = "http://www.wsdot.wa.gov/traffic/api/amtrak/Schedulerest.svc/GetScheduleAsJson?AccessCode=" + ApiKeys.wsdot_key + "&StatusDate="
+        let URL = "http://www.wsdot.wa.gov/traffic/api/amtrak/Schedulerest.svc/GetScheduleAsJson?AccessCode=" + ApiKeys.getWSDOTKey() + "&StatusDate="
             + TimeUtils.formatTime(date, format: "MM/dd/yyyy") + "&TrainNumber=-1&FromLocation=" + originId + "&ToLocation=" + destId
         
         Alamofire.request(URL).validate().responseJSON { response in

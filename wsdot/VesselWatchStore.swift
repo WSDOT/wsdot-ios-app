@@ -31,7 +31,7 @@ class VesselWatchStore {
     
     static func getVessels(_ completion: @escaping FetchVesselsCompletion) {
         
-        Alamofire.request("http://www.wsdot.wa.gov/ferries/api/vessels/rest/vessellocations?apiaccesscode=" + ApiKeys.wsdot_key).validate().responseJSON { response in
+        Alamofire.request("http://www.wsdot.wa.gov/ferries/api/vessels/rest/vessellocations?apiaccesscode=" + ApiKeys.getWSDOTKey()).validate().responseJSON { response in
             switch response.result {
             case .success:
                 if let value = response.result.value {

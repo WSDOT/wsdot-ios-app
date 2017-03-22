@@ -52,7 +52,7 @@ class RestAreaViewController: UIViewController {
             + String(restAreaItem!.latitude) + "," + String(restAreaItem!.longitude)
             + "&zoom=15&size=320x320&maptype=roadmap&markers="
             + String(restAreaItem!.latitude) + "," + String(restAreaItem!.longitude)
-            + "&key=" + ApiKeys.google_key
+            + "&key=" + ApiKeys.getGoogleAPIKey()
         
         mapImage.sd_setImage(with: URL(string: staticMapUrl), placeholderImage: UIImage(named: "imagePlaceholder"), options: .refreshCached)
         

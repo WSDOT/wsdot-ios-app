@@ -36,9 +36,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         migrateRealm()
         CachesStore.initCacheItem()
         
-        GMSServices.provideAPIKey(ApiKeys.google_key)
+        GMSServices.provideAPIKey(ApiKeys.getGoogleAPIKey())
         FIRApp.configure()
-        GADMobileAds.configure(withApplicationID: ApiKeys.wsdot_ad_string);
+        GADMobileAds.configure(withApplicationID: ApiKeys.getAdId());
         
         // EasyTipView Setup
         var preferences = EasyTipView.Preferences()

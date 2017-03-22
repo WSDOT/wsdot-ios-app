@@ -98,7 +98,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         embeddedMapViewController.clusterManager.setDelegate(self, mapDelegate: self)
         
         // Ad Banner
-        bannerView.adUnitID = ApiKeys.wsdot_ad_string
+        bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self

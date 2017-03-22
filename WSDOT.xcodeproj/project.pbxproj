@@ -116,6 +116,7 @@
 		9AB549071D78A81000927F13 /* AmtrakCascadesServiceStopItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB549061D78A81000927F13 /* AmtrakCascadesServiceStopItem.swift */; };
 		9AB549091D78DE6000927F13 /* AmtrakCascadesDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB549081D78DE6000927F13 /* AmtrakCascadesDetailsCell.swift */; };
 		9AB5490C1D7A1D2800927F13 /* GoogleAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB5490B1D7A1D2800927F13 /* GoogleAnalytics.swift */; };
+		9AC5D2FD1E82EE8200D3DB65 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9AC5D2FC1E82EE8200D3DB65 /* Secrets.plist */; };
 		9AD32DFD1D23172C000AEC28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32DFC1D23172C000AEC28 /* AppDelegate.swift */; };
 		9AD32E021D23172C000AEC28 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E001D23172C000AEC28 /* Main.storyboard */; };
 		9AD32E041D23172C000AEC28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E031D23172C000AEC28 /* Assets.xcassets */; };
@@ -339,6 +340,7 @@
 		9AB549081D78DE6000927F13 /* AmtrakCascadesDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmtrakCascadesDetailsCell.swift; sourceTree = "<group>"; };
 		9AB5490A1D7A184F00927F13 /* WSDOT-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WSDOT-Bridging-Header.h"; sourceTree = "<group>"; };
 		9AB5490B1D7A1D2800927F13 /* GoogleAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleAnalytics.swift; sourceTree = "<group>"; };
+		9AC5D2FC1E82EE8200D3DB65 /* Secrets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
 		9AD32DF91D23172C000AEC28 /* WSDOT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WSDOT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD32DFC1D23172C000AEC28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9AD32E011D23172C000AEC28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -1083,6 +1085,7 @@
 				9AD32E051D23172C000AEC28 /* LaunchScreen.storyboard */,
 				9AD32DFC1D23172C000AEC28 /* AppDelegate.swift */,
 				9AD32E031D23172C000AEC28 /* Assets.xcassets */,
+				9AC5D2FC1E82EE8200D3DB65 /* Secrets.plist */,
 				9AEEDDB01D70B8A20032F5EC /* GoogleService-Info.plist */,
 				9AD32E081D23172C000AEC28 /* Info.plist */,
 				9AB5490A1D7A184F00927F13 /* WSDOT-Bridging-Header.h */,
@@ -1533,6 +1536,7 @@
 				9AD32E281D2421E4000AEC28 /* Ferries.storyboard in Resources */,
 				9AB0177A1D51464B004C228E /* Camera.storyboard in Resources */,
 				9A6FBD141D6CEE3300CDCE16 /* TravelTimeDetails.storyboard in Resources */,
+				9AC5D2FD1E82EE8200D3DB65 /* Secrets.plist in Resources */,
 				9AD32E041D23172C000AEC28 /* Assets.xcassets in Resources */,
 				9AEEDDC01D74B0650032F5EC /* SocialMedia.storyboard in Resources */,
 				9A6FBCDF1D6B86AD00CDCE16 /* HighwayAlert.storyboard in Resources */,
