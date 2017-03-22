@@ -445,9 +445,6 @@ extension NewRouteViewController {
                 let lines = address.lines!
                 let currentAddress = lines.joined(separator: "\n")
                 
-                print("meters: \(location.horizontalAccuracy)")
-                print("feet: \(location.horizontalAccuracy * 3.28084)")
-                
                 self.accessibilityCurrentLocationLabel.accessibilityLabel = "Current location is \(currentAddress). Accuracy: \(location.horizontalAccuracy * 3.28084) feet."
             } else {
                 self.accessibilityCurrentLocationLabel.accessibilityLabel = "Unable to get current location. Please try again later."
