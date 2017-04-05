@@ -35,6 +35,7 @@
 		9A0892A91E3A903800434AED /* MyRouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0892A81E3A903800434AED /* MyRouteCell.swift */; };
 		9A0CA8311D428EE9009C67B7 /* RouteDeparturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0CA8301D428EE9009C67B7 /* RouteDeparturesViewController.swift */; };
 		9A0CA8371D466045009C67B7 /* TimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0CA8361D466045009C67B7 /* TimeUtils.swift */; };
+		9A0D1B9F1E92992A00893B92 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A0D1B9E1E92992A00893B92 /* Secrets.plist */; };
 		9A1F5F9F1D47C2E800DA5F99 /* DeparturesCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F5F9E1D47C2E800DA5F99 /* DeparturesCustomCell.swift */; };
 		9A1F5FA11D47D3D100DA5F99 /* CameraImageCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F5FA01D47D3D100DA5F99 /* CameraImageCustomCell.swift */; };
 		9A1F5FA31D47DBB700DA5F99 /* SailingSpacesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F5FA21D47DBB700DA5F99 /* SailingSpacesStore.swift */; };
@@ -116,7 +117,6 @@
 		9AB549071D78A81000927F13 /* AmtrakCascadesServiceStopItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB549061D78A81000927F13 /* AmtrakCascadesServiceStopItem.swift */; };
 		9AB549091D78DE6000927F13 /* AmtrakCascadesDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB549081D78DE6000927F13 /* AmtrakCascadesDetailsCell.swift */; };
 		9AB5490C1D7A1D2800927F13 /* GoogleAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB5490B1D7A1D2800927F13 /* GoogleAnalytics.swift */; };
-		9AC5D2FD1E82EE8200D3DB65 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9AC5D2FC1E82EE8200D3DB65 /* Secrets.plist */; };
 		9AD32DFD1D23172C000AEC28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32DFC1D23172C000AEC28 /* AppDelegate.swift */; };
 		9AD32E021D23172C000AEC28 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E001D23172C000AEC28 /* Main.storyboard */; };
 		9AD32E041D23172C000AEC28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E031D23172C000AEC28 /* Assets.xcassets */; };
@@ -236,6 +236,7 @@
 		9A0892A81E3A903800434AED /* MyRouteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRouteCell.swift; sourceTree = "<group>"; };
 		9A0CA8301D428EE9009C67B7 /* RouteDeparturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteDeparturesViewController.swift; sourceTree = "<group>"; };
 		9A0CA8361D466045009C67B7 /* TimeUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUtils.swift; sourceTree = "<group>"; };
+		9A0D1B9E1E92992A00893B92 /* Secrets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
 		9A1F5F9E1D47C2E800DA5F99 /* DeparturesCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeparturesCustomCell.swift; sourceTree = "<group>"; };
 		9A1F5FA01D47D3D100DA5F99 /* CameraImageCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraImageCustomCell.swift; sourceTree = "<group>"; };
 		9A1F5FA21D47DBB700DA5F99 /* SailingSpacesStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SailingSpacesStore.swift; sourceTree = "<group>"; };
@@ -340,7 +341,6 @@
 		9AB549081D78DE6000927F13 /* AmtrakCascadesDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmtrakCascadesDetailsCell.swift; sourceTree = "<group>"; };
 		9AB5490A1D7A184F00927F13 /* WSDOT-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WSDOT-Bridging-Header.h"; sourceTree = "<group>"; };
 		9AB5490B1D7A1D2800927F13 /* GoogleAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleAnalytics.swift; sourceTree = "<group>"; };
-		9AC5D2FC1E82EE8200D3DB65 /* Secrets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
 		9AD32DF91D23172C000AEC28 /* WSDOT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WSDOT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD32DFC1D23172C000AEC28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9AD32E011D23172C000AEC28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -1085,7 +1085,7 @@
 				9AD32E051D23172C000AEC28 /* LaunchScreen.storyboard */,
 				9AD32DFC1D23172C000AEC28 /* AppDelegate.swift */,
 				9AD32E031D23172C000AEC28 /* Assets.xcassets */,
-				9AC5D2FC1E82EE8200D3DB65 /* Secrets.plist */,
+				9A0D1B9E1E92992A00893B92 /* Secrets.plist */,
 				9AEEDDB01D70B8A20032F5EC /* GoogleService-Info.plist */,
 				9AD32E081D23172C000AEC28 /* Info.plist */,
 				9AB5490A1D7A184F00927F13 /* WSDOT-Bridging-Header.h */,
@@ -1536,7 +1536,6 @@
 				9AD32E281D2421E4000AEC28 /* Ferries.storyboard in Resources */,
 				9AB0177A1D51464B004C228E /* Camera.storyboard in Resources */,
 				9A6FBD141D6CEE3300CDCE16 /* TravelTimeDetails.storyboard in Resources */,
-				9AC5D2FD1E82EE8200D3DB65 /* Secrets.plist in Resources */,
 				9AD32E041D23172C000AEC28 /* Assets.xcassets in Resources */,
 				9AEEDDC01D74B0650032F5EC /* SocialMedia.storyboard in Resources */,
 				9A6FBCDF1D6B86AD00CDCE16 /* HighwayAlert.storyboard in Resources */,
@@ -1544,6 +1543,7 @@
 				9A6FBCD21D6B541F00CDCE16 /* restareas.json in Resources */,
 				9A6FBCEA1D6C953000CDCE16 /* Callout.storyboard in Resources */,
 				9AEF4DBA1D778AF9003ECA34 /* AmtrakCascades.storyboard in Resources */,
+				9A0D1B9F1E92992A00893B92 /* Secrets.plist in Resources */,
 				9A6FBD1C1D6DF8F700CDCE16 /* BorderWaits.storyboard in Resources */,
 				9A0616C81D6601BD00126520 /* TollRates.storyboard in Resources */,
 				9A6FBCD61D6B5EBB00CDCE16 /* RestArea.storyboard in Resources */,

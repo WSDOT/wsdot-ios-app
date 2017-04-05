@@ -90,33 +90,11 @@ class MyRouteViewController: UIViewController {
     }
 
     @IBAction func newRouteButtonPressed(_ sender: UIBarButtonItem) {
-        if myRoutes.count < 5 {
-            performSegue(withIdentifier: segueNewRouteViewController, sender: self)
-        } else {
-            let alertController = UIAlertController(title: "Limit Reached", message: "Please delete a route to create a new one", preferredStyle: .alert)
-
-            alertController.view.tintColor = Colors.tintColor
-
-            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alertController.addAction(cancelAction)
-            
-            self.present(alertController, animated: false, completion: nil)
-        }
+        performSegue(withIdentifier: segueNewRouteViewController, sender: self)
     }
     
     @IBAction func firstNewRouteButtonPressed(_ sender: UIButton) {
-            if myRoutes.count < 5 {
-            performSegue(withIdentifier: segueNewRouteViewController, sender: self)
-        } else {
-            let alertController = UIAlertController(title: "Maxed Number of Routes Saved", message: "Please delete a route to record more.", preferredStyle: .alert)
-
-            alertController.view.tintColor = Colors.tintColor
-
-            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alertController.addAction(cancelAction)
-            
-            self.present(alertController, animated: false, completion: nil)
-        }
+        performSegue(withIdentifier: segueNewRouteViewController, sender: self)
     }
     
     func requestCamerasUpdate(_ force: Bool, serviceGroup: DispatchGroup) {

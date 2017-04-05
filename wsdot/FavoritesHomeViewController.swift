@@ -588,34 +588,11 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 MountainPassStore.updateFavorite(self.mountainPasses[indexPath.row], newValue: false)
                 self.mountainPasses.remove(at: indexPath.row)
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
+                break
             case .route:
-                let alertController = UIAlertController(title: "Delete route \(self.myRoutes[indexPath.row].name)?", message:"This cannot be undone.", preferredStyle: .alert)
-
-                alertController.view.tintColor = Colors.tintColor
-
-                let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (_) -> Void in
-                    tableView.reloadData()
-                
-                    _ = MyRouteStore.delete(route: self.myRoutes[indexPath.row])
-                    self.myRoutes.remove(at: indexPath.row)
-                    
-                    self.tableView.deleteRows(at: [indexPath], with: .fade)
-                    
-                    if (self.tableEmpty()){
-                        self.emptyFavoritesView.isHidden = false
-                    }else {
-                        self.emptyFavoritesView.isHidden = true
-                    }
-                }
-            
-                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) -> Void in
-                    tableView.reloadRows(at: [indexPath], with: .right)
-                }
-            
-                alertController.addAction(cancelAction)
-                alertController.addAction(deleteAction)
-            
-                self.present(alertController, animated: false, completion: nil)
+                _ = MyRouteStore.updateSelected(self.myRoutes[indexPath.row], newValue: false)
+                self.myRoutes.remove(at: indexPath.row)
+                self.tableView.deleteRows(at: [indexPath], with: .fade)
                 break
             }
         })

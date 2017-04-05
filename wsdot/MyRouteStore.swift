@@ -71,7 +71,7 @@ class MyRouteStore {
             myRouteItem.route.append(locationItem)
         }
     
-        myRouteItem.id = getSavedRouteId()
+        myRouteItem.id = Int(NSDate().timeIntervalSince1970)
         
         let realm = try! Realm()
         
@@ -84,20 +84,6 @@ class MyRouteStore {
         }
         
         return myRouteItem.id
-    }
-    
-    fileprivate static func getSavedRouteId() -> Int {
-        
-        // IDs avaliable for a saved route.
-        var availableIds = [1, 2, 3, 4, 5]
-
-        // Remove any IDs already in use
-        for route in getRoutes() {
-            availableIds.remove(at: availableIds.index(of: route.id)!)
-        }
-
-        // return the first avaliable ID
-        return availableIds.first!
     }
     
     static func delete(route: MyRouteItem) -> Bool{
@@ -338,4 +324,4 @@ class MyRouteStore {
         }
         return nil
     }
-}
+    }

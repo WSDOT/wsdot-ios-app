@@ -421,7 +421,6 @@ extension NewRouteViewController: CLLocationManagerDelegate {
     /**
      *  When authorization changes, set mapview to display users location if able.
      */
-    // TODO: What if user cuts location services mid recording?
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
         if let location = locationManager.location?.coordinate {
