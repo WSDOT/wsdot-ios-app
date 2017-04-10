@@ -8,7 +8,7 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//
+// 
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -17,7 +17,6 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
-
 import UIKit
 import Firebase
 import GoogleMobileAds
@@ -25,7 +24,7 @@ import UserNotifications
 import GoogleMaps
 import RealmSwift
 import Realm
-
+import EasyTipView
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -40,6 +39,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey(ApiKeys.google_key)
         FIRApp.configure()
         GADMobileAds.configure(withApplicationID: ApiKeys.wsdot_ad_string);
+        
+        // EasyTipView Setup
+        var preferences = EasyTipView.Preferences()
+        preferences.drawing.font = UIFont(name: "Futura-Medium", size: 13)!
+        preferences.drawing.foregroundColor = UIColor.white
+        preferences.drawing.backgroundColor = UIColor(hue:0.46, saturation:0.99, brightness:0.6, alpha:1)
+        preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.top
+
+
+        // Make these preferences global for all future EasyTipViews
+        EasyTipView.globalPreferences = preferences
+        
         
         if (GoogleAnalytics.analytics_enabled){
             
@@ -79,10 +90,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func migrateRealm(){
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
-            schemaVersion: 1,
+            schemaVersion: 2,
+            
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
-                
                     // The enumerateObjects(ofType:_:) method iterates
                     // over every MountainPassItem object stored in the Realm file
                     migration.enumerateObjects(ofType: MountainPassItem.className()) { oldObject, newObject in
@@ -94,6 +105,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             newPassCameraId["cameraId"] = camera["cameraId"] as! Int
                             passCameraIds.append(newPassCameraId)
                         }
+                    }
+                }
+                
+                if (oldSchemaVersion < 2) {
+                    // The enumerateObjects(ofType:_:) method iterates
+                    // over every TravelTime object stored in the Realm file
+                    migration.enumerateObjects(ofType: TravelTimeItem.className()) { oldObject, newObject in
+                        // Add start/end lat/long to travel times
+                        newObject!["startLatitude"] = 0.0
+                        newObject!["endLatitude"] = 0.0
+                        newObject!["startLongitude"] = 0.0
+                        newObject!["endLongitude"] = 0.0
                     }
                 }
         })

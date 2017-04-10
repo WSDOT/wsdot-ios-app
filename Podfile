@@ -7,10 +7,12 @@ target 'WSDOT' do
     pod 'Firebase/AdMob'
     pod 'GoogleMaps'
     pod 'Google/Analytics'
-    pod 'RealmSwift', '~> 2.1.0'
+    pod 'RealmSwift', '~> 2.4.2'
     pod 'Alamofire', '~> 4.2.0'
     pod 'SwiftyJSON', '~> 3.1.3'
     pod 'SDWebImage'
+    pod 'EasyTipView', '~> 1.0.2'
+    pod 'SCLAlertView'
 end
 
 target 'WSDOTTests' do
@@ -18,10 +20,12 @@ target 'WSDOTTests' do
     pod 'Firebase/AdMob'
     pod 'GoogleMaps'
     pod 'Google/Analytics'
-    pod 'RealmSwift', '~> 2.1.0'
+    pod 'RealmSwift', '~> 2.4.2'
     pod 'Alamofire', '~> 4.2.0'
     pod 'SwiftyJSON', '~> 3.1.3'
     pod 'SDWebImage'
+    pod 'EasyTipView', '~> 1.0.2'
+    pod 'SCLAlertView'
 end
 
 post_install do |installer|

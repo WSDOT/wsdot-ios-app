@@ -26,6 +26,8 @@ class UserDefaultsKeys {
     static let restAreas = "RestAreaMarkerPref"
     static let jblmCallout = "JBLMMarkerPref"
     
+    static let favoritesOrder = "FavoritesSectionOrderArray"
+    
     static let mapLat = "MapLatitudeBound"
     static let mapLon = "MapLongitudeBound"
     static let mapZoom = "MapZoom"
@@ -33,5 +35,9 @@ class UserDefaultsKeys {
     static let hasSeenWarning = "HasSeenWarning"
     
     static let shouldCluster = "shouldClusterCameraIcons"
+    
+    // EasyTipView Keys
+    static let hasSeenClusterTipView = "hasSeenClusterTipView"
+    static let hasSeenMyRouteTipView = "hasSeenMyRouteTipView"
 
 }
