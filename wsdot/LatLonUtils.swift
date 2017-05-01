@@ -44,7 +44,7 @@ class LatLonUtils {
     }
     
     fileprivate static func toRadians (_ degrees: Double) -> Double {
-        return degrees * M_PI / 180
+        return degrees * .pi / 180
     }
     
     static func lineABSegmentDistanceFrom(pointP: CLLocationCoordinate2D, pointA: CLLocationCoordinate2D, pointB: CLLocationCoordinate2D) -> Float {

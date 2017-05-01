@@ -165,7 +165,9 @@ class NewRouteViewController: UIViewController {
      */
     func stopRecordingPressed() {
         
-        let alert = (UIDevice.current.userInterfaceIdiom == .phone ? UIAlertController(title: "Finish Tracking Route?", message: nil, preferredStyle: .actionSheet) : UIAlertController(title: "Finish Tracking Route?", message: nil, preferredStyle: .alert) )
+        let alert = (UIDevice.current.userInterfaceIdiom == .phone ?
+              UIAlertController(title: "Finish Tracking Route?", message: nil, preferredStyle: .actionSheet)
+            : UIAlertController(title: "Finish Tracking Route?", message: nil, preferredStyle: .alert) )
         
         alert.view.tintColor = Colors.tintColor
         
