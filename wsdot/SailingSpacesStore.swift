@@ -32,7 +32,7 @@ class SailingSpacesStore {
     // Returns sailing space data from API. 
     static func getSailingSpacesForTerminal(_ departingId: Int, arrivingId: Int, completion: @escaping FetchSailingSpaceCompletion) {
         
-        Alamofire.request("http://www.wsdot.wa.gov/ferries/api/terminals/rest/terminalsailingspace/" + String(departingId) + "?apiaccesscode=" + ApiKeys.wsdot_key).validate().responseJSON { response in
+        Alamofire.request("http://www.wsdot.wa.gov/ferries/api/terminals/rest/terminalsailingspace/" + String(departingId) + "?apiaccesscode=" + ApiKeys.getWSDOTKey()).validate().responseJSON { response in
             switch response.result {
             case .success:
                 if let value = response.result.value {

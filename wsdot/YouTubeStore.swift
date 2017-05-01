@@ -27,7 +27,7 @@ class YouTubeStore {
     
     static func getVideos(_ completion: @escaping FetchVideosCompletion) {
         
-        Alamofire.request("https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=UUmWr7UYgRp4v_HvRfEgquXg&key=" + ApiKeys.google_key).validate().responseJSON { response in
+        Alamofire.request("https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=UUmWr7UYgRp4v_HvRfEgquXg&key=" + ApiKeys.getGoogleAPIKey()).validate().responseJSON { response in
             switch response.result {
             case .success:
                 if let value = response.result.value {

@@ -45,7 +45,22 @@ struct AlertMessages {
         alert.addAction(UIAlertAction(title: confirm, style: UIAlertActionStyle.default, handler: nil))
         return alert
     }
-}
+    
+    static func getAcessDeniedAlert(_ title: String, message: String) -> UIAlertController {
+    
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+ 
+        let settingsAction = UIAlertAction(title: "Open Settings", style: .default) { (alertAction) in
+            if let appSettings = URL(string: UIApplicationOpenSettingsURLString) {
+                UIApplication.shared.openURL(appSettings)
+            }
+        }
+        alert.addAction(settingsAction)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        return alert
+    }
+ }
 
 struct Utils {
     

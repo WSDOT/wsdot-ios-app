@@ -19,7 +19,6 @@
 //
 import Foundation
 
-
 class LatLonUtils {
     
     /*
@@ -46,6 +45,36 @@ class LatLonUtils {
     
     fileprivate static func toRadians (_ degrees: Double) -> Double {
         return degrees * M_PI / 180
+    }
+    
+    static func lineABSegmentDistanceFrom(pointP: CLLocationCoordinate2D, pointA: CLLocationCoordinate2D, pointB: CLLocationCoordinate2D) -> Float {
+    
+        let dAP = CGPoint(x: pointP.longitude - pointA.longitude, y: pointP.latitude - pointA.latitude)
+        let dAB = CGPoint(x: pointB.longitude - pointA.longitude, y: pointB.latitude - pointA.latitude)
+        
+        let dot = dAP.x * dAB.x + dAP.y * dAB.y
+        let squareLength = dAB.x * dAB.x + dAB.y * dAB.y
+        
+        let param = dot / squareLength
+    
+        var nearestPoint = CGPoint()
+        
+        if (param < 0 || (pointA.longitude == pointB.longitude && pointA.latitude == pointB.latitude)) {
+            nearestPoint.x = CGFloat(pointA.longitude)
+            nearestPoint.y = CGFloat(pointA.latitude)
+        } else if (param > 1) {
+            nearestPoint.x = CGFloat(pointB.longitude)
+            nearestPoint.y = CGFloat(pointB.latitude)
+        } else {
+            nearestPoint.x = CGFloat(pointA.longitude) + param * dAB.x
+            nearestPoint.y = CGFloat(pointA.latitude) + param * dAB.y
+        }
+
+        let dx: Float = Float(pointP.longitude) - Float(nearestPoint.x)
+        let dy: Float = Float(pointP.latitude) - Float(nearestPoint.y)
+        
+        return sqrtf((dx * dx) + (dy * dy));
+    
     }
     
 }

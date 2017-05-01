@@ -21,9 +21,27 @@
 import Foundation
 
 struct ApiKeys {
-
-    static let wsdot_key = ""
-    static let wsdot_ad_string = ""
-    static let google_key = ""
-    
+  
+    static func getAdId() -> String {
+        let filePath = Bundle.main.path(forResource: "Secrets", ofType: "plist")
+        let plist = NSDictionary(contentsOfFile:filePath!)
+        let key = plist?.object(forKey: "AD_UNIT_ID") as! String
+        return key
+    }
+  
+    static func getWSDOTKey() -> String {
+        let filePath = Bundle.main.path(forResource: "Secrets", ofType: "plist")
+        let plist = NSDictionary(contentsOfFile:filePath!)
+        let key = plist?.object(forKey: "WSDOT_KEY") as! String
+        return key
+    }
+  
+    static func getGoogleAPIKey() -> String {
+        let filePath = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist")
+        let plist = NSDictionary(contentsOfFile:filePath!)
+        let key = plist?.object(forKey: "API_KEY") as! String
+        return key
+    }
 }
+
+

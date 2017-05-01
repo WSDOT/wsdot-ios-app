@@ -42,7 +42,7 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
         self.camerasContainerView.isHidden = true
         
         // Ad Banner
-        bannerView.adUnitID = ApiKeys.wsdot_ad_string
+        bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         
