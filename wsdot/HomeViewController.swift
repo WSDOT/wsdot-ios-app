@@ -150,7 +150,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let myRouteViewController = storyboard.instantiateViewController(withIdentifier: "MyRouteViewController") as? MyRouteViewController
                 myRouteViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
                 myRouteViewController!.navigationItem.leftItemsSupplementBackButton = true
-                myRouteViewController!.navigationItem.title = "My Route"
+                myRouteViewController!.navigationItem.title = "My Routes"
                 if !destinationViewController.viewControllers.contains(myRouteViewController!){
                     destinationViewController.pushViewController(myRouteViewController!, animated: true)
                 }
