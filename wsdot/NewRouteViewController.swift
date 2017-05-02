@@ -82,19 +82,18 @@ class NewRouteViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         locationManager.requestWhenInUseAuthorization()
     }
-
     
     func showRecordingAlert(){
 
         let alertViewIcon = UIImage(named: "icCar")
         
-        recordingAlertView = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
+        self.recordingAlertView = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
             showCloseButton: false,
             showCircularIcon: true,
             shouldAutoDismiss: false)
         )
 
-        let button = recordingAlertView.addButton("Finish") {
+        let button = self.recordingAlertView.addButton("Finish") {
             self.stopRecordingPressed()
         }
         button.accessibilityHint = "Double Tap to stop tracking route."
@@ -102,8 +101,8 @@ class NewRouteViewController: UIViewController {
         navigationItem.hidesBackButton = true
         self.view.accessibilityElementsHidden = true
         
-        _ = recordingAlertView.showCustom("Let's Go!", subTitle: "\nTracking route...\n\nTap Finish when you have completed your route.\n\nPlease do not use the WSDOT app while you are driving.", color: Colors.tintColor, icon: alertViewIcon!)
-
+        _ = self.recordingAlertView.showCustom("Let's Go!", subTitle: "\nTracking route...\n\nTap Finish when you have completed your route.\n\nPlease do not use the WSDOT app while you are driving.", color: Colors.tintColor, icon: alertViewIcon!)
+        
         screenChange()
 
     }
@@ -165,6 +164,8 @@ class NewRouteViewController: UIViewController {
      */
     func stopRecordingPressed() {
         
+        _ = self.displayRouteOnMap(locations: self.locations)
+        
         let alert = (UIDevice.current.userInterfaceIdiom == .phone ?
               UIAlertController(title: "Finish Tracking Route?", message: nil, preferredStyle: .actionSheet)
             : UIAlertController(title: "Finish Tracking Route?", message: nil, preferredStyle: .alert) )
@@ -193,10 +194,15 @@ class NewRouteViewController: UIViewController {
         
         alert.addAction(resultsAction)
         
-        let cancelAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "No", style: .cancel, handler: {(_) -> Void in
+            self.mapView.clear()
+            self.showRecordingAlert()
+        })
+        
         alert.addAction(cancelAction)
 
-        recordingAlertView.present(alert, animated: true, completion: nil)
+        self.recordingAlertView.hideView()
+        self.present(alert, animated: true, completion: nil)
         
     }
     

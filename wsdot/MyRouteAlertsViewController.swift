@@ -158,7 +158,6 @@ class MyRouteAlertsViewController: UIViewController {
         }
     }
 
-
     /**
      * Method name: showOverlay
      * Description: creates an loading indicator in the center of the screen.

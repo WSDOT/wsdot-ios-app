@@ -59,11 +59,15 @@ class MyRouteViewController: UIViewController {
         
         tableView.reloadData()
 
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         // Check if user has added a new route, and requested app favorites items on route
         for route in myRoutes {
             if !route.foundMountainPasses || !route.foundFerrySchedules || !route.foundCameras || !route.foundTravelTimes {
                 
-                showRouteOverlay()
+                self.showRouteOverlay()
                 
                 let serviceGroup = DispatchGroup();
                 
