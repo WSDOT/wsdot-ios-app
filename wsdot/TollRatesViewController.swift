@@ -44,6 +44,11 @@ class TollRatesViewController: UIViewController{
         self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
     }
     
+    @IBAction func MyGoodToGoLinkTap(_ sender: UIBarButtonItem) {
+        GoogleAnalytics.screenView(screenName: "/Toll Rates/MyGoodToGo.com")
+        UIApplication.shared.openURL(URL(string: "https://mygoodtogo.com/olcsc/")!)
+    }
+    
     @IBAction func indexChanged(_ sender: UISegmentedControl) {
         
         switch (sender.selectedSegmentIndex){
