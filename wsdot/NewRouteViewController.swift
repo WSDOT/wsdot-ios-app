@@ -189,6 +189,7 @@ class NewRouteViewController: UIViewController {
                 UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
             }else {
                 self.present(AlertMessages.getAlert("Not Enough Location Data to Save a Route", message: "", confirm: "OK"), animated: true)
+                self.stopLocationUpdates()
             }
         })
         
