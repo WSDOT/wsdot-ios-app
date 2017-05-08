@@ -4,7 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]: 
 
-## [5.2.0] 2017-03
+## [5.2.0] 2017-05-04
 
 ### Added
 * My Routes section. Users can record routes and let the WSDOT app add content on their route to their favorites, as well as check for traffic alerts on thir route.
