@@ -21,11 +21,11 @@
 import UIKit
 import GoogleMobileAds
 
-class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate{
+class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate {
     
     let cellIdentifier = "borderwaitcell"
     
-    @IBOutlet weak var bannerView: GADBannerView!
+    @IBOutlet weak var bannerView: DFPBannerView!
     @IBOutlet weak var segmentedControlView: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     var displayedWaits = [BorderWaitItem]()
@@ -68,7 +68,10 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
         // Ad Banner
         bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.rootViewController = self
-        bannerView.load(GADRequest())
+        let request = DFPRequest()
+        request.customTargeting = ["wsdotapp":"border"]
+        
+        bannerView.load(request)
         bannerView.delegate = self
         
     }

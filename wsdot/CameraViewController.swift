@@ -26,9 +26,10 @@ class CameraViewController: UIViewController, GADBannerViewDelegate{
     @IBOutlet weak var cameraImage: UIImageView!
     @IBOutlet weak var favoriteBarButton: UIBarButtonItem!
     
-    @IBOutlet weak var bannerView: GADBannerView!
+    @IBOutlet weak var bannerView: DFPBannerView!
     
     var cameraItem: CameraItem = CameraItem()
+    var adTarget: String = "other"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +50,10 @@ class CameraViewController: UIViewController, GADBannerViewDelegate{
         // Ad Banner
         bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.rootViewController = self
-        bannerView.load(GADRequest())
+        let request = DFPRequest()
+        request.customTargeting = ["wsdotapp":adTarget]
+        
+        bannerView.load(request)
         bannerView.delegate = self
         
     }

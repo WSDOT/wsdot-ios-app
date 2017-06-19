@@ -48,7 +48,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     @IBOutlet weak var myLocationBarButton: UIBarButtonItem!
     @IBOutlet weak var cameraBarButton: UIBarButtonItem!
     
-    @IBOutlet weak var bannerView: GADBannerView!
+    @IBOutlet weak var bannerView: DFPBannerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +66,10 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         // Ad Banner
         bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.rootViewController = self
-        bannerView.load(GADRequest())
+        let request = DFPRequest()
+        request.customTargeting = ["wsdotapp":"ferries"]
+        
+        bannerView.load(request)
         bannerView.delegate = self
         
     }
@@ -342,6 +345,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
             let cameraItem = ((sender as! GMSMarker).userData as! CameraItem)
             let destinationViewController = segue.destination as! CameraViewController
             destinationViewController.cameraItem = cameraItem
+            destinationViewController.adTarget = "ferries"
         }
         
         if segue.identifier == SegueVesselDetailsViewController {

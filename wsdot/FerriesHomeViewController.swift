@@ -19,8 +19,9 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
-class FerriesHomeViewController: UITableViewController {
+class FerriesHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate {
 
     let cellIdentifier = "FerriesHomeCell"
     let SegueRouteSchedulesViewController = "RouteSchedulesViewController"
@@ -28,9 +29,19 @@ class FerriesHomeViewController: UITableViewController {
     
     var menu_options: [String] = []
 
+    @IBOutlet weak var bannerView: DFPBannerView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         menu_options = ["Route Schedules", "Vehicle Reservations Website", "VesselWatch"]
+        
+        // Ad Banner
+        bannerView.adUnitID = ApiKeys.getAdId()
+        bannerView.rootViewController = self
+        let request = DFPRequest()
+        request.customTargeting = ["wsdotapp":"ferries"]
+        bannerView.load(request)
+        bannerView.delegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -39,15 +50,15 @@ class FerriesHomeViewController: UITableViewController {
     }
 
     // MARK: Table View Data Source Methods
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menu_options.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
         // Configure Cell
@@ -57,7 +68,7 @@ class FerriesHomeViewController: UITableViewController {
     }
     
     // MARK: Table View Delegate Methods
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Perform Segue
         switch (indexPath.row) {
         case 0:

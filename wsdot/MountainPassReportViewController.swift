@@ -23,7 +23,7 @@ import GoogleMobileAds
 
 class MountainPassReportViewController: UIViewController, GADBannerViewDelegate {
 
-    @IBOutlet weak var bannerView: GADBannerView!
+    @IBOutlet weak var bannerView: DFPBannerView!
     
     @IBOutlet weak var updatedLabel: UILabel!
     @IBOutlet weak var weatherDetailsLabel: UILabel!
@@ -67,7 +67,10 @@ class MountainPassReportViewController: UIViewController, GADBannerViewDelegate 
         // Ad Banner
         bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.rootViewController = self
-        bannerView.load(GADRequest())
+        let request = DFPRequest()
+        request.customTargeting = ["wsdotapp":"passes"]
+        
+        bannerView.load(request)
         bannerView.delegate = self
         
     }

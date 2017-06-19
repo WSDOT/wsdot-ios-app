@@ -20,8 +20,9 @@
 
 import UIKit
 import RealmSwift
+import GoogleMobileAds
 
-class RouteSchedulesViewController: UITableViewController {
+class RouteSchedulesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate {
     
     let cellIdentifier = "FerriesRouteSchedulesCell"
     let SegueRouteDeparturesViewController = "RouteSailingsViewController"
@@ -29,13 +30,31 @@ class RouteSchedulesViewController: UITableViewController {
     var routes = [FerryScheduleItem]()
     
     var overlayView = UIView()
+    
+    let refreshControl = UIRefreshControl()
     var activityIndicator = UIActivityIndicatorView()
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var bannerView: DFPBannerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Route Schedules"
         
+        // refresh controller
+        refreshControl.addTarget(self, action: #selector(RouteSchedulesViewController.refreshAction(_:)), for: .valueChanged)
+        tableView.addSubview(refreshControl)
+        
         showOverlay(self.view)
+        
+        // Ad Banner
+        bannerView.adUnitID = ApiKeys.getAdId()
+        bannerView.rootViewController = self
+        let request = DFPRequest()
+        request.customTargeting = ["wsdotapp":"ferries"]
+        
+        bannerView.load(request)
+        bannerView.delegate = self
         
         self.routes = FerryRealmStore.findAllSchedules()
         self.tableView.reloadData()
@@ -43,14 +62,16 @@ class RouteSchedulesViewController: UITableViewController {
         self.refresh(false)
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView(screenName: "/Ferries/Schedules")
     }
     
+    func refreshAction(_ refreshControl: UIRefreshControl) {
+        refresh(true)
+    }
+    
     func refresh(_ force: Bool){
-
         
         //UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, "Loading Ferry Routes")
         DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { [weak self] in
@@ -62,7 +83,7 @@ class RouteSchedulesViewController: UITableViewController {
                             selfValue.routes = FerryRealmStore.findAllSchedules()
                             selfValue.tableView.reloadData()
                             selfValue.hideOverlayView()
-                            selfValue.refreshControl?.endRefreshing()
+                            selfValue.refreshControl.endRefreshing()
                             UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, selfValue.tableView)
                         }
                     }
@@ -70,7 +91,7 @@ class RouteSchedulesViewController: UITableViewController {
                     DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
                             selfValue.hideOverlayView()
-                            selfValue.refreshControl?.endRefreshing()
+                            selfValue.refreshControl.endRefreshing()
                             selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                         }
                     }
@@ -105,15 +126,15 @@ class RouteSchedulesViewController: UITableViewController {
     }
     
     // MARK: Table View Data Source Methods
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return routes.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! RoutesCustomCell
         
@@ -132,7 +153,7 @@ class RouteSchedulesViewController: UITableViewController {
     }
 
     // MARK: Table View Delegate Methods
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Perform Segue
         performSegue(withIdentifier: SegueRouteDeparturesViewController, sender: self)
         tableView.deselectRow(at: indexPath, animated: true)

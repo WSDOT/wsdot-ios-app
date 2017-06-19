@@ -100,7 +100,10 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         // Ad Banner
         bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.rootViewController = self
-        bannerView.load(GADRequest())
+        let request = DFPRequest()
+        request.customTargeting = ["wsdotapp":"other"]
+        
+        bannerView.load(request)
         bannerView.delegate = self
         
     }

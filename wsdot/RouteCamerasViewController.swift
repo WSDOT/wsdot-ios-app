@@ -118,6 +118,7 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
                 let cameraItem = self.cameras[indexPath.row] as CameraItem
                 let destinationViewController = segue.destination as! CameraViewController
                 destinationViewController.cameraItem = cameraItem
+                destinationViewController.adTarget = "ferries"
             }
         }
     }
