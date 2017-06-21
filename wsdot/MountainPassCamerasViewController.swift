@@ -22,7 +22,7 @@ import Foundation
 import UIKit
 import GoogleMobileAds
 
-class MountainPassCamerasViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+class MountainPassCamerasViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, GADBannerViewDelegate {
     
     let camerasCellIdentifier = "PassCamerasCell"
     let SegueCamerasViewController = "CamerasViewController"
@@ -35,6 +35,7 @@ class MountainPassCamerasViewController: UIViewController, UITableViewDataSource
     var cameras : [CameraItem] = []
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var bannerView: DFPBannerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +52,15 @@ class MountainPassCamerasViewController: UIViewController, UITableViewDataSource
         self.tableView.contentOffset = CGPoint(x: 0, y: -self.refreshControl.frame.size.height)
         showOverlay(self.view)
         refresh(false)
+        
+        // Ad Banner
+        bannerView.adUnitID = ApiKeys.getAdId()
+        bannerView.rootViewController = self
+        let request = DFPRequest()
+        request.customTargeting = ["wsdotapp":"passes"]
+        
+        bannerView.load(request)
+        bannerView.delegate = self
         
     }
     

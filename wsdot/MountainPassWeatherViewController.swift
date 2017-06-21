@@ -22,13 +22,14 @@ import Foundation
 import UIKit
 import GoogleMobileAds
 
-class MountainPassWeatherViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class MountainPassWeatherViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate{
 
     let cellIdentifier = "PassForecastCell"
 
     var passItem : MountainPassItem = MountainPassItem()
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var bannerView: DFPBannerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,15 @@ class MountainPassWeatherViewController: UIViewController, UITableViewDelegate, 
         passItem = mountainPassTabBarContoller.passItem
         
         tableView.rowHeight = UITableViewAutomaticDimension
+ 
+        // Ad Banner
+        bannerView.adUnitID = ApiKeys.getAdId()
+        bannerView.rootViewController = self
+        let request = DFPRequest()
+        request.customTargeting = ["wsdotapp":"passes"]
+        
+        bannerView.load(request)
+        bannerView.delegate = self
  
     }
     
