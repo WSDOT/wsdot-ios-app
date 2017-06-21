@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CachesStore.initCacheItem()
         
         GMSServices.provideAPIKey(ApiKeys.getGoogleAPIKey())
-        FIRApp.configure()
+        FirebaseApp.configure()
         GADMobileAds.configure(withApplicationID: ApiKeys.getAdId());
         
         // EasyTipView Setup
@@ -52,18 +52,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if (GoogleAnalytics.analytics_enabled){
             
-            // Configure tracker from GoogleService-Info.plist.
-            var configureError:NSError?
-            GGLContext.sharedInstance().configureWithError(&configureError)
-            assert(configureError == nil, "Error configuring Google services: \(String(describing: configureError))")
-            
             // Optional: configure GAI options.
             if let gai = GAI.sharedInstance() {
-                 if (GoogleAnalytics.analytics_dryrun){
-                     gai.dryRun = GoogleAnalytics.analytics_dryrun
-                     gai.logger.logLevel = GAILogLevel.verbose
-                 }
-                 gai.trackUncaughtExceptions = true  // report uncaught exceptions
+            
+                gai.tracker(withTrackingId: ApiKeys.getGoogleAnalyticsID())
+            
+                if (GoogleAnalytics.analytics_dryrun){
+                    gai.dryRun = GoogleAnalytics.analytics_dryrun
+                    gai.logger.logLevel = GAILogLevel.verbose
+                }
+                
+                gai.trackUncaughtExceptions = true  // report uncaught exceptions
             }
         }
         // Reset Warning each time app starts

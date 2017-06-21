@@ -25,8 +25,8 @@ struct ApiKeys {
     static func getAdId() -> String {
         let filePath = Bundle.main.path(forResource: "Secrets", ofType: "plist")
         let plist = NSDictionary(contentsOfFile:filePath!)
-        //let key = plist?.object(forKey: "AD_UNIT_ID") as! String
-        let key = plist?.object(forKey: "TEST_AD_UNIT_ID") as! String
+        let key = plist?.object(forKey: "AD_UNIT_ID") as! String
+        //let key = plist?.object(forKey: "TEST_AD_UNIT_ID") as! String
         return key
     }
   
@@ -41,6 +41,13 @@ struct ApiKeys {
         let filePath = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist")
         let plist = NSDictionary(contentsOfFile:filePath!)
         let key = plist?.object(forKey: "API_KEY") as! String
+        return key
+    }
+    
+    static func getGoogleAnalyticsID() -> String {
+        let filePath = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist")
+        let plist = NSDictionary(contentsOfFile:filePath!)
+        let key = plist?.object(forKey: "TRACKING_ID") as! String
         return key
     }
 }

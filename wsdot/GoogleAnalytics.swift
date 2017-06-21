@@ -27,7 +27,8 @@ class GoogleAnalytics {
     
     static func screenView(screenName: String){
         if (GoogleAnalytics.analytics_enabled){
-            if let tracker = GAI.sharedInstance().defaultTracker {
+            if let tracker = GAI
+            .sharedInstance().defaultTracker {
                 tracker.set(kGAIScreenName, value: screenName)
                 if let builder = GAIDictionaryBuilder.createScreenView() {
                     tracker.send(builder.build() as [NSObject : AnyObject])
