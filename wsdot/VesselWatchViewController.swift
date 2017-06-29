@@ -75,13 +75,11 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-
         if self.isBeingDismissed || self.isMovingFromParentViewController {
             if timer != nil {
                 self.timer?.invalidate()
             }
         }
-
     }
 
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
@@ -135,19 +133,8 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     }
     
     @IBAction func myLocationButtonPressed(_ sender: UIBarButtonItem) {
-    
         GoogleAnalytics.event(category: "Vessel Watch", action: "UIAction", label: "My Location")
-        
-        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
-            embeddedMapViewController.goToUsersLocation()
-        } else if !CLLocationManager.locationServicesEnabled() {
-            self.present(AlertMessages.getAlert("Location Services Are Disabled", message: "You can enable location services from Settings.", confirm: "OK"), animated: true, completion: nil)
-        } else if CLLocationManager.authorizationStatus() == .denied {
-            self.present(AlertMessages.getAlert("\"WSDOT\" Doesn't Have Permission To Use Your Location", message: "You can enable location services for this app in Settings", confirm: "OK"), animated: true, completion: nil)
-        } else {
-            CLLocationManager().requestWhenInUseAuthorization()
-        }
- 
+        embeddedMapViewController.goToUsersLocation()
     }
     
     @IBAction func cameraToggleButtonPressed(_ sender: UIBarButtonItem) {
