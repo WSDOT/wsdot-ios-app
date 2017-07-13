@@ -122,8 +122,16 @@ class MountainPassesViewController: UIViewController, UITableViewDelegate, UITab
         
         cell.nameLabel.text = passItem.name
         
+        cell.forecastLabel.text = ""
+        
+        if (passItem.weatherCondition != ""){
+            cell.forecastLabel.text = passItem.weatherCondition
+        }
+        
         if (passItem.forecast.count > 0){
-            cell.forecastLabel.text = WeatherUtils.getForecastBriefDescription(passItem.forecast[0].forecastText)
+            if (cell.forecastLabel.text == "") {
+                cell.forecastLabel.text = WeatherUtils.getForecastBriefDescription(passItem.forecast[0].forecastText)
+            }
             cell.weatherImage.image = UIImage(named: WeatherUtils.getIconName(passItem.forecast[0].forecastText, title: passItem.forecast[0].day))
         } else {
             cell.forecastLabel.text = ""
