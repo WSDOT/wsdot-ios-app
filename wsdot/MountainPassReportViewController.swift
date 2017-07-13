@@ -45,7 +45,9 @@ class MountainPassReportViewController: UIViewController, GADBannerViewDelegate 
  
         updatedLabel.text = "Updated " + TimeUtils.formatTime(passItem.dateUpdated, format: "MMMM dd, YYYY h:mm a")
         
-        if (passItem.forecast.count > 0){
+        if (passItem.weatherCondition != ""){
+            weatherDetailsLabel.text = passItem.weatherCondition
+        } else if (passItem.forecast.count > 0){
             weatherDetailsLabel.text = passItem.forecast[0].forecastText
         } else {
             weatherDetailsLabel.text = "N/A"
