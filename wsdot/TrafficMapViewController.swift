@@ -124,11 +124,11 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         GoogleAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Refresh")
     
         self.activityIndicatorView.isHidden = false
-        activityIndicatorView.startAnimating()
+        self.activityIndicatorView.startAnimating()
         let serviceGroup = DispatchGroup();
         
-        fetchCameras(true)
-        fetchAlerts(true)
+        fetchCameras(force: true, group: serviceGroup)
+        fetchAlerts(force: true, group: serviceGroup)
         
         serviceGroup.notify(queue: DispatchQueue.main) {
             self.activityIndicatorView.stopAnimating()
@@ -242,7 +242,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         }
     }
     
-    func fetchCameras(_ force: Bool) {
+    func fetchCameras(force: Bool, group: DispatchGroup) {
         serviceGroup.enter()
         DispatchQueue.global().async {[weak self] in
             CamerasStore.updateCameras(force, completion: { error in
@@ -302,14 +302,14 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         }
     }
     
-    func fetchAlerts(_ force: Bool) {
-        serviceGroup.enter()
+    func fetchAlerts(force: Bool, group: DispatchGroup) {
+        group.enter()
         DispatchQueue.global().async {[weak self] in
             HighwayAlertsStore.updateAlerts(force, completion: { error in
                 if (error == nil){
                     DispatchQueue.main.async {[weak self] in
                         if let selfValue = self{
-                            selfValue.serviceGroup.leave()
+                            group.leave()
                             selfValue.loadAlertMarkers()
                             selfValue.drawAlerts()
                         }
@@ -317,7 +317,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
                 }else{
                     DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
-                            selfValue.serviceGroup.leave()
+                            group.leave()
                             selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                         }
                     }
@@ -381,11 +381,8 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
                         break
                     }
                 }
-                
                 marker.userData = alert
-                
                 alertMarkers.insert(marker)
-                
             }
         }
     }
@@ -421,7 +418,6 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
                     }
                 }
             }
-            
         }
     }
     
@@ -456,11 +452,11 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         }
     }
     
-    func fetchRestAreas() {
-        serviceGroup.enter()
+    func fetchRestAreas(group: DispatchGroup) {
+        group.enter()
         loadRestAreaMarkers()
         drawRestArea()
-        serviceGroup.leave()
+        group.leave()
     }
     
     
@@ -563,10 +559,12 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         self.activityIndicatorView.isHidden = false
         activityIndicatorView.startAnimating()
         
+        let serviceGroup = DispatchGroup();
+        
         drawJBLM()
-        fetchCameras(false)
-        fetchAlerts(false)
-        fetchRestAreas()
+        fetchCameras(force: false, group: serviceGroup)
+        fetchAlerts(force: false, group: serviceGroup)
+        fetchRestAreas(group: serviceGroup)
         
         serviceGroup.notify(queue: DispatchQueue.main) {
             self.activityIndicatorView.stopAnimating()

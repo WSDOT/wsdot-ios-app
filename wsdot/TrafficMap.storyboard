@@ -117,6 +117,7 @@
                         <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Qyr-NB-cah" firstAttribute="centerX" secondItem="Cd9-UR-QA9" secondAttribute="centerX" id="5xR-b9-Nrs"/>
+                            <constraint firstItem="ma7-um-xVJ" firstAttribute="centerY" secondItem="Cd9-UR-QA9" secondAttribute="centerY" id="6rv-bu-d9l"/>
                             <constraint firstItem="ZJx-g9-PRb" firstAttribute="leading" secondItem="gnH-bF-LaH" secondAttribute="leading" id="9Ot-pd-T2K"/>
                             <constraint firstItem="gnH-bF-LaH" firstAttribute="top" secondItem="ZJx-g9-PRb" secondAttribute="bottom" id="Eyy-Be-CWR"/>
                             <constraint firstItem="ma7-um-xVJ" firstAttribute="centerY" secondItem="Cd9-UR-QA9" secondAttribute="centerY" id="Fai-TQ-lT6"/>
@@ -125,9 +126,9 @@
                             <constraint firstAttribute="bottom" secondItem="gnH-bF-LaH" secondAttribute="bottom" constant="60" id="Px6-we-R5o"/>
                             <constraint firstItem="Qyr-NB-cah" firstAttribute="top" secondItem="gnH-bF-LaH" secondAttribute="bottom" constant="10" id="Qud-eQ-H13"/>
                             <constraint firstItem="ZJx-g9-PRb" firstAttribute="top" secondItem="QZd-M0-o1F" secondAttribute="bottom" id="RcE-fn-5by"/>
+                            <constraint firstItem="ma7-um-xVJ" firstAttribute="centerX" secondItem="Cd9-UR-QA9" secondAttribute="centerX" id="Rsb-0E-eJr"/>
                             <constraint firstAttribute="trailing" secondItem="ZJx-g9-PRb" secondAttribute="trailing" id="uh0-Q4-Vqd"/>
                             <constraint firstItem="ZJx-g9-PRb" firstAttribute="leading" secondItem="Cd9-UR-QA9" secondAttribute="leading" id="wNz-VI-64b"/>
-                            <constraint firstItem="ma7-um-xVJ" firstAttribute="centerX" secondItem="Qyr-NB-cah" secondAttribute="centerX" id="zg2-C0-nka"/>
                         </constraints>
                         <variation key="heightClass=regular-widthClass=regular">
                             <mask key="subviews">
