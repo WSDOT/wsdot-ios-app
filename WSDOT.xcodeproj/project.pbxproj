@@ -42,6 +42,7 @@
 		9A1F5FA51D47DCB900DA5F99 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F5FA41D47DCB900DA5F99 /* ApiKeys.swift */; };
 		9A1F5FA71D47E27200DA5F99 /* SailingSpacesItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F5FA61D47E27200DA5F99 /* SailingSpacesItem.swift */; };
 		9A21E1CC1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A21E1CB1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift */; };
+		9A2BA5CF1F20FF2300B2092F /* BestTimesToTravelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2BA5CE1F20FF2300B2092F /* BestTimesToTravelStore.swift */; };
 		9A2C27251D679E5800F05D88 /* TrafficMapSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2C27241D679E5800F05D88 /* TrafficMapSettingsViewController.swift */; };
 		9A2C27271D67A1E400F05D88 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2C27261D67A1E400F05D88 /* SettingsCell.swift */; };
 		9A2F4A5D1D52747900911AF5 /* FerryScheduleRealmDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A5C1D52747900911AF5 /* FerryScheduleRealmDataModel.swift */; };
@@ -108,6 +109,10 @@
 		9A8486F81D81E96A0026F1CF /* DepartureDaySelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8486F71D81E96A0026F1CF /* DepartureDaySelectionViewController.swift */; };
 		9A8DD9F81D946B6200CE0B76 /* HomeSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8DD9F71D946B6200CE0B76 /* HomeSplitViewController.swift */; };
 		9A93E0D61E707384004AB867 /* MyRoute.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A93E0D51E707384004AB867 /* MyRoute.storyboard */; };
+		9A9808BD1F1FA1780034DA05 /* BestTimesToTravelDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9808BC1F1FA1780034DA05 /* BestTimesToTravelDetailsViewController.swift */; };
+		9A9808C01F1FA2AF0034DA05 /* TravelChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9808BF1F1FA2AF0034DA05 /* TravelChartItem.swift */; };
+		9A9808C21F1FAAAE0034DA05 /* TravelChartImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9808C11F1FAAAE0034DA05 /* TravelChartImageCell.swift */; };
+		9A9808C41F1FF1C70034DA05 /* BestTimesToTravelRoutesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9808C31F1FF1C70034DA05 /* BestTimesToTravelRoutesViewController.swift */; };
 		9AB0177A1D51464B004C228E /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AB017791D51464B004C228E /* Camera.storyboard */; };
 		9AB0177C1D514668004C228E /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0177B1D514668004C228E /* CameraViewController.swift */; };
 		9AB3AC391E65CE8A00784795 /* MyRouteMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB3AC381E65CE8A00784795 /* MyRouteMapViewController.swift */; };
@@ -243,6 +248,7 @@
 		9A1F5FA41D47DCB900DA5F99 /* ApiKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
 		9A1F5FA61D47E27200DA5F99 /* SailingSpacesItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SailingSpacesItem.swift; sourceTree = "<group>"; };
 		9A21E1CB1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteSailingsViewController.swift; sourceTree = "<group>"; };
+		9A2BA5CE1F20FF2300B2092F /* BestTimesToTravelStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BestTimesToTravelStore.swift; sourceTree = "<group>"; };
 		9A2C27241D679E5800F05D88 /* TrafficMapSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficMapSettingsViewController.swift; sourceTree = "<group>"; };
 		9A2C27261D67A1E400F05D88 /* SettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		9A2F4A5C1D52747900911AF5 /* FerryScheduleRealmDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerryScheduleRealmDataModel.swift; sourceTree = "<group>"; };
@@ -331,6 +337,10 @@
 		9A8486F71D81E96A0026F1CF /* DepartureDaySelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartureDaySelectionViewController.swift; sourceTree = "<group>"; };
 		9A8DD9F71D946B6200CE0B76 /* HomeSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeSplitViewController.swift; sourceTree = "<group>"; };
 		9A93E0D51E707384004AB867 /* MyRoute.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyRoute.storyboard; sourceTree = "<group>"; };
+		9A9808BC1F1FA1780034DA05 /* BestTimesToTravelDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BestTimesToTravelDetailsViewController.swift; sourceTree = "<group>"; };
+		9A9808BF1F1FA2AF0034DA05 /* TravelChartItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelChartItem.swift; sourceTree = "<group>"; };
+		9A9808C11F1FAAAE0034DA05 /* TravelChartImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelChartImageCell.swift; sourceTree = "<group>"; };
+		9A9808C31F1FF1C70034DA05 /* BestTimesToTravelRoutesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BestTimesToTravelRoutesViewController.swift; sourceTree = "<group>"; };
 		9AB017791D51464B004C228E /* Camera.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
 		9AB0177B1D514668004C228E /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		9AB3AC381E65CE8A00784795 /* MyRouteMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRouteMapViewController.swift; sourceTree = "<group>"; };
@@ -640,6 +650,7 @@
 				9A8486F11D81AC450026F1CF /* SelectionCell.swift */,
 				9AFDEA751E410626008DD51E /* MyRouteFavoritesCell.swift */,
 				9A0892A81E3A903800434AED /* MyRouteCell.swift */,
+				9A9808C11F1FAAAE0034DA05 /* TravelChartImageCell.swift */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -659,6 +670,7 @@
 		9A6FBCC31D6B4C2500CDCE16 /* TravelerInformation */ = {
 			isa = PBXGroup;
 			children = (
+				9A9808C51F1FF2070034DA05 /* BestTimesToTravel */,
 				9A6FBCF61D6CA91700CDCE16 /* ExpressLanesViewController.swift */,
 				9A6FBCC41D6B4C6500CDCE16 /* TravelerInfoViewController.swift */,
 				9A6FBD081D6CBB0000CDCE16 /* TravelTimesViewController.swift */,
@@ -780,6 +792,7 @@
 		9A6FBCED1D6C9B0A00CDCE16 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9A9808BE1F1FA28D0034DA05 /* BestTimesToTravel */,
 				9A6FBD071D6CBABD00CDCE16 /* FavoriteLocations */,
 				9A6FBD051D6CBA8600CDCE16 /* ExpressLanes */,
 			);
@@ -1017,6 +1030,24 @@
 				9A93E0D51E707384004AB867 /* MyRoute.storyboard */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		9A9808BE1F1FA28D0034DA05 /* BestTimesToTravel */ = {
+			isa = PBXGroup;
+			children = (
+				9A2BA5CE1F20FF2300B2092F /* BestTimesToTravelStore.swift */,
+				9A9808BF1F1FA2AF0034DA05 /* TravelChartItem.swift */,
+			);
+			name = BestTimesToTravel;
+			sourceTree = "<group>";
+		};
+		9A9808C51F1FF2070034DA05 /* BestTimesToTravel */ = {
+			isa = PBXGroup;
+			children = (
+				9A9808BC1F1FA1780034DA05 /* BestTimesToTravelDetailsViewController.swift */,
+				9A9808C31F1FF1C70034DA05 /* BestTimesToTravelRoutesViewController.swift */,
+			);
+			name = BestTimesToTravel;
 			sourceTree = "<group>";
 		};
 		9AB017771D514606004C228E /* Cameras */ = {
@@ -1679,6 +1710,7 @@
 				9A0616811D6265FB00126520 /* UserDefaultsKeys.swift in Sources */,
 				9AEF4D9C1D772FA5003ECA34 /* NewsStore.swift in Sources */,
 				9A6FBD0B1D6CBC3A00CDCE16 /* TravelTimeItem.swift in Sources */,
+				9A9808C01F1FA2AF0034DA05 /* TravelChartItem.swift in Sources */,
 				9A1F5FA71D47E27200DA5F99 /* SailingSpacesItem.swift in Sources */,
 				9A06167A1D62285A00126520 /* VesselWatchViewController.swift in Sources */,
 				9A7BC0D41DA3F31B00EF760C /* GMUStaticCluster.m in Sources */,
@@ -1707,6 +1739,7 @@
 				9A2F4A681D528A5100911AF5 /* FerryRealmStore.swift in Sources */,
 				9A1F5FA51D47DCB900DA5F99 /* ApiKeys.swift in Sources */,
 				9A6FBCDA1D6B6DF700CDCE16 /* HighwayAlertItem.swift in Sources */,
+				9A9808C41F1FF1C70034DA05 /* BestTimesToTravelRoutesViewController.swift in Sources */,
 				9A81A57C1D4BB41B0049913A /* LatLonUtils.swift in Sources */,
 				9AEEDDBE1D74B0590032F5EC /* SocialMediaViewController.swift in Sources */,
 				9A8486F61D81DD4B0026F1CF /* TwitterAccountSelectionViewController.swift in Sources */,
@@ -1732,6 +1765,7 @@
 				9A2F4A701D53AA5C00911AF5 /* CameraRealmStore.swift in Sources */,
 				9A6FBCFE1D6CAE5700CDCE16 /* ExpressLaneItem.swift in Sources */,
 				9A6FBCFC1D6CAC0800CDCE16 /* ExpressLaneCell.swift in Sources */,
+				9A2BA5CF1F20FF2300B2092F /* BestTimesToTravelStore.swift in Sources */,
 				9A7BC0D11DA3F31B00EF760C /* GMUSimpleClusterAlgorithm.m in Sources */,
 				9AE4863E1D49594D007A92E3 /* FerriesTerminalMap.swift in Sources */,
 				9AEF4D7E1D74DFDB003ECA34 /* BlogItem.swift in Sources */,
@@ -1740,6 +1774,7 @@
 				9A6FBCE11D6B96EE00CDCE16 /* HighwayAlertViewController.swift in Sources */,
 				9AD32E2A1D24233D000AEC28 /* FerriesHomeViewController.swift in Sources */,
 				9AEF4D8E1D7602FE003ECA34 /* FacebookCell.swift in Sources */,
+				9A9808C21F1FAAAE0034DA05 /* TravelChartImageCell.swift in Sources */,
 				9AEEDDA81D6F7FDF0032F5EC /* MountainPassReportViewController.swift in Sources */,
 				9AEF4DBE1D778ECF003ECA34 /* AmtrakCascadesScheduleViewController.swift in Sources */,
 				9A6FBD0D1D6CBC4E00CDCE16 /* TravelTimesRealmStore.swift in Sources */,
@@ -1769,6 +1804,7 @@
 				9A0892A91E3A903800434AED /* MyRouteCell.swift in Sources */,
 				9A0616CE1D660CC800126520 /* SR16ViewController.swift in Sources */,
 				9AB549011D7874E000927F13 /* AmtrakCascadesStationItem.swift in Sources */,
+				9A9808BD1F1FA1780034DA05 /* BestTimesToTravelDetailsViewController.swift in Sources */,
 				9AB549031D78758400927F13 /* AmtrakCascadesStore.swift in Sources */,
 				9AEF4DA01D773256003ECA34 /* NewsCell.swift in Sources */,
 				9AEF4DB31D774BC8003ECA34 /* TwitterCell.swift in Sources */,

@@ -67,8 +67,10 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     var tipView = EasyTipView(text: "")
     
+    @IBOutlet weak var travelInformationButton: UIBarButtonItem!
     @IBOutlet weak var toolBarMenuButton: UIBarButtonItem!
     @IBOutlet weak var cameraBarButton: UIBarButtonItem!
+    
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
@@ -96,6 +98,8 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         self.drawAlerts()
         
         embeddedMapViewController.clusterManager.setDelegate(self, mapDelegate: self)
+        
+        checkForTravelCharts()
         
         // Ad Banner
         bannerView.adUnitID = ApiKeys.getAdId()
@@ -240,6 +244,40 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
                 break
             }
         }
+    }
+    
+    /*
+        Checks if "best times to travel charts" are available from the data server,
+        if they are, display an alert badge on the Traveler information menu
+    */
+    func checkForTravelCharts(){
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { [weak self] in
+            BestTimesToTravelStore.isBestTimesToTravelAvailable({ available, error in
+                DispatchQueue.main.async { [weak self] in
+                    if let selfValue = self{
+                        if (available){
+                            // badge label
+
+        
+                            // button
+                            let travelInfoButton = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+        
+                            let menuImage = UIImage(named: "icMenu")
+                            let templateImage = menuImage?.withRenderingMode(.alwaysTemplate)
+        
+                            travelInfoButton.setBackgroundImage(templateImage, for: .normal)
+                            travelInfoButton.tintColor = Colors.tintColor
+
+                            travelInfoButton.addTarget(selfValue, action: #selector(selfValue.travelerInfoAction), for: .touchUpInside)
+                            travelInfoButton.addSubview(CustomImages.getAlertLabel())
+    
+                            selfValue.travelInformationButton.customView = travelInfoButton
+                        }
+                    }
+                }
+            })
+        }
+        
     }
     
     func fetchCameras(force: Bool, group: DispatchGroup) {
