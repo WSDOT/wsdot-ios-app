@@ -4,6 +4,25 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]: 
 
+## [5.4.0]
+* Travel Charts section.
+
+## [5.3.1] 2017-06-29
+
+### Changed
+* updated toll rates for 2017
+
+### Fixed
+* Vessel Watch permission error
+
+## [5.3.0] 2017-06-21
+
+### Added
+* support for targeted ads
+
+### Changed
+* updated WSDOT mission statment.
+
 ## [5.2.0] 2017-05-04
 
 ### Added
