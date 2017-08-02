@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1Nk-0b-wXD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1Nk-0b-wXD">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -26,7 +26,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qyr-NB-cah" customClass="DFPBannerView">
-                                <rect key="frame" x="27" y="553" width="320" height="50"/>
+                                <rect key="frame" x="27.5" y="553" width="320" height="50"/>
                                 <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Ruu-Lx-Yj6"/>
@@ -164,6 +164,7 @@
                         <outlet property="bannerView" destination="Qyr-NB-cah" id="ocH-R2-n1i"/>
                         <outlet property="cameraBarButton" destination="Rg4-Bd-cfR" id="AGx-ii-TKK"/>
                         <outlet property="toolBarMenuButton" destination="Yhn-F9-Ikf" id="oDs-fX-XUL"/>
+                        <outlet property="travelInformationButton" destination="6VY-LF-EDH" id="sp2-lz-uU3"/>
                         <segue destination="qsb-BA-WFJ" kind="popoverPresentation" identifier="TrafficMapGoToViewController" popoverAnchorBarButtonItem="OPC-ew-Vud" id="YMu-Xo-RbI">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>
@@ -283,7 +284,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="2626.4000000000001" y="-239.73013493253376"/>
+            <point key="canvasLocation" x="2625" y="-734"/>
         </scene>
         <!--TravelTimeDetails-->
         <scene sceneID="HLq-bD-JeZ">
@@ -291,7 +292,7 @@
                 <viewControllerPlaceholder storyboardName="TravelTimeDetails" id="qcX-AH-IwH" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="emB-DB-OI4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3220" y="-240"/>
+            <point key="canvasLocation" x="3162" y="-735"/>
         </scene>
         <!--Express Lanes View Controller-->
         <scene sceneID="41B-vf-krx">
@@ -382,7 +383,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KyD-Xj-UTV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2626" y="428"/>
+            <point key="canvasLocation" x="2625" y="-73"/>
         </scene>
         <!--Traveler Info View Controller-->
         <scene sceneID="DWQ-BO-jSV">
@@ -414,9 +415,15 @@
                                     <outlet property="delegate" destination="Qwx-cO-mAH" id="PVu-KF-XCh"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="B9T-F1-6jv">
+                                <rect key="frame" x="169" y="283" width="37" height="37"/>
+                                <color key="color" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="B9T-F1-6jv" firstAttribute="centerX" secondItem="TDR-EH-3Om" secondAttribute="centerX" id="10n-Dk-UJg"/>
+                            <constraint firstItem="B9T-F1-6jv" firstAttribute="centerY" secondItem="TDR-EH-3Om" secondAttribute="centerY" id="K6P-Lp-p3E"/>
                             <constraint firstItem="tO2-uh-fM9" firstAttribute="leading" secondItem="TDR-EH-3Om" secondAttribute="leading" id="NZs-0t-984"/>
                             <constraint firstAttribute="trailing" secondItem="tO2-uh-fM9" secondAttribute="trailing" id="TGc-ei-HdH"/>
                             <constraint firstItem="tO2-uh-fM9" firstAttribute="top" secondItem="hZS-Lf-NCx" secondAttribute="bottom" id="TyI-SB-hm2"/>
@@ -424,8 +431,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="B9T-F1-6jv" id="Nnv-sG-OUF"/>
+                        <outlet property="tableView" destination="tO2-uh-fM9" id="nbe-Bs-4AH"/>
                         <segue destination="kBh-qp-qw0" kind="show" identifier="ExpressLanesViewController" id="GZW-sa-cEQ"/>
                         <segue destination="QeV-aE-zqv" kind="show" identifier="TravelTimesViewController" id="gOo-uf-XYV"/>
+                        <segue destination="TCN-ic-PAo" kind="show" identifier="BestTimesToTravelRoutesViewController" id="HNF-Td-rTG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Og4-Qh-gPF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -481,6 +491,115 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yad-Rb-j1s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1948" y="809"/>
+        </scene>
+        <!--Best Times To Travel Routes View Controller-->
+        <scene sceneID="H6X-e4-dr8">
+            <objects>
+                <viewController id="TCN-ic-PAo" customClass="BestTimesToTravelRoutesViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="u8c-IF-1PE"/>
+                        <viewControllerLayoutGuide type="bottom" id="rDT-0Z-px9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8E4-ez-Szo">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4yx-kS-4ko">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="bestTimesRouteCell" id="ChQ-bn-7xr">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ChQ-bn-7xr" id="Sp8-Zx-FlA">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="TCN-ic-PAo" id="8o7-ar-Rkq"/>
+                                    <outlet property="delegate" destination="TCN-ic-PAo" id="uEP-2u-tIc"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="4yx-kS-4ko" secondAttribute="trailing" id="4xT-2l-3RY"/>
+                            <constraint firstItem="4yx-kS-4ko" firstAttribute="top" secondItem="u8c-IF-1PE" secondAttribute="bottom" id="QEt-fI-Da9"/>
+                            <constraint firstItem="4yx-kS-4ko" firstAttribute="leading" secondItem="8E4-ez-Szo" secondAttribute="leading" id="dmn-EN-N03"/>
+                            <constraint firstItem="rDT-0Z-px9" firstAttribute="top" secondItem="4yx-kS-4ko" secondAttribute="bottom" id="gdB-dq-7M4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="4yx-kS-4ko" id="ntg-vy-HFk"/>
+                        <segue destination="slK-P1-K77" kind="show" identifier="BestTimesToTravelDetailsViewController" id="MG3-BA-hlG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hpl-jy-Esv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2791" y="808"/>
+        </scene>
+        <!--Best Times To Travel Details View Controller-->
+        <scene sceneID="Gya-sE-Eja">
+            <objects>
+                <viewController id="slK-P1-K77" customClass="BestTimesToTravelDetailsViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="47C-qN-CcF"/>
+                        <viewControllerLayoutGuide type="bottom" id="05q-l9-I8M"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IeB-gd-rpm">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="152" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CUo-ax-UEz">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TravelChartCell" rowHeight="121" id="Xwu-bf-cfQ" customClass="TravelChartImageCell" customModule="WSDOT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="121"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xwu-bf-cfQ" id="gkS-tU-Kgb">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="120.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jvj-m0-9aq">
+                                                    <rect key="frame" x="8" y="8" width="359" height="105"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="jvj-m0-9aq" firstAttribute="leading" secondItem="gkS-tU-Kgb" secondAttribute="leadingMargin" id="8ZT-ou-VS7"/>
+                                                <constraint firstItem="jvj-m0-9aq" firstAttribute="top" secondItem="gkS-tU-Kgb" secondAttribute="topMargin" id="BV2-ov-Dcg"/>
+                                                <constraint firstItem="jvj-m0-9aq" firstAttribute="bottom" secondItem="gkS-tU-Kgb" secondAttribute="bottomMargin" id="YFp-LT-Ymu"/>
+                                                <constraint firstItem="jvj-m0-9aq" firstAttribute="trailing" secondItem="gkS-tU-Kgb" secondAttribute="trailingMargin" id="hd9-dE-yFO"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="ChartImage" destination="jvj-m0-9aq" id="Jfh-GR-Kr0"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="slK-P1-K77" id="E2d-n2-9We"/>
+                                    <outlet property="delegate" destination="slK-P1-K77" id="9T6-LL-jHi"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="CUo-ax-UEz" secondAttribute="trailing" id="1Ky-28-7c7"/>
+                            <constraint firstItem="CUo-ax-UEz" firstAttribute="top" secondItem="47C-qN-CcF" secondAttribute="bottom" id="91O-25-1HN"/>
+                            <constraint firstItem="CUo-ax-UEz" firstAttribute="bottom" secondItem="05q-l9-I8M" secondAttribute="top" id="SlS-5p-d1f"/>
+                            <constraint firstItem="CUo-ax-UEz" firstAttribute="leading" secondItem="IeB-gd-rpm" secondAttribute="leading" id="ueb-Sv-WmT"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="CUo-ax-UEz" id="J1f-F2-v3D"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fV2-pz-S4B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3550" y="808"/>
         </scene>
         <!--Alerts In Area View Controller-->
         <scene sceneID="hMC-PU-rzi">

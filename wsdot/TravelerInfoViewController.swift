@@ -6,7 +6,7 @@
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
+//  the Free Software Foundation, either version 3 of the Licensevarr
 //  (at your option) any later version.
 //
 //  This program is distributed in the hope that it will be useful,
@@ -26,8 +26,14 @@ class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITable
     
     let SegueTravelTimesViewController = "TravelTimesViewController"
     let SegueExpressLanesViewController = "ExpressLanesViewController"
+    let SegueBestTimesToTravelRoutesViewController = "BestTimesToTravelRoutesViewController"
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var menu_options: [String] = []
+    
+    var bestTimesToTravel: BestTimesToTravelItem? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,11 +41,62 @@ class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITable
         title = "Traveler Information"
         menu_options = ["Travel Times", "Express Lanes"]
         
+        checkForTravelCharts()
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView(screenName: "/Traffic Map/Traveler Information")
+    }
+    
+    /*
+        Checks if "best time to travel charts" are available from the data server,
+        if they are, add a new menu option to display the chart information
+    */
+    func checkForTravelCharts() {
+        
+        self.activityIndicator.isHidden = false
+        self.activityIndicator.startAnimating()
+        
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { [weak self] in
+            BestTimesToTravelStore.getBestTimesToTravel({ data, error in
+                
+                if let selfValue = self{
+                    selfValue.activityIndicator.isHidden = true
+                    selfValue.activityIndicator.stopAnimating()
+                }
+                
+                if let validData = data {
+                    DispatchQueue.main.async { [weak self] in
+                        if let selfValue = self{
+                            selfValue.bestTimesToTravel = validData
+                            
+                            if (validData.available){
+                                self?.menu_options.append(validData.name)
+                                selfValue.tableView.reloadData()
+                            }
+                        }
+                    }
+                } else {
+                     DispatchQueue.main.async { [weak self] in
+                        if let selfValue = self{
+                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                        }
+                    }
+                }
+            })
+        }
+
+    }
+
+    
+    // MARK: TableView methods
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
 
     // MARK: Table View Data Source Methods
@@ -55,11 +112,23 @@ class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITable
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
         // Configure Cell
+        cell.textLabel?.lineBreakMode = .byWordWrapping
+        cell.textLabel?.numberOfLines = 0
         cell.textLabel?.text = menu_options[indexPath.row]
+
+        if (indexPath.row == 2){
+        
+            let label = CustomImages.getAlertLabel()
+            
+            // convert it to an image
+            UIGraphicsBeginImageContextWithOptions(label.bounds.size, false, 0.0)
+            label.layer.render(in: UIGraphicsGetCurrentContext()!)
+            cell.imageView?.image = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+        }
         
         return cell
     }
-    
 
     // MARK: Table View Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -73,8 +142,23 @@ class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITable
             performSegue(withIdentifier: SegueExpressLanesViewController, sender: self)
             tableView.deselectRow(at: indexPath, animated: true)
             break
+        case 2:
+            performSegue(withIdentifier: SegueBestTimesToTravelRoutesViewController, sender: self)
+            tableView.deselectRow(at: indexPath, animated: true)
         default:
             break
         }
+    }
+    
+    // MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+        // If travel charts are available, pass them downloaded data on
+        if segue.identifier ==  SegueBestTimesToTravelRoutesViewController {
+            let destinationViewController = segue.destination as! BestTimesToTravelRoutesViewController
+            destinationViewController.bestTimesToTravel = self.bestTimesToTravel
+        }
+    
+    
     }
 }
