@@ -133,6 +133,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         
         fetchCameras(force: true, group: serviceGroup)
         fetchAlerts(force: true, group: serviceGroup)
+        checkForTravelCharts()
         
         serviceGroup.notify(queue: DispatchQueue.main) {
             self.activityIndicatorView.stopAnimating()
@@ -255,29 +256,27 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
             BestTimesToTravelStore.isBestTimesToTravelAvailable({ available, error in
                 DispatchQueue.main.async { [weak self] in
                     if let selfValue = self{
+                       
+                        // show badge on travel information icon
+                        let travelInfoButton = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+        
+                        let menuImage = UIImage(named: "icMenu")
+                        let templateImage = menuImage?.withRenderingMode(.alwaysTemplate)
+        
+                        travelInfoButton.setBackgroundImage(templateImage, for: .normal)
+                        travelInfoButton.tintColor = Colors.tintColor
+
+                        travelInfoButton.addTarget(selfValue, action: #selector(selfValue.travelerInfoAction), for: .touchUpInside)
+                        
                         if (available){
-                            // badge label
-
-        
-                            // button
-                            let travelInfoButton = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
-        
-                            let menuImage = UIImage(named: "icMenu")
-                            let templateImage = menuImage?.withRenderingMode(.alwaysTemplate)
-        
-                            travelInfoButton.setBackgroundImage(templateImage, for: .normal)
-                            travelInfoButton.tintColor = Colors.tintColor
-
-                            travelInfoButton.addTarget(selfValue, action: #selector(selfValue.travelerInfoAction), for: .touchUpInside)
                             travelInfoButton.addSubview(CustomImages.getAlertLabel())
-    
-                            selfValue.travelInformationButton.customView = travelInfoButton
                         }
+                        
+                        selfValue.travelInformationButton.customView = travelInfoButton
                     }
                 }
             })
         }
-        
     }
     
     func fetchCameras(force: Bool, group: DispatchGroup) {

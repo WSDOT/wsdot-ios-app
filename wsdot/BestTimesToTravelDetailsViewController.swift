@@ -62,6 +62,7 @@ class BestTimesToTravelDetailsViewController: UIViewController, UITableViewDataS
         // Add timestamp to help prevent caching
         let urlString = routeItem.charts[indexPath.row].url + "?" + String(Int(Date().timeIntervalSince1970 / 60))
         cell.ChartImage.sd_setImage(with: URL(string: urlString), placeholderImage: UIImage(named: "imagePlaceholder"), options: [.cacheMemoryOnly, .scaleDownLargeImages])
+        cell.accessibilityLabel = routeItem.charts[indexPath.row].altText
         return cell
     }
 

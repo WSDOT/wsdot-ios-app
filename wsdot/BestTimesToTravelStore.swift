@@ -28,9 +28,15 @@ class BestTimesToTravelStore {
     typealias FetchBestTimesToTravelAvailablityCompletion = (_ data: Bool, _ error: Error?) -> ()
     typealias FetchBestTimesToTravelCompletion = (_ data: BestTimesToTravelItem?, _ error: Error?) -> ()
    
+    static var sessionManager: SessionManager?
+   
     static func isBestTimesToTravelAvailable(_ completion: @escaping FetchBestTimesToTravelAvailablityCompletion) {
-        
-        Alamofire.request("http://data.wsdot.wa.gov/mobile/travelChartsSample.js").validate().responseJSON { response in
+
+        let configuration = URLSessionConfiguration.default
+        configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
+        sessionManager = Alamofire.SessionManager(configuration: configuration)
+
+        sessionManager!.request("http://data.wsdot.wa.gov/mobile/travelCharts.js").validate().responseJSON { response in
             switch response.result {
             case .success:
                 if let value = response.result.value {
@@ -47,7 +53,11 @@ class BestTimesToTravelStore {
     
     static func getBestTimesToTravel(_ completion: @escaping FetchBestTimesToTravelCompletion) {
         
-        Alamofire.request("http://data.wsdot.wa.gov/mobile/travelChartsSample.js").validate().responseJSON { response in
+        let configuration = URLSessionConfiguration.default
+        configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
+        sessionManager = Alamofire.SessionManager(configuration: configuration)
+
+        sessionManager!.request("http://data.wsdot.wa.gov/mobile/travelCharts.js").validate().responseJSON { response in
             switch response.result {
             case .success:
                 if let value = response.result.value {
