@@ -33,7 +33,6 @@ class BestTimesToTravelDetailsViewController: UIViewController, UITableViewDataS
         
         self.title = routeItem.name
         tableView.rowHeight = UITableViewAutomaticDimension
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
