@@ -23,8 +23,8 @@ import MessageUI
 
 class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate {
    
-    @IBOutlet weak var aboutText: UILabel!
     @IBOutlet weak var appVersionLabel: UILabel!
+    @IBOutlet weak var aboutText: UITextView!
     
     var version = "?"
     
@@ -36,7 +36,12 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
     
         aboutText.sizeToFit()
         
-        aboutText.text = "The Washington State Department of Transportation provides and supports safe, reliable and cost-effective transportation options to improve livable communities and economic vitality for people and businesses. \n\nThe WSDOT mobile app was created to make it easier for you to know the latest about Washington's transportation system. \n\nQuestions, comments or suggestions about this app can be e-mailed to the WSDOT Communications Office at webfeedback@wsdot.wa.gov."
+        aboutText.text = "The Washington State Department of Transportation provides and supports safe, reliable and cost-effective transportation options to improve livable communities and economic vitality for people and businesses.\n\n"
+            + "The WSDOT mobile app was created to make it easier for you to know the latest about Washington's transportation system. \n\n"
+            + "To report HOV, HOT lane or ferry line violators please call 1-877-764-4376 or use our online reporting form at http://www.wsdot.wa.gov/HOV/reporting.\n\n"
+            + "Questions, comments or suggestions about this app can be e-mailed to the WSDOT Communications Office at webfeedback@wsdot.wa.gov."
+    
+        aboutText.isEditable = false
     
         appVersionLabel.text = "App version: " + version
     }
