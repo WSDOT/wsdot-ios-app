@@ -4,9 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]: 
 
-## [5.4.1] 
-* Added HERO number and online form.
+## [5.4.2] 2017
 * Advertisement updates.
+
+## [5.4.1] unreleased 
+* Added HERO number and online form.
 
 ## [5.4.0] 2017-08-07
 * travel charts section.
