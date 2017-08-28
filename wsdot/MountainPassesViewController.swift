@@ -20,18 +20,22 @@
 
 import UIKit
 import Foundation
+import GoogleMobileAds
 
-class MountainPassesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MountainPassesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate {
 
     let cellIdentifier = "PassCell"
     let segueMountainPassDetailsViewController = "MountainPassDetailsViewController"
     
     var passItems = [MountainPassItem]()
 
+    @IBOutlet weak var bannerView: DFPBannerView!
+    
     let refreshControl = UIRefreshControl()
     var activityIndicator = UIActivityIndicatorView()
     
     @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -46,6 +50,14 @@ class MountainPassesViewController: UIViewController, UITableViewDelegate, UITab
         
         refresh(false)
         tableView.rowHeight = UITableViewAutomaticDimension
+        
+        // Ad Banner
+        bannerView.adUnitID = ApiKeys.getAdId()
+        bannerView.rootViewController = self
+        let request = DFPRequest()
+        request.customTargeting = ["wsdotapp":"passes"]
+        bannerView.load(request)
+        bannerView.delegate = self
         
     }
     

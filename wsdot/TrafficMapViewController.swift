@@ -105,7 +105,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.rootViewController = self
         let request = DFPRequest()
-        request.customTargeting = ["wsdotapp":"other"]
+        request.customTargeting = ["wsdotapp":"traffic"]
         
         bannerView.load(request)
         bannerView.delegate = self
@@ -704,6 +704,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
             let poiItem = ((sender as! GMSMarker).userData as! CameraClusterItem)
             let cameraItem = poiItem.camera
             let destinationViewController = segue.destination as! CameraViewController
+            destinationViewController.adTarget = "traffic"
             destinationViewController.cameraItem = cameraItem
         }
         
@@ -731,7 +732,6 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
             destinationViewController.title = "JBLM"
         }
     }
-
 }
 
 extension TrafficMapViewController: EasyTipViewDelegate {
