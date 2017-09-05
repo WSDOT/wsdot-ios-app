@@ -83,6 +83,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: GMSCameraPosition.camera(withLatitude: lat, longitude: lon, zoom: zoom))
         
         mapView.isTrafficEnabled = true
+        mapView.settings.compassButton = true
         
         mapView.delegate = mapDelegate
         

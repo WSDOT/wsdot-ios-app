@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]: 
 
+## []
+* Enabled compass button on maps.
+
 ## [5.4.2] 2017
 * Advertisement updates.
 
