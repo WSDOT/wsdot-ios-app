@@ -25,7 +25,7 @@ class SocialMediaViewController: UIViewController, UITableViewDelegate, UITableV
     let cellIdentifier = "SocialCell"
     
     let menu_options = ["Blogger", "Facebook", "Flickr", "News", "Twitter", "YouTube"]
-    let menu_icon_names = ["icBlogger", "icFacebook", "icFlickr", "icNews", "icTwitter", "icYouTube"]
+    let menu_icon_names = ["icBlogger", "icFacebook", "icFlickr", "icRss", "icTwitter", "icYouTube"]
     
     let segueBlogger = "BloggerViewController"
     let segueFacebook = "FacebookViewController"

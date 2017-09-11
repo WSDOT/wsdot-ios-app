@@ -66,8 +66,6 @@ class TwitterViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        title = "WSDOT on Twitter"
-        
         accountButton.layer.cornerRadius = 8.0
         accountButton.setTitle("All Accounts", for: UIControlState())
         accountButton.accessibilityHint = "double tap to change account"

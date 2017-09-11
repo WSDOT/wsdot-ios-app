@@ -33,7 +33,6 @@ class FacebookViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "WSDOT on Facebook"
         
         tableView.rowHeight = UITableViewAutomaticDimension
         

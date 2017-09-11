@@ -33,7 +33,6 @@ class BloggerViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "WSDOT Blog"
         
         tableView.rowHeight = UITableViewAutomaticDimension
         

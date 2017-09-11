@@ -27,6 +27,8 @@ class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITable
     let SegueTravelTimesViewController = "TravelTimesViewController"
     let SegueExpressLanesViewController = "ExpressLanesViewController"
     let SegueBestTimesToTravelRoutesViewController = "BestTimesToTravelRoutesViewController"
+    let SegueNewsViewController = "NewsViewController"
+    let SegueHappeningNowViewController = "HappeningNowTabViewController"
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -39,7 +41,7 @@ class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITable
         super.viewDidLoad()
         // Set Title
         title = "Traveler Information"
-        menu_options = ["Travel Times", "Express Lanes"]
+        menu_options = ["Happening Now", "Travel Times", "Express Lanes", "News Releases"]
         
         checkForTravelCharts()
         
@@ -115,17 +117,28 @@ class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITable
         cell.textLabel?.lineBreakMode = .byWordWrapping
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.text = menu_options[indexPath.row]
-
-        if (indexPath.row == 2){
         
-            let label = CustomImages.getAlertLabel()
-            
-            // convert it to an image
-            UIGraphicsBeginImageContextWithOptions(label.bounds.size, false, 0.0)
-            label.layer.render(in: UIGraphicsGetCurrentContext()!)
-            cell.imageView?.image = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
+        
+
+        switch (indexPath.row) {
+        case 0: // Happening Now
+            cell.imageView?.image = UIImage(named: "icBolt")
+            break
+        case 1: // Travel Times
+            cell.imageView?.image = UIImage(named: "icClock")
+            break
+        case 2: // Express Lanes
+            cell.imageView?.image = UIImage(named: "icRocket")
+            break
+        case 3: // News Releases
+            cell.imageView?.image = UIImage(named: "icNews")
+            break
+        case 4: // Travel Charts
+            cell.imageView?.image = UIImage(named: "icNotice")
+        default:
+            break
         }
+
         
         return cell
     }
@@ -134,15 +147,23 @@ class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Perform Segue
         switch (indexPath.row) {
-        case 0:
+        case 0: // Happening Now
+            performSegue(withIdentifier: SegueHappeningNowViewController, sender: self)
+            tableView.deselectRow(at: indexPath, animated: true)
+            break
+        case 1: // Travel Times
             performSegue(withIdentifier: SegueTravelTimesViewController, sender: self)
             tableView.deselectRow(at: indexPath, animated: true)
             break
-        case 1:
+        case 2: // Express Lanes
             performSegue(withIdentifier: SegueExpressLanesViewController, sender: self)
             tableView.deselectRow(at: indexPath, animated: true)
             break
-        case 2:
+        case 3: // News Releases
+            performSegue(withIdentifier: SegueNewsViewController, sender: self)
+            tableView.deselectRow(at: indexPath, animated: true)
+            break
+        case 4: // Travel Charts
             performSegue(withIdentifier: SegueBestTimesToTravelRoutesViewController, sender: self)
             tableView.deselectRow(at: indexPath, animated: true)
         default:
