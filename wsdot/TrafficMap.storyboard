@@ -161,7 +161,6 @@
                         <outlet property="activityIndicatorView" destination="ma7-um-xVJ" id="0Ww-Wc-JTH"/>
                         <outlet property="bannerView" destination="Qyr-NB-cah" id="ocH-R2-n1i"/>
                         <outlet property="cameraBarButton" destination="Rg4-Bd-cfR" id="AGx-ii-TKK"/>
-                        <outlet property="toolBarMenuButton" destination="Yhn-F9-Ikf" id="oDs-fX-XUL"/>
                         <outlet property="travelInformationButton" destination="6VY-LF-EDH" id="sp2-lz-uU3"/>
                         <segue destination="qsb-BA-WFJ" kind="popoverPresentation" identifier="TrafficMapGoToViewController" popoverAnchorBarButtonItem="OPC-ew-Vud" id="YMu-Xo-RbI">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>

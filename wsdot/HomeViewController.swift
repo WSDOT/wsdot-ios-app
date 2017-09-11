@@ -33,7 +33,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     let SegueBorderWaitsViewController = "BorderWaitsViewController"
     let SegueInfoViewController = "InfoViewController"
     let SegueMountainPassesViewController = "MountainPassesViewController"
-    let SegueSocialMediaViewController = "SocialMediaViewController"
     let SegueAmtrakCascadesViewController = "AmtrakCascadesViewController"
     let segueMyRouteViewController = "MyRouteViewController"
     
@@ -49,8 +48,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Set Title
         title = "WSDOT"
         
-        menu_options = ["Traffic Map", "Ferries", "Mountain Passes", "Social Media", "Toll Rates", "Border Waits", "Amtrak Cascades", "Favorites"]
-        menu_icon_names = ["icHomeTraffic","icHomeFerries","icHomePasses","icHomeSocialMedia","icHomeTollRates","icHomeBorderWaits","icHomeAmtrakCascades", "icHomeFavorites"]
+        menu_options = ["Traffic Map", "Ferries", "Mountain Passes", "Toll Rates", "Border Waits", "Amtrak Cascades", "Favorites"]
+        menu_icon_names = ["icHomeTraffic","icHomeFerries","icHomePasses","icHomeTollRates","icHomeBorderWaits","icHomeAmtrakCascades", "icHomeFavorites"]
         
         self.navigationController!.navigationBar.isTranslucent = false
         self.navigationController!.navigationBar.barTintColor = UIColor.white
@@ -108,22 +107,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             tableView.deselectRow(at: indexPath, animated: true)
             break
         case 3:
-            performSegue(withIdentifier: SegueSocialMediaViewController, sender: self)
-            tableView.deselectRow(at: indexPath, animated: true)
-            break
-        case 4:
             performSegue(withIdentifier: SegueTollRatesViewController, sender: self)
             tableView.deselectRow(at: indexPath, animated: true)
             break
-        case 5:
+        case 4:
             performSegue(withIdentifier: SegueBorderWaitsViewController, sender: self)
             tableView.deselectRow(at: indexPath, animated: true)
             break
-        case 6:
+        case 5:
             performSegue(withIdentifier: SegueAmtrakCascadesViewController, sender: self)
             tableView.deselectRow(at: indexPath, animated: true)
             break
-        case 7:
+        case 6:
             performSegue(withIdentifier: SegueFavoritesViewController, sender: self)
             tableView.deselectRow(at: indexPath, animated: true)
         default:
@@ -193,17 +188,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     destinationViewController.pushViewController(mountainPassesViewController!, animated: true)
                 }
             }
-            
-            if segue.identifier == SegueSocialMediaViewController {
-                let storyboard = UIStoryboard(name: "SocialMedia", bundle: nil)
-                let socialMediaViewController = storyboard.instantiateViewController(withIdentifier: "SocialMediaViewController") as? SocialMediaViewController
-                socialMediaViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-                socialMediaViewController!.navigationItem.leftItemsSupplementBackButton = true
-                socialMediaViewController!.navigationItem.title = "Social Media"
-                if !destinationViewController.viewControllers.contains(socialMediaViewController!) {
-                    destinationViewController.pushViewController(socialMediaViewController!, animated: true)
-                }
-            }
+
             
             if segue.identifier == SegueTollRatesViewController {
                 let storyboard = UIStoryboard(name: "TollRates", bundle: nil)

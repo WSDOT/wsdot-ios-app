@@ -148,7 +148,6 @@
 		9AEEDDB31D70C0B70032F5EC /* AlertContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEDDB21D70C0B70032F5EC /* AlertContentViewController.swift */; };
 		9AEEDDB51D70C5190032F5EC /* AlertPagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEDDB41D70C5190032F5EC /* AlertPagerViewController.swift */; };
 		9AEEDDB71D70F1FD0032F5EC /* IconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEDDB61D70F1FD0032F5EC /* IconCell.swift */; };
-		9AEEDDBE1D74B0590032F5EC /* SocialMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEDDBD1D74B0590032F5EC /* SocialMediaViewController.swift */; };
 		9AEEDDC01D74B0650032F5EC /* SocialMedia.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AEEDDBF1D74B0650032F5EC /* SocialMedia.storyboard */; };
 		9AEF4D7E1D74DFDB003ECA34 /* BlogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D7D1D74DFDB003ECA34 /* BlogItem.swift */; };
 		9AEF4D801D74E1F7003ECA34 /* BloggerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4D7F1D74E1F7003ECA34 /* BloggerStore.swift */; };
@@ -384,7 +383,6 @@
 		9AEEDDB21D70C0B70032F5EC /* AlertContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertContentViewController.swift; sourceTree = "<group>"; };
 		9AEEDDB41D70C5190032F5EC /* AlertPagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPagerViewController.swift; sourceTree = "<group>"; };
 		9AEEDDB61D70F1FD0032F5EC /* IconCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconCell.swift; sourceTree = "<group>"; };
-		9AEEDDBD1D74B0590032F5EC /* SocialMediaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialMediaViewController.swift; sourceTree = "<group>"; };
 		9AEEDDBF1D74B0650032F5EC /* SocialMedia.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SocialMedia.storyboard; sourceTree = "<group>"; };
 		9AEF4D7D1D74DFDB003ECA34 /* BlogItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogItem.swift; sourceTree = "<group>"; };
 		9AEF4D7F1D74E1F7003ECA34 /* BloggerStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BloggerStore.swift; sourceTree = "<group>"; };
@@ -797,6 +795,11 @@
 		9A6FBCED1D6C9B0A00CDCE16 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9AEF4DA11D773621003ECA34 /* YouTube */,
+				9AEF4D811D74E208003ECA34 /* Blogger */,
+				9AEF4D861D75FEC7003ECA34 /* Facebook */,
+				9AEF4D981D772F92003ECA34 /* News */,
+				9AEF4DAD1D773FF4003ECA34 /* Twitter */,
 				9A9808BE1F1FA28D0034DA05 /* BestTimesToTravel */,
 				9A6FBD071D6CBABD00CDCE16 /* FavoriteLocations */,
 				9A6FBD051D6CBA8600CDCE16 /* ExpressLanes */,
@@ -1076,6 +1079,7 @@
 		9ACAB9541F66EFAA002683B7 /* HappeningNow */ = {
 			isa = PBXGroup;
 			children = (
+				9AEF4DA71D773921003ECA34 /* YouTubeViewController.swift */,
 				9AEF4D821D75CF42003ECA34 /* BloggerViewController.swift */,
 				9AEF4D8B1D75FEEC003ECA34 /* FacebookViewController.swift */,
 				9AEF4DAB1D773F94003ECA34 /* TwitterViewController.swift */,
@@ -1256,9 +1260,7 @@
 		9AEEDDBB1D74B0420032F5EC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9AEEDDBD1D74B0590032F5EC /* SocialMediaViewController.swift */,
 				9AEF4D941D7608F7003ECA34 /* FlickrViewController.swift */,
-				9AEF4DA71D773921003ECA34 /* YouTubeViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1266,12 +1268,7 @@
 		9AEEDDBC1D74B0480032F5EC /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				9AEF4DAD1D773FF4003ECA34 /* Twitter */,
-				9AEF4DA11D773621003ECA34 /* YouTube */,
-				9AEF4D981D772F92003ECA34 /* News */,
 				9AEF4D8F1D7608BE003ECA34 /* Flickr */,
-				9AEF4D861D75FEC7003ECA34 /* Facebook */,
-				9AEF4D811D74E208003ECA34 /* Blogger */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1753,7 +1750,6 @@
 				9A6FBCDA1D6B6DF700CDCE16 /* HighwayAlertItem.swift in Sources */,
 				9A9808C41F1FF1C70034DA05 /* BestTimesToTravelRoutesViewController.swift in Sources */,
 				9A81A57C1D4BB41B0049913A /* LatLonUtils.swift in Sources */,
-				9AEEDDBE1D74B0590032F5EC /* SocialMediaViewController.swift in Sources */,
 				9A8486F61D81DD4B0026F1CF /* TwitterAccountSelectionViewController.swift in Sources */,
 				9AE486441D495ACB007A92E3 /* FerriesTerminalItem.swift in Sources */,
 				9AEF4D801D74E1F7003ECA34 /* BloggerStore.swift in Sources */,

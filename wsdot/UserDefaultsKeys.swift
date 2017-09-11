@@ -38,6 +38,7 @@ class UserDefaultsKeys {
     
     // EasyTipView Keys
     static let hasSeenClusterTipView = "hasSeenClusterTipView"
+    static let hasSeenTravelerInfoTipView = "hasSeenTravelerInfoTipView"
     static let hasSeenMyRouteTipView = "hasSeenMyRouteTipView"
 
 }

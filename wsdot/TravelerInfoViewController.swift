@@ -119,7 +119,7 @@ class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITable
         cell.textLabel?.text = menu_options[indexPath.row]
         
         
-
+        /*
         switch (indexPath.row) {
         case 0: // Happening Now
             cell.imageView?.image = UIImage(named: "icBolt")
@@ -138,6 +138,7 @@ class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITable
         default:
             break
         }
+        */
 
         
         return cell

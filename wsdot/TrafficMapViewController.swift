@@ -68,7 +68,6 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     var tipView = EasyTipView(text: "")
     
     @IBOutlet weak var travelInformationButton: UIBarButtonItem!
-    @IBOutlet weak var toolBarMenuButton: UIBarButtonItem!
     @IBOutlet weak var cameraBarButton: UIBarButtonItem!
     
     @IBOutlet weak var bannerView: GADBannerView!
@@ -737,7 +736,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
 extension TrafficMapViewController: EasyTipViewDelegate {
     
     public func easyTipViewDidDismiss(_ tipView: EasyTipView) {
-         UserDefaults.standard.set(true, forKey: UserDefaultsKeys.hasSeenClusterTipView)
+         UserDefaults.standard.set(true, forKey: UserDefaultsKeys.hasSeenTravelerInfoTipView)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -747,9 +746,9 @@ extension TrafficMapViewController: EasyTipViewDelegate {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasSeenClusterTipView) && !UIAccessibilityIsVoiceOverRunning()){
-            tipView = EasyTipView(text: "Make the map eaiser to read in areas with a high density of cameras by turning on Camera Clustering.", delegate: self)
-            tipView.show(forItem: self.toolBarMenuButton)
+        if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasSeenTravelerInfoTipView) && !UIAccessibilityIsVoiceOverRunning()){
+            tipView = EasyTipView(text: "Tap here for live traffic updates, travel times and more.", delegate: self)
+            tipView.show(forItem: self.travelInformationButton)
         }
     }
 }

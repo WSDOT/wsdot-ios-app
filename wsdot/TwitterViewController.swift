@@ -84,7 +84,7 @@ class TwitterViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView(screenName: "/Social Media/Twitter")
+        GoogleAnalytics.screenView(screenName: "/Traffic Map/Traveler Information/Twitter")
     }
     
     func refreshAction(_ sender: UIRefreshControl){
