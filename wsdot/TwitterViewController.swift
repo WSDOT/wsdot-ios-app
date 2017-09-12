@@ -38,7 +38,6 @@ class TwitterViewController: UIViewController, UITableViewDelegate, UITableViewD
     let accountData: [(name:String, screenName:String?)] =
         [("All Accounts", nil),
          ("Ferries", "wsferries"),
-         ("Good To Go!", "GoodToGoWSDOT"),
          ("Snoqualmie Pass", "SnoqualmiePass"),
          ("WSDOT", "wsdot"),
          ("WSDOT East","WSDOT_East"),
@@ -49,7 +48,6 @@ class TwitterViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     let accountIconNames: Dictionary<String, String> = [
         "wsferries":"icTwitterFerries",
-        "GoodToGoWSDOT":"icTwitterGoodToGo",
         "SnoqualmiePass":"icTwitterSnoqualmie",
         "wsdot":"icTwitterWsdot",
         "WSDOT_East":"icTwitterWsdotEast",
@@ -59,13 +57,13 @@ class TwitterViewController: UIViewController, UITableViewDelegate, UITableViewD
         "wsdot_traffic":"icTwitterTraffic"
     ]
     
-    var currentAccountIndex = 0
+    var currentAccountIndex = 8
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
         accountButton.layer.cornerRadius = 8.0
-        accountButton.setTitle("All Accounts", for: UIControlState())
+        accountButton.setTitle(accountData[currentAccountIndex].name, for: UIControlState())
         accountButton.accessibilityHint = "double tap to change account"
         
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -170,7 +168,7 @@ class TwitterViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let tweet = tweets[indexPath.row]
         
-        let htmlStyleString = "<style>body{font-family: '\(cell.contentLabel.font.fontName)'; font-size:\(cell.contentLabel.font.pointSize)px;}</style>"
+        let htmlStyleString = "<style>body{font-family: '.SFUIText'; font-size: 17.0px;}</style> "
         
         let htmlString = htmlStyleString + tweet.text
         
