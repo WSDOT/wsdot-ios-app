@@ -16,7 +16,9 @@
         <scene sceneID="DNA-5x-hOF">
             <objects>
                 <navigationController title="Traffic Map" id="Lbb-0l-yJu" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="W5B-QB-ecH">
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="W5B-QB-ecH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -29,9 +31,7 @@
         <scene sceneID="tF8-lb-MU7">
             <objects>
                 <navigationController id="2hQ-5G-m4N" sceneMemberID="viewController">
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="kcl-MV-c3g">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kcl-MV-c3g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -46,7 +46,7 @@
                 <navigationController id="WL1-dY-1AO" sceneMemberID="viewController">
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="SIV-Fi-8Ne">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SIV-Fi-8Ne">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -67,9 +67,7 @@
         <scene sceneID="YXO-fj-Sr3">
             <objects>
                 <navigationController id="Lkp-wV-tHJ" sceneMemberID="viewController">
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Do6-3K-Nkk">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Do6-3K-Nkk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -107,7 +105,7 @@
                                         <rect key="frame" x="0.0" y="28" width="383" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Txp-Y1-6FM" id="6yl-Cf-Ytz">
-                                            <rect key="frame" x="0.0" y="0.0" width="350" height="51.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="350" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zeP-w1-gRs">
@@ -197,7 +195,7 @@
                 <navigationController id="YHC-Qx-tw0" sceneMemberID="viewController">
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="YTv-g7-o1w">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YTv-g7-o1w">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -235,8 +233,9 @@
                                         <rect key="frame" x="8" y="99" width="170" height="38"/>
                                         <color key="backgroundColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="170" id="hKL-a4-ZBa"/>
-                                            <constraint firstAttribute="height" constant="38" id="k2d-zj-P5B"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="38" id="Gf8-r6-Yuk"/>
+                                            <constraint firstAttribute="width" constant="170" id="uuU-e4-8FN"/>
+                                            <constraint firstAttribute="height" constant="38" id="vRj-RJ-TFl"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="tintColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -245,9 +244,12 @@
                                             <action selector="composeFeedbackMessage:" destination="505-eM-iAh" eventType="touchUpInside" id="vBd-vl-soH"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PaA-kr-ztN">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PaA-kr-ztN">
                                         <rect key="frame" x="186" y="99" width="181" height="38"/>
                                         <color key="backgroundColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="38" id="Nwa-1H-gsF"/>
+                                        </constraints>
                                         <color key="tintColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal">
                                             <attributedString key="attributedTitle">
@@ -267,7 +269,7 @@
                                         <rect key="frame" x="8" y="45" width="359" height="38"/>
                                         <color key="backgroundColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="38" id="dhd-Rq-6tJ"/>
+                                            <constraint firstAttribute="height" constant="38" id="KID-gC-x1d"/>
                                         </constraints>
                                         <state key="normal" title="Jobs At WSDOT">
                                             <color key="titleColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -279,7 +281,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ez-tx-eY2">
                                         <rect key="frame" x="8" y="145" width="359" height="19"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="19" id="dgG-wr-NbK"/>
+                                            <constraint firstAttribute="height" constant="19" id="k4T-c1-z42"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -287,25 +289,25 @@
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="Z9U-Cp-7mr" firstAttribute="leading" secondItem="CbN-V2-bFU" secondAttribute="leading" id="0OU-O3-8Ya"/>
-                                    <constraint firstItem="1ez-tx-eY2" firstAttribute="top" secondItem="CbN-V2-bFU" secondAttribute="bottom" constant="8" symbolic="YES" id="2wJ-sN-njg"/>
-                                    <constraint firstItem="CbN-V2-bFU" firstAttribute="top" secondItem="Z9U-Cp-7mr" secondAttribute="bottom" constant="16" id="Ad6-Dm-ZT7"/>
-                                    <constraint firstItem="4Ch-pR-zUh" firstAttribute="centerX" secondItem="a8f-ut-AEo" secondAttribute="centerX" id="Eaj-c1-PY1"/>
-                                    <constraint firstItem="CbN-V2-bFU" firstAttribute="baseline" secondItem="PaA-kr-ztN" secondAttribute="firstBaseline" id="HTl-4V-PUj"/>
-                                    <constraint firstItem="CbN-V2-bFU" firstAttribute="top" secondItem="PaA-kr-ztN" secondAttribute="top" id="IDD-ug-Vvf"/>
-                                    <constraint firstItem="Z9U-Cp-7mr" firstAttribute="leading" secondItem="4Ch-pR-zUh" secondAttribute="leading" id="M4s-6g-0eP"/>
-                                    <constraint firstItem="PaA-kr-ztN" firstAttribute="baseline" secondItem="CbN-V2-bFU" secondAttribute="firstBaseline" id="Mae-yE-A9H"/>
-                                    <constraint firstItem="4Ch-pR-zUh" firstAttribute="leading" secondItem="a8f-ut-AEo" secondAttribute="leadingMargin" id="OZB-Uz-oc7"/>
-                                    <constraint firstItem="Z9U-Cp-7mr" firstAttribute="top" secondItem="4Ch-pR-zUh" secondAttribute="bottom" constant="8" symbolic="YES" id="SSy-6x-xUn"/>
-                                    <constraint firstItem="1ez-tx-eY2" firstAttribute="top" secondItem="PaA-kr-ztN" secondAttribute="bottom" constant="8" symbolic="YES" id="Sio-lc-0jN"/>
-                                    <constraint firstItem="4Ch-pR-zUh" firstAttribute="top" secondItem="a8f-ut-AEo" secondAttribute="top" id="U1u-TY-sry"/>
-                                    <constraint firstItem="CbN-V2-bFU" firstAttribute="leading" secondItem="1ez-tx-eY2" secondAttribute="leading" id="XHs-Ki-lj5"/>
-                                    <constraint firstItem="PaA-kr-ztN" firstAttribute="leading" secondItem="CbN-V2-bFU" secondAttribute="trailing" constant="8" symbolic="YES" id="XTp-A0-xKv"/>
-                                    <constraint firstItem="Z9U-Cp-7mr" firstAttribute="trailing" secondItem="PaA-kr-ztN" secondAttribute="trailing" id="dvk-nZ-j5A"/>
-                                    <constraint firstItem="PaA-kr-ztN" firstAttribute="trailing" secondItem="1ez-tx-eY2" secondAttribute="trailing" id="kAo-7v-i9t"/>
-                                    <constraint firstAttribute="bottom" secondItem="1ez-tx-eY2" secondAttribute="bottom" constant="8" id="mg9-sD-yQX"/>
-                                    <constraint firstItem="Z9U-Cp-7mr" firstAttribute="trailing" secondItem="4Ch-pR-zUh" secondAttribute="trailing" id="n5M-yC-0Zo"/>
-                                    <constraint firstItem="4Ch-pR-zUh" firstAttribute="trailing" secondItem="a8f-ut-AEo" secondAttribute="trailingMargin" id="nVY-X5-BdI"/>
+                                    <constraint firstItem="CbN-V2-bFU" firstAttribute="leading" secondItem="1ez-tx-eY2" secondAttribute="leading" id="4bj-Bo-Yi1"/>
+                                    <constraint firstItem="CbN-V2-bFU" firstAttribute="top" secondItem="Z9U-Cp-7mr" secondAttribute="bottom" constant="16" id="G53-hx-OPB"/>
+                                    <constraint firstItem="1ez-tx-eY2" firstAttribute="top" secondItem="CbN-V2-bFU" secondAttribute="bottom" constant="8" symbolic="YES" id="P7T-vs-Ktf"/>
+                                    <constraint firstItem="CbN-V2-bFU" firstAttribute="baseline" secondItem="PaA-kr-ztN" secondAttribute="firstBaseline" id="PJb-Kl-7Ef"/>
+                                    <constraint firstItem="4Ch-pR-zUh" firstAttribute="centerX" secondItem="a8f-ut-AEo" secondAttribute="centerX" id="URj-Al-Hdr"/>
+                                    <constraint firstItem="Z9U-Cp-7mr" firstAttribute="top" secondItem="4Ch-pR-zUh" secondAttribute="bottom" constant="8" symbolic="YES" id="Uvm-04-73r"/>
+                                    <constraint firstItem="PaA-kr-ztN" firstAttribute="trailing" secondItem="1ez-tx-eY2" secondAttribute="trailing" id="WCr-SZ-G0g"/>
+                                    <constraint firstItem="Z9U-Cp-7mr" firstAttribute="leading" secondItem="CbN-V2-bFU" secondAttribute="leading" id="YS4-vi-RpL"/>
+                                    <constraint firstItem="Z9U-Cp-7mr" firstAttribute="trailing" secondItem="PaA-kr-ztN" secondAttribute="trailing" id="a3E-id-5Kl"/>
+                                    <constraint firstItem="PaA-kr-ztN" firstAttribute="baseline" secondItem="CbN-V2-bFU" secondAttribute="firstBaseline" id="beZ-pc-wuK"/>
+                                    <constraint firstItem="4Ch-pR-zUh" firstAttribute="trailing" secondItem="Z9U-Cp-7mr" secondAttribute="trailing" id="cLG-lC-XoG"/>
+                                    <constraint firstItem="4Ch-pR-zUh" firstAttribute="leading" secondItem="a8f-ut-AEo" secondAttribute="leadingMargin" id="d7E-2N-3bQ"/>
+                                    <constraint firstItem="4Ch-pR-zUh" firstAttribute="trailing" secondItem="a8f-ut-AEo" secondAttribute="trailingMargin" id="dXp-gv-XcC"/>
+                                    <constraint firstItem="1ez-tx-eY2" firstAttribute="top" secondItem="PaA-kr-ztN" secondAttribute="bottom" constant="8" symbolic="YES" id="kIJ-LE-5Sp"/>
+                                    <constraint firstItem="PaA-kr-ztN" firstAttribute="leading" secondItem="CbN-V2-bFU" secondAttribute="trailing" constant="8" symbolic="YES" id="mWI-xv-shf"/>
+                                    <constraint firstAttribute="bottom" secondItem="1ez-tx-eY2" secondAttribute="bottom" constant="8" id="n8K-k7-blf"/>
+                                    <constraint firstItem="CbN-V2-bFU" firstAttribute="top" secondItem="PaA-kr-ztN" secondAttribute="top" id="tbc-It-Kac"/>
+                                    <constraint firstItem="4Ch-pR-zUh" firstAttribute="leading" secondItem="Z9U-Cp-7mr" secondAttribute="leading" id="wnY-RJ-g0G"/>
+                                    <constraint firstItem="4Ch-pR-zUh" firstAttribute="top" secondItem="a8f-ut-AEo" secondAttribute="top" id="yHf-Dg-RU7"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -332,7 +334,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vhP-0a-mLb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2853.5999999999999" y="-28.335832083958024"/>
+            <point key="canvasLocation" x="2641" y="-29"/>
         </scene>
         <!--Home Split View Controller-->
         <scene sceneID="DKl-Zw-Shy">
@@ -350,10 +352,7 @@
         <scene sceneID="GKV-pi-eKX">
             <objects>
                 <navigationController storyboardIdentifier="HomeNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Kfb-p0-sSb" sceneMemberID="viewController">
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="EaH-rk-NDh">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="EaH-rk-NDh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -427,7 +426,9 @@
         <scene sceneID="4jB-de-pq1">
             <objects>
                 <navigationController id="2KS-rG-GP2" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="x3X-h0-jze">
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="x3X-h0-jze">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -440,7 +441,9 @@
         <scene sceneID="lR4-nq-Ooh">
             <objects>
                 <navigationController id="uTf-Sh-CaL" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="wkt-De-pW0">
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wkt-De-pW0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -453,9 +456,7 @@
         <scene sceneID="cy3-Fc-C9E">
             <objects>
                 <navigationController id="20J-Fp-3B8" sceneMemberID="viewController">
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="71P-6a-v4j">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="71P-6a-v4j">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -468,9 +469,7 @@
         <scene sceneID="a79-ty-bq2">
             <objects>
                 <navigationController id="vad-gT-B16" sceneMemberID="viewController">
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Zjl-Hg-wm2">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Zjl-Hg-wm2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
