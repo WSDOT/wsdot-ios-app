@@ -1,39 +1,45 @@
 PODS:
   - Alamofire (4.2.0)
   - EasyTipView (1.0.2)
-  - Firebase/AdMob (4.0.2):
+  - Firebase/AdMob (4.2.0):
     - Firebase/Core
-    - Google-Mobile-Ads-SDK (= 7.20.0)
-  - Firebase/Core (4.0.2):
-    - FirebaseAnalytics (= 4.0.1)
-    - FirebaseCore (= 4.0.2)
-  - FirebaseAnalytics (4.0.1):
+    - Google-Mobile-Ads-SDK (= 7.24.0)
+  - Firebase/Core (4.2.0):
+    - FirebaseAnalytics (= 4.0.3)
+    - FirebaseCore (= 4.0.7)
+  - FirebaseAnalytics (4.0.3):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseCore (4.0.2):
+    - nanopb (~> 0.3)
+  - FirebaseCore (4.0.7):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseInstanceID (2.0.0):
-    - FirebaseCore (~> 4.0)
-  - Google-Mobile-Ads-SDK (7.20.0)
+    - nanopb (~> 0.3)
+  - FirebaseInstanceID (2.0.3)
+  - Google-Mobile-Ads-SDK (7.24.0)
   - GoogleAnalytics (3.17.0)
-  - GoogleMaps (2.3.1):
-    - GoogleMaps/Maps (= 2.3.1)
-  - GoogleMaps/Base (2.3.1)
-  - GoogleMaps/Maps (2.3.1):
+  - GoogleMaps (2.4.0):
+    - GoogleMaps/Maps (= 2.4.0)
+  - GoogleMaps/Base (2.4.0)
+  - GoogleMaps/Maps (2.4.0):
     - GoogleMaps/Base
   - GoogleToolboxForMac/Defines (2.1.1)
   - GoogleToolboxForMac/NSData+zlib (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
-  - Realm (2.6.2):
-    - Realm/Headers (= 2.6.2)
-  - Realm/Headers (2.6.2)
-  - RealmSwift (2.6.2):
-    - Realm (= 2.6.2)
+  - nanopb (0.3.8):
+    - nanopb/decode (= 0.3.8)
+    - nanopb/encode (= 0.3.8)
+  - nanopb/decode (0.3.8)
+  - nanopb/encode (0.3.8)
+  - Realm (2.10.2):
+    - Realm/Headers (= 2.10.2)
+  - Realm/Headers (2.10.2)
+  - RealmSwift (2.10.2):
+    - Realm (= 2.10.2)
   - SCLAlertView (0.7.0)
-  - SDWebImage (4.0.0):
-    - SDWebImage/Core (= 4.0.0)
-  - SDWebImage/Core (4.0.0)
+  - SDWebImage (4.1.0):
+    - SDWebImage/Core (= 4.1.0)
+  - SDWebImage/Core (4.1.0)
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
@@ -42,29 +48,30 @@ DEPENDENCIES:
   - Firebase/AdMob
   - Firebase/Core
   - GoogleAnalytics
-  - GoogleMaps
-  - RealmSwift (~> 2.6.2)
+  - GoogleMaps (~> 2.4.0)
+  - RealmSwift (~> 2.10.2)
   - SCLAlertView
-  - SDWebImage
+  - SDWebImage (~> 4.1.0)
   - SwiftyJSON (~> 3.1.3)
 
 SPEC CHECKSUMS:
   Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
   EasyTipView: b93a19be981cc2221d6d7191d49872f547e0bebf
-  Firebase: c7ad0731eab26d18a3fc547dd048b0f7cd9c63ae
-  FirebaseAnalytics: 4d7040fefc3cd8b291cde35f12cf063d7963f15d
-  FirebaseCore: 1a8bf6c795ad07d2918278657954ffd2552e9c17
-  FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
-  Google-Mobile-Ads-SDK: 168312cdc167fa22746d4ea8e839fc4825dd2966
+  Firebase: 9548cae14d69718add12d75a5b312893f7ef89c7
+  FirebaseAnalytics: 76f754d37ca5b04f36856729b6af3ca0152d1069
+  FirebaseCore: 9a6cc1e3eaf75905390f9220596ad4fd8f92faee
+  FirebaseInstanceID: a4fc702b5a026f7322964376047f1a3f1f7cc6ff
+  Google-Mobile-Ads-SDK: f405b7acb098fe89e6fcd05fdbf400c1a5bcb935
   GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
-  GoogleMaps: c66a71058b9b1294bcdd5463a68e357fa50c079f
+  GoogleMaps: 8436ab5d1c25e36915b2f7416d0c8e3fa2e76c61
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
-  Realm: 29222766425b9f831228f81b63f0e38a97a4d700
-  RealmSwift: d161a80f96cb91ae88391a7d5a9cf08024a7bc8e
+  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  Realm: 0ef72b837fb67e9f4b098bac771ddd72c7fdbb69
+  RealmSwift: 07a9ae0505091eda6b2ee7c190c3786d6e90a7b0
   SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
-  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  SDWebImage: 0e435c14e402a6730315a0fb79f95e68654d55a4
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 5107a682e50357fa847f89e30c01604ff7dcbc7a
+PODFILE CHECKSUM: e1e1704b3184321e3adabdc390493181ffe5d4c4
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.3.1

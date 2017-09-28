@@ -5,12 +5,12 @@ use_frameworks!
 target 'WSDOT' do
     pod 'Firebase/Core'
     pod 'Firebase/AdMob'
-    pod 'GoogleMaps'
+    pod 'GoogleMaps', '~> 2.4.0'
     pod 'GoogleAnalytics'
-    pod 'RealmSwift', '~> 2.6.2'
+    pod 'RealmSwift', '~> 2.10.2'
     pod 'Alamofire', '~> 4.2.0'
     pod 'SwiftyJSON', '~> 3.1.3'
-    pod 'SDWebImage'
+    pod 'SDWebImage', '~> 4.1.0'
     pod 'EasyTipView', '~> 1.0.2'
     pod 'SCLAlertView'
 end
@@ -18,12 +18,12 @@ end
 target 'WSDOTTests' do
     pod 'Firebase/Core'
     pod 'Firebase/AdMob'
-    pod 'GoogleMaps'
+    pod 'GoogleMaps', '~> 2.4.0'
     pod 'GoogleAnalytics'
-    pod 'RealmSwift', '~> 2.6.2'
+    pod 'RealmSwift', '~> 2.10.2'
     pod 'Alamofire', '~> 4.2.0'
     pod 'SwiftyJSON', '~> 3.1.3'
-    pod 'SDWebImage'
+    pod 'SDWebImage', '~> 4.1.0'
     pod 'EasyTipView', '~> 1.0.2'
     pod 'SCLAlertView'
 end
