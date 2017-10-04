@@ -184,6 +184,8 @@ class TwitterViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         if let iconName = accountIconNames[tweet.screenName] {
             cell.iconView.image = UIImage(named: iconName)
+        } else {
+            cell.iconView.image = UIImage(named: accountIconNames["wsdot"]!)
         }
         
         if let mediaUrl = tweet.mediaUrl {
