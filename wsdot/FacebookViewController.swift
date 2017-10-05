@@ -33,7 +33,6 @@ class FacebookViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "WSDOT on Facebook"
         
         tableView.rowHeight = UITableViewAutomaticDimension
         
@@ -46,7 +45,7 @@ class FacebookViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView(screenName: "/Social Media/Facebook")
+        GoogleAnalytics.screenView(screenName: "/Traffic Map/Traveler Information/Facebook")
     }
     
     func refreshAction(_ sender: UIRefreshControl){

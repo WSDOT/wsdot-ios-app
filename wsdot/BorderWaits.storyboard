@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NTb-hm-SC4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NTb-hm-SC4">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,12 +15,8 @@
         <scene sceneID="aQV-gM-c7M">
             <objects>
                 <viewController storyboardIdentifier="BorderWaitsViewController" hidesBottomBarWhenPushed="YES" id="NTb-hm-SC4" customClass="BorderWaitsViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="uDq-QW-pNT"/>
-                        <viewControllerLayoutGuide type="bottom" id="LPx-fK-ez5"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="S6k-Dm-gCW">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DTw-9a-K6t">
@@ -29,7 +26,7 @@
                                     <navigationItem id="8HH-DG-30U">
                                         <nil key="title"/>
                                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="1ek-XP-VjM">
-                                            <rect key="frame" x="8" y="7.5" width="359" height="29"/>
+                                            <rect key="frame" x="98" y="7.5" width="179" height="29"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
                                                 <segment title="Northbound"/>
@@ -133,16 +130,17 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="XwU-Gs-jjE" secondAttribute="bottom" id="0VP-V9-tMQ"/>
-                            <constraint firstItem="DTw-9a-K6t" firstAttribute="top" secondItem="uDq-QW-pNT" secondAttribute="bottom" id="4yl-g6-NmM"/>
-                            <constraint firstItem="DTw-9a-K6t" firstAttribute="leading" secondItem="S6k-Dm-gCW" secondAttribute="leading" id="EkZ-Az-jwH"/>
-                            <constraint firstItem="XwU-Gs-jjE" firstAttribute="centerX" secondItem="S6k-Dm-gCW" secondAttribute="centerX" id="TUv-ym-dra"/>
+                            <constraint firstItem="DTw-9a-K6t" firstAttribute="top" secondItem="yIN-7r-GLL" secondAttribute="top" id="4yl-g6-NmM"/>
+                            <constraint firstItem="XwU-Gs-jjE" firstAttribute="bottom" secondItem="yIN-7r-GLL" secondAttribute="bottom" id="5E0-7E-fD3"/>
+                            <constraint firstItem="DTw-9a-K6t" firstAttribute="leading" secondItem="yIN-7r-GLL" secondAttribute="leading" id="EkZ-Az-jwH"/>
+                            <constraint firstItem="XwU-Gs-jjE" firstAttribute="centerX" secondItem="yIN-7r-GLL" secondAttribute="centerX" id="TUv-ym-dra"/>
                             <constraint firstItem="XwU-Gs-jjE" firstAttribute="top" secondItem="y0T-hn-zi6" secondAttribute="bottom" id="Yfw-4p-eVS"/>
-                            <constraint firstAttribute="trailing" secondItem="DTw-9a-K6t" secondAttribute="trailing" id="h6a-ER-YTL"/>
+                            <constraint firstItem="yIN-7r-GLL" firstAttribute="trailing" secondItem="DTw-9a-K6t" secondAttribute="trailing" id="h6a-ER-YTL"/>
                             <constraint firstItem="y0T-hn-zi6" firstAttribute="leading" secondItem="DTw-9a-K6t" secondAttribute="leading" id="lFw-BW-FDW"/>
                             <constraint firstItem="y0T-hn-zi6" firstAttribute="top" secondItem="DTw-9a-K6t" secondAttribute="bottom" id="mqj-s5-iBs"/>
                             <constraint firstItem="y0T-hn-zi6" firstAttribute="trailing" secondItem="DTw-9a-K6t" secondAttribute="trailing" id="poV-AY-0F2"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="yIN-7r-GLL"/>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>

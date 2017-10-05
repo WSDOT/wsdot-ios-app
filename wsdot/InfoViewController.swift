@@ -26,6 +26,11 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
     @IBOutlet weak var appVersionLabel: UILabel!
     @IBOutlet weak var aboutText: UITextView!
     
+    @IBOutlet weak var feedbackButton: UIButton!
+    @IBOutlet weak var bugReportButton: UIButton!
+    @IBOutlet weak var jobsButton: UIButton!
+    
+
     var version = "?"
     
     override func viewDidLoad() {
@@ -44,11 +49,19 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
         aboutText.isEditable = false
     
         appVersionLabel.text = "App version: " + version
+        
+        styleButtons()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView(screenName: "/About")
+    }
+    
+    
+    @IBAction func openJobsSite(_ sender: UIButton) {
+        GoogleAnalytics.screenView(screenName: "/About/Jobs")
+        UIApplication.shared.openURL(URL(string: "https://www.governmentjobs.com/careers/washington?department%5B0%5D=Dept.%20of%20Transportation")!)
     }
     
     @IBAction func composeFeedbackMessage(_ sender: UIButton) {
@@ -99,5 +112,21 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
             break
         }
         controller.dismiss(animated: true, completion: nil)
+    }
+    
+        /**
+     * Method name: styleButtons()
+     * Description: programmatically styles button background, colors, etc...
+     */
+    func styleButtons() {
+        feedbackButton.layer.cornerRadius = 5
+        feedbackButton.clipsToBounds = true
+        
+        bugReportButton.layer.cornerRadius = 5
+        bugReportButton.clipsToBounds = true
+        
+        jobsButton.layer.cornerRadius = 5
+        jobsButton.clipsToBounds = true
+        
     }
 }

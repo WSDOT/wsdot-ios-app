@@ -41,7 +41,6 @@ class BestTimesToTravelStore {
             case .success:
                 if let value = response.result.value {
                     let json = JSON(value)
-                    print(json)
                     completion(json["available"].boolValue, nil)
                 }
             case .failure(let error):

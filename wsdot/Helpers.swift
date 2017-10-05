@@ -25,6 +25,7 @@ struct Colors {
 }
 
 struct AlertMessages {
+
     static func getConnectionAlert() ->  UIAlertController{
         let alert = UIAlertController(title: "Connection Error", message: "Please check your connection", preferredStyle: UIAlertControllerStyle.alert)
         alert.view.tintColor = Colors.tintColor
@@ -49,7 +50,6 @@ struct AlertMessages {
     static func getAcessDeniedAlert(_ title: String, message: String) -> UIAlertController {
     
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
- 
         let settingsAction = UIAlertAction(title: "Open Settings", style: .default) { (alertAction) in
             if let appSettings = URL(string: UIApplicationOpenSettingsURLString) {
                 UIApplication.shared.openURL(appSettings)
@@ -105,7 +105,6 @@ struct Utils {
         //Pass the image back up to the caller
         return newImage!
     }
-    
 }
 
 struct CustomImages {

@@ -38,11 +38,9 @@ class TwitterViewController: UIViewController, UITableViewDelegate, UITableViewD
     let accountData: [(name:String, screenName:String?)] =
         [("All Accounts", nil),
          ("Ferries", "wsferries"),
-         ("Good To Go!", "GoodToGoWSDOT"),
          ("Snoqualmie Pass", "SnoqualmiePass"),
          ("WSDOT", "wsdot"),
          ("WSDOT East","WSDOT_East"),
-         ("WSDOT Jobs", "WSDOTjobs"),
          ("WSDOT North Traffic", "wsdot_north"),
          ("WSDOT Southwest", "wsdot_sw"),
          ("WSDOT Tacoma","wsdot_tacoma"),
@@ -50,26 +48,22 @@ class TwitterViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     let accountIconNames: Dictionary<String, String> = [
         "wsferries":"icTwitterFerries",
-        "GoodToGoWSDOT":"icTwitterGoodToGo",
         "SnoqualmiePass":"icTwitterSnoqualmie",
         "wsdot":"icTwitterWsdot",
         "WSDOT_East":"icTwitterWsdotEast",
-        "WSDOTjobs":"icTwitterJobs",
         "wsdot_north":"icTwitterWsdotNorth",
         "wsdot_sw":"icTwitterWsdotSW",
         "wsdot_tacoma":"icTwitterTacoma",
         "wsdot_traffic":"icTwitterTraffic"
     ]
     
-    var currentAccountIndex = 0
+    var currentAccountIndex = 8
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        title = "WSDOT on Twitter"
-        
         accountButton.layer.cornerRadius = 8.0
-        accountButton.setTitle("All Accounts", for: UIControlState())
+        accountButton.setTitle(accountData[currentAccountIndex].name, for: UIControlState())
         accountButton.accessibilityHint = "double tap to change account"
         
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -86,7 +80,7 @@ class TwitterViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView(screenName: "/Social Media/Twitter")
+        GoogleAnalytics.screenView(screenName: "/Traffic Map/Traveler Information/Twitter")
     }
     
     func refreshAction(_ sender: UIRefreshControl){
@@ -174,7 +168,7 @@ class TwitterViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let tweet = tweets[indexPath.row]
         
-        let htmlStyleString = "<style>body{font-family: '\(cell.contentLabel.font.fontName)'; font-size:\(cell.contentLabel.font.pointSize)px;}</style>"
+        let htmlStyleString = "<style>body{font-family: '.SFUIText'; font-size: 17.0px;}</style> "
         
         let htmlString = htmlStyleString + tweet.text
         
@@ -190,6 +184,8 @@ class TwitterViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         if let iconName = accountIconNames[tweet.screenName] {
             cell.iconView.image = UIImage(named: iconName)
+        } else {
+            cell.iconView.image = UIImage(named: accountIconNames["wsdot"]!)
         }
         
         if let mediaUrl = tweet.mediaUrl {

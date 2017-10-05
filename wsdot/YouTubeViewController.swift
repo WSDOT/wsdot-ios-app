@@ -36,7 +36,6 @@ class YouTubeViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "WSDOT on YouTube"
         
         tableView.rowHeight = UITableViewAutomaticDimension
         
@@ -49,7 +48,7 @@ class YouTubeViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView(screenName: "/Social Media/YouTube")
+        GoogleAnalytics.screenView(screenName: "/Traffic Map/Traveler Information/YouTube")
     }
     
     func refreshAction(_ sender: UIRefreshControl){
