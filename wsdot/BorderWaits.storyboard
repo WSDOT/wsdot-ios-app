@@ -26,7 +26,7 @@
                                     <navigationItem id="8HH-DG-30U">
                                         <nil key="title"/>
                                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="1ek-XP-VjM">
-                                            <rect key="frame" x="98" y="7.5" width="179" height="29"/>
+                                            <rect key="frame" x="8" y="7.5" width="359" height="29"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
                                                 <segment title="Northbound"/>
@@ -151,7 +151,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LVR-aR-n5f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="483" y="404"/>
+            <point key="canvasLocation" x="482.39999999999998" y="403.44827586206901"/>
         </scene>
     </scenes>
 </document>

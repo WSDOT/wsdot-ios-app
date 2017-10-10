@@ -20,10 +20,13 @@
 
 import UIKit
 import Foundation
+import SafariServices
 
 class FacebookViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, INDLinkLabelDelegate {
     
     let cellIdentifier = "postCell"
+    
+    let facebookBaseUrlString = "https://facebook.com/"
     
     var posts = [FacebookItem]()
     let refreshControl = UIRefreshControl()
@@ -126,6 +129,7 @@ class FacebookViewController: UIViewController, UITableViewDataSource, UITableVi
             options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
             documentAttributes: nil)
         
+        cell.contentLabel.delegate = self
         cell.contentLabel.attributedText = attrStr
         cell.updatedLabel.text = TimeUtils.formatTime(post.createdAt, format: "MMMM dd, YYYY h:mm a")
         
@@ -135,7 +139,9 @@ class FacebookViewController: UIViewController, UITableViewDataSource, UITableVi
     // MARK: Table View Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        UIApplication.shared.openURL(URL(string: "https://facebook.com/" + posts[indexPath.row].id)!)
+        let svc = SFSafariViewController(url: URL(string: self.facebookBaseUrlString + posts[indexPath.row].id)!, entersReaderIfAvailable: true)
+        svc.view.tintColor = Colors.tintColor
+        self.present(svc, animated: true, completion: nil)
     }
     
     // MARK: INDLinkLabelDelegate
@@ -145,6 +151,8 @@ class FacebookViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func linkLabel(_ label: INDLinkLabel, didTapLinkWithURL URL: Foundation.URL) {
-        UIApplication.shared.openURL(URL)
+        let svc = SFSafariViewController(url: URL, entersReaderIfAvailable: true)
+        svc.view.tintColor = Colors.tintColor
+        self.present(svc, animated: true, completion: nil)
     }
 }

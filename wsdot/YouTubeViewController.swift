@@ -22,6 +22,7 @@ import Foundation
 
 import UIKit
 import Foundation
+import SafariServices
 
 class YouTubeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -31,7 +32,7 @@ class YouTubeViewController: UIViewController, UITableViewDelegate, UITableViewD
     let refreshControl = UIRefreshControl()
     var overlayView = UIView()
     var activityIndicator = UIActivityIndicatorView()
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -131,7 +132,8 @@ class YouTubeViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: Table View Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        UIApplication.shared.openURL(URL(string: videoItems[indexPath.row].link)!)
-        
+        let svc = SFSafariViewController(url: URL(string: videoItems[indexPath.row].link)!, entersReaderIfAvailable: true)
+        svc.view.tintColor = Colors.tintColor
+        self.present(svc, animated: true, completion: nil)
     }
 }

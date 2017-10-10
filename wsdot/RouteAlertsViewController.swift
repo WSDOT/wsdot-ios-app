@@ -20,6 +20,7 @@
 
 import UIKit
 import RealmSwift
+import SafariServices
 
 class RouteAlertsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, INDLinkLabelDelegate {
     
@@ -82,7 +83,9 @@ class RouteAlertsViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func linkLabel(_ label: INDLinkLabel, didTapLinkWithURL URL: Foundation.URL) {
-        UIApplication.shared.openURL(URL)
+        let svc = SFSafariViewController(url: URL, entersReaderIfAvailable: true)
+        svc.view.tintColor = Colors.tintColor
+        self.present(svc, animated: true, completion: nil)
     }
 }
 

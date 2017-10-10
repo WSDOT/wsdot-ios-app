@@ -20,6 +20,7 @@
 
 import Foundation
 import UIKit
+import SafariServices
 
 class TwitterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, INDLinkLabelDelegate {
     
@@ -201,7 +202,9 @@ class TwitterViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: Table View Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        UIApplication.shared.openURL(URL(string: tweets[indexPath.row].link)!)
+        let svc = SFSafariViewController(url: URL(string: tweets[indexPath.row].link)!, entersReaderIfAvailable: true)
+        svc.view.tintColor = Colors.tintColor
+        self.present(svc, animated: true, completion: nil)
     }
     
     // MARK: Naviagtion
@@ -225,7 +228,9 @@ class TwitterViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func linkLabel(_ label: INDLinkLabel, didTapLinkWithURL URL: Foundation.URL) {
         DispatchQueue.main.async {
-                UIApplication.shared.openURL(URL)
+            let svc = SFSafariViewController(url: URL, entersReaderIfAvailable: true)
+            svc.view.tintColor = Colors.tintColor
+            self.present(svc, animated: true, completion: nil)
         }
     }
 }

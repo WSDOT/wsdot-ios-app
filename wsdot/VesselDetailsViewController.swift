@@ -20,8 +20,11 @@
 
 import Foundation
 import UIKit
+import SafariServices
 
 class VesselDetailsViewController: UIViewController{
+    
+    let vesselBaseUrlString = "http://www.wsdot.com/ferries/vesselwatch/VesselDetail.aspx?vessel_id="
     
     var vesselItem: VesselItem? = nil
     
@@ -68,7 +71,6 @@ class VesselDetailsViewController: UIViewController{
         
         headinglabel.text = vesselItem?.headText
 
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,7 +79,9 @@ class VesselDetailsViewController: UIViewController{
     }
     
     @IBAction func linkAction(_ sender: UIBarButtonItem) {
-        UIApplication.shared.openURL(URL(string: "http://www.wsdot.com/ferries/vesselwatch/VesselDetail.aspx?vessel_id=" + String((vesselItem?.vesselID)!))!)
+      let svc = SFSafariViewController(url: URL(string: vesselBaseUrlString + String((vesselItem?.vesselID)!))!, entersReaderIfAvailable: true)
+        svc.view.tintColor = Colors.tintColor
+        self.present(svc, animated: true, completion: nil)
     }
     
 }

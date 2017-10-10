@@ -19,6 +19,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -27,11 +28,13 @@ class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var tableView: UITableView!
     var expressLanes = [ExpressLaneItem]()
-    
+
+    let expressLanesUrlString = "http://www.wsdot.wa.gov/Northwest/King/ExpressLanes"
     let refreshControl = UIRefreshControl()
     var overlayView = UIView()
     var activityIndicator = UIActivityIndicatorView()
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Express Lanes"
@@ -144,7 +147,9 @@ class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITable
         switch (indexPath.row) {
         case expressLanes.count:
             GoogleAnalytics.screenView(screenName: "/Traffic Map/Traveler Information/Express Lanes/Express Lanes Schedule Website")
-            UIApplication.shared.openURL(URL(string: "http://www.wsdot.wa.gov/Northwest/King/ExpressLanes")!)
+            let svc = SFSafariViewController(url: URL(string: self.expressLanesUrlString)!, entersReaderIfAvailable: true)
+            svc.view.tintColor = Colors.tintColor
+            self.present(svc, animated: true, completion: nil)
             break
         default:
             break

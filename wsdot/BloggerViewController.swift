@@ -20,6 +20,7 @@
 
 import UIKit
 import Foundation
+import SafariServices
 
 class BloggerViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -127,7 +128,8 @@ class BloggerViewController: UIViewController, UITableViewDataSource, UITableVie
     // MARK: Table View Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        UIApplication.shared.openURL(URL(string: posts[indexPath.row].link)!)
-        
+        let svc = SFSafariViewController(url: URL(string: posts[indexPath.row].link)!, entersReaderIfAvailable: true)
+        svc.view.tintColor = Colors.tintColor
+        self.present(svc, animated: true, completion: nil)
     }
 }

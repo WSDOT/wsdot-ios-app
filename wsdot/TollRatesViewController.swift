@@ -20,15 +20,17 @@
 
 import Foundation
 import UIKit
+import SafariServices
 
 class TollRatesViewController: UIViewController{
-
 
     @IBOutlet weak var SR520ContainerView: UIView!
     @IBOutlet weak var SR16ContainerView: UIView!
     @IBOutlet weak var SR167ContainerView: UIView!
     @IBOutlet weak var I405ContainerView: UIView!
-    
+
+    let goodToGoUrlString = "https://mygoodtogo.com/olcsc/"
+
     // Remove and add hairline for nav bar
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -46,7 +48,9 @@ class TollRatesViewController: UIViewController{
     
     @IBAction func MyGoodToGoLinkTap(_ sender: UIBarButtonItem) {
         GoogleAnalytics.screenView(screenName: "/Toll Rates/MyGoodToGo.com")
-        UIApplication.shared.openURL(URL(string: "https://mygoodtogo.com/olcsc/")!)
+        let svc = SFSafariViewController(url: URL(string: self.goodToGoUrlString)!, entersReaderIfAvailable: true)
+        svc.view.tintColor = Colors.tintColor
+        self.present(svc, animated: true, completion: nil)
     }
     
     @IBAction func indexChanged(_ sender: UISegmentedControl) {
