@@ -19,6 +19,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class AmtrakCascadesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
 
@@ -26,6 +27,7 @@ class AmtrakCascadesViewController: UIViewController, UITableViewDelegate, UITab
     let segueAmtrakSchedulesViewController = "AmtrakCascadesScheduleViewController"
 
     let menu_options = ["Buy Tickets on Amtrak.com", "Check Schedules and Status"]
+    let amtrakUrlString = "http://m.amtrak.com"
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -55,7 +57,9 @@ class AmtrakCascadesViewController: UIViewController, UITableViewDelegate, UITab
         switch (indexPath.row) {
         case 0:
             GoogleAnalytics.screenView(screenName: "/Amtrak Cascades/Buy Tickets")
-            UIApplication.shared.openURL(URL(string: "http://m.amtrak.com")!)
+            let svc = SFSafariViewController(url: URL(string: self.amtrakUrlString)!, entersReaderIfAvailable: true)
+            svc.view.tintColor = Colors.tintColor
+            self.present(svc, animated: true, completion: nil)
             break
         case 1:
             performSegue(withIdentifier: segueAmtrakSchedulesViewController, sender: self)

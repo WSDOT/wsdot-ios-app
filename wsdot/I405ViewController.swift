@@ -20,6 +20,7 @@
 
 import Foundation
 import UIKit
+import SafariServices
 
 class I405ViewController: UIViewController, UITextViewDelegate{
 
@@ -73,7 +74,9 @@ class I405ViewController: UIViewController, UITextViewDelegate{
     }
     
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
-        UIApplication.shared.openURL(URL)
+        let svc = SFSafariViewController(url: URL, entersReaderIfAvailable: true)
+        svc.view.tintColor = Colors.tintColor
+        self.present(svc, animated: true, completion: nil)
 		return false
 	}
     

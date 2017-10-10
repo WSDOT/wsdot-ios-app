@@ -20,12 +20,15 @@
 
 import UIKit
 import GoogleMobileAds
+import SafariServices
 
 class FerriesHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate {
 
     let cellIdentifier = "FerriesHomeCell"
     let SegueRouteSchedulesViewController = "RouteSchedulesViewController"
     let SegueVesselWatchViewController = "VesselWatchViewController"
+    
+    let reservationsUrlString = "https://secureapps.wsdot.wa.gov/Ferries/Reservations/Vehicle/default.aspx"
     
     var menu_options: [String] = []
 
@@ -76,7 +79,9 @@ class FerriesHomeViewController: UIViewController, UITableViewDelegate, UITableV
             break
         case 1:
             GoogleAnalytics.screenView(screenName: "/Ferries/Vehicle Reservations")
-            UIApplication.shared.openURL(URL(string: "https://secureapps.wsdot.wa.gov/Ferries/Reservations/Vehicle/default.aspx")!)
+            let svc = SFSafariViewController(url: URL(string: self.reservationsUrlString)!, entersReaderIfAvailable: true)
+            svc.view.tintColor = Colors.tintColor
+            self.present(svc, animated: true, completion: nil)
             break
         case 2:
             UserDefaults.standard.set(47.565125, forKey: UserDefaultsKeys.mapLat)

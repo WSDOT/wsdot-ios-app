@@ -19,9 +19,8 @@
 //
 
 import Foundation
-
 import UIKit
-import Foundation
+import SafariServices
 
 class NewsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -128,7 +127,8 @@ class NewsViewController: UIViewController, UITableViewDelegate, UITableViewData
     // MARK: Table View Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        UIApplication.shared.openURL(URL(string: newsItems[indexPath.row].link)!)
-        
+        let svc = SFSafariViewController(url: URL(string: newsItems[indexPath.row].link)!, entersReaderIfAvailable: true)
+        svc.view.tintColor = Colors.tintColor
+        self.present(svc, animated: true, completion: nil)
     }
 }

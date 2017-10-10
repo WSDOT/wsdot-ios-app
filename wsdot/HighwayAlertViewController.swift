@@ -20,6 +20,7 @@
 
 import UIKit
 import Foundation
+import SafariServices
 
 class HighwayAlertViewController: UIViewController, INDLinkLabelDelegate {
     
@@ -33,6 +34,8 @@ class HighwayAlertViewController: UIViewController, INDLinkLabelDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = alertItem.eventCategory
+        
+        descLinkLabel.delegate = self
         
         let htmlStyleString = "<style>body{font-family: '\(descLinkLabel.font.fontName)'; font-size:\(descLinkLabel.font.pointSize)px;}</style>"
         
@@ -71,7 +74,9 @@ class HighwayAlertViewController: UIViewController, INDLinkLabelDelegate {
     }
     
     func linkLabel(_ label: INDLinkLabel, didTapLinkWithURL URL: Foundation.URL) {
-        UIApplication.shared.openURL(URL)
+        let svc = SFSafariViewController(url: URL, entersReaderIfAvailable: true)
+        svc.view.tintColor = Colors.tintColor
+        self.present(svc, animated: true, completion: nil)
     }
     
 }

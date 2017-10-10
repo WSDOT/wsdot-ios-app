@@ -20,6 +20,7 @@
 
 import UIKit
 import MessageUI
+import SafariServices
 
 class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate {
    
@@ -30,6 +31,7 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
     @IBOutlet weak var bugReportButton: UIButton!
     @IBOutlet weak var jobsButton: UIButton!
     
+    let jobsUrlString = "https://www.governmentjobs.com/careers/washington?department%5B0%5D=Dept.%20of%20Transportation"
 
     var version = "?"
     
@@ -61,7 +63,9 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
     
     @IBAction func openJobsSite(_ sender: UIButton) {
         GoogleAnalytics.screenView(screenName: "/About/Jobs")
-        UIApplication.shared.openURL(URL(string: "https://www.governmentjobs.com/careers/washington?department%5B0%5D=Dept.%20of%20Transportation")!)
+        let svc = SFSafariViewController(url: URL(string: self.jobsUrlString)!, entersReaderIfAvailable: true)
+        svc.view.tintColor = Colors.tintColor
+        self.present(svc, animated: true, completion: nil)
     }
     
     @IBAction func composeFeedbackMessage(_ sender: UIButton) {

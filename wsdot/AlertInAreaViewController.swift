@@ -20,6 +20,7 @@
 
 import Foundation
 import UIKit
+import SafariServices
 
 class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, INDLinkLabelDelegate {
     
@@ -170,7 +171,9 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func linkLabel(_ label: INDLinkLabel, didTapLinkWithURL URL: Foundation.URL) {
-        UIApplication.shared.openURL(URL)
+        let svc = SFSafariViewController(url: URL, entersReaderIfAvailable: true)
+        svc.view.tintColor = Colors.tintColor
+        self.present(svc, animated: true, completion: nil)
     }
     
     

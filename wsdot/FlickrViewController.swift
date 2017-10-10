@@ -137,6 +137,7 @@ class FlickrViewController: UIViewController, UICollectionViewDataSource, UIColl
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         UIApplication.shared.openURL(URL(string: photos[indexPath.row].link)!)
+        
 
     }
 }
