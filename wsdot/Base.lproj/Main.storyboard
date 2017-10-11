@@ -233,7 +233,7 @@
                                         <color key="backgroundColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="38" id="Gf8-r6-Yuk"/>
-                                            <constraint firstAttribute="width" constant="170" id="uuU-e4-8FN"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="170" id="nrx-i7-zkW"/>
                                             <constraint firstAttribute="height" constant="38" id="vRj-RJ-TFl"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -244,10 +244,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PaA-kr-ztN">
-                                        <rect key="frame" x="186" y="99" width="181" height="38"/>
+                                        <rect key="frame" x="197" y="99" width="170" height="38"/>
                                         <color key="backgroundColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="38" id="Nwa-1H-gsF"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="170" id="jyh-8d-ev4"/>
                                         </constraints>
                                         <color key="tintColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal">
@@ -302,7 +303,7 @@
                                     <constraint firstItem="4Ch-pR-zUh" firstAttribute="leading" secondItem="a8f-ut-AEo" secondAttribute="leadingMargin" id="d7E-2N-3bQ"/>
                                     <constraint firstItem="4Ch-pR-zUh" firstAttribute="trailing" secondItem="a8f-ut-AEo" secondAttribute="trailingMargin" id="dXp-gv-XcC"/>
                                     <constraint firstItem="1ez-tx-eY2" firstAttribute="top" secondItem="PaA-kr-ztN" secondAttribute="bottom" constant="8" symbolic="YES" id="kIJ-LE-5Sp"/>
-                                    <constraint firstItem="PaA-kr-ztN" firstAttribute="leading" secondItem="CbN-V2-bFU" secondAttribute="trailing" constant="8" symbolic="YES" id="mWI-xv-shf"/>
+                                    <constraint firstItem="PaA-kr-ztN" firstAttribute="leading" secondItem="CbN-V2-bFU" secondAttribute="trailing" constant="19" id="mWI-xv-shf"/>
                                     <constraint firstAttribute="bottom" secondItem="1ez-tx-eY2" secondAttribute="bottom" constant="8" id="n8K-k7-blf"/>
                                     <constraint firstItem="CbN-V2-bFU" firstAttribute="top" secondItem="PaA-kr-ztN" secondAttribute="top" id="tbc-It-Kac"/>
                                     <constraint firstItem="4Ch-pR-zUh" firstAttribute="leading" secondItem="Z9U-Cp-7mr" secondAttribute="leading" id="wnY-RJ-g0G"/>
@@ -333,7 +334,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vhP-0a-mLb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2762" y="-28"/>
+            <point key="canvasLocation" x="2483" y="-29"/>
         </scene>
         <!--Home Split View Controller-->
         <scene sceneID="DKl-Zw-Shy">
