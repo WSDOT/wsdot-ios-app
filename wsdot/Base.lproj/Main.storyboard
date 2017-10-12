@@ -346,6 +346,7 @@
                 <splitViewController id="aoS-Ss-JPz" customClass="HomeSplitViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
                         <segue destination="Kfb-p0-sSb" kind="relationship" relationship="masterViewController" id="hup-9Z-YUg"/>
+                        <segue destination="V16-il-1em" kind="relationship" relationship="detailViewController" id="vWY-JD-aD0"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EWR-lt-w7e" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -430,4 +431,7 @@
     <resources>
         <image name="icInfo" width="24" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="vWY-JD-aD0"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -56,11 +56,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         menu_options = ["Traffic Map", "Ferries", "Mountain Passes", "Toll Rates", "Border Waits", "Amtrak Cascades", "Favorites"]
         menu_icon_names = ["icHomeTraffic","icHomeFerries","icHomePasses","icHomeTollRates","icHomeBorderWaits","icHomeAmtrakCascades", "icHomeFavorites"]
         
-        self.navigationController!.navigationBar.isTranslucent = false
-        self.navigationController!.navigationBar.barTintColor = UIColor.white
-        self.navigationController!.navigationBar.tintColor = Colors.tintColor
-        
-        performSegue(withIdentifier: SegueTrafficMapViewController, sender: self)
+        if (self.splitViewController!.viewControllers.count > 1){
+            let navController = self.splitViewController!.viewControllers[1] as! UINavigationController
+            navController.viewControllers[0].navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
+            navController.viewControllers[0].navigationItem.leftItemsSupplementBackButton = true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -160,9 +160,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         if segue.destination is UINavigationController {
             let destinationViewController = segue.destination as! UINavigationController
-            destinationViewController.navigationBar.isTranslucent = false
-           // destinationViewController.navigationBar.barTintColor = UIColor.white
-            destinationViewController.navigationBar.tintColor = Colors.tintColor
+            
+            destinationViewController.navigationBar.isTranslucent = true
+            destinationViewController.navigationBar.tintColor = UIColor.white
+            destinationViewController.navigationBar.color
+            
             destinationViewController.viewControllers[0].navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
             destinationViewController.viewControllers[0].navigationItem.leftItemsSupplementBackButton = true
         }
