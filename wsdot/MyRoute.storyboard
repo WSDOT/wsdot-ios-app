@@ -75,7 +75,8 @@
         <scene sceneID="MCz-Sr-Ct1">
             <objects>
                 <navigationController id="Xsm-Kt-H59" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="y0n-pd-e25">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="y0n-pd-e25">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="32"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -162,7 +163,7 @@ WSDOT provides traffic alert information for
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <state key="normal" title="Create Your First Route">
-                                                    <color key="titleColor" red="0.18647282900000001" green="0.68235294120000001" blue="0.11432351139999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="firstNewRouteButtonPressed:" destination="03C-G7-6I3" eventType="touchUpInside" id="enp-Qt-XMq"/>
@@ -170,6 +171,7 @@ WSDOT provides traffic alert information for
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" image="icGreenCar" translatesAutoresizingMaskIntoConstraints="NO" id="39k-hg-tXB">
                                                 <rect key="frame" x="137" y="40" width="100" height="100"/>
+                                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="4DL-0Z-jAi"/>
                                                     <constraint firstAttribute="height" constant="100" id="Szs-Aq-BkK"/>
@@ -234,6 +236,7 @@ WSDOT provides traffic alert information for
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="JYF-eT-qn9"/>
                                                         <constraint firstAttribute="width" constant="24" id="i09-lQ-DWb"/>
                                                     </constraints>
+                                                    <color key="tintColor" red="0.0" green="0.47843137250000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" image="icGear"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="route settings"/>
@@ -245,6 +248,7 @@ WSDOT provides traffic alert information for
                                                         <constraint firstAttribute="height" constant="25" id="Qr3-9U-dFr"/>
                                                         <constraint firstAttribute="width" constant="25" id="aGn-2F-fWK"/>
                                                     </constraints>
+                                                    <color key="tintColor" red="0.0" green="0.47843137250000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" image="icFavoriteDefault"/>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UJe-JT-Ad7">
@@ -269,7 +273,10 @@ WSDOT provides traffic alert information for
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="L29-1z-wC0"/>
                                                         <constraint firstAttribute="height" constant="24" id="dl3-I6-APq"/>
                                                     </constraints>
-                                                    <state key="normal" image="icMap"/>
+                                                    <color key="tintColor" red="0.0" green="0.47843137250000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" image="icMap">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="open traffic map on route"/>
                                                     </userDefinedRuntimeAttributes>
@@ -317,10 +324,14 @@ WSDOT provides traffic alert information for
                             <constraint firstItem="lPD-Y6-jfx" firstAttribute="top" secondItem="YZP-tq-YsG" secondAttribute="bottom" id="Zcd-PD-JSW"/>
                             <constraint firstItem="lPD-Y6-jfx" firstAttribute="trailing" secondItem="qNq-WC-ZIi" secondAttribute="trailing" id="gP6-TE-AqY"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="qNq-WC-ZIi"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="My Routes" id="Ggt-TW-Ae7">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="qFc-vt-rPF">
-                            <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.16429793400000001" alpha="1" colorSpace="calibratedRGB"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="Create A New Route"/>
                             </userDefinedRuntimeAttributes>

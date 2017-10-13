@@ -36,6 +36,7 @@ class AmtrakCascadesScheduleViewController: UITableViewController, CLLocationMan
     @IBOutlet weak var originCell: SelectionCell!
     @IBOutlet weak var destinationCell: SelectionCell!
     @IBOutlet weak var submitCell: UITableViewCell!
+    @IBOutlet weak var submitLabel: UILabel!
     
     var originTableData = AmtrakCascadesStore.getOriginData()
     var destinationTableData = AmtrakCascadesStore.getDestinationData()
@@ -51,6 +52,8 @@ class AmtrakCascadesScheduleViewController: UITableViewController, CLLocationMan
         super.viewDidLoad()
     
         title = "Find Schedules" 
+        
+        submitLabel.textColor = Colors.wsdotPrimary
         
         dayCell.selection.text = dayTableData[0]
         originCell.selection.text = originTableData[0]

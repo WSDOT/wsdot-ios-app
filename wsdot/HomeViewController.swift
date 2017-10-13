@@ -36,11 +36,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     let SegueAmtrakCascadesViewController = "AmtrakCascadesViewController"
     let segueMyRouteViewController = "MyRouteViewController"
     
-    var tipView = EasyTipView(text: "")
-    
     var menu_options: [String] = []
     var menu_icon_names: [String] = []
-
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -53,8 +50,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Set Title
         title = "WSDOT"
         
-        menu_options = ["Traffic Map", "Ferries", "Mountain Passes", "Toll Rates", "Border Waits", "Amtrak Cascades", "Favorites"]
-        menu_icon_names = ["icHomeTraffic","icHomeFerries","icHomePasses","icHomeTollRates","icHomeBorderWaits","icHomeAmtrakCascades", "icHomeFavorites"]
+        menu_options = ["Traffic Map", "Ferries", "Mountain Passes", "Toll Rates", "Border Waits", "Amtrak Cascades", "My Routes", "Favorites"]
+        menu_icon_names = ["icHomeTraffic","icHomeFerries","icHomePasses","icHomeTollRates","icHomeBorderWaits","icHomeAmtrakCascades", "icHomeMyRoutes", "icHomeFavorites"]
+        
+        let image : UIImage = UIImage(named: "wsdot_banner.png")!
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = image
+        self.navigationItem.titleView = imageView
         
         if (self.splitViewController!.viewControllers.count > 1){
             let navController = self.splitViewController!.viewControllers[1] as! UINavigationController
@@ -77,7 +80,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
-        if (self.splitViewController!.viewControllers.count == 1){
+        if (self.splitViewController!.viewControllers.count > 1){
             tableView.selectRow(at: IndexPath(row: selectedIndex, section: 0), animated: false, scrollPosition: .none)
         } else {
             tableView.deselectRow(at: IndexPath(row: selectedIndex, section: 0), animated: false)
@@ -88,12 +91,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBAction func infoBarButtonPressed(_ sender: UIBarButtonItem) {
         tableView.deselectRow(at: IndexPath(row: selectedIndex, section: 0), animated: false)
         performSegue(withIdentifier: SegueInfoViewController, sender: self)
-    }
-    
-    @IBAction func myRouteButtonPressed(_ sender: UIBarButtonItem) {
-        tipView.dismiss()
-        tableView.deselectRow(at: IndexPath(row: selectedIndex, section: 0), animated: false)
-        performSegue(withIdentifier: segueMyRouteViewController, sender: self)
     }
     
     // MARK: Table View Data Source Methods
@@ -146,13 +143,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 performSegue(withIdentifier: SegueAmtrakCascadesViewController, sender: self)
                 break
             case 6:
+                performSegue(withIdentifier: segueMyRouteViewController, sender: self)
+                break
+            case 7:
                 performSegue(withIdentifier: SegueFavoritesViewController, sender: self)
             default:
                 break
             }
         }
-        
-        //tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // MARK: Navigation
@@ -161,33 +159,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         if segue.destination is UINavigationController {
             let destinationViewController = segue.destination as! UINavigationController
             
-            destinationViewController.navigationBar.isTranslucent = true
-            destinationViewController.navigationBar.tintColor = UIColor.white
-            destinationViewController.navigationBar.color
-            
             destinationViewController.viewControllers[0].navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
             destinationViewController.viewControllers[0].navigationItem.leftItemsSupplementBackButton = true
-        }
-    }
-}
-
-extension HomeViewController: EasyTipViewDelegate {
-    
-    public func easyTipViewDidDismiss(_ tipView: EasyTipView) {
-         UserDefaults.standard.set(true, forKey: UserDefaultsKeys.hasSeenMyRouteTipView)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        tipView.dismiss()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasSeenMyRouteTipView) && !UIAccessibilityIsVoiceOverRunning()){
-            tipView = EasyTipView(text: "Check for highway alerts important to you by creating your own route.", delegate: self)
-            tipView.show(forItem: self.myRouteButton)
         }
     }
 }

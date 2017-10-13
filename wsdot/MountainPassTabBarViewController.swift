@@ -32,6 +32,8 @@ class MountainPassTabBarViewController: UITabBarController{
         
         title = passItem.name
         
+        self.tabBar.tintColor = Colors.wsdotPrimary
+        
         if (passItem.forecast.count == 0){
             self.tabBar.items?[1].isEnabled = false
         }

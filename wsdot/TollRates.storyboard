@@ -20,7 +20,8 @@
         <scene sceneID="hwB-J4-u6U">
             <objects>
                 <navigationController id="7nX-QB-1g8" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mfn-DB-D6u">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="mfn-DB-D6u">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -70,7 +71,7 @@
                                     <segment title="SR 167"/>
                                     <segment title="I-405"/>
                                 </segments>
-                                <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="indexChanged:" destination="A9d-Xt-YdA" eventType="valueChanged" id="9cm-yb-KmR"/>
                                 </connections>
@@ -107,8 +108,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Toll Rates" id="l8t-7x-bNX">
-                        <barButtonItem key="rightBarButtonItem" title="MyGoodToGo.com" id="G3d-RC-B8c">
-                            <color key="tintColor" red="0.18647282900000001" green="0.68235294120000001" blue="0.11432351139999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <barButtonItem key="rightBarButtonItem" title="MyGoodToGo" id="G3d-RC-B8c">
                             <connections>
                                 <action selector="MyGoodToGoLinkTap:" destination="A9d-Xt-YdA" id="meb-3W-FRe"/>
                             </connections>

@@ -158,14 +158,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Xpe-Fb-HQB">
-                        <barButtonItem key="leftBarButtonItem" title="My Routes" id="vmG-5V-X3l">
-                            <color key="tintColor" red="0.18647282900000001" green="0.68235294120000001" blue="0.11432351139999999" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="myRouteButtonPressed:" destination="4jS-98-Vld" id="TYO-qD-1Pc"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="icInfo" id="t4G-kd-S5C">
-                            <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="About"/>
                             </userDefinedRuntimeAttributes>
@@ -175,7 +168,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="myRouteButton" destination="vmG-5V-X3l" id="700-vj-DZS"/>
                         <outlet property="tableView" destination="peh-Jp-BEr" id="o2R-WZ-ota"/>
                         <segue destination="YHC-Qx-tw0" kind="showDetail" identifier="InfoViewController" id="nAK-Qt-76l"/>
                         <segue destination="V16-il-1em" kind="showDetail" identifier="TrafficMapViewController" id="gN6-Dz-E6K"/>
@@ -432,6 +424,6 @@
         <image name="icInfo" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vWY-JD-aD0"/>
+        <segue reference="gN6-Dz-E6K"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -263,8 +263,6 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
                         let templateImage = menuImage?.withRenderingMode(.alwaysTemplate)
         
                         travelInfoButton.setBackgroundImage(templateImage, for: .normal)
-                        travelInfoButton.tintColor = Colors.tintColor
-
                         travelInfoButton.addTarget(selfValue, action: #selector(selfValue.travelerInfoAction), for: .touchUpInside)
                         
                         if (available){
