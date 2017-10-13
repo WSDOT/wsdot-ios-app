@@ -42,8 +42,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var tableView: UITableView!
     
     var selectedIndex = 0
-
-    @IBOutlet weak var myRouteButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,27 +67,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView(screenName: "/Home")
-        tableView.deselectRow(at: IndexPath(row: selectedIndex, section: 0), animated: false)
-        
-        if (self.splitViewController!.viewControllers.count > 1){
-            tableView.selectRow(at: IndexPath(row: selectedIndex, section: 0), animated: false, scrollPosition: .none)
-        }
-        
     }
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        
-        if (self.splitViewController!.viewControllers.count > 1){
-            tableView.selectRow(at: IndexPath(row: selectedIndex, section: 0), animated: false, scrollPosition: .none)
-        } else {
-            tableView.deselectRow(at: IndexPath(row: selectedIndex, section: 0), animated: false)
-        }
-        
-    }
- 
+
     @IBAction func infoBarButtonPressed(_ sender: UIBarButtonItem) {
-        tableView.deselectRow(at: IndexPath(row: selectedIndex, section: 0), animated: false)
         performSegue(withIdentifier: SegueInfoViewController, sender: self)
     }
     
@@ -151,6 +131,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 break
             }
         }
+        tableView.deselectRow(at: indexPath, animated: false)
     }
     
     // MARK: Navigation
