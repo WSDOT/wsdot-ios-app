@@ -148,7 +148,12 @@ class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITable
         case expressLanes.count:
             GoogleAnalytics.screenView(screenName: "/Traffic Map/Traveler Information/Express Lanes/Express Lanes Schedule Website")
             let svc = SFSafariViewController(url: URL(string: self.expressLanesUrlString)!, entersReaderIfAvailable: true)
-            svc.view.tintColor = Colors.tintColor
+            if #available(iOS 10.0, *) {
+                svc.preferredControlTintColor = UIColor.white
+                svc.preferredBarTintColor = Colors.wsdotPrimary
+            } else {
+                svc.view.tintColor = Colors.tintColor
+            }
             self.present(svc, animated: true, completion: nil)
             break
         default:
