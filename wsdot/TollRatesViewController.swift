@@ -49,7 +49,12 @@ class TollRatesViewController: UIViewController{
     @IBAction func MyGoodToGoLinkTap(_ sender: UIBarButtonItem) {
         GoogleAnalytics.screenView(screenName: "/Toll Rates/MyGoodToGo.com")
         let svc = SFSafariViewController(url: URL(string: self.goodToGoUrlString)!, entersReaderIfAvailable: true)
-        svc.view.tintColor = Colors.tintColor
+        if #available(iOS 10.0, *) {
+            svc.preferredControlTintColor = UIColor.white
+            svc.preferredBarTintColor = Colors.wsdotPrimary
+        } else {
+            svc.view.tintColor = Colors.tintColor
+        }
         self.present(svc, animated: true, completion: nil)
     }
     

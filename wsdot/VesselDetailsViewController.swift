@@ -79,8 +79,13 @@ class VesselDetailsViewController: UIViewController{
     }
     
     @IBAction func linkAction(_ sender: UIBarButtonItem) {
-      let svc = SFSafariViewController(url: URL(string: vesselBaseUrlString + String((vesselItem?.vesselID)!))!, entersReaderIfAvailable: true)
-        svc.view.tintColor = Colors.tintColor
+        let svc = SFSafariViewController(url: URL(string: vesselBaseUrlString + String((vesselItem?.vesselID)!))!, entersReaderIfAvailable: true)
+        if #available(iOS 10.0, *) {
+            svc.preferredControlTintColor = UIColor.white
+            svc.preferredBarTintColor = Colors.wsdotPrimary
+        } else {
+            svc.view.tintColor = Colors.tintColor
+        }
         self.present(svc, animated: true, completion: nil)
     }
     

@@ -77,7 +77,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         // Set defualt value for camera display if there is none
         if (UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras) == nil){
             UserDefaults.standard.set("on", forKey: UserDefaultsKeys.cameras)
@@ -263,8 +263,6 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
                         let templateImage = menuImage?.withRenderingMode(.alwaysTemplate)
         
                         travelInfoButton.setBackgroundImage(templateImage, for: .normal)
-                        travelInfoButton.tintColor = Colors.tintColor
-
                         travelInfoButton.addTarget(selfValue, action: #selector(selfValue.travelerInfoAction), for: .touchUpInside)
                         
                         if (available){

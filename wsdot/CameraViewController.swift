@@ -47,6 +47,8 @@ class CameraViewController: UIViewController, GADBannerViewDelegate{
             favoriteBarButton.accessibilityLabel = "add to favorites"
         }
         
+        favoriteBarButton.tintColor = Colors.yellow
+        
         // Ad Banner
         bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.rootViewController = self

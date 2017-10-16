@@ -22,9 +22,9 @@ import UIKit
 
 class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
 
-        fileprivate var pages = [AlertContentViewController]()
-        fileprivate var alertItems = [HighwayAlertItem]()
-        fileprivate var timer: Timer?
+    fileprivate var pages = [AlertContentViewController]()
+    fileprivate var alertItems = [HighwayAlertItem]()
+    fileprivate var timer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,8 +40,7 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
         view.backgroundColor = Colors.lightGrey
         
         UIPageControl.appearance().pageIndicatorTintColor = UIColor.gray
-        UIPageControl.appearance().currentPageIndicatorTintColor = Colors.tintColor
-        
+        UIPageControl.appearance().currentPageIndicatorTintColor = Colors.wsdotPrimary
     }
     
     override func viewWillAppear(_ animated: Bool) {

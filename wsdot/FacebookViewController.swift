@@ -140,7 +140,12 @@ class FacebookViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let svc = SFSafariViewController(url: URL(string: self.facebookBaseUrlString + posts[indexPath.row].id)!, entersReaderIfAvailable: true)
-        svc.view.tintColor = Colors.tintColor
+        if #available(iOS 10.0, *) {
+            svc.preferredControlTintColor = UIColor.white
+            svc.preferredBarTintColor = Colors.wsdotPrimary
+        } else {
+            svc.view.tintColor = Colors.tintColor
+        }
         self.present(svc, animated: true, completion: nil)
     }
     
@@ -152,7 +157,12 @@ class FacebookViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func linkLabel(_ label: INDLinkLabel, didTapLinkWithURL URL: Foundation.URL) {
         let svc = SFSafariViewController(url: URL, entersReaderIfAvailable: true)
-        svc.view.tintColor = Colors.tintColor
+        if #available(iOS 10.0, *) {
+            svc.preferredControlTintColor = UIColor.white
+            svc.preferredBarTintColor = Colors.wsdotPrimary
+        } else {
+            svc.view.tintColor = Colors.tintColor
+        }
         self.present(svc, animated: true, completion: nil)
     }
 }

@@ -58,7 +58,14 @@ class AmtrakCascadesViewController: UIViewController, UITableViewDelegate, UITab
         case 0:
             GoogleAnalytics.screenView(screenName: "/Amtrak Cascades/Buy Tickets")
             let svc = SFSafariViewController(url: URL(string: self.amtrakUrlString)!, entersReaderIfAvailable: true)
-            svc.view.tintColor = Colors.tintColor
+            
+            if #available(iOS 10.0, *) {
+                svc.preferredControlTintColor = UIColor.white
+                svc.preferredBarTintColor = Colors.wsdotPrimary
+            } else {
+                svc.view.tintColor = Colors.tintColor
+            }
+            
             self.present(svc, animated: true, completion: nil)
             break
         case 1:

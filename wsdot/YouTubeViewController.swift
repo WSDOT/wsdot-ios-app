@@ -133,7 +133,12 @@ class YouTubeViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let svc = SFSafariViewController(url: URL(string: videoItems[indexPath.row].link)!, entersReaderIfAvailable: true)
-        svc.view.tintColor = Colors.tintColor
+        if #available(iOS 10.0, *) {
+            svc.preferredControlTintColor = UIColor.white
+            svc.preferredBarTintColor = Colors.wsdotPrimary
+        } else {
+            svc.view.tintColor = Colors.tintColor
+        }
         self.present(svc, animated: true, completion: nil)
     }
 }

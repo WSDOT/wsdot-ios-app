@@ -36,39 +36,41 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     let SegueAmtrakCascadesViewController = "AmtrakCascadesViewController"
     let segueMyRouteViewController = "MyRouteViewController"
     
-    var tipView = EasyTipView(text: "")
-    
     var menu_options: [String] = []
     var menu_icon_names: [String] = []
-
-    @IBOutlet weak var myRouteButton: UIBarButtonItem!
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    var selectedIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Set Title
         title = "WSDOT"
         
-        menu_options = ["Traffic Map", "Ferries", "Mountain Passes", "Toll Rates", "Border Waits", "Amtrak Cascades", "Favorites"]
-        menu_icon_names = ["icHomeTraffic","icHomeFerries","icHomePasses","icHomeTollRates","icHomeBorderWaits","icHomeAmtrakCascades", "icHomeFavorites"]
+        menu_options = ["Traffic Map", "Ferries", "Mountain Passes", "Toll Rates", "Border Waits", "Amtrak Cascades", "My Routes", "Favorites"]
+        menu_icon_names = ["icHomeTraffic","icHomeFerries","icHomePasses","icHomeTollRates","icHomeBorderWaits","icHomeAmtrakCascades", "icHomeMyRoutes", "icHomeFavorites"]
         
-        self.navigationController!.navigationBar.isTranslucent = false
-        self.navigationController!.navigationBar.barTintColor = UIColor.white
-        self.navigationController!.navigationBar.tintColor = Colors.tintColor
+        let image : UIImage = UIImage(named: "wsdot_banner.png")!
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = image
+        self.navigationItem.titleView = imageView
+        
+        if (self.splitViewController!.viewControllers.count > 1){
+            let navController = self.splitViewController!.viewControllers[1] as! UINavigationController
+            navController.viewControllers[0].navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
+            navController.viewControllers[0].navigationItem.leftItemsSupplementBackButton = true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView(screenName: "/Home")
-        (self.splitViewController as! HomeSplitViewController).setShouldCollapseFalse()
     }
- 
+
     @IBAction func infoBarButtonPressed(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: SegueInfoViewController, sender: self)
-    }
-    
-    @IBAction func myRouteButtonPressed(_ sender: UIBarButtonItem) {
-        tipView.dismiss()
-        performSegue(withIdentifier: segueMyRouteViewController, sender: self)
     }
     
     // MARK: Table View Data Source Methods
@@ -92,159 +94,54 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // MARK: Table View Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Perform Segue
-        switch (indexPath.row) {
-        case 0:
-            performSegue(withIdentifier: SegueTrafficMapViewController, sender: self)
-            tableView.deselectRow(at: indexPath, animated: true)
-            break
-        case 1:
-            performSegue(withIdentifier: SegueFerriesHomeViewController, sender: self)
-            tableView.deselectRow(at: indexPath, animated: true)
-            break
-        case 2:
-            performSegue(withIdentifier: SegueMountainPassesViewController, sender: self)
-            tableView.deselectRow(at: indexPath, animated: true)
-            break
-        case 3:
-            performSegue(withIdentifier: SegueTollRatesViewController, sender: self)
-            tableView.deselectRow(at: indexPath, animated: true)
-            break
-        case 4:
-            performSegue(withIdentifier: SegueBorderWaitsViewController, sender: self)
-            tableView.deselectRow(at: indexPath, animated: true)
-            break
-        case 5:
-            performSegue(withIdentifier: SegueAmtrakCascadesViewController, sender: self)
-            tableView.deselectRow(at: indexPath, animated: true)
-            break
-        case 6:
-            performSegue(withIdentifier: SegueFavoritesViewController, sender: self)
-            tableView.deselectRow(at: indexPath, animated: true)
-        default:
-            break
+        // Perform Segue if the view controller isn't already displayed.
+        // If it is, pop the naviagtion stack to return to the first view.
+        if (selectedIndex == indexPath.row && self.splitViewController!.viewControllers.count > 1) {
+            let navController = self.splitViewController?.viewControllers[1] as! UINavigationController
+            navController.popToRootViewController(animated: true)
+        } else {
+        
+            selectedIndex = indexPath.row
+        
+            switch (indexPath.row) {
+            case 0:
+                performSegue(withIdentifier: SegueTrafficMapViewController, sender: self)
+                break
+            case 1:
+                performSegue(withIdentifier: SegueFerriesHomeViewController, sender: self)
+                break
+            case 2:
+                performSegue(withIdentifier: SegueMountainPassesViewController, sender: self)
+                break
+            case 3:
+                performSegue(withIdentifier: SegueTollRatesViewController, sender: self)
+                break
+            case 4:
+                performSegue(withIdentifier: SegueBorderWaitsViewController, sender: self)
+                break
+            case 5:
+                performSegue(withIdentifier: SegueAmtrakCascadesViewController, sender: self)
+                break
+            case 6:
+                performSegue(withIdentifier: segueMyRouteViewController, sender: self)
+                break
+            case 7:
+                performSegue(withIdentifier: SegueFavoritesViewController, sender: self)
+            default:
+                break
+            }
         }
+        tableView.deselectRow(at: indexPath, animated: false)
     }
     
     // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+
         if segue.destination is UINavigationController {
             let destinationViewController = segue.destination as! UINavigationController
-            destinationViewController.navigationBar.isTranslucent = false
-            destinationViewController.navigationBar.barTintColor = UIColor.white
-            destinationViewController.navigationBar.tintColor = Colors.tintColor
             
-            if segue.identifier == SegueInfoViewController {
-                destinationViewController.viewControllers[0].navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-                destinationViewController.viewControllers[0].navigationItem.leftItemsSupplementBackButton = true
-            }
-            
-            if segue.identifier == segueMyRouteViewController {
-                let storyboard = UIStoryboard(name: "MyRoute", bundle: nil)
-                let myRouteViewController = storyboard.instantiateViewController(withIdentifier: "MyRouteViewController") as? MyRouteViewController
-                myRouteViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-                myRouteViewController!.navigationItem.leftItemsSupplementBackButton = true
-                myRouteViewController!.navigationItem.title = "My Routes"
-                if !destinationViewController.viewControllers.contains(myRouteViewController!){
-                    destinationViewController.pushViewController(myRouteViewController!, animated: true)
-                }
-            }
-            
-            if segue.identifier == SegueTrafficMapViewController {
-                let storyboard = UIStoryboard(name: "TrafficMap", bundle: nil)
-                let trafficMapViewController = storyboard.instantiateViewController(withIdentifier: "TrafficMapViewController") as? TrafficMapViewController
-                trafficMapViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-                trafficMapViewController!.navigationItem.leftItemsSupplementBackButton = true
-                trafficMapViewController!.navigationItem.title = "Traffic Map"
-                if !destinationViewController.viewControllers.contains(trafficMapViewController!){
-                    destinationViewController.pushViewController(trafficMapViewController!, animated: true)
-                }
-            }
-            
-            if segue.identifier == SegueFerriesHomeViewController {
-                let storyboard = UIStoryboard(name: "Ferries", bundle: nil)
-                let ferriesHomeViewController = storyboard.instantiateViewController(withIdentifier: "FerriesHomeViewController") as? FerriesHomeViewController
-                ferriesHomeViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-                ferriesHomeViewController!.navigationItem.leftItemsSupplementBackButton = true
-                ferriesHomeViewController!.navigationItem.title = "Ferries"
-                if !destinationViewController.viewControllers.contains(ferriesHomeViewController!){
-                    destinationViewController.pushViewController(ferriesHomeViewController!, animated: true)
-                }
-            }
-            
-            if segue.identifier == SegueFavoritesViewController {
-                destinationViewController.viewControllers[0].navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-                destinationViewController.viewControllers[0].navigationItem.leftItemsSupplementBackButton = true
-            }
-            
-            if segue.identifier == SegueMountainPassesViewController {
-                let storyboard = UIStoryboard(name: "MountainPasses", bundle: nil)
-                let mountainPassesViewController = storyboard.instantiateViewController(withIdentifier: "MountainPassesViewController") as? MountainPassesViewController
-                mountainPassesViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-                mountainPassesViewController!.navigationItem.leftItemsSupplementBackButton = true
-                mountainPassesViewController!.navigationItem.title = "Mountain Passes"
-                if !destinationViewController.viewControllers.contains(mountainPassesViewController!){
-                    destinationViewController.pushViewController(mountainPassesViewController!, animated: true)
-                }
-            }
-
-            
-            if segue.identifier == SegueTollRatesViewController {
-                let storyboard = UIStoryboard(name: "TollRates", bundle: nil)
-                let tollRatesViewController = storyboard.instantiateViewController(withIdentifier: "TollRatesViewController") as? TollRatesViewController
-                tollRatesViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-                tollRatesViewController!.navigationItem.leftItemsSupplementBackButton = true
-                tollRatesViewController!.navigationItem.title = "Toll Rates"
-                if !destinationViewController.viewControllers.contains(tollRatesViewController!) {
-                    destinationViewController.pushViewController(tollRatesViewController!, animated: true)
-                }
-            }
-            
-            if segue.identifier == SegueBorderWaitsViewController {
-                let storyboard = UIStoryboard(name: "BorderWaits", bundle: nil)
-                let borderWaitsViewController = storyboard.instantiateViewController(withIdentifier: "BorderWaitsViewController") as? BorderWaitsViewController
-                destinationViewController.viewControllers = [borderWaitsViewController!]
-                borderWaitsViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-                borderWaitsViewController!.navigationItem.leftItemsSupplementBackButton = true
-                borderWaitsViewController!.navigationItem.title = "Border Waits"
-                if !destinationViewController.viewControllers.contains(borderWaitsViewController!) {
-                    destinationViewController.pushViewController(borderWaitsViewController!, animated: true)
-                }
-            }
-            
-            if segue.identifier == SegueAmtrakCascadesViewController {
-                let storyboard = UIStoryboard(name: "AmtrakCascades", bundle: nil)
-                let amtrakCascadesViewController = storyboard.instantiateViewController(withIdentifier: "AmtrakCascadesViewController") as? AmtrakCascadesViewController
-                destinationViewController.viewControllers = [amtrakCascadesViewController!]
-                amtrakCascadesViewController!.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-                amtrakCascadesViewController!.navigationItem.leftItemsSupplementBackButton = true
-                amtrakCascadesViewController!.navigationItem.title = "Amtrak Cascades"
-                if !destinationViewController.viewControllers.contains(amtrakCascadesViewController!) {
-                    destinationViewController.pushViewController(amtrakCascadesViewController!, animated: true)
-                }
-            }
-        }
-    }
-}
-
-extension HomeViewController: EasyTipViewDelegate {
-    
-    public func easyTipViewDidDismiss(_ tipView: EasyTipView) {
-         UserDefaults.standard.set(true, forKey: UserDefaultsKeys.hasSeenMyRouteTipView)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        tipView.dismiss()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasSeenMyRouteTipView) && !UIAccessibilityIsVoiceOverRunning()){
-            tipView = EasyTipView(text: "Check for highway alerts important to you by creating your own route.", delegate: self)
-            tipView.show(forItem: self.myRouteButton)
+            destinationViewController.viewControllers[0].navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
+            destinationViewController.viewControllers[0].navigationItem.leftItemsSupplementBackButton = true
         }
     }
 }

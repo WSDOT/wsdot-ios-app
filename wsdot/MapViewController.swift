@@ -45,11 +45,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
         }
         
         view.removeFromSuperview()
+        clusterManager.clearItems()
+        clusterManager.setDelegate(nil, mapDelegate: nil)
+        clusterManager = nil
         locationManager.delegate = nil
         markerDelegate = nil
         mapDelegate = nil
     }
-    
+ 
     func addClusterableMarker(_ item: CameraClusterItem){
         clusterManager.add(item)
     }
@@ -105,12 +108,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+        
         if let mapView = view as? GMSMapView{
             UserDefaults.standard.set(mapView.camera.target.latitude, forKey: UserDefaultsKeys.mapLat)
             UserDefaults.standard.set(mapView.camera.target.longitude, forKey: UserDefaultsKeys.mapLon)
             UserDefaults.standard.set(mapView.camera.zoom, forKey: UserDefaultsKeys.mapZoom)
         }
+        super.viewWillDisappear(animated)
     }
     
     override func viewDidLoad() {

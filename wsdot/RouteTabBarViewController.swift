@@ -35,6 +35,8 @@ class RouteTabBarViewController: UITabBarController {
         
         self.navigationItem.title = routeItem.routeDescription;
         
+        self.tabBar.tintColor = Colors.wsdotPrimary
+        
         if (routeItem.routeAlerts.count > 0){
             self.tabBar.items?[1].badgeValue = String(routeItem.routeAlerts.count)
         } else {
@@ -43,6 +45,7 @@ class RouteTabBarViewController: UITabBarController {
         
         favoriteBarButton.action = #selector(RouteTabBarViewController.updateFavorite(_:))
         favoriteBarButton.target = self
+        favoriteBarButton.tintColor = Colors.yellow
         
         if (routeItem.selected){
             favoriteBarButton.image = UIImage(named: "icStarSmallFilled")

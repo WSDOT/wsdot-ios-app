@@ -49,7 +49,6 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
             + "Questions, comments or suggestions about this app can be e-mailed to the WSDOT Communications Office at webfeedback@wsdot.wa.gov."
     
         aboutText.isEditable = false
-    
         appVersionLabel.text = "App version: " + version
         
         styleButtons()
@@ -64,7 +63,12 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
     @IBAction func openJobsSite(_ sender: UIButton) {
         GoogleAnalytics.screenView(screenName: "/About/Jobs")
         let svc = SFSafariViewController(url: URL(string: self.jobsUrlString)!, entersReaderIfAvailable: true)
-        svc.view.tintColor = Colors.tintColor
+        if #available(iOS 10.0, *) {
+            svc.preferredControlTintColor = UIColor.white
+            svc.preferredBarTintColor = Colors.wsdotPrimary
+        } else {
+            svc.view.tintColor = Colors.tintColor
+        }
         self.present(svc, animated: true, completion: nil)
     }
     
@@ -75,6 +79,7 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
     
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
+            mail.navigationBar.tintColor = Colors.yellow
             mail.mailComposeDelegate = self
             mail.setToRecipients(["webfeedback@wsdot.wa.gov"])
             mail.setSubject("WSDOT iOS v\(version) Feedback")
@@ -91,6 +96,7 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
     
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
+            mail.navigationBar.tintColor = Colors.yellow
             mail.mailComposeDelegate = self
             mail.setToRecipients(["webfeedback@wsdot.wa.gov"])
             mail.setSubject("WSDOT iOS v\(version) Issue Report")
