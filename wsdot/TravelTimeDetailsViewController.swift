@@ -65,6 +65,9 @@ class TravelTimeDetailsViewController: UIViewController {
         }else{
             favoriteTabBarButton.image = UIImage(named: "icStarSmall")
         }
+        
+        favoriteTabBarButton.tintColor = Colors.yellow
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

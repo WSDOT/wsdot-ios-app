@@ -49,7 +49,6 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
             + "Questions, comments or suggestions about this app can be e-mailed to the WSDOT Communications Office at webfeedback@wsdot.wa.gov."
     
         aboutText.isEditable = false
-    
         appVersionLabel.text = "App version: " + version
         
         styleButtons()
@@ -80,6 +79,7 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
     
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
+            mail.navigationBar.tintColor = Colors.yellow
             mail.mailComposeDelegate = self
             mail.setToRecipients(["webfeedback@wsdot.wa.gov"])
             mail.setSubject("WSDOT iOS v\(version) Feedback")
@@ -96,6 +96,7 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
     
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
+            mail.navigationBar.tintColor = Colors.yellow
             mail.mailComposeDelegate = self
             mail.setToRecipients(["webfeedback@wsdot.wa.gov"])
             mail.setSubject("WSDOT iOS v\(version) Issue Report")

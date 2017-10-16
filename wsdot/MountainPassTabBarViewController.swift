@@ -44,6 +44,7 @@ class MountainPassTabBarViewController: UITabBarController{
         
         favoriteBarButton.action = #selector(MountainPassTabBarViewController.updateFavorite(_:))
         favoriteBarButton.target = self
+        favoriteBarButton.tintColor = Colors.yellow
         
         if (passItem.selected){
             favoriteBarButton.image = UIImage(named: "icStarSmallFilled")

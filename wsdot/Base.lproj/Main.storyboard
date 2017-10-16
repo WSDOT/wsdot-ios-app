@@ -235,7 +235,7 @@
                                                 <rect key="frame" x="8" y="104" width="180" height="33"/>
                                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="180" id="gFH-5K-Pbl"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="180" id="gFH-5K-Pbl"/>
                                                     <constraint firstAttribute="height" constant="33" id="upt-pY-jct"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -258,7 +258,7 @@
                                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="33" id="EIO-vu-ATu"/>
-                                                    <constraint firstAttribute="width" constant="180" id="Fhh-sm-Q9p"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="180" id="Fhh-sm-Q9p"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="tintColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>

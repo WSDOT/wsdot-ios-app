@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Xsm-Kt-H59">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="yR8-kj-W4F">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -69,24 +69,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ynO-95-4ZV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="382" y="-1544"/>
+            <point key="canvasLocation" x="390" y="-1287"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="MCz-Sr-Ct1">
+        <scene sceneID="kEl-Cf-zGP">
             <objects>
-                <navigationController id="Xsm-Kt-H59" sceneMemberID="viewController">
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="y0n-pd-e25">
+                <navigationController id="yR8-kj-W4F" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DNV-KK-XJI">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="03C-G7-6I3" kind="relationship" relationship="rootViewController" id="zuV-8z-Z8h"/>
+                        <segue destination="03C-G7-6I3" kind="relationship" relationship="rootViewController" id="DID-YL-WIb"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7Ee-gq-gKY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hSm-Fe-IEv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1097" y="-747"/>
+            <point key="canvasLocation" x="-1008" y="-700"/>
         </scene>
         <!--My Routes-->
         <scene sceneID="mcr-8J-X9j">
@@ -209,7 +208,7 @@ WSDOT provides traffic alert information for
                                 </constraints>
                             </scrollView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qNq-WC-ZIi">
-                                <rect key="frame" x="0.0" y="52" width="375" height="615"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RouteCell" rowHeight="43" id="DVl-Tm-cta" customClass="MyRouteCell" customModule="WSDOT" customModuleProvider="target">
@@ -324,11 +323,6 @@ WSDOT provides traffic alert information for
                             <constraint firstItem="lPD-Y6-jfx" firstAttribute="top" secondItem="YZP-tq-YsG" secondAttribute="bottom" id="Zcd-PD-JSW"/>
                             <constraint firstItem="lPD-Y6-jfx" firstAttribute="trailing" secondItem="qNq-WC-ZIi" secondAttribute="trailing" id="gP6-TE-AqY"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="qNq-WC-ZIi"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="My Routes" id="Ggt-TW-Ae7">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="qFc-vt-rPF">
@@ -358,7 +352,7 @@ WSDOT provides traffic alert information for
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XJq-ei-9aR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-238.125" y="-747.1875"/>
+            <point key="canvasLocation" x="-285" y="-699"/>
         </scene>
         <!--TrafficMap-->
         <scene sceneID="waL-74-g2b">
@@ -366,7 +360,7 @@ WSDOT provides traffic alert information for
                 <viewControllerPlaceholder storyboardName="TrafficMap" id="RQ3-1C-pwc" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IeY-Zd-HUQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-239" y="146"/>
+            <point key="canvasLocation" x="-239" y="-269"/>
         </scene>
         <!--New Route-->
         <scene sceneID="byz-t6-5c7">
@@ -499,7 +493,7 @@ WSDOT provides traffic alert information for
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NyC-CN-bjp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="921" y="-747"/>
+            <point key="canvasLocation" x="867" y="-735"/>
         </scene>
         <!--My Route Alerts View Controller-->
         <scene sceneID="Y74-f9-8m9">
@@ -615,7 +609,7 @@ WSDOT provides traffic alert information for
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hMu-YN-x9f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="382" y="211"/>
+            <point key="canvasLocation" x="328" y="-113"/>
         </scene>
         <!--HighwayAlert-->
         <scene sceneID="y5u-Gf-Za9">
@@ -623,7 +617,7 @@ WSDOT provides traffic alert information for
                 <viewControllerPlaceholder storyboardName="HighwayAlert" id="q4c-sP-Zby" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j5k-Bk-keu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="973" y="210"/>
+            <point key="canvasLocation" x="736" y="-113"/>
         </scene>
     </scenes>
     <resources>
