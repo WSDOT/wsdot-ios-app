@@ -276,9 +276,12 @@ class AmtrakCascadesStore {
         509: "Amtrak Cascades Train",
         510: "Amtrak Cascades Train",
         511: "Amtrak Cascades Train",
+        512: "Amtrak Cascades Train",
         513: "Amtrak Cascades Train",
         516: "Amtrak Cascades Train",
-        517: "Amtrak Cascades Train"
+        517: "Amtrak Cascades Train",
+        518: "Amtrak Cascades Train",
+        519: "Amtrak Cascades Train"
     ]
 
 }
