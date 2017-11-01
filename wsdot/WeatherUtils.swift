@@ -23,7 +23,7 @@ class WeatherUtils {
     
     // Returns the first sentance from input String
     static func getForecastBriefDescription(_ fullForecast: String) -> String {
-        return fullForecast.characters.split(separator: ".").map(String.init)[0]
+        return fullForecast.split(separator: ".").map(String.init)[0]
     }
     
     static fileprivate let clear = ("icClear", "icClearNight", ["fair", "sunny", "clear"])
@@ -57,7 +57,7 @@ class WeatherUtils {
     static func isNight(_ title: String) -> Bool {
         do {
             let internalExpression: NSRegularExpression = try NSRegularExpression(pattern: "night|tonight", options: .caseInsensitive)
-            let matches = internalExpression.matches(in: title, options: NSRegularExpression.MatchingOptions.withoutAnchoringBounds, range:NSMakeRange(0, title.characters.count))
+            let matches = internalExpression.matches(in: title, options: NSRegularExpression.MatchingOptions.withoutAnchoringBounds, range:NSMakeRange(0, title.count))
             if matches.count == 0 {
                 return false
             } else {

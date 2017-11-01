@@ -43,7 +43,7 @@ class TimeUtils {
     
     // formates a /Date(1468516282113-0700)/ date into NSDate
     static func parseJSONDateToNSDate(_ date: String) -> Date{
-        let parseDateString = date[date.characters.index(date.startIndex, offsetBy: 6)..<date.characters.index(date.startIndex, offsetBy: 16)]
+        let parseDateString = date[date.index(date.startIndex, offsetBy: 6)..<date.index(date.startIndex, offsetBy: 16)]
         if let date = Double(parseDateString) {
             return Date(timeIntervalSince1970: date)
         } else {
@@ -54,7 +54,7 @@ class TimeUtils {
 
     // formates a /Date(1468516282113-0700)/ date into a Int64
     static func parseJSONDate(_ date: String) -> Int64{
-        let parseDateString = date[date.characters.index(date.startIndex, offsetBy: 6)..<date.characters.index(date.startIndex, offsetBy: 16)]
+        let parseDateString = date[date.index(date.startIndex, offsetBy: 6)..<date.index(date.startIndex, offsetBy: 16)]
         if let date = Int64(parseDateString) {
             return date
         } else {
@@ -134,7 +134,7 @@ class TimeUtils {
     
     // Calculates the number of mins mentions in a string. Assumes string format XX HR XX MIN, XX MIN, XX HR
     static func getMinsFromString(_ string: String) -> Double {
-        let stringArr = string.characters.split{$0 == " "}.map(String.init)
+        let stringArr = string.split{$0 == " "}.map(String.init)
         var index = 0
         var mins = 0.0
         
