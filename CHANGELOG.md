@@ -5,20 +5,30 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 [Unreleased]: 
 
 ## [5.5.1] 2017-11-06
-* Added new Amtrak Cascades train numbers.
+
+### Added
+* New Amtrak Cascades train numbers.
 
 ## [5.5.0] 2017-10-23
+
+### Changed
 * Removed social media section. Facebook, twitter, blogger and Youtube are not in the Happening now section.
 * External links now use a SFSafariViewController to display content.
 
 ## [5.4.3] 2017-09-13
+
+### Added
 * Enabled compass button on maps.
 
 ## [5.4.2] 2017-08-30
-* Advertisement updates.
+
+### Added
 * Added HERO number and online form.
+* Advertisement updates.
 
 ## [5.4.0] 2017-08-07
+
+### Added
 * travel charts section.
 
 ## [5.3.1] 2017-06-29
