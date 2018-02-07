@@ -24,12 +24,9 @@ class HomeSplitViewController: UISplitViewController, UISplitViewControllerDeleg
 
     private var shouldCollapse = true
 
-
     override func viewDidLoad() {
         self.delegate = self
         self.preferredDisplayMode = .allVisible
-        
-        
     }
 
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
@@ -39,5 +36,4 @@ class HomeSplitViewController: UISplitViewController, UISplitViewControllerDeleg
     func setShouldCollapseFalse() {
         shouldCollapse = false
     }
-
 }

@@ -36,6 +36,9 @@ class TrafficMapSettingsViewController: UIViewController {
                         "Show JBLM",
                         "Cluster Camera Markers",
                         "Favorite Current Map Location"]
+        
+        
+        self.view.backgroundColor = ThemeManager.currentTheme().mainColor
     }
     
     override func viewWillAppear(_ animated: Bool) {

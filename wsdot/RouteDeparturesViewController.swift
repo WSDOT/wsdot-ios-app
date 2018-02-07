@@ -38,7 +38,6 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
         super.viewDidLoad()
         
         title = currentSailing.aTerminalName + " to " + currentSailing.bTterminalName
-        
         self.camerasContainerView.isHidden = true
         
         // Ad Banner
@@ -48,9 +47,7 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
         request.customTargeting = ["wsdotapp":"ferries"]
         
         bannerView.load(request)
-        
         bannerView.delegate = self
-        
     }
     
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {

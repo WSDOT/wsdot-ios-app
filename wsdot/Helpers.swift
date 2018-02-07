@@ -19,15 +19,6 @@
 //
 import UIKit
 
-struct Colors {
-
-    static let wsdotPrimary = UIColor.init(red: 0.0/255.0, green: 122.0/255.0, blue: 96.0/255.0, alpha: 1)
-    static let tintColor = UIColor.init(red: 0.0/255.0, green: 174.0/255.0, blue: 65.0/255.0, alpha: 1)
-    static let yellow = UIColor.init(red: 255.0/255.0, green: 235.0/255.0, blue: 59.0/255.0, alpha: 1)
-    static let lightGreen = UIColor.init(red: 204.0/255.0, green: 239.0/255.0, blue: 184.0/255.0, alpha: 1)
-    static let lightGrey = UIColor.init(red: 242.0/255.0, green: 242.0/255.0, blue: 242.0/255.0, alpha: 1)
-}
-
 struct AlertMessages {
 
     static func getConnectionAlert() ->  UIAlertController{
