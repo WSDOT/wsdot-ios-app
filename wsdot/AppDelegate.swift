@@ -32,11 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
-        UINavigationBar.appearance().barTintColor = Colors.wsdotPrimary
-        UINavigationBar.appearance().tintColor = UIColor.white
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-        
+    
+        let eventTheme = Theme(rawValue: EventStore.getActiveEventThemeId()) ?? .defaultTheme
+        ThemeManager.applyTheme(theme: eventTheme)
 
         migrateRealm()
         CachesStore.initCacheItem()
