@@ -76,10 +76,10 @@ class I405ViewController: UIViewController, UITextViewDelegate{
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
         let svc = SFSafariViewController(url: URL, entersReaderIfAvailable: true)
         if #available(iOS 10.0, *) {
-            svc.preferredControlTintColor = UIColor.white
-            svc.preferredBarTintColor = Colors.wsdotPrimary
+            svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor
+            svc.preferredBarTintColor = ThemeManager.currentTheme().mainColor
         } else {
-            svc.view.tintColor = Colors.tintColor
+            svc.view.tintColor = ThemeManager.currentTheme().mainColor
         }
         self.present(svc, animated: true, completion: nil)
 		return false
