@@ -130,10 +130,10 @@ class BloggerViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.deselectRow(at: indexPath, animated: true)
         let svc = SFSafariViewController(url: URL(string: posts[indexPath.row].link)!, entersReaderIfAvailable: true)
         if #available(iOS 10.0, *) {
-            svc.preferredControlTintColor = UIColor.white
-            svc.preferredBarTintColor = Colors.wsdotPrimary
+            svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor
+            svc.preferredBarTintColor = ThemeManager.currentTheme().mainColor
         } else {
-            svc.view.tintColor = Colors.tintColor
+            svc.view.tintColor = ThemeManager.currentTheme().mainColor
         }
         self.present(svc, animated: true, completion: nil)
     }

@@ -31,6 +31,8 @@ class AmtrakCascadesSelectionViewController: UIViewController, UITableViewDelega
         super.viewDidLoad()
         // Set Title
         navItem.title = titleText
+        
+        self.view.backgroundColor = ThemeManager.currentTheme().mainColor
     }
     
     @IBAction func cancelAction(_ sender: UIBarButtonItem) {

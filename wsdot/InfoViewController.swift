@@ -22,7 +22,7 @@ import UIKit
 import MessageUI
 import SafariServices
 
-class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate {
+class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate, UITextViewDelegate {
    
     @IBOutlet weak var appVersionLabel: UILabel!
     @IBOutlet weak var aboutText: UITextView!
@@ -42,6 +42,8 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
         version = bundle as! String
     
         aboutText.sizeToFit()
+        aboutText.tintColor = ThemeManager.currentTheme().mainColor
+        aboutText.delegate = self
         
         aboutText.text = "The Washington State Department of Transportation provides and supports safe, reliable and cost-effective transportation options to improve livable communities and economic vitality for people and businesses.\n\n"
             + "The WSDOT mobile app was created to make it easier for you to know the latest about Washington's transportation system. \n\n"
@@ -65,7 +67,7 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
         let svc = SFSafariViewController(url: URL(string: self.jobsUrlString)!, entersReaderIfAvailable: true)
         if #available(iOS 10.0, *) {
             svc.preferredControlTintColor = UIColor.white
-            svc.preferredBarTintColor = Colors.wsdotPrimary
+            svc.preferredBarTintColor = ThemeManager.currentTheme().mainColor
         } else {
             svc.view.tintColor = Colors.tintColor
         }
@@ -107,6 +109,23 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
         }
     }
     
+    // MARK: - UITextViewDelegate
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
+        
+        guard let scheme = URL.scheme else { return true }
+        if scheme != "http" && scheme != "https" { return true }
+        
+        let svc = SFSafariViewController(url: URL, entersReaderIfAvailable: true)
+        if #available(iOS 10.0, *) {
+            svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor
+            svc.preferredBarTintColor = ThemeManager.currentTheme().mainColor
+        } else {
+            svc.view.tintColor = ThemeManager.currentTheme().mainColor
+        }
+        self.present(svc, animated: true, completion: nil)
+        return false 
+    }
+    
     // MARK: - MFMailComposeViewControllerDelegate
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         switch result.rawValue {
@@ -131,12 +150,15 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate 
     func styleButtons() {
         feedbackButton.layer.cornerRadius = 5
         feedbackButton.clipsToBounds = true
+        feedbackButton.backgroundColor = ThemeManager.currentTheme().mainColor
         
         bugReportButton.layer.cornerRadius = 5
         bugReportButton.clipsToBounds = true
+        bugReportButton.backgroundColor = ThemeManager.currentTheme().mainColor
         
         jobsButton.layer.cornerRadius = 5
         jobsButton.clipsToBounds = true
+        jobsButton.backgroundColor = ThemeManager.currentTheme().mainColor
         
     }
 }

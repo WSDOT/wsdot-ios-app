@@ -39,6 +39,9 @@ class VesselWatchGoToViewController: UIViewController, UITableViewDataSource, UI
                         "San Juan Islands Inter-Island",
                         "Seattle",
                         "Seattle / Bainbridge"]
+        
+        
+        self.view.backgroundColor = ThemeManager.currentTheme().mainColor
     }
 
     @IBAction func closeAction(_ sender: AnyObject) {

@@ -47,7 +47,10 @@ class TrafficMapGoToViewController: UIViewController, UITableViewDataSource, UIT
                         "Vancouver",
                         "Wenatchee",
                         "Yakima"]
+    
+        self.view.backgroundColor = ThemeManager.currentTheme().mainColor
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

@@ -39,8 +39,6 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
         
         view.backgroundColor = Colors.lightGrey
         
-        UIPageControl.appearance().pageIndicatorTintColor = UIColor.gray
-        UIPageControl.appearance().currentPageIndicatorTintColor = Colors.wsdotPrimary
     }
     
     override func viewWillAppear(_ animated: Bool) {

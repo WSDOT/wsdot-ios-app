@@ -1,5 +1,5 @@
 //
-//  HomeSplitViewController.swift
+//  EventItem.swift
 //  WSDOT
 //
 //  Copyright (c) 2016 Washington State Department of Transportation
@@ -18,22 +18,23 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
 
-import UIKit
+import Foundation
 
-class HomeSplitViewController: UISplitViewController, UISplitViewControllerDelegate {
+class EventItem {
 
-    private var shouldCollapse = true
+    let title: String
+    let details: String
+    let bannerText: String
+    let themeId: Int
+    let startDate: Date
+    let endDate: Date
 
-    override func viewDidLoad() {
-        self.delegate = self
-        self.preferredDisplayMode = .allVisible
-    }
-
-    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
-        return shouldCollapse
-    }
-    
-    func setShouldCollapseFalse() {
-        shouldCollapse = false
+    init(_ title: String, _ details: String, _ bannerText: String, _ themeId: Int, _ startDate: Date, _ endDate: Date){
+        self.title = title
+        self.details = details
+        self.bannerText = bannerText
+        self.themeId = themeId
+        self.startDate = startDate
+        self.endDate = endDate
     }
 }

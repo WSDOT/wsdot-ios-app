@@ -35,8 +35,6 @@ class RouteTabBarViewController: UITabBarController {
         
         self.navigationItem.title = routeItem.routeDescription;
         
-        self.tabBar.tintColor = Colors.wsdotPrimary
-        
         if (routeItem.routeAlerts.count > 0){
             self.tabBar.items?[1].badgeValue = String(routeItem.routeAlerts.count)
         } else {
