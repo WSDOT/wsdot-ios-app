@@ -884,22 +884,6 @@
                                     <constraint firstAttribute="trailing" secondItem="raf-2b-uHp" secondAttribute="trailing" constant="10" id="eQB-gI-v2Q"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D0y-2V-duT">
-                                <rect key="frame" x="16" y="0.0" width="343" height="32"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="32" id="byX-fx-5C5"/>
-                                </constraints>
-                                <state key="normal" title="Button">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="selectAccountAction:" destination="Whq-2K-wR1" eventType="touchUpInside" id="h4z-Zv-45U"/>
-                                </connections>
-                            </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="2sB-gh-yRe">
-                                <rect key="frame" x="169" y="210" width="37" height="37"/>
-                            </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="118" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ea4-dX-pgd">
                                 <rect key="frame" x="0.0" y="61" width="375" height="396"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1061,16 +1045,34 @@
                                     <outlet property="delegate" destination="Whq-2K-wR1" id="1vz-Zl-Mmy"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D0y-2V-duT">
+                                <rect key="frame" x="16" y="0.0" width="343" height="32"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="byX-fx-5C5"/>
+                                </constraints>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectAccountAction:" destination="Whq-2K-wR1" eventType="touchUpInside" id="h4z-Zv-45U"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="2sB-gh-yRe">
+                                <rect key="frame" x="169" y="210" width="37" height="37"/>
+                                <color key="color" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ea4-dX-pgd" firstAttribute="top" secondItem="tvM-vn-PsU" secondAttribute="bottom" id="3Gf-Ze-Tt8"/>
                             <constraint firstItem="ea4-dX-pgd" firstAttribute="leading" secondItem="z2y-8B-H2y" secondAttribute="leading" id="6C5-hs-dh9"/>
+                            <constraint firstItem="2sB-gh-yRe" firstAttribute="centerY" secondItem="OXS-G6-73x" secondAttribute="centerY" id="7zt-23-3bf"/>
                             <constraint firstItem="D0y-2V-duT" firstAttribute="top" secondItem="z2y-8B-H2y" secondAttribute="top" symbolic="YES" id="D7b-K3-fT2"/>
                             <constraint firstItem="tvM-vn-PsU" firstAttribute="top" secondItem="D0y-2V-duT" secondAttribute="bottom" constant="8" symbolic="YES" id="JEM-zk-UY4"/>
                             <constraint firstItem="D0y-2V-duT" firstAttribute="leading" secondItem="OXS-G6-73x" secondAttribute="leadingMargin" id="PmD-gg-SRe"/>
                             <constraint firstItem="ea4-dX-pgd" firstAttribute="bottom" secondItem="z2y-8B-H2y" secondAttribute="bottom" id="Q7T-bJ-nUK"/>
-                            <constraint firstItem="2sB-gh-yRe" firstAttribute="centerX" secondItem="D0y-2V-duT" secondAttribute="centerX" id="aV9-eg-EtR"/>
+                            <constraint firstItem="2sB-gh-yRe" firstAttribute="centerX" secondItem="OXS-G6-73x" secondAttribute="centerX" id="Tu6-vO-nJH"/>
                             <constraint firstItem="D0y-2V-duT" firstAttribute="centerX" secondItem="ea4-dX-pgd" secondAttribute="centerX" id="cCc-0k-KQZ"/>
                             <constraint firstItem="tvM-vn-PsU" firstAttribute="leading" secondItem="ea4-dX-pgd" secondAttribute="leading" id="ckq-lu-4LM"/>
                             <constraint firstItem="tvM-vn-PsU" firstAttribute="trailing" secondItem="ea4-dX-pgd" secondAttribute="trailing" id="eFs-JR-nVz"/>
@@ -1080,7 +1082,7 @@
                         <viewLayoutGuide key="safeArea" id="z2y-8B-H2y"/>
                     </view>
                     <connections>
-                        <outlet property="activityIndicator" destination="2sB-gh-yRe" id="v4g-iw-ZNd"/>
+                        <outlet property="activityIndicator" destination="2sB-gh-yRe" id="6dV-dl-wR3"/>
                         <outlet property="dateButton" destination="D0y-2V-duT" id="9gd-cT-tvH"/>
                         <outlet property="departuresHeader" destination="tvM-vn-PsU" id="CNd-kc-6zn"/>
                         <outlet property="tableView" destination="ea4-dX-pgd" id="d2t-oj-YXQ"/>

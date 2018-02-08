@@ -78,13 +78,14 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         refreshControl.addTarget(self, action: #selector(RouteTimesViewController.refreshAction(_:)), for: .valueChanged)
         refreshControl.attributedTitle = NSAttributedString.init(string: "loading sailing spaces")
 
-        activityIndicator.color = UIColor.gray
         activityIndicator.startAnimating()
         
         tableView.addSubview(refreshControl)
         
         timer = Timer.scheduledTimer(timeInterval: TimeUtils.spacesUpdateTime, target: self, selector: #selector(RouteTimesViewController.spacesTimerTask), userInfo: nil, repeats: true)
         refresh()
+        
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -108,21 +109,22 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     
     func refresh() {
         if (currentDay == 0) && (displayedSailing != nil){
+            
             let departingId = displayedSailing!.departingTerminalId
             let arrivingId = displayedSailing!.arrivingTerminalId
-        
+            
             DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async { [weak self] in
                 SailingSpacesStore.getSailingSpacesForTerminal(departingId, arrivingId: arrivingId, completion: { data, error in
                     if let validData = data {
                         DispatchQueue.main.async { [weak self] in
-                            if let selfValue = self{
+                            if let selfValue = self {
                                 selfValue.sailingSpaces = validData
                                 selfValue.updatedAt = Date()
                                 selfValue.tableView.reloadData()
                                 selfValue.refreshControl.endRefreshing()
                                 selfValue.activityIndicator.stopAnimating()
-                                selfValue.activityIndicator.isHidden = true
                                 selfValue.scrollToNextSailing(selfValue.displayedTimes)
+                                
                             }
                         }
                     } else {
@@ -130,7 +132,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                             if let selfValue = self{
                                 selfValue.refreshControl.endRefreshing()
                                 selfValue.activityIndicator.stopAnimating()
-                                selfValue.activityIndicator.isHidden = true
                                 if (selfValue.showConnectionAlert){
                                     selfValue.showConnectionAlert = false
                                     selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
@@ -143,7 +144,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         } else {
             self.refreshControl.endRefreshing()
             self.activityIndicator.stopAnimating()
-            self.activityIndicator.isHidden = true
         }
     }
     
