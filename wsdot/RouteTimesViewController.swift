@@ -181,23 +181,23 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         if let sailingSpacesValue = sailingSpaces{
             for spaceItem: SailingSpacesItem in sailingSpacesValue {
                 if displayedTimes[indexPath.row].departingTime == spaceItem.date {
-                    cell = tableView.dequeueReusableCell(withIdentifier: departuresSailingSpacesCellIdentifier) as! DeparturesCustomCell
-                    cell.sailingSpaces.isHidden = false
-                    cell.sailingSpaces.text = String(spaceItem.remainingSpaces) + " Drive-up Spaces"
-                    cell.avaliableSpacesBar.isHidden = false
+                
+                    // Only add sailing spaces for future sailings
+                    if (displayedTimes[indexPath.row].departingTime.compare(NSDate() as Date) == .orderedDescending) {
+                
+                        cell = tableView.dequeueReusableCell(withIdentifier: departuresSailingSpacesCellIdentifier) as! DeparturesCustomCell
+                        cell.sailingSpaces.isHidden = false
+                        cell.sailingSpaces.text = String(spaceItem.remainingSpaces) + " Drive-up Spaces"
+                        cell.avaliableSpacesBar.isHidden = false
                     
-                    cell.avaliableSpacesBar.progress = spaceItem.percentAvaliable
+                        cell.avaliableSpacesBar.progress = spaceItem.percentAvaliable
                     
-                    cell.avaliableSpacesBar.transform = UIProgressView().transform
-                    cell.avaliableSpacesBar.transform = cell.avaliableSpacesBar.transform.scaledBy(x: 1, y: 3)
+                        cell.avaliableSpacesBar.transform = UIProgressView().transform
+                        cell.avaliableSpacesBar.transform = cell.avaliableSpacesBar.transform.scaledBy(x: 1, y: 3)
                     
-                    cell.spacesDisclaimer.isHidden = false
-                    cell.updated.text = "Drive-up spaces updated " + TimeUtils.timeAgoSinceDate(date: updatedAt, numericDates: true)
+                        cell.spacesDisclaimer.isHidden = false
+                        cell.updated.text = "Drive-up spaces updated " + TimeUtils.timeAgoSinceDate(date: updatedAt, numericDates: true)
                     
-                    // remove sailing spaces if time has passed
-                    if (displayedTimes[indexPath.row].departingTime.compare(NSDate() as Date) != .orderedDescending) {
-                        cell.avaliableSpacesBar.isHidden = true
-                        cell.spacesDisclaimer.isHidden = true
                     }
                 }
             }
