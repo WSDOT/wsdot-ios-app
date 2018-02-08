@@ -54,21 +54,6 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
         bannerView.isAccessibilityElement = true
         bannerView.accessibilityLabel = "advertisement banner."
     }
-
-    
-    // Remove and add hairline for nav bar
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        let img = UIImage()
-        self.navigationController?.navigationBar.shadowImage = img
-        self.navigationController?.navigationBar.setBackgroundImage(img, for: .default)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.navigationController?.navigationBar.shadowImage = nil
-        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -114,5 +99,4 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
         
         return -1
     }
-    
 }

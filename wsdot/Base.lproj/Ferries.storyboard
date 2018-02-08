@@ -848,7 +848,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="118" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ea4-dX-pgd">
                                 <rect key="frame" x="0.0" y="40" width="375" height="417"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="tvM-vn-PsU">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1002,7 +1002,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZM-k3-H9r">
-                                                    <rect key="frame" x="12" y="4" width="150" height="21"/>
+                                                    <rect key="frame" x="19" y="4" width="143" height="21"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Label">
                                                             <attributes>
@@ -1021,13 +1021,13 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="dZM-k3-H9r" firstAttribute="width" secondItem="ARh-tb-FB8" secondAttribute="width" multiplier="0.4" id="0DR-ty-ACi"/>
+                                                <constraint firstItem="dZM-k3-H9r" firstAttribute="width" secondItem="ARh-tb-FB8" secondAttribute="width" multiplier="0.4" constant="-7" id="0DR-ty-ACi"/>
                                                 <constraint firstItem="eov-4r-ShZ" firstAttribute="baseline" secondItem="dZM-k3-H9r" secondAttribute="baseline" id="58z-So-YXX"/>
                                                 <constraint firstItem="dZM-k3-H9r" firstAttribute="top" secondItem="ARh-tb-FB8" secondAttribute="top" constant="4" id="ANO-Ac-Egq"/>
                                                 <constraint firstAttribute="bottom" secondItem="JZw-CP-CKB" secondAttribute="bottom" constant="6" id="DY3-Jr-c3p"/>
                                                 <constraint firstItem="JZw-CP-CKB" firstAttribute="trailing" secondItem="ARh-tb-FB8" secondAttribute="trailingMargin" id="FXu-v5-Nsc"/>
                                                 <constraint firstItem="eov-4r-ShZ" firstAttribute="leading" secondItem="dZM-k3-H9r" secondAttribute="trailing" constant="55" id="ZLm-nz-2KN"/>
-                                                <constraint firstItem="dZM-k3-H9r" firstAttribute="leading" secondItem="ARh-tb-FB8" secondAttribute="leading" constant="12" id="Zat-PN-Pwg"/>
+                                                <constraint firstItem="dZM-k3-H9r" firstAttribute="leading" secondItem="ARh-tb-FB8" secondAttribute="leading" constant="19" id="Zat-PN-Pwg"/>
                                                 <constraint firstItem="JZw-CP-CKB" firstAttribute="top" secondItem="dZM-k3-H9r" secondAttribute="bottom" constant="4" id="exb-ys-Nx5"/>
                                                 <constraint firstItem="eov-4r-ShZ" firstAttribute="trailing" secondItem="JZw-CP-CKB" secondAttribute="trailing" id="lwx-aD-cT4"/>
                                                 <constraint firstItem="JZw-CP-CKB" firstAttribute="leading" secondItem="ARh-tb-FB8" secondAttribute="leadingMargin" constant="4" id="yfF-BO-yP9"/>
