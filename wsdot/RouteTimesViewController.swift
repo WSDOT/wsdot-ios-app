@@ -71,6 +71,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         dateButton.accessibilityHint = "double tap to change sailing day"
         
         setDisplayedSailing(0)
+        
         tableView.rowHeight = UITableViewAutomaticDimension
         
         // refresh controller
@@ -121,6 +122,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                                 selfValue.refreshControl.endRefreshing()
                                 selfValue.activityIndicator.stopAnimating()
                                 selfValue.activityIndicator.isHidden = true
+                                selfValue.scrollToNextSailing(selfValue.displayedTimes)
                             }
                         }
                     } else {
@@ -138,7 +140,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                     }
                 })
             }
-        }else{
+        } else {
             self.refreshControl.endRefreshing()
             self.activityIndicator.stopAnimating()
             self.activityIndicator.isHidden = true
@@ -154,6 +156,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         dateButton.setTitle(dayData[currentDay], for: UIControlState())
         setDisplayedSailing(currentDay)
         self.tableView.reloadData()
+        self.scrollToNextSailing(self.displayedTimes)
     }
     
     // MARK: -
@@ -190,6 +193,12 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                     
                     cell.spacesDisclaimer.isHidden = false
                     cell.updated.text = "Drive-up spaces updated " + TimeUtils.timeAgoSinceDate(date: updatedAt, numericDates: true)
+                    
+                    // remove sailing spaces if time has passed
+                    if (displayedTimes[indexPath.row].departingTime.compare(NSDate() as Date) != .orderedDescending) {
+                        cell.avaliableSpacesBar.isHidden = true
+                        cell.spacesDisclaimer.isHidden = true
+                    }
                 }
             }
         }
@@ -197,6 +206,17 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         let displayDepartingTime = TimeUtils.getTimeOfDay(displayedTimes[indexPath.row].departingTime)
         
         cell.departingTime.text = displayDepartingTime
+        
+        // turn past departures gray
+        if (displayedTimes[indexPath.row].departingTime.compare(NSDate() as Date) != .orderedDescending) {
+            cell.departingTime.textColor = UIColor.gray
+            cell.arrivingTime.textColor = UIColor.gray
+            cell.annotations.textColor = UIColor.gray
+        } else {
+            cell.departingTime.textColor = UIColor.black
+            cell.arrivingTime.textColor = UIColor.black
+            cell.annotations.textColor = UIColor.black
+        }
         
         if let arrivingTime = displayedTimes[indexPath.row].arrivingTime {
             let displayArrivingTime = TimeUtils.getTimeOfDay(arrivingTime)
@@ -273,11 +293,22 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         
         // make list of displayable times
         if displayedSailing != nil {
-            for time in displayedSailing!.times {
-                if (time.departingTime.compare(NSDate() as Date) == .orderedDescending) {
-                    displayedTimes.append(time)
-                }
+            displayedTimes = displayedSailing!.times
+        }
+    }
+    
+    // Scrolls table view to the next departure. Compares departing times with
+    // current time to find it.
+    fileprivate func scrollToNextSailing(_ sailings: List<FerryDepartureTimeItem>) {
+        
+        var index = 0
+        for time in sailings {
+            if (time.departingTime.compare(NSDate() as Date) != .orderedDescending) {
+                index = sailings.index(of: time) ?? 0
             }
         }
+        index += 1
+        let indexPath = IndexPath(row: index, section: 0)
+        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
 }
