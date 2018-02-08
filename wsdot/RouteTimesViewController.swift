@@ -293,7 +293,9 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         
         // make list of displayable times
         if displayedSailing != nil {
-            displayedTimes = displayedSailing!.times
+            for time in displayedSailing!.times {
+                displayedTimes.append(time)
+            }
         }
     }
     
