@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]: 
 
+### Added
+* Past sailing times for the current day.
+* Events banner & event theming. 
+
 ## [5.5.1] 2017-11-06
 
 ### Added
