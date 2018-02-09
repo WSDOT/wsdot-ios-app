@@ -38,18 +38,18 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KeP-V2-pdz" userLabel="Sub Title">
-                                                    <rect key="frame" x="31" y="72.5" width="312" height="17"/>
+                                                    <rect key="frame" x="23" y="73" width="337" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qnx-NK-9Y2">
-                                                    <rect key="frame" x="31" y="11" width="312" height="21"/>
+                                                    <rect key="frame" x="23" y="11" width="337" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WkA-uH-eZL">
-                                                    <rect key="frame" x="31" y="46.5" width="312" height="18"/>
+                                                    <rect key="frame" x="23" y="47" width="337" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -61,9 +61,9 @@
                                                 <constraint firstItem="WkA-uH-eZL" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Qnx-NK-9Y2" secondAttribute="bottom" constant="8" symbolic="YES" id="Nrm-7w-led"/>
                                                 <constraint firstItem="Qnx-NK-9Y2" firstAttribute="leading" secondItem="WkA-uH-eZL" secondAttribute="leading" id="PHg-pt-uf1"/>
                                                 <constraint firstItem="Qnx-NK-9Y2" firstAttribute="trailing" secondItem="WkA-uH-eZL" secondAttribute="trailing" id="Uyh-lI-1TR"/>
+                                                <constraint firstItem="Qnx-NK-9Y2" firstAttribute="trailing" secondItem="IDX-zS-yNH" secondAttribute="trailingMargin" id="W7I-YK-w5E"/>
                                                 <constraint firstItem="KeP-V2-pdz" firstAttribute="top" secondItem="WkA-uH-eZL" secondAttribute="bottom" constant="8" symbolic="YES" id="Ykm-bk-FCd"/>
-                                                <constraint firstItem="Qnx-NK-9Y2" firstAttribute="centerX" secondItem="IDX-zS-yNH" secondAttribute="centerX" id="bYp-dI-Wpz"/>
-                                                <constraint firstItem="Qnx-NK-9Y2" firstAttribute="leading" secondItem="IDX-zS-yNH" secondAttribute="leadingMargin" constant="16" id="m3L-aK-BZ8"/>
+                                                <constraint firstItem="Qnx-NK-9Y2" firstAttribute="leading" secondItem="IDX-zS-yNH" secondAttribute="leadingMargin" constant="8" id="m3L-aK-BZ8"/>
                                                 <constraint firstItem="WkA-uH-eZL" firstAttribute="trailing" secondItem="KeP-V2-pdz" secondAttribute="trailing" id="vk0-Ja-vI3"/>
                                                 <constraint firstItem="Qnx-NK-9Y2" firstAttribute="top" secondItem="IDX-zS-yNH" secondAttribute="topMargin" id="zlp-Iv-vQI"/>
                                             </constraints>
@@ -127,7 +127,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f2f-if-6x1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1269.5999999999999" y="125.4872563718141"/>
+            <point key="canvasLocation" x="1269.5" y="124.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bzE-V6-aNY">

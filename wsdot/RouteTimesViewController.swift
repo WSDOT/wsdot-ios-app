@@ -83,8 +83,9 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         tableView.addSubview(refreshControl)
         
         timer = Timer.scheduledTimer(timeInterval: TimeUtils.spacesUpdateTime, target: self, selector: #selector(RouteTimesViewController.spacesTimerTask), userInfo: nil, repeats: true)
-        refresh()
-        
+    
+        refresh(timerRefresh:  false)
+    
     
     }
     
@@ -92,22 +93,22 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView(screenName: "/Ferries/Schedules/Sailings/Departures")
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         timer?.invalidate()
     }
     
     func spacesTimerTask(_ timer:Timer) {
-        refresh()
+        refresh(timerRefresh: true)
     }
     
     func refreshAction(_ refreshControl: UIRefreshControl) {
         showConnectionAlert = true
-        refresh()
+        refresh(timerRefresh: false)
     }
     
-    func refresh() {
+    func refresh(timerRefresh: Bool) {
         if (currentDay == 0) && (displayedSailing != nil){
             
             let departingId = displayedSailing!.departingTerminalId
@@ -123,8 +124,9 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                                 selfValue.tableView.reloadData()
                                 selfValue.refreshControl.endRefreshing()
                                 selfValue.activityIndicator.stopAnimating()
-                                selfValue.scrollToNextSailing(selfValue.displayedTimes)
-                                
+                                if (!timerRefresh){
+                                    selfValue.scrollToNextSailing(selfValue.displayedTimes)
+                                }
                             }
                         }
                     } else {
@@ -302,15 +304,17 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     // Scrolls table view to the next departure. Compares departing times with
     // current time to find it.
     fileprivate func scrollToNextSailing(_ sailings: List<FerryDepartureTimeItem>) {
-        
-        var index = 0
+        let index = getNextSailingIndex(sailings)
+        let indexPath = IndexPath(row: index, section: 0)
+        tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+    }
+    
+    fileprivate func getNextSailingIndex(_ sailings: List<FerryDepartureTimeItem>) -> Int {
         for time in sailings {
-            if (time.departingTime.compare(NSDate() as Date) != .orderedDescending) {
-                index = sailings.index(of: time) ?? 0
+            if (time.departingTime.compare(Date()) == .orderedDescending) {
+                return sailings.index(of: time) ?? 0
             }
         }
-        index += 1
-        let indexPath = IndexPath(row: index, section: 0)
-        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        return 0
     }
 }
