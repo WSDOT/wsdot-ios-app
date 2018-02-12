@@ -166,18 +166,20 @@ class MyRouteStore {
     static func selectNearbyTravelTimes(forRoute: MyRouteItem) -> Bool {
         let realm = try! Realm()
         
-        let travelTimes = realm.objects(TravelTimeItem.self)
-        do{
+        let travelTimeGroups = realm.objects(TravelTimeItemGroup.self)
+        do {
             try realm.write {
-                for time in travelTimes {
-                    if routeIsNearbyBoth(startLocation: CLLocation(latitude: time.startLatitude, longitude: time.startLongitude),
+                for timeGroup in travelTimeGroups {
+                    for time in timeGroup.routes {
+                        if routeIsNearbyBoth(startLocation: CLLocation(latitude: time.startLatitude, longitude: time.startLongitude),
                                             endLocation: CLLocation(latitude: time.endLatitude, longitude: time.endLongitude),
                                             myRoute: forRoute){
-                        time.selected = true
+                            timeGroup.selected = true
+                        }
                     }
                 }
             }
-        }catch {
+        } catch {
             return false
         }
         return true

@@ -49,6 +49,7 @@
 		9A2F4A681D528A5100911AF5 /* FerryRealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A671D528A5100911AF5 /* FerryRealmStore.swift */; };
 		9A2F4A6E1D539C1600911AF5 /* CacheItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A6D1D539C1600911AF5 /* CacheItem.swift */; };
 		9A2F4A701D53AA5C00911AF5 /* CameraRealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A6F1D53AA5C00911AF5 /* CameraRealmStore.swift */; };
+		9A46C3B82034F5C1000F03C5 /* TravelTimeItemGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A46C3B72034F5C1000F03C5 /* TravelTimeItemGroup.swift */; };
 		9A50179C1D258F2000B9C49E /* RoutesCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */; };
 		9A6FBCC51D6B4C6500CDCE16 /* TravelerInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCC41D6B4C6500CDCE16 /* TravelerInfoViewController.swift */; };
 		9A6FBCCF1D6B520900CDCE16 /* RestAreaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCCE1D6B520900CDCE16 /* RestAreaItem.swift */; };
@@ -259,6 +260,7 @@
 		9A2F4A671D528A5100911AF5 /* FerryRealmStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerryRealmStore.swift; sourceTree = "<group>"; };
 		9A2F4A6D1D539C1600911AF5 /* CacheItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheItem.swift; sourceTree = "<group>"; };
 		9A2F4A6F1D53AA5C00911AF5 /* CameraRealmStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraRealmStore.swift; sourceTree = "<group>"; };
+		9A46C3B72034F5C1000F03C5 /* TravelTimeItemGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelTimeItemGroup.swift; sourceTree = "<group>"; };
 		9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutesCustomCell.swift; sourceTree = "<group>"; };
 		9A6FBCC41D6B4C6500CDCE16 /* TravelerInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelerInfoViewController.swift; sourceTree = "<group>"; };
 		9A6FBCCE1D6B520900CDCE16 /* RestAreaItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAreaItem.swift; sourceTree = "<group>"; };
@@ -1264,6 +1266,7 @@
 			children = (
 				9A6FBD0C1D6CBC4E00CDCE16 /* TravelTimesRealmStore.swift */,
 				9A6FBD0A1D6CBC3A00CDCE16 /* TravelTimeItem.swift */,
+				9A46C3B72034F5C1000F03C5 /* TravelTimeItemGroup.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1793,6 +1796,7 @@
 				9AFDEA781E410BF9008DD51E /* MyRouteAlertsViewController.swift in Sources */,
 				9ADEAE4D1D270CC800BA7DD4 /* Helpers.swift in Sources */,
 				9AEF4D9A1D772F9C003ECA34 /* NewsItem.swift in Sources */,
+				9A46C3B82034F5C1000F03C5 /* TravelTimeItemGroup.swift in Sources */,
 				9A0616E61D67838F00126520 /* TrafficMapGoToViewController.swift in Sources */,
 				9A6FBD311D6E3E9100CDCE16 /* MountainPassesViewController.swift in Sources */,
 				9A6FBCD41D6B54E300CDCE16 /* RestAreaStore.swift in Sources */,

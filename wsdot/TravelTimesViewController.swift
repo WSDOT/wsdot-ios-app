@@ -26,8 +26,8 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
     
     let segueTravelTimesViewController = "TravelTimesViewController"
     
-    var travelTimes = [TravelTimeItem]()
-    var filtered = [TravelTimeItem]()
+    var travelTimeGroups = [TravelTimeItemGroup]()
+    var filtered = [TravelTimeItemGroup]()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -56,7 +56,7 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
         
         showOverlay(self.view)
         
-        self.travelTimes = TravelTimesStore.getAllTravelTimes()
+        self.travelTimeGroups = TravelTimesStore.getAllTravelTimeGroups()
         self.tableView.reloadData()
         
         refresh(false)
@@ -79,8 +79,8 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
                     // Reload tableview on UI thread
                     DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
-                            selfValue.travelTimes = TravelTimesStore.getAllTravelTimes()
-                            selfValue.filtered = selfValue.travelTimes
+                            selfValue.travelTimeGroups = TravelTimesStore.getAllTravelTimeGroups()
+                            selfValue.filtered = selfValue.travelTimeGroups
                             selfValue.tableView.reloadData()
                             selfValue.refreshControl.endRefreshing()
                             selfValue.hideOverlayView()
@@ -136,68 +136,139 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! TravelTimeCell
-
-        let travelTime = filtered[indexPath.row]
+        let travelTimeGroup = filtered[indexPath.row]
         
-        cell.routeLabel.text = travelTime.title
-        
-        cell.subtitleLabel.text = String(travelTime.distance) + " miles / " + String(travelTime.averageTime) + " min"
+        cell.routeLabel.text = travelTimeGroup.title
         
         do {
-            let updated = try TimeUtils.timeAgoSinceDate(date: TimeUtils.formatTimeStamp(travelTime.updated), numericDates: false)
+            let updated = try TimeUtils.timeAgoSinceDate(date: TimeUtils.formatTimeStamp(travelTimeGroup.updated), numericDates: false)
             cell.updatedLabel.text = updated
-        } catch TimeUtils.TimeUtilsError.invalidTimeString {
-            cell.updatedLabel.text = "N/A"
         } catch {
             cell.updatedLabel.text = "N/A"
         }
-        
-        if travelTime.currentTime == 0{
-            cell.currentTimeLabel.text = "N/A"
-        } else {
-            cell.currentTimeLabel.text = String(travelTime.currentTime) + " min"
-        }
-        
-        if (travelTime.averageTime > travelTime.currentTime){
-            cell.currentTimeLabel.textColor = Colors.tintColor
-        } else if (travelTime.averageTime < travelTime.currentTime){
-            cell.currentTimeLabel.textColor = UIColor.red
-        } else {
-            cell.currentTimeLabel.textColor = UIColor.darkText
-        }
 
-        cell.sizeToFit()
+        // set up favorite button
+        cell.favoriteButton.setImage(travelTimeGroup.selected ? UIImage(named: "icStarSmallFilled") : UIImage(named: "icStarSmall"), for: .normal)
+        cell.favoriteButton.tintColor = ThemeManager.currentTheme().mainColor
+
+        cell.favoriteButton.tag = indexPath.row
+        cell.favoriteButton.addTarget(self, action: #selector(favoriteAction(_:)), for: .touchUpInside)
+
+        var lastLine: UIView? = nil
         
+        
+        for route in travelTimeGroup.routes {
+        
+            let line = UIView()
+            line.backgroundColor = .lightGray
+            line.translatesAutoresizingMaskIntoConstraints = false
+            cell.contentView.addSubview(line)
+            cell.lines.append(line)
+            let lineRightPadding: CGFloat = 24.0
+        
+            let viaLabel = UILabel()
+            viaLabel.text = "Via \(route.viaText)"
+            viaLabel.translatesAutoresizingMaskIntoConstraints = false
+            viaLabel.numberOfLines = 0
+            cell.contentView.addSubview(viaLabel)
+            cell.dynamicLabels.append(viaLabel)
+        
+            let distanceLabel = UILabel()
+            distanceLabel.text = "\(route.distance) miles / \(route.averageTime) min"
+            distanceLabel.font = UIFont.systemFont(ofSize: 15)
+            distanceLabel.translatesAutoresizingMaskIntoConstraints = false
+            cell.contentView.addSubview(distanceLabel)
+            cell.dynamicLabels.append(distanceLabel)
+        
+            let timeLabel = UILabel()
+            
+            if (route.status == "open"){
+                timeLabel.text = "\(route.currentTime) min"                
+                distanceLabel.isHidden = false
+            } else {
+                distanceLabel.isHidden = true
+                timeLabel.text = route.status
+            }
+            
+            if (route.averageTime > route.currentTime){
+                timeLabel.textColor = Colors.tintColor
+            } else if (route.averageTime < route.currentTime){
+                timeLabel.textColor = UIColor.red
+            } else {
+                timeLabel.textColor = UIColor.darkText
+            }
+            
+            timeLabel.font = UIFont.systemFont(ofSize: 20)
+            timeLabel.translatesAutoresizingMaskIntoConstraints = false
+            cell.contentView.addSubview(timeLabel)
+            cell.dynamicLabels.append(timeLabel)
+        
+            // Align labels with title
+            let leadingSpaceConstraintForLine = NSLayoutConstraint(item: line, attribute: .leading, relatedBy: .equal, toItem: cell.routeLabel, attribute: .leading, multiplier: 1, constant: 0);
+            cell.contentView.addConstraint(leadingSpaceConstraintForLine)
+            
+            let trailingSpaceConstraintForLine = NSLayoutConstraint(item: line, attribute: .trailing, relatedBy: .equal, toItem: cell.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8);
+            cell.contentView.addConstraint(trailingSpaceConstraintForLine)
+            
+            let leadingSpaceConstraintForViaLabel = NSLayoutConstraint(item: viaLabel, attribute: .leading, relatedBy: .equal, toItem: cell.routeLabel, attribute: .leading, multiplier: 1, constant: 0);
+            cell.contentView.addConstraint(leadingSpaceConstraintForViaLabel)
+        
+            let trailingConstraintForViaLabel = NSLayoutConstraint(item: viaLabel, attribute: .trailing, relatedBy: .equal, toItem: cell.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8)
+            cell.contentView.addConstraint(trailingConstraintForViaLabel)
+        
+            let leadingSpaceConstraintForDistanceLabel = NSLayoutConstraint(item: distanceLabel, attribute: .leading, relatedBy: .equal, toItem: cell.routeLabel, attribute: .leading, multiplier: 1, constant: 0);
+            cell.contentView.addConstraint(leadingSpaceConstraintForDistanceLabel)
+        
+            // set top constraints
+            let topSpaceConstraintForViaLabel = NSLayoutConstraint(item: viaLabel, attribute: .top, relatedBy: .equal, toItem: (lastLine == nil ? cell.routeLabel : lastLine), attribute: .bottom, multiplier: 1, constant: 8);
+            cell.contentView.addConstraint(topSpaceConstraintForViaLabel)
+        
+            let topSpaceConstraintForDistanceLabel = NSLayoutConstraint(item: distanceLabel, attribute: .top, relatedBy: .equal, toItem: viaLabel, attribute: .bottom, multiplier: 1, constant: 8);
+            cell.contentView.addConstraint(topSpaceConstraintForDistanceLabel)
+       
+            let topSpaceConstraintForLine = NSLayoutConstraint(item: line, attribute: .top, relatedBy: .equal, toItem: distanceLabel, attribute: .bottom, multiplier: 1, constant: 8);
+            cell.contentView.addConstraint(topSpaceConstraintForLine)
+       
+            // Set travel time constraints
+            let centerYConstraintForTimeLabel = NSLayoutConstraint(item: timeLabel, attribute: .bottom, relatedBy: .equal, toItem: distanceLabel, attribute: .bottom, multiplier: 1, constant: 0)
+            cell.contentView.addConstraint(centerYConstraintForTimeLabel)
+        
+            let trailingConstraintForTimeLabel = NSLayoutConstraint(item: timeLabel, attribute: .trailing, relatedBy: .equal, toItem: cell.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8)
+            cell.contentView.addConstraint(trailingConstraintForTimeLabel)
+                     // Set line contraints
+            let widthConstraintForLine = NSLayoutConstraint(item: line, attribute: .width, relatedBy: .equal, toItem: cell.contentView, attribute: .width, multiplier: 1, constant: lineRightPadding.negated())
+            let heightConstraintForLine = NSLayoutConstraint(item: line, attribute: .height, relatedBy: .equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 1)
+            cell.contentView.addConstraint(widthConstraintForLine)
+            cell.contentView.addConstraint(heightConstraintForLine)
+        
+            lastLine = line
+        }
+        
+        if (lastLine != nil){
+            let bottomSpaceConstraint = NSLayoutConstraint(item: lastLine!, attribute: .bottom, relatedBy: .equal, toItem: cell.updatedLabel, attribute: .top, multiplier: 1, constant: -8)
+            cell.contentView.addConstraint(bottomSpaceConstraint)
+        }
+        
+        cell.sizeToFit()
         return cell
     }
-    
 
-    // MARK: Table View Delegate Methods
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: segueTravelTimesViewController, sender: nil)
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
     
     // MARK: UISearchBar Delegate Methods
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {
-            filtered = searchText.isEmpty ? travelTimes : travelTimes.filter({(travelTime: TravelTimeItem) -> Bool in
-                return travelTime.title.range(of: searchText, options: .caseInsensitive) != nil
+            filtered = searchText.isEmpty ? travelTimeGroups : travelTimeGroups.filter({(travelTimeGroup: TravelTimeItemGroup) -> Bool in
+                return travelTimeGroup.title.range(of: searchText, options: .caseInsensitive) != nil
             })
             tableView.reloadData()
         }
     }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == segueTravelTimesViewController {
-            if let indexPath = tableView.indexPathForSelectedRow {
-                let travelTimeItem = self.filtered[indexPath.row] as TravelTimeItem
-                let destinationViewController = segue.destination as! TravelTimeDetailsViewController
-                destinationViewController.travelTime = travelTimeItem
-            }
-        }
+    
+    // MARK: Favorite action
+    func favoriteAction(_ sender: UIButton) {
+        let index = sender.tag
+        let travelTimeGroup = filtered[index]
+        TravelTimesStore.updateFavorite(travelTimeGroup, newValue: !travelTimeGroup.selected)
+        tableView.reloadData()
     }
 }
-
-
-    

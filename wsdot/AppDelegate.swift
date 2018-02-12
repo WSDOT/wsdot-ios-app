@@ -90,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func migrateRealm(){
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
-            schemaVersion: 2,
+            schemaVersion: 3,
             
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
@@ -118,6 +118,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         newObject!["startLongitude"] = 0.0
                         newObject!["endLongitude"] = 0.0
                     }
+                }
+                
+                if (oldSchemaVersion < 3) {
+                   migration.deleteData(forType: TravelTimeItemGroup.className())
+                   migration.deleteData(forType: TravelTimeItem.className())
+                   migration.deleteData(forType: CacheItem.className())
                 }
         })
     }

@@ -43,7 +43,7 @@ class FavoritesHomeViewController: UIViewController {
     let mountainPassCellIdentifier = "MountainPassCell"
 
     var cameras = [CameraItem]()
-    var travelTimes = [TravelTimeItem]()
+    var travelTimeGroups = [TravelTimeItemGroup]()
     var ferrySchedules = [FerryScheduleItem]()
     var mountainPasses = [MountainPassItem]()
     var savedLocations = [FavoriteLocationItem]()
@@ -95,7 +95,7 @@ class FavoritesHomeViewController: UIViewController {
         case .camera:
             return cameras.count
         case .travelTime:
-            return travelTimes.count
+            return travelTimeGroups.count
         case .route:
             return myRoutes.count
         case .ferrySchedule:
@@ -125,7 +125,7 @@ class FavoritesHomeViewController: UIViewController {
         case .camera:
             return cameras.count > 0 ? MyRouteStore.sectionTitles[FavoritesContent.camera.rawValue] : ""
         case .travelTime:
-            return travelTimes.count > 0 ? MyRouteStore.sectionTitles[FavoritesContent.travelTime.rawValue] : ""
+            return travelTimeGroups.count > 0 ? MyRouteStore.sectionTitles[FavoritesContent.travelTime.rawValue] : ""
         case .ferrySchedule:
             return ferrySchedules.count > 0 ? MyRouteStore.sectionTitles[FavoritesContent.ferrySchedule.rawValue] : ""
         case .mountainPass:
@@ -182,7 +182,7 @@ extension FavoritesHomeViewController {
     
         // Check if we have any favorites to show already.
         cameras = CamerasStore.getFavoriteCameras()
-        travelTimes = TravelTimesStore.findFavoriteTimes()
+        travelTimeGroups = TravelTimesStore.findFavoriteTimes()
         ferrySchedules = FerryRealmStore.findFavoriteSchedules()
         mountainPasses = MountainPassStore.findFavoritePasses()
         savedLocations = FavoriteLocationStore.getFavorites()
@@ -212,7 +212,7 @@ extension FavoritesHomeViewController {
         if (self.cameras.count > 0){
             self.requestCamerasUpdate(force, serviceGroup: serviceGroup)
         }
-        if (self.travelTimes.count > 0) {
+        if (self.travelTimeGroups.count > 0) {
             self.requestTravelTimesUpdate(force, serviceGroup: serviceGroup)
         }
         if (self.mountainPasses.count > 0){
@@ -221,7 +221,7 @@ extension FavoritesHomeViewController {
  
         serviceGroup.notify(queue: DispatchQueue.main) {
             self.cameras = CamerasStore.getFavoriteCameras()
-            self.travelTimes = TravelTimesStore.findFavoriteTimes()
+            self.travelTimeGroups = TravelTimesStore.findFavoriteTimes()
             self.ferrySchedules = FerryRealmStore.findFavoriteSchedules()
             self.mountainPasses = MountainPassStore.findFavoritePasses()
             self.savedLocations = FavoriteLocationStore.getFavorites()
@@ -274,7 +274,7 @@ extension FavoritesHomeViewController {
     func tableEmpty() -> Bool {
         return
             (self.cameras.count == 0) &&
-            (self.travelTimes.count == 0) &&
+            (self.travelTimeGroups.count == 0) &&
             (self.ferrySchedules.count == 0) &&
             (self.mountainPasses.count == 0) &&
             (self.savedLocations.count == 0) &&
@@ -399,10 +399,10 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
         
             let travelTimeCell = tableView.dequeueReusableCell(withIdentifier: travelTimesCellIdentifier) as! TravelTimeCell
             
-            let travelTime = travelTimes[indexPath.row]
+            let travelTime = travelTimeGroups[indexPath.row]
             
             travelTimeCell.routeLabel.text = travelTime.title
-            
+            /*
             travelTimeCell.subtitleLabel.text = String(travelTime.distance) + " miles / " + String(travelTime.averageTime) + " min"
 
             do {
@@ -423,7 +423,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             } else {
                 travelTimeCell.currentTimeLabel.textColor = UIColor.darkText
             }
-            
+            */
             travelTimeCell.sizeToFit()
             
             return travelTimeCell
@@ -575,8 +575,8 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
                 break
             case .travelTime:
-                TravelTimesStore.updateFavorite(self.travelTimes[indexPath.row], newValue: false)
-                self.travelTimes.remove(at: indexPath.row)
+                TravelTimesStore.updateFavorite(self.travelTimeGroups[indexPath.row], newValue: false)
+                self.travelTimeGroups.remove(at: indexPath.row)
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
                 break
             case .ferrySchedule:
@@ -670,9 +670,10 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
         }
         if segue.identifier == segueTravelTimeViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
-                let travelTimeItem = self.travelTimes[indexPath.row] as TravelTimeItem
+                let travelTimeItem = self.travelTimeGroups[indexPath.row] as TravelTimeItemGroup
                 let destinationViewController = segue.destination as! TravelTimeDetailsViewController
-                destinationViewController.travelTime = travelTimeItem
+                // TODO
+                //destinationViewController.travelTime = travelTimeItem
             }
         }
         if segue.identifier == segueRouteDeparturesViewController {

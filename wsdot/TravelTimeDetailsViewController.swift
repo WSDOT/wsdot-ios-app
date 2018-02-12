@@ -28,10 +28,11 @@ class TravelTimeDetailsViewController: UIViewController {
     @IBOutlet weak var updated: UILabel!
     @IBOutlet weak var currentTime: UILabel!
 
-    var travelTime = TravelTimeItem()
+    var travelTimeGroup = TravelTimeItemGroup()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        /*
         title = travelTime.title
 
         routeTitle.text = travelTime.title
@@ -67,7 +68,7 @@ class TravelTimeDetailsViewController: UIViewController {
         }
         
         favoriteTabBarButton.tintColor = Colors.yellow
-        
+        */
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,6 +77,7 @@ class TravelTimeDetailsViewController: UIViewController {
     }
     
     @IBAction func updateFavorite(_ sender: UIBarButtonItem) {
+    /*
         if (travelTime.selected){
             TravelTimesStore.updateFavorite(travelTime, newValue: false)
             favoriteTabBarButton.image = UIImage(named: "icStarSmall")
@@ -83,5 +85,6 @@ class TravelTimeDetailsViewController: UIViewController {
             TravelTimesStore.updateFavorite(travelTime, newValue: true)
             favoriteTabBarButton.image = UIImage(named: "icStarSmallFilled")
         }
+        */
     }
 }
