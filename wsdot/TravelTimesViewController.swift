@@ -268,7 +268,13 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
     func favoriteAction(_ sender: UIButton) {
         let index = sender.tag
         let travelTimeGroup = filtered[index]
-        TravelTimesStore.updateFavorite(travelTimeGroup, newValue: !travelTimeGroup.selected)
-        tableView.reloadData()
+        
+        if (travelTimeGroup.selected){
+            TravelTimesStore.updateFavorite(travelTimeGroup, newValue: false)
+            sender.setImage(UIImage(named: "icStarSmall"), for: .normal)
+        }else {
+            TravelTimesStore.updateFavorite(travelTimeGroup, newValue: true)
+            sender.setImage(UIImage(named: "icStarSmallFilled"), for: .normal)
+        }
     }
 }
