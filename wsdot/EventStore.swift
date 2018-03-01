@@ -38,7 +38,7 @@ class EventStore {
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
         sessionManager = Alamofire.SessionManager(configuration: configuration)
 
-        sessionManager!.request("http://data.wsdot.wa.gov/mobile/EventStatus.js").validate().responseJSON { response in
+        sessionManager!.request("http://data.wsdot.wa.gov/mobile/EventStatusTEST.js").validate().responseJSON { response in
             switch response.result {
             case .success:
                 if let value = response.result.value {

@@ -22,8 +22,9 @@ import UIKit
 class TravelTimeCell: UITableViewCell {
     
     @IBOutlet weak var routeLabel: UILabel!
-    @IBOutlet weak var subtitleLabel: UILabel!
-    @IBOutlet weak var currentTimeLabel: UILabel!
-    @IBOutlet weak var updatedLabel: UILabel!
+    @IBOutlet weak var favoriteButton: UIButton!
     
+    var dynamicLabels = [UILabel]()
+    var dynamicLines = [UIView]()
+
 }

@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]: 
 
+### Changed
+* New travel times look. Travel times are now grouped by start and end locations.
+
 ## [5.5.0] 2017-02
 
 ### Added

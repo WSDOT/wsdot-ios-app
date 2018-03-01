@@ -33,7 +33,6 @@ class FavoritesHomeViewController: UIViewController {
     let segueTrafficMapViewController = "TrafficMapViewController"
     let segueRouteDeparturesViewController = "SailingsViewController"
     let segueCameraViewController = "CameraViewController"
-    let segueTravelTimeViewController = "TravelTimeViewController"
     let segueMountainPassDetailsViewController = "MountianPassDetailsViewController"
 
     let textCellIdentifier = "TextCell"
@@ -43,7 +42,7 @@ class FavoritesHomeViewController: UIViewController {
     let mountainPassCellIdentifier = "MountainPassCell"
 
     var cameras = [CameraItem]()
-    var travelTimes = [TravelTimeItem]()
+    var travelTimeGroups = [TravelTimeItemGroup]()
     var ferrySchedules = [FerryScheduleItem]()
     var mountainPasses = [MountainPassItem]()
     var savedLocations = [FavoriteLocationItem]()
@@ -95,7 +94,7 @@ class FavoritesHomeViewController: UIViewController {
         case .camera:
             return cameras.count
         case .travelTime:
-            return travelTimes.count
+            return travelTimeGroups.count
         case .route:
             return myRoutes.count
         case .ferrySchedule:
@@ -125,7 +124,7 @@ class FavoritesHomeViewController: UIViewController {
         case .camera:
             return cameras.count > 0 ? MyRouteStore.sectionTitles[FavoritesContent.camera.rawValue] : ""
         case .travelTime:
-            return travelTimes.count > 0 ? MyRouteStore.sectionTitles[FavoritesContent.travelTime.rawValue] : ""
+            return travelTimeGroups.count > 0 ? MyRouteStore.sectionTitles[FavoritesContent.travelTime.rawValue] : ""
         case .ferrySchedule:
             return ferrySchedules.count > 0 ? MyRouteStore.sectionTitles[FavoritesContent.ferrySchedule.rawValue] : ""
         case .mountainPass:
@@ -182,7 +181,7 @@ extension FavoritesHomeViewController {
     
         // Check if we have any favorites to show already.
         cameras = CamerasStore.getFavoriteCameras()
-        travelTimes = TravelTimesStore.findFavoriteTimes()
+        travelTimeGroups = TravelTimesStore.findFavoriteTimes()
         ferrySchedules = FerryRealmStore.findFavoriteSchedules()
         mountainPasses = MountainPassStore.findFavoritePasses()
         savedLocations = FavoriteLocationStore.getFavorites()
@@ -212,7 +211,7 @@ extension FavoritesHomeViewController {
         if (self.cameras.count > 0){
             self.requestCamerasUpdate(force, serviceGroup: serviceGroup)
         }
-        if (self.travelTimes.count > 0) {
+        if (self.travelTimeGroups.count > 0) {
             self.requestTravelTimesUpdate(force, serviceGroup: serviceGroup)
         }
         if (self.mountainPasses.count > 0){
@@ -221,7 +220,7 @@ extension FavoritesHomeViewController {
  
         serviceGroup.notify(queue: DispatchQueue.main) {
             self.cameras = CamerasStore.getFavoriteCameras()
-            self.travelTimes = TravelTimesStore.findFavoriteTimes()
+            self.travelTimeGroups = TravelTimesStore.findFavoriteTimes()
             self.ferrySchedules = FerryRealmStore.findFavoriteSchedules()
             self.mountainPasses = MountainPassStore.findFavoritePasses()
             self.savedLocations = FavoriteLocationStore.getFavorites()
@@ -274,7 +273,7 @@ extension FavoritesHomeViewController {
     func tableEmpty() -> Bool {
         return
             (self.cameras.count == 0) &&
-            (self.travelTimes.count == 0) &&
+            (self.travelTimeGroups.count == 0) &&
             (self.ferrySchedules.count == 0) &&
             (self.mountainPasses.count == 0) &&
             (self.savedLocations.count == 0) &&
@@ -399,31 +398,143 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
         
             let travelTimeCell = tableView.dequeueReusableCell(withIdentifier: travelTimesCellIdentifier) as! TravelTimeCell
             
-            let travelTime = travelTimes[indexPath.row]
+            let travelTimeGroup = travelTimeGroups[indexPath.row]
             
-            travelTimeCell.routeLabel.text = travelTime.title
+            // Remove any labels & lines carried over from being recycled.
+            for label in travelTimeCell.dynamicLabels {
+                label.removeFromSuperview()
+            }
+            travelTimeCell.dynamicLabels.removeAll()
+            for line in travelTimeCell.dynamicLines {
+                line.removeFromSuperview()
+            }
+            travelTimeCell.dynamicLines.removeAll()
             
-            travelTimeCell.subtitleLabel.text = String(travelTime.distance) + " miles / " + String(travelTime.averageTime) + " min"
+            travelTimeCell.routeLabel.text = travelTimeGroup.title
 
-            do {
-                let updated = try TimeUtils.timeAgoSinceDate(date: TimeUtils.formatTimeStamp(travelTime.updated), numericDates: false)
-                travelTimeCell.updatedLabel.text = updated
-            } catch TimeUtils.TimeUtilsError.invalidTimeString {
-                travelTimeCell.updatedLabel.text = "N/A"
-            } catch {
-                travelTimeCell.updatedLabel.text = "N/A"
+            // set up favorite button
+            travelTimeCell.favoriteButton.isHidden = true
+            
+            travelTimeCell.accessoryType = .none
+            travelTimeCell.isUserInteractionEnabled = false
+
+            var lastLine: UIView? = nil
+        
+            for route in travelTimeGroup.routes {
+            
+                let line = UIView()
+                line.backgroundColor = .lightGray
+                line.translatesAutoresizingMaskIntoConstraints = false
+                travelTimeCell.contentView.addSubview(line)
+                travelTimeCell.dynamicLines.append(line)
+                let lineRightPadding: CGFloat = 24.0
+        
+                let viaLabel = UILabel()
+                viaLabel.text = "Via \(route.viaText)"
+                viaLabel.translatesAutoresizingMaskIntoConstraints = false
+                viaLabel.numberOfLines = 0
+                travelTimeCell.contentView.addSubview(viaLabel)
+                travelTimeCell.dynamicLabels.append(viaLabel)
+        
+                let distanceLabel = UILabel()
+                distanceLabel.text = "\(route.distance) miles / \(route.averageTime) min"
+                distanceLabel.font = UIFont.systemFont(ofSize: 15)
+                distanceLabel.translatesAutoresizingMaskIntoConstraints = false
+                travelTimeCell.contentView.addSubview(distanceLabel)
+                travelTimeCell.dynamicLabels.append(distanceLabel)
+            
+                let updatedLabel = UILabel()
+                do {
+                    let updated = try TimeUtils.timeAgoSinceDate(date: TimeUtils.formatTimeStamp(route.updated, dateFormat: "yyyy-MM-dd HH:mm Z"), numericDates: true)
+                    updatedLabel.text = updated
+                } catch {
+                    updatedLabel.text = "N/A"
+                }
+            
+                updatedLabel.font = UIFont.systemFont(ofSize: 15)
+                updatedLabel.textColor = UIColor.lightGray
+                updatedLabel.translatesAutoresizingMaskIntoConstraints = false
+                travelTimeCell.contentView.addSubview(updatedLabel)
+                travelTimeCell.dynamicLabels.append(updatedLabel)
+        
+                let timeLabel = UILabel()
+            
+                if (route.status == "open"){
+                    timeLabel.text = "\(route.currentTime) min"
+                    distanceLabel.isHidden = false
+                } else {
+                    distanceLabel.isHidden = true
+                    timeLabel.text = route.status
+                }
+            
+                if (route.averageTime > route.currentTime){
+                    timeLabel.textColor = Colors.tintColor
+                } else if (route.averageTime < route.currentTime){
+                    timeLabel.textColor = UIColor.red
+                } else {
+                    timeLabel.textColor = UIColor.darkText
+                }
+            
+                timeLabel.font = UIFont.systemFont(ofSize: 20)
+                timeLabel.translatesAutoresizingMaskIntoConstraints = false
+                travelTimeCell.contentView.addSubview(timeLabel)
+                travelTimeCell.dynamicLabels.append(timeLabel)
+        
+                // Align labels with title
+                let leadingSpaceConstraintForLine = NSLayoutConstraint(item: line, attribute: .leading, relatedBy: .equal, toItem: travelTimeCell.routeLabel, attribute: .leading, multiplier: 1, constant: 0);
+                travelTimeCell.contentView.addConstraint(leadingSpaceConstraintForLine)
+            
+                let trailingSpaceConstraintForLine = NSLayoutConstraint(item: line, attribute: .trailing, relatedBy: .equal, toItem: travelTimeCell.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8);
+                travelTimeCell.contentView.addConstraint(trailingSpaceConstraintForLine)
+            
+                let leadingSpaceConstraintForViaLabel = NSLayoutConstraint(item: viaLabel, attribute: .leading, relatedBy: .equal, toItem: travelTimeCell.routeLabel, attribute: .leading, multiplier: 1, constant: 0);
+                travelTimeCell.contentView.addConstraint(leadingSpaceConstraintForViaLabel)
+        
+                let trailingConstraintForViaLabel = NSLayoutConstraint(item: viaLabel, attribute: .trailing, relatedBy: .equal, toItem: travelTimeCell.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8)
+                travelTimeCell.contentView.addConstraint(trailingConstraintForViaLabel)
+        
+                let leadingSpaceConstraintForDistanceLabel = NSLayoutConstraint(item: distanceLabel, attribute: .leading, relatedBy: .equal, toItem: travelTimeCell.routeLabel, attribute: .leading, multiplier: 1, constant: 0)
+                travelTimeCell.contentView.addConstraint(leadingSpaceConstraintForDistanceLabel)
+            
+                let leadingSpaceConstraintForUpdatedLabel = NSLayoutConstraint(item: updatedLabel, attribute: .leading, relatedBy: .equal, toItem: travelTimeCell.routeLabel, attribute: .leading, multiplier: 1, constant: 0)
+                travelTimeCell.contentView.addConstraint(leadingSpaceConstraintForUpdatedLabel)
+        
+                // set top constraints
+                let topSpaceConstraintForViaLabel = NSLayoutConstraint(item: viaLabel, attribute: .top, relatedBy: .equal, toItem: (lastLine == nil ? travelTimeCell.routeLabel : lastLine), attribute: .bottom, multiplier: 1, constant: 8);
+                travelTimeCell.contentView.addConstraint(topSpaceConstraintForViaLabel)
+        
+                let topSpaceConstraintForDistanceLabel = NSLayoutConstraint(item: distanceLabel, attribute: .top, relatedBy: .equal, toItem: viaLabel, attribute: .bottom, multiplier: 1, constant: 8)
+                travelTimeCell.contentView.addConstraint(topSpaceConstraintForDistanceLabel)
+       
+                let topSpaceConstraintForUpdatedLabel = NSLayoutConstraint(item: updatedLabel, attribute: .top, relatedBy: .equal, toItem: distanceLabel, attribute: .bottom, multiplier: 1, constant: 8)
+                travelTimeCell.contentView.addConstraint(topSpaceConstraintForUpdatedLabel)
+       
+                let topSpaceConstraintForLine = NSLayoutConstraint(item: line, attribute: .top, relatedBy: .equal, toItem: updatedLabel, attribute: .bottom, multiplier: 1, constant: 8)
+                travelTimeCell.contentView.addConstraint(topSpaceConstraintForLine)
+       
+                // Set travel time constraints
+                let centerYConstraintForTimeLabel = NSLayoutConstraint(item: timeLabel, attribute: .bottom, relatedBy: .equal, toItem: updatedLabel, attribute: .bottom, multiplier: 1, constant: 0)
+                travelTimeCell.contentView.addConstraint(centerYConstraintForTimeLabel)
+        
+                let trailingConstraintForTimeLabel = NSLayoutConstraint(item: timeLabel, attribute: .trailing, relatedBy: .equal, toItem: travelTimeCell.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8)
+                travelTimeCell.contentView.addConstraint(trailingConstraintForTimeLabel)
+            
+                // Set line contraints
+                let widthConstraintForLine = NSLayoutConstraint(item: line, attribute: .width, relatedBy: .equal, toItem: travelTimeCell.contentView, attribute: .width, multiplier: 1, constant: lineRightPadding.negated())
+                let heightConstraintForLine = NSLayoutConstraint(item: line, attribute: .height, relatedBy: .equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 1)
+                travelTimeCell.contentView.addConstraint(widthConstraintForLine)
+                travelTimeCell.contentView.addConstraint(heightConstraintForLine)
+        
+                if travelTimeGroup.routes.index(of: route) == travelTimeGroup.routes.index(of: travelTimeGroup.routes.last!) {
+                    let bottomSpaceConstraint = NSLayoutConstraint(item: updatedLabel, attribute: .bottom, relatedBy: .equal, toItem: travelTimeCell.contentView, attribute: .bottom, multiplier: 1, constant: -8)
+                    travelTimeCell.contentView.addConstraint(bottomSpaceConstraint)
+                    line.isHidden = true
+                }
+        
+                lastLine = line
             }
-            
-            travelTimeCell.currentTimeLabel.text = String(travelTime.currentTime) + " min"
-            
-            if (travelTime.averageTime > travelTime.currentTime){
-                travelTimeCell.currentTimeLabel.textColor = Colors.tintColor
-            } else if (travelTime.averageTime < travelTime.currentTime){
-                travelTimeCell.currentTimeLabel.textColor = UIColor.red
-            } else {
-                travelTimeCell.currentTimeLabel.textColor = UIColor.darkText
-            }
-            
+
+        
             travelTimeCell.sizeToFit()
             
             return travelTimeCell
@@ -575,8 +686,8 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
                 break
             case .travelTime:
-                TravelTimesStore.updateFavorite(self.travelTimes[indexPath.row], newValue: false)
-                self.travelTimes.remove(at: indexPath.row)
+                TravelTimesStore.updateFavorite(self.travelTimeGroups[indexPath.row], newValue: false)
+                self.travelTimeGroups.remove(at: indexPath.row)
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
                 break
             case .ferrySchedule:
@@ -617,8 +728,6 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             tableView.deselectRow(at: indexPath, animated: true)
             break
         case .travelTime:
-            performSegue(withIdentifier: segueTravelTimeViewController, sender: nil)
-            tableView.deselectRow(at: indexPath, animated: true)
             break
         case .ferrySchedule:
             performSegue(withIdentifier: segueRouteDeparturesViewController, sender: nil)
@@ -666,13 +775,6 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 let cameraItem = self.cameras[indexPath.row] as CameraItem
                 let destinationViewController = segue.destination as! CameraViewController
                 destinationViewController.cameraItem = cameraItem
-            }
-        }
-        if segue.identifier == segueTravelTimeViewController {
-            if let indexPath = tableView.indexPathForSelectedRow {
-                let travelTimeItem = self.travelTimes[indexPath.row] as TravelTimeItem
-                let destinationViewController = segue.destination as! TravelTimeDetailsViewController
-                destinationViewController.travelTime = travelTimeItem
             }
         }
         if segue.identifier == segueRouteDeparturesViewController {

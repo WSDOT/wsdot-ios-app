@@ -26,26 +26,26 @@ class TravelTimesStore{
     
     typealias getTravelTimesCompletion = (_ error: Error?) -> ()
     
-    static func updateFavorite(_ route: TravelTimeItem, newValue: Bool){
+    static func updateFavorite(_ timeGroup: TravelTimeItemGroup, newValue: Bool){
         do {
             let realm = try Realm()
             try realm.write{
-                route.selected = newValue
+                timeGroup.selected = newValue
             }
         } catch {
             print("TravelTimesStore.updateFavorite: Realm write error")
         }
     }
     
-    static func getAllTravelTimes() -> [TravelTimeItem]{
+    static func getAllTravelTimeGroups() -> [TravelTimeItemGroup]{
         let realm = try! Realm()
-        let travelTimeItems = realm.objects(TravelTimeItem.self).filter("delete == false")
+        let travelTimeItems = realm.objects(TravelTimeItemGroup.self).filter("delete == false")
         return Array(travelTimeItems)
     }
     
-    static func findFavoriteTimes() -> [TravelTimeItem]{
+    static func findFavoriteTimes() -> [TravelTimeItemGroup]{
         let realm = try! Realm()
-        let favoriteTimeItems = realm.objects(TravelTimeItem.self).filter("selected == true").filter("delete == false")
+        let favoriteTimeItems = realm.objects(TravelTimeItemGroup.self).filter("selected == true").filter("delete == false")
         return Array(favoriteTimeItems)
     }
     
@@ -57,17 +57,19 @@ class TravelTimesStore{
             delta = deltaValue
         }
          
-        if ((delta > TimeUtils.updateTime) || force){
+        if ((delta > TimeUtils.updateTime) || force) {
             
-            Alamofire.request("http://data.wsdot.wa.gov/mobile/TravelTimes.js").validate().responseJSON { response in
+            Alamofire.request("http://data.wsdot.wa.gov/mobile/TravelTimesv2.js").validate().responseJSON { response in
                 switch response.result {
                 case .success:
                     if let value = response.result.value {
                         DispatchQueue.global().async {
                             let json = JSON(value)
                             let travelTimes = TravelTimesStore.parseTravelTimesJSON(json)
-                            saveTravelTimes(travelTimes)
-                            CachesStore.updateTime(CachedData.travelTimes, updated: Date())
+                            if travelTimes.count != 0 {
+                                saveTravelTimes(travelTimes)
+                                CachesStore.updateTime(CachedData.travelTimes, updated: Date())
+                            }
                             completion(nil)
                         }
                     }
@@ -83,23 +85,23 @@ class TravelTimesStore{
     }
     
     // TODO: Make this smarter
-    fileprivate static func saveTravelTimes(_ travelTimes: [TravelTimeItem]){
+    fileprivate static func saveTravelTimes(_ travelTimes: [TravelTimeItemGroup]){
         
         let realm = try! Realm()
         
         let oldFavoriteTimes = self.findFavoriteTimes()
-        let newTimes = List<TravelTimeItem>()
+        let newTimes = List<TravelTimeItemGroup>()
         
         for time in travelTimes {
             for oldTime in oldFavoriteTimes {
-                if (oldTime.routeid == time.routeid){
+                if (oldTime.title == time.title){
                     time.selected = true
                 }
             }
             newTimes.append(time)
         }
         
-        let oldTimes = realm.objects(TravelTimeItem.self)
+        let oldTimes = realm.objects(TravelTimeItemGroup.self)
         
         do {
             try realm.write{
@@ -116,7 +118,7 @@ class TravelTimesStore{
     static func flushOldData(){
         do {
             let realm = try Realm()
-            let timeItems = realm.objects(TravelTimeItem.self).filter("delete == true")
+            let timeItems = realm.objects(TravelTimeItemGroup.self).filter("delete == true")
             try! realm.write{
                 realm.delete(timeItems)
             }
@@ -125,27 +127,35 @@ class TravelTimesStore{
         }
     }
     
-    fileprivate static func parseTravelTimesJSON(_ json: JSON) ->[TravelTimeItem]{
-        var travelTimes = [TravelTimeItem]()
+    fileprivate static func parseTravelTimesJSON(_ json: JSON) ->[TravelTimeItemGroup]{
+        var travelTimes = [TravelTimeItemGroup]()
         
-        for (_,subJson):(String, JSON) in json["traveltimes"]["items"] {
-            
+        for (_,subJson):(String, JSON) in json {
+   
             let time = TravelTimeItem()
             time.routeid = subJson["routeid"].intValue
-            time.title = subJson["title"].stringValue
             
-            time.startLatitude = subJson["startLatitude"].doubleValue
-            time.startLongitude = subJson["startLongitude"].doubleValue
+            time.viaText = subJson["via"].stringValue.replacingOccurrences(of: "REV", with: "EXPRESS", options: .literal).replacingOccurrences(of: ",", with: ", ", options: .literal)
             
-            time.endLatitude = subJson["endLatitude"].doubleValue
-            time.endLongitude = subJson["endLongitude"].doubleValue
+            time.startLatitude = subJson["startLocationLatitude"].doubleValue
+            time.startLongitude = subJson["startLocationLongitude"].doubleValue
             
-            time.distance = subJson["distance"].floatValue
-            time.averageTime = subJson["average"].intValue
-            time.currentTime = subJson["current"].intValue
-            time.updated = subJson["updated"].stringValue
+            time.endLatitude = subJson["endLocationLatitude"].doubleValue
+            time.endLongitude = subJson["endLocationLatitude"].doubleValue
             
-            travelTimes.append(time)
+            time.distance = subJson["miles"].floatValue
+            time.averageTime = subJson["avg_time"].intValue
+            time.status = subJson["status"].stringValue
+            time.currentTime = subJson["current_time"].intValue
+        
+            time.updated = subJson["updated_at"].stringValue
+        
+            let timeGroupResult = travelTimes.filter { $0.title == subJson["title"].string }
+            let timeGroup = timeGroupResult.first ?? TravelTimeItemGroup()
+            timeGroup.title = subJson["title"].string!
+        
+            timeGroup.routes.append(time)
+            travelTimes.append(timeGroup)
         }
         
         return travelTimes
