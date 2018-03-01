@@ -445,7 +445,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             
                 let updatedLabel = UILabel()
                 do {
-                    let updated = try TimeUtils.timeAgoSinceDate(date: TimeUtils.formatTimeStamp(route.updated, dateFormat: "yyyy-MM-dd HH:mm Z"), numericDates: true)
+                    let updated = try TimeUtils.timeAgoSinceDate(date: TimeUtils.formatTimeStamp(route.updated), numericDates: true)
                     updatedLabel.text = updated
                 } catch {
                     updatedLabel.text = "N/A"
