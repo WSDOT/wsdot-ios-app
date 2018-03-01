@@ -66,8 +66,10 @@ class TravelTimesStore{
                         DispatchQueue.global().async {
                             let json = JSON(value)
                             let travelTimes = TravelTimesStore.parseTravelTimesJSON(json)
-                            saveTravelTimes(travelTimes)
-                            CachesStore.updateTime(CachedData.travelTimes, updated: Date())
+                            if travelTimes.count != 0 {
+                                saveTravelTimes(travelTimes)
+                                CachesStore.updateTime(CachedData.travelTimes, updated: Date())
+                            }
                             completion(nil)
                         }
                     }
