@@ -146,11 +146,7 @@ class TravelTimesStore{
             time.status = subJson["status"].stringValue
             time.currentTime = subJson["current_time"].intValue
         
-            let updatedTimeInPST = subJson["updated"].stringValue
-            
-            // time from server is using 24 clock and in PST, but server doesn't tell us that so we manually update the timestamp
-            // Trims off the AM/PM label and adds the PST timezone offset.
-            time.updated = updatedTimeInPST.substring(to: updatedTimeInPST.index(updatedTimeInPST.endIndex, offsetBy: -3)) + " -0800"
+            time.updated = subJson["updated_at"].stringValue
         
             let timeGroupResult = travelTimes.filter { $0.title == subJson["title"].string }
             let timeGroup = timeGroupResult.first ?? TravelTimeItemGroup()
