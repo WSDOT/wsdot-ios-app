@@ -14,7 +14,6 @@ class TravelTimeItemGroup: Object {
     
     let routes = List<TravelTimeItem>()
 
-    dynamic var updated: String = ""
     dynamic var selected: Bool = false
     dynamic var delete: Bool = false
     

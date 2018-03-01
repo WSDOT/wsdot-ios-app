@@ -40,12 +40,6 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dzp-z3-HS1">
-                                                    <rect key="frame" x="23" y="66" width="38" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eks-nF-ubs">
                                                     <rect key="frame" x="328" y="11" width="32" height="32"/>
                                                     <constraints>
@@ -56,13 +50,10 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Dzp-z3-HS1" secondAttribute="bottom" constant="3" id="0MB-vZ-QLY"/>
                                                 <constraint firstItem="Eks-nF-ubs" firstAttribute="leading" secondItem="qhy-V3-UzG" secondAttribute="trailing" constant="8" id="3G5-gu-fnS"/>
                                                 <constraint firstItem="Eks-nF-ubs" firstAttribute="top" secondItem="MAF-Sr-dd1" secondAttribute="topMargin" id="CfN-fQ-J42"/>
                                                 <constraint firstItem="qhy-V3-UzG" firstAttribute="top" secondItem="MAF-Sr-dd1" secondAttribute="topMargin" id="KNB-VB-n4w"/>
-                                                <constraint firstItem="Dzp-z3-HS1" firstAttribute="leading" secondItem="MAF-Sr-dd1" secondAttribute="leadingMargin" constant="8" id="ZId-ow-3id"/>
                                                 <constraint firstItem="Eks-nF-ubs" firstAttribute="trailing" secondItem="MAF-Sr-dd1" secondAttribute="trailingMargin" id="acM-NG-PC9"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Dzp-z3-HS1" secondAttribute="bottom" constant="3" id="gQe-pv-fXc"/>
                                                 <constraint firstItem="Eks-nF-ubs" firstAttribute="top" secondItem="MAF-Sr-dd1" secondAttribute="topMargin" id="hYb-fK-Nh9"/>
                                                 <constraint firstItem="qhy-V3-UzG" firstAttribute="leading" secondItem="MAF-Sr-dd1" secondAttribute="leadingMargin" constant="8" id="s8B-sE-aWl"/>
                                                 <constraint firstItem="Eks-nF-ubs" firstAttribute="trailing" secondItem="MAF-Sr-dd1" secondAttribute="trailingMargin" id="vz2-Yr-nK7"/>
@@ -71,7 +62,6 @@
                                         <connections>
                                             <outlet property="favoriteButton" destination="Eks-nF-ubs" id="JNg-JV-Hwj"/>
                                             <outlet property="routeLabel" destination="qhy-V3-UzG" id="ewQ-0M-olv"/>
-                                            <outlet property="updatedLabel" destination="Dzp-z3-HS1" id="ZKa-47-RWo"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

@@ -26,11 +26,11 @@ class TravelTimesStore{
     
     typealias getTravelTimesCompletion = (_ error: Error?) -> ()
     
-    static func updateFavorite(_ route: TravelTimeItemGroup, newValue: Bool){
+    static func updateFavorite(_ timeGroup: TravelTimeItemGroup, newValue: Bool){
         do {
             let realm = try Realm()
             try realm.write{
-                route.selected = newValue
+                timeGroup.selected = newValue
             }
         } catch {
             print("TravelTimesStore.updateFavorite: Realm write error")
@@ -57,9 +57,9 @@ class TravelTimesStore{
             delta = deltaValue
         }
          
-        if ((delta > TimeUtils.updateTime) || force){
+        if ((delta > TimeUtils.updateTime) || force) {
             
-            Alamofire.request("http://data.wsdot.wa.gov/mobile/TravelTimesv2TEST.js").validate().responseJSON { response in
+            Alamofire.request("http://data.wsdot.wa.gov/mobile/TravelTimesv2.js").validate().responseJSON { response in
                 switch response.result {
                 case .success:
                     if let value = response.result.value {
@@ -145,13 +145,16 @@ class TravelTimesStore{
             time.averageTime = subJson["avg_time"].intValue
             time.status = subJson["status"].stringValue
             time.currentTime = subJson["current_time"].intValue
+        
+            let updatedTimeInPST = subJson["updated"].stringValue
             
+            // time from server is using 24 clock and in PST, but server doesn't tell us that so we manually update the timestamp
+            // Trims off the AM/PM label and adds the PST timezone offset.
+            time.updated = updatedTimeInPST.substring(to: updatedTimeInPST.index(updatedTimeInPST.endIndex, offsetBy: -3)) + " -0800"
+        
             let timeGroupResult = travelTimes.filter { $0.title == subJson["title"].string }
             let timeGroup = timeGroupResult.first ?? TravelTimeItemGroup()
             timeGroup.title = subJson["title"].string!
-        
-            // TODO update time
-            timeGroup.updated = subJson["updated"].stringValue
         
             timeGroup.routes.append(time)
             travelTimes.append(timeGroup)

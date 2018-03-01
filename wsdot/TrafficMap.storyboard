@@ -203,7 +203,7 @@
                 <viewControllerPlaceholder storyboardName="TravelerInformation" id="XRS-Fl-wOz" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5u-ru-QnV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1801" y="88"/>
+            <point key="canvasLocation" x="1552" y="299"/>
         </scene>
         <!--Callout-->
         <scene sceneID="ILD-nV-wuR">

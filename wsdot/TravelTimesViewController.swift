@@ -138,14 +138,17 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! TravelTimeCell
         let travelTimeGroup = filtered[indexPath.row]
         
-        cell.routeLabel.text = travelTimeGroup.title
-        
-        do {
-            let updated = try TimeUtils.timeAgoSinceDate(date: TimeUtils.formatTimeStamp(travelTimeGroup.updated), numericDates: false)
-            cell.updatedLabel.text = updated
-        } catch {
-            cell.updatedLabel.text = "N/A"
+        // Remove any labels & lines carried over from being recycled.
+        for label in cell.dynamicLabels {
+            label.removeFromSuperview()
         }
+        cell.dynamicLabels.removeAll()
+        for line in cell.dynamicLines {
+            line.removeFromSuperview()
+        }
+        cell.dynamicLines.removeAll()
+        
+        cell.routeLabel.text = travelTimeGroup.title
 
         // set up favorite button
         cell.favoriteButton.setImage(travelTimeGroup.selected ? UIImage(named: "icStarSmallFilled") : UIImage(named: "icStarSmall"), for: .normal)
@@ -156,14 +159,13 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
 
         var lastLine: UIView? = nil
         
-        
         for route in travelTimeGroup.routes {
         
             let line = UIView()
             line.backgroundColor = .lightGray
             line.translatesAutoresizingMaskIntoConstraints = false
             cell.contentView.addSubview(line)
-            cell.lines.append(line)
+            cell.dynamicLines.append(line)
             let lineRightPadding: CGFloat = 24.0
         
             let viaLabel = UILabel()
@@ -179,6 +181,20 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
             distanceLabel.translatesAutoresizingMaskIntoConstraints = false
             cell.contentView.addSubview(distanceLabel)
             cell.dynamicLabels.append(distanceLabel)
+            
+            let updatedLabel = UILabel()
+            do {
+                let updated = try TimeUtils.timeAgoSinceDate(date: TimeUtils.formatTimeStamp(route.updated, dateFormat: "yyyy-MM-dd HH:mm Z"), numericDates: true)
+                updatedLabel.text = updated
+            } catch {
+                updatedLabel.text = "N/A"
+            }
+            
+            updatedLabel.font = UIFont.systemFont(ofSize: 15)
+            updatedLabel.textColor = UIColor.lightGray
+            updatedLabel.translatesAutoresizingMaskIntoConstraints = false
+            cell.contentView.addSubview(updatedLabel)
+            cell.dynamicLabels.append(updatedLabel)
         
             let timeLabel = UILabel()
             
@@ -216,39 +232,47 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
             let trailingConstraintForViaLabel = NSLayoutConstraint(item: viaLabel, attribute: .trailing, relatedBy: .equal, toItem: cell.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8)
             cell.contentView.addConstraint(trailingConstraintForViaLabel)
         
-            let leadingSpaceConstraintForDistanceLabel = NSLayoutConstraint(item: distanceLabel, attribute: .leading, relatedBy: .equal, toItem: cell.routeLabel, attribute: .leading, multiplier: 1, constant: 0);
+            let leadingSpaceConstraintForDistanceLabel = NSLayoutConstraint(item: distanceLabel, attribute: .leading, relatedBy: .equal, toItem: cell.routeLabel, attribute: .leading, multiplier: 1, constant: 0)
             cell.contentView.addConstraint(leadingSpaceConstraintForDistanceLabel)
+            
+            let leadingSpaceConstraintForUpdatedLabel = NSLayoutConstraint(item: updatedLabel, attribute: .leading, relatedBy: .equal, toItem: cell.routeLabel, attribute: .leading, multiplier: 1, constant: 0)
+            cell.contentView.addConstraint(leadingSpaceConstraintForUpdatedLabel)
         
             // set top constraints
             let topSpaceConstraintForViaLabel = NSLayoutConstraint(item: viaLabel, attribute: .top, relatedBy: .equal, toItem: (lastLine == nil ? cell.routeLabel : lastLine), attribute: .bottom, multiplier: 1, constant: 8);
             cell.contentView.addConstraint(topSpaceConstraintForViaLabel)
         
-            let topSpaceConstraintForDistanceLabel = NSLayoutConstraint(item: distanceLabel, attribute: .top, relatedBy: .equal, toItem: viaLabel, attribute: .bottom, multiplier: 1, constant: 8);
+            let topSpaceConstraintForDistanceLabel = NSLayoutConstraint(item: distanceLabel, attribute: .top, relatedBy: .equal, toItem: viaLabel, attribute: .bottom, multiplier: 1, constant: 8)
             cell.contentView.addConstraint(topSpaceConstraintForDistanceLabel)
        
-            let topSpaceConstraintForLine = NSLayoutConstraint(item: line, attribute: .top, relatedBy: .equal, toItem: distanceLabel, attribute: .bottom, multiplier: 1, constant: 8);
+            let topSpaceConstraintForUpdatedLabel = NSLayoutConstraint(item: updatedLabel, attribute: .top, relatedBy: .equal, toItem: distanceLabel, attribute: .bottom, multiplier: 1, constant: 8)
+            cell.contentView.addConstraint(topSpaceConstraintForUpdatedLabel)
+       
+            let topSpaceConstraintForLine = NSLayoutConstraint(item: line, attribute: .top, relatedBy: .equal, toItem: updatedLabel, attribute: .bottom, multiplier: 1, constant: 8)
             cell.contentView.addConstraint(topSpaceConstraintForLine)
        
             // Set travel time constraints
-            let centerYConstraintForTimeLabel = NSLayoutConstraint(item: timeLabel, attribute: .bottom, relatedBy: .equal, toItem: distanceLabel, attribute: .bottom, multiplier: 1, constant: 0)
+            let centerYConstraintForTimeLabel = NSLayoutConstraint(item: timeLabel, attribute: .bottom, relatedBy: .equal, toItem: updatedLabel, attribute: .bottom, multiplier: 1, constant: 0)
             cell.contentView.addConstraint(centerYConstraintForTimeLabel)
         
             let trailingConstraintForTimeLabel = NSLayoutConstraint(item: timeLabel, attribute: .trailing, relatedBy: .equal, toItem: cell.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8)
             cell.contentView.addConstraint(trailingConstraintForTimeLabel)
-                     // Set line contraints
+            
+            // Set line contraints
             let widthConstraintForLine = NSLayoutConstraint(item: line, attribute: .width, relatedBy: .equal, toItem: cell.contentView, attribute: .width, multiplier: 1, constant: lineRightPadding.negated())
             let heightConstraintForLine = NSLayoutConstraint(item: line, attribute: .height, relatedBy: .equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 1)
             cell.contentView.addConstraint(widthConstraintForLine)
             cell.contentView.addConstraint(heightConstraintForLine)
         
+            if travelTimeGroup.routes.index(of: route) == travelTimeGroup.routes.index(of: travelTimeGroup.routes.last!) {
+                let bottomSpaceConstraint = NSLayoutConstraint(item: updatedLabel, attribute: .bottom, relatedBy: .equal, toItem: cell.contentView, attribute: .bottom, multiplier: 1, constant: -8)
+                cell.contentView.addConstraint(bottomSpaceConstraint)
+                line.isHidden = true
+            }
+        
             lastLine = line
         }
-        
-        if (lastLine != nil){
-            let bottomSpaceConstraint = NSLayoutConstraint(item: lastLine!, attribute: .bottom, relatedBy: .equal, toItem: cell.updatedLabel, attribute: .top, multiplier: 1, constant: -8)
-            cell.contentView.addConstraint(bottomSpaceConstraint)
-        }
-        
+
         cell.sizeToFit()
         return cell
     }

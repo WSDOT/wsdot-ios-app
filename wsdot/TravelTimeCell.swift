@@ -22,21 +22,9 @@ import UIKit
 class TravelTimeCell: UITableViewCell {
     
     @IBOutlet weak var routeLabel: UILabel!
-    @IBOutlet weak var updatedLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
     
     var dynamicLabels = [UILabel]()
-    var lines = [UIView]()
-    
-    override func prepareForReuse() {
-        for label in dynamicLabels {
-            label.removeFromSuperview()
-        }
-        dynamicLabels.removeAll()
-        for line in lines {
-            line.removeFromSuperview()
-        }
-        lines.removeAll()
-    }
-    
+    var dynamicLines = [UIView]()
+
 }

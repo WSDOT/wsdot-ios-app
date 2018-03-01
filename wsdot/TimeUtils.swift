@@ -21,26 +21,26 @@ import Foundation
 import SwiftyJSON
 
 class TimeUtils {
-    
+
     enum TimeUtilsError: Error {
         case invalidTimeString
     }
     
     static let updateTime: Int = 900
     static let cameraUpdateTime: Int = 604800
-    
+
     static let vesselUpdateTime: TimeInterval = 30
     static let spacesUpdateTime: TimeInterval = 60
-    
+
     static let alertsUpdateTime: TimeInterval = 60
     static let alertsCacheTime: Int = 60
-    
+
     static var currentTime: Int64{
         get {
             return Int64(floor(Date().timeIntervalSince1970 * 1000))
         }
     }
-    
+
     // formates a /Date(1468516282113-0700)/ date into NSDate
     static func parseJSONDateToNSDate(_ date: String) -> Date{
         let parseDateString = date[date.index(date.startIndex, offsetBy: 6)..<date.index(date.startIndex, offsetBy: 16)]
@@ -50,7 +50,6 @@ class TimeUtils {
             return Date(timeIntervalSince1970: 0)
         }
     }
-    
 
     // formates a /Date(1468516282113-0700)/ date into a Int64
     static func parseJSONDate(_ date: String) -> Int64{
@@ -71,14 +70,14 @@ class TimeUtils {
         //Return Short Time String
         return timeString
     }
-    
+
     // Returns an array of the days of the week starting with the current day
     static func nextSevenDaysStrings(_ date: Date) -> [String]{
         let weekdays = DateFormatter().weekdaySymbols
         let dayOfWeekInt = getDayOfWeek(date)
         return Array(weekdays![dayOfWeekInt-1..<weekdays!.count]) + weekdays![0..<dayOfWeekInt-1]
     }
-    
+
     fileprivate static func getDayOfWeek(_ date: Date)->Int {
         let myCalendar = Calendar(identifier: Calendar.Identifier.gregorian)
         let myComponents = (myCalendar as NSCalendar).components(.weekday, from: date)
@@ -87,13 +86,17 @@ class TimeUtils {
     }
     
     // Returns an NSDate object form a date string with the given format "yyyy-MM-dd hh:mm a"
-    static func formatTimeStamp(_ timestamp: String) throws -> Date{
+    static func formatTimeStamp(_ timestamp: String, dateFormat:String = "yyyy-MM-dd hh:mm a") throws -> Date{
+        
         let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone(abbreviation: "PDT")
-        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = TimeZone(abbreviation: "PST")
+        dateFormatter.dateFormat = dateFormat
+    
         guard let time = dateFormatter.date(from: timestamp) else {
             throw TimeUtilsError.invalidTimeString
         }
+        
         return time
     }
     
@@ -159,6 +162,7 @@ class TimeUtils {
         let calendar = NSCalendar.current
         let unitFlags: Set<Calendar.Component> = [.minute, .hour, .day, .weekOfYear, .month, .year, .second]
         let now = NSDate()
+        
         let earliest = now.earlierDate(date as Date)
         let latest = (earliest == now as Date) ? date : now as Date
         let components = calendar.dateComponents(unitFlags, from: earliest as Date,  to: latest as Date)

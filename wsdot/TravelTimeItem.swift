@@ -38,6 +38,8 @@ class TravelTimeItem: Object {
     
     dynamic var status: String = ""
 
+    dynamic var updated: String = ""
+
 }
 
 /*

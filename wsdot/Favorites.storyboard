@@ -110,27 +110,18 @@
                                                     </constraints>
                                                     <state key="normal" image="icStarSmall"/>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O1T-93-mOz">
-                                                    <rect key="frame" x="23" y="63" width="38" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="yn6-h4-RcN" firstAttribute="leading" secondItem="7pF-bP-Pih" secondAttribute="leadingMargin" constant="8" id="1n1-q3-mMx"/>
                                                 <constraint firstItem="2V4-Rn-VU3" firstAttribute="trailing" secondItem="7pF-bP-Pih" secondAttribute="trailingMargin" id="3CH-rA-nBM"/>
                                                 <constraint firstItem="2V4-Rn-VU3" firstAttribute="leading" secondItem="yn6-h4-RcN" secondAttribute="trailing" constant="8" id="8yM-Mc-kOW"/>
                                                 <constraint firstItem="2V4-Rn-VU3" firstAttribute="top" secondItem="7pF-bP-Pih" secondAttribute="topMargin" id="QvD-WP-THA"/>
-                                                <constraint firstItem="O1T-93-mOz" firstAttribute="leading" secondItem="7pF-bP-Pih" secondAttribute="leadingMargin" constant="8" id="YYV-dq-FSx"/>
-                                                <constraint firstItem="O1T-93-mOz" firstAttribute="bottom" secondItem="7pF-bP-Pih" secondAttribute="bottomMargin" id="khI-L2-ESG"/>
                                                 <constraint firstItem="yn6-h4-RcN" firstAttribute="top" secondItem="7pF-bP-Pih" secondAttribute="topMargin" id="mEB-pi-lyM"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="favoriteButton" destination="2V4-Rn-VU3" id="RKt-Gi-C0h"/>
                                             <outlet property="routeLabel" destination="yn6-h4-RcN" id="mun-5u-HzW"/>
-                                            <outlet property="updatedLabel" destination="O1T-93-mOz" id="9cz-eV-bib"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FerryScheduleCell" rowHeight="102" id="0vb-Dk-y4X" customClass="RoutesCustomCell" customModule="WSDOT" customModuleProvider="target">
