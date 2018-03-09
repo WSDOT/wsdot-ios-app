@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jgX-Nk-ZHz">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Camera Page Container View Controller-->
+        <scene sceneID="EiV-aA-1cx">
+            <objects>
+                <viewController id="jgX-Nk-ZHz" customClass="CameraPageContainerViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rQz-B6-ijl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eeH-eC-B73">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="609"/>
+                                <connections>
+                                    <segue destination="aop-1r-YKR" kind="embed" identifier="EmbedSegue" id="ETC-lm-4TE"/>
+                                </connections>
+                            </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dBe-mO-7VM" customClass="DFPBannerView">
+                                <rect key="frame" x="27" y="617" width="320" height="50"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="0My-0D-WuS"/>
+                                    <constraint firstAttribute="height" constant="50" id="JkZ-7F-FCA"/>
+                                    <constraint firstAttribute="width" constant="320" id="TP9-NP-3Vc"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="0My-0D-WuS"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="JkZ-7F-FCA"/>
+                                        <include reference="0My-0D-WuS"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="eeH-eC-B73" firstAttribute="top" secondItem="rQz-B6-ijl" secondAttribute="top" id="1mS-8I-xWg"/>
+                            <constraint firstItem="eeH-eC-B73" firstAttribute="trailing" secondItem="l4l-LK-sxQ" secondAttribute="trailing" id="2fW-Oi-bj3"/>
+                            <constraint firstItem="dBe-mO-7VM" firstAttribute="centerX" secondItem="rQz-B6-ijl" secondAttribute="centerX" id="3a6-Gd-52H"/>
+                            <constraint firstItem="dBe-mO-7VM" firstAttribute="top" secondItem="eeH-eC-B73" secondAttribute="bottom" constant="8" id="Avg-3X-pOI"/>
+                            <constraint firstItem="dBe-mO-7VM" firstAttribute="bottom" secondItem="l4l-LK-sxQ" secondAttribute="bottom" id="Fgg-ko-KSE"/>
+                            <constraint firstItem="eeH-eC-B73" firstAttribute="leading" secondItem="l4l-LK-sxQ" secondAttribute="leading" id="Xsv-0n-opE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="l4l-LK-sxQ"/>
+                    </view>
+                    <connections>
+                        <outlet property="bannerView" destination="dBe-mO-7VM" id="xK5-It-GCZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4m7-wx-JdX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-255.19999999999999" y="71.514242878560722"/>
+        </scene>
+        <!--Camera Page View Controller-->
+        <scene sceneID="UPq-39-ssE">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="aop-1r-YKR" customClass="CameraPageViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kEL-4E-DN7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="324" y="72"/>
+        </scene>
+    </scenes>
+</document>

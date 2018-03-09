@@ -107,6 +107,9 @@
 		9A8486F61D81DD4B0026F1CF /* TwitterAccountSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8486F51D81DD4B0026F1CF /* TwitterAccountSelectionViewController.swift */; };
 		9A8486F81D81E96A0026F1CF /* DepartureDaySelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8486F71D81E96A0026F1CF /* DepartureDaySelectionViewController.swift */; };
 		9A8DD9F81D946B6200CE0B76 /* HomeSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8DD9F71D946B6200CE0B76 /* HomeSplitViewController.swift */; };
+		9A9309B12051D7E6002D014C /* CameraPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9309B02051D7E6002D014C /* CameraPageViewController.swift */; };
+		9A9309B32051D7FF002D014C /* CameraPager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A9309B22051D7FF002D014C /* CameraPager.storyboard */; };
+		9A930A4120533782002D014C /* CameraPageContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A930A4020533782002D014C /* CameraPageContainerViewController.swift */; };
 		9A93E0D61E707384004AB867 /* MyRoute.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A93E0D51E707384004AB867 /* MyRoute.storyboard */; };
 		9A9808BD1F1FA1780034DA05 /* BestTimesToTravelDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9808BC1F1FA1780034DA05 /* BestTimesToTravelDetailsViewController.swift */; };
 		9A9808C01F1FA2AF0034DA05 /* TravelChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9808BF1F1FA2AF0034DA05 /* TravelChartItem.swift */; };
@@ -338,6 +341,9 @@
 		9A8486F51D81DD4B0026F1CF /* TwitterAccountSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterAccountSelectionViewController.swift; sourceTree = "<group>"; };
 		9A8486F71D81E96A0026F1CF /* DepartureDaySelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartureDaySelectionViewController.swift; sourceTree = "<group>"; };
 		9A8DD9F71D946B6200CE0B76 /* HomeSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeSplitViewController.swift; sourceTree = "<group>"; };
+		9A9309B02051D7E6002D014C /* CameraPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPageViewController.swift; sourceTree = "<group>"; };
+		9A9309B22051D7FF002D014C /* CameraPager.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CameraPager.storyboard; sourceTree = "<group>"; };
+		9A930A4020533782002D014C /* CameraPageContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPageContainerViewController.swift; sourceTree = "<group>"; };
 		9A93E0D51E707384004AB867 /* MyRoute.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyRoute.storyboard; sourceTree = "<group>"; };
 		9A9808BC1F1FA1780034DA05 /* BestTimesToTravelDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BestTimesToTravelDetailsViewController.swift; sourceTree = "<group>"; };
 		9A9808BF1F1FA2AF0034DA05 /* TravelChartItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelChartItem.swift; sourceTree = "<group>"; };
@@ -769,6 +775,7 @@
 			isa = PBXGroup;
 			children = (
 				9AB017791D51464B004C228E /* Camera.storyboard */,
+				9A9309B22051D7FF002D014C /* CameraPager.storyboard */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1060,6 +1067,8 @@
 			isa = PBXGroup;
 			children = (
 				9AB0177B1D514668004C228E /* CameraViewController.swift */,
+				9A930A4020533782002D014C /* CameraPageContainerViewController.swift */,
+				9A9309B02051D7E6002D014C /* CameraPageViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1588,6 +1597,7 @@
 				9A93E0D61E707384004AB867 /* MyRoute.storyboard in Resources */,
 				9AEEDDB11D70B8A20032F5EC /* GoogleService-Info.plist in Resources */,
 				9AD32E071D23172C000AEC28 /* LaunchScreen.storyboard in Resources */,
+				9A9309B32051D7FF002D014C /* CameraPager.storyboard in Resources */,
 				9AFA0A771E280C22000D0C70 /* Favorites.storyboard in Resources */,
 				9AD32E281D2421E4000AEC28 /* Ferries.storyboard in Resources */,
 				9AB0177A1D51464B004C228E /* Camera.storyboard in Resources */,
@@ -1825,6 +1835,7 @@
 				9AE486471D495E90007A92E3 /* CameraItem.swift in Sources */,
 				9A07192E1D4110BC007BB4C5 /* RouteTabBarViewController.swift in Sources */,
 				9A0616D01D660D6100126520 /* SR167ViewController.swift in Sources */,
+				9A9309B12051D7E6002D014C /* CameraPageViewController.swift in Sources */,
 				9A7BC0CF1DA3F31B00EF760C /* GMUGridBasedClusterAlgorithm.m in Sources */,
 				9A0719331D42732A007BB4C5 /* INDLinkLabel.swift in Sources */,
 				9A6FBD371D6E413A00CDCE16 /* MountainPassTabBarViewController.swift in Sources */,
@@ -1927,6 +1938,7 @@
 				9AEEDDA41D6F3D810032F5EC /* MountainPassCell.swift in Sources */,
 				9AEF4D931D7608ED003ECA34 /* FlickrStore.swift in Sources */,
 				9A06167C1D622AE800126520 /* MapViewController.swift in Sources */,
+				9A930A4120533782002D014C /* CameraPageContainerViewController.swift in Sources */,
 				9A6FBCC51D6B4C6500CDCE16 /* TravelerInfoViewController.swift in Sources */,
 				9A7BC0D31DA3F31B00EF760C /* GMUClusterManager.m in Sources */,
 				9A2C27251D679E5800F05D88 /* TrafficMapSettingsViewController.swift in Sources */,
