@@ -20,6 +20,7 @@
 
 import UIKit
 import GoogleMobileAds
+import EasyTipView
 
 // Container for the CameraPageVV so we can display an ad banner below it
 class CameraPageContainerViewController: UIViewController, GADBannerViewDelegate {
@@ -27,7 +28,11 @@ class CameraPageContainerViewController: UIViewController, GADBannerViewDelegate
     @IBOutlet weak var bannerView: DFPBannerView!
     var adTarget: String = "other"
     
-    @IBOutlet weak var pageLabel: UILabel!
+    @IBOutlet weak var rightTipViewAnchor: UIView!
+    @IBOutlet weak var leftTipViewAnchor: UIView!
+    
+    var tipView = EasyTipView(text: "")
+    
     var cameras: [CameraItem] = []
     var selectedCameraIndex = 0
     
@@ -38,12 +43,6 @@ class CameraPageContainerViewController: UIViewController, GADBannerViewDelegate
         bannerView.rootViewController = self
         let request = DFPRequest()
         request.customTargeting = ["wsdotapp":adTarget]
-        
-        if cameras.count > 1 {
-            pageLabel.text = "\(selectedCameraIndex + 1) of \(cameras.count)"
-        } else {
-            pageLabel.text = ""
-        }
         
         bannerView.load(request)
         bannerView.delegate = self
@@ -58,7 +57,42 @@ class CameraPageContainerViewController: UIViewController, GADBannerViewDelegate
         }
     }
     
-    func setPageLabel(currentPage: Int){
-        pageLabel.text = "\(currentPage + 1) of \(cameras.count)"
+    func dismissTipView(){
+        tipView.dismiss()
+    }
+}
+
+extension CameraPageContainerViewController: EasyTipViewDelegate {
+    
+    public func easyTipViewDidDismiss(_ tipView: EasyTipView) {
+         UserDefaults.standard.set(true, forKey: UserDefaultsKeys.hasSeenCameraSwipeTipView)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tipView.dismiss()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if ((cameras.count > 1) && (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasSeenCameraSwipeTipView) && !UIAccessibilityIsVoiceOverRunning())){
+            
+            var preferences = EasyTipView.Preferences()
+            preferences.drawing.font = EasyTipView.globalPreferences.drawing.font
+            preferences.drawing.foregroundColor = EasyTipView.globalPreferences.drawing.foregroundColor
+            preferences.drawing.backgroundColor =  EasyTipView.globalPreferences.drawing.backgroundColor
+        
+            if (selectedCameraIndex != cameras.count - 1) {
+                preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.right
+                tipView = EasyTipView(text: "Swipe to view your other cameras.", preferences: preferences, delegate: self)
+                tipView.show(forView: self.rightTipViewAnchor)
+            } else {
+                    preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.left
+                tipView = EasyTipView(text: "Swipe to view your other cameras.", preferences: preferences, delegate: self)
+                tipView.show(forView: self.leftTipViewAnchor)
+            }
+        
+        }
     }
 }

@@ -30,6 +30,7 @@ class CameraPageViewController: UIPageViewController, UIPageViewControllerDataSo
     
     var pendingTitle = ""
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -81,25 +82,12 @@ class CameraPageViewController: UIPageViewController, UIPageViewControllerDataSo
    
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]){
         self.pendingTitle = (pendingViewControllers[0] as! CameraViewController).cameraItem.title
-        if cameras.count > 1 {
-            self.containingVC.setPageLabel(currentPage: self.cameras.index(of: (pendingViewControllers[0] as! CameraViewController).cameraItem)!)
-        }
+        self.containingVC.dismissTipView()
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController],
              transitionCompleted completed: Bool) {
         self.containingVC!.title = self.pendingTitle
     }
-
-    // MARK - UIPageViewControllerDataSource
-    func presentationCount(for pageViewController: UIPageViewController) -> Int {
-        return pages.count
-    }
-    
-    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-        return selectedCameraIndex
-    }
-    
-    
-
 }
+
