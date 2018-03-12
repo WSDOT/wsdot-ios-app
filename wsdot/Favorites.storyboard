@@ -429,7 +429,7 @@ Tap star icons to add Favorites</string>
                 <viewControllerPlaceholder storyboardName="MountainPasses" referencedIdentifier="MountainPassTabBarViewController" id="HBz-Ys-0pP" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OB5-eq-UJa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="892" y="307"/>
+            <point key="canvasLocation" x="892" y="268"/>
         </scene>
         <!--MyRouteAlertsViewController-->
         <scene sceneID="rVV-YH-j4z">
@@ -447,13 +447,13 @@ Tap star icons to add Favorites</string>
             </objects>
             <point key="canvasLocation" x="771" y="231"/>
         </scene>
-        <!--Camera-->
+        <!--CameraPager-->
         <scene sceneID="3sO-l5-q8j">
             <objects>
-                <viewControllerPlaceholder storyboardName="Camera" id="hHk-Zh-SEc" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="CameraPager" id="hHk-Zh-SEc" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ugb-8K-TJr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="756" y="197"/>
+            <point key="canvasLocation" x="782" y="196"/>
         </scene>
         <!--RouteTabBarViewController-->
         <scene sceneID="iet-l8-vYN">

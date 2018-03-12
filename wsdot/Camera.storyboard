@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zYt-nO-VSk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zYt-nO-VSk">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +13,7 @@
         <!--Title-->
         <scene sceneID="Y3C-pA-gMV">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="zYt-nO-VSk" customClass="CameraViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CameraViewController" hidesBottomBarWhenPushed="YES" id="zYt-nO-VSk" customClass="CameraViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RIO-BU-Amt"/>
                         <viewControllerLayoutGuide type="bottom" id="gWp-RT-lXo"/>
@@ -65,8 +65,8 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="bannerView" destination="cpo-cK-EUg" id="X7r-IQ-Je3"/>
-                        <outlet property="cameraImage" destination="QkN-Ta-Oks" id="q6X-Ag-eQd"/>
+                        <outlet property="bannerView" destination="cpo-cK-EUg" id="lhN-by-JyD"/>
+                        <outlet property="cameraImage" destination="QkN-Ta-Oks" id="gzz-0Y-hlf"/>
                         <outlet property="favoriteBarButton" destination="6Xy-be-mAQ" id="iLr-P3-c2m"/>
                     </connections>
                 </viewController>

@@ -772,11 +772,13 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
         
         if segue.identifier == segueCameraViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
-                let cameraItem = self.cameras[indexPath.row] as CameraItem
-                let destinationViewController = segue.destination as! CameraViewController
-                destinationViewController.cameraItem = cameraItem
+                let destinationViewController = segue.destination as! CameraPageContainerViewController
+                
+                destinationViewController.selectedCameraIndex = indexPath.row
+                destinationViewController.cameras = self.cameras
             }
         }
+        
         if segue.identifier == segueRouteDeparturesViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let routeItem = self.ferrySchedules[indexPath.row] as FerryScheduleItem
@@ -784,6 +786,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 destinationViewController.routeItem = routeItem
             }
         }
+        
         if segue.identifier == segueMountainPassDetailsViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let passItem = self.mountainPasses[indexPath.row] as MountainPassItem

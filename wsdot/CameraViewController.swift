@@ -21,7 +21,7 @@
 import UIKit
 import GoogleMobileAds
 
-class CameraViewController: UIViewController, GADBannerViewDelegate{
+class CameraViewController: UIViewController, GADBannerViewDelegate {
     
     @IBOutlet weak var cameraImage: UIImageView!
     @IBOutlet weak var favoriteBarButton: UIBarButtonItem!
@@ -30,6 +30,7 @@ class CameraViewController: UIViewController, GADBannerViewDelegate{
     
     var cameraItem: CameraItem = CameraItem()
     var adTarget: String = "other"
+    var adsEnabled = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,10 +40,10 @@ class CameraViewController: UIViewController, GADBannerViewDelegate{
         let urlString = cameraItem.url + "?" + String(Int(Date().timeIntervalSince1970 / 60))
         cameraImage.sd_setImage(with: URL(string: urlString), placeholderImage: UIImage(named: "imagePlaceholder"), options: .refreshCached)
         
-        if (cameraItem.selected){
+        if (cameraItem.selected) {
             favoriteBarButton.image = UIImage(named: "icStarSmallFilled")
             favoriteBarButton.accessibilityLabel = "remove from favorites"
-        }else{
+        }else {
             favoriteBarButton.image = UIImage(named: "icStarSmall")
             favoriteBarButton.accessibilityLabel = "add to favorites"
         }
@@ -50,14 +51,17 @@ class CameraViewController: UIViewController, GADBannerViewDelegate{
         favoriteBarButton.tintColor = Colors.yellow
         
         // Ad Banner
-        bannerView.adUnitID = ApiKeys.getAdId()
-        bannerView.rootViewController = self
-        let request = DFPRequest()
-        request.customTargeting = ["wsdotapp":adTarget]
+        if (adsEnabled) {
+            bannerView.adUnitID = ApiKeys.getAdId()
+            bannerView.rootViewController = self
+            let request = DFPRequest()
+            request.customTargeting = ["wsdotapp":adTarget]
         
-        bannerView.load(request)
-        bannerView.delegate = self
-        
+            bannerView.load(request)
+            bannerView.delegate = self
+        } else {
+            bannerView.isHidden = true
+        }
     }
     
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
