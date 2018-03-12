@@ -75,18 +75,22 @@ class CameraPageViewController: UIPageViewController, UIPageViewControllerDataSo
         }
         
         let nextIndex = currentIndex + 1
+        
         return pages[nextIndex]
     }
    
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]){
         self.pendingTitle = (pendingViewControllers[0] as! CameraViewController).cameraItem.title
+        if cameras.count > 1 {
+            self.containingVC.setPageLabel(currentPage: self.cameras.index(of: (pendingViewControllers[0] as! CameraViewController).cameraItem)!)
+        }
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController],
              transitionCompleted completed: Bool) {
         self.containingVC!.title = self.pendingTitle
     }
- 
+
     // MARK - UIPageViewControllerDataSource
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
         return pages.count
@@ -95,5 +99,7 @@ class CameraPageViewController: UIPageViewController, UIPageViewControllerDataSo
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         return selectedCameraIndex
     }
+    
+    
 
 }

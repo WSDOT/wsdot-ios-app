@@ -110,6 +110,7 @@
 		9A9309B12051D7E6002D014C /* CameraPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9309B02051D7E6002D014C /* CameraPageViewController.swift */; };
 		9A9309B32051D7FF002D014C /* CameraPager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A9309B22051D7FF002D014C /* CameraPager.storyboard */; };
 		9A930A4120533782002D014C /* CameraPageContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A930A4020533782002D014C /* CameraPageContainerViewController.swift */; };
+		9A930A432056C74B002D014C /* CameraList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A930A422056C74B002D014C /* CameraList.storyboard */; };
 		9A93E0D61E707384004AB867 /* MyRoute.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A93E0D51E707384004AB867 /* MyRoute.storyboard */; };
 		9A9808BD1F1FA1780034DA05 /* BestTimesToTravelDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9808BC1F1FA1780034DA05 /* BestTimesToTravelDetailsViewController.swift */; };
 		9A9808C01F1FA2AF0034DA05 /* TravelChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9808BF1F1FA2AF0034DA05 /* TravelChartItem.swift */; };
@@ -344,6 +345,7 @@
 		9A9309B02051D7E6002D014C /* CameraPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPageViewController.swift; sourceTree = "<group>"; };
 		9A9309B22051D7FF002D014C /* CameraPager.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CameraPager.storyboard; sourceTree = "<group>"; };
 		9A930A4020533782002D014C /* CameraPageContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPageContainerViewController.swift; sourceTree = "<group>"; };
+		9A930A422056C74B002D014C /* CameraList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CameraList.storyboard; sourceTree = "<group>"; };
 		9A93E0D51E707384004AB867 /* MyRoute.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyRoute.storyboard; sourceTree = "<group>"; };
 		9A9808BC1F1FA1780034DA05 /* BestTimesToTravelDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BestTimesToTravelDetailsViewController.swift; sourceTree = "<group>"; };
 		9A9808BF1F1FA2AF0034DA05 /* TravelChartItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelChartItem.swift; sourceTree = "<group>"; };
@@ -675,7 +677,6 @@
 				9A0616E51D67838F00126520 /* TrafficMapGoToViewController.swift */,
 				9A2C27241D679E5800F05D88 /* TrafficMapSettingsViewController.swift */,
 				9A6FBCE21D6BA2DC00CDCE16 /* AlertInAreaViewController.swift */,
-				9A7BC0B11DA30BD400EF760C /* CameraClusterViewController.swift */,
 			);
 			name = TrafficMap;
 			sourceTree = "<group>";
@@ -776,6 +777,7 @@
 			children = (
 				9AB017791D51464B004C228E /* Camera.storyboard */,
 				9A9309B22051D7FF002D014C /* CameraPager.storyboard */,
+				9A930A422056C74B002D014C /* CameraList.storyboard */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1066,6 +1068,7 @@
 		9AB017781D51462D004C228E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				9A7BC0B11DA30BD400EF760C /* CameraClusterViewController.swift */,
 				9AB0177B1D514668004C228E /* CameraViewController.swift */,
 				9A930A4020533782002D014C /* CameraPageContainerViewController.swift */,
 				9A9309B02051D7E6002D014C /* CameraPageViewController.swift */,
@@ -1601,6 +1604,7 @@
 				9AFA0A771E280C22000D0C70 /* Favorites.storyboard in Resources */,
 				9AD32E281D2421E4000AEC28 /* Ferries.storyboard in Resources */,
 				9AB0177A1D51464B004C228E /* Camera.storyboard in Resources */,
+				9A930A432056C74B002D014C /* CameraList.storyboard in Resources */,
 				9ACAB9531F66ED64002683B7 /* TravelerInformation.storyboard in Resources */,
 				9AD32E041D23172C000AEC28 /* Assets.xcassets in Resources */,
 				9AEEDDC01D74B0650032F5EC /* SocialMedia.storyboard in Resources */,

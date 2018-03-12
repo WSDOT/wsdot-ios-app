@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eeH-eC-B73">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="609"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="560"/>
                                 <connections>
                                     <segue destination="aop-1r-YKR" kind="embed" identifier="EmbedSegue" id="ETC-lm-4TE"/>
                                 </connections>
@@ -44,20 +44,29 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1/23" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SiE-oC-hRO">
+                                <rect key="frame" x="171" y="588" width="33" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="eeH-eC-B73" firstAttribute="top" secondItem="rQz-B6-ijl" secondAttribute="top" id="1mS-8I-xWg"/>
                             <constraint firstItem="eeH-eC-B73" firstAttribute="trailing" secondItem="l4l-LK-sxQ" secondAttribute="trailing" id="2fW-Oi-bj3"/>
                             <constraint firstItem="dBe-mO-7VM" firstAttribute="centerX" secondItem="rQz-B6-ijl" secondAttribute="centerX" id="3a6-Gd-52H"/>
-                            <constraint firstItem="dBe-mO-7VM" firstAttribute="top" secondItem="eeH-eC-B73" secondAttribute="bottom" constant="8" id="Avg-3X-pOI"/>
                             <constraint firstItem="dBe-mO-7VM" firstAttribute="bottom" secondItem="l4l-LK-sxQ" secondAttribute="bottom" id="Fgg-ko-KSE"/>
+                            <constraint firstItem="eeH-eC-B73" firstAttribute="top" secondItem="l4l-LK-sxQ" secondAttribute="top" id="M4P-O3-WWi"/>
                             <constraint firstItem="eeH-eC-B73" firstAttribute="leading" secondItem="l4l-LK-sxQ" secondAttribute="leading" id="Xsv-0n-opE"/>
+                            <constraint firstItem="dBe-mO-7VM" firstAttribute="top" secondItem="SiE-oC-hRO" secondAttribute="bottom" constant="8" id="mgG-tm-Wix"/>
+                            <constraint firstItem="SiE-oC-hRO" firstAttribute="centerX" secondItem="rQz-B6-ijl" secondAttribute="centerX" id="qFC-fW-ID6"/>
+                            <constraint firstItem="SiE-oC-hRO" firstAttribute="top" secondItem="eeH-eC-B73" secondAttribute="bottom" constant="8" id="zTg-h8-7Ff"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="l4l-LK-sxQ"/>
                     </view>
                     <connections>
                         <outlet property="bannerView" destination="dBe-mO-7VM" id="xK5-It-GCZ"/>
+                        <outlet property="pageLabel" destination="SiE-oC-hRO" id="YcQ-VW-Auy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4m7-wx-JdX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -70,7 +79,7 @@
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="aop-1r-YKR" customClass="CameraPageViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kEL-4E-DN7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="324" y="72"/>
+            <point key="canvasLocation" x="694" y="71"/>
         </scene>
     </scenes>
 </document>

@@ -27,6 +27,7 @@ class CameraPageContainerViewController: UIViewController, GADBannerViewDelegate
     @IBOutlet weak var bannerView: DFPBannerView!
     var adTarget: String = "other"
     
+    @IBOutlet weak var pageLabel: UILabel!
     var cameras: [CameraItem] = []
     var selectedCameraIndex = 0
     
@@ -37,6 +38,12 @@ class CameraPageContainerViewController: UIViewController, GADBannerViewDelegate
         bannerView.rootViewController = self
         let request = DFPRequest()
         request.customTargeting = ["wsdotapp":adTarget]
+        
+        if cameras.count > 1 {
+            pageLabel.text = "\(selectedCameraIndex + 1) of \(cameras.count)"
+        } else {
+            pageLabel.text = ""
+        }
         
         bannerView.load(request)
         bannerView.delegate = self
@@ -49,5 +56,9 @@ class CameraPageContainerViewController: UIViewController, GADBannerViewDelegate
             vc.selectedCameraIndex = self.selectedCameraIndex
             vc.containingVC = self
         }
+    }
+    
+    func setPageLabel(currentPage: Int){
+        pageLabel.text = "\(currentPage + 1) of \(cameras.count)"
     }
 }
