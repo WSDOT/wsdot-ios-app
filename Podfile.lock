@@ -50,7 +50,7 @@ DEPENDENCIES:
   - GoogleAnalytics
   - GoogleMaps (~> 2.5.0)
   - RealmSwift (~> 3.0.2)
-  - SCLAlertView
+  - SCLAlertView (~> 0.7.0)
   - SDWebImage (~> 4.2.3)
   - SwiftyJSON (~> 3.1.3)
 
@@ -72,6 +72,6 @@ SPEC CHECKSUMS:
   SDWebImage: 791bb72962b3492327ddcac4b1880bd1b5458431
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 366981f9ced4cd4fccbb385eaa19221d779d2cb3
+PODFILE CHECKSUM: 6ecc60537105c837b1dba7cfb74ec8afb30eacd8
 
 COCOAPODS: 1.4.0

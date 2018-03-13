@@ -26,7 +26,7 @@ import EasyTipView
 class CameraPageContainerViewController: UIViewController, GADBannerViewDelegate {
 
     @IBOutlet weak var bannerView: DFPBannerView!
-    var adTarget: String = "other"
+    var adTarget: String = "traffic"
     
     @IBOutlet weak var rightTipViewAnchor: UIView!
     @IBOutlet weak var leftTipViewAnchor: UIView!
