@@ -4,10 +4,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]: 
 
+## [5.7.1] 2017-03-19
+
+### Added
+* Users can now swipe through their favorite cameras.
+
+## [5.7.0] 2017-03-09
+
 ### Changed
 * New travel times look. Travel times are now grouped by start and end locations.
 
-## [5.5.0] 2017-02
+## [5.6.0] 2017-02-20
 
 ### Added
 * Past sailing times for the current day.
