@@ -102,7 +102,7 @@ struct Utils {
     }
 }
 
-struct CustomImages {
+struct UIHelpers {
 
     static func getAlertLabel() -> UILabel {
         let label = UILabel(frame: CGRect(x: 10, y: -10, width: 20, height: 20))
@@ -116,6 +116,14 @@ struct CustomImages {
         label.backgroundColor = .red
         label.text = "!"
         return label
+    }
+    
+    static func createActivityIndicator() -> UIActivityIndicatorView {
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
+        activityIndicator.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30)
+        return activityIndicator
     }
 
 }

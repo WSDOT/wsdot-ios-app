@@ -266,7 +266,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
                         travelInfoButton.addTarget(selfValue, action: #selector(selfValue.travelerInfoAction), for: .touchUpInside)
                         
                         if (available){
-                            travelInfoButton.addSubview(CustomImages.getAlertLabel())
+                            travelInfoButton.addSubview(UIHelpers.getAlertLabel())
                         }
                         
                         selfValue.travelInformationButton.customView = travelInfoButton
