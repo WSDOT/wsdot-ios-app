@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]: 
 
+## [5.7.1] 2017-04
+
+### Added
+* Refresh action on pass report screen.
+
 ## [5.7.1] 2017-03-19
 
 ### Added
