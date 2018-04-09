@@ -32,6 +32,7 @@ class MountainPassWeatherViewController: UIViewController, UITableViewDelegate, 
     @IBOutlet weak var bannerView: DFPBannerView!
     
     override func viewDidLoad() {
+    
         super.viewDidLoad()
         let mountainPassTabBarContoller = self.tabBarController as! MountainPassTabBarViewController
         passItem = mountainPassTabBarContoller.passItem

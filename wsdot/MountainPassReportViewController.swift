@@ -36,35 +36,11 @@ class MountainPassReportViewController: UIViewController, GADBannerViewDelegate 
     
     @IBOutlet weak var restrictionTwoLabel: UILabel!
     
-    var passItem : MountainPassItem = MountainPassItem()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         let mountainPassTabBarContoller = self.tabBarController as! MountainPassTabBarViewController
-        passItem = mountainPassTabBarContoller.passItem
- 
-        updatedLabel.text = "Updated " + TimeUtils.formatTime(passItem.dateUpdated, format: "MMMM dd, YYYY h:mm a")
-        
-        if (passItem.weatherCondition != ""){
-            weatherDetailsLabel.text = passItem.weatherCondition
-        } else if (passItem.forecast.count > 0){
-            weatherDetailsLabel.text = passItem.forecast[0].forecastText
-        } else {
-            weatherDetailsLabel.text = "N/A"
-        }
-        
-        if let temp = passItem.temperatureInFahrenheit.value{
-            templabel.text = String(temp) + "°F"
-        } else {
-            templabel.text = "N/A"
-        }
-        
-        elevationLabel.text = String(passItem.elevationInFeet) + " ft"
-        conditionsLabel.text = passItem.roadCondition
-        restrictionOneTitleLabel.text = "Restrictions " + passItem.restrictionOneTravelDirection
-        restrictionOneLabel.text = passItem.restrictionOneText
-        restrictionTwoTitleLabel.text = "Restrictions " + passItem.restrictionTwoTravelDirection
-        restrictionTwoLabel.text = passItem.restrictionTwoText
+
+        updateView(withPassItem: mountainPassTabBarContoller.passItem)
  
         // Ad Banner
         bannerView.adUnitID = ApiKeys.getAdId()
@@ -75,6 +51,33 @@ class MountainPassReportViewController: UIViewController, GADBannerViewDelegate 
         bannerView.load(request)
         bannerView.delegate = self
         
+    }
+    
+    func updateView(withPassItem: MountainPassItem) {
+ 
+        updatedLabel.text = "Updated " + TimeUtils.formatTime(withPassItem.dateUpdated, format: "MMMM dd, YYYY h:mm a")
+        
+        if (withPassItem.weatherCondition != ""){
+            weatherDetailsLabel.text = withPassItem.weatherCondition
+        } else if (withPassItem.forecast.count > 0){
+            weatherDetailsLabel.text = withPassItem.forecast[0].forecastText
+        } else {
+            weatherDetailsLabel.text = "N/A"
+        }
+        
+        if let temp = withPassItem.temperatureInFahrenheit.value{
+            templabel.text = String(temp) + "°F"
+        } else {
+            templabel.text = "N/A"
+        }
+        
+        elevationLabel.text = String(withPassItem.elevationInFeet) + " ft"
+        conditionsLabel.text = withPassItem.roadCondition
+        restrictionOneTitleLabel.text = "Restrictions " + withPassItem.restrictionOneTravelDirection
+        restrictionOneLabel.text = withPassItem.restrictionOneText
+        restrictionTwoTitleLabel.text = "Restrictions " + withPassItem.restrictionTwoTravelDirection
+        restrictionTwoLabel.text = withPassItem.restrictionTwoText
+    
     }
     
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
