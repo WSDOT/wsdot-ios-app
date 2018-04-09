@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IAh-cF-WhQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IAh-cF-WhQ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -162,7 +162,7 @@
                                     <action selector="travelerInfoAction:" destination="1Nk-0b-wXD" id="Lvg-aY-YIS"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem systemItem="refresh" id="taC-KG-CUf">
+                            <barButtonItem image="icRefresh" id="taC-KG-CUf">
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="Refresh"/>
                                 </userDefinedRuntimeAttributes>
@@ -533,5 +533,6 @@
         <image name="icLocation" width="24" height="24"/>
         <image name="icMenu" width="24" height="24"/>
         <image name="icMyLocation" width="32" height="32"/>
+        <image name="icRefresh" width="24" height="24"/>
     </resources>
 </document>
