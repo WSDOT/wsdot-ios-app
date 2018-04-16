@@ -28,6 +28,7 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate,
     @IBOutlet weak var aboutText: UITextView!
     
     @IBOutlet weak var feedbackButton: UIButton!
+    @IBOutlet weak var ferriesFeedbackButton: UIButton!
     @IBOutlet weak var bugReportButton: UIButton!
     @IBOutlet weak var jobsButton: UIButton!
     
@@ -47,8 +48,8 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate,
         
         aboutText.text = "The Washington State Department of Transportation provides and supports safe, reliable and cost-effective transportation options to improve livable communities and economic vitality for people and businesses.\n\n"
             + "The WSDOT mobile app was created to make it easier for you to know the latest about Washington's transportation system. \n\n"
-            + "To report HOV, HOT lane or ferry line violators please call 1-877-764-4376 or use our online reporting form at http://www.wsdot.wa.gov/HOV/reporting.\n\n"
-            + "Questions, comments or suggestions about this app can be e-mailed to the WSDOT Communications Office at webfeedback@wsdot.wa.gov."
+            + "Questions, comments or suggestions about this app can be e-mailed to the WSDOT Communications Office at webfeedback@wsdot.wa.gov. \n\n"
+            + "To report HOV, HOT lane or ferry line violators please call 1-877-764-4376 or use our online reporting form at http://www.wsdot.wa.gov/HOV/reporting."
     
         aboutText.isEditable = false
         appVersionLabel.text = "App version: " + version
@@ -90,6 +91,21 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate,
             UIApplication.shared.openURL(URL(string: "mailto:")!)
         }
     }
+    
+    @IBAction func composeFerriesFeedbackMessage(_ sender: UIButton) {
+    
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.navigationBar.tintColor = Colors.yellow
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["wsfinfo@wsdot.wa.gov"])
+            present(mail, animated: true, completion: nil)
+        } else {
+            UIApplication.shared.openURL(URL(string: "mailto:")!)
+        }
+    
+    }
+    
     
     @IBAction func composeBugReport(_ sender: UIButton) {
     
@@ -151,6 +167,10 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate,
         feedbackButton.layer.cornerRadius = 5
         feedbackButton.clipsToBounds = true
         feedbackButton.backgroundColor = ThemeManager.currentTheme().mainColor
+        
+        ferriesFeedbackButton.layer.cornerRadius = 5
+        ferriesFeedbackButton.clipsToBounds = true
+        ferriesFeedbackButton.backgroundColor = ThemeManager.currentTheme().mainColor
         
         bugReportButton.layer.cornerRadius = 5
         bugReportButton.clipsToBounds = true
