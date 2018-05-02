@@ -4,7 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]: 
 
-## [5.7.2] 2017-04
+## [5.7.3] 2017-05-01
+* Adds WSF contact info.
+
+## [5.7.2] 2017-04-16
 
 ### Added
 * Refresh action on pass report screen.
