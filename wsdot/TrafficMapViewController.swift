@@ -120,7 +120,6 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView(screenName: "/Traffic Map")
     }
-
     
     @IBAction func refreshPressed(_ sender: UIBarButtonItem) {
     

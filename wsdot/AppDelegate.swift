@@ -79,6 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CamerasStore.flushOldData()
         TravelTimesStore.flushOldData()
         HighwayAlertsStore.flushOldData()
+        NotificationsStore.flushOldData()
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
@@ -86,11 +87,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CamerasStore.flushOldData()
         TravelTimesStore.flushOldData()
         HighwayAlertsStore.flushOldData()
+        NotificationsStore.flushOldData()
     }
     
     func migrateRealm(){
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
-            schemaVersion: 3,
+            schemaVersion: 4,
             
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
@@ -125,6 +127,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                    migration.deleteData(forType: TravelTimeItem.className())
                    migration.deleteData(forType: CacheItem.className())
                 }
+                
+                if (oldSchemaVersion < 4) {
+                    migration.enumerateObjects(ofType: CacheItem.className()) { oldObject, newObject in
+                        newObject!["notificationsLastUpdate"] = Date(timeIntervalSince1970: 0)
+                    }
+                }
+            
         })
     }
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="mIB-If-tar">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="mIB-If-tar">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -35,7 +35,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qhy-V3-UzG">
-                                                    <rect key="frame" x="23" y="11" width="297" height="21"/>
+                                                    <rect key="frame" x="23" y="11" width="297" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -235,15 +235,9 @@
                     <connections>
                         <outlet property="activityIndicator" destination="MFA-5I-3mK" id="y93-zq-JDy"/>
                         <outlet property="tableView" destination="F8X-gj-Snv" id="FHH-US-ATI"/>
-                        <segue destination="iJO-Ih-eIN" kind="show" identifier="ExpressLanesViewController" id="bTu-s0-5V5">
-                            <nil key="action"/>
-                        </segue>
-                        <segue destination="lLl-Mn-R6F" kind="show" identifier="TravelTimesViewController" id="UKT-si-N84">
-                            <nil key="action"/>
-                        </segue>
-                        <segue destination="Xw6-xX-evy" kind="show" identifier="BestTimesToTravelRoutesViewController" id="uhb-eB-Yls">
-                            <nil key="action"/>
-                        </segue>
+                        <segue destination="iJO-Ih-eIN" kind="show" identifier="ExpressLanesViewController" id="bTu-s0-5V5"/>
+                        <segue destination="lLl-Mn-R6F" kind="show" identifier="TravelTimesViewController" id="UKT-si-N84"/>
+                        <segue destination="Xw6-xX-evy" kind="show" identifier="BestTimesToTravelRoutesViewController" id="uhb-eB-Yls"/>
                         <segue destination="QdA-RT-fWw" kind="show" identifier="NewsViewController" id="CQX-kr-2JI"/>
                         <segue destination="kDh-s9-QZs" kind="show" identifier="HappeningNowTabViewController" id="vH8-dv-dWu"/>
                     </connections>
@@ -293,9 +287,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="gIX-Re-Bce" id="4iX-4j-UWO"/>
-                        <segue destination="1X4-QF-v8x" kind="show" identifier="BestTimesToTravelDetailsViewController" id="m0G-ic-olg">
-                            <nil key="action"/>
-                        </segue>
+                        <segue destination="1X4-QF-v8x" kind="show" identifier="BestTimesToTravelDetailsViewController" id="m0G-ic-olg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5et-nn-X2z" userLabel="First Responder" sceneMemberID="firstResponder"/>

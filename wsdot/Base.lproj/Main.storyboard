@@ -8,6 +8,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -227,14 +228,21 @@
                         <viewLayoutGuide key="safeArea" id="Umz-jt-fUb"/>
                     </view>
                     <navigationItem key="navigationItem" id="Xpe-Fb-HQB">
-                        <barButtonItem key="rightBarButtonItem" image="icInfo" id="t4G-kd-S5C">
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="About"/>
-                            </userDefinedRuntimeAttributes>
-                            <connections>
-                                <action selector="infoBarButtonPressed:" destination="4jS-98-Vld" id="Ll3-O9-ZuD"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="icInfo" id="t4G-kd-S5C">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="About"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="infoBarButtonPressed:" destination="4jS-98-Vld" id="Ll3-O9-ZuD"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="icNotification" id="sPu-kK-o5w">
+                                <connections>
+                                    <segue destination="WCO-RD-Y5F" kind="show" id="zT7-dd-fKp"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="peh-Jp-BEr" id="o2R-WZ-ota"/>
@@ -448,6 +456,14 @@
             </objects>
             <point key="canvasLocation" x="322" y="698"/>
         </scene>
+        <!--Notifications-->
+        <scene sceneID="s7p-08-W7K">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Notifications" id="WCO-RD-Y5F" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KhL-s8-aHg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1738" y="599"/>
+        </scene>
         <!--Alert Pager View Controller-->
         <scene sceneID="PKl-1s-Yfu">
             <objects>
@@ -505,6 +521,7 @@
     </scenes>
     <resources>
         <image name="icInfo" width="24" height="24"/>
+        <image name="icNotification" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="gN6-Dz-E6K"/>

@@ -41,6 +41,7 @@ class MountainPassesViewController: UIViewController, UITableViewDelegate, UITab
     
         // refresh controller
         refreshControl.addTarget(self, action: #selector(MountainPassesViewController.refreshAction(_:)), for: .valueChanged)
+        
         tableView.addSubview(refreshControl)
         
         showOverlay(self.view)
