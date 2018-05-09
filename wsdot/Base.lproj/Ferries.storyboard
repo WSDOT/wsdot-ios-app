@@ -126,7 +126,7 @@
         <!--Navigation Controller-->
         <scene sceneID="bzE-V6-aNY">
             <objects>
-                <navigationController id="TCc-a3-MF5" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="FerriesNav" id="TCc-a3-MF5" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="ibq-pC-Y27">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

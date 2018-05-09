@@ -85,7 +85,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         TravelTimesStore.flushOldData()
         HighwayAlertsStore.flushOldData()
         NotificationsStore.flushOldData()
-        
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -95,7 +94,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         HighwayAlertsStore.flushOldData()
         NotificationsStore.flushOldData()
     }
+
+    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
     
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Ferries", bundle: nil)
+        let ferriesNav = mainStoryboard.instantiateViewController(withIdentifier: "FerriesNav") as! UINavigationController
+        let rootViewController = self.window!.rootViewController as! UISplitViewController
+
+        if (rootViewController.isCollapsed) {
+            let nav = rootViewController.viewControllers[0] as! UINavigationController
+            nav.pushViewController(ferriesNav, animated: true)
+        
+        
+        
+        
+        
+        } else {
+        
+            ferriesNav.viewControllers[0].navigationItem.leftBarButtonItem = rootViewController.displayModeButtonItem
+            ferriesNav.viewControllers[0].navigationItem.leftItemsSupplementBackButton = true
+        
+            rootViewController.showDetailViewController(ferriesNav, sender: self)
+            
+        }
+    }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         // If you are receiving a notification message while your app is in the background,
@@ -111,7 +133,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
       //  }
 
         // Print full message.
-      //  print(userInfo)
+        //  print(userInfo)
         print("didReceiveRemoteNotification.")
     }
 
@@ -143,8 +165,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         print("catch local notification")
         
         UIApplication.shared.applicationIconBadgeNumber = 0
+       
         
-
         // Display the notificaion.
         completionHandler(UNNotificationPresentationOptions.alert)
     }
@@ -192,7 +214,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                         newObject!["notificationsLastUpdate"] = Date(timeIntervalSince1970: 0)
                     }
                 }
-            
         })
     }
 }

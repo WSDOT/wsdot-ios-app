@@ -70,33 +70,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
             EventStore.fetchAndSaveEventItem()
         }
-        
-
-        
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView(screenName: "/Home")
         displayEventBannerIfNeeded()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.catchIt), name: NSNotification.Name(rawValue: "myNotif"), object: nil)
-    }
-    
-    func catchIt(_ userInfo: Notification){
-        print("caught it")
-        var vcs = [UIViewController]()
-        
-        let sb = UIStoryboard(name: "Ferries", bundle: nil)
-        
-        let ferriesHome = sb.instantiateViewController(withIdentifier: "FerriesHomeViewController") as! FerriesHomeViewController
-        let ferriesSchedule = sb.instantiateViewController(withIdentifier: "RouteSchedulesViewController") as! RouteSchedulesViewController
-        
-        vcs.append(ferriesHome)
-        vcs.append(ferriesSchedule)
-        
-        self.navigationController?.setViewControllers(vcs, animated: true)
-        
     }
 
     override func viewDidLayoutSubviews() {
