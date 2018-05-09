@@ -27,7 +27,7 @@ import Realm
 import EasyTipView
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
     var window: UIWindow?
     
@@ -71,6 +71,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Reset Warning each time app starts
         UserDefaults.standard.set(false, forKey: UserDefaultsKeys.hasSeenWarning)
         
+        if #available(iOS 10.0, *) {
+            // For iOS 10 display notification (sent via APNS)
+            UNUserNotificationCenter.current().delegate = self
+        }
+        
         return true
     }
     
@@ -80,14 +85,68 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         TravelTimesStore.flushOldData()
         HighwayAlertsStore.flushOldData()
         NotificationsStore.flushOldData()
+        
     }
-    
+
     func applicationWillTerminate(_ application: UIApplication) {
         FerryRealmStore.flushOldData()
         CamerasStore.flushOldData()
         TravelTimesStore.flushOldData()
         HighwayAlertsStore.flushOldData()
         NotificationsStore.flushOldData()
+    }
+    
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will not be fired till the user taps on the notification launching the application.
+        // TODO: Handle data of notification
+
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
+        // Messaging.messaging().appDidReceiveMessage(userInfo)
+
+        // Print message ID.
+      //  if let messageID = userInfo[gcmMessageIDKey] {
+      //      print("Message ID: \(messageID)")
+      //  }
+
+        // Print full message.
+      //  print(userInfo)
+        print("didReceiveRemoteNotification.")
+    }
+
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                 fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will not be fired till the user taps on the notification launching the application.
+        // TODO: Handle data of notification
+
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
+        // Messaging.messaging().appDidReceiveMessage(userInfo)
+
+        // Print message ID.
+        // if let messageID = userInfo[gcmMessageIDKey] {
+        //   print("Message ID: \(messageID)")
+        //}
+        
+        // Print full message.
+        print("didReceiveRemoteNotification w/ completionHandler.")
+
+        completionHandler(UIBackgroundFetchResult.newData)
+    }
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                            willPresent notification: UNNotification,
+                            withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        // Update the app interface directly.
+        print("catch local notification")
+        
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        
+
+        // Display the notificaion.
+        completionHandler(UNNotificationPresentationOptions.alert)
     }
     
     func migrateRealm(){

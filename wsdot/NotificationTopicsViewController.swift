@@ -19,8 +19,13 @@
 //
 
 import UIKit
+import UserNotifications
 
 class NotificationTopicsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    enum AuthResult {
+        case success(Bool), failure(Error)
+    }
     
     let cellIdentifier = "TopicCell"
     
@@ -34,18 +39,55 @@ class NotificationTopicsViewController: UIViewController, UITableViewDelegate, U
         super.viewDidLoad()
         self.title = "Notification Settings"
         
+        self.tableView.layoutIfNeeded()
         self.topicItems = NotificationsStore.getTopics()
         self.tableView.estimatedRowHeight = UITableViewAutomaticDimension
        
         self.tableView.layoutIfNeeded()
         self.tableView.reloadData()
         
+        self.tableView.layoutIfNeeded()
         refresh(true)
+        
+        self.tableView.layoutIfNeeded()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView(screenName: "/Notification Settings")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if #available(iOS 10.0, *) {} else {
+            NotificationCenter.default.addObserver(
+                self,
+                selector:#selector(NotificationTopicsViewController.applicationDidBecomeActiveNotification),
+                name:NSNotification.Name.UIApplicationDidBecomeActive,
+                object:nil)
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            UIApplication.shared.registerUserNotificationSettings(settings)
+            UIApplication.shared.registerForRemoteNotifications()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if #available(iOS 10.0, *) {} else {
+            NotificationCenter.default.removeObserver(
+                self,
+                name:NSNotification.Name.UIApplicationDidBecomeActive,
+                object:nil)
+        }
+    }
+
+    func applicationDidBecomeActiveNotification() {
+        if UIApplication.shared.isRegisteredForRemoteNotifications {
+            print("iOS 9 access is granted")
+        } else {
+            print("iOS 9 access is denied")
+        }
     }
 
     func refresh(_ force: Bool) {
@@ -59,7 +101,10 @@ class NotificationTopicsViewController: UIViewController, UITableViewDelegate, U
                     DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
                             selfValue.topicItems = NotificationsStore.getTopics()
+                            selfValue.tableView.layoutIfNeeded()
                             selfValue.tableView.reloadData()
+
+                            selfValue.tableView.layoutIfNeeded()
                             selfValue.hideOverlayView()
                             UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, selfValue.tableView)
                         }
@@ -124,12 +169,55 @@ class NotificationTopicsViewController: UIViewController, UITableViewDelegate, U
     
     func changeSubscriptionPref(_ sender: PassableUISwitch) {
     
-        let topic = sender.params["topic"] as! NotificationTopicItem
-        NotificationsStore.updateSubscription(topic, newValue: !topic.subscribed)
-        GoogleAnalytics.event(category: "Notification", action: "", label: "")
-
+        if #available(iOS 10.0, *) {
+            checkAvailabilty { result in
+                DispatchQueue.main.async { [weak self] in
+                    if let selfValue = self{
+                        switch result {
+                            case .success(let granted) :
+                                if granted {
+                                    print("access is granted")
+                            
+                                    let topic = sender.params["topic"] as! NotificationTopicItem
+        
+                                    NotificationsStore.updateSubscription(topic, newValue: !topic.subscribed)
+                                    GoogleAnalytics.event(category: "Notification", action: "", label: "")
+                                } else {
+                                    print("access is denied")
+                                    selfValue.present(AlertMessages.getAcessDeniedAlert("Turn On Notifications", message: "Please allow notifications from Settings"), animated:     true, completion: nil)
+                                }
+                            case .failure(let error): print(error)
+                        }
+                    }
+                }
+            }
+        } else {
+            if UIApplication.shared.isRegisteredForRemoteNotifications {
+                print("iOS 9 access is granted")
+                
+                let topic = sender.params["topic"] as! NotificationTopicItem
+        
+                NotificationsStore.updateSubscription(topic, newValue: !topic.subscribed)
+                GoogleAnalytics.event(category: "Notification", action: "", label: "")
+            } else {
+                print("iOS 9 access is denied")
+                self.present(AlertMessages.getAcessDeniedAlert("Turn On Notifications", message: "Please allow notifications from Settings"), animated: true, completion: nil)
+            }
+        }
     }
-    
+
+    @available(iOS 10,  *)
+    func checkAvailabilty(completion: @escaping (AuthResult) -> ()) {
+
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(
+            options: authOptions,
+            completionHandler: {(granted, error) in
+                if error != nil {
+                    completion(.failure(error!))
+                } else {
+                    completion(.success(granted))
+                }
+        })
+    }
 }
-
-

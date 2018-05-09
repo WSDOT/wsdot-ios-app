@@ -70,8 +70,35 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
             EventStore.fetchAndSaveEventItem()
         }
+        
+
+        
+
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        GoogleAnalytics.screenView(screenName: "/Home")
+        displayEventBannerIfNeeded()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.catchIt), name: NSNotification.Name(rawValue: "myNotif"), object: nil)
+    }
+    
+    func catchIt(_ userInfo: Notification){
+        print("caught it")
+        var vcs = [UIViewController]()
+        
+        let sb = UIStoryboard(name: "Ferries", bundle: nil)
+        
+        let ferriesHome = sb.instantiateViewController(withIdentifier: "FerriesHomeViewController") as! FerriesHomeViewController
+        let ferriesSchedule = sb.instantiateViewController(withIdentifier: "RouteSchedulesViewController") as! RouteSchedulesViewController
+        
+        vcs.append(ferriesHome)
+        vcs.append(ferriesSchedule)
+        
+        self.navigationController?.setViewControllers(vcs, animated: true)
+        
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         displayEventBannerIfNeeded()
@@ -135,12 +162,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         selectedIndex = -1
         performSegue(withIdentifier: SegueEventViewController, sender: self)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        GoogleAnalytics.screenView(screenName: "/Home")
-        displayEventBannerIfNeeded()
-    }
 
     override func viewWillDisappear(_ animated: Bool) {
         eventBannerView.removeFromSuperview()
@@ -186,7 +207,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
             switch (indexPath.row) {
             case 0:
-                performSegue(withIdentifier: SegueTrafficMapViewController, sender: self)
+                    let localNotification = UILocalNotification()
+        localNotification.fireDate = Date(timeIntervalSinceNow: 3)
+        localNotification.alertBody = "This is local notification from Swift 3.0"
+        localNotification.timeZone = NSTimeZone.local
+        localNotification.repeatInterval = NSCalendar.Unit.minute
+        localNotification.userInfo = ["Important":"Data"];
+        localNotification.soundName = UILocalNotificationDefaultSoundName
+        localNotification.applicationIconBadgeNumber = 5
+        localNotification.category = "Message"
+        
+        UIApplication.shared.presentLocalNotificationNow(localNotification)
+             //   performSegue(withIdentifier: SegueTrafficMapViewController, sender: self)
                 break
             case 1:
                 performSegue(withIdentifier: SegueFerriesHomeViewController, sender: self)

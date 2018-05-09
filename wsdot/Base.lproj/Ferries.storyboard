@@ -15,7 +15,7 @@
         <!--Route Schedules View Controller-->
         <scene sceneID="A4Y-Ld-LyT">
             <objects>
-                <viewController id="fwi-Dl-yoU" customClass="RouteSchedulesViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RouteSchedulesViewController" id="fwi-Dl-yoU" customClass="RouteSchedulesViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bxw-o5-wlM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

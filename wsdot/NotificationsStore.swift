@@ -114,12 +114,12 @@ class NotificationsStore {
                 }
                 realm.add(newTopcis, update: true)
             }
-        }catch {
+        } catch {
             print("NotificationsStore.saveTopics: Realm write error")
         }
     }
 
-    static func flushOldData(){
+    static func flushOldData() {
         do {
             let realm = try Realm()
             let routeItems = realm.objects(NotificationTopicItem.self).filter("delete == true")

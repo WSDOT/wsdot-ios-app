@@ -396,6 +396,7 @@
 		9AE6B77A209BA40E001DE80F /* NotificationTopicItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTopicItem.swift; sourceTree = "<group>"; };
 		9AE6B77D209CF965001DE80F /* PassableSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassableSwitch.swift; sourceTree = "<group>"; };
 		9AE6B77F209CF9B1001DE80F /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
+		9AEBB70C20A23DDB00D09027 /* WSDOT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = WSDOT.entitlements; path = WSDOT/WSDOT.entitlements; sourceTree = "<group>"; };
 		9AEDA2A71D8C3B1C00302F80 /* WSDOTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WSDOTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AEDA2A91D8C3B1C00302F80 /* WSDOTTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSDOTTests.swift; sourceTree = "<group>"; };
 		9AEDA2AB1D8C3B1C00302F80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1168,6 +1169,7 @@
 		9AD32DF01D23172C000AEC28 = {
 			isa = PBXGroup;
 			children = (
+				9AEBB70C20A23DDB00D09027 /* WSDOT.entitlements */,
 				9AD32DFB1D23172C000AEC28 /* wsdot */,
 				9ADF0E001D7F5EF600632F3D /* WSDOTUITests */,
 				9AEDA2A81D8C3B1C00302F80 /* WSDOTTests */,
@@ -1611,7 +1613,7 @@
 								enabled = 1;
 							};
 							com.apple.Push = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -2181,6 +2183,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = WSDOT/WSDOT.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 9544S8BX77;
@@ -2200,6 +2203,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = WSDOT/WSDOT.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 9544S8BX77;
