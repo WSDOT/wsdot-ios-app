@@ -165,7 +165,8 @@ class RouteSchedulesViewController: UIViewController, UITableViewDelegate, UITab
             if let indexPath = tableView.indexPathForSelectedRow {
                 let routeItem = self.routes[indexPath.row] as FerryScheduleItem
                 let destinationViewController: RouteTabBarViewController = segue.destination as! RouteTabBarViewController
-                destinationViewController.routeItem = routeItem
+                destinationViewController.title = routeItem.routeDescription
+                destinationViewController.routeId = routeItem.routeId
             }
         }
     }

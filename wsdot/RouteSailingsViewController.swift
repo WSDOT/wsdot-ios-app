@@ -26,19 +26,23 @@ class RouteSailingsViewController: UIViewController, UITableViewDataSource, UITa
     let SegueRouteDeparturesViewController = "RouteDeparturesViewController"
     
     @IBOutlet var tableView: UITableView!
+    
     var routeItem : FerryScheduleItem = FerryScheduleItem()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        // get routeItem
-        let routeTabBarContoller = self.tabBarController as! RouteTabBarViewController
-        routeItem = routeTabBarContoller.routeItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView(screenName: "/Ferries/Schedules/Sailings")
+    }
+    
+    func setRouteItemAndReload(_ routeItem: FerryScheduleItem){
+        self.routeItem = routeItem
+        if (tableView != nil){
+            tableView.reloadData()
+        }
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {

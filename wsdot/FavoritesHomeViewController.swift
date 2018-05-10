@@ -318,20 +318,14 @@ extension FavoritesHomeViewController {
     
     func requestFerriesUpdate(_ force: Bool, serviceGroup: DispatchGroup){
         serviceGroup.enter()
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async { [weak self] in
-            FerryRealmStore.updateRouteSchedules(force, completion: { error in
-                if (error == nil) {
-                    serviceGroup.leave()
-                } else {
-                    serviceGroup.leave()
-                    DispatchQueue.main.async { [weak self] in
-                        if let selfValue = self{
-                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
-                        }
-                    }
-                }
-            })
-        }
+        FerryRealmStore.updateRouteSchedules(force, completion: { error in
+            if (error == nil) {
+                serviceGroup.leave()
+            } else {
+                serviceGroup.leave()
+                self.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+            }
+        })
     }
     
     func requestMountainPassesUpdate(_ force: Bool, serviceGroup: DispatchGroup){
@@ -783,7 +777,8 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             if let indexPath = tableView.indexPathForSelectedRow {
                 let routeItem = self.ferrySchedules[indexPath.row] as FerryScheduleItem
                 let destinationViewController = segue.destination as! RouteTabBarViewController
-                destinationViewController.routeItem = routeItem
+                destinationViewController.title = routeItem.routeDescription
+                destinationViewController.routeId = routeItem.routeId
             }
         }
         

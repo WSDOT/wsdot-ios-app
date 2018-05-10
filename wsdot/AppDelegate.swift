@@ -68,12 +68,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 gai.trackUncaughtExceptions = true  // report uncaught exceptions
             }
         }
+        
         // Reset Warning each time app starts
         UserDefaults.standard.set(false, forKey: UserDefaultsKeys.hasSeenWarning)
         
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
             UNUserNotificationCenter.current().delegate = self
+        }
+        
+        // check if we launched becuase of a notification
+        if launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] != nil {
+            launchFerriesAlertScreen(routeId: 13)
+        }
+        
+        if launchOptions?[UIApplicationLaunchOptionsKey.localNotification] != nil {
+            launchFerriesAlertScreen(routeId: 13)
         }
         
         return true
@@ -97,27 +107,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
     
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Ferries", bundle: nil)
-        let ferriesNav = mainStoryboard.instantiateViewController(withIdentifier: "FerriesNav") as! UINavigationController
-        let rootViewController = self.window!.rootViewController as! UISplitViewController
+        launchFerriesAlertScreen(routeId: 13)
+        
+        print("didReceiveLocalNotification.")
+    }
 
+    func launchFerriesAlertScreen(routeId: Int) {
+        
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Ferries", bundle: nil)
+        
+        // Set up nav and vc stack
+        let ferriesNav = mainStoryboard.instantiateViewController(withIdentifier: "FerriesNav") as! UINavigationController
+        
+        let ferriesHome = mainStoryboard.instantiateViewController(withIdentifier: "FerriesHomeViewController") as! FerriesHomeViewController
+        let ferrySchedules = mainStoryboard.instantiateViewController(withIdentifier: "RouteSchedulesViewController") as! RouteSchedulesViewController
+        let ferrySailings = mainStoryboard.instantiateViewController(withIdentifier: "RouteTabBarViewController") as! RouteTabBarViewController
+  
+        // set values for the sailings VC
+        // TODO: get Route ID from alert
+        ferrySailings.routeId = routeId
+        ferrySailings.selectedTab = 1
+        
+        // assign vc stack to new nav controller
+        ferriesNav.setViewControllers([ferriesHome, ferrySchedules, ferrySailings], animated: false)
+
+        // get the main split view, check how VCs are currently displayed
+        let rootViewController = self.window!.rootViewController as! UISplitViewController
         if (rootViewController.isCollapsed) {
+            // Only one vc displayed, pop current stack and assign new vc stack
             let nav = rootViewController.viewControllers[0] as! UINavigationController
+            nav.popToRootViewController(animated: false)
             nav.pushViewController(ferriesNav, animated: true)
         
-        
-        
-        
-        
         } else {
-        
+            // Master/Detail displayed, swap out the current detail view with the new stack of view controllers.
             ferriesNav.viewControllers[0].navigationItem.leftBarButtonItem = rootViewController.displayModeButtonItem
             ferriesNav.viewControllers[0].navigationItem.leftItemsSupplementBackButton = true
-        
             rootViewController.showDetailViewController(ferriesNav, sender: self)
-            
         }
     }
+   
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         // If you are receiving a notification message while your app is in the background,

@@ -26,45 +26,125 @@ import UIKit
  */
 class RouteTabBarViewController: UITabBarController {
     
-    var routeItem : FerryScheduleItem = FerryScheduleItem()
+    var routeItem: FerryScheduleItem?
+    var routeId: Int = 0
     
+    var selectedTab: Int = 0
+
+    var overlayView = UIView()
+    var activityIndicator = UIActivityIndicatorView()
+
     let favoriteBarButton = UIBarButtonItem()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = routeItem.routeDescription;
+        self.favoriteBarButton.action = #selector(RouteTabBarViewController.updateFavorite(_:))
+        self.favoriteBarButton.target = self
+        self.favoriteBarButton.tintColor = Colors.yellow
+        self.favoriteBarButton.image = UIImage(named: "icStarSmall")
+        self.favoriteBarButton.accessibilityLabel = "add to favorites"
+
+        self.navigationItem.rightBarButtonItem = self.favoriteBarButton
         
-        if (routeItem.routeAlerts.count > 0){
-            self.tabBar.items?[1].badgeValue = String(routeItem.routeAlerts.count)
+        loadSailings()
+    }
+    
+    func loadSailings(){
+    
+        self.showOverlay(self.view)
+    
+        FerryRealmStore.updateRouteSchedules(false, completion: { error in
+            if (error == nil) {
+                
+                self.routeItem = FerryRealmStore.findSchedule(withId: self.routeId)
+
+                if let routeItemValue = self.routeItem {
+                    self.title = routeItemValue.routeDescription
+
+                    if (routeItemValue.routeAlerts.count > 0){
+                        self.tabBar.items?[1].badgeValue = String(routeItemValue.routeAlerts.count)
+                    } else {
+                        self.tabBar.items?[1].isEnabled = false
+                    }
+        
+                    if (routeItemValue.selected){
+                        self.favoriteBarButton.image = UIImage(named: "icStarSmallFilled")
+                        self.favoriteBarButton.accessibilityLabel = "remove from favorites"
+                    }else{
+                        self.favoriteBarButton.image = UIImage(named: "icStarSmall")
+                        self.favoriteBarButton.accessibilityLabel = "add to favorites"
+                    }
+                
+                    let sailings = self.childViewControllers[0] as! RouteSailingsViewController
+                    sailings.setRouteItemAndReload(routeItemValue)
+                
+                    let alerts = self.childViewControllers[1] as! RouteAlertsViewController
+                    alerts.setAlertsFromRouteItem(routeItemValue)
+                
+                    self.pushAlertCheck(routeItemValue)
+                    
+                    self.hideOverlayView()
+                } else {
+        
+                    self.navigationItem.rightBarButtonItem = nil
+                    self.hideOverlayView()
+                    
+                    let alert = AlertMessages.getSingleActionAlert("Route Unavailable", message: "", confirm: "OK", comfirmHandler: { action in
+                        self.navigationController!.popViewController(animated: true)
+                    })
+                
+                    self.present(alert, animated: true, completion: nil)
+                    
+                }
+            } else {
+                self.hideOverlayView()
+                self.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+            }
+        })
+    }
+    
+    func pushAlertCheck(_ routeItem: FerryScheduleItem){
+    
+        if self.selectedTab == 1 && routeItem.routeAlerts.count != 0 {
+            self.selectedIndex = self.selectedTab
         } else {
-            self.tabBar.items?[1].isEnabled = false
+            // No alerts available (also need to handle push alert expired)
+        }
+    }
+    
+    func showOverlay(_ view: UIView) {
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.color = UIColor.gray
+        
+        if self.splitViewController!.isCollapsed {
+            activityIndicator.center = CGPoint(x: view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
+        } else {
+            activityIndicator.center = CGPoint(x: view.center.x - self.splitViewController!.viewControllers[0].view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
         }
         
-        favoriteBarButton.action = #selector(RouteTabBarViewController.updateFavorite(_:))
-        favoriteBarButton.target = self
-        favoriteBarButton.tintColor = Colors.yellow
+        view.addSubview(activityIndicator)
         
-        if (routeItem.selected){
-            favoriteBarButton.image = UIImage(named: "icStarSmallFilled")
-            favoriteBarButton.accessibilityLabel = "remove from favorites"
-        }else{
-            favoriteBarButton.image = UIImage(named: "icStarSmall")
-            favoriteBarButton.accessibilityLabel = "add to favorites"
-        }
-        
-        self.navigationItem.rightBarButtonItem = favoriteBarButton
+        activityIndicator.startAnimating()
+    }
+    
+    func hideOverlayView(){
+        activityIndicator.stopAnimating()
+        activityIndicator.removeFromSuperview()
     }
     
     func updateFavorite(_ sender: UIBarButtonItem) {
-        if (routeItem.selected){
-            FerryRealmStore.updateFavorite(routeItem, newValue: false)
-            favoriteBarButton.image = UIImage(named: "icStarSmall")
-            favoriteBarButton.accessibilityLabel = "add to favorites"
-        }else {
-            FerryRealmStore.updateFavorite(routeItem, newValue: true)
-            favoriteBarButton.image = UIImage(named: "icStarSmallFilled")
-            favoriteBarButton.accessibilityLabel = "remove from favorites"
+        if let routeItemValue = routeItem {
+            if (routeItemValue.selected){
+                FerryRealmStore.updateFavorite(routeItemValue, newValue: false)
+                favoriteBarButton.image = UIImage(named: "icStarSmall")
+                favoriteBarButton.accessibilityLabel = "add to favorites"
+            }else {
+                FerryRealmStore.updateFavorite(routeItemValue, newValue: true)
+                favoriteBarButton.image = UIImage(named: "icStarSmallFilled")
+                favoriteBarButton.accessibilityLabel = "remove from favorites"
+            }
         }
     }
 }
