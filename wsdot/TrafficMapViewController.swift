@@ -337,26 +337,25 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     func fetchAlerts(force: Bool, group: DispatchGroup) {
         group.enter()
-        DispatchQueue.global().async {[weak self] in
-            HighwayAlertsStore.updateAlerts(force, completion: { error in
-                if (error == nil){
-                    DispatchQueue.main.async {[weak self] in
-                        if let selfValue = self{
-                            group.leave()
-                            selfValue.loadAlertMarkers()
-                            selfValue.drawAlerts()
-                        }
-                    }
-                }else{
-                    DispatchQueue.main.async { [weak self] in
-                        if let selfValue = self{
-                            group.leave()
-                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
-                        }
+        HighwayAlertsStore.updateAlerts(force, completion: { error in
+            if (error == nil){
+                DispatchQueue.main.async {[weak self] in
+                    if let selfValue = self{
+                        group.leave()
+                        selfValue.loadAlertMarkers()
+                        selfValue.drawAlerts()
                     }
                 }
-            })
-        }
+            }else{
+                DispatchQueue.main.async { [weak self] in
+                    if let selfValue = self{
+                        group.leave()
+                        selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                    }
+                }
+            }
+        })
+        
     }
     
     func loadAlertMarkers(){
@@ -693,7 +692,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         if segue.identifier == SegueHighwayAlertViewController {
             let alertItem = ((sender as! GMSMarker).userData as! HighwayAlertItem)
             let destinationViewController = segue.destination as! HighwayAlertViewController
-            destinationViewController.alertItem = alertItem
+            destinationViewController.alertId = alertItem.alertId
         }
         
         if segue.identifier == SegueCamerasViewController {

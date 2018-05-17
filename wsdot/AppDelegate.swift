@@ -123,8 +123,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         completionHandler(UNNotificationPresentationOptions.alert)
     }
     
-    
-    
     // Deprecated
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         // If you are receiving a notification message while your app is in the background,
@@ -133,7 +131,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         print(userInfo["title"] ?? "nope")
         Messaging.messaging().appDidReceiveMessage(userInfo)
-        launchFerriesAlertScreen(routeId: 13)
+        launchFerriesAlertScreen(routeId: 11)
         print("didReceiveRemoteNotification.")
     }
 
@@ -141,16 +139,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                  fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
         print("didReceiveRemoteNotification w/ completionHandler.")
-        
-        print(userInfo["title"] ?? "nope")
-        
+
         Messaging.messaging().appDidReceiveMessage(userInfo)
 
-        launchFerriesAlertScreen(routeId: 13)
+        // TODO: make sure we haven't already seen this alert
+
+        if let alertType = userInfo["type"] as? String {
         
+            if alertType == "ferry_alert" {
+                if let routeIdString = userInfo["route_id"] as? String {
+                    if let routeId = Int(routeIdString){
+                        launchFerriesAlertScreen(routeId: routeId)
+                    }
+                }
+            } else if alertType == "highway_alert" {
+            
+                if let alertIdString = userInfo["alert_id"] as? String, let latString = userInfo["lat"] as? String, let longString = userInfo["long"] as? String {
+                    if let alertId = Int(alertIdString), let lat = Double(latString), let long = Double(longString) {
+                        launchTrafficAlertDetailsScreen(alertId: alertId, latitude: lat, longitude: long)
+                    }
+                }
+            }
+        }
         completionHandler(UIBackgroundFetchResult.newData)
     }
     
+    func launchTrafficAlertDetailsScreen(alertId: Int, latitude: Double, longitude: Double){
+
+        let trafficMapStoryboard: UIStoryboard = UIStoryboard(name: "TrafficMap", bundle: nil)
+        
+        // Set up nav and vc stack
+        let trafficMapNav = trafficMapStoryboard.instantiateViewController(withIdentifier: "TrafficMapNav") as! UINavigationController
+        let trafficMap = trafficMapStoryboard.instantiateViewController(withIdentifier: "TrafficMapViewController") as! TrafficMapViewController
+        
+        let HighwayAlertStoryboard: UIStoryboard = UIStoryboard(name: "HighwayAlert", bundle: nil)
+        
+        let highwayAlertDetails = HighwayAlertStoryboard.instantiateViewController(withIdentifier: "HighwayAlertViewController") as! HighwayAlertViewController
+  
+        highwayAlertDetails.alertId = alertId
+        highwayAlertDetails.fromPush = true
+        highwayAlertDetails.pushLat = latitude
+        highwayAlertDetails.pushLong = longitude
+        
+        // assign vc stack to new nav controller
+        trafficMapNav.setViewControllers([trafficMap, highwayAlertDetails], animated: false)
+
+        setNavController(newNavigationController: trafficMapNav)
+    
+    }
 
     func launchFerriesAlertScreen(routeId: Int) {
         
@@ -164,26 +200,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let ferrySailings = mainStoryboard.instantiateViewController(withIdentifier: "RouteTabBarViewController") as! RouteTabBarViewController
   
         // set values for the sailings VC
-        // TODO: get Route ID from alert
+        // TODO: what if there are no alerts? (not sure if this is already handled...)
         ferrySailings.routeId = routeId
         ferrySailings.selectedTab = 1
         
         // assign vc stack to new nav controller
         ferriesNav.setViewControllers([ferriesHome, ferrySchedules, ferrySailings], animated: false)
 
+        setNavController(newNavigationController: ferriesNav)
+
+    }
+    
+    func setNavController(newNavigationController: UINavigationController){
         // get the main split view, check how VCs are currently displayed
         let rootViewController = self.window!.rootViewController as! UISplitViewController
         if (rootViewController.isCollapsed) {
             // Only one vc displayed, pop current stack and assign new vc stack
             let nav = rootViewController.viewControllers[0] as! UINavigationController
             nav.popToRootViewController(animated: false)
-            nav.pushViewController(ferriesNav, animated: true)
+            nav.pushViewController(newNavigationController, animated: true)
         
         } else {
             // Master/Detail displayed, swap out the current detail view with the new stack of view controllers.
-            ferriesNav.viewControllers[0].navigationItem.leftBarButtonItem = rootViewController.displayModeButtonItem
-            ferriesNav.viewControllers[0].navigationItem.leftItemsSupplementBackButton = true
-            rootViewController.showDetailViewController(ferriesNav, sender: self)
+            newNavigationController.viewControllers[0].navigationItem.leftBarButtonItem = rootViewController.displayModeButtonItem
+            newNavigationController.viewControllers[0].navigationItem.leftItemsSupplementBackButton = true
+            rootViewController.showDetailViewController(newNavigationController, sender: self)
         }
     }
     

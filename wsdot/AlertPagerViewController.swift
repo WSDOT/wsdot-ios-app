@@ -63,26 +63,24 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
     }
     
     fileprivate func fetchAlerts(_ force: Bool) {
-        DispatchQueue.global().async {[weak self] in
-            HighwayAlertsStore.updateAlerts(force, completion: { error in
-                if (error == nil){
-                    DispatchQueue.main.async {[weak self] in
-                        if let selfValue = self{
-                            selfValue.pages.removeAll()
-                            selfValue.alertItems = HighwayAlertsStore.getHighestPriorityAlerts()
-                            selfValue.setUpContent(false)
-                        }
-                    }
-                }else{
-                    DispatchQueue.main.async { [weak self] in
-                        if let selfValue = self{
-                            selfValue.pages.removeAll()
-                            selfValue.setUpContent(true)
-                        }
+        HighwayAlertsStore.updateAlerts(force, completion: { error in
+            if (error == nil){
+                DispatchQueue.main.async {[weak self] in
+                    if let selfValue = self{
+                        selfValue.pages.removeAll()
+                        selfValue.alertItems = HighwayAlertsStore.getHighestPriorityAlerts()
+                        selfValue.setUpContent(false)
                     }
                 }
-            })
-        }
+            }else{
+                DispatchQueue.main.async { [weak self] in
+                    if let selfValue = self{
+                        selfValue.pages.removeAll()
+                        selfValue.setUpContent(true)
+                    }
+                }
+            }
+        })
     }
     
     func setUpContent(_ failed: Bool){

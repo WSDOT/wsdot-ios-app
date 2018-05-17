@@ -160,7 +160,7 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
         if segue.identifier == SegueHighwayAlertViewController {
             let alertItem = (sender as! HighwayAlertItem)
             let destinationViewController = segue.destination as! HighwayAlertViewController
-            destinationViewController.alertItem = alertItem
+            destinationViewController.alertId = alertItem.alertId
         }
     }
     
