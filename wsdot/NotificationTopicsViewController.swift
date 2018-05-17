@@ -20,6 +20,7 @@
 
 import UIKit
 import UserNotifications
+import FirebaseCore
 
 class NotificationTopicsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -69,7 +70,6 @@ class NotificationTopicsViewController: UIViewController, UITableViewDelegate, U
             let settings: UIUserNotificationSettings =
                 UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
             UIApplication.shared.registerUserNotificationSettings(settings)
-            UIApplication.shared.registerForRemoteNotifications()
         }
     }
     

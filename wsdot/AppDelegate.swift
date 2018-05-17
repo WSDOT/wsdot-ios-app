@@ -27,7 +27,7 @@ import Realm
 import EasyTipView
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
     
     var window: UIWindow?
     
@@ -41,6 +41,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         GMSServices.provideAPIKey(ApiKeys.getGoogleAPIKey())
         FirebaseApp.configure()
+        
+        
+        application.registerForRemoteNotifications()
+        
         GADMobileAds.configure(withApplicationID: ApiKeys.getAdId());
         
         // EasyTipView Setup
@@ -75,15 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
             UNUserNotificationCenter.current().delegate = self
-        }
-        
-        // check if we launched becuase of a notification
-        if launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] != nil {
-            launchFerriesAlertScreen(routeId: 13)
-        }
-        
-        if launchOptions?[UIApplicationLaunchOptionsKey.localNotification] != nil {
-            launchFerriesAlertScreen(routeId: 13)
+            Messaging.messaging().delegate = self
         }
         
         return true
@@ -104,13 +100,57 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         HighwayAlertsStore.flushOldData()
         NotificationsStore.flushOldData()
     }
-
-    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
     
+    // MARK: Push Notifications
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        let token = Messaging.messaging().fcmToken
+        print("FCM token: \(token ?? "")")
+    }
+    
+    // catches notifications while app is in foreground and displays
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                            willPresent notification: UNNotification,
+                            withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+        // Update the app interface directly.
+        print("catch notification")
+        
+        UIApplication.shared.applicationIconBadgeNumber = 0
+       
+        // Display the notificaion.
+        completionHandler(UNNotificationPresentationOptions.alert)
+    }
+    
+    
+    
+    // Deprecated
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will not be fired till the user taps on the notification launching the application.
+        // TODO: Handle data of notification
+
+        print(userInfo["title"] ?? "nope")
+        Messaging.messaging().appDidReceiveMessage(userInfo)
+        launchFerriesAlertScreen(routeId: 13)
+        print("didReceiveRemoteNotification.")
+    }
+
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                 fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+        print("didReceiveRemoteNotification w/ completionHandler.")
+        
+        print(userInfo["title"] ?? "nope")
+        
+        Messaging.messaging().appDidReceiveMessage(userInfo)
+
         launchFerriesAlertScreen(routeId: 13)
         
-        print("didReceiveLocalNotification.")
+        completionHandler(UIBackgroundFetchResult.newData)
     }
+    
 
     func launchFerriesAlertScreen(routeId: Int) {
         
@@ -146,60 +186,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             rootViewController.showDetailViewController(ferriesNav, sender: self)
         }
     }
-   
     
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-        // If you are receiving a notification message while your app is in the background,
-        // this callback will not be fired till the user taps on the notification launching the application.
-        // TODO: Handle data of notification
-
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
-
-        // Print message ID.
-      //  if let messageID = userInfo[gcmMessageIDKey] {
-      //      print("Message ID: \(messageID)")
-      //  }
-
-        // Print full message.
-        //  print(userInfo)
-        print("didReceiveRemoteNotification.")
-    }
-
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
-                 fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        // If you are receiving a notification message while your app is in the background,
-        // this callback will not be fired till the user taps on the notification launching the application.
-        // TODO: Handle data of notification
-
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
-
-        // Print message ID.
-        // if let messageID = userInfo[gcmMessageIDKey] {
-        //   print("Message ID: \(messageID)")
-        //}
-        
-        // Print full message.
-        print("didReceiveRemoteNotification w/ completionHandler.")
-
-        completionHandler(UIBackgroundFetchResult.newData)
-    }
-    
-    @available(iOS 10.0, *)
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                            willPresent notification: UNNotification,
-                            withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        // Update the app interface directly.
-        print("catch local notification")
-        
-        UIApplication.shared.applicationIconBadgeNumber = 0
-       
-        
-        // Display the notificaion.
-        completionHandler(UNNotificationPresentationOptions.alert)
-    }
-    
+    // MARK: Realm
     func migrateRealm(){
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
             schemaVersion: 4,

@@ -23,7 +23,7 @@
 	<key>CFBundleVersion</key>
 	<string>5.7.3.0</string>
 	<key>FirebaseAppDelegateProxyEnabled</key>
-	<false/>
+	<true/>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>

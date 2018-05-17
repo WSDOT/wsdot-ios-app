@@ -5,6 +5,7 @@ use_frameworks!
 target 'WSDOT' do
     pod 'Firebase/Core'
     pod 'Firebase/AdMob'
+    pod 'Firebase/Messaging'
     pod 'GoogleMaps', '~> 2.5.0'
     pod 'GoogleAnalytics'
     pod 'RealmSwift', '~> 3.0.2'
@@ -18,6 +19,7 @@ end
 target 'WSDOTTests' do
     pod 'Firebase/Core'
     pod 'Firebase/AdMob'
+    pod 'Firebase/Messaging'
     pod 'GoogleMaps', '~> 2.5.0'
     pod 'GoogleAnalytics'
     pod 'RealmSwift', '~> 3.0.2'

@@ -186,18 +186,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
             switch (indexPath.row) {
             case 0:
-                    let localNotification = UILocalNotification()
-        localNotification.fireDate = Date(timeIntervalSinceNow: 3)
-        localNotification.alertBody = "This is local notification from Swift 3.0"
-        localNotification.timeZone = NSTimeZone.local
-        localNotification.repeatInterval = NSCalendar.Unit.minute
-        localNotification.userInfo = ["Important":"Data"];
-        localNotification.soundName = UILocalNotificationDefaultSoundName
-        localNotification.applicationIconBadgeNumber = 5
-        localNotification.category = "Message"
-        
-        UIApplication.shared.presentLocalNotificationNow(localNotification)
-             //   performSegue(withIdentifier: SegueTrafficMapViewController, sender: self)
+                performSegue(withIdentifier: SegueTrafficMapViewController, sender: self)
                 break
             case 1:
                 performSegue(withIdentifier: SegueFerriesHomeViewController, sender: self)

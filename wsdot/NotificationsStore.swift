@@ -22,6 +22,7 @@ import RealmSwift
 import Alamofire
 import SwiftyJSON
 import Foundation
+import Firebase
 
 class NotificationsStore {
 
@@ -31,12 +32,17 @@ class NotificationsStore {
 
         do {
             let realm = try Realm()
+            
             try realm.write{
-            
-                // TODO: FCM update sub
-            
                 topic.subscribed = newValue
             }
+
+            if (newValue){
+                Messaging.messaging().subscribe(toTopic: topic.topic)
+            } else {
+                Messaging.messaging().unsubscribe(fromTopic: topic.topic)
+            }
+
         } catch {
             print("NotificationsStore.updateSubscription: Realm write error")
         }
