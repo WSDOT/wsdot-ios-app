@@ -29,7 +29,8 @@ class NotificationTopicsViewController: UIViewController, UITableViewDelegate, U
     
     let cellIdentifier = "TopicCell"
     
-    var topicItems = [NotificationTopicItem]()
+    var topicItemsMap = [String: [NotificationTopicItem]]()
+    var topicCategoriesMap = [Int: String]()
     
     var activityIndicator = UIActivityIndicatorView()
     
@@ -40,7 +41,10 @@ class NotificationTopicsViewController: UIViewController, UITableViewDelegate, U
         self.title = "Notification Settings"
         
         self.tableView.layoutIfNeeded()
-        self.topicItems = NotificationsStore.getTopics()
+        
+        self.topicItemsMap = NotificationsStore.getTopicsMap()
+        self.topicCategoriesMap = getCategoriesMap(topicItemsMap: self.topicItemsMap)
+        
         self.tableView.estimatedRowHeight = UITableViewAutomaticDimension
        
         self.tableView.layoutIfNeeded()
@@ -99,7 +103,10 @@ class NotificationTopicsViewController: UIViewController, UITableViewDelegate, U
                     // Reload tableview on UI thread
                     DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
-                            selfValue.topicItems = NotificationsStore.getTopics()
+                        
+                            selfValue.topicItemsMap = NotificationsStore.getTopicsMap()
+                            selfValue.topicCategoriesMap = selfValue.getCategoriesMap(topicItemsMap: selfValue.topicItemsMap)
+                            
                             selfValue.tableView.layoutIfNeeded()
                             selfValue.tableView.reloadData()
 
@@ -140,19 +147,40 @@ class NotificationTopicsViewController: UIViewController, UITableViewDelegate, U
         activityIndicator.removeFromSuperview()
     }
     
+    func getCategoriesMap(topicItemsMap: [String:[NotificationTopicItem]]) -> [Int: String]{
+        
+        let categories = Array(topicItemsMap.keys)
+        var topicCategoriesMap = [Int: String]()
+        
+        var i = 0
+        for category in categories {
+            topicCategoriesMap[i] = category
+            i += 1
+        }
+        return topicCategoriesMap
+    }
+    
     // MARK: Table View Data Source Methods
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return topicCategoriesMap.keys.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return topicCategoriesMap[section]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return topicItems.count
+        return topicItemsMap[topicCategoriesMap[section]!]!.count
+    }
+
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        (view as! UITableViewHeaderFooterView).backgroundView?.backgroundColor = UIColor.groupTableViewBackground
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! SwitchCell
         
-        let topicItem = topicItems[indexPath.row]
+        let topicItem = topicItemsMap[topicCategoriesMap[indexPath.section]!]![indexPath.row]
         
         cell.settingLabel.text = topicItem.title
         cell.settingSwitch.setOn(topicItem.subscribed, animated: false)

@@ -49,9 +49,16 @@ class NotificationsStore {
     }
 
     static func getTopics() -> [NotificationTopicItem] {
-            let realm = try! Realm()
-            let topicItems = realm.objects(NotificationTopicItem.self)
-            return Array(topicItems)
+        let realm = try! Realm()
+        let topicItems = realm.objects(NotificationTopicItem.self)
+        return Array(topicItems)
+    }
+    
+    // returns a dict of categories and there corresponding topicItems
+    static func getTopicsMap() ->  [String : [NotificationTopicItem]] {
+        let realm = try! Realm()
+        let topicItems = realm.objects(NotificationTopicItem.self)
+        return sortTopicsByCategory(topics:Array(topicItems))
     }
 
     static func findSubscribedTopics() -> [NotificationTopicItem] {
@@ -94,6 +101,22 @@ class NotificationsStore {
         }else {
             completion(nil)
         }
+    }
+
+
+    fileprivate static func sortTopicsByCategory(topics: [NotificationTopicItem]) -> [String : [NotificationTopicItem]]{
+    
+        var topicCategoriesMap = [String: [NotificationTopicItem]]()
+        
+        for topic in topics {
+            if topicCategoriesMap[topic.category] != nil {
+                topicCategoriesMap[topic.category]!.append(topic)
+            } else {
+                topicCategoriesMap[topic.category] = [topic]
+            }
+        }
+        
+        return topicCategoriesMap
     }
 
     // TODO: Make this smarter
