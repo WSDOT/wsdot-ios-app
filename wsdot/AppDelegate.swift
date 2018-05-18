@@ -35,7 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
         let theme = Theme(rawValue: EventStore.getActiveEventThemeId()) ?? .defaultTheme
         ThemeManager.applyTheme(theme: theme)
-
         migrateRealm()
         CachesStore.initCacheItem()
         
@@ -185,7 +184,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let ferrySailings = mainStoryboard.instantiateViewController(withIdentifier: "RouteTabBarViewController") as! RouteTabBarViewController
   
         // set values for the sailings VC
-        // TODO: what if there are no alerts? (not sure if this is already handled...)
         ferrySailings.routeId = routeId
         ferrySailings.selectedTab = 1
         

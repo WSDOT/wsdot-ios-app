@@ -102,9 +102,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
     }
     
     override func viewWillAppear(_ animated: Bool) {
-    
-        print("view will appear")
-    
+
         var lat = UserDefaults.standard.double(forKey: UserDefaultsKeys.mapLat)
         var lon = UserDefaults.standard.double(forKey: UserDefaultsKeys.mapLon)
         var zoom = UserDefaults.standard.float(forKey: UserDefaultsKeys.mapZoom)
@@ -123,8 +121,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        
-        print("view will disappear")
         
         if let mapView = view as? GMSMapView{
             UserDefaults.standard.set(mapView.camera.target.latitude, forKey: UserDefaultsKeys.mapLat)

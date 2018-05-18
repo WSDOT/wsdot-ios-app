@@ -245,6 +245,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="notificationBarButton" destination="sPu-kK-o5w" id="NLU-5V-kDt"/>
                         <outlet property="tableView" destination="peh-Jp-BEr" id="o2R-WZ-ota"/>
                         <segue destination="YHC-Qx-tw0" kind="showDetail" identifier="InfoViewController" id="nAK-Qt-76l"/>
                         <segue destination="V16-il-1em" kind="showDetail" identifier="TrafficMapViewController" id="gN6-Dz-E6K"/>

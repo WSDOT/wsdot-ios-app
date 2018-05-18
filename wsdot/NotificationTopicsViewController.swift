@@ -21,6 +21,8 @@
 import UIKit
 import UserNotifications
 
+import Firebase
+
 class NotificationTopicsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     enum AuthResult {
@@ -54,6 +56,9 @@ class NotificationTopicsViewController: UIViewController, UITableViewDelegate, U
         refresh(true)
         
         self.tableView.layoutIfNeeded()
+        
+        Messaging.messaging().subscribe(toTopic: "test_topic")
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,9 +92,9 @@ class NotificationTopicsViewController: UIViewController, UITableViewDelegate, U
 
     func applicationDidBecomeActiveNotification() {
         if UIApplication.shared.isRegisteredForRemoteNotifications {
-            print("iOS 9 access is granted")
+            print("iOS 9 registered for push")
         } else {
-            print("iOS 9 access is denied")
+            print("iOS 9 not registered for push")
         }
     }
 
@@ -219,16 +224,19 @@ class NotificationTopicsViewController: UIViewController, UITableViewDelegate, U
                 }
             }
         } else {
-            if UIApplication.shared.isRegisteredForRemoteNotifications {
+        
+            let notificationType = UIApplication.shared.currentUserNotificationSettings!.types
+            
+            if notificationType == [] {
+                print("iOS 9 access is denied")
+                self.present(AlertMessages.getAcessDeniedAlert("Turn On Notifications", message: "Please allow notifications from Settings"), animated: true, completion: nil)
+            } else {
                 print("iOS 9 access is granted")
                 
                 let topic = sender.params["topic"] as! NotificationTopicItem
         
                 NotificationsStore.updateSubscription(topic, newValue: !topic.subscribed)
                 GoogleAnalytics.event(category: "Notification", action: "", label: "")
-            } else {
-                print("iOS 9 access is denied")
-                self.present(AlertMessages.getAcessDeniedAlert("Turn On Notifications", message: "Please allow notifications from Settings"), animated: true, completion: nil)
             }
         }
     }
