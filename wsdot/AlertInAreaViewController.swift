@@ -39,10 +39,10 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
         super.viewDidLoad()
         
         for alert in alerts{
-            if alert.headlineDesc.lowercased().contains("construction") || alert.eventCategory.lowercased().contains("construction") {
-                constructionAlerts.append(alert)
-            }else if alert.eventCategory.lowercased() == "special event"{
+            if alert.eventCategory.lowercased() == "special event"{
                 specialEvents.append(alert)
+            } else if alert.headlineDesc.lowercased().contains("construction") || alert.eventCategory.lowercased().contains("construction") {
+                constructionAlerts.append(alert)
             }else {
                 trafficAlerts.append(alert)
             }

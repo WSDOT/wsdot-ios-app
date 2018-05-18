@@ -33,15 +33,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
-        let eventTheme = Theme(rawValue: EventStore.getActiveEventThemeId()) ?? .defaultTheme
-        ThemeManager.applyTheme(theme: eventTheme)
+        let theme = Theme(rawValue: EventStore.getActiveEventThemeId()) ?? .defaultTheme
+        ThemeManager.applyTheme(theme: theme)
 
         migrateRealm()
         CachesStore.initCacheItem()
         
         GMSServices.provideAPIKey(ApiKeys.getGoogleAPIKey())
         FirebaseApp.configure()
-        
         
         application.registerForRemoteNotifications()
         
@@ -123,17 +122,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         completionHandler(UNNotificationPresentationOptions.alert)
     }
     
-    // Deprecated
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-        // If you are receiving a notification message while your app is in the background,
-        // this callback will not be fired till the user taps on the notification launching the application.
-        // TODO: Handle data of notification
-
-        print(userInfo["title"] ?? "nope")
-        Messaging.messaging().appDidReceiveMessage(userInfo)
-        launchFerriesAlertScreen(routeId: 11)
-        print("didReceiveRemoteNotification.")
-    }
 
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                  fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
@@ -142,25 +130,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         Messaging.messaging().appDidReceiveMessage(userInfo)
 
-        // TODO: make sure we haven't already seen this alert
-
-        if let alertType = userInfo["type"] as? String {
+            if let alertType = userInfo["type"] as? String {
         
-            if alertType == "ferry_alert" {
-                if let routeIdString = userInfo["route_id"] as? String {
-                    if let routeId = Int(routeIdString){
-                        launchFerriesAlertScreen(routeId: routeId)
+                if alertType == "ferry_alert" {
+                    if let routeIdString = userInfo["route_id"] as? String {
+                        if let routeId = Int(routeIdString){
+                            launchFerriesAlertScreen(routeId: routeId)
+                        }
                     }
-                }
-            } else if alertType == "highway_alert" {
-            
-                if let alertIdString = userInfo["alert_id"] as? String, let latString = userInfo["lat"] as? String, let longString = userInfo["long"] as? String {
-                    if let alertId = Int(alertIdString), let lat = Double(latString), let long = Double(longString) {
-                        launchTrafficAlertDetailsScreen(alertId: alertId, latitude: lat, longitude: long)
+                } else if alertType == "highway_alert" {
+                    if let alertIdString = userInfo["alert_id"] as? String, let latString = userInfo["lat"] as? String, let longString = userInfo["long"] as? String    {
+                        if let alertId = Int(alertIdString), let lat = Double(latString), let long = Double(longString) {
+                            launchTrafficAlertDetailsScreen(alertId: alertId, latitude: lat, longitude: long)
+                        }
                     }
                 }
             }
-        }
         completionHandler(UIBackgroundFetchResult.newData)
     }
     

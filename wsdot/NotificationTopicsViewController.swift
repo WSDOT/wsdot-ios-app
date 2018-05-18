@@ -20,7 +20,6 @@
 
 import UIKit
 import UserNotifications
-import FirebaseCore
 
 class NotificationTopicsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
