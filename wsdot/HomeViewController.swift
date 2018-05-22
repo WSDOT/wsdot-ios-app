@@ -44,6 +44,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var eventBannerView = UIView()
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var notificationBarButton: UIBarButtonItem!
     
     var selectedIndex = 0
     
@@ -70,6 +71,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
             EventStore.fetchAndSaveEventItem()
         }
+        
+        // Hide notifications for devices running iOS < 10
+        if #available(iOS 10.0, *) {} else {
+            notificationBarButton.customView = UIView()
+            notificationBarButton.isAccessibilityElement = false
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

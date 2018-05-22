@@ -65,38 +65,6 @@ class NotificationTopicsViewController: UIViewController, UITableViewDelegate, U
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView(screenName: "/Notification Settings")
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if #available(iOS 10.0, *) {} else {
-            NotificationCenter.default.addObserver(
-                self,
-                selector:#selector(NotificationTopicsViewController.applicationDidBecomeActiveNotification),
-                name:NSNotification.Name.UIApplicationDidBecomeActive,
-                object:nil)
-            let settings: UIUserNotificationSettings =
-                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            UIApplication.shared.registerUserNotificationSettings(settings)
-        }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        if #available(iOS 10.0, *) {} else {
-            NotificationCenter.default.removeObserver(
-                self,
-                name:NSNotification.Name.UIApplicationDidBecomeActive,
-                object:nil)
-        }
-    }
-
-    func applicationDidBecomeActiveNotification() {
-        if UIApplication.shared.isRegisteredForRemoteNotifications {
-            print("iOS 9 registered for push")
-        } else {
-            print("iOS 9 not registered for push")
-        }
-    }
 
     func refresh(_ force: Bool) {
     
@@ -222,21 +190,6 @@ class NotificationTopicsViewController: UIViewController, UITableViewDelegate, U
                         }
                     }
                 }
-            }
-        } else {
-        
-            let notificationType = UIApplication.shared.currentUserNotificationSettings!.types
-            
-            if notificationType == [] {
-                print("iOS 9 access is denied")
-                self.present(AlertMessages.getAcessDeniedAlert("Turn On Notifications", message: "Please allow notifications from Settings"), animated: true, completion: nil)
-            } else {
-                print("iOS 9 access is granted")
-                
-                let topic = sender.params["topic"] as! NotificationTopicItem
-        
-                NotificationsStore.updateSubscription(topic, newValue: !topic.subscribed)
-                GoogleAnalytics.event(category: "Notification", action: "", label: "")
             }
         }
     }
