@@ -2,7 +2,7 @@
 //  UserDefaultsKeys.swift
 //  WSDOT
 //
-//  Copyright (c) 2016 Washington State Department of Transportation
+//  Copyright (c) 2018 Washington State Department of Transportation
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -41,5 +41,10 @@ class UserDefaultsKeys {
     static let hasSeenTravelerInfoTipView = "hasSeenTravelerInfoTipView"
     static let hasSeenMyRouteTipView = "hasSeenMyRouteTipView"
     static let hasSeenCameraSwipeTipView = "hasSeenCameraSwipeTipView"
+    static let hasSeenNotificationsTipView = "hasSeenNotificationsTipView"
+    
+    // Push Notifications
+    static let pushNotificationTopicVersion = "pushNotificationTopicVersion"
+    static let pushNotificationsTopicDescription = "pushNotificationsTopicDescription"
 
 }

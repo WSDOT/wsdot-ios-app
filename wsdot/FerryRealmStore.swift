@@ -70,7 +70,7 @@ class FerryRealmStore {
             if ((delta > TimeUtils.updateTime) || force){
             
             
-                Alamofire.request("http://data.wsdot.wa.gov/mobile/ferryTEST.js").validate().responseJSON { response in
+                Alamofire.request("http://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js").validate().responseJSON { response in
                     switch response.result {
                     case .success:
                         if let value = response.result.value {

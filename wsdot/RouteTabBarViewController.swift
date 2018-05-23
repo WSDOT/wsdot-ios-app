@@ -105,11 +105,10 @@ class RouteTabBarViewController: UITabBarController {
     }
     
     func pushAlertCheck(_ routeItem: FerryScheduleItem){
-    
         if self.selectedTab == 1 && routeItem.routeAlerts.count != 0 {
             self.selectedIndex = self.selectedTab
-        } else {
-            // No alerts available (also need to handle push alert expired)
+        } else if self.selectedTab == 1 && routeItem.routeAlerts.count == 0 {
+            self.present(AlertMessages.getAlert("Alert Unavailable", message: "Sorry, this alert has expired", confirm: "OK"), animated: false)
         }
     }
     

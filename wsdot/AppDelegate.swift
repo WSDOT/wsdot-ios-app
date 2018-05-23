@@ -80,15 +80,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             Messaging.messaging().delegate = self
         }
         
-        return true
-    }
-    
-    func applicationDidFinishLaunching(_ application: UIApplication) {
         FerryRealmStore.flushOldData()
         CamerasStore.flushOldData()
         TravelTimesStore.flushOldData()
         HighwayAlertsStore.flushOldData()
         NotificationsStore.flushOldData()
+        
+        return true
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -98,6 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         HighwayAlertsStore.flushOldData()
         NotificationsStore.flushOldData()
     }
+    
     
     // MARK: Push Notifications
     

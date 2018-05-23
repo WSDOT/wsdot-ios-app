@@ -184,7 +184,7 @@ class NotificationTopicsViewController: UIViewController, UITableViewDelegate, U
                                     GoogleAnalytics.event(category: "Notification", action: "", label: "")
                                 } else {
                                     print("access is denied")
-                                    selfValue.present(AlertMessages.getAcessDeniedAlert("Turn On Notifications", message: "Please allow notifications from Settings"), animated:     true, completion: nil)
+                                    selfValue.present(AlertMessages.getAcessDeniedAlert("Turn On Notifications", message: "Please allow notifications from Settings"), animated: true, completion: nil)
                                 }
                             case .failure(let error): print(error)
                         }

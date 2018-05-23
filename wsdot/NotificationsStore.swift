@@ -67,29 +67,41 @@ class NotificationsStore {
         return Array(subscribedTopicItems)
     }
 
+    /*
+     * Fetches a list of push notification FCM topics that users can subscribe to.
+     */
     static func updateTopics(_ force: Bool, completion: @escaping UpdateTopicsCompletion) {
+    
+        print("updating topics...")
     
         var delta = TimeUtils.updateTime
         let deltaUpdated = (Calendar.current as NSCalendar).components(.second, from: CachesStore.getUpdatedTime(CachedData.notifications), to: Date(), options: []).second
-        
+       
         if let deltaValue = deltaUpdated {
              delta = deltaValue
         }
         
-        if ((delta > TimeUtils.updateTime) || force){
-            
+        if ((delta > TimeUtils.updateTime) || force || true){
+     
             Alamofire.request("http://data.wsdot.wa.gov/mobile/NotificationTopics.js").validate().responseJSON { response in
             
                 switch response.result {
                 case .success:
                     if let value = response.result.value {
                         DispatchQueue.global().async {
+                        
+                            print("got new topics!")
+                        
                             let json = JSON(value)
                             let topicItems =  NotificationsStore.parseTopicsJSON(json)
                             
-                            saveTopics(topicItems)
-                            CachesStore.updateTime(CachedData.notifications, updated: Date())
+                            print(topicItems)
                             
+                            // if nothing is returned, don't overwrite current data.
+                            // if topicItems != [] {
+                                saveTopics(topicItems)
+                                CachesStore.updateTime(CachedData.notifications, updated: Date())
+                            //  }
                             completion(nil)
                         }
                     }
@@ -98,17 +110,18 @@ class NotificationsStore {
                     completion(error)
                 }
             }
-        }else {
+        } else {
             completion(nil)
         }
     }
-
 
     fileprivate static func sortTopicsByCategory(topics: [NotificationTopicItem]) -> [String : [NotificationTopicItem]]{
     
         var topicCategoriesMap = [String: [NotificationTopicItem]]()
         
-        for topic in topics {
+        let sortedTopics = topics.sorted(by: {$0.category < $1.category }).sorted(by: {$0.title < $1.title })
+        
+        for topic in sortedTopics {
             if topicCategoriesMap[topic.category] != nil {
                 topicCategoriesMap[topic.category]!.append(topic)
             } else {
@@ -135,7 +148,9 @@ class NotificationsStore {
             }
             newTopcis.append(topic)
         }
+        
         let oldTopics = realm.objects(NotificationTopicItem.self)
+        
         do {
             try realm.write{
                 for topic in oldTopics {
@@ -149,11 +164,15 @@ class NotificationsStore {
     }
 
     static func flushOldData() {
+    
+        print("flushing...")
+    
         do {
             let realm = try Realm()
-            let routeItems = realm.objects(NotificationTopicItem.self).filter("delete == true")
-            try! realm.write{
-                realm.delete(routeItems)
+            let topicItems = realm.objects(NotificationTopicItem.self).filter("delete == true")
+            
+            try! realm.write {
+                realm.delete(topicItems)
             }
         } catch {
             print("NotificationsStore.flushOldData: Realm write error")

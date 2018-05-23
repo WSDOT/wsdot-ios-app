@@ -43,6 +43,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var eventBannerView = UIView()
     
+    var tipView = EasyTipView(text: "")
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var notificationBarButton: UIBarButtonItem!
     
@@ -76,6 +78,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         if #available(iOS 10.0, *) {} else {
             notificationBarButton.customView = UIView()
             notificationBarButton.isAccessibilityElement = false
+            DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
+                EventStore.fetchPushNotificationsStatus()
+            }
         }
         
     }
@@ -152,6 +157,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     override func viewWillDisappear(_ animated: Bool) {
         eventBannerView.removeFromSuperview()
+        tipView.dismiss()
     }
 
     @IBAction func infoBarButtonPressed(_ sender: UIBarButtonItem) {
@@ -231,6 +237,33 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             destinationViewController.viewControllers[0].navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
             destinationViewController.viewControllers[0].navigationItem.leftItemsSupplementBackButton = true
+        }
+    }
+}
+
+/*
+ *  EasyTipView extension
+ *  Displays a tipview for push notifications when
+ *  the app gets a new message from the server.
+ *  See EventStore.fetchPushNotificationsStatus()
+ */
+extension HomeViewController: EasyTipViewDelegate {
+    
+    public func easyTipViewDidDismiss(_ tipView: EasyTipView) {
+         UserDefaults.standard.set(true, forKey: UserDefaultsKeys.hasSeenNotificationsTipView)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if (UserDefaults.standard.integer(forKey: UserDefaultsKeys.pushNotificationTopicVersion) > 0) {
+            if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasSeenNotificationsTipView) && !UIAccessibilityIsVoiceOverRunning()){
+                
+                let tipViewText = UserDefaults.standard.string(forKey: UserDefaultsKeys.pushNotificationsTopicDescription) ?? "Notifications"
+                
+                tipView = EasyTipView(text: tipViewText, delegate: self)
+                tipView.show(forItem: self.notificationBarButton)
+            }
         }
     }
 }
