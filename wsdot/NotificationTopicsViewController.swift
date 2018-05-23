@@ -176,15 +176,14 @@ class NotificationTopicsViewController: UIViewController, UITableViewDelegate, U
                         switch result {
                             case .success(let granted) :
                                 if granted {
-                                    print("access is granted")
                             
                                     let topic = sender.params["topic"] as! NotificationTopicItem
         
                                     NotificationsStore.updateSubscription(topic, newValue: !topic.subscribed)
-                                    GoogleAnalytics.event(category: "Notification", action: "", label: "")
+                                    GoogleAnalytics.event(category: "Button Tap", action: (!topic.subscribed ? "subscribed" : "unsubscribed") , label: "Notification")
                                 } else {
-                                    print("access is denied")
-                                    selfValue.present(AlertMessages.getAcessDeniedAlert("Turn On Notifications", message: "Please allow notifications from Settings"), animated: true, completion: nil)
+                                    
+                                    selfValue.present(AlertMessages.getAcessDeniedAlert("Turn On Notifications", message: "Please allow notifications from Settings"), animated: true, completion: {sender.setOn(!sender.isOn, animated: true)})
                                 }
                             case .failure(let error): print(error)
                         }

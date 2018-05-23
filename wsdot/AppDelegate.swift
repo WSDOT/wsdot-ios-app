@@ -97,22 +97,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         NotificationsStore.flushOldData()
     }
     
-    
     // MARK: Push Notifications
-    
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-        let token = Messaging.messaging().fcmToken
-        print("FCM token: \(token ?? "")")
-    }
     
     // catches notifications while app is in foreground and displays
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                             willPresent notification: UNNotification,
                             withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        
-        // Update the app interface directly.
-        print("catch notification")
         
         UIApplication.shared.applicationIconBadgeNumber = 0
        

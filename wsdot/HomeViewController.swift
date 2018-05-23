@@ -74,15 +74,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             EventStore.fetchAndSaveEventItem()
         }
         
-        // Hide notifications for devices running iOS < 10
-        if #available(iOS 10.0, *) {} else {
-            notificationBarButton.customView = UIView()
-            notificationBarButton.isAccessibilityElement = false
+        // check for new topics otherwise hide notifications for devices running iOS < 10
+        if #available(iOS 10.0, *) {
             DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
                 EventStore.fetchPushNotificationsStatus()
             }
+        } else {
+            notificationBarButton.customView = UIView()
+            notificationBarButton.isAccessibilityElement = false
         }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -256,7 +256,10 @@ extension HomeViewController: EasyTipViewDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        print(UserDefaults.standard.integer(forKey: UserDefaultsKeys.pushNotificationTopicVersion))
+        
         if (UserDefaults.standard.integer(forKey: UserDefaultsKeys.pushNotificationTopicVersion) > 0) {
+        
             if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasSeenNotificationsTipView) && !UIAccessibilityIsVoiceOverRunning()){
                 
                 let tipViewText = UserDefaults.standard.string(forKey: UserDefaultsKeys.pushNotificationsTopicDescription) ?? "Notifications"
