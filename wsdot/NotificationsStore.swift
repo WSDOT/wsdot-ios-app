@@ -72,8 +72,6 @@ class NotificationsStore {
      */
     static func updateTopics(_ force: Bool, completion: @escaping UpdateTopicsCompletion) {
     
-        print("updating topics...")
-    
         var delta = TimeUtils.updateTime
         let deltaUpdated = (Calendar.current as NSCalendar).components(.second, from: CachesStore.getUpdatedTime(CachedData.notifications), to: Date(), options: []).second
        
@@ -90,18 +88,15 @@ class NotificationsStore {
                     if let value = response.result.value {
                         DispatchQueue.global().async {
                         
-                            print("got new topics!")
-                        
                             let json = JSON(value)
                             let topicItems =  NotificationsStore.parseTopicsJSON(json)
-                            
-                            print(topicItems)
-                            
+                   
                             // if nothing is returned, don't overwrite current data.
-                            // if topicItems != [] {
+                            if topicItems != [] {
                                 saveTopics(topicItems)
                                 CachesStore.updateTime(CachedData.notifications, updated: Date())
-                            //  }
+                            }
+                            
                             completion(nil)
                         }
                     }
@@ -164,8 +159,6 @@ class NotificationsStore {
     }
 
     static func flushOldData() {
-    
-        print("flushing...")
     
         do {
             let realm = try Realm()
