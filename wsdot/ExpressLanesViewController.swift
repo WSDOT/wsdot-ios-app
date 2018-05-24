@@ -55,7 +55,7 @@ class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITable
         GoogleAnalytics.screenView(screenName: "/Traffic Map/Traveler Information/Express Lanes")
     }
 
-    func refresh(_ refreshControl: UIRefreshControl) {
+    @objc func refresh(_ refreshControl: UIRefreshControl) {
         
         DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async { [weak self] in
             ExpressLanesStore.getExpressLanes({ data, error in

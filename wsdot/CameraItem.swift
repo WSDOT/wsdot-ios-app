@@ -22,16 +22,16 @@ import RealmSwift
 
 class CameraItem: Object {
 
-    dynamic var cameraId = 0
-    dynamic var url = ""
-    dynamic var title = ""
-    dynamic var roadName = ""
-    dynamic var latitude = 0.0
-    dynamic var longitude = 0.0
-    dynamic var video = false
-    dynamic var selected = false
+    @objc dynamic var cameraId = 0
+    @objc dynamic var url = ""
+    @objc dynamic var title = ""
+    @objc dynamic var roadName = ""
+    @objc dynamic var latitude = 0.0
+    @objc dynamic var longitude = 0.0
+    @objc dynamic var video = false
+    @objc dynamic var selected = false
     
-    dynamic var delete = false
+    @objc dynamic var delete = false
     
     override static func primaryKey() -> String? {
         return "cameraId"

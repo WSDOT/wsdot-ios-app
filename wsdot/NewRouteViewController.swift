@@ -506,7 +506,7 @@ extension NewRouteViewController {
         }
     }
    
-    func tapResponse(_ recognizer: UITapGestureRecognizer) {
+    @objc func tapResponse(_ recognizer: UITapGestureRecognizer) {
         setRouteAccessibilityLabel(locations: locations)
     
     }

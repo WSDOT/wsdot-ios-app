@@ -94,7 +94,7 @@ class MountainPassesViewController: UIViewController, UITableViewDelegate, UITab
         }
     }
     
-    func refreshAction(_ sender: UIRefreshControl) {
+    @objc func refreshAction(_ sender: UIRefreshControl) {
         refresh(true)
     }
 

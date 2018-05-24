@@ -21,11 +21,11 @@
 import RealmSwift
 
 class NotificationTopicItem: Object {
-    dynamic var topic: String = ""
-    dynamic var title: String = ""
-    dynamic var category: String = ""
-    dynamic var subscribed: Bool = false
-    dynamic var delete: Bool = false
+    @objc dynamic var topic: String = ""
+    @objc dynamic var title: String = ""
+    @objc dynamic var category: String = ""
+    @objc dynamic var subscribed: Bool = false
+    @objc dynamic var delete: Bool = false
     
     override static func primaryKey() -> String? {
         return "topic"

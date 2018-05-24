@@ -21,6 +21,6 @@
 import RealmSwift
 
 class ForecastItem: Object {
-    dynamic var day: String = ""
-    dynamic var forecastText: String = ""
+    @objc dynamic var day: String = ""
+    @objc dynamic var forecastText: String = ""
 }

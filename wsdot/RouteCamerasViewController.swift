@@ -53,7 +53,7 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
         GoogleAnalytics.screenView(screenName: "/Ferries/Schedules/Sailings/Cameras")
     }
     
-    func refreshAction(_ refreshControl: UIRefreshControl) {
+    @objc func refreshAction(_ refreshControl: UIRefreshControl) {
         refresh(true)
     }
     

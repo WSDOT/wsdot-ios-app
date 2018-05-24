@@ -22,6 +22,6 @@ import Foundation
 import RealmSwift
 
 class MyRouteLocationItem: Object {
-    dynamic var lat: Double = 0.0
-    dynamic var long: Double = 0.0
+    @objc dynamic var lat: Double = 0.0
+    @objc dynamic var long: Double = 0.0
 }

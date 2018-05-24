@@ -22,16 +22,16 @@ import Foundation
 import RealmSwift
 
 class FerryScheduleItem: Object {
-    dynamic var routeId = 0
-    dynamic var routeDescription = ""
-    dynamic var selected = false
-    dynamic var crossingTime: String? = nil
-    dynamic var cacheDate = Date(timeIntervalSince1970: 0)
+    @objc dynamic var routeId = 0
+    @objc dynamic var routeDescription = ""
+    @objc dynamic var selected = false
+    @objc dynamic var crossingTime: String? = nil
+    @objc dynamic var cacheDate = Date(timeIntervalSince1970: 0)
     let routeAlerts = List<FerryAlertItem>()
     let scheduleDates = List<FerryScheduleDateItem>()
     let terminalPairs = List<FerryTerminalPairItem>()
     
-    dynamic var delete = false
+    @objc dynamic var delete = false
     
     override static func primaryKey() -> String? {
         return "routeId"
@@ -39,46 +39,46 @@ class FerryScheduleItem: Object {
 }
 
 class FerryAlertItem: Object {
-    dynamic var bulletinId = 0
-    dynamic var publishDate = ""
-    dynamic var alertDescription = ""
-    dynamic var alertFullTitle = ""
-    dynamic var alertFullText = ""
+    @objc dynamic var bulletinId = 0
+    @objc dynamic var publishDate = ""
+    @objc dynamic var alertDescription = ""
+    @objc dynamic var alertFullTitle = ""
+    @objc dynamic var alertFullText = ""
 }
 
 class FerryTerminalPairItem: Object {
-    dynamic var aTerminalId = 0
-    dynamic var aTerminalName = ""
-    dynamic var bTerminalId = 0
-    dynamic var bTterminalName = ""
+    @objc dynamic var aTerminalId = 0
+    @objc dynamic var aTerminalName = ""
+    @objc dynamic var bTerminalId = 0
+    @objc dynamic var bTterminalName = ""
 }
 
 class FerryScheduleDateItem: Object {
-    dynamic var date = Date(timeIntervalSince1970: 0)
+    @objc dynamic var date = Date(timeIntervalSince1970: 0)
     let sailings = List<FerrySailingsItem>()
 }
 
 class FerrySailingsItem: Object {
-    dynamic var departingTerminalId = -1
-    dynamic var departingTerminalName = ""
-    dynamic var arrivingTerminalId = -1
-    dynamic var arrivingTerminalName = ""
+    @objc dynamic var departingTerminalId = -1
+    @objc dynamic var departingTerminalName = ""
+    @objc dynamic var arrivingTerminalId = -1
+    @objc dynamic var arrivingTerminalName = ""
     let annotations = List<Annotation>()
     let times = List<FerryDepartureTimeItem>()
 }
 
 class FerryDepartureTimeItem: Object {
-    dynamic var departingTime = Date(timeIntervalSince1970: 0)
-    dynamic var  arrivingTime: Date? = nil
+    @objc dynamic var departingTime = Date(timeIntervalSince1970: 0)
+    @objc dynamic var  arrivingTime: Date? = nil
     let annotationIndexes = List<AnnotationIndex>()
 
 }
 
 class AnnotationIndex: Object {
-    dynamic var index = -1
+    @objc dynamic var index = -1
 }
 
 class Annotation: Object{
-    dynamic var message = ""
+    @objc dynamic var message = ""
 }
 

@@ -55,7 +55,7 @@ class AmtrakCascadesScheduleDetailsViewController: UIViewController, UITabBarDel
         GoogleAnalytics.screenView(screenName: "/Amtrak Cascades/Schedules/Details")
     }
     
-    func refreshAction(_ sender: UIRefreshControl){
+    @objc func refreshAction(_ sender: UIRefreshControl){
         refresh()
     }
     

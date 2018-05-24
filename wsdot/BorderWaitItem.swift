@@ -22,13 +22,13 @@ import RealmSwift
 
 class BorderWaitItem: Object {
 
-    dynamic var id: Int = 0
-    dynamic var route: Int = 0
-    dynamic var waitTime: Int = 0
-    dynamic var name: String = ""
-    dynamic var lane: String = ""
-    dynamic var direction: String = ""
-    dynamic var updated: String = ""
+    @objc dynamic var id: Int = 0
+    @objc dynamic var route: Int = 0
+    @objc dynamic var waitTime: Int = 0
+    @objc dynamic var name: String = ""
+    @objc dynamic var lane: String = ""
+    @objc dynamic var direction: String = ""
+    @objc dynamic var updated: String = ""
 
     override static func primaryKey() -> String? {
         return "id"

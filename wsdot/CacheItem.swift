@@ -21,15 +21,15 @@ import Foundation
 import RealmSwift
 
 class CacheItem: Object{
-    dynamic var id = 0
+    @objc dynamic var id = 0
     
-    dynamic var travelTimesLastUpdate: Date = Date(timeIntervalSince1970: 0)
-    dynamic var highwayAlertsLastUpdate: Date = Date(timeIntervalSince1970: 0)
-    dynamic var ferriesLastUpdate: Date = Date(timeIntervalSince1970: 0)
-    dynamic var camerasLastUpdate: Date = Date(timeIntervalSince1970: 0)
-    dynamic var borderWaitsLastUpdate: Date = Date(timeIntervalSince1970: 0)
-    dynamic var mountainPassesLastUpdate: Date = Date(timeIntervalSince1970: 0)
-    dynamic var notificationsLastUpdate: Date = Date(timeIntervalSince1970: 0)
+    @objc dynamic var travelTimesLastUpdate: Date = Date(timeIntervalSince1970: 0)
+    @objc dynamic var highwayAlertsLastUpdate: Date = Date(timeIntervalSince1970: 0)
+    @objc dynamic var ferriesLastUpdate: Date = Date(timeIntervalSince1970: 0)
+    @objc dynamic var camerasLastUpdate: Date = Date(timeIntervalSince1970: 0)
+    @objc dynamic var borderWaitsLastUpdate: Date = Date(timeIntervalSince1970: 0)
+    @objc dynamic var mountainPassesLastUpdate: Date = Date(timeIntervalSince1970: 0)
+    @objc dynamic var notificationsLastUpdate: Date = Date(timeIntervalSince1970: 0)
     
     override class func primaryKey() -> String {
         return "id"

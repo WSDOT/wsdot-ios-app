@@ -165,7 +165,7 @@ class NotificationTopicsViewController: UIViewController, UITableViewDelegate, U
         return UITableViewAutomaticDimension
     }
     
-    func changeSubscriptionPref(_ sender: PassableUISwitch) {
+    @objc func changeSubscriptionPref(_ sender: PassableUISwitch) {
     
         if #available(iOS 10.0, *) {
             checkAvailabilty { result in

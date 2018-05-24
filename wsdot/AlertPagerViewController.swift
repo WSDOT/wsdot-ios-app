@@ -58,7 +58,7 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
         timer?.invalidate()
     }
     
-    func updateAlerts(_ sender: Timer){
+    @objc func updateAlerts(_ sender: Timer){
         fetchAlerts(false)
     }
     

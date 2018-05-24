@@ -184,12 +184,12 @@ class MyRouteViewController: UIViewController {
         self.present(loadingRouteAlert, animated: true, completion: nil)
     }
     
-    func setRoute(sender: UIButton) {
+    @objc func setRoute(sender: UIButton) {
         _ = MyRouteStore.updateSelected(myRoutes[sender.tag], newValue: !myRoutes[sender.tag].selected)
         tableView.reloadData()
     }
     
-    func editRoute(sender: UIButton){
+    @objc func editRoute(sender: UIButton){
     
         GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Route Settings")
     
@@ -346,7 +346,7 @@ class MyRouteViewController: UIViewController {
      * Method name: checkAlerts
      * Description: action func for check alerts button on a route cell
      */
-    func checkAlerts(sender: UIButton){
+    @objc func checkAlerts(sender: UIButton){
         GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Check Alerts")
         performSegue(withIdentifier: segueMyRouteAlertsViewController, sender: sender)
     }
@@ -355,7 +355,7 @@ class MyRouteViewController: UIViewController {
      * Method name: checkAlerts
      * Description: action fun for openMap button on a route cell
      */
-    func openMap(sender: UIButton){
+    @objc func openMap(sender: UIButton){
         GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Open Route")
         performSegue(withIdentifier: segueTrafficMapViewController, sender: sender)
     }

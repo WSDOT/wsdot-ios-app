@@ -49,7 +49,7 @@ class BloggerViewController: UIViewController, UITableViewDataSource, UITableVie
         GoogleAnalytics.screenView(screenName: "/Traffic Map/Traveler Information/Blogger")
     }
     
-    func refreshAction(_ sender: UIRefreshControl){
+    @objc func refreshAction(_ sender: UIRefreshControl){
         refresh()
     }
     

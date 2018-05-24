@@ -57,7 +57,7 @@ class MountainPassTabBarViewController: UITabBarController{
         self.navigationItem.rightBarButtonItems = [favoriteBarButton, refreshBarButton]
     }
     
-    func updateFavorite(_ sender: UIBarButtonItem) {
+    @objc func updateFavorite(_ sender: UIBarButtonItem) {
         if (passItem.selected){
             MountainPassStore.updateFavorite(passItem, newValue: false)
             favoriteBarButton.image = UIImage(named: "icStarSmall")
@@ -83,7 +83,7 @@ class MountainPassTabBarViewController: UITabBarController{
         return barButton
     }
     
-    func refresh(_ sender: UIBarButtonItem){
+    @objc func refresh(_ sender: UIBarButtonItem){
         
         refreshBarButton.customView = UIHelpers.createActivityIndicator()
         

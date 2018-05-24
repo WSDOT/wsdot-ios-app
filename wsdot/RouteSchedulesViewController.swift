@@ -67,7 +67,7 @@ class RouteSchedulesViewController: UIViewController, UITableViewDelegate, UITab
         GoogleAnalytics.screenView(screenName: "/Ferries/Schedules")
     }
     
-    func refreshAction(_ refreshControl: UIRefreshControl) {
+    @objc func refreshAction(_ refreshControl: UIRefreshControl) {
         refresh(true)
     }
     

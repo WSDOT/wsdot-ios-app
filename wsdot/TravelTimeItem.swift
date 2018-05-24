@@ -23,22 +23,22 @@ import RealmSwift
 // v3
 class TravelTimeItem: Object {
 
-    dynamic var routeid: Int = 0
-    dynamic var viaText: String = ""
+    @objc dynamic var routeid: Int = 0
+    @objc dynamic var viaText: String = ""
     
-    dynamic var startLatitude: Double = 0.0
-    dynamic var startLongitude: Double = 0.0
-    dynamic var endLatitude: Double = 0.0
-    dynamic var endLongitude: Double = 0.0
+    @objc dynamic var startLatitude: Double = 0.0
+    @objc dynamic var startLongitude: Double = 0.0
+    @objc dynamic var endLatitude: Double = 0.0
+    @objc dynamic var endLongitude: Double = 0.0
     
-    dynamic var distance: Float = 0.0
+    @objc dynamic var distance: Float = 0.0
     
-    dynamic var averageTime: Int = 0
-    dynamic var currentTime: Int = 0
+    @objc dynamic var averageTime: Int = 0
+    @objc dynamic var currentTime: Int = 0
     
-    dynamic var status: String = ""
+    @objc dynamic var status: String = ""
 
-    dynamic var updated: String = ""
+    @objc dynamic var updated: String = ""
 
 }
 

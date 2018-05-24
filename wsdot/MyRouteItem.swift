@@ -23,19 +23,19 @@ import RealmSwift
 
 class MyRouteItem: Object {
     
-    dynamic var id = 1
-    dynamic var name = ""
+    @objc dynamic var id = 1
+    @objc dynamic var name = ""
     
-    dynamic var foundTravelTimes = false
-    dynamic var foundCameras = false
-    dynamic var foundMountainPasses = false
-    dynamic var foundFerrySchedules = false
+    @objc dynamic var foundTravelTimes = false
+    @objc dynamic var foundCameras = false
+    @objc dynamic var foundMountainPasses = false
+    @objc dynamic var foundFerrySchedules = false
     
-    dynamic var displayLatitude = 0.0
-    dynamic var displayLongitude = 0.0
-    dynamic var displayZoom = 0.0
+    @objc dynamic var displayLatitude = 0.0
+    @objc dynamic var displayLongitude = 0.0
+    @objc dynamic var displayZoom = 0.0
     
-    dynamic var selected = false
+    @objc dynamic var selected = false
     
     let route = List<MyRouteLocationItem>()
     

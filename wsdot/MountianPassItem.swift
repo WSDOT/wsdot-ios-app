@@ -22,25 +22,25 @@ import RealmSwift
 
 class MountainPassItem: Object {
 
-    dynamic var id: Int = 0
-    dynamic var name: String = ""
-    dynamic var weatherCondition: String = ""
-    dynamic var elevationInFeet: Int = 0
+    @objc dynamic var id: Int = 0
+    @objc dynamic var name: String = ""
+    @objc dynamic var weatherCondition: String = ""
+    @objc dynamic var elevationInFeet: Int = 0
     let temperatureInFahrenheit = RealmOptional<Int>()
-    dynamic var travelAdvisoryActive: Bool = false
-    dynamic var latitude: Double = 0.0
-    dynamic var longitude: Double = 0.0
-    dynamic var roadCondition: String = ""
-    dynamic var dateUpdated: Date = Date(timeIntervalSince1970: 0)
-    dynamic var restrictionOneText: String = ""
-    dynamic var restrictionOneTravelDirection: String = ""
-    dynamic var restrictionTwoText: String = ""
-    dynamic var restrictionTwoTravelDirection: String = ""
-    dynamic var selected: Bool = false
+    @objc dynamic var travelAdvisoryActive: Bool = false
+    @objc dynamic var latitude: Double = 0.0
+    @objc dynamic var longitude: Double = 0.0
+    @objc dynamic var roadCondition: String = ""
+    @objc dynamic var dateUpdated: Date = Date(timeIntervalSince1970: 0)
+    @objc dynamic var restrictionOneText: String = ""
+    @objc dynamic var restrictionOneTravelDirection: String = ""
+    @objc dynamic var restrictionTwoText: String = ""
+    @objc dynamic var restrictionTwoTravelDirection: String = ""
+    @objc dynamic var selected: Bool = false
     let cameraIds = List<PassCameraIDItem>()
     let forecast = List<ForecastItem>()
     
-    dynamic var delete: Bool = false
+    @objc dynamic var delete: Bool = false
     
     override static func primaryKey() -> String? {
         return "id"

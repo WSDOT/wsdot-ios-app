@@ -51,7 +51,7 @@ class FacebookViewController: UIViewController, UITableViewDataSource, UITableVi
         GoogleAnalytics.screenView(screenName: "/Traffic Map/Traveler Information/Facebook")
     }
     
-    func refreshAction(_ sender: UIRefreshControl){
+    @objc func refreshAction(_ sender: UIRefreshControl){
         refresh()
     }
     
@@ -126,7 +126,7 @@ class FacebookViewController: UIViewController, UITableViewDataSource, UITableVi
         
         let attrStr = try! NSMutableAttributedString(
             data: htmlString.data(using: String.Encoding.unicode, allowLossyConversion: false)!,
-            options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
+            options: [ NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html],
             documentAttributes: nil)
         
         cell.contentLabel.delegate = self

@@ -150,7 +150,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    func eventBannerTap(_ sender:UITapGestureRecognizer) {
+    @objc func eventBannerTap(_ sender:UITapGestureRecognizer) {
         selectedIndex = -1
         performSegue(withIdentifier: SegueEventViewController, sender: self)
     }

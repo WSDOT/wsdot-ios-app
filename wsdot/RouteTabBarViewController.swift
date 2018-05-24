@@ -133,7 +133,7 @@ class RouteTabBarViewController: UITabBarController {
         activityIndicator.removeFromSuperview()
     }
     
-    func updateFavorite(_ sender: UIBarButtonItem) {
+    @objc func updateFavorite(_ sender: UIBarButtonItem) {
         if let routeItemValue = routeItem {
             if (routeItemValue.selected){
                 FerryRealmStore.updateFavorite(routeItemValue, newValue: false)

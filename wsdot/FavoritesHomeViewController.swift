@@ -262,7 +262,7 @@ extension FavoritesHomeViewController {
         activityIndicator.removeFromSuperview()
     }
 
-    func refreshAction(_ refreshController: UIRefreshControl){
+    @objc func refreshAction(_ refreshController: UIRefreshControl){
         loadSelectedContent(force: true)
     }
 
@@ -421,7 +421,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 line.translatesAutoresizingMaskIntoConstraints = false
                 travelTimeCell.contentView.addSubview(line)
                 travelTimeCell.dynamicLines.append(line)
-                let lineRightPadding: CGFloat = 24.0
+                let negativeLineRightPadding: CGFloat = -24.0
         
                 let viaLabel = UILabel()
                 viaLabel.text = "Via \(route.viaText)"
@@ -514,7 +514,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 travelTimeCell.contentView.addConstraint(trailingConstraintForTimeLabel)
             
                 // Set line contraints
-                let widthConstraintForLine = NSLayoutConstraint(item: line, attribute: .width, relatedBy: .equal, toItem: travelTimeCell.contentView, attribute: .width, multiplier: 1, constant: lineRightPadding.negated())
+                let widthConstraintForLine = NSLayoutConstraint(item: line, attribute: .width, relatedBy: .equal, toItem: travelTimeCell.contentView, attribute: .width, multiplier: 1, constant: negativeLineRightPadding)
                 let heightConstraintForLine = NSLayoutConstraint(item: line, attribute: .height, relatedBy: .equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 1)
                 travelTimeCell.contentView.addConstraint(widthConstraintForLine)
                 travelTimeCell.contentView.addConstraint(heightConstraintForLine)
@@ -798,7 +798,7 @@ extension FavoritesHomeViewController {
      * Method name: checkAlerts
      * Description: action func for check alerts button on a route cell
      */
-    func checkAlerts(sender: UIButton){
+    @objc func checkAlerts(sender: UIButton){
         GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Check Alerts")
         performSegue(withIdentifier: segueMyRouteAlertsViewController, sender: sender)
     }
@@ -807,7 +807,7 @@ extension FavoritesHomeViewController {
      * Method name: checkAlerts
      * Description: action fun for openMap button on a route cell
      */
-    func openMap(sender: UIButton){
+    @objc func openMap(sender: UIButton){
         GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Open Route")
         performSegue(withIdentifier: segueTrafficMapViewController, sender: sender)
     }

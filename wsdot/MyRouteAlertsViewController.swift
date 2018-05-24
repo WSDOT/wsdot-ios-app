@@ -267,7 +267,7 @@ extension MyRouteAlertsViewController:  UITableViewDataSource, UITableViewDelega
         
         let attrStr = try! NSMutableAttributedString(
             data: htmlString.data(using: String.Encoding.unicode, allowLossyConversion: false)!,
-            options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
+            options: [ NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html],
             documentAttributes: nil)
         
         cell.linkLabel.attributedText = attrStr

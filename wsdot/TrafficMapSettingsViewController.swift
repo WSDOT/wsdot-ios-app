@@ -177,7 +177,7 @@ class TrafficMapSettingsViewController: UIViewController {
     }
     
     // MARK: Prefrence functions
-    func changeClusterPref(_ sender: UISwitch){
+    @objc func changeClusterPref(_ sender: UISwitch){
         let clusterPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.shouldCluster)
         if let clusterVisible = clusterPref {
             if (clusterVisible == "on") {
@@ -191,7 +191,7 @@ class TrafficMapSettingsViewController: UIViewController {
         }
     }
     
-    func changeAlertsPref(_ sender: UISwitch){
+    @objc func changeAlertsPref(_ sender: UISwitch){
         let alertsPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.alerts)
         if let alertsVisible = alertsPref {
             if (alertsVisible == "on") {
@@ -206,7 +206,7 @@ class TrafficMapSettingsViewController: UIViewController {
         }
     }
     
-    func changeRestAreaPref(_ sender: UISwitch){
+    @objc func changeRestAreaPref(_ sender: UISwitch){
         let restAreaPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.restAreas)
         if let restAreaVisible = restAreaPref {
             if (restAreaVisible == "on") {
@@ -221,7 +221,7 @@ class TrafficMapSettingsViewController: UIViewController {
         }
     }
     
-    func changeJBLMPref(_ sender: UISwitch){
+    @objc func changeJBLMPref(_ sender: UISwitch){
         let jblmPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.jblmCallout)
         if let jblmVisible = jblmPref {
             if (jblmVisible == "on") {
@@ -236,7 +236,7 @@ class TrafficMapSettingsViewController: UIViewController {
         }
     }
     
-    func clusterInfoAlert(_ sender: UIButton){
+    @objc func clusterInfoAlert(_ sender: UIButton){
         self.present(AlertMessages.getAlert("Camera Marker Clustering", message: "By turning clustering on, large numbers of camera markers will gather together in clusters at low zoom levels. When viewing the map at a high zoom level, individual camera markers will show on the map.", confirm: "OK"), animated: true, completion: nil)
     }
 }

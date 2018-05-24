@@ -57,7 +57,7 @@ class AlertContentViewController: UIViewController{
         }
     }
     
-    func labelAction(_ sender: UILabel){
+    @objc func labelAction(_ sender: UILabel){
         performSegue(withIdentifier: SegueHighwayAlertViewController, sender: self)
     }
     
