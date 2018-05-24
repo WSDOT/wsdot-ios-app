@@ -28,6 +28,7 @@ enum CachedData {
     case cameras
     case borderWaits
     case mountainPasses
+    case notifications
 }
 
 class CachesStore {
@@ -53,7 +54,7 @@ class CachesStore {
         let realm = try! Realm()
         let cacheItem = realm.objects(CacheItem.self).first
         
-        switch(data){
+        switch(data) {
         case .travelTimes:
             return cacheItem!.travelTimesLastUpdate as Date
         case .highwayAlerts:
@@ -66,6 +67,8 @@ class CachesStore {
             return cacheItem!.borderWaitsLastUpdate as Date
         case .mountainPasses:
             return cacheItem!.mountainPassesLastUpdate as Date
+        case .notifications:
+            return cacheItem!.notificationsLastUpdate as Date
         }
     }
 
@@ -94,6 +97,8 @@ class CachesStore {
                 case .mountainPasses:
                     cacheItem?.mountainPassesLastUpdate = updated
                     break
+                case .notifications:
+                    cacheItem?.notificationsLastUpdate = updated
                 }
             }
         } catch {

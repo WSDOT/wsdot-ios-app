@@ -32,6 +32,35 @@ class EventStore {
    
     static var sessionManager: SessionManager?
 
+    // Checks server for version of notifcation topics.
+    // If the topics list has been updated, saves the new tipview message
+    // to display on next start up. 
+    static func fetchPushNotificationsStatus() {
+        
+        let configuration = URLSessionConfiguration.default
+        configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
+        sessionManager = Alamofire.SessionManager(configuration: configuration)
+
+        sessionManager!.request("http://data.wsdot.wa.gov/mobile/NotificationTopicsVersion.js").validate().responseJSON { response in
+            switch response.result {
+            case .success:
+                if let value = response.result.value {
+                    let json = JSON(value)
+                    
+                    let prevVersion = UserDefaults.standard.integer(forKey: UserDefaultsKeys.pushNotificationTopicVersion)
+                    
+                    if prevVersion != json["version"].intValue {
+                        UserDefaults.standard.set(false, forKey: UserDefaultsKeys.hasSeenNotificationsTipView)
+                        UserDefaults.standard.set(json["version"].intValue, forKey: UserDefaultsKeys.pushNotificationTopicVersion)
+                        UserDefaults.standard.set(json["description"].stringValue, forKey: UserDefaultsKeys.pushNotificationsTopicDescription)
+                    }
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+
     static func fetchAndSaveEventItem() {
         
         let configuration = URLSessionConfiguration.default
@@ -50,7 +79,7 @@ class EventStore {
             }
         }
     }
-    
+
     static func eventActive() -> Bool {
     
         let preferences = UserDefaults.standard

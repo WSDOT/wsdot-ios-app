@@ -73,15 +73,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
         var lon = UserDefaults.standard.double(forKey: UserDefaultsKeys.mapLon)
         var zoom = UserDefaults.standard.float(forKey: UserDefaultsKeys.mapZoom)
         
-        if lat == 0 {
-            lat = 47.5990
-        }
-        if lon == 0 {
-            lon = -122.3350
-        }
-        if zoom == 0 {
-            zoom = 12
-        }
+        if lat == 0 {lat = 47.5990}
+        if lon == 0 {lon = -122.3350}
+        if zoom == 0 {zoom = 12}
         
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: GMSCameraPosition.camera(withLatitude: lat, longitude: lon, zoom: zoom))
         
@@ -105,6 +99,25 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
         if let parent = markerDelegate {
             parent.drawOverlays()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+
+        var lat = UserDefaults.standard.double(forKey: UserDefaultsKeys.mapLat)
+        var lon = UserDefaults.standard.double(forKey: UserDefaultsKeys.mapLon)
+        var zoom = UserDefaults.standard.float(forKey: UserDefaultsKeys.mapZoom)
+        
+        if lat == 0 {lat = 47.5990}
+        if lon == 0 {lon = -122.3350}
+        if zoom == 0 {zoom = 12}
+        
+        if let mapView = view as? GMSMapView{
+        
+            mapView.animate(toLocation: CLLocationCoordinate2D(latitude: CLLocationDegrees(lat), longitude: CLLocationDegrees(lon)))
+            mapView.animate(toZoom: zoom)
+
+        }
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {

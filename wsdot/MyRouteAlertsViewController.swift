@@ -112,14 +112,13 @@ class MyRouteAlertsViewController: UIViewController {
         
         let routeRef = ThreadSafeReference(to: self.route!)
         
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async {[weak self] in
             HighwayAlertsStore.updateAlerts(force, completion: { error in
                 if (error == nil){
                 
                     let routeItem = try! Realm().resolve(routeRef)
                     let nearbyAlerts = MyRouteStore.getNearbyAlerts(forRoute: routeItem!, withAlerts: HighwayAlertsStore.getAllAlerts())
                     
-                    self!.alerts.removeAll()
+                    self.alerts.removeAll()
                     
                     // copy alerts to unmanaged Realm object so we can access on main thread.
                     for alert in nearbyAlerts {
@@ -141,10 +140,10 @@ class MyRouteAlertsViewController: UIViewController {
                         tempAlert.startLatitude = alert.startLatitude
                         tempAlert.startLongitude = alert.startLongitude
                         tempAlert.startTime = alert.startTime
-                        self!.alerts.append(tempAlert)
+                        self.alerts.append(tempAlert)
                     }
 
-                    self!.alerts = self!.alerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
+                    self.alerts = self.alerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
                     
                     serviceGroup.leave()
                 }else{
@@ -156,7 +155,7 @@ class MyRouteAlertsViewController: UIViewController {
                     }
                 }
             })
-        }
+        
     }
 
     /**

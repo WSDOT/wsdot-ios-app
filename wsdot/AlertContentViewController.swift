@@ -66,7 +66,7 @@ class AlertContentViewController: UIViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueHighwayAlertViewController {
             let destinationViewController = segue.destination as! HighwayAlertViewController
-            destinationViewController.alertItem = alert
+            destinationViewController.alertId = alert.alertId
         }
     }
     

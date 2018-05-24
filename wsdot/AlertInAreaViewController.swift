@@ -39,10 +39,10 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
         super.viewDidLoad()
         
         for alert in alerts{
-            if alert.headlineDesc.lowercased().contains("construction") || alert.eventCategory.lowercased().contains("construction") {
-                constructionAlerts.append(alert)
-            }else if alert.eventCategory.lowercased() == "special event"{
+            if alert.eventCategory.lowercased() == "special event"{
                 specialEvents.append(alert)
+            } else if alert.headlineDesc.lowercased().contains("construction") || alert.eventCategory.lowercased().contains("construction") {
+                constructionAlerts.append(alert)
             }else {
                 trafficAlerts.append(alert)
             }
@@ -160,7 +160,7 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
         if segue.identifier == SegueHighwayAlertViewController {
             let alertItem = (sender as! HighwayAlertItem)
             let destinationViewController = segue.destination as! HighwayAlertViewController
-            destinationViewController.alertItem = alertItem
+            destinationViewController.alertId = alertItem.alertId
         }
     }
     

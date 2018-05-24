@@ -24,6 +24,7 @@ import SafariServices
 
 class HighwayAlertViewController: UIViewController, INDLinkLabelDelegate {
     
+    var alertId = 0
     var alertItem = HighwayAlertItem()
     
     @IBOutlet weak var descLinkLabel: INDLinkLabel!
@@ -31,11 +32,79 @@ class HighwayAlertViewController: UIViewController, INDLinkLabelDelegate {
     @IBOutlet weak var mapImage: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     
+    var activityIndicator = UIActivityIndicatorView()
+    
+    var fromPush: Bool = false
+    var pushLat: Double = 0.0
+    var pushLong: Double = 0.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = alertItem.eventCategory
+        
         
         descLinkLabel.delegate = self
+        
+        loadAlert()
+        
+        if (fromPush){
+        
+            UserDefaults.standard.set(pushLat, forKey: UserDefaultsKeys.mapLat)
+            UserDefaults.standard.set(pushLong, forKey: UserDefaultsKeys.mapLon)
+            UserDefaults.standard.set(15, forKey: UserDefaultsKeys.mapZoom)
+        
+        }
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        GoogleAnalytics.screenView(screenName: "/Highway Alert")
+    }
+    
+    func loadAlert(){
+        
+        showOverlay(self.view)
+        
+        let force = self.fromPush
+        
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { [weak self] in
+            HighwayAlertsStore.updateAlerts(force, completion: { error in
+                if (error == nil) {
+                    // Reload tableview on UI thread
+                    DispatchQueue.main.async { [weak self] in
+                        if let selfValue = self {
+                            
+                            if let alertItemValue = HighwayAlertsStore.findAlert(withId: selfValue.alertId) {
+                            
+                                selfValue.alertItem = alertItemValue
+                                selfValue.displayAlert()
+                            } else {
+                            
+                                selfValue.title = "Unavailable"
+                                selfValue.descLinkLabel.text = "Sorry, This incident has expired."
+                                selfValue.updateTimeLabel.text = "Unavailable"
+                            
+                            }
+                            selfValue.hideOverlayView()
+                        }
+                    }
+                } else {
+                    DispatchQueue.main.async { [weak self] in
+
+                        if let selfValue = self{
+                            selfValue.hideOverlayView()
+                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                        }
+                        
+                    }
+                    
+                }
+            })
+        }
+    }
+
+    func displayAlert() {
+        title = alertItem.eventCategory
         
         let htmlStyleString = "<style>body{font-family: '\(descLinkLabel.font.fontName)'; font-size:\(descLinkLabel.font.pointSize)px;}</style>"
         
@@ -58,12 +127,29 @@ class HighwayAlertViewController: UIViewController, INDLinkLabelDelegate {
         
         
         mapImage.sd_setImage(with: URL(string: staticMapUrl), placeholderImage: UIImage(named: "imagePlaceholder"), options: .refreshCached)
-        
+    
+    
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        GoogleAnalytics.screenView(screenName: "/Highway Alert")
+    func showOverlay(_ view: UIView) {
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.color = UIColor.gray
+        
+        if self.splitViewController!.isCollapsed {
+            activityIndicator.center = CGPoint(x: view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
+        } else {
+            activityIndicator.center = CGPoint(x: view.center.x - self.splitViewController!.viewControllers[0].view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
+        }
+        
+        view.addSubview(activityIndicator)
+        
+        activityIndicator.startAnimating()
+    }
+    
+    func hideOverlayView(){
+        activityIndicator.stopAnimating()
+        activityIndicator.removeFromSuperview()
     }
     
     // MARK: INDLinkLabelDelegate

@@ -120,7 +120,6 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView(screenName: "/Traffic Map")
     }
-
     
     @IBAction func refreshPressed(_ sender: UIBarButtonItem) {
     
@@ -188,64 +187,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
             mapView.moveCamera(GMSCameraUpdate.setCamera(camera))
         }
     }
-    
-    func goTo(_ index: Int){
-        if let mapView = embeddedMapViewController.view as? GMSMapView{
-            switch(index){
-            case 0:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 48.756302, longitude: -122.46151, zoom: 12))) // Bellingham
-                break
-            case 1:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 46.635529, longitude: -122.937698, zoom: 11))) // Chehalis
-                break
-            case 2:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 47.85268, longitude: -122.628365, zoom: 13))) // Hood Canal
-                break
-            case 3:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 47.859476, longitude: -121.972446, zoom: 13))) // Monroe
-                break
-            case 4:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 48.420657, longitude: -122.334824, zoom: 13))) // Mt Vernon
-                break
-            case 5:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 47.021461, longitude: -122.899933, zoom: 13))) // Olympia
-                break
-            case 6:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 47.5990, longitude: -122.3350, zoom: 12))) // Seattle
-                break
-            case 7:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 47.404481, longitude: -121.4232569, zoom: 12))) // Snoqualmie Pass
-                break
-            case 8:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 47.658566, longitude: -117.425995, zoom: 12))) // Spokane
-                break
-            case 9:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 48.22959, longitude: -122.34581, zoom: 13))) // Stanwood
-                break
-            case 10:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 47.86034, longitude: -121.812286, zoom: 13))) // Sultan
-                break
-            case 11:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 47.206275, longitude: -122.46254, zoom: 12))) // Tacoma
-                break
-            case 12:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 46.2503607, longitude: -119.2063781, zoom: 11))) // Tri-Cities
-                break
-            case 13:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 45.639968, longitude: -122.610512, zoom: 11))) // Vancouver
-                break
-            case 14:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 47.435867, longitude: -120.309563, zoom: 12))) // Wenatchee
-                break
-            case 15:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 46.6063273, longitude: -120.4886952, zoom: 11))) // Takima
-                break
-            default:
-                break
-            }
-        }
-    }
-    
+
     /*
         Checks if "best times to travel charts" are available from the data server,
         if they are, display an alert badge on the Traveler information menu
@@ -338,26 +280,25 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     func fetchAlerts(force: Bool, group: DispatchGroup) {
         group.enter()
-        DispatchQueue.global().async {[weak self] in
-            HighwayAlertsStore.updateAlerts(force, completion: { error in
-                if (error == nil){
-                    DispatchQueue.main.async {[weak self] in
-                        if let selfValue = self{
-                            group.leave()
-                            selfValue.loadAlertMarkers()
-                            selfValue.drawAlerts()
-                        }
-                    }
-                }else{
-                    DispatchQueue.main.async { [weak self] in
-                        if let selfValue = self{
-                            group.leave()
-                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
-                        }
+        HighwayAlertsStore.updateAlerts(force, completion: { error in
+            if (error == nil){
+                DispatchQueue.main.async {[weak self] in
+                    if let selfValue = self{
+                        group.leave()
+                        selfValue.loadAlertMarkers()
+                        selfValue.drawAlerts()
                     }
                 }
-            })
-        }
+            }else{
+                DispatchQueue.main.async { [weak self] in
+                    if let selfValue = self{
+                        group.leave()
+                        selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                    }
+                }
+            }
+        })
+        
     }
     
     func loadAlertMarkers(){
@@ -694,7 +635,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         if segue.identifier == SegueHighwayAlertViewController {
             let alertItem = ((sender as! GMSMarker).userData as! HighwayAlertItem)
             let destinationViewController = segue.destination as! HighwayAlertViewController
-            destinationViewController.alertItem = alertItem
+            destinationViewController.alertId = alertItem.alertId
         }
         
         if segue.identifier == SegueCamerasViewController {

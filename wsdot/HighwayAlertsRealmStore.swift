@@ -27,6 +27,12 @@ class HighwayAlertsStore {
 
     typealias UpdateHighwayAlertsCompletion = (_ error: Error?) -> ()
     
+    static func findAlert(withId: Int) -> HighwayAlertItem? {
+        let realm = try! Realm()
+        let alertItem = realm.object(ofType: HighwayAlertItem.self, forPrimaryKey: withId)
+        return alertItem
+    }
+    
     static func getAllAlerts() -> [HighwayAlertItem]{
         let realm = try! Realm()
         let alertItems = realm.objects(HighwayAlertItem.self).filter("delete == false")
@@ -40,33 +46,35 @@ class HighwayAlertsStore {
     }
     
     static func updateAlerts(_ force: Bool, completion: @escaping UpdateHighwayAlertsCompletion) {
-        var delta = TimeUtils.updateTime
-        let deltaUpdated = (Calendar.current as NSCalendar).components(.second, from: CachesStore.getUpdatedTime(CachedData.highwayAlerts), to: Date(), options: []).second
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { _ in
+            var delta = TimeUtils.updateTime
+            let deltaUpdated = (Calendar.current as NSCalendar).components(.second, from: CachesStore.getUpdatedTime(CachedData.highwayAlerts), to: Date(), options: []).second
         
-        if let deltaValue = deltaUpdated {
-            delta = deltaValue
-        }
-         
-        if ((delta > TimeUtils.alertsCacheTime) || force){
-            
-            Alamofire.request("http://data.wsdot.wa.gov/mobile/HighwayAlerts.js").validate().responseJSON { response in
-                switch response.result {
-                case .success:
-                    if let value = response.result.value {
-                        DispatchQueue.global().async {
-                            let json = JSON(value)
-                            self.saveAlerts(json)
-                            CachesStore.updateTime(CachedData.highwayAlerts, updated: Date())
-                            completion(nil)
-                        }
-                    }
-                case .failure(let error):
-                    print(error)
-                    completion(error)
-                }
+            if let deltaValue = deltaUpdated {
+                delta = deltaValue
             }
-        }else{
-            completion(nil)
+         
+            if ((delta > TimeUtils.alertsCacheTime) || force){
+            
+                Alamofire.request("http://data.wsdot.wa.gov/mobile/HighwayAlerts.js").validate().responseJSON { response in
+                    switch response.result {
+                    case .success:
+                        if let value = response.result.value {
+                            DispatchQueue.global().async {
+                                let json = JSON(value)
+                                self.saveAlerts(json)
+                                CachesStore.updateTime(CachedData.highwayAlerts, updated: Date())
+                                completion(nil)
+                            }
+                        }
+                    case .failure(let error):
+                        print(error)
+                        completion(error)
+                    }
+                }
+            } else {
+                completion(nil)
+            }
         }
     }
     

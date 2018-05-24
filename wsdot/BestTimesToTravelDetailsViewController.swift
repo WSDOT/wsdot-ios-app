@@ -43,7 +43,7 @@ class BestTimesToTravelDetailsViewController: UIViewController, UITableViewDataS
     // MARK: -
     // MARK: Table View Data source methods
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1 // TODO Make groups for each route
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -15,7 +15,7 @@
         <!--Navigation Controller-->
         <scene sceneID="oUv-co-6am">
             <objects>
-                <navigationController id="IAh-cF-WhQ" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="TrafficMapNav" id="IAh-cF-WhQ" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="KzJ-ca-wFg">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

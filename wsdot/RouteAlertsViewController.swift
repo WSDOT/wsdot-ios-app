@@ -32,14 +32,20 @@ class RouteAlertsViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let routeTabBarContoller = self.tabBarController as! RouteTabBarViewController
-        alertItems = routeTabBarContoller.routeItem.routeAlerts.sorted(by: {$0.publishDate  > $1.publishDate})
         tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView(screenName: "/Ferries/Schedules/Alerts")
+   
+    }
+    
+    func setAlertsFromRouteItem(_ routeItem: FerryScheduleItem){
+        alertItems = routeItem.routeAlerts.sorted(by: {$0.publishDate > $1.publishDate})
+        if (tableView != nil){
+            tableView.reloadData()
+        }
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {

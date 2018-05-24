@@ -227,6 +227,11 @@
                         <viewLayoutGuide key="safeArea" id="Umz-jt-fUb"/>
                     </view>
                     <navigationItem key="navigationItem" id="Xpe-Fb-HQB">
+                        <barButtonItem key="leftBarButtonItem" image="icNotification" id="sPu-kK-o5w">
+                            <connections>
+                                <segue destination="WCO-RD-Y5F" kind="show" id="zT7-dd-fKp"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="icInfo" id="t4G-kd-S5C">
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="About"/>
@@ -237,6 +242,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="notificationBarButton" destination="sPu-kK-o5w" id="NLU-5V-kDt"/>
                         <outlet property="tableView" destination="peh-Jp-BEr" id="o2R-WZ-ota"/>
                         <segue destination="YHC-Qx-tw0" kind="showDetail" identifier="InfoViewController" id="nAK-Qt-76l"/>
                         <segue destination="V16-il-1em" kind="showDetail" identifier="TrafficMapViewController" id="gN6-Dz-E6K"/>
@@ -275,7 +281,7 @@
         <!--About-->
         <scene sceneID="Jct-bo-hPP">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="505-eM-iAh" customClass="InfoViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InfoViewController" hidesBottomBarWhenPushed="YES" id="505-eM-iAh" customClass="InfoViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MUk-Qe-Cdo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -448,6 +454,14 @@
             </objects>
             <point key="canvasLocation" x="322" y="698"/>
         </scene>
+        <!--Notifications-->
+        <scene sceneID="s7p-08-W7K">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Notifications" id="WCO-RD-Y5F" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KhL-s8-aHg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1738" y="599"/>
+        </scene>
         <!--Alert Pager View Controller-->
         <scene sceneID="PKl-1s-Yfu">
             <objects>
@@ -505,6 +519,7 @@
     </scenes>
     <resources>
         <image name="icInfo" width="24" height="24"/>
+        <image name="icNotification" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="gN6-Dz-E6K"/>

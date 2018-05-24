@@ -49,6 +49,8 @@
 		9A2F4A681D528A5100911AF5 /* FerryRealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A671D528A5100911AF5 /* FerryRealmStore.swift */; };
 		9A2F4A6E1D539C1600911AF5 /* CacheItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A6D1D539C1600911AF5 /* CacheItem.swift */; };
 		9A2F4A701D53AA5C00911AF5 /* CameraRealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A6F1D53AA5C00911AF5 /* CameraRealmStore.swift */; };
+		9A398D74209A6F6A00BD84FF /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A398D73209A6F6A00BD84FF /* Notifications.storyboard */; };
+		9A398D76209A71B600BD84FF /* NotificationsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A398D75209A71B600BD84FF /* NotificationsStore.swift */; };
 		9A46C3B82034F5C1000F03C5 /* TravelTimeItemGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A46C3B72034F5C1000F03C5 /* TravelTimeItemGroup.swift */; };
 		9A50179C1D258F2000B9C49E /* RoutesCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */; };
 		9A6FBCC51D6B4C6500CDCE16 /* TravelerInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCC41D6B4C6500CDCE16 /* TravelerInfoViewController.swift */; };
@@ -144,6 +146,10 @@
 		9AE4863E1D49594D007A92E3 /* FerriesTerminalMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE4863D1D49594D007A92E3 /* FerriesTerminalMap.swift */; };
 		9AE486441D495ACB007A92E3 /* FerriesTerminalItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE486431D495ACB007A92E3 /* FerriesTerminalItem.swift */; };
 		9AE486471D495E90007A92E3 /* CameraItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE486461D495E90007A92E3 /* CameraItem.swift */; };
+		9AE6B779209B9DF5001DE80F /* NotificationTopicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6B778209B9DF5001DE80F /* NotificationTopicsViewController.swift */; };
+		9AE6B77B209BA40E001DE80F /* NotificationTopicItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6B77A209BA40E001DE80F /* NotificationTopicItem.swift */; };
+		9AE6B77E209CF965001DE80F /* PassableSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6B77D209CF965001DE80F /* PassableSwitch.swift */; };
+		9AE6B780209CF9B1001DE80F /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6B77F209CF9B1001DE80F /* SwitchCell.swift */; };
 		9AEDA2AA1D8C3B1C00302F80 /* WSDOTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEDA2A91D8C3B1C00302F80 /* WSDOTTests.swift */; };
 		9AEEDDA41D6F3D810032F5EC /* MountainPassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEDDA31D6F3D810032F5EC /* MountainPassCell.swift */; };
 		9AEEDDA61D6F3EC50032F5EC /* WeatherUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEDDA51D6F3EC50032F5EC /* WeatherUtils.swift */; };
@@ -262,6 +268,8 @@
 		9A2F4A671D528A5100911AF5 /* FerryRealmStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerryRealmStore.swift; sourceTree = "<group>"; };
 		9A2F4A6D1D539C1600911AF5 /* CacheItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheItem.swift; sourceTree = "<group>"; };
 		9A2F4A6F1D53AA5C00911AF5 /* CameraRealmStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraRealmStore.swift; sourceTree = "<group>"; };
+		9A398D73209A6F6A00BD84FF /* Notifications.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notifications.storyboard; sourceTree = "<group>"; };
+		9A398D75209A71B600BD84FF /* NotificationsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsStore.swift; sourceTree = "<group>"; };
 		9A46C3B72034F5C1000F03C5 /* TravelTimeItemGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelTimeItemGroup.swift; sourceTree = "<group>"; };
 		9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutesCustomCell.swift; sourceTree = "<group>"; };
 		9A6FBCC41D6B4C6500CDCE16 /* TravelerInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelerInfoViewController.swift; sourceTree = "<group>"; };
@@ -384,6 +392,11 @@
 		9AE4863D1D49594D007A92E3 /* FerriesTerminalMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerriesTerminalMap.swift; sourceTree = "<group>"; };
 		9AE486431D495ACB007A92E3 /* FerriesTerminalItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerriesTerminalItem.swift; sourceTree = "<group>"; };
 		9AE486461D495E90007A92E3 /* CameraItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraItem.swift; sourceTree = "<group>"; };
+		9AE6B778209B9DF5001DE80F /* NotificationTopicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTopicsViewController.swift; sourceTree = "<group>"; };
+		9AE6B77A209BA40E001DE80F /* NotificationTopicItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTopicItem.swift; sourceTree = "<group>"; };
+		9AE6B77D209CF965001DE80F /* PassableSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassableSwitch.swift; sourceTree = "<group>"; };
+		9AE6B77F209CF9B1001DE80F /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
+		9AEBB70C20A23DDB00D09027 /* WSDOT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = WSDOT.entitlements; path = WSDOT/WSDOT.entitlements; sourceTree = "<group>"; };
 		9AEDA2A71D8C3B1C00302F80 /* WSDOTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WSDOTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AEDA2A91D8C3B1C00302F80 /* WSDOTTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSDOTTests.swift; sourceTree = "<group>"; };
 		9AEDA2AB1D8C3B1C00302F80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -639,6 +652,31 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		9A398D70209A6A4700BD84FF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9A398D75209A71B600BD84FF /* NotificationsStore.swift */,
+				9AE6B77A209BA40E001DE80F /* NotificationTopicItem.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		9A398D71209A6A5900BD84FF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9A398D73209A6F6A00BD84FF /* Notifications.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		9A398D72209A6A6300BD84FF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9AE6B778209B9DF5001DE80F /* NotificationTopicsViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		9A5017921D258EFF00B9C49E /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -666,6 +704,7 @@
 				9AFDEA751E410626008DD51E /* MyRouteFavoritesCell.swift */,
 				9A0892A81E3A903800434AED /* MyRouteCell.swift */,
 				9A9808C11F1FAAAE0034DA05 /* TravelChartImageCell.swift */,
+				9AE6B77F209CF9B1001DE80F /* SwitchCell.swift */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -1008,6 +1047,16 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		9A8FE186209A6605005CF3EB /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				9A398D72209A6A6300BD84FF /* Controllers */,
+				9A398D71209A6A5900BD84FF /* Views */,
+				9A398D70209A6A4700BD84FF /* Models */,
+			);
+			name = Notifications;
+			sourceTree = "<group>";
+		};
 		9A93E0D71E708921004AB867 /* MyRoute */ = {
 			isa = PBXGroup;
 			children = (
@@ -1120,6 +1169,7 @@
 		9AD32DF01D23172C000AEC28 = {
 			isa = PBXGroup;
 			children = (
+				9AEBB70C20A23DDB00D09027 /* WSDOT.entitlements */,
 				9AD32DFB1D23172C000AEC28 /* wsdot */,
 				9ADF0E001D7F5EF600632F3D /* WSDOTUITests */,
 				9AEDA2A81D8C3B1C00302F80 /* WSDOTTests */,
@@ -1142,6 +1192,7 @@
 		9AD32DFB1D23172C000AEC28 /* wsdot */ = {
 			isa = PBXGroup;
 			children = (
+				9A8FE186209A6605005CF3EB /* Notifications */,
 				9A7BC07B1D9DB99A00EF760C /* Google-Maps-iOS-Utils */,
 				9A93E0D71E708921004AB867 /* MyRoute */,
 				9AFA0A721E280BF8000D0C70 /* Favorites */,
@@ -1194,6 +1245,7 @@
 		9ADEAE4B1D270CBB00BA7DD4 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				9AE6B77C209CF8CF001DE80F /* Extensions */,
 				9ADEAE4C1D270CC800BA7DD4 /* Helpers.swift */,
 				9A0CA8361D466045009C67B7 /* TimeUtils.swift */,
 				9A1F5FA41D47DCB900DA5F99 /* ApiKeys.swift */,
@@ -1240,6 +1292,14 @@
 				9A2F4A6F1D53AA5C00911AF5 /* CameraRealmStore.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		9AE6B77C209CF8CF001DE80F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9AE6B77D209CF965001DE80F /* PassableSwitch.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		9AEDA2A81D8C3B1C00302F80 /* WSDOTTests */ = {
@@ -1553,7 +1613,7 @@
 								enabled = 1;
 							};
 							com.apple.Push = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -1601,6 +1661,7 @@
 				9AEEDDB11D70B8A20032F5EC /* GoogleService-Info.plist in Resources */,
 				9AD32E071D23172C000AEC28 /* LaunchScreen.storyboard in Resources */,
 				9A9309B32051D7FF002D014C /* CameraPager.storyboard in Resources */,
+				9A398D74209A6F6A00BD84FF /* Notifications.storyboard in Resources */,
 				9AFA0A771E280C22000D0C70 /* Favorites.storyboard in Resources */,
 				9AD32E281D2421E4000AEC28 /* Ferries.storyboard in Resources */,
 				9AB0177A1D51464B004C228E /* Camera.storyboard in Resources */,
@@ -1647,6 +1708,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/EasyTipView/EasyTipView.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SCLAlertView/SCLAlertView.framework",
@@ -1659,6 +1721,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EasyTipView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCLAlertView.framework",
@@ -1735,6 +1798,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/EasyTipView/EasyTipView.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SCLAlertView/SCLAlertView.framework",
@@ -1747,6 +1811,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EasyTipView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCLAlertView.framework",
@@ -1826,6 +1891,7 @@
 				9A6FBCCF1D6B520900CDCE16 /* RestAreaItem.swift in Sources */,
 				9A6FBD001D6CB0A700CDCE16 /* ExpressLanesStore.swift in Sources */,
 				9A0616B91D63867A00126520 /* VesselDetailsViewController.swift in Sources */,
+				9A398D76209A71B600BD84FF /* NotificationsStore.swift in Sources */,
 				9A2F4A681D528A5100911AF5 /* FerryRealmStore.swift in Sources */,
 				9A1F5FA51D47DCB900DA5F99 /* ApiKeys.swift in Sources */,
 				9A6FBCDA1D6B6DF700CDCE16 /* HighwayAlertItem.swift in Sources */,
@@ -1843,6 +1909,7 @@
 				9A7BC0CF1DA3F31B00EF760C /* GMUGridBasedClusterAlgorithm.m in Sources */,
 				9A0719331D42732A007BB4C5 /* INDLinkLabel.swift in Sources */,
 				9A6FBD371D6E413A00CDCE16 /* MountainPassTabBarViewController.swift in Sources */,
+				9AE6B77E209CF965001DE80F /* PassableSwitch.swift in Sources */,
 				9A8486F81D81E96A0026F1CF /* DepartureDaySelectionViewController.swift in Sources */,
 				9A50179C1D258F2000B9C49E /* RoutesCustomCell.swift in Sources */,
 				9AEEDDA61D6F3EC50032F5EC /* WeatherUtils.swift in Sources */,
@@ -1895,6 +1962,7 @@
 				9A0892A91E3A903800434AED /* MyRouteCell.swift in Sources */,
 				9A0616CE1D660CC800126520 /* SR16ViewController.swift in Sources */,
 				9AB549011D7874E000927F13 /* AmtrakCascadesStationItem.swift in Sources */,
+				9AE6B780209CF9B1001DE80F /* SwitchCell.swift in Sources */,
 				9A9808BD1F1FA1780034DA05 /* BestTimesToTravelDetailsViewController.swift in Sources */,
 				9AB549031D78758400927F13 /* AmtrakCascadesStore.swift in Sources */,
 				9AEF4DA01D773256003ECA34 /* NewsCell.swift in Sources */,
@@ -1923,11 +1991,13 @@
 				9AFA0A851E300A56000D0C70 /* MyRouteLocationItem.swift in Sources */,
 				9AEF4DB11D77435B003ECA34 /* TwitterStore.swift in Sources */,
 				9A0616B71D63674500126520 /* VesselWatchStore.swift in Sources */,
+				9AE6B77B209BA40E001DE80F /* NotificationTopicItem.swift in Sources */,
 				9A7BC0D21DA3F31B00EF760C /* GMUWrappingDictionaryKey.m in Sources */,
 				9A7BC0E21DA434F700EF760C /* WSDOTClusterRenderer.swift in Sources */,
 				9A7BC0B21DA30BD400EF760C /* CameraClusterViewController.swift in Sources */,
 				9AC5E86C2028B43900C9BB02 /* EventItem.swift in Sources */,
 				9A6FBD1F1D6DF91300CDCE16 /* BorderWaitItem.swift in Sources */,
+				9AE6B779209B9DF5001DE80F /* NotificationTopicsViewController.swift in Sources */,
 				9A6FBD391D6E4A4700CDCE16 /* ForcastItem.swift in Sources */,
 				9A8486F41D81B2510026F1CF /* AmtrakCascadesSelectionViewController.swift in Sources */,
 				9AFDEA761E410626008DD51E /* MyRouteFavoritesCell.swift in Sources */,
@@ -2117,14 +2187,17 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = WSDOT/WSDOT.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9544S8BX77;
 				INFOPLIST_FILE = wsdot/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = gov.wa.wsdot.iphone.WSDOT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "wsdot/WSDOT-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
@@ -2136,14 +2209,17 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = WSDOT/WSDOT.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9544S8BX77;
 				INFOPLIST_FILE = wsdot/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = gov.wa.wsdot.iphone.WSDOT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "wsdot/WSDOT-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

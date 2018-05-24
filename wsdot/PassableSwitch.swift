@@ -1,5 +1,5 @@
 //
-//  CachesRealmDataModel.swift
+//  PassableSwitch.swift
 //  WSDOT
 //
 //  Copyright (c) 2016 Washington State Department of Transportation
@@ -17,22 +17,19 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
-import Foundation
-import RealmSwift
 
-class CacheItem: Object{
-    dynamic var id = 0
+import UIKit
+class PassableUISwitch: UISwitch {
+
+    var params: Dictionary<String, Any>
     
-    dynamic var travelTimesLastUpdate: Date = Date(timeIntervalSince1970: 0)
-    dynamic var highwayAlertsLastUpdate: Date = Date(timeIntervalSince1970: 0)
-    dynamic var ferriesLastUpdate: Date = Date(timeIntervalSince1970: 0)
-    dynamic var camerasLastUpdate: Date = Date(timeIntervalSince1970: 0)
-    dynamic var borderWaitsLastUpdate: Date = Date(timeIntervalSince1970: 0)
-    dynamic var mountainPassesLastUpdate: Date = Date(timeIntervalSince1970: 0)
-    dynamic var notificationsLastUpdate: Date = Date(timeIntervalSince1970: 0)
-    
-    override class func primaryKey() -> String {
-        return "id"
+    override init(frame: CGRect) {
+        self.params = [:]
+        super.init(frame: frame)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        self.params = [:]
+        super.init(coder: aDecoder)
     }
 }
-

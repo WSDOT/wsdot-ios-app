@@ -19,6 +19,7 @@
 //
 import UIKit
 
+
 struct AlertMessages {
 
     static func getConnectionAlert() ->  UIAlertController{
@@ -39,6 +40,13 @@ struct AlertMessages {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.view.tintColor = Colors.tintColor
         alert.addAction(UIAlertAction(title: confirm, style: UIAlertActionStyle.default, handler: nil))
+        return alert
+    }
+    
+    static func getSingleActionAlert(_ title: String, message: String, confirm: String, comfirmHandler: @escaping (UIAlertAction) -> Void) -> UIAlertController{
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.view.tintColor = Colors.tintColor
+        alert.addAction(UIAlertAction(title: confirm, style: UIAlertActionStyle.default, handler: comfirmHandler))
         return alert
     }
     

@@ -2,7 +2,7 @@
 //  HomeViewController.swift
 //  wsdot
 //
-//  Copyright (c) 2016 Washington State Department of Transportation
+//  Copyright (c) 2018 Washington State Department of Transportation
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -43,7 +43,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var eventBannerView = UIView()
     
+    var tipView = EasyTipView(text: "")
+    
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var notificationBarButton: UIBarButtonItem!
     
     var selectedIndex = 0
     
@@ -70,8 +73,24 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
             EventStore.fetchAndSaveEventItem()
         }
+        
+        // check for new topics otherwise hide notifications for devices running iOS < 10
+        if #available(iOS 10.0, *) {
+            DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
+                EventStore.fetchPushNotificationsStatus()
+            }
+        } else {
+            notificationBarButton.customView = UIView()
+            notificationBarButton.isAccessibilityElement = false
+        }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        GoogleAnalytics.screenView(screenName: "/Home")
+        displayEventBannerIfNeeded()
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         displayEventBannerIfNeeded()
@@ -135,15 +154,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         selectedIndex = -1
         performSegue(withIdentifier: SegueEventViewController, sender: self)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        GoogleAnalytics.screenView(screenName: "/Home")
-        displayEventBannerIfNeeded()
-    }
 
     override func viewWillDisappear(_ animated: Bool) {
         eventBannerView.removeFromSuperview()
+        tipView.dismiss()
     }
 
     @IBAction func infoBarButtonPressed(_ sender: UIBarButtonItem) {
@@ -223,6 +237,36 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             destinationViewController.viewControllers[0].navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
             destinationViewController.viewControllers[0].navigationItem.leftItemsSupplementBackButton = true
+        }
+    }
+}
+
+/*
+ *  EasyTipView extension
+ *  Displays a tipview for push notifications when
+ *  the app gets a new message from the server.
+ *  See EventStore.fetchPushNotificationsStatus()
+ */
+extension HomeViewController: EasyTipViewDelegate {
+    
+    public func easyTipViewDidDismiss(_ tipView: EasyTipView) {
+         UserDefaults.standard.set(true, forKey: UserDefaultsKeys.hasSeenNotificationsTipView)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        print(UserDefaults.standard.integer(forKey: UserDefaultsKeys.pushNotificationTopicVersion))
+        
+        if (UserDefaults.standard.integer(forKey: UserDefaultsKeys.pushNotificationTopicVersion) > 0) {
+        
+            if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasSeenNotificationsTipView) && !UIAccessibilityIsVoiceOverRunning()){
+                
+                let tipViewText = UserDefaults.standard.string(forKey: UserDefaultsKeys.pushNotificationsTopicDescription) ?? "Notifications"
+                
+                tipView = EasyTipView(text: tipViewText, delegate: self)
+                tipView.show(forItem: self.notificationBarButton)
+            }
         }
     }
 }
