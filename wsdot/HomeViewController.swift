@@ -256,8 +256,6 @@ extension HomeViewController: EasyTipViewDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        print(UserDefaults.standard.integer(forKey: UserDefaultsKeys.pushNotificationTopicVersion))
-        
         if (UserDefaults.standard.integer(forKey: UserDefaultsKeys.pushNotificationTopicVersion) > 0) {
         
             if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasSeenNotificationsTipView) && !UIAccessibilityIsVoiceOverRunning()){

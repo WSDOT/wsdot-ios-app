@@ -30,7 +30,8 @@ class EventStore {
     private static let bannerTextKey = "event_banner_text"
     private static let themeIdKey = "event_theme_id"
    
-    static var sessionManager: SessionManager?
+    static var pushSessionManager: SessionManager?
+    static var eventSessionManager: SessionManager?
 
     // Checks server for version of notifcation topics.
     // If the topics list has been updated, saves the new tipview message
@@ -39,9 +40,9 @@ class EventStore {
         
         let configuration = URLSessionConfiguration.default
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
-        sessionManager = Alamofire.SessionManager(configuration: configuration)
+        pushSessionManager = Alamofire.SessionManager(configuration: configuration)
 
-        sessionManager!.request("http://data.wsdot.wa.gov/mobile/NotificationTopicsVersion.js").validate().responseJSON { response in
+        pushSessionManager!.request("http://data.wsdot.wa.gov/mobile/NotificationTopicsVersion.js").validate().responseJSON { response in
             switch response.result {
             case .success:
                 if let value = response.result.value {
@@ -65,9 +66,9 @@ class EventStore {
         
         let configuration = URLSessionConfiguration.default
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
-        sessionManager = Alamofire.SessionManager(configuration: configuration)
+        eventSessionManager = Alamofire.SessionManager(configuration: configuration)
 
-        sessionManager!.request("http://data.wsdot.wa.gov/mobile/EventStatus.js").validate().responseJSON { response in
+        eventSessionManager!.request("http://data.wsdot.wa.gov/mobile/EventStatus.js").validate().responseJSON { response in
             switch response.result {
             case .success:
                 if let value = response.result.value {

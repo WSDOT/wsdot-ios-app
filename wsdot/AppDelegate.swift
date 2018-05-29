@@ -98,6 +98,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     // MARK: Push Notifications
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+
+        // ensure topic subs are always in sync with what we have stored on the client.
+        for topic in NotificationsStore.getTopics() {
+            if topic.subscribed {
+                Messaging.messaging().subscribe(toTopic: topic.topic)
+            } else {
+                Messaging.messaging().unsubscribe(fromTopic: topic.topic)
+            }
+        }
+    }
     
     // catches notifications while app is in foreground and displays
     @available(iOS 10.0, *)
