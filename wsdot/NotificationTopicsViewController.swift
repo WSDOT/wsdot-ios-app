@@ -57,8 +57,6 @@ class NotificationTopicsViewController: UIViewController, UITableViewDelegate, U
         
         self.tableView.layoutIfNeeded()
         
-        Messaging.messaging().subscribe(toTopic: "test_topic")
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
