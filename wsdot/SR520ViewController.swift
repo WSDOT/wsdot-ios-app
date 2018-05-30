@@ -21,7 +21,7 @@
 import Foundation
 import UIKit
 
-class SR520ViewController: UIViewController {
+class SR520ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let cellIdentifier = "threeColCell"
 
@@ -33,7 +33,7 @@ class SR520ViewController: UIViewController {
     }
     
     // MARK: Table View Data Source Methods
-    func numberOfSectionsInTableView(_ tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
@@ -41,11 +41,11 @@ class SR520ViewController: UIViewController {
         return data.count
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! ThreeColTableCell
 
