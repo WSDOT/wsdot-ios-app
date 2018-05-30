@@ -42,12 +42,9 @@ class AmtrakCascadesScheduleDetailsViewController: UIViewController, UITabBarDel
         // refresh controller
         refreshControl.addTarget(self, action: #selector(AmtrakCascadesScheduleDetailsViewController.refreshAction(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
-     
-        tableView.rowHeight = UITableViewAutomaticDimension
         
         showOverlay(self.view)
         refresh()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -111,11 +108,7 @@ class AmtrakCascadesScheduleDetailsViewController: UIViewController, UITabBarDel
         activityIndicator.removeFromSuperview()
     }
     
-    
     // MARK: Table View Data Source Methods
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
     
     func tableView( _ tableView : UITableView,  titleForHeaderInSection section: Int)->String? {
         return "Trip " + String(section+1)

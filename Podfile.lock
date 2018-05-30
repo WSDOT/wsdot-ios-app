@@ -88,27 +88,6 @@ SPEC REPOS:
     - SDWebImage
     - SwiftyJSON
 
-SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - Alamofire
-    - EasyTipView
-    - Firebase
-    - FirebaseAnalytics
-    - FirebaseCore
-    - FirebaseInstanceID
-    - FirebaseMessaging
-    - Google-Mobile-Ads-SDK
-    - GoogleAnalytics
-    - GoogleMaps
-    - GoogleToolboxForMac
-    - nanopb
-    - Protobuf
-    - Realm
-    - RealmSwift
-    - SCLAlertView
-    - SDWebImage
-    - SwiftyJSON
-
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   EasyTipView: b93a19be981cc2221d6d7191d49872f547e0bebf
