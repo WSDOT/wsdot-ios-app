@@ -305,8 +305,11 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     // current time to find it.
     fileprivate func scrollToNextSailing(_ sailings: List<FerryDepartureTimeItem>) {
         let index = getNextSailingIndex(sailings)
-        let indexPath = IndexPath(row: index, section: 0)
-        tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+        
+        if tableView.numberOfRows(inSection: 0) > index {
+            let indexPath = IndexPath(row: index, section: 0)
+            tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+        }
     }
     
     fileprivate func getNextSailingIndex(_ sailings: List<FerryDepartureTimeItem>) -> Int {
