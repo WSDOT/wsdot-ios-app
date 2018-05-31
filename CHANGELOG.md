@@ -4,8 +4,23 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]: 
 
+## [5.8.1] 2018-06
+
+### Added
+* Low impact alert icons
+
+### Fixed
+* Crash in ferry schedules when auto scrolling befroe tableview is ready.
+
+## [5.8.0] 2018-05-29
+
+### Added
+* Push Notifications
+
 ## [5.7.3] 2017-05-01
-* Adds WSF contact info.
+
+### Added
+* WSF contact info.
 
 ## [5.7.2] 2017-04-16
 
