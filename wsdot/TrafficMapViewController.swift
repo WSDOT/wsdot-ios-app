@@ -58,10 +58,12 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     fileprivate let alertHighIconImage = UIImage(named: "icMapAlertHigh")
     fileprivate let alertHighestIconImage = UIImage(named: "icMapAlertHighest")
     fileprivate let alertModerateIconImage = UIImage(named: "icMapAlertModerate")
+    fileprivate let alertLowIconImage = UIImage(named: "icMapAlertLow")
     
     fileprivate let constructionHighIconImage = UIImage(named: "icMapConstructionHigh")
     fileprivate let constructionHighestIconImage = UIImage(named: "icMapConstructionHighest")
     fileprivate let constructionModerateIconImage = UIImage(named: "icMapConstructionModerate")
+    fileprivate let constructionLowIconImage = UIImage(named: "icMapConstructionLow")
     
     fileprivate let closedIconImage = UIImage(named: "icMapClosed")
     
@@ -322,8 +324,16 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
                 let marker = GMSMarker(position: alertLocation)
                 marker.snippet = "alert"
                 
-                if alert.headlineDesc.lowercased().contains("construction") || alert.eventCategory.lowercased().contains("construction"){
+                if alert.headlineDesc.lowercased().contains("construction")
+                    || alert.eventCategory.lowercased().contains("maintenance")
+                    || alert.eventCategory.lowercased().contains("construction"){
                     switch alert.priority {
+                    case "Lowest":
+                        marker.icon = constructionLowIconImage
+                        break
+                    case "Low":
+                        marker.icon = constructionLowIconImage
+                        break
                     case "Moderate":
                         marker.icon = constructionModerateIconImage
                         break
@@ -342,6 +352,12 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
                     marker.icon = closedIconImage
                 }else {
                     switch alert.priority {
+                    case "Lowest":
+                        marker.icon = alertLowIconImage
+                        break
+                    case "Low":
+                        marker.icon = alertLowIconImage
+                        break
                     case "Moderate":
                         marker.icon = alertModerateIconImage
                         break
