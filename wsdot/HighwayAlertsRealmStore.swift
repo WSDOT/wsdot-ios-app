@@ -41,7 +41,7 @@ class HighwayAlertsStore {
     
     static func getHighestPriorityAlerts() -> [HighwayAlertItem]{
         let realm = try! Realm()
-        let alertItems = realm.objects(HighwayAlertItem.self).filter("priority == \"Highest\"").filter("delete == false")
+        let alertItems = realm.objects(HighwayAlertItem.self).filter("priority == \"Highest\"").filter("delete == false").sorted(byKeyPath: "lastUpdatedTime", ascending: false)
         return Array(alertItems)
     }
     
