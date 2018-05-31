@@ -235,19 +235,23 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
             annotationsString += displayedSailing!.annotations[indexObj.index].message + " "
         }
         
+        cell.annotations.attributedText = nil
+        cell.annotations.text = nil
+        
         if (annotationsString != ""){
             let htmlStyleString = "<style>body{font-family: '\(cell.annotations.font.fontName)'; font-size:\(cell.annotations.font.pointSize)px;}</style>"
-            let attrAnnotationsStr = try! NSMutableAttributedString(
+            
+            let attrAnnotationsStr = try? NSMutableAttributedString(
                 data: (htmlStyleString + annotationsString).data(using: String.Encoding.unicode, allowLossyConversion: false)!,
                 options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 17)!],
                 documentAttributes: nil)
-            cell.annotations.isHidden = false
-            cell.annotations.attributedText = attrAnnotationsStr
-        }else {
-            cell.annotations.attributedText = nil
-            cell.annotations.text = nil
+            
+            if let annotationText = attrAnnotationsStr {
+                cell.annotations.isHidden = false
+                cell.annotations.attributedText = annotationText
+            }
         }
-        
+ 
         // Accessibility Setup
         cell.accessibilityLabel = "departing " + cell.departingTime.text! + ". arriving " + cell.arrivingTime.accessibilityLabel! + ". "
         

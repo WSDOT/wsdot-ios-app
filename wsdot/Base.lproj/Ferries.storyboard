@@ -906,13 +906,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohw-nZ-bs0" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
-                                                    <rect key="frame" x="19" y="44" width="341" height="17"/>
+                                                    <rect key="frame" x="15" y="44" width="345" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSQ-pN-qXu">
-                                                    <rect key="frame" x="19" y="19" width="241" height="21"/>
+                                                    <rect key="frame" x="15" y="19" width="245" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="01V-j3-ZzX"/>
                                                     </constraints>
@@ -921,24 +921,24 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4tw-1s-LEj">
-                                                    <rect key="frame" x="19" y="67" width="345" height="21"/>
+                                                    <rect key="frame" x="15" y="67" width="349" height="21"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vehicles in line for tollbooth are not included in estimate" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VbF-Ne-s0u">
-                                                    <rect key="frame" x="19" y="106" width="345" height="13.5"/>
+                                                    <rect key="frame" x="15" y="106" width="349" height="13.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Uv8-pZ-Lge">
-                                                    <rect key="frame" x="19" y="96" width="345" height="2"/>
+                                                    <rect key="frame" x="15" y="96" width="349" height="2"/>
                                                     <color key="tintColor" red="0.0" green="0.47843137250000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="trackTintColor" white="0.8481968017" alpha="1" colorSpace="calibratedWhite"/>
                                                 </progressView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gy-y6-8Dd">
-                                                    <rect key="frame" x="19" y="127.5" width="345" height="14.5"/>
+                                                    <rect key="frame" x="15" y="127.5" width="349" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -962,7 +962,7 @@
                                                 <constraint firstItem="gSQ-pN-qXu" firstAttribute="baseline" secondItem="pWN-T2-cy2" secondAttribute="baseline" id="bKQ-hQ-HbZ"/>
                                                 <constraint firstItem="Uv8-pZ-Lge" firstAttribute="trailing" secondItem="VbF-Ne-s0u" secondAttribute="trailing" id="bZo-s4-tfF"/>
                                                 <constraint firstItem="4tw-1s-LEj" firstAttribute="leading" secondItem="Uv8-pZ-Lge" secondAttribute="leading" id="eft-d3-euV"/>
-                                                <constraint firstItem="gSQ-pN-qXu" firstAttribute="leading" secondItem="Sjd-QZ-OtF" secondAttribute="leadingMargin" constant="4" id="ffJ-Xj-vOE"/>
+                                                <constraint firstItem="gSQ-pN-qXu" firstAttribute="leading" secondItem="Sjd-QZ-OtF" secondAttribute="leadingMargin" id="ffJ-Xj-vOE"/>
                                                 <constraint firstItem="pWN-T2-cy2" firstAttribute="leading" secondItem="gSQ-pN-qXu" secondAttribute="trailing" constant="55" id="gtj-zx-S6u"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="4tw-1s-LEj" secondAttribute="trailing" constant="-4" id="thg-Ii-HWI"/>
                                                 <constraint firstItem="gSQ-pN-qXu" firstAttribute="leading" secondItem="ohw-nZ-bs0" secondAttribute="leading" id="zN9-fl-Pia"/>
@@ -990,13 +990,19 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eov-4r-ShZ">
-                                                    <rect key="frame" x="217" y="4" width="143" height="21"/>
+                                                    <rect key="frame" x="213" y="4" width="147" height="21"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZw-CP-CKB" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
+                                                    <rect key="frame" x="15" y="29" width="345" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZM-k3-H9r">
-                                                    <rect key="frame" x="19" y="4" width="143" height="21"/>
+                                                    <rect key="frame" x="15" y="4" width="143" height="21"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Label">
                                                             <attributes>
@@ -1007,12 +1013,6 @@
                                                     </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZw-CP-CKB" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
-                                                    <rect key="frame" x="19" y="29" width="341" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="dZM-k3-H9r" firstAttribute="width" secondItem="ARh-tb-FB8" secondAttribute="width" multiplier="0.4" constant="-7" id="0DR-ty-ACi"/>
@@ -1020,11 +1020,11 @@
                                                 <constraint firstItem="dZM-k3-H9r" firstAttribute="top" secondItem="ARh-tb-FB8" secondAttribute="top" constant="4" id="ANO-Ac-Egq"/>
                                                 <constraint firstAttribute="bottom" secondItem="JZw-CP-CKB" secondAttribute="bottom" constant="6" id="DY3-Jr-c3p"/>
                                                 <constraint firstItem="JZw-CP-CKB" firstAttribute="trailing" secondItem="ARh-tb-FB8" secondAttribute="trailingMargin" id="FXu-v5-Nsc"/>
+                                                <constraint firstItem="dZM-k3-H9r" firstAttribute="leading" secondItem="ARh-tb-FB8" secondAttribute="leadingMargin" id="FdC-9E-OIO"/>
                                                 <constraint firstItem="eov-4r-ShZ" firstAttribute="leading" secondItem="dZM-k3-H9r" secondAttribute="trailing" constant="55" id="ZLm-nz-2KN"/>
-                                                <constraint firstItem="dZM-k3-H9r" firstAttribute="leading" secondItem="ARh-tb-FB8" secondAttribute="leading" constant="19" id="Zat-PN-Pwg"/>
                                                 <constraint firstItem="JZw-CP-CKB" firstAttribute="top" secondItem="dZM-k3-H9r" secondAttribute="bottom" constant="4" id="exb-ys-Nx5"/>
                                                 <constraint firstItem="eov-4r-ShZ" firstAttribute="trailing" secondItem="JZw-CP-CKB" secondAttribute="trailing" id="lwx-aD-cT4"/>
-                                                <constraint firstItem="JZw-CP-CKB" firstAttribute="leading" secondItem="ARh-tb-FB8" secondAttribute="leadingMargin" constant="4" id="yfF-BO-yP9"/>
+                                                <constraint firstItem="JZw-CP-CKB" firstAttribute="leading" secondItem="ARh-tb-FB8" secondAttribute="leadingMargin" id="yfF-BO-yP9"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
