@@ -177,8 +177,10 @@ class NotificationTopicsViewController: UIViewController, UITableViewDelegate, U
                             
                                     let topic = sender.params["topic"] as! NotificationTopicItem
         
-                                    NotificationsStore.updateSubscription(topic, newValue: !topic.subscribed)
                                     GoogleAnalytics.event(category: "Button Tap", action: (!topic.subscribed ? "subscribed" : "unsubscribed") , label: "Notification")
+        
+                                    NotificationsStore.updateSubscription(topic, newValue: !topic.subscribed)
+
                                 } else {
                                     
                                     selfValue.present(AlertMessages.getAcessDeniedAlert("Turn On Notifications", message: "Please allow notifications from Settings"), animated: true, completion: {sender.setOn(!sender.isOn, animated: true)})
