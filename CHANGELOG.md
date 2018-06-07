@@ -2,15 +2,23 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-[Unreleased]: 
+[Unreleased]:
 
-## [5.8.1] 2018-06
+## [5.8.2] 2018-06
+
+### Added
+* Push notification event tracking. 
+
+### Fixed
+* Better analytics event labeling for notification subscriptions.
+
+## [5.8.1] 2018-06-04
 
 ### Added
 * Low impact alert icons
 
 ### Fixed
-* Crash in ferry schedules when auto scrolling befroe tableview is ready.
+* Crash in ferry schedules when auto scrolling before tableview is ready.
 
 ## [5.8.0] 2018-05-29
 
@@ -41,7 +49,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 * Past sailing times for the current day.
-* Events banner & event theming. 
+* Events banner & event theming.
 
 ## [5.5.1] 2017-11-06
 
@@ -110,7 +118,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## Fixed
 * Crash when adding a favorite location on iOS 8.3.
 * Layout improvments for small and large screens.
-* Dislpayed correct alert icon for road closures. 
+* Dislpayed correct alert icon for road closures.
 
 ## [5.0.6] - 2016-12
 
@@ -125,13 +133,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [5.0.5] - 2016-11-28
 
 ## Fixed
-* Added timestamp to camera urls to prevent SDWebImage from agressively caching camera images. 
+* Added timestamp to camera urls to prevent SDWebImage from agressively caching camera images.
 
 ## [5.0.4] - 2016-11-16
 
 ## Fixed
 * Amtrak Cascades 516 train is longer labeled as a bus servcie.
-* Pass reports now correctly save temperatures from the json feed. 
+* Pass reports now correctly save temperatures from the json feed.
 
 ## [5.0.3] - 2016-10-31
 
@@ -145,7 +153,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * Sailing spaces now only pulls spaces for that route.
 * Now only loads favorites data that users actually favorited. Used to load all data for all possible favorite items.
 * Updated pods.
-* NSTimer deinit logic in Vessel Watch. 
+* NSTimer deinit logic in Vessel Watch.
 * Better connection error handling for sailing spaces. Use to report internet connectino error for every failed update timer task.
 
 ### Fixed
@@ -174,11 +182,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 * New Codebase.
 * Camera icons on the Traffic Map can now be clustered.
-* Split screen layout for iPhone Plus landscape and iPad screens. 
+* Split screen layout for iPhone Plus landscape and iPad screens.
 * Can now toggle all map markers on/off.
 * New organization of Pass Reports.
-* New Amtrak Schedules. Now Shows all legs of a trip in detail. 
+* New Amtrak Schedules. Now Shows all legs of a trip in detail.
 * Ferry Alert tabs now will display a badge with the number of active alerts.
-* Added WSDOT North Traffic Twitter account. 
+* Added WSDOT North Traffic Twitter account.
 * Added WSDOT Flickr account to Social Media Section.
 * Bug report template added in the About section.
