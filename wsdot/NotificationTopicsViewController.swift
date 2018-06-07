@@ -177,7 +177,7 @@ class NotificationTopicsViewController: UIViewController, UITableViewDelegate, U
                             
                                     let topic = sender.params["topic"] as! NotificationTopicItem
         
-                                    GoogleAnalytics.event(category: "Button Tap", action: (!topic.subscribed ? "subscribed" : "unsubscribed") , label: "Notification")
+                                    GoogleAnalytics.event(category: "Notification", action: (!topic.subscribed ? "subscribed" : "unsubscribed") , label: topic.title)
         
                                     NotificationsStore.updateSubscription(topic, newValue: !topic.subscribed)
 
