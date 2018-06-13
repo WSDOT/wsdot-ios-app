@@ -69,7 +69,6 @@ class FerryRealmStore {
         
             if ((delta > TimeUtils.updateTime) || force){
             
-            
                 Alamofire.request("http://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js").validate().responseJSON { response in
                     switch response.result {
                     case .success:
@@ -86,15 +85,12 @@ class FerryRealmStore {
                         print(error)
                         DispatchQueue.main.async { completion(error) }
                     }
-                
                 }
             }else {
                 DispatchQueue.main.async { completion(nil) }
             }
         }
     }
-
-    
     
     // Saves new route schedules. tags old routes for deletion if not updated.
     fileprivate static func saveRouteSchedules(_ routeSchedules: [FerryScheduleItem]){
@@ -151,7 +147,13 @@ class FerryRealmStore {
                 crossingTime = subJson["CrossingTime"].stringValue
             }
             
-            let cacheDate = TimeUtils.parseJSONDateToNSDate(subJson["CacheDate"].stringValue)
+            // Check for new date format from future API update, fall back to previous date format
+            var cacheDate = Date()
+            if let cacheDateValue = try? TimeUtils.formatTimeStamp(subJson["CacheDate"].stringValue) {
+                cacheDate = cacheDateValue
+            } else {
+                cacheDate = TimeUtils.parseJSONDateToNSDate(subJson["CacheDate"].stringValue)
+            }
             
             let route = FerryScheduleItem()
             route.routeId = subJson["RouteID"].intValue
@@ -223,7 +225,14 @@ class FerryRealmStore {
         let scheduleDates = List<FerryScheduleDateItem>()
         for(_,dateJSON):(String, JSON) in json {
             let scheduleDate = FerryScheduleDateItem()
-            scheduleDate.date = TimeUtils.parseJSONDateToNSDate(dateJSON["Date"].stringValue)
+            
+            // Check for new date format from future API update, fall back to previous date format
+            if let dateValue = try? TimeUtils.formatTimeStamp(dateJSON["Date"].stringValue, dateFormat: "yyyy-MM-dd") {
+                scheduleDate.date = dateValue
+            } else {
+                scheduleDate.date = TimeUtils.parseJSONDateToNSDate(dateJSON["Date"].stringValue)
+            }
+            
             for sailing in parseSailingsJSON(dateJSON["Sailings"]){
                 scheduleDate.sailings.append(sailing)
             }
@@ -262,10 +271,21 @@ class FerryRealmStore {
         for(_, timeJSON):(String, JSON) in json {
             let time = FerryDepartureTimeItem()
             
-            if (timeJSON["ArrivingTime"] !=  JSON.null){
-                time.arrivingTime = TimeUtils.parseJSONDateToNSDate(timeJSON["ArrivingTime"].stringValue)
+            // Check for new date format from future API update, fall back to previous date format
+            if (timeJSON["ArrivingTime"] != JSON.null){
+                if let timeValue = try? TimeUtils.formatTimeStamp(timeJSON["ArrivingTime"].stringValue) {
+                    time.arrivingTime = timeValue
+                } else {
+                    time.arrivingTime = TimeUtils.parseJSONDateToNSDate(timeJSON["ArrivingTime"].stringValue)
+                }
             }
-            time.departingTime = TimeUtils.parseJSONDateToNSDate(timeJSON["DepartingTime"].stringValue)
+            
+            // Check for new date format from future API update, fall back to previous date format
+            if let timeValue = try? TimeUtils.formatTimeStamp(timeJSON["DepartingTime"].stringValue) {
+                time.departingTime = timeValue
+            } else {
+                time.departingTime = TimeUtils.parseJSONDateToNSDate(timeJSON["DepartingTime"].stringValue)
+            }
             
             for(_,annotationIndex):(String, JSON) in timeJSON["AnnotationIndexes"]{
             
