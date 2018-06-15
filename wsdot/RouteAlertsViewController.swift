@@ -69,7 +69,7 @@ class RouteAlertsViewController: UIViewController, UITableViewDataSource, UITabl
         
         let attrStr = try! NSMutableAttributedString(
             data: htmlString.data(using: String.Encoding.unicode, allowLossyConversion: false)!,
-            options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
+            options: [ NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html],
             documentAttributes: nil)
         
         let alertPubDate = TimeUtils.parseJSONDateToNSDate(alertItems[indexPath.row].publishDate)

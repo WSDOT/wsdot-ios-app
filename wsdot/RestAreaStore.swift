@@ -26,10 +26,15 @@ class RestAreaStore {
     
         var restareas = [RestAreaItem]()
         if let path = Bundle.main.path(forResource: "restareas", ofType: "json"){
+            
+            
             let data = try? Data(contentsOf: URL(fileURLWithPath: path))
-            let json = JSON(data: data!, options: JSONSerialization.ReadingOptions.allowFragments, error: nil)
-            for (_,restareaJson):(String, JSON) in json {
-                let restarea = RestAreaItem(route: restareaJson["route"].stringValue,
+            
+            if let json = try? JSON(data: data!) {
+            
+            
+                for (_,restareaJson):(String, JSON) in json {
+                    let restarea = RestAreaItem(route: restareaJson["route"].stringValue,
                                             location: restareaJson["location"].stringValue,
                                             description: restareaJson["description"].stringValue,
                                             milepost: restareaJson["milepost"].intValue,
@@ -41,8 +46,8 @@ class RestAreaStore {
                                             isOpen: restareaJson["isOpen"].boolValue,
                                             amenities: restareaJson["amenities"].arrayValue.map { $0.stringValue})
             
-                restareas.append(restarea)
-        
+                    restareas.append(restarea)
+                }
             }
         }else {
             print("failed to open file?")

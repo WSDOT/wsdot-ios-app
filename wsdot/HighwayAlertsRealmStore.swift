@@ -46,7 +46,7 @@ class HighwayAlertsStore {
     }
     
     static func updateAlerts(_ force: Bool, completion: @escaping UpdateHighwayAlertsCompletion) {
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { _ in
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { 
             var delta = TimeUtils.updateTime
             let deltaUpdated = (Calendar.current as NSCalendar).components(.second, from: CachesStore.getUpdatedTime(CachedData.highwayAlerts), to: Date(), options: []).second
         

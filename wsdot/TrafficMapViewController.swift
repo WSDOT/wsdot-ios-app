@@ -194,6 +194,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         Checks if "best times to travel charts" are available from the data server,
         if they are, display an alert badge on the Traveler information menu
     */
+    
     func checkForTravelCharts(){
         DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { [weak self] in
             BestTimesToTravelStore.isBestTimesToTravelAvailable({ available, error in
@@ -588,11 +589,11 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
             markers.remove(marker)
             if markers.contains(where: {($0.position.latitude == marker.position.latitude) && ($0.position.latitude == marker.position.latitude)}) {
                 performSegue(withIdentifier: SegueAlertsInArea, sender: marker)
-            }else {
+            } else {
                 performSegue(withIdentifier: SegueHighwayAlertViewController, sender: marker)
             }
-        
         }
+        
         if marker.snippet == "restarea" {
             performSegue(withIdentifier: SegueRestAreaViewController, sender: marker)
         }

@@ -68,7 +68,7 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
         GoogleAnalytics.screenView(screenName: "/Traffic Map/Traveler Information/Travel Times")
     }
     
-    func refreshAction(_ refreshControl: UIRefreshControl) {
+    @objc func refreshAction(_ refreshControl: UIRefreshControl) {
         refresh(true)
     }
     
@@ -166,7 +166,7 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
             line.translatesAutoresizingMaskIntoConstraints = false
             cell.contentView.addSubview(line)
             cell.dynamicLines.append(line)
-            let lineRightPadding: CGFloat = 24.0
+            let negativeLineRightPadding: CGFloat = -24.0
         
             let viaLabel = UILabel()
             viaLabel.text = "Via \(route.viaText)"
@@ -259,7 +259,7 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
             cell.contentView.addConstraint(trailingConstraintForTimeLabel)
             
             // Set line contraints
-            let widthConstraintForLine = NSLayoutConstraint(item: line, attribute: .width, relatedBy: .equal, toItem: cell.contentView, attribute: .width, multiplier: 1, constant: lineRightPadding.negated())
+            let widthConstraintForLine = NSLayoutConstraint(item: line, attribute: .width, relatedBy: .equal, toItem: cell.contentView, attribute: .width, multiplier: 1, constant: negativeLineRightPadding)
             let heightConstraintForLine = NSLayoutConstraint(item: line, attribute: .height, relatedBy: .equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 1)
             cell.contentView.addConstraint(widthConstraintForLine)
             cell.contentView.addConstraint(heightConstraintForLine)
@@ -289,7 +289,7 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     // MARK: Favorite action
-    func favoriteAction(_ sender: UIButton) {
+    @objc func favoriteAction(_ sender: UIButton) {
         let index = sender.tag
         let travelTimeGroup = filtered[index]
         

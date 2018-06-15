@@ -21,27 +21,27 @@ import RealmSwift
 
 class HighwayAlertItem: Object {
 
-    dynamic var alertId: Int = 0
-    dynamic var priority: String = ""
-    dynamic var region: String = ""
-    dynamic var eventCategory: String = ""
-    dynamic var headlineDesc: String = ""
-    dynamic var eventStatus: String = ""
-    dynamic var startDirection: String = ""
-    dynamic var lastUpdatedTime = Date()
+    @objc dynamic var alertId: Int = 0
+    @objc dynamic var priority: String = ""
+    @objc dynamic var region: String = ""
+    @objc dynamic var eventCategory: String = ""
+    @objc dynamic var headlineDesc: String = ""
+    @objc dynamic var eventStatus: String = ""
+    @objc dynamic var startDirection: String = ""
+    @objc dynamic var lastUpdatedTime = Date()
 
-    dynamic var startTime = Date()
+    @objc dynamic var startTime = Date()
     
-    dynamic var startLatitude: Double = 0.0
-    dynamic var startLongitude: Double = 0.0
-    dynamic var endLatitude: Double = 0.0
-    dynamic var endLongitude: Double = 0.0
+    @objc dynamic var startLatitude: Double = 0.0
+    @objc dynamic var startLongitude: Double = 0.0
+    @objc dynamic var endLatitude: Double = 0.0
+    @objc dynamic var endLongitude: Double = 0.0
     
-    dynamic var county: String? = nil
-    dynamic var endTime: Date? = nil
-    dynamic var extendedDesc: String? = nil
+    @objc dynamic var county: String? = nil
+    @objc dynamic var endTime: Date? = nil
+    @objc dynamic var extendedDesc: String? = nil
     
-    dynamic var delete = false
+    @objc dynamic var delete = false
 
     override static func primaryKey() -> String? {
         return "alertId"

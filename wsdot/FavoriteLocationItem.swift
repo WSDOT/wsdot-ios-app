@@ -21,10 +21,10 @@
 import RealmSwift
 
 class FavoriteLocationItem: Object {
-    dynamic var id: Int64 = 0
-    dynamic var name: String = ""
-    dynamic var zoom: Float = 0.0
-    dynamic var latitude: Double = 0.0
-    dynamic var longitude: Double = 0.0
+    @objc dynamic var id: Int64 = 0
+    @objc dynamic var name: String = ""
+    @objc dynamic var zoom: Float = 0.0
+    @objc dynamic var latitude: Double = 0.0
+    @objc dynamic var longitude: Double = 0.0
 }
 

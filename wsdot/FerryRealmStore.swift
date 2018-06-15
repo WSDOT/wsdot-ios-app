@@ -60,7 +60,7 @@ class FerryRealmStore {
     }
     
     static func updateRouteSchedules(_ force: Bool, completion: @escaping UpdateRoutesCompletion) {
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { _ in
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { 
             var delta = TimeUtils.updateTime
             let deltaUpdated = (Calendar.current as NSCalendar).components(.second, from: CachesStore.getUpdatedTime(CachedData.ferries), to: Date(), options: []).second
             if let deltaValue = deltaUpdated {

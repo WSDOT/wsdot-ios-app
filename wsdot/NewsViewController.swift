@@ -51,7 +51,7 @@ class NewsViewController: UIViewController, UITableViewDelegate, UITableViewData
         GoogleAnalytics.screenView(screenName: "/Traffic Map/Traveler Information/News")
     }
     
-    func refreshAction(_ sender: UIRefreshControl){
+    @objc func refreshAction(_ sender: UIRefreshControl){
         refresh()
     }
     

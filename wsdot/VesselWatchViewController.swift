@@ -281,7 +281,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         }
     }
     
-    func vesselUpdateTask(_ timer:Timer) {
+    @objc func vesselUpdateTask(_ timer:Timer) {
         fetchVessels(false)
     }
     

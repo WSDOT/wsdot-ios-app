@@ -19,7 +19,7 @@
 
 import UIKit
 
-class TrafficMapSettingsViewController: UIViewController {
+class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     let cellIdentifier = "SettingCell"
     let legendCellIdentifier = "LegendCell"
@@ -36,8 +36,7 @@ class TrafficMapSettingsViewController: UIViewController {
                         "Show JBLM",
                         "Cluster Camera Markers",
                         "Favorite Current Map Location"]
-        
-        
+
         self.view.backgroundColor = ThemeManager.currentTheme().mainColor
     }
     
@@ -51,15 +50,15 @@ class TrafficMapSettingsViewController: UIViewController {
     }
     
     // MARK: Table View Data Source Methods
-    func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    func numberOfSectionsInTableView(_ tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
@@ -67,7 +66,7 @@ class TrafficMapSettingsViewController: UIViewController {
         return menu_options.count + 1 // for the legend cell
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row < 5 {
             
@@ -160,7 +159,7 @@ class TrafficMapSettingsViewController: UIViewController {
     }
     
     // MARK: Table View Delegate Methods
-    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.row) {
         case 4:
             favoriteLocationAction()
@@ -177,7 +176,9 @@ class TrafficMapSettingsViewController: UIViewController {
     }
     
     // MARK: Prefrence functions
-    func changeClusterPref(_ sender: UISwitch){
+    
+
+    @objc func changeClusterPref(_ sender: UISwitch){
         let clusterPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.shouldCluster)
         if let clusterVisible = clusterPref {
             if (clusterVisible == "on") {
@@ -191,7 +192,7 @@ class TrafficMapSettingsViewController: UIViewController {
         }
     }
     
-    func changeAlertsPref(_ sender: UISwitch){
+    @objc func changeAlertsPref(_ sender: UISwitch){
         let alertsPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.alerts)
         if let alertsVisible = alertsPref {
             if (alertsVisible == "on") {
@@ -206,7 +207,7 @@ class TrafficMapSettingsViewController: UIViewController {
         }
     }
     
-    func changeRestAreaPref(_ sender: UISwitch){
+    @objc func changeRestAreaPref(_ sender: UISwitch){
         let restAreaPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.restAreas)
         if let restAreaVisible = restAreaPref {
             if (restAreaVisible == "on") {
@@ -221,7 +222,7 @@ class TrafficMapSettingsViewController: UIViewController {
         }
     }
     
-    func changeJBLMPref(_ sender: UISwitch){
+    @objc func changeJBLMPref(_ sender: UISwitch){
         let jblmPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.jblmCallout)
         if let jblmVisible = jblmPref {
             if (jblmVisible == "on") {
@@ -236,7 +237,8 @@ class TrafficMapSettingsViewController: UIViewController {
         }
     }
     
-    func clusterInfoAlert(_ sender: UIButton){
+    @objc func clusterInfoAlert(_ sender: UIButton){
         self.present(AlertMessages.getAlert("Camera Marker Clustering", message: "By turning clustering on, large numbers of camera markers will gather together in clusters at low zoom levels. When viewing the map at a high zoom level, individual camera markers will show on the map.", confirm: "OK"), animated: true, completion: nil)
     }
+
 }

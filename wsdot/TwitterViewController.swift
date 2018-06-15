@@ -84,7 +84,7 @@ class TwitterViewController: UIViewController, UITableViewDelegate, UITableViewD
         GoogleAnalytics.screenView(screenName: "/Traffic Map/Traveler Information/Twitter")
     }
     
-    func refreshAction(_ sender: UIRefreshControl){
+    @objc func refreshAction(_ sender: UIRefreshControl){
         refresh(accountData[self.currentAccountIndex].screenName)
     }
     
@@ -175,7 +175,7 @@ class TwitterViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let attrStr = try! NSMutableAttributedString(
             data: htmlString.data(using: String.Encoding.unicode, allowLossyConversion: false)!,
-            options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
+            options: [ NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html],
             documentAttributes: nil)
         
         cell.contentLabel.attributedText = attrStr

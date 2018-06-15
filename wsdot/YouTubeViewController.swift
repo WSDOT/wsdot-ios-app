@@ -52,7 +52,7 @@ class YouTubeViewController: UIViewController, UITableViewDelegate, UITableViewD
         GoogleAnalytics.screenView(screenName: "/Traffic Map/Traveler Information/YouTube")
     }
     
-    func refreshAction(_ sender: UIRefreshControl){
+    @objc func refreshAction(_ sender: UIRefreshControl){
         refresh()
     }
     

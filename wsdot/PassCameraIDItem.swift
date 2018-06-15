@@ -22,7 +22,7 @@ import RealmSwift
 
 class PassCameraIDItem: Object {
 
-    dynamic var cameraId = 0
+    @objc dynamic var cameraId = 0
     
     override static func primaryKey() -> String? {
         return "cameraId"

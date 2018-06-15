@@ -10,12 +10,12 @@ import RealmSwift
 
 class TravelTimeItemGroup: Object {
 
-    dynamic var title: String = ""
+    @objc dynamic var title: String = ""
     
     let routes = List<TravelTimeItem>()
 
-    dynamic var selected: Bool = false
-    dynamic var delete: Bool = false
+    @objc dynamic var selected: Bool = false
+    @objc dynamic var delete: Bool = false
     
     override static func primaryKey() -> String? {
         return "title"

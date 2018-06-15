@@ -99,11 +99,11 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         timer?.invalidate()
     }
     
-    func spacesTimerTask(_ timer:Timer) {
+    @objc func spacesTimerTask(_ timer:Timer) {
         refresh(timerRefresh: true)
     }
     
-    func refreshAction(_ refreshControl: UIRefreshControl) {
+    @objc func refreshAction(_ refreshControl: UIRefreshControl) {
         showConnectionAlert = true
         refresh(timerRefresh: false)
     }
@@ -240,16 +240,18 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         
         if (annotationsString != ""){
             let htmlStyleString = "<style>body{font-family: '\(cell.annotations.font.fontName)'; font-size:\(cell.annotations.font.pointSize)px;}</style>"
-            
-            let attrAnnotationsStr = try? NSMutableAttributedString(
+            let attrAnnotationsStr = try! NSMutableAttributedString(
                 data: (htmlStyleString + annotationsString).data(using: String.Encoding.unicode, allowLossyConversion: false)!,
-                options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 17)!],
+                options: [ NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html],
                 documentAttributes: nil)
             
-            if let annotationText = attrAnnotationsStr {
-                cell.annotations.isHidden = false
-                cell.annotations.attributedText = annotationText
-            }
+            attrAnnotationsStr.setAttributes([NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Light", size: 17)!], range: NSRangeFromString(annotationsString))
+            
+            cell.annotations.isHidden = false
+            cell.annotations.attributedText = attrAnnotationsStr
+        }else {
+            cell.annotations.attributedText = nil
+            cell.annotations.text = nil
         }
  
         // Accessibility Setup

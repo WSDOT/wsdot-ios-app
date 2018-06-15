@@ -59,10 +59,10 @@ class I405ViewController: UIViewController, UITextViewDelegate{
         
         let attrStr = try! NSMutableAttributedString(
             data: htmlString.data(using: String.Encoding.unicode, allowLossyConversion: false)!,
-            options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
+            options: [ NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html],
             documentAttributes: nil)
         
-        attrStr.addAttribute(NSLinkAttributeName, value: "http://www.GoodToGo405.org", range: NSRange(location: 1603, length: 15))
+        attrStr.addAttribute(NSAttributedStringKey.link, value: "http://www.GoodToGo405.org", range: NSRange(location: 1603, length: 15))
         
         textView.delegate = self
         textView.attributedText = attrStr

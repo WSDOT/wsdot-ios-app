@@ -81,7 +81,7 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
         bannerView.accessibilityLabel = "advertisement banner."
     }
     
-    func refreshAction(_ refreshControl: UIRefreshControl) {
+    @objc func refreshAction(_ refreshControl: UIRefreshControl) {
         refresh(true)
     }
     
