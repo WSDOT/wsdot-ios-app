@@ -22,68 +22,86 @@ import Foundation
 import UIKit
 import SafariServices
 
-class I405ViewController: UIViewController, UITextViewDelegate{
+class I405ViewController: UIViewController, UITableViewDelegate,
+UITableViewDataSource {
 
-    @IBOutlet var textView: UITextView!
+    let cellIdentifier = "I405TollRatesCell"
 
-    override func viewDidLoad() {
+    var tollRates = [I405TollRateSignItem]()
+
+    let refreshControl = UIRefreshControl()
+
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var tableView: UITableView!
+    
+     override func viewDidLoad() {
         super.viewDidLoad()
-        let htmlStyleString = "<style>body{font-family: Helvetica; font-size:17px;}</style>"
-        let htmlString = htmlStyleString + "<p><strong>I-405 Express Toll Lanes between Bellevue and Lynnwood</strong><br />" +
-		"I-405 express toll lanes let drivers choose to travel faster by paying a toll 5 a.m.-7 p.m. Monday-Friday. " +
-		"Toll rates will adjust between 75 cents and $10 based on traffic volumes in the express " +
-		"toll lane. Drivers will pay the rate they see upon entering the lanes, even if they see " +
-		"a higher price down the road. Transit, vanpools, carpools and motorcycles can use the " +
-		"lanes for free with a <em>Good To Go!</em> account and pass. The lanes are open to all " +
-        "vehicles toll-free Monday-Friday 7 p.m.-5 a.m., on weekends, and on New Years Day, Memorial Day, " +
-        "Independence Day, Labor Day, Thanksgiving Day, and Christmas Day.</p>" +
         
-        "<p><strong>Access to express toll lanes</strong><br />" +
-		"Drivers who choose to use the lanes, will merge to the far left regular lane and can " +
-		"enter express toll lanes at designated access points that are marked with dashed lines. " +
-		"Just remember that failure to use designated access points will result in a $136 ticket " +
-		"for crossing the double white lines.</p>" +
-		"<p>There are two direct access ramps to I-405 express toll lanes that allow you to " +
-		"directly enter the express toll lanes from the middle of the freeway. These ramps are at " +
-		"Northeast 6th Street in Bellevue and Northeast 128th Street in Kirkland.</p>" +
-        
-		"<p><strong>Using the lanes</strong><br />" +
-		"Any existing <em>Good To Go!</em> pass can be used to pay a toll.</p>" +
-		"<p>If you carpool on the I-405 express toll lanes, you must meet the occupancy requirements " +
-		"and have a <em>Good To Go!</em> account and Flex Pass set to HOV mode to travel toll-free. Carpool " +
-		"requirements are three occupants during weekday peak hours (5-9 a.m. and 3-7 p.m.) and two " +
-		"occupants during off-peak hours (9 a.m.-3 p.m.).</p>" +
-		"<p>If a driver does not have a <em>Good To Go!</em> account, a Pay By Mail toll bill will be mailed " +
-		"to the vehicle’s registered owner for an additional $2 per toll transaction.</p>" +
-	    "<p>Visit GoodToGo405.org for more information.</p>"
-        
-        let attrStr = try! NSMutableAttributedString(
-            data: htmlString.data(using: String.Encoding.unicode, allowLossyConversion: false)!,
-            options: [ NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html],
-            documentAttributes: nil)
-        
-        attrStr.addAttribute(NSAttributedStringKey.link, value: "http://www.GoodToGo405.org", range: NSRange(location: 1603, length: 15))
-        
-        textView.delegate = self
-        textView.attributedText = attrStr
-        
+        // refresh controller
+        refreshControl.addTarget(self, action: #selector(BorderWaitsViewController.refreshAction(_:)), for: .valueChanged)
+        tableView.addSubview(refreshControl)
+        activityIndicator.startAnimating()
+        refresh()
+     
     }
     
-    override func viewWillLayoutSubviews() {
-        textView.setContentOffset(CGPoint.zero, animated: false)
+    @objc func refreshAction(_ refreshControl: UIRefreshControl) {
+        refresh()
     }
     
-    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
-        let svc = SFSafariViewController(url: URL, entersReaderIfAvailable: true)
-        if #available(iOS 10.0, *) {
-            svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor
-            svc.preferredBarTintColor = ThemeManager.currentTheme().mainColor
-        } else {
-            svc.view.tintColor = ThemeManager.currentTheme().mainColor
+    func refresh(){
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async { [weak self] in
+            TollRatesStore.getI405tollRates(completion: { data, error in
+                if let validData = data {
+                    DispatchQueue.main.async { [weak self] in
+                        if let selfValue = self {
+                            selfValue.tollRates = validData
+                            selfValue.tableView.reloadData()
+                            selfValue.tableView.reloadData()
+                            selfValue.activityIndicator.stopAnimating()
+                            selfValue.activityIndicator.isHidden = true
+                            selfValue.refreshControl.endRefreshing()
+                        }
+                    }
+                } else {
+                    DispatchQueue.main.async { [weak self] in
+                        if let selfValue = self{
+                        
+                            selfValue.refreshControl.endRefreshing()
+                            selfValue.activityIndicator.stopAnimating()
+                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                        }
+                    }
+                }
+            })
         }
-        self.present(svc, animated: true, completion: nil)
-		return false
-	}
+    }
     
-
+    // MARK -- TableView delegate
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tollRates[section].trips.count
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return tollRates.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Entering at " + tollRates[section].startLocationName + " " + (tollRates[section].travelDirection == "N" ? "Northbound" : "Southbound")
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! TollRateCell
+        
+        let trip = tollRates[indexPath.section].trips[indexPath.row]
+        
+        cell.locationLabel.text = trip.endLocationName
+        cell.messageLabel.text = trip.message
+        cell.rateLabel.text = "$" + String(format: "%.2f", locale: Locale.current, arguments: [trip.toll])
+        cell.updatedLabel.text = TimeUtils.timeAgoSinceDate(date: trip.updatedAt, numericDates: true)
+     
+        return cell
+        
+    }
 }

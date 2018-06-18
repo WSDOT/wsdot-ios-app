@@ -19,8 +19,86 @@
 //
 
 import Foundation
+import Alamofire
+import SwiftyJSON
 
 class TollRatesStore {
+
+    typealias FetchI405TollRatesCompletion = (_ data: [I405TollRateSignItem]?, _ error: Error?) -> ()
+
+    static func getI405tollRates(completion: @escaping FetchI405TollRatesCompletion) {
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
+
+            Alamofire.request("http://wsdot.com/traffic/api/api/tolling?accesscode=" + ApiKeys.getWSDOTKey()).validate().responseJSON { response in
+                switch response.result {
+                case .success:
+                    if let value = response.result.value {
+                        DispatchQueue.global().async {
+                            let json = JSON(value)
+                            
+                            let tollRates = parseTollRatesJSON(json)
+                            
+                            DispatchQueue.main.async { completion(tollRates, nil) }
+                        }
+                    }
+                case .failure(let error):
+                    print(error)
+                    DispatchQueue.main.async { completion(nil, error) }
+                }
+            }
+        }
+    }
+    
+    // Converts JSON from api into and array of FerriesRouteScheduleItems
+    fileprivate static func parseTollRatesJSON(_ json: JSON) -> [I405TollRateSignItem]{
+        
+        var tollRates = [I405TollRateSignItem]()
+        
+        for (_,subJson):(String, JSON) in json {
+            
+            if subJson["StateRoute"].intValue == 405 {
+            
+                // get this trip item
+                let tripItem = I405TripItem(
+                    tripName: subJson["TripName"].stringValue,
+                    endLocationName: subJson["EndLocationName"].stringValue,
+                    currentToll: subJson["CurrentToll"].floatValue / 100,
+                    currentMessage: subJson["CurrentMessage"].stringValue,
+                    endLatitude: subJson["EndLatitude"].doubleValue,
+                    endLongitude: subJson["EndLongitude"].doubleValue
+                    
+                )
+            
+                // check if we already have a sign item for this start location
+                let signItems = tollRates.filter { $0.startLocationName == subJson["StartLocationName"].stringValue }
+                if !signItems.isEmpty {
+                    signItems[0].trips.append(tripItem)
+                } else {
+                
+                    let tollRate = I405TollRateSignItem(
+                        startLocationName: subJson["StartLocationName"].stringValue,
+                        stateRoute: subJson["StateRoute"].intValue,
+                        travelDirection: subJson["TravelDirection"].stringValue,
+                        startLatitude: subJson["StartLatitude"].doubleValue,
+                        startLongitude: subJson["StartLongitude"].doubleValue)
+            
+                    tollRate.trips.append(tripItem)
+                    tollRates.append(tollRate)
+                }
+            }
+        }
+        
+        return tollRates.sorted(by: { $0.startLocationName < $1.startLocationName }).sorted(by: { $0.travelDirection < $1.travelDirection })
+    }
+
+    static func getI405data() -> [I405TollRateItem] {
+    
+        var tollRates = [I405TollRateItem]()
+        
+        tollRates.append(I405TollRateItem(tripName: "test", currentToll: 100, currentMessage: "test message", stateRoute: 405, travelDirection: "N", startLocationName: "start", endLocationName: "end", startLatitude: 0.0, startLongitude: 0.0, endLatitude: 0.0, endLongitude: 0.0))
+        
+        return tollRates
+    }
 
     static func getSR520data() -> [ThreeColItem] {
         var data = [ThreeColItem]()

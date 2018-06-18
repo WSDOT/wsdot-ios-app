@@ -51,6 +51,8 @@
 		9A2F4A701D53AA5C00911AF5 /* CameraRealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A6F1D53AA5C00911AF5 /* CameraRealmStore.swift */; };
 		9A398D74209A6F6A00BD84FF /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A398D73209A6F6A00BD84FF /* Notifications.storyboard */; };
 		9A398D76209A71B600BD84FF /* NotificationsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A398D75209A71B600BD84FF /* NotificationsStore.swift */; };
+		9A39E8D520D43E7A00ED694D /* I405TollRateItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A39E8D420D43E7A00ED694D /* I405TollRateItem.swift */; };
+		9A39E8D720D45D5800ED694D /* TollRateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A39E8D620D45D5800ED694D /* TollRateCell.swift */; };
 		9A46C3B82034F5C1000F03C5 /* TravelTimeItemGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A46C3B72034F5C1000F03C5 /* TravelTimeItemGroup.swift */; };
 		9A4BBAB02125C53500DE6F1B /* SimpleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4BBAAF2125C53500DE6F1B /* SimpleMapViewController.swift */; };
 		9A50179C1D258F2000B9C49E /* RoutesCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */; };
@@ -271,6 +273,8 @@
 		9A2F4A6F1D53AA5C00911AF5 /* CameraRealmStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraRealmStore.swift; sourceTree = "<group>"; };
 		9A398D73209A6F6A00BD84FF /* Notifications.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notifications.storyboard; sourceTree = "<group>"; };
 		9A398D75209A71B600BD84FF /* NotificationsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsStore.swift; sourceTree = "<group>"; };
+		9A39E8D420D43E7A00ED694D /* I405TollRateItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = I405TollRateItem.swift; sourceTree = "<group>"; };
+		9A39E8D620D45D5800ED694D /* TollRateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TollRateCell.swift; sourceTree = "<group>"; };
 		9A46C3B72034F5C1000F03C5 /* TravelTimeItemGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelTimeItemGroup.swift; sourceTree = "<group>"; };
 		9A4BBAAF2125C53500DE6F1B /* SimpleMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMapViewController.swift; sourceTree = "<group>"; };
 		9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutesCustomCell.swift; sourceTree = "<group>"; };
@@ -538,6 +542,7 @@
 			isa = PBXGroup;
 			children = (
 				9A0616D41D6638AB00126520 /* TollRatesStore.swift */,
+				9A39E8D420D43E7A00ED694D /* I405TollRateItem.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -699,6 +704,7 @@
 				9AEF4D841D75DC47003ECA34 /* BloggerCell.swift */,
 				9AEF4D8D1D7602FE003ECA34 /* FacebookCell.swift */,
 				9AEF4D961D760B72003ECA34 /* FlickrCollectionCell.swift */,
+				9A39E8D620D45D5800ED694D /* TollRateCell.swift */,
 				9AEF4D9F1D773256003ECA34 /* NewsCell.swift */,
 				9AEF4DA91D7739E6003ECA34 /* YouTubeCell.swift */,
 				9AEF4DB21D774BC8003ECA34 /* TwitterCell.swift */,
@@ -1908,6 +1914,7 @@
 				9AE486471D495E90007A92E3 /* CameraItem.swift in Sources */,
 				9A07192E1D4110BC007BB4C5 /* RouteTabBarViewController.swift in Sources */,
 				9A0616D01D660D6100126520 /* SR167ViewController.swift in Sources */,
+				9A39E8D720D45D5800ED694D /* TollRateCell.swift in Sources */,
 				9A9309B12051D7E6002D014C /* CameraPageViewController.swift in Sources */,
 				9A7BC0CF1DA3F31B00EF760C /* GMUGridBasedClusterAlgorithm.m in Sources */,
 				9A0719331D42732A007BB4C5 /* INDLinkLabel.swift in Sources */,
@@ -1950,6 +1957,7 @@
 				9AB549051D78899600927F13 /* AmtrakCascadesScheduleDetailsViewController.swift in Sources */,
 				9A8DD9F81D946B6200CE0B76 /* HomeSplitViewController.swift in Sources */,
 				9A0CA8371D466045009C67B7 /* TimeUtils.swift in Sources */,
+				9A39E8D520D43E7A00ED694D /* I405TollRateItem.swift in Sources */,
 				9AEF4DAA1D7739E6003ECA34 /* YouTubeCell.swift in Sources */,
 				9A1F5FA31D47DBB700DA5F99 /* SailingSpacesStore.swift in Sources */,
 				9AEEDDB51D70C5190032F5EC /* AlertPagerViewController.swift in Sources */,
