@@ -79,7 +79,7 @@
 		9A6FBD091D6CBB0000CDCE16 /* TravelTimesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBD081D6CBB0000CDCE16 /* TravelTimesViewController.swift */; };
 		9A6FBD0B1D6CBC3A00CDCE16 /* TravelTimeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBD0A1D6CBC3A00CDCE16 /* TravelTimeItem.swift */; };
 		9A6FBD0D1D6CBC4E00CDCE16 /* TravelTimesRealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBD0C1D6CBC4E00CDCE16 /* TravelTimesRealmStore.swift */; };
-		9A6FBD0F1D6CC43C00CDCE16 /* TravelTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBD0E1D6CC43C00CDCE16 /* TravelTimeCell.swift */; };
+		9A6FBD0F1D6CC43C00CDCE16 /* GroupRouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBD0E1D6CC43C00CDCE16 /* GroupRouteCell.swift */; };
 		9A6FBD1C1D6DF8F700CDCE16 /* BorderWaits.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A6FBD1B1D6DF8F700CDCE16 /* BorderWaits.storyboard */; };
 		9A6FBD1F1D6DF91300CDCE16 /* BorderWaitItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBD1E1D6DF91300CDCE16 /* BorderWaitItem.swift */; };
 		9A6FBD211D6DF96100CDCE16 /* BorderWaitsRealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBD201D6DF96100CDCE16 /* BorderWaitsRealmStore.swift */; };
@@ -192,6 +192,8 @@
 		9AEF4DBA1D778AF9003ECA34 /* AmtrakCascades.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AEF4DB91D778AF9003ECA34 /* AmtrakCascades.storyboard */; };
 		9AEF4DBC1D778B2D003ECA34 /* AmtrakCascadesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4DBB1D778B2D003ECA34 /* AmtrakCascadesViewController.swift */; };
 		9AEF4DBE1D778ECF003ECA34 /* AmtrakCascadesScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF4DBD1D778ECF003ECA34 /* AmtrakCascadesScheduleViewController.swift */; };
+		9AF474B020E3E9BC00E7740C /* RouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF474AF20E3E9BC00E7740C /* RouteView.swift */; };
+		9AF474B220E3F6A800E7740C /* RouteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AF474B120E3F6A800E7740C /* RouteView.xib */; };
 		9AFA0A771E280C22000D0C70 /* Favorites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AFA0A761E280C22000D0C70 /* Favorites.storyboard */; };
 		9AFA0A791E280C2C000D0C70 /* FavoritesHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA0A781E280C2C000D0C70 /* FavoritesHomeViewController.swift */; };
 		9AFA0A7B1E280C31000D0C70 /* FavoritesSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA0A7A1E280C31000D0C70 /* FavoritesSettingsViewController.swift */; };
@@ -301,7 +303,7 @@
 		9A6FBD081D6CBB0000CDCE16 /* TravelTimesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelTimesViewController.swift; sourceTree = "<group>"; };
 		9A6FBD0A1D6CBC3A00CDCE16 /* TravelTimeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelTimeItem.swift; sourceTree = "<group>"; };
 		9A6FBD0C1D6CBC4E00CDCE16 /* TravelTimesRealmStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelTimesRealmStore.swift; sourceTree = "<group>"; };
-		9A6FBD0E1D6CC43C00CDCE16 /* TravelTimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelTimeCell.swift; sourceTree = "<group>"; };
+		9A6FBD0E1D6CC43C00CDCE16 /* GroupRouteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupRouteCell.swift; sourceTree = "<group>"; };
 		9A6FBD1B1D6DF8F700CDCE16 /* BorderWaits.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BorderWaits.storyboard; sourceTree = "<group>"; };
 		9A6FBD1E1D6DF91300CDCE16 /* BorderWaitItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderWaitItem.swift; sourceTree = "<group>"; };
 		9A6FBD201D6DF96100CDCE16 /* BorderWaitsRealmStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderWaitsRealmStore.swift; sourceTree = "<group>"; };
@@ -444,6 +446,8 @@
 		9AEF4DB91D778AF9003ECA34 /* AmtrakCascades.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AmtrakCascades.storyboard; sourceTree = "<group>"; };
 		9AEF4DBB1D778B2D003ECA34 /* AmtrakCascadesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmtrakCascadesViewController.swift; sourceTree = "<group>"; };
 		9AEF4DBD1D778ECF003ECA34 /* AmtrakCascadesScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmtrakCascadesScheduleViewController.swift; sourceTree = "<group>"; };
+		9AF474AF20E3E9BC00E7740C /* RouteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteView.swift; sourceTree = "<group>"; };
+		9AF474B120E3F6A800E7740C /* RouteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RouteView.xib; sourceTree = "<group>"; };
 		9AFA0A761E280C22000D0C70 /* Favorites.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Favorites.storyboard; sourceTree = "<group>"; };
 		9AFA0A781E280C2C000D0C70 /* FavoritesHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesHomeViewController.swift; sourceTree = "<group>"; };
 		9AFA0A7A1E280C31000D0C70 /* FavoritesSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesSettingsViewController.swift; sourceTree = "<group>"; };
@@ -696,7 +700,7 @@
 				9A0616D91D675DC800126520 /* ThreeColTableViewCell.swift */,
 				9A2C27261D67A1E400F05D88 /* SettingsCell.swift */,
 				9A6FBCFB1D6CAC0800CDCE16 /* ExpressLaneCell.swift */,
-				9A6FBD0E1D6CC43C00CDCE16 /* TravelTimeCell.swift */,
+				9A6FBD0E1D6CC43C00CDCE16 /* GroupRouteCell.swift */,
 				9A6FBD281D6DFFCE00CDCE16 /* BorderWaitCell.swift */,
 				9AEEDDA31D6F3D810032F5EC /* MountainPassCell.swift */,
 				9AEEDDAD1D708D8B0032F5EC /* ForecastCell.swift */,
@@ -1238,6 +1242,8 @@
 			children = (
 				9A0719311D427310007BB4C5 /* CustomLabels */,
 				9A5017921D258EFF00B9C49E /* CustomCells */,
+				9AF474AF20E3E9BC00E7740C /* RouteView.swift */,
+				9AF474B120E3F6A800E7740C /* RouteView.xib */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -1664,6 +1670,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AF474B220E3F6A800E7740C /* RouteView.xib in Resources */,
 				9A6FBD2F1D6E3E7D00CDCE16 /* MountainPasses.storyboard in Resources */,
 				9A6FBCE51D6BAC2E00CDCE16 /* TrafficMap.storyboard in Resources */,
 				9A93E0D61E707384004AB867 /* MyRoute.storyboard in Resources */,
@@ -1967,7 +1974,7 @@
 				9A7BC0DF1DA3F32400EF760C /* GQTPointQuadTree.m in Sources */,
 				9A8486F21D81AC450026F1CF /* SelectionCell.swift in Sources */,
 				9A0616CC1D660BD500126520 /* SR520ViewController.swift in Sources */,
-				9A6FBD0F1D6CC43C00CDCE16 /* TravelTimeCell.swift in Sources */,
+				9A6FBD0F1D6CC43C00CDCE16 /* GroupRouteCell.swift in Sources */,
 				9A7BC0E01DA3F32400EF760C /* GQTPointQuadTreeChild.m in Sources */,
 				9A6FBCE31D6BA2DC00CDCE16 /* AlertInAreaViewController.swift in Sources */,
 				9AEF4DA61D773641003ECA34 /* YouTubeStore.swift in Sources */,
@@ -2015,6 +2022,7 @@
 				9AFDEA761E410626008DD51E /* MyRouteFavoritesCell.swift in Sources */,
 				9A0360481DECBC6100B88466 /* PassCameraIDItem.swift in Sources */,
 				9AEF4D9E1D773040003ECA34 /* NewsViewController.swift in Sources */,
+				9AF474B020E3E9BC00E7740C /* RouteView.swift in Sources */,
 				9A0719351D4274B8007BB4C5 /* LinkCell.swift in Sources */,
 				9A0616D71D664D2300126520 /* FourColTableViewCell.swift in Sources */,
 				9A7BC0AC1D9DBAB400EF760C /* CameraClusterItem.swift in Sources */,

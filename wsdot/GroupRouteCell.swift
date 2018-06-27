@@ -19,12 +19,11 @@
 //
 import UIKit
 
-class TravelTimeCell: UITableViewCell {
+class GroupRouteCell: UITableViewCell {
     
     @IBOutlet weak var routeLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
     
-    var dynamicLabels = [UILabel]()
-    var dynamicLines = [UIView]()
+    var dynamicRouteViews = [RouteView]()
 
 }
