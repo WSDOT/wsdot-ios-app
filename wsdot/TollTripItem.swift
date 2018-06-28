@@ -1,8 +1,8 @@
 //
-//  TravelTimeItemGroup.swift
+//  TollTripItem.swift
 //  WSDOT
 //
-//  Copyright (c) 2016 Washington State Department of Transportation
+//  Copyright (c) 2018 Washington State Department of Transportation
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -20,17 +20,14 @@
 
 import RealmSwift
 
-class TravelTimeItemGroup: Object {
-
-    @objc dynamic var title: String = ""
+class TollTripItem: Object {
     
-    let routes = List<TravelTimeItem>()
+    @objc dynamic var tripName: String = ""
+    @objc dynamic var endLocationName: String = ""
+    @objc dynamic var toll: Float = 0
+    @objc dynamic var message: String = ""
+    @objc dynamic var endLatitude: Double = 0.0
+    @objc dynamic var endLongitude: Double = 0.0
+    @objc dynamic var updatedAt: Date = Date()
 
-    @objc dynamic var selected: Bool = false
-    @objc dynamic var delete: Bool = false
-    
-    override static func primaryKey() -> String? {
-        return "title"
-    }
 }
-

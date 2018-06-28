@@ -85,6 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         TravelTimesStore.flushOldData()
         HighwayAlertsStore.flushOldData()
         NotificationsStore.flushOldData()
+        TollRatesStore.flushOldData()
         
         return true
     }
@@ -95,6 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         TravelTimesStore.flushOldData()
         HighwayAlertsStore.flushOldData()
         NotificationsStore.flushOldData()
+        TollRatesStore.flushOldData()
     }
     
     // MARK: Push Notifications
@@ -121,7 +123,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Display the notificaion.
         completionHandler(UNNotificationPresentationOptions.alert)
     }
-    
 
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                  fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {

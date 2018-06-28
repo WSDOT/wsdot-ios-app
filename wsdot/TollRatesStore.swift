@@ -21,84 +21,154 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import RealmSwift
 
 class TollRatesStore {
 
-    typealias FetchI405TollRatesCompletion = (_ data: [I405TollRateSignItem]?, _ error: Error?) -> ()
+    typealias getTollRatesCompletion  = (_ error: Error?) -> ()
 
-    static func getI405tollRates(completion: @escaping FetchI405TollRatesCompletion) {
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
+    static func updateFavorite(_ tollSign: TollRateSignItem, newValue: Bool){
+        do {
+            let realm = try Realm()
+            try realm.write{
+                tollSign.selected = newValue
+            }
+        } catch {
+            print("TollRatesStore.updateFavorite: Realm write error")
+        }
+    }
+    
+    static func getAllTollRates() -> [TollRateSignItem]{
+        let realm = try! Realm()
+        let tollSignItems = realm.objects(TollRateSignItem.self).filter("delete == false")
+        return Array(tollSignItems)
+    }
+    
+    static func getI405TollRates() -> [TollRateSignItem]{
+        let realm = try! Realm()
+        let tollSignItems = realm.objects(TollRateSignItem.self).filter("stateRoute == 405").filter("delete == false")
+        return Array(tollSignItems.sorted(by: {$0.startLocationName < $1.startLocationName}).sorted(by: { $0.travelDirection < $1.travelDirection }))
+    }
+    
+    static func findFavoriteTolls() -> [TollRateSignItem]{
+        let realm = try! Realm()
+        let favoriteTollSignItems = realm.objects(TollRateSignItem.self).filter("selected == true").filter("delete == false")
+        return Array(favoriteTollSignItems)
+    }
 
+    static func updateTollRates(_ force: Bool, completion: @escaping getTollRatesCompletion) {
+    
+        var delta = TimeUtils.tollUpdateTime
+        let deltaUpdated = (Calendar.current as NSCalendar).components(.second, from: CachesStore.getUpdatedTime(CachedData.tollRates), to: Date(), options: []).second
+        
+        if let deltaValue = deltaUpdated {
+            delta = deltaValue
+        }
+         
+        if ((delta > TimeUtils.updateTime) || force) {
+            
             Alamofire.request("http://wsdot.com/traffic/api/api/tolling?accesscode=" + ApiKeys.getWSDOTKey()).validate().responseJSON { response in
                 switch response.result {
                 case .success:
                     if let value = response.result.value {
                         DispatchQueue.global().async {
                             let json = JSON(value)
-                            
-                            let tollRates = parseTollRatesJSON(json)
-                            
-                            DispatchQueue.main.async { completion(tollRates, nil) }
+                            let tollRates = TollRatesStore.parseTollRatesJSON(json)
+                            if tollRates.count != 0 {
+                                saveTollRates(tollRates)
+                                CachesStore.updateTime(CachedData.tollRates, updated: Date())
+                            }
+                            completion(nil)
                         }
                     }
                 case .failure(let error):
                     print(error)
-                    DispatchQueue.main.async { completion(nil, error) }
+                    completion(error)
                 }
             }
+        }else {
+            completion(nil)
+        }
+    }
+    
+    // TODO: Make this smarter
+    fileprivate static func saveTollRates(_ tollSigns: [TollRateSignItem]){
+        
+        let realm = try! Realm()
+        
+        let oldFavoriteTolls = self.findFavoriteTolls()
+        let newTolls = List<TollRateSignItem>()
+        
+        for tollSign in tollSigns {
+            for oldTollSign in oldFavoriteTolls {
+                if (oldTollSign.compoundKey == tollSign.compoundKey){
+                    tollSign.selected = true
+                }
+            }
+            newTolls.append(tollSign)
+        }
+        
+        let oldTolls = realm.objects(TollRateSignItem.self)
+        
+        do {
+            try realm.write{
+                for sign in oldTolls {
+                    sign.delete = true
+                }
+                realm.add(newTolls, update: true)
+            }
+        }catch {
+            print("TollRatesStore.saveTollRates: Realm write error")
+        }
+    }
+    
+    static func flushOldData(){
+        do {
+            let realm = try Realm()
+            let tollItems = realm.objects(TollRateSignItem.self).filter("delete == true")
+            try! realm.write{
+                realm.delete(tollItems)
+            }
+        }catch {
+            print("TollRatesStore.flushOldData: Realm write error")
         }
     }
     
     // Converts JSON from api into and array of FerriesRouteScheduleItems
-    fileprivate static func parseTollRatesJSON(_ json: JSON) -> [I405TollRateSignItem]{
+    fileprivate static func parseTollRatesJSON(_ json: JSON) -> [TollRateSignItem]{
         
-        var tollRates = [I405TollRateSignItem]()
+        var tollRates = [TollRateSignItem]()
         
         for (_,subJson):(String, JSON) in json {
             
-            if subJson["StateRoute"].intValue == 405 {
+            // get this trip item
+            let tripItem = TollTripItem()
             
-                // get this trip item
-                let tripItem = I405TripItem(
-                    tripName: subJson["TripName"].stringValue,
-                    endLocationName: subJson["EndLocationName"].stringValue,
-                    currentToll: subJson["CurrentToll"].floatValue / 100,
-                    currentMessage: subJson["CurrentMessage"].stringValue,
-                    endLatitude: subJson["EndLatitude"].doubleValue,
-                    endLongitude: subJson["EndLongitude"].doubleValue
-                    
-                )
+            tripItem.tripName = subJson["TripName"].stringValue
+            tripItem.endLocationName = subJson["EndLocationName"].stringValue
+            tripItem.toll = subJson["CurrentToll"].floatValue / 100
+            tripItem.message = subJson["CurrentMessage"].stringValue
+            tripItem.endLatitude = subJson["EndLatitude"].doubleValue
+            tripItem.endLongitude = subJson["EndLongitude"].doubleValue
             
-                // check if we already have a sign item for this start location
-                let signItems = tollRates.filter { $0.startLocationName == subJson["StartLocationName"].stringValue }
-                if !signItems.isEmpty {
-                    signItems[0].trips.append(tripItem)
-                } else {
-                
-                    let tollRate = I405TollRateSignItem(
-                        startLocationName: subJson["StartLocationName"].stringValue,
-                        stateRoute: subJson["StateRoute"].intValue,
-                        travelDirection: subJson["TravelDirection"].stringValue,
-                        startLatitude: subJson["StartLatitude"].doubleValue,
-                        startLongitude: subJson["StartLongitude"].doubleValue)
-            
-                    tollRate.trips.append(tripItem)
-                    tollRates.append(tollRate)
-                }
+            // check if we already have a sign item for this start location
+            let signItems = tollRates.filter { $0.compoundKey == (subJson["StartLocationName"].stringValue + "-" + subJson["TravelDirection"].stringValue) }
+            if !signItems.isEmpty {
+                signItems[0].trips.append(tripItem)
+            } else {
+                let tollRate = TollRateSignItem()
+                tollRate.setCompoundLocationName(name: subJson["StartLocationName"].stringValue)
+                tollRate.setCompoundTravelDirection(direction: subJson["TravelDirection"].stringValue)
+                tollRate.stateRoute = subJson["StateRoute"].intValue
+                tollRate.startLatitude = subJson["StartLatitude"].doubleValue
+                tollRate.startLongitude = subJson["StartLongitude"].doubleValue
+                tollRate.trips.append(tripItem)
+                tollRates.append(tollRate)
             }
         }
-        
         return tollRates.sorted(by: { $0.startLocationName < $1.startLocationName }).sorted(by: { $0.travelDirection < $1.travelDirection })
     }
 
-    static func getI405data() -> [I405TollRateItem] {
-    
-        var tollRates = [I405TollRateItem]()
-        
-        tollRates.append(I405TollRateItem(tripName: "test", currentToll: 100, currentMessage: "test message", stateRoute: 405, travelDirection: "N", startLocationName: "start", endLocationName: "end", startLatitude: 0.0, startLongitude: 0.0, endLatitude: 0.0, endLongitude: 0.0))
-        
-        return tollRates
-    }
 
     static func getSR520data() -> [ThreeColItem] {
         var data = [ThreeColItem]()

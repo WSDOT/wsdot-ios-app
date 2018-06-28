@@ -26,6 +26,8 @@ class TimeUtils {
         case invalidTimeString
     }
     
+    static let tollUpdateTime: Int = 60
+    
     static let updateTime: Int = 900
     static let cameraUpdateTime: Int = 604800
 
