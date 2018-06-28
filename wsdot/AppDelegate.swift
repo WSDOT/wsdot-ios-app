@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         application.registerForRemoteNotifications()
         
-        GADMobileAds.configure(withApplicationID: ApiKeys.getAdId());
+        GADMobileAds.configure(withApplicationID: ApiKeys.getAdId())
         
         // EasyTipView Setup
         var preferences = EasyTipView.Preferences()
@@ -222,7 +222,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // MARK: Realm
     func migrateRealm(){
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
-            schemaVersion: 4,
+            schemaVersion: 5,
             
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
@@ -261,6 +261,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 if (oldSchemaVersion < 4) {
                     migration.enumerateObjects(ofType: CacheItem.className()) { oldObject, newObject in
                         newObject!["notificationsLastUpdate"] = Date(timeIntervalSince1970: 0)
+                    }
+                }
+                
+                if (oldSchemaVersion < 5) {
+                    migration.enumerateObjects(ofType: CacheItem.className()) { oldObject, newObject in
+                        newObject!["tollRatesLastUpdate"] = Date(timeIntervalSince1970: 0)
                     }
                 }
         })
