@@ -132,20 +132,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         Messaging.messaging().appDidReceiveMessage(userInfo)
 
             if let alertType = userInfo["type"] as? String {
-        
                 if alertType == "ferry_alert" {
-                
                     GoogleAnalytics.event(category: "Notification", action: "Message Opened" , label: "Ferry Alert")
-                
                     if let routeIdString = userInfo["route_id"] as? String {
                         if let routeId = Int(routeIdString){
                             launchFerriesAlertScreen(routeId: routeId)
                         }
                     }
                 } else if alertType == "highway_alert" {
-                
                     GoogleAnalytics.event(category: "Notification", action: "Message Opened" , label: "Traffic Alert")
-                
                     if let alertIdString = userInfo["alert_id"] as? String, let latString = userInfo["lat"] as? String, let longString = userInfo["long"] as? String    {
                         if let alertId = Int(alertIdString), let lat = Double(latString), let long = Double(longString) {
                             launchTrafficAlertDetailsScreen(alertId: alertId, latitude: lat, longitude: long)

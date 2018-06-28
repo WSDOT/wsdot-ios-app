@@ -17,13 +17,11 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
-
 import Foundation
 import UIKit
 import SafariServices
 
-class I405ViewController: UIViewController, UITableViewDelegate,
-UITableViewDataSource {
+class I405ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     let cellIdentifier = "I405TollRatesCell"
 
@@ -36,13 +34,11 @@ UITableViewDataSource {
     
      override func viewDidLoad() {
         super.viewDidLoad()
-        
         // refresh controller
         refreshControl.addTarget(self, action: #selector(BorderWaitsViewController.refreshAction(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
         activityIndicator.startAnimating()
         refresh(true)
-     
     }
     
     @objc func refreshAction(_ refreshControl: UIRefreshControl) {
@@ -56,7 +52,7 @@ UITableViewDataSource {
                     // Reload tableview on UI thread
                     DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
-                            selfValue.tollRates = TollRatesStore.getI405TollRates()
+                            selfValue.tollRates = TollRatesStore.getTollRatesByRoute(route: "405")
                             selfValue.tableView.reloadData()
                             selfValue.activityIndicator.stopAnimating()
                             selfValue.activityIndicator.isHidden = true

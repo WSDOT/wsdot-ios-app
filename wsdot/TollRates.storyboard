@@ -400,7 +400,7 @@
                                 </connections>
                             </tableView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="g71-Ds-4pA">
-                                <rect key="frame" x="177" y="269" width="20" height="20"/>
+                                <rect key="frame" x="177.5" y="269.5" width="20" height="20"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The tolls reported here may not match what is currently displayed on the road signs." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="luD-0C-pPF">
                                 <rect key="frame" x="0.0" y="525.5" width="375" height="33.5"/>
