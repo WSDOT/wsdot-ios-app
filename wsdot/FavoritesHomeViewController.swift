@@ -26,7 +26,7 @@ class FavoritesHomeViewController: UIViewController {
     var activityIndicator = UIActivityIndicatorView()
 
     // content types for the favorites list in order to appear on list.
-    var sectionTypes: [FavoritesContent] = [.route, .ferrySchedule, .mountainPass, .camera, .travelTime]
+    var sectionTypes: [FavoritesContent] = [.route, .ferrySchedule, .mountainPass, .camera, .travelTime, .tollRate]
 
     let segueMyRouteAlertsViewController = "MyRouteAlertsViewController"
     let segueFavoritesSettingsViewController = "FavoritesSettingsViewController"
@@ -40,6 +40,7 @@ class FavoritesHomeViewController: UIViewController {
     let travelTimesCellIdentifier = "TravelTimeCell"
     let ferryScheduleCellIdentifier = "FerryScheduleCell"
     let mountainPassCellIdentifier = "MountainPassCell"
+    let tollRatesCellIdentifier = "TollRatesCell"
 
     var cameras = [CameraItem]()
     var travelTimeGroups = [TravelTimeItemGroup]()
@@ -47,6 +48,7 @@ class FavoritesHomeViewController: UIViewController {
     var mountainPasses = [MountainPassItem]()
     var savedLocations = [FavoriteLocationItem]()
     var myRoutes = [MyRouteItem]()
+    var tollRates = [TollRateSignItem]()
 
     @IBOutlet weak var emptyFavoritesView: UIView!
     @IBOutlet weak var tableView: UITableView!
@@ -64,9 +66,7 @@ class FavoritesHomeViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         sectionTypes = buildSectionTypeArray()
-        
         initContent()
     }
 
@@ -103,6 +103,8 @@ class FavoritesHomeViewController: UIViewController {
             return mountainPasses.count
         case .mapLocation:
             return savedLocations.count
+        case .tollRate:
+            return tollRates.count
         }
     }
     
@@ -131,6 +133,8 @@ class FavoritesHomeViewController: UIViewController {
             return mountainPasses.count > 0 ? MyRouteStore.sectionTitles[FavoritesContent.mountainPass.rawValue] : ""
         case .mapLocation:
             return savedLocations.count > 0 ? MyRouteStore.sectionTitles[FavoritesContent.mapLocation.rawValue] : ""
+        case .tollRate:
+            return tollRates.count > 0 ? MyRouteStore.sectionTitles[FavoritesContent.tollRate.rawValue] : ""
         }
     }
     
@@ -152,6 +156,7 @@ class FavoritesHomeViewController: UIViewController {
             sectionTypesOrderRawArray.append(FavoritesContent.mapLocation.rawValue)
             sectionTypesOrderRawArray.append(FavoritesContent.camera.rawValue)
             sectionTypesOrderRawArray.append(FavoritesContent.travelTime.rawValue)
+            sectionTypesOrderRawArray.append(FavoritesContent.tollRate.rawValue)
             UserDefaults.standard.set(sectionTypesOrderRawArray, forKey: UserDefaultsKeys.favoritesOrder)
         }
         
@@ -163,8 +168,6 @@ class FavoritesHomeViewController: UIViewController {
         
         return sections
     }
-    
-
     
 }
 
@@ -186,6 +189,7 @@ extension FavoritesHomeViewController {
         mountainPasses = MountainPassStore.findFavoritePasses()
         savedLocations = FavoriteLocationStore.getFavorites()
         myRoutes = MyRouteStore.getSelectedRoutes()
+        tollRates = TollRatesStore.findFavoriteTolls()
         
         if (tableEmpty()){
             emptyFavoritesView.isHidden = false
@@ -217,6 +221,9 @@ extension FavoritesHomeViewController {
         if (self.mountainPasses.count > 0){
             self.requestMountainPassesUpdate(force, serviceGroup: serviceGroup)
         }
+        if (self.tollRates.count > 0){
+            self.requestTollRatesUpdate(force, serviceGroup: serviceGroup)
+        }
  
         serviceGroup.notify(queue: DispatchQueue.main) {
             self.cameras = CamerasStore.getFavoriteCameras()
@@ -224,6 +231,7 @@ extension FavoritesHomeViewController {
             self.ferrySchedules = FerryRealmStore.findFavoriteSchedules()
             self.mountainPasses = MountainPassStore.findFavoritePasses()
             self.savedLocations = FavoriteLocationStore.getFavorites()
+            self.tollRates = TollRatesStore.findFavoriteTolls()
             
             if (self.tableEmpty()){
                 self.emptyFavoritesView.isHidden = false
@@ -335,6 +343,24 @@ extension FavoritesHomeViewController {
                 if (error == nil){
                     serviceGroup.leave()
                 }else{
+                    serviceGroup.leave()
+                    DispatchQueue.main.async { [weak self] in
+                        if let selfValue = self{
+                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                        }
+                    }
+                }
+            })
+        }
+    }
+    
+    func requestTollRatesUpdate(_ force: Bool, serviceGroup: DispatchGroup) {
+        serviceGroup.enter()
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async { [weak self] in
+            TollRatesStore.updateTollRates(force, completion: { error in
+                if (error == nil) {
+                    serviceGroup.leave()
+                } else {
                     serviceGroup.leave()
                     DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
@@ -512,6 +538,91 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             
             return passCell
             
+        case .tollRate:
+        
+            let tollRateCell = tableView.dequeueReusableCell(withIdentifier: tollRatesCellIdentifier) as! GroupRouteCell
+
+            // Remove any RouteViews carried over from being recycled.
+            for route in tollRateCell.dynamicRouteViews {
+                route.removeFromSuperview()
+            }
+            tollRateCell.dynamicRouteViews.removeAll()
+        
+            let tollSign = tollRates[indexPath.row]
+        
+            var travelDirection = ""
+        
+            switch (tollSign.travelDirection.lowercased()) {
+                case "n":
+                    travelDirection = "Northbound"
+                break
+                case "s":
+                    travelDirection = "Southbound"
+                break
+                case "e":
+                    travelDirection = "Eastbound"
+                break
+                case "w":
+                    travelDirection = "Westbound"
+                break
+                default:
+                    travelDirection = ""
+            }
+        
+            tollRateCell.routeLabel.text = "\(tollSign.startLocationName) \(travelDirection) Entrance"
+        
+            tollRateCell.favoriteButton.isHidden = true
+        
+            var lastRouteView: RouteView? = nil
+        
+            for route in tollSign.trips {
+        
+                let routeView = RouteView.instantiateFromXib()
+            
+                routeView.translatesAutoresizingMaskIntoConstraints = false
+                routeView.contentView.translatesAutoresizingMaskIntoConstraints = false
+                routeView.titleLabel.translatesAutoresizingMaskIntoConstraints = false
+                routeView.subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
+                routeView.updatedLabel.translatesAutoresizingMaskIntoConstraints = false
+                routeView.valueLabel.translatesAutoresizingMaskIntoConstraints = false
+            
+                routeView.titleLabel.text = "\(route.endLocationName) Exit"
+            
+                routeView.subtitleLabel.text = route.message
+            
+                routeView.updatedLabel.text = TimeUtils.timeAgoSinceDate(date: route.updatedAt, numericDates: true)
+            
+                // Since messages are displayed in place of tolls, if we have a message don't show the toll
+                if (route.message == ""){
+                    routeView.valueLabel.text = "$" + String(format: "%.2f", locale: Locale.current, arguments: [route.toll])
+                }
+            
+                tollRateCell.contentView.addSubview(routeView)
+            
+                let leadingSpaceConstraintForRouteView = NSLayoutConstraint(item: routeView.contentView, attribute: .leading, relatedBy: .equal, toItem: tollRateCell.routeLabel, attribute: .leading, multiplier: 1, constant: 0);
+                tollRateCell.contentView.addConstraint(leadingSpaceConstraintForRouteView)
+            
+                let trailingSpaceConstraintForRouteView = NSLayoutConstraint(item: routeView.contentView, attribute: .trailing, relatedBy: .equal, toItem: tollRateCell.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8);
+                tollRateCell.contentView.addConstraint(trailingSpaceConstraintForRouteView)
+            
+                let topSpaceConstraintForRouteView = NSLayoutConstraint(item: routeView.contentView, attribute: .top, relatedBy: .equal, toItem: (lastRouteView == nil ? tollRateCell.routeLabel : lastRouteView!.updatedLabel), attribute: .bottom, multiplier: 1, constant: 8);
+                tollRateCell.contentView.addConstraint(topSpaceConstraintForRouteView)
+       
+                if tollSign.trips.index(of: route) == tollSign.trips.index(of: tollSign.trips.last!) {
+                    let bottomSpaceConstraint = NSLayoutConstraint(item: routeView.updatedLabel, attribute: .bottom, relatedBy: .equal, toItem: tollRateCell.contentView, attribute: .bottom, multiplier: 1, constant: -16)
+                    tollRateCell.contentView.addConstraint(bottomSpaceConstraint)
+                    routeView.line.isHidden = true
+                }
+            
+                tollRateCell.dynamicRouteViews.append(routeView)
+                lastRouteView = routeView
+            
+            }
+
+            tollRateCell.sizeToFit()
+
+            return tollRateCell
+            
         case .route:
         
             let routeCell = tableView.dequeueReusableCell(withIdentifier: myRouteCellIdentifier, for: indexPath) as! MyRouteFavoritesCell
@@ -570,8 +681,6 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             self.present(alertController, animated: false, completion: nil)
             
         }
-        
-        
         
         let renameLocationAction = UITableViewRowAction(style: UITableViewRowActionStyle.normal, title: "Edit", handler: { (action:UITableViewRowAction,
             indexPath:IndexPath) -> Void in
@@ -634,6 +743,10 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 self.mountainPasses.remove(at: indexPath.row)
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
                 break
+            case .tollRate:
+                TollRatesStore.updateFavorite(self.tollRates[indexPath.row], newValue: false)
+                self.tollRates.remove(at: indexPath.row)
+                self.tableView.deleteRows(at: [indexPath], with: .fade)
             case .route:
                 _ = MyRouteStore.updateSelected(self.myRoutes[indexPath.row], newValue: false)
                 self.myRoutes.remove(at: indexPath.row)
@@ -670,6 +783,8 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
         case .mountainPass:
             performSegue(withIdentifier: segueMountainPassDetailsViewController, sender: nil)
             tableView.deselectRow(at: indexPath, animated: true)
+            break
+        case .tollRate:
             break
         case .route:
             tableView.deselectRow(at: indexPath, animated: true)
