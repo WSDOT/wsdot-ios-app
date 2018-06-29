@@ -24,9 +24,12 @@ import SafariServices
 
 class TollRatesViewController: UIViewController{
 
+    let dynamicTollRatesSegue = "dynamicTollRatesSegue"
+
+    var dynamicTollRatesVC: DynamicTollRatesViewController?
+
     @IBOutlet weak var SR520ContainerView: UIView!
     @IBOutlet weak var SR16ContainerView: UIView!
-    @IBOutlet weak var SR167ContainerView: UIView!
     @IBOutlet weak var I405ContainerView: UIView!
 
     let goodToGoUrlString = "https://mygoodtogo.com/olcsc/"
@@ -44,6 +47,13 @@ class TollRatesViewController: UIViewController{
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.shadowImage = nil
         self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+    }
+    
+    // Get a reference to the dynamic toll rates controller for switching data
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == dynamicTollRatesSegue {
+            dynamicTollRatesVC = segue.destination as? DynamicTollRatesViewController
+        }
     }
     
     @IBAction func MyGoodToGoLinkTap(_ sender: UIBarButtonItem) {
@@ -66,28 +76,38 @@ class TollRatesViewController: UIViewController{
             GoogleAnalytics.screenView(screenName: "/Toll Rates/SR520")
             SR520ContainerView.isHidden = false
             SR16ContainerView.isHidden = true
-            SR167ContainerView.isHidden = true
             I405ContainerView.isHidden = true
             break
         case 1:
             GoogleAnalytics.screenView(screenName: "/Toll Rates/SR16")
             SR520ContainerView.isHidden = true
             SR16ContainerView.isHidden = false
-            SR167ContainerView.isHidden = true
             I405ContainerView.isHidden = true
             break
         case 2:
             GoogleAnalytics.screenView(screenName: "/Toll Rates/SR167")
             SR520ContainerView.isHidden = true
             SR16ContainerView.isHidden = true
-            SR167ContainerView.isHidden = false
-            I405ContainerView.isHidden = true
+            if let tollVC = dynamicTollRatesVC {
+                tollVC.stateRoute = "167"
+                tollVC.refreshControl.beginRefreshing()
+                tollVC.tollRates.removeAll()
+                tollVC.tableView.reloadData()
+                tollVC.refresh(true)
+            }
+            I405ContainerView.isHidden = false
             break
         case 3:
             GoogleAnalytics.screenView(screenName: "/Toll Rates/I405")
             SR520ContainerView.isHidden = true
             SR16ContainerView.isHidden = true
-            SR167ContainerView.isHidden = true
+            if let tollVC = dynamicTollRatesVC {
+                tollVC.stateRoute = "405"
+                tollVC.refreshControl.beginRefreshing()
+                tollVC.tollRates.removeAll()
+                tollVC.tableView.reloadData()
+                tollVC.refresh(true)
+            }
             I405ContainerView.isHidden = false
             break
         default:

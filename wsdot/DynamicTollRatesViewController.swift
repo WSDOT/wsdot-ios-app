@@ -21,10 +21,11 @@ import Foundation
 import UIKit
 import SafariServices
 
-class I405ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     let cellIdentifier = "I405TollRatesCell"
 
+    var stateRoute: String?
     var tollRates = [TollRateSignItem]()
 
     let refreshControl = UIRefreshControl()
@@ -51,8 +52,10 @@ class I405ViewController: UIViewController, UITableViewDelegate, UITableViewData
                 if (error == nil) {
                     // Reload tableview on UI thread
                     DispatchQueue.main.async { [weak self] in
-                        if let selfValue = self{
-                            selfValue.tollRates = TollRatesStore.getTollRatesByRoute(route: "405")
+                        if let selfValue = self {
+                            if let route = selfValue.stateRoute {
+                                selfValue.tollRates = TollRatesStore.getTollRatesByRoute(route: route)
+                            }
                             selfValue.tableView.reloadData()
                             selfValue.activityIndicator.stopAnimating()
                             selfValue.activityIndicator.isHidden = true
@@ -61,7 +64,7 @@ class I405ViewController: UIViewController, UITableViewDelegate, UITableViewData
                     }
                 } else {
                     DispatchQueue.main.async { [weak self] in
-                        if let selfValue = self{
+                        if let selfValue = self {
                             selfValue.refreshControl.endRefreshing()
                             selfValue.activityIndicator.stopAnimating()
                             selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)

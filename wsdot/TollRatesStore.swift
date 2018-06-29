@@ -46,7 +46,7 @@ class TollRatesStore {
     
     static func getTollRatesByRoute(route: String) -> [TollRateSignItem]{
         let realm = try! Realm()
-        let tollSignItems = realm.objects(TollRateSignItem.self).filter("stateRoute == \(route)").filter("delete == false")
+        let tollSignItems = realm.objects(TollRateSignItem.self).filter("delete == false").filter("stateRoute == \(route)")
         return Array(tollSignItems.sorted(by: {$0.startLocationName < $1.startLocationName}).sorted(by: { $0.travelDirection < $1.travelDirection }))
     }
     
