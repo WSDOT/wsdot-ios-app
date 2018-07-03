@@ -158,6 +158,9 @@ class FavoritesHomeViewController: UIViewController {
             sectionTypesOrderRawArray.append(FavoritesContent.travelTime.rawValue)
             sectionTypesOrderRawArray.append(FavoritesContent.tollRate.rawValue)
             UserDefaults.standard.set(sectionTypesOrderRawArray, forKey: UserDefaultsKeys.favoritesOrder)
+        } else if sectionTypesOrderRawArray.count < 7 { // Added toll rates
+            sectionTypesOrderRawArray.append(FavoritesContent.tollRate.rawValue)
+            UserDefaults.standard.set(sectionTypesOrderRawArray, forKey: UserDefaultsKeys.favoritesOrder)
         }
         
         var sections = [FavoritesContent]()
@@ -168,7 +171,6 @@ class FavoritesHomeViewController: UIViewController {
         
         return sections
     }
-    
 }
 
 extension FavoritesHomeViewController: INDLinkLabelDelegate {}
@@ -285,6 +287,7 @@ extension FavoritesHomeViewController {
             (self.ferrySchedules.count == 0) &&
             (self.mountainPasses.count == 0) &&
             (self.savedLocations.count == 0) &&
+            (self.tollRates.count == 0) &&
             (self.myRoutes.count == 0)
     }
 
@@ -691,6 +694,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             alertController.addTextField { (textfield) in
                 textfield.placeholder = self.savedLocations[indexPath.row].name
             }
+            
             alertController.view.tintColor = Colors.tintColor
 
             let okAction = UIAlertAction(title: "Ok", style: .default) { (_) -> Void in
@@ -754,6 +758,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 break
             }
         })
+        
         if getType(forSection: indexPath.section) == .route {
             return [deleteAction, renameRouteAction]
         } else if getType(forSection: indexPath.section) == .mapLocation {
