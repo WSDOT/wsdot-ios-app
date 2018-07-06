@@ -33,6 +33,7 @@ class TrafficMapGoToViewController: UIViewController, UITableViewDataSource, UIT
         
         menu_options = ["Bellingham",
                         "Chehalis",
+                        "Everett",
                         "Hood Canal",
                         "Monroe",
                         "Mt Vernon",
@@ -90,7 +91,7 @@ class TrafficMapGoToViewController: UIViewController, UITableViewDataSource, UIT
     func setGoToLocation(index: Int) {
         var lat = 0.0
         var long = 0.0
-        var zoom = 0
+        var zoom: Float = 0
         
         switch(index) {
         case 0:
@@ -104,71 +105,76 @@ class TrafficMapGoToViewController: UIViewController, UITableViewDataSource, UIT
             zoom = 11 // Chehalis
             break
         case 2:
+            lat = 47.967976
+            long = -122.197627
+            zoom = 12
+            break
+        case 3:
             lat = 47.85268
             long = -122.628365
             zoom = 13 // Hood Canal
             break
-        case 3:
+        case 4:
             lat = 47.859476
             long = -121.972446
             zoom = 13 // Monroe
             break
-        case 4:
+        case 5:
             lat = 48.420657
             long = -122.334824
             zoom = 13 // Mt Vernon
             break
-        case 5:
+        case 6:
             lat = 47.021461
             long = -122.899933
             zoom = 13 // Olympia
             break
-        case 6:
+        case 7:
             lat = 47.5990
             long = -122.3350
             zoom = 12 // Seattle
             break
-        case 7:
+        case 8:
             lat = 47.404481
             long = -121.4232569
             zoom = 12 // Snoqualmie Pass
             break
-        case 8:
+        case 9:
             lat = 47.658566
             long = -117.425995
             zoom = 12 // Spokane
             break
-        case 9:
+        case 10:
             lat = 48.22959
             long = -122.34581
             zoom = 13 // Stanwood
             break
-        case 10:
+        case 11:
             lat = 47.86034
             long = -121.812286
             zoom = 13 // Sultan
             break
-        case 11:
+        case 12:
             lat = 47.206275
             long = -122.46254
             zoom = 12 // Tacoma
             break
-        case 12:
+        case 13:
             lat = 46.2503607
             long = -119.2063781
             zoom = 11 // Tri-Cities
             break
-        case 13:
+        case 14:
             lat = 45.639968
             long = -122.610512
             zoom = 11 // Vancouver
             break
-        case 14:
+        case 15:
             lat = 47.435867
             long = -120.309563
             zoom = 12 // Wenatchee
             break
-        case 15:
+        case 16:
             lat = 46.6063273
             long = -120.4886952
             zoom = 11 // Takima
@@ -180,6 +186,8 @@ class TrafficMapGoToViewController: UIViewController, UITableViewDataSource, UIT
         UserDefaults.standard.set(lat, forKey: UserDefaultsKeys.mapLat)
         UserDefaults.standard.set(long, forKey: UserDefaultsKeys.mapLon)
         UserDefaults.standard.set(zoom, forKey: UserDefaultsKeys.mapZoom)
+    
+        my_parent?.goTo(lat, long, zoom)
     
     }
 }

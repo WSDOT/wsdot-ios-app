@@ -189,7 +189,13 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
             mapView.moveCamera(GMSCameraUpdate.setCamera(camera))
         }
     }
-
+    
+    func goTo(_ lat: Double, _ long: Double, _ zoom: Float){
+        if let mapView = embeddedMapViewController.view as? GMSMapView{
+            mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: lat, longitude: long, zoom: zoom)))
+        }
+    }
+        
     /*
         Checks if "best times to travel charts" are available from the data server,
         if they are, display an alert badge on the Traveler information menu
