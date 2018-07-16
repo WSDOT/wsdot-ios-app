@@ -4,7 +4,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]:
 
-## [5.8.3] 2018-06
+## [5.8.4] 2018-07
+
+### Added
+* Everett to go to locations
+
+### Changed
+* Swift 4 compatiabilty
+
+### Fixed
+* Go to locations not working when menu presented as pop up.
+
+## [5.8.3] 2018-06-14
 
 ### Changed
 * Ferries section updated to handle new date format coming in the future. The current format is a .NET style date string returned from the API. The new format that will be added in the future is "yyyy-MM-dd hh:mm a"
