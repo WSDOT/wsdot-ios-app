@@ -21,22 +21,97 @@ import Foundation
 import UIKit
 import SafariServices
 
-class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDataSource, UIPickerViewDelegate {
 
     let cellIdentifier = "I405TollRatesCell"
 
     var stateRoute: String?
     var tollRates = [TollRateSignItem]()
 
+    var directions = ["Northbound", "Southbound"]
+    var selectedDirectionIndex = 0
+
     let refreshControl = UIRefreshControl()
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var directionButton: UIButton!
     
-     override func viewDidLoad() {
+    var blackoutWindow = UIView()
+    
+    private lazy var view_PickerContainer: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(self.toolbarPicker)
+        view.addSubview(self.picker)
+        
+        view.backgroundColor = UIColor.white
+        return view
+    }()
+
+    private lazy var picker: UIPickerView = {
+        let picker = UIPickerView()
+        picker.translatesAutoresizingMaskIntoConstraints = false
+        picker.backgroundColor = Colors.paleGrey
+        picker.dataSource = self
+        picker.delegate = self
+        return picker
+    }()
+
+    private lazy var toolbarPicker: UIToolbar = {
+        let toolbar = UIToolbar()
+        toolbar.translatesAutoresizingMaskIntoConstraints = false
+        toolbar.barStyle = .default
+        toolbar.barTintColor = ThemeManager.currentTheme().mainColor
+        
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.doneAction(_:)))
+        let flexButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        doneButton.tintColor = UIColor.white
+
+        toolbar.setItems([flexButton, doneButton], animated: false)
+        
+        return toolbar
+    }()
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
+        
         // refresh controller
         refreshControl.addTarget(self, action: #selector(BorderWaitsViewController.refreshAction(_:)), for: .valueChanged)
+        
+        directionButton.layer.cornerRadius = 8.0
+        directionButton.setTitle(directions[selectedDirectionIndex], for: UIControlState())
+        directionButton.accessibilityHint = "double tap to change travel direction"
+        
+        // self.view.addSubview(view_PickerContainer)
+        self.view.addSubview(view_PickerContainer)
+        
+        // Add picker container constraints
+        view_PickerContainer.heightAnchor.constraint(equalTo: picker.heightAnchor, multiplier: 1, constant: 40).isActive = true
+        view_PickerContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        view_PickerContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        view_PickerContainer.topAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        // Add picker constraints
+        picker.heightAnchor.constraint(equalToConstant: picker.bounds.height).isActive = true
+        picker.widthAnchor.constraint(equalTo: view_PickerContainer.widthAnchor).isActive = true
+        picker.bottomAnchor.constraint(equalTo: view_PickerContainer.bottomAnchor).isActive = true
+ 
+        toolbarPicker.leadingAnchor.constraint(equalTo: view_PickerContainer.leadingAnchor).isActive = true
+        toolbarPicker.trailingAnchor.constraint(equalTo: view_PickerContainer.trailingAnchor).isActive = true
+        toolbarPicker.topAnchor.constraint(equalTo: view_PickerContainer.topAnchor).isActive = true
+        picker.topAnchor.constraint(equalTo: toolbarPicker.bottomAnchor, constant: 0).isActive = true
+        
+/*
+        // set up black out window for when picker is visable
+        let window = UIApplication.shared.keyWindow!
+        blackoutWindow = UIView(frame: CGRect(x: window.frame.origin.x, y: window.frame.origin.y - self.view_PickerContainer.frame.height, width: window.frame.width, height: window.frame.height))
+        blackoutWindow.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        blackoutWindow.isHidden = true
+        window.addSubview(blackoutWindow);
+*/
+ 
         tableView.addSubview(refreshControl)
         activityIndicator.startAnimating()
         refresh(true)
@@ -73,6 +148,46 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
                 }
             })
         }
+    }
+    
+    @objc func doneAction(_ button: UIButton) {
+        directionButton.isEnabled = true
+
+        // Add picker container constraints
+        UIView.animate(withDuration: 0.3, animations: {
+            self.view_PickerContainer.frame.origin.y += self.view_PickerContainer.frame.height
+        }, completion: { done in
+            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, self.directionButton)
+            self.blackoutWindow.isHidden = true
+        })
+        
+    }
+    
+    @IBAction func pickDirection(_ sender: UIButton) {
+
+        directionButton.isEnabled = false
+
+        // Add picker container constraints
+        UIView.animate(withDuration: 0.3, animations: {
+            self.view_PickerContainer.frame.origin.y -= self.view_PickerContainer.frame.height
+        }, completion: { done in
+        
+            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, self.picker)
+            self.blackoutWindow.isHidden = false
+        })
+    }
+    
+    // MARK -- Picker delegate & data source
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return directions.count
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return directions[row]
     }
     
     // MARK -- TableView delegate

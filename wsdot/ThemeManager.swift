@@ -23,6 +23,8 @@ struct Colors {
     static let yellow = UIColor.init(red: 255.0/255.0, green: 235.0/255.0, blue: 59.0/255.0, alpha: 1)
     static let lightGreen = UIColor.init(red: 204.0/255.0, green: 239.0/255.0, blue: 184.0/255.0, alpha: 1)
     static let lightGrey = UIColor.init(red: 242.0/255.0, green: 242.0/255.0, blue: 242.0/255.0, alpha: 1)
+    static let paleGrey = UIColor.init(red: 209.0/255.0, green: 213.0/255.0, blue: 219.0/255.0, alpha: 1)
+    
 }
 
 enum Theme: Int {

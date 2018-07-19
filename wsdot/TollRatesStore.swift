@@ -50,6 +50,18 @@ class TollRatesStore {
         return Array(tollSignItems.sorted(by: {$0.startLocationName < $1.startLocationName}).sorted(by: { $0.travelDirection < $1.travelDirection }))
     }
     
+    static func getSouthboundTollRatesByRoute(route: String) -> [TollRateSignItem]{
+        let realm = try! Realm()
+        let tollSignItems = realm.objects(TollRateSignItem.self).filter("delete == false").filter("stateRoute == \(route)").filter("travelDirection == S")
+        return Array(tollSignItems.sorted(by: {$0.startLocationName < $1.startLocationName}).sorted(by: { $0.travelDirection < $1.travelDirection }))
+    }
+    
+    static func getNorthboundTollRatesByRoute(route: String) -> [TollRateSignItem]{
+        let realm = try! Realm()
+        let tollSignItems = realm.objects(TollRateSignItem.self).filter("delete == false").filter("stateRoute == \(route)").filter("travelDirection == N")
+        return Array(tollSignItems.sorted(by: {$0.startLocationName < $1.startLocationName}).sorted(by: { $0.travelDirection < $1.travelDirection }))
+    }
+    
     static func findFavoriteTolls() -> [TollRateSignItem]{
         let realm = try! Realm()
         let favoriteTollSignItems = realm.objects(TollRateSignItem.self).filter("selected == true").filter("delete == false")

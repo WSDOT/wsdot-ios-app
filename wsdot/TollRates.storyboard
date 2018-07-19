@@ -307,7 +307,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EpJ-DQ-EwE">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="525.5"/>
+                                <rect key="frame" x="0.0" y="40" width="375" height="485"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="I405TollRatesCell" rowHeight="98" id="mUn-Sj-h5B" customClass="GroupRouteCell" customModule="WSDOT" customModuleProvider="target">
@@ -356,35 +356,52 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="g71-Ds-4pA">
                                 <rect key="frame" x="177.5" y="269.5" width="20" height="20"/>
                             </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The tolls reported here may not match what is currently displayed on the road signs." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="luD-0C-pPF">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estimated toll rates provided as a courtesy. You'll always pay the toll you see on actual road signs when you enter. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="luD-0C-pPF">
                                 <rect key="frame" x="0.0" y="525.5" width="375" height="33.5"/>
                                 <color key="backgroundColor" white="0.94623480902777779" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JtT-mp-mdY">
+                                <rect key="frame" x="16" y="0.0" width="343" height="32"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="5Tw-F7-5mi"/>
+                                </constraints>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="pickDirection:" destination="5vQ-oe-eKM" eventType="touchUpInside" id="i5c-og-uuG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="g71-Ds-4pA" firstAttribute="centerY" secondItem="IWg-co-XQz" secondAttribute="centerY" id="2f2-bf-Xpu"/>
+                            <constraint firstItem="EpJ-DQ-EwE" firstAttribute="top" secondItem="JtT-mp-mdY" secondAttribute="bottom" constant="8" id="3bO-al-E7I"/>
+                            <constraint firstItem="JtT-mp-mdY" firstAttribute="top" secondItem="IWg-co-XQz" secondAttribute="top" id="AMy-ms-WFv"/>
                             <constraint firstItem="luD-0C-pPF" firstAttribute="leading" secondItem="IWg-co-XQz" secondAttribute="leading" id="Cej-1l-1dx"/>
                             <constraint firstAttribute="trailing" secondItem="luD-0C-pPF" secondAttribute="trailing" id="I86-9u-4Ld"/>
                             <constraint firstItem="EpJ-DQ-EwE" firstAttribute="leading" secondItem="IWg-co-XQz" secondAttribute="leading" id="XWR-ec-cvH"/>
+                            <constraint firstItem="JtT-mp-mdY" firstAttribute="leading" secondItem="IWg-co-XQz" secondAttribute="leading" constant="16" id="b9u-uJ-ORy"/>
                             <constraint firstAttribute="trailing" secondItem="EpJ-DQ-EwE" secondAttribute="trailing" id="dp1-MP-Zyj"/>
-                            <constraint firstItem="EpJ-DQ-EwE" firstAttribute="top" secondItem="IWg-co-XQz" secondAttribute="top" id="gqG-nz-OEK"/>
                             <constraint firstItem="luD-0C-pPF" firstAttribute="top" secondItem="EpJ-DQ-EwE" secondAttribute="bottom" id="i3i-fv-SkV"/>
                             <constraint firstItem="g71-Ds-4pA" firstAttribute="centerX" secondItem="IWg-co-XQz" secondAttribute="centerX" id="lIH-4u-Bka"/>
+                            <constraint firstAttribute="trailing" secondItem="JtT-mp-mdY" secondAttribute="trailing" constant="16" id="mJF-vz-Q8Z"/>
                             <constraint firstItem="zPA-My-OCY" firstAttribute="top" secondItem="luD-0C-pPF" secondAttribute="bottom" id="znC-HB-cwo"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="g71-Ds-4pA" id="ueX-zL-J0m"/>
+                        <outlet property="directionButton" destination="JtT-mp-mdY" id="wbQ-mL-q0J"/>
                         <outlet property="tableView" destination="EpJ-DQ-EwE" id="fzo-Ph-NQ1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jwB-OF-E99" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1321" y="1451"/>
+            <point key="canvasLocation" x="1321" y="1551"/>
         </scene>
     </scenes>
     <resources>
