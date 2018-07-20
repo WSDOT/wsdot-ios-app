@@ -40,63 +40,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YGa-0p-lky">
-                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kdl-OX-V0o">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <connections>
-                                    <segue destination="XRc-2T-yQd" kind="embed" id="DaB-fF-dE0"/>
-                                </connections>
-                            </containerView>
-                            <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Wz-aK-UnV">
-                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
-                            </containerView>
-                            <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jxe-vg-wgd">
-                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
-                                <connections>
-                                    <segue destination="5vQ-oe-eKM" kind="embed" identifier="dynamicTollRatesSegue" id="fOd-cK-s2e"/>
-                                </connections>
-                            </containerView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1UI-eq-XZw">
-                                <rect key="frame" x="16" y="72" width="343" height="29"/>
-                                <segments>
-                                    <segment title="SR 520"/>
-                                    <segment title="SR 16"/>
-                                    <segment title="SR 167"/>
-                                    <segment title="I-405"/>
-                                </segments>
-                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <action selector="indexChanged:" destination="A9d-Xt-YdA" eventType="valueChanged" id="9cm-yb-KmR"/>
-                                </connections>
-                            </segmentedControl>
-                            <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tyd-AG-8ek">
-                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
-                                <connections>
-                                    <segue destination="0ki-xc-aX5" kind="embed" identifier="" id="ZLH-Lo-LI3"/>
+                                    <segue destination="AoI-87-dP3" kind="embed" id="EzU-KJ-L9u"/>
                                 </connections>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="Tyd-AG-8ek" secondAttribute="bottom" id="3ya-vq-uY0"/>
-                            <constraint firstAttribute="trailing" secondItem="Tyd-AG-8ek" secondAttribute="trailing" id="4R6-IO-mbD"/>
-                            <constraint firstAttribute="bottom" secondItem="YGa-0p-lky" secondAttribute="bottom" id="4i9-Fm-wIc"/>
-                            <constraint firstItem="Tyd-AG-8ek" firstAttribute="leading" secondItem="YGa-0p-lky" secondAttribute="leading" id="6gm-4d-5Hl"/>
-                            <constraint firstItem="YGa-0p-lky" firstAttribute="trailing" secondItem="Jxe-vg-wgd" secondAttribute="trailing" id="GpU-Iz-liT"/>
-                            <constraint firstItem="YGa-0p-lky" firstAttribute="trailing" secondItem="Tyd-AG-8ek" secondAttribute="trailing" id="JSX-5f-4SM"/>
-                            <constraint firstItem="2Wz-aK-UnV" firstAttribute="trailing" secondItem="Jxe-vg-wgd" secondAttribute="trailing" id="PBE-EA-ALd"/>
-                            <constraint firstItem="Tyd-AG-8ek" firstAttribute="leading" secondItem="2Wz-aK-UnV" secondAttribute="leading" id="R4p-st-eKt"/>
-                            <constraint firstItem="1UI-eq-XZw" firstAttribute="trailing" secondItem="8qN-Dw-OGq" secondAttribute="trailingMargin" id="Sqy-lI-ZUS"/>
-                            <constraint firstAttribute="bottom" secondItem="Jxe-vg-wgd" secondAttribute="bottom" id="XZA-BK-hNW"/>
-                            <constraint firstItem="1UI-eq-XZw" firstAttribute="leading" secondItem="8qN-Dw-OGq" secondAttribute="leadingMargin" id="Zgl-hw-6mJ"/>
-                            <constraint firstItem="YGa-0p-lky" firstAttribute="top" secondItem="1UI-eq-XZw" secondAttribute="bottom" constant="8" id="aJU-rA-QpR"/>
-                            <constraint firstItem="Tyd-AG-8ek" firstAttribute="leading" secondItem="8qN-Dw-OGq" secondAttribute="leading" id="afh-nH-f5g"/>
-                            <constraint firstItem="YGa-0p-lky" firstAttribute="top" secondItem="2Wz-aK-UnV" secondAttribute="top" id="hGH-RZ-eMZ"/>
-                            <constraint firstAttribute="bottom" secondItem="2Wz-aK-UnV" secondAttribute="bottom" id="qHm-Dd-8pc"/>
-                            <constraint firstItem="YGa-0p-lky" firstAttribute="top" secondItem="Jxe-vg-wgd" secondAttribute="top" id="qVV-sS-zW0"/>
-                            <constraint firstItem="Jxe-vg-wgd" firstAttribute="top" secondItem="Tyd-AG-8ek" secondAttribute="top" id="vAV-UR-ITd"/>
-                            <constraint firstItem="2Wz-aK-UnV" firstAttribute="leading" secondItem="Jxe-vg-wgd" secondAttribute="leading" id="w4e-oj-mCf"/>
-                            <constraint firstItem="1UI-eq-XZw" firstAttribute="top" secondItem="DL8-PO-3RG" secondAttribute="bottom" constant="8" id="xLo-r2-Mjh"/>
+                            <constraint firstItem="kdl-OX-V0o" firstAttribute="top" secondItem="DL8-PO-3RG" secondAttribute="bottom" id="Lkl-pn-14h"/>
+                            <constraint firstAttribute="trailing" secondItem="kdl-OX-V0o" secondAttribute="trailing" id="PQh-wY-lWi"/>
+                            <constraint firstItem="wIq-46-sjc" firstAttribute="top" secondItem="kdl-OX-V0o" secondAttribute="bottom" id="Tji-3o-v0V"/>
+                            <constraint firstItem="kdl-OX-V0o" firstAttribute="leading" secondItem="8qN-Dw-OGq" secondAttribute="leading" id="eHT-fb-krI"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Toll Rates" id="l8t-7x-bNX">
@@ -108,16 +65,35 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="I405ContainerView" destination="Jxe-vg-wgd" id="Xq2-Fn-4B8"/>
-                        <outlet property="SR16ContainerView" destination="Tyd-AG-8ek" id="3bp-pF-S1X"/>
-                        <outlet property="SR520ContainerView" destination="YGa-0p-lky" id="CXq-2x-Ina"/>
+                        <outlet property="TollTabBarContainerView" destination="kdl-OX-V0o" id="LVg-3l-rBo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DnJ-cH-VLR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-295.19999999999999" y="878.41079460269873"/>
         </scene>
-        <!--View Controller-->
+        <!--Toll Rates Tab Bar View Controller-->
+        <scene sceneID="EvE-5B-34f">
+            <objects>
+                <tabBarController id="AoI-87-dP3" customClass="TollRatesTabBarViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RAm-Ev-wRc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="0ki-xc-aX5" kind="relationship" relationship="viewControllers" id="qE3-Q9-Jmb"/>
+                        <segue destination="XRc-2T-yQd" kind="relationship" relationship="viewControllers" id="MTa-Zw-O26"/>
+                        <segue destination="5vQ-oe-eKM" kind="relationship" relationship="viewControllers" id="1Wy-5V-Gce"/>
+                        <segue destination="iiL-IM-c5I" kind="relationship" relationship="viewControllers" id="OsH-dL-RPz"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ddc-i3-uue" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="402" y="907"/>
+        </scene>
+        <!--SR 520-->
         <scene sceneID="yCU-LM-uiI">
             <objects>
                 <viewController id="XRc-2T-yQd" customClass="SR520ViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
@@ -126,11 +102,11 @@
                         <viewControllerLayoutGuide type="bottom" id="0ly-op-1jM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ehj-rx-D4N">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0Af-Ai-0ue">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="threeColCell" id="q4b-WE-YhQ" customClass="ThreeColTableCell" customModule="WSDOT">
@@ -195,12 +171,15 @@
                             <constraint firstAttribute="trailing" secondItem="0Af-Ai-0ue" secondAttribute="trailing" id="gJ6-oZ-aon"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="SR 520" image="icTabSR520" id="iBS-BK-UAg">
+                        <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4V6-Bg-nFp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1321" y="329"/>
+            <point key="canvasLocation" x="1321" y="267"/>
         </scene>
-        <!--View Controller-->
+        <!--SR 16-->
         <scene sceneID="irV-lg-LYe">
             <objects>
                 <viewController id="0ki-xc-aX5" customClass="SR16ViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
@@ -209,11 +188,11 @@
                         <viewControllerLayoutGuide type="bottom" id="4ga-Tk-G4K"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QCH-iJ-OhI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OYr-mJ-SjK">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="fourColCell" id="l7c-xT-YUc" customClass="FourColTableCell" customModule="WSDOT">
@@ -289,12 +268,13 @@
                             <constraint firstAttribute="trailing" secondItem="OYr-mJ-SjK" secondAttribute="trailing" id="fRW-L4-Lr8"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="SR 16" image="icTabSR16" id="Ics-ay-ium"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bq7-p6-Rkj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1321" y="890"/>
+            <point key="canvasLocation" x="1321" y="906"/>
         </scene>
-        <!--Dynamic Toll Rates View Controller-->
+        <!--SR 167-->
         <scene sceneID="oLf-df-8ah">
             <objects>
                 <viewController id="5vQ-oe-eKM" customClass="DynamicTollRatesViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
@@ -303,11 +283,11 @@
                         <viewControllerLayoutGuide type="bottom" id="zPA-My-OCY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="IWg-co-XQz">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EpJ-DQ-EwE">
-                                <rect key="frame" x="0.0" y="40" width="375" height="485"/>
+                                <rect key="frame" x="0.0" y="40" width="375" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="I405TollRatesCell" rowHeight="98" id="mUn-Sj-h5B" customClass="GroupRouteCell" customModule="WSDOT" customModuleProvider="target">
@@ -354,57 +334,166 @@
                                 </connections>
                             </tableView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="g71-Ds-4pA">
-                                <rect key="frame" x="177.5" y="269.5" width="20" height="20"/>
+                                <rect key="frame" x="177.5" y="291.5" width="20" height="20"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estimated toll rates provided as a courtesy. You'll always pay the toll you see on actual road signs when you enter. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="luD-0C-pPF">
-                                <rect key="frame" x="0.0" y="525.5" width="375" height="33.5"/>
+                                <rect key="frame" x="0.0" y="520.5" width="375" height="33.5"/>
                                 <color key="backgroundColor" white="0.94623480902777779" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JtT-mp-mdY">
-                                <rect key="frame" x="16" y="0.0" width="343" height="32"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="32" id="5Tw-F7-5mi"/>
-                                </constraints>
-                                <state key="normal" title="Button">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="nLK-EX-gZv">
+                                <rect key="frame" x="16" y="5" width="343" height="29"/>
+                                <segments>
+                                    <segment title="Northbound"/>
+                                    <segment title="Southbound"/>
+                                </segments>
                                 <connections>
-                                    <action selector="pickDirection:" destination="5vQ-oe-eKM" eventType="touchUpInside" id="i5c-og-uuG"/>
+                                    <action selector="indexChanged:" destination="5vQ-oe-eKM" eventType="valueChanged" id="O8h-Tl-sxX"/>
                                 </connections>
-                            </button>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="EpJ-DQ-EwE" firstAttribute="top" secondItem="nLK-EX-gZv" secondAttribute="bottom" constant="7" id="1tW-9H-VEy"/>
                             <constraint firstItem="g71-Ds-4pA" firstAttribute="centerY" secondItem="IWg-co-XQz" secondAttribute="centerY" id="2f2-bf-Xpu"/>
-                            <constraint firstItem="EpJ-DQ-EwE" firstAttribute="top" secondItem="JtT-mp-mdY" secondAttribute="bottom" constant="8" id="3bO-al-E7I"/>
-                            <constraint firstItem="JtT-mp-mdY" firstAttribute="top" secondItem="IWg-co-XQz" secondAttribute="top" id="AMy-ms-WFv"/>
+                            <constraint firstItem="nLK-EX-gZv" firstAttribute="leading" secondItem="IWg-co-XQz" secondAttribute="leading" constant="16" id="Ain-s2-FJv"/>
+                            <constraint firstAttribute="trailing" secondItem="nLK-EX-gZv" secondAttribute="trailing" constant="16" id="Bdo-aN-pMQ"/>
                             <constraint firstItem="luD-0C-pPF" firstAttribute="leading" secondItem="IWg-co-XQz" secondAttribute="leading" id="Cej-1l-1dx"/>
                             <constraint firstAttribute="trailing" secondItem="luD-0C-pPF" secondAttribute="trailing" id="I86-9u-4Ld"/>
+                            <constraint firstItem="nLK-EX-gZv" firstAttribute="top" secondItem="IWg-co-XQz" secondAttribute="top" constant="5" id="Vd8-TZ-MVn"/>
                             <constraint firstItem="EpJ-DQ-EwE" firstAttribute="leading" secondItem="IWg-co-XQz" secondAttribute="leading" id="XWR-ec-cvH"/>
-                            <constraint firstItem="JtT-mp-mdY" firstAttribute="leading" secondItem="IWg-co-XQz" secondAttribute="leading" constant="16" id="b9u-uJ-ORy"/>
                             <constraint firstAttribute="trailing" secondItem="EpJ-DQ-EwE" secondAttribute="trailing" id="dp1-MP-Zyj"/>
                             <constraint firstItem="luD-0C-pPF" firstAttribute="top" secondItem="EpJ-DQ-EwE" secondAttribute="bottom" id="i3i-fv-SkV"/>
                             <constraint firstItem="g71-Ds-4pA" firstAttribute="centerX" secondItem="IWg-co-XQz" secondAttribute="centerX" id="lIH-4u-Bka"/>
-                            <constraint firstAttribute="trailing" secondItem="JtT-mp-mdY" secondAttribute="trailing" constant="16" id="mJF-vz-Q8Z"/>
                             <constraint firstItem="zPA-My-OCY" firstAttribute="top" secondItem="luD-0C-pPF" secondAttribute="bottom" id="znC-HB-cwo"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="SR 167" image="icTabSR167" id="pMK-Wg-ONF"/>
                     <connections>
                         <outlet property="activityIndicator" destination="g71-Ds-4pA" id="ueX-zL-J0m"/>
-                        <outlet property="directionButton" destination="JtT-mp-mdY" id="wbQ-mL-q0J"/>
+                        <outlet property="directionSegmentControl" destination="nLK-EX-gZv" id="lVh-4b-RkP"/>
                         <outlet property="tableView" destination="EpJ-DQ-EwE" id="fzo-Ph-NQ1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jwB-OF-E99" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1321" y="1551"/>
+            <point key="canvasLocation" x="1321" y="1609"/>
+        </scene>
+        <!--I-405-->
+        <scene sceneID="O0p-iq-jhF">
+            <objects>
+                <viewController id="iiL-IM-c5I" customClass="DynamicTollRatesViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CTv-gl-C2q"/>
+                        <viewControllerLayoutGuide type="bottom" id="yhz-Lw-oDG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wvb-Oe-dcF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="m1a-Ef-gNW">
+                                <rect key="frame" x="0.0" y="40" width="375" height="480"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="I405TollRatesCell" rowHeight="98" id="6u9-pz-Cmm" customClass="GroupRouteCell" customModule="WSDOT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="98"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6u9-pz-Cmm" id="X94-N2-Bfh">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="97.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubX-zJ-4HI">
+                                                    <rect key="frame" x="23" y="11" width="297" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="umy-kh-536">
+                                                    <rect key="frame" x="328" y="11" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="32" id="QPP-xp-s9w"/>
+                                                        <constraint firstAttribute="height" constant="32" id="pgE-LU-Fvm"/>
+                                                    </constraints>
+                                                    <state key="normal" image="icStarSmall"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="umy-kh-536" firstAttribute="trailing" secondItem="X94-N2-Bfh" secondAttribute="trailingMargin" id="1HG-zP-NET"/>
+                                                <constraint firstItem="umy-kh-536" firstAttribute="top" secondItem="X94-N2-Bfh" secondAttribute="topMargin" id="Aux-DJ-byM"/>
+                                                <constraint firstItem="umy-kh-536" firstAttribute="top" secondItem="X94-N2-Bfh" secondAttribute="topMargin" id="WGd-R4-lDb"/>
+                                                <constraint firstItem="ubX-zJ-4HI" firstAttribute="top" secondItem="X94-N2-Bfh" secondAttribute="topMargin" id="gQj-51-oPm"/>
+                                                <constraint firstItem="ubX-zJ-4HI" firstAttribute="leading" secondItem="X94-N2-Bfh" secondAttribute="leadingMargin" constant="8" id="iqt-ip-Gl1"/>
+                                                <constraint firstItem="umy-kh-536" firstAttribute="leading" secondItem="ubX-zJ-4HI" secondAttribute="trailing" constant="8" id="jhJ-9w-4mr"/>
+                                                <constraint firstItem="umy-kh-536" firstAttribute="trailing" secondItem="X94-N2-Bfh" secondAttribute="trailingMargin" id="rs2-im-681"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="favoriteButton" destination="umy-kh-536" id="NrZ-Rq-QH0"/>
+                                            <outlet property="routeLabel" destination="ubX-zJ-4HI" id="dnz-5c-ZAD"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="iiL-IM-c5I" id="yFp-Fj-PIr"/>
+                                    <outlet property="delegate" destination="iiL-IM-c5I" id="Bl8-TT-ggo"/>
+                                </connections>
+                            </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="cGV-A7-ToY">
+                                <rect key="frame" x="177.5" y="291.5" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estimated toll rates provided as a courtesy. You'll always pay the toll you see on actual road signs when you enter. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e23-89-8A2">
+                                <rect key="frame" x="0.0" y="520.5" width="375" height="33.5"/>
+                                <color key="backgroundColor" white="0.94623480900000001" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WHV-CI-O0e">
+                                <rect key="frame" x="16" y="5" width="343" height="29"/>
+                                <segments>
+                                    <segment title="Northbound"/>
+                                    <segment title="Southbound"/>
+                                </segments>
+                                <connections>
+                                    <action selector="indexChanged:" destination="iiL-IM-c5I" eventType="valueChanged" id="beT-rZ-VDl"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="WHV-CI-O0e" firstAttribute="top" secondItem="wvb-Oe-dcF" secondAttribute="top" constant="5" id="7IM-9I-TQq"/>
+                            <constraint firstItem="cGV-A7-ToY" firstAttribute="centerX" secondItem="wvb-Oe-dcF" secondAttribute="centerX" id="9dZ-jh-Aee"/>
+                            <constraint firstItem="WHV-CI-O0e" firstAttribute="leading" secondItem="wvb-Oe-dcF" secondAttribute="leading" constant="16" id="EKf-le-HQM"/>
+                            <constraint firstItem="cGV-A7-ToY" firstAttribute="centerY" secondItem="wvb-Oe-dcF" secondAttribute="centerY" id="Hca-Pw-ZDb"/>
+                            <constraint firstAttribute="trailing" secondItem="m1a-Ef-gNW" secondAttribute="trailing" id="Sx0-NA-Tch"/>
+                            <constraint firstItem="e23-89-8A2" firstAttribute="top" secondItem="m1a-Ef-gNW" secondAttribute="bottom" id="WJR-0a-sAT"/>
+                            <constraint firstAttribute="trailing" secondItem="WHV-CI-O0e" secondAttribute="trailing" constant="16" id="ZBg-A5-hlD"/>
+                            <constraint firstItem="m1a-Ef-gNW" firstAttribute="top" secondItem="WHV-CI-O0e" secondAttribute="bottom" constant="7" id="fss-Pv-PUv"/>
+                            <constraint firstItem="e23-89-8A2" firstAttribute="leading" secondItem="wvb-Oe-dcF" secondAttribute="leading" id="nyt-2g-6Ih"/>
+                            <constraint firstAttribute="trailing" secondItem="e23-89-8A2" secondAttribute="trailing" id="oeQ-zs-ing"/>
+                            <constraint firstItem="yhz-Lw-oDG" firstAttribute="top" secondItem="e23-89-8A2" secondAttribute="bottom" id="p5W-vL-Erj"/>
+                            <constraint firstItem="m1a-Ef-gNW" firstAttribute="leading" secondItem="wvb-Oe-dcF" secondAttribute="leading" id="vke-Qx-2Nr"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="I-405" image="icTabI405" id="kGf-A9-aIA"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="cGV-A7-ToY" id="ydk-8f-Pb2"/>
+                        <outlet property="directionSegmentControl" destination="WHV-CI-O0e" id="S6u-u4-6NF"/>
+                        <outlet property="tableView" destination="m1a-Ef-gNW" id="xfi-ym-wgy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bAw-P8-NNA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="401" y="1609"/>
         </scene>
     </scenes>
     <resources>
         <image name="icStarSmall" width="24" height="24"/>
+        <image name="icTabI405" width="39" height="32"/>
+        <image name="icTabSR16" width="32" height="32"/>
+        <image name="icTabSR167" width="32" height="32"/>
+        <image name="icTabSR520" width="32" height="32"/>
     </resources>
 </document>

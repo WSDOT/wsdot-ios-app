@@ -56,6 +56,9 @@
 		9A4BBAB02125C53500DE6F1B /* SimpleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4BBAAF2125C53500DE6F1B /* SimpleMapViewController.swift */; };
 		9A50179C1D258F2000B9C49E /* RoutesCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */; };
 		9A63788520E52D9D0079BFAA /* TollTripItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A63788420E52D9D0079BFAA /* TollTripItem.swift */; };
+		9A6A0029210105070005CC7F /* TollRatesTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6A0028210105070005CC7F /* TollRatesTabBarViewController.swift */; };
+		9A6A002B210237B20005CC7F /* TollTrip405View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A6A002A210237B20005CC7F /* TollTrip405View.xib */; };
+		9A6A002D210238350005CC7F /* TollTrip405View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6A002C210238350005CC7F /* TollTrip405View.swift */; };
 		9A6FBCC51D6B4C6500CDCE16 /* TravelerInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCC41D6B4C6500CDCE16 /* TravelerInfoViewController.swift */; };
 		9A6FBCCF1D6B520900CDCE16 /* RestAreaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCCE1D6B520900CDCE16 /* RestAreaItem.swift */; };
 		9A6FBCD21D6B541F00CDCE16 /* restareas.json in Resources */ = {isa = PBXBuildFile; fileRef = 9A6FBCD11D6B541F00CDCE16 /* restareas.json */; };
@@ -280,6 +283,9 @@
 		9A4BBAAF2125C53500DE6F1B /* SimpleMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMapViewController.swift; sourceTree = "<group>"; };
 		9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutesCustomCell.swift; sourceTree = "<group>"; };
 		9A63788420E52D9D0079BFAA /* TollTripItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TollTripItem.swift; sourceTree = "<group>"; };
+		9A6A0028210105070005CC7F /* TollRatesTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TollRatesTabBarViewController.swift; sourceTree = "<group>"; };
+		9A6A002A210237B20005CC7F /* TollTrip405View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TollTrip405View.xib; sourceTree = "<group>"; };
+		9A6A002C210238350005CC7F /* TollTrip405View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TollTrip405View.swift; sourceTree = "<group>"; };
 		9A6FBCC41D6B4C6500CDCE16 /* TravelerInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelerInfoViewController.swift; sourceTree = "<group>"; };
 		9A6FBCCE1D6B520900CDCE16 /* RestAreaItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAreaItem.swift; sourceTree = "<group>"; };
 		9A6FBCD11D6B541F00CDCE16 /* restareas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = restareas.json; sourceTree = "<group>"; };
@@ -564,6 +570,7 @@
 			isa = PBXGroup;
 			children = (
 				9A0616C91D66021B00126520 /* TollRatesViewController.swift */,
+				9A6A0028210105070005CC7F /* TollRatesTabBarViewController.swift */,
 				9A0616CB1D660BD500126520 /* SR520ViewController.swift */,
 				9A0616CD1D660CC800126520 /* SR16ViewController.swift */,
 				9A0616D11D660DC500126520 /* DynamicTollRatesViewController.swift */,
@@ -1243,6 +1250,8 @@
 				9A0719311D427310007BB4C5 /* CustomLabels */,
 				9A5017921D258EFF00B9C49E /* CustomCells */,
 				9AF474AF20E3E9BC00E7740C /* RouteView.swift */,
+				9A6A002C210238350005CC7F /* TollTrip405View.swift */,
+				9A6A002A210237B20005CC7F /* TollTrip405View.xib */,
 				9AF474B120E3F6A800E7740C /* RouteView.xib */,
 			);
 			name = CustomViews;
@@ -1673,6 +1682,7 @@
 				9AF474B220E3F6A800E7740C /* RouteView.xib in Resources */,
 				9A6FBD2F1D6E3E7D00CDCE16 /* MountainPasses.storyboard in Resources */,
 				9A6FBCE51D6BAC2E00CDCE16 /* TrafficMap.storyboard in Resources */,
+				9A6A002B210237B20005CC7F /* TollTrip405View.xib in Resources */,
 				9A93E0D61E707384004AB867 /* MyRoute.storyboard in Resources */,
 				9AEEDDB11D70B8A20032F5EC /* GoogleService-Info.plist in Resources */,
 				9AD32E071D23172C000AEC28 /* LaunchScreen.storyboard in Resources */,
@@ -1883,6 +1893,7 @@
 				9A6FBD0B1D6CBC3A00CDCE16 /* TravelTimeItem.swift in Sources */,
 				9A9808C01F1FA2AF0034DA05 /* TravelChartItem.swift in Sources */,
 				9A1F5FA71D47E27200DA5F99 /* SailingSpacesItem.swift in Sources */,
+				9A6A002D210238350005CC7F /* TollTrip405View.swift in Sources */,
 				9A06167A1D62285A00126520 /* VesselWatchViewController.swift in Sources */,
 				9A63788520E52D9D0079BFAA /* TollTripItem.swift in Sources */,
 				9A7BC0D41DA3F31B00EF760C /* GMUStaticCluster.m in Sources */,
@@ -1927,6 +1938,7 @@
 				9A0719331D42732A007BB4C5 /* INDLinkLabel.swift in Sources */,
 				9A6FBD371D6E413A00CDCE16 /* MountainPassTabBarViewController.swift in Sources */,
 				9AE6B77E209CF965001DE80F /* PassableSwitch.swift in Sources */,
+				9A6A0029210105070005CC7F /* TollRatesTabBarViewController.swift in Sources */,
 				9A8486F81D81E96A0026F1CF /* DepartureDaySelectionViewController.swift in Sources */,
 				9A50179C1D258F2000B9C49E /* RoutesCustomCell.swift in Sources */,
 				9AEEDDA61D6F3EC50032F5EC /* WeatherUtils.swift in Sources */,

@@ -25,9 +25,9 @@ class TollTripItem: Object {
     @objc dynamic var tripName: String = ""
     @objc dynamic var endLocationName: String = ""
     @objc dynamic var toll: Float = 0
+    @objc dynamic var endMilepost: Int = 0
     @objc dynamic var message: String = ""
     @objc dynamic var endLatitude: Double = 0.0
     @objc dynamic var endLongitude: Double = 0.0
     @objc dynamic var updatedAt: Date = Date()
-
 }

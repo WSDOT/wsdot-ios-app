@@ -24,6 +24,6 @@ class GroupRouteCell: UITableViewCell {
     @IBOutlet weak var routeLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
     
-    var dynamicRouteViews = [RouteView]()
+    var dynamicRouteViews = [UIView]()
 
 }

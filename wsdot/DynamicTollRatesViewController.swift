@@ -21,96 +21,27 @@ import Foundation
 import UIKit
 import SafariServices
 
-class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDataSource, UIPickerViewDelegate {
+class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     let cellIdentifier = "I405TollRatesCell"
 
     var stateRoute: String?
-    var tollRates = [TollRateSignItem]()
-
-    var directions = ["Northbound", "Southbound"]
-    var selectedDirectionIndex = 0
+    
+    var displayedTollRates = [TollRateSignItem]()
+    var northboundTollRates = [TollRateSignItem]()
+    var southboundTollRates = [TollRateSignItem]()
 
     let refreshControl = UIRefreshControl()
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var directionButton: UIButton!
-    
-    var blackoutWindow = UIView()
-    
-    private lazy var view_PickerContainer: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.addSubview(self.toolbarPicker)
-        view.addSubview(self.picker)
-        
-        view.backgroundColor = UIColor.white
-        return view
-    }()
-
-    private lazy var picker: UIPickerView = {
-        let picker = UIPickerView()
-        picker.translatesAutoresizingMaskIntoConstraints = false
-        picker.backgroundColor = Colors.paleGrey
-        picker.dataSource = self
-        picker.delegate = self
-        return picker
-    }()
-
-    private lazy var toolbarPicker: UIToolbar = {
-        let toolbar = UIToolbar()
-        toolbar.translatesAutoresizingMaskIntoConstraints = false
-        toolbar.barStyle = .default
-        toolbar.barTintColor = ThemeManager.currentTheme().mainColor
-        
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.doneAction(_:)))
-        let flexButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        doneButton.tintColor = UIColor.white
-
-        toolbar.setItems([flexButton, doneButton], animated: false)
-        
-        return toolbar
-    }()
+    @IBOutlet weak var directionSegmentControl: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // refresh controller
         refreshControl.addTarget(self, action: #selector(BorderWaitsViewController.refreshAction(_:)), for: .valueChanged)
-        
-        directionButton.layer.cornerRadius = 8.0
-        directionButton.setTitle(directions[selectedDirectionIndex], for: UIControlState())
-        directionButton.accessibilityHint = "double tap to change travel direction"
-        
-        // self.view.addSubview(view_PickerContainer)
-        self.view.addSubview(view_PickerContainer)
-        
-        // Add picker container constraints
-        view_PickerContainer.heightAnchor.constraint(equalTo: picker.heightAnchor, multiplier: 1, constant: 40).isActive = true
-        view_PickerContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        view_PickerContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        view_PickerContainer.topAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        
-        // Add picker constraints
-        picker.heightAnchor.constraint(equalToConstant: picker.bounds.height).isActive = true
-        picker.widthAnchor.constraint(equalTo: view_PickerContainer.widthAnchor).isActive = true
-        picker.bottomAnchor.constraint(equalTo: view_PickerContainer.bottomAnchor).isActive = true
- 
-        toolbarPicker.leadingAnchor.constraint(equalTo: view_PickerContainer.leadingAnchor).isActive = true
-        toolbarPicker.trailingAnchor.constraint(equalTo: view_PickerContainer.trailingAnchor).isActive = true
-        toolbarPicker.topAnchor.constraint(equalTo: view_PickerContainer.topAnchor).isActive = true
-        picker.topAnchor.constraint(equalTo: toolbarPicker.bottomAnchor, constant: 0).isActive = true
-        
-/*
-        // set up black out window for when picker is visable
-        let window = UIApplication.shared.keyWindow!
-        blackoutWindow = UIView(frame: CGRect(x: window.frame.origin.x, y: window.frame.origin.y - self.view_PickerContainer.frame.height, width: window.frame.width, height: window.frame.height))
-        blackoutWindow.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        blackoutWindow.isHidden = true
-        window.addSubview(blackoutWindow);
-*/
  
         tableView.addSubview(refreshControl)
         activityIndicator.startAnimating()
@@ -129,7 +60,16 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
                     DispatchQueue.main.async { [weak self] in
                         if let selfValue = self {
                             if let route = selfValue.stateRoute {
-                                selfValue.tollRates = TollRatesStore.getTollRatesByRoute(route: route)
+                            
+                                selfValue.northboundTollRates = TollRatesStore.getNorthboundTollRatesByRoute(route: route)
+                                selfValue.southboundTollRates = TollRatesStore.getSouthboundTollRatesByRoute(route: route)
+                                
+                                if (selfValue.directionSegmentControl.selectedSegmentIndex == 0){
+                                    selfValue.displayedTollRates = selfValue.northboundTollRates
+                                } else {
+                                    selfValue.displayedTollRates = selfValue.southboundTollRates
+                                }
+                            
                             }
                             selfValue.tableView.reloadData()
                             selfValue.activityIndicator.stopAnimating()
@@ -149,54 +89,14 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
             })
         }
     }
-    
-    @objc func doneAction(_ button: UIButton) {
-        directionButton.isEnabled = true
 
-        // Add picker container constraints
-        UIView.animate(withDuration: 0.3, animations: {
-            self.view_PickerContainer.frame.origin.y += self.view_PickerContainer.frame.height
-        }, completion: { done in
-            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, self.directionButton)
-            self.blackoutWindow.isHidden = true
-        })
-        
-    }
-    
-    @IBAction func pickDirection(_ sender: UIButton) {
-
-        directionButton.isEnabled = false
-
-        // Add picker container constraints
-        UIView.animate(withDuration: 0.3, animations: {
-            self.view_PickerContainer.frame.origin.y -= self.view_PickerContainer.frame.height
-        }, completion: { done in
-        
-            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, self.picker)
-            self.blackoutWindow.isHidden = false
-        })
-    }
-    
-    // MARK -- Picker delegate & data source
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return directions.count
-    }
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return directions[row]
-    }
-    
     // MARK -- TableView delegate
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tollRates.count
+        return displayedTollRates.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -209,28 +109,9 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
         }
         cell.dynamicRouteViews.removeAll()
         
-        let tollSign = tollRates[indexPath.row]
-        
-        var travelDirection = ""
-        
-        switch (tollSign.travelDirection.lowercased()) {
-            case "n":
-                travelDirection = "Northbound"
-            break
-            case "s":
-                travelDirection = "Southbound"
-            break
-            case "e":
-                travelDirection = "Eastbound"
-            break
-            case "w":
-                travelDirection = "Westbound"
-            break
-            default:
-                travelDirection = ""
-        }
-        
-        cell.routeLabel.text = "\(tollSign.startLocationName) \(travelDirection) Entrance"
+        let tollSign = displayedTollRates[indexPath.row]
+
+        cell.routeLabel.text = "\(tollSign.locationTitle)"
         
         // set up favorite button
         cell.favoriteButton.setImage(tollSign.selected ? UIImage(named: "icStarSmallFilled") : UIImage(named: "icStarSmall"), for: .normal)
@@ -241,7 +122,56 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
         
         var lastRouteView: RouteView? = nil
         
-        for route in tollSign.trips {
+        if tollSign.stateRoute == 405 {
+        
+            var lastTripView: TollTrip405View? = nil
+        
+            for trip in tollSign.trips {
+        
+                let tripView = TollTrip405View.instantiateFromXib()
+               
+                tripView.translatesAutoresizingMaskIntoConstraints = false
+                tripView.contentView.translatesAutoresizingMaskIntoConstraints = false
+                tripView.topLabel.translatesAutoresizingMaskIntoConstraints = false
+                tripView.bottomLabel.translatesAutoresizingMaskIntoConstraints = false
+                tripView.actionButton.translatesAutoresizingMaskIntoConstraints = false
+                tripView.valueLabel.translatesAutoresizingMaskIntoConstraints = false
+                
+                tripView.topLabel.text = "to \(trip.endLocationName)"
+        
+                tripView.bottomLabel.text = TimeUtils.timeAgoSinceDate(date: trip.updatedAt, numericDates: true)
+                
+                if (trip.message == ""){
+                    tripView.valueLabel.text = "$" + String(format: "%.2f", locale: Locale.current, arguments: [trip.toll])
+                } else {
+                    tripView.valueLabel.text = trip.message
+                }
+            
+                cell.contentView.addSubview(tripView)
+   
+                let leadingSpaceConstraintForRouteView = NSLayoutConstraint(item: tripView.contentView, attribute: .leading, relatedBy: .equal, toItem: cell.routeLabel, attribute: .leading, multiplier: 1, constant: 0);
+                cell.contentView.addConstraint(leadingSpaceConstraintForRouteView)
+            
+                let trailingSpaceConstraintForRouteView = NSLayoutConstraint(item: tripView.contentView, attribute: .trailing, relatedBy: .equal, toItem: cell.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8);
+                cell.contentView.addConstraint(trailingSpaceConstraintForRouteView)
+ 
+                let topSpaceConstraintForRouteView = NSLayoutConstraint(item: tripView.contentView, attribute: .top, relatedBy: .equal, toItem: (lastTripView == nil ? cell.routeLabel : lastTripView!.bottomLabel), attribute: .bottom, multiplier: 1, constant: (lastTripView == nil ? 0 : 8));
+                cell.contentView.addConstraint(topSpaceConstraintForRouteView)
+              
+                if tollSign.trips.index(of: trip) == tollSign.trips.index(of: tollSign.trips.last!) {
+                    let bottomSpaceConstraint = NSLayoutConstraint(item: tripView.bottomLabel, attribute: .bottom, relatedBy: .equal, toItem: cell.contentView, attribute: .bottom, multiplier: 1, constant: -16)
+                    cell.contentView.addConstraint(bottomSpaceConstraint)
+                    tripView.line.isHidden = true
+                }
+            
+                cell.dynamicRouteViews.append(tripView)
+                lastTripView = tripView
+        
+            }
+        
+        } else if tollSign.stateRoute == 167 {
+            
+            for route in tollSign.trips {
         
             let routeView = RouteView.instantiateFromXib()
             
@@ -282,19 +212,38 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
             
             cell.dynamicRouteViews.append(routeView)
             lastRouteView = routeView
-            
+        
         }
+        
+        }
+        
+
 
         cell.sizeToFit()
-        
+    
         return cell
-        
+    
+    }
+
+    @IBAction func indexChanged(_ sender: UISegmentedControl) {
+        switch (sender.selectedSegmentIndex){
+        case 0:
+            displayedTollRates = northboundTollRates
+            tableView.reloadData()
+            break
+        case 1:
+            displayedTollRates = southboundTollRates
+            tableView.reloadData()
+            break
+        default:
+            break
+        }
     }
 
     // MARK: Favorite action
     @objc func favoriteAction(_ sender: UIButton) {
         let index = sender.tag
-        let tollSign = self.tollRates[index]
+        let tollSign = self.displayedTollRates[index]
         
         if (tollSign.selected){
             TollRatesStore.updateFavorite(tollSign, newValue: false)

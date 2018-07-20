@@ -52,14 +52,16 @@ class TollRatesStore {
     
     static func getSouthboundTollRatesByRoute(route: String) -> [TollRateSignItem]{
         let realm = try! Realm()
-        let tollSignItems = realm.objects(TollRateSignItem.self).filter("delete == false").filter("stateRoute == \(route)").filter("travelDirection == S")
-        return Array(tollSignItems.sorted(by: {$0.startLocationName < $1.startLocationName}).sorted(by: { $0.travelDirection < $1.travelDirection }))
+
+        let tollSignItems = realm.objects(TollRateSignItem.self).filter("delete == false").filter("stateRoute == \(route)").filter("travelDirection == 'S'")
+        return Array(tollSignItems.sorted(by: { $0.milepost > $1.milepost }))
+        
     }
     
     static func getNorthboundTollRatesByRoute(route: String) -> [TollRateSignItem]{
         let realm = try! Realm()
-        let tollSignItems = realm.objects(TollRateSignItem.self).filter("delete == false").filter("stateRoute == \(route)").filter("travelDirection == N")
-        return Array(tollSignItems.sorted(by: {$0.startLocationName < $1.startLocationName}).sorted(by: { $0.travelDirection < $1.travelDirection }))
+        let tollSignItems = realm.objects(TollRateSignItem.self).filter("delete == false").filter("stateRoute == \(route)").filter("travelDirection == 'N'")
+        return Array(tollSignItems.sorted(by: { $0.milepost < $1.milepost }))
     }
     
     static func findFavoriteTolls() -> [TollRateSignItem]{
@@ -153,34 +155,106 @@ class TollRatesStore {
         
         for (_,subJson):(String, JSON) in json {
             
-            // get this trip item
-            let tripItem = TollTripItem()
+            if !shouldSkipTrip(tripJson: subJson) {
             
-            tripItem.tripName = subJson["TripName"].stringValue
-            tripItem.endLocationName = subJson["EndLocationName"].stringValue
-            tripItem.toll = subJson["CurrentToll"].floatValue / 100
-            tripItem.message = subJson["CurrentMessage"].stringValue
-            tripItem.endLatitude = subJson["EndLatitude"].doubleValue
-            tripItem.endLongitude = subJson["EndLongitude"].doubleValue
+                // get this trip item
+                let tripItem = TollTripItem()
             
-            // check if we already have a sign item for this start location
-            let signItems = tollRates.filter { $0.compoundKey == (subJson["StartLocationName"].stringValue + "-" + subJson["TravelDirection"].stringValue) }
-            if !signItems.isEmpty {
-                signItems[0].trips.append(tripItem)
-            } else {
-                let tollRate = TollRateSignItem()
-                tollRate.setCompoundLocationName(name: subJson["StartLocationName"].stringValue)
-                tollRate.setCompoundTravelDirection(direction: subJson["TravelDirection"].stringValue)
-                tollRate.stateRoute = subJson["StateRoute"].intValue
-                tollRate.startLatitude = subJson["StartLatitude"].doubleValue
-                tollRate.startLongitude = subJson["StartLongitude"].doubleValue
-                tollRate.trips.append(tripItem)
-                tollRates.append(tollRate)
+                tripItem.tripName = subJson["TripName"].stringValue
+                tripItem.endLocationName = subJson["EndLocationName"].stringValue
+                tripItem.endMilepost = subJson["EndMilepost"].intValue
+                tripItem.toll = subJson["CurrentToll"].floatValue / 100
+                tripItem.message = subJson["CurrentMessage"].stringValue
+                tripItem.endLatitude = subJson["EndLatitude"].doubleValue
+                tripItem.endLongitude = subJson["EndLongitude"].doubleValue
+            
+                // check if we already have a sign item for this start location
+                let signItems = tollRates.filter { $0.compoundKey == (subJson["StartLocationName"].stringValue + "-" + subJson["TravelDirection"].stringValue) }
+                if !signItems.isEmpty {
+                    signItems[0].trips.append(tripItem)
+                } else {
+                    let tollRate = TollRateSignItem()
+                
+                    tollRate.setCompoundLocationName(name: subJson["StartLocationName"].stringValue)
+                    tollRate.setCompoundTravelDirection(direction: subJson["TravelDirection"].stringValue)
+                
+                    tollRate.locationTitle = getLocationTitle(location: subJson["StartLocationName"].stringValue, direction: subJson["TravelDirection"].stringValue)
+     
+                    tollRate.milepost = subJson["StartMilepost"].intValue
+                    tollRate.stateRoute = subJson["StateRoute"].intValue
+                    tollRate.startLatitude = subJson["StartLatitude"].doubleValue
+                    tollRate.startLongitude = subJson["StartLongitude"].doubleValue
+                    tollRate.trips.append(tripItem)
+                    tollRates.append(tollRate)
+                    
+                }
             }
         }
+        
+        
+        
         return tollRates.sorted(by: { $0.startLocationName < $1.startLocationName }).sorted(by: { $0.travelDirection < $1.travelDirection })
     }
+    
+    static func shouldSkipTrip(tripJson: JSON) -> Bool {
+    
+        if tripJson["StartLocationName"].stringValue == "NE 6th"
+            && tripJson["TravelDirection"].stringValue == "N" {
+            return true
+        }
 
+        if tripJson["StartLocationName"].stringValue == "216th ST SE"
+                && tripJson["TravelDirection"].stringValue == "S" {
+            return true;
+        }
+
+        if tripJson["StartLocationName"].stringValue == "NE 145th"
+                && tripJson["TravelDirection"].stringValue == "S" {
+            return true;
+        }
+
+        return false;
+    }
+
+    static func getLocationTitle(location: String, direction: String) -> String {
+    
+        var title = ""
+    
+        // Southbound name changes
+        if direction == "S" {
+            if location == "231st SE" {
+                title = "SR 527"
+            }
+
+            if location == "NE 53rd" {
+                title = "NE 70th Place"
+            }
+        }
+
+        // Northbound name changes
+        if direction == "N" {
+            if location == "NE 97th" {
+                title = "NE 85th St"
+            }
+
+            if location == "231st SE" {
+                title = "SR 522"
+            }
+
+            if location == "216th SE" {
+                title = "SR 527"
+            }
+        }
+
+        if location == "SR 524" || location == "NE 4th" {
+            let city = (direction == "N" ? "Bellevue" : "Lynnwood")
+            title = "\(city) - Start of toll lanes"
+        } else {
+            title = "Lane entrance near \(location)"
+        }
+    
+        return title
+    }
 
     static func getSR520data() -> [ThreeColItem] {
         var data = [ThreeColItem]()
