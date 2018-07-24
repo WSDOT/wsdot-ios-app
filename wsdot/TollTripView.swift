@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TollTrip405View: UIView {
+class TollTripView: UIView {
     
     private let negativeLineRightPadding: CGFloat = -24.0
     
@@ -19,8 +19,8 @@ class TollTrip405View: UIView {
     @IBOutlet weak var actionButton: TripMapButton!
     @IBOutlet weak var line: UIView!
 
-    static func instantiateFromXib() -> TollTrip405View {
-        return Bundle.main.loadNibNamed("TollTrip405View", owner: nil, options: nil)![0] as! TollTrip405View
+    static func instantiateFromXib() -> TollTripView {
+        return Bundle.main.loadNibNamed("TollTripView", owner: nil, options: nil)![0] as! TollTripView
     }
 }
 

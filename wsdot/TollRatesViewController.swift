@@ -2,7 +2,7 @@
 //  TollRatesViewController.swift
 //  WSDOT
 //
-//  Copyright (c) 2016 Washington State Department of Transportation
+//  Copyright (c) 2018 Washington State Department of Transportation
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -28,10 +28,9 @@ class TollRatesViewController: UIViewController{
 
     let goodToGoUrlString = "https://mygoodtogo.com/olcsc/"
 
-    // Remove and add hairline for nav bar
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView(screenName: "/Toll Rates/SR520")
+        GoogleAnalytics.screenView(screenName: "/Toll Rates/SR 520")
     }
     
     @IBAction func MyGoodToGoLinkTap(_ sender: UIBarButtonItem) {

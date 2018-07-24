@@ -29,14 +29,14 @@ class TollTripDetailsViewController: UIViewController {
     
     var endLatitude = 0.0
     var endLongitude = 0.0
-    
-    
 
     @IBOutlet weak var mapImageView: UIImageView!
     @IBOutlet weak var infoLinkLabel: INDLinkLabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        GoogleAnalytics.screenView(screenName: "/Toll Rates/Toll Trip Details")
         
         let htmlStyleString = "<style>body{font-family: '\(infoLinkLabel.font.fontName)'; font-size:\(infoLinkLabel.font.pointSize)px;}</style>"
         
@@ -59,8 +59,6 @@ class TollTripDetailsViewController: UIViewController {
 
         let distanceInMiles = Double(LatLonUtils.haversine(startLatitude, lonA: startLongitude, latB: endLatitude, lonB: endLongitude)) * 0.000189394
         var zoom = 0
-
-        print("distance: \(distanceInMiles)")
         
         switch distanceInMiles {
         case ..<4:
@@ -74,8 +72,6 @@ class TollTripDetailsViewController: UIViewController {
         default:
             fatalError()
         }
-        
-        print("zoom: \(zoom)")
 
         let staticMapUrl = "http://maps.googleapis.com/maps/api/staticmap?center="
             + String(center.latitude) + "," + String(center.longitude)

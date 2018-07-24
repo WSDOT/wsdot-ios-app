@@ -2,7 +2,7 @@
 //  I405ViewController.swift
 //  WSDOT
 //
-//  Copyright (c) 2016 Washington State Department of Transportation
+//  Copyright (c) 2018 Washington State Department of Transportation
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
+
 import Foundation
 import UIKit
 import SafariServices
@@ -146,11 +147,11 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
         cell.favoriteButton.tag = indexPath.row
         cell.favoriteButton.addTarget(self, action: #selector(favoriteAction(_:)), for: .touchUpInside)
         
-        var lastTripView: TollTrip405View? = nil
+        var lastTripView: TollTripView? = nil
         
         for trip in tollSign.trips {
         
-            let tripView = TollTrip405View.instantiateFromXib()
+            let tripView = TollTripView.instantiateFromXib()
             
             tripView.translatesAutoresizingMaskIntoConstraints = false
             tripView.contentView.translatesAutoresizingMaskIntoConstraints = false
