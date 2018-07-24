@@ -30,7 +30,6 @@ class TollRateSignItem: Object {
     
     @objc dynamic var travelDirection: String = ""
     public func setCompoundTravelDirection(direction: String) {
-        print(direction)
         self.travelDirection = direction
         compoundKey = compoundKeyValue()
     }
@@ -53,7 +52,7 @@ class TollRateSignItem: Object {
     @objc dynamic var startLatitude: Double = 0.0
     @objc dynamic var startLongitude: Double = 0.0
     
-    let trips = List<TollTripItem>()
+    var trips = List<TollTripItem>()
 
     @objc dynamic var delete: Bool = false
 

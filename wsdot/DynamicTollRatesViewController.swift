@@ -90,6 +90,30 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
         }
     }
 
+    @IBAction func infoLinkAction(_ sender: UIButton) {
+        if stateRoute == "405" {
+            GoogleAnalytics.screenView(screenName: "/Toll Rates/MyGoodToGo.com")
+            let svc = SFSafariViewController(url: URL(string: "https://www.wsdot.wa.gov/Tolling/405/rates.htm")!, entersReaderIfAvailable: true)
+            if #available(iOS 10.0, *) {
+                svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor
+                svc.preferredBarTintColor = ThemeManager.currentTheme().mainColor
+            } else {
+                svc.view.tintColor = ThemeManager.currentTheme().mainColor
+            }
+            self.present(svc, animated: true, completion: nil)
+        } else if stateRoute == "167" {
+            GoogleAnalytics.screenView(screenName: "/Toll Rates/MyGoodToGo.com")
+            let svc = SFSafariViewController(url: URL(string: "https://www.wsdot.wa.gov/Tolling/SR167HotLanes/HOTtollrates.htm")!, entersReaderIfAvailable: true)
+            if #available(iOS 10.0, *) {
+                svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor
+                svc.preferredBarTintColor = ThemeManager.currentTheme().mainColor
+            } else {
+                svc.view.tintColor = ThemeManager.currentTheme().mainColor
+            }
+            self.present(svc, animated: true, completion: nil)
+        }
+    }
+
     // MARK -- TableView delegate
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
@@ -107,6 +131,7 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
         for route in cell.dynamicRouteViews {
             route.removeFromSuperview()
         }
+        
         cell.dynamicRouteViews.removeAll()
         
         let tollSign = displayedTollRates[indexPath.row]
@@ -120,10 +145,7 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
         cell.favoriteButton.tag = indexPath.row
         cell.favoriteButton.addTarget(self, action: #selector(favoriteAction(_:)), for: .touchUpInside)
         
-        var lastRouteView: RouteView? = nil
-        
-        if tollSign.stateRoute == 405 {
-        
+
             var lastTripView: TollTrip405View? = nil
         
             for trip in tollSign.trips {
@@ -137,7 +159,15 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
                 tripView.actionButton.translatesAutoresizingMaskIntoConstraints = false
                 tripView.valueLabel.translatesAutoresizingMaskIntoConstraints = false
                 
-                tripView.topLabel.text = "to \(trip.endLocationName)"
+                
+                if tollSign.stateRoute == 405 {
+                    tripView.topLabel.text = "to \(trip.endLocationName)"
+                    tripView.topLabel.font = tripView.topLabel.font.withSize(17)
+                } else {
+                    tripView.topLabel.text = "Carpools and motorcycles free"
+                    tripView.topLabel.font = tripView.topLabel.font.withSize(14)
+                }
+                
         
                 tripView.bottomLabel.text = TimeUtils.timeAgoSinceDate(date: trip.updatedAt, numericDates: true)
                 
@@ -167,53 +197,7 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
                 cell.dynamicRouteViews.append(tripView)
                 lastTripView = tripView
         
-            }
-        
-        } else if tollSign.stateRoute == 167 {
-            
-            for route in tollSign.trips {
-        
-            let routeView = RouteView.instantiateFromXib()
-            
-            routeView.translatesAutoresizingMaskIntoConstraints = false
-            routeView.contentView.translatesAutoresizingMaskIntoConstraints = false
-            routeView.titleLabel.translatesAutoresizingMaskIntoConstraints = false
-            routeView.subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
-            routeView.updatedLabel.translatesAutoresizingMaskIntoConstraints = false
-            routeView.valueLabel.translatesAutoresizingMaskIntoConstraints = false
-            
-            routeView.titleLabel.text = "\(route.endLocationName) Exit"
-            
-            routeView.subtitleLabel.text = route.message
-            
-            routeView.updatedLabel.text = TimeUtils.timeAgoSinceDate(date: route.updatedAt, numericDates: true)
-            
-            // Since messages are displayed in place of tolls, if we have a message don't show the toll
-            if (route.message == ""){
-                routeView.valueLabel.text = "$" + String(format: "%.2f", locale: Locale.current, arguments: [route.toll])
-            }
-            
-            cell.contentView.addSubview(routeView)
-            
-            let leadingSpaceConstraintForRouteView = NSLayoutConstraint(item: routeView.contentView, attribute: .leading, relatedBy: .equal, toItem: cell.routeLabel, attribute: .leading, multiplier: 1, constant: 0);
-            cell.contentView.addConstraint(leadingSpaceConstraintForRouteView)
-            
-            let trailingSpaceConstraintForRouteView = NSLayoutConstraint(item: routeView.contentView, attribute: .trailing, relatedBy: .equal, toItem: cell.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8);
-            cell.contentView.addConstraint(trailingSpaceConstraintForRouteView)
-            
-            let topSpaceConstraintForRouteView = NSLayoutConstraint(item: routeView.contentView, attribute: .top, relatedBy: .equal, toItem: (lastRouteView == nil ? cell.routeLabel : lastRouteView!.updatedLabel), attribute: .bottom, multiplier: 1, constant: 8);
-            cell.contentView.addConstraint(topSpaceConstraintForRouteView)
-       
-            if tollSign.trips.index(of: route) == tollSign.trips.index(of: tollSign.trips.last!) {
-                let bottomSpaceConstraint = NSLayoutConstraint(item: routeView.updatedLabel, attribute: .bottom, relatedBy: .equal, toItem: cell.contentView, attribute: .bottom, multiplier: 1, constant: -16)
-                cell.contentView.addConstraint(bottomSpaceConstraint)
-                routeView.line.isHidden = true
-            }
-            
-            cell.dynamicRouteViews.append(routeView)
-            lastRouteView = routeView
-        
-        }
+           
         
         }
         

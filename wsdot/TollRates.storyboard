@@ -287,7 +287,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EpJ-DQ-EwE">
-                                <rect key="frame" x="0.0" y="40" width="375" height="480"/>
+                                <rect key="frame" x="0.0" y="78" width="375" height="442.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="I405TollRatesCell" rowHeight="98" id="mUn-Sj-h5B" customClass="GroupRouteCell" customModule="WSDOT" customModuleProvider="target">
@@ -334,7 +334,7 @@
                                 </connections>
                             </tableView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="g71-Ds-4pA">
-                                <rect key="frame" x="177.5" y="291.5" width="20" height="20"/>
+                                <rect key="frame" x="178" y="292" width="20" height="20"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estimated toll rates provided as a courtesy. You'll always pay the toll you see on actual road signs when you enter. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="luD-0C-pPF">
                                 <rect key="frame" x="0.0" y="520.5" width="375" height="33.5"/>
@@ -344,7 +344,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="nLK-EX-gZv">
-                                <rect key="frame" x="16" y="5" width="343" height="29"/>
+                                <rect key="frame" x="16" y="42" width="343" height="29"/>
                                 <segments>
                                     <segment title="Northbound"/>
                                     <segment title="Southbound"/>
@@ -353,17 +353,27 @@
                                     <action selector="indexChanged:" destination="5vQ-oe-eKM" eventType="valueChanged" id="O8h-Tl-sxX"/>
                                 </connections>
                             </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWF-OU-htd">
+                                <rect key="frame" x="16" y="4" width="343" height="30"/>
+                                <state key="normal" title="Learn about tolling on SR 167"/>
+                                <connections>
+                                    <action selector="infoLinkAction:" destination="5vQ-oe-eKM" eventType="touchUpInside" id="zK0-fx-XXl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="EpJ-DQ-EwE" firstAttribute="top" secondItem="nLK-EX-gZv" secondAttribute="bottom" constant="7" id="1tW-9H-VEy"/>
+                            <constraint firstItem="EpJ-DQ-EwE" firstAttribute="top" secondItem="nLK-EX-gZv" secondAttribute="bottom" constant="8" id="1tW-9H-VEy"/>
                             <constraint firstItem="g71-Ds-4pA" firstAttribute="centerY" secondItem="IWg-co-XQz" secondAttribute="centerY" id="2f2-bf-Xpu"/>
+                            <constraint firstItem="cWF-OU-htd" firstAttribute="top" secondItem="IWg-co-XQz" secondAttribute="top" constant="4" id="5xA-bl-SHA"/>
                             <constraint firstItem="nLK-EX-gZv" firstAttribute="leading" secondItem="IWg-co-XQz" secondAttribute="leading" constant="16" id="Ain-s2-FJv"/>
                             <constraint firstAttribute="trailing" secondItem="nLK-EX-gZv" secondAttribute="trailing" constant="16" id="Bdo-aN-pMQ"/>
                             <constraint firstItem="luD-0C-pPF" firstAttribute="leading" secondItem="IWg-co-XQz" secondAttribute="leading" id="Cej-1l-1dx"/>
+                            <constraint firstItem="cWF-OU-htd" firstAttribute="trailing" secondItem="nLK-EX-gZv" secondAttribute="trailing" id="HaV-Yo-AUI"/>
                             <constraint firstAttribute="trailing" secondItem="luD-0C-pPF" secondAttribute="trailing" id="I86-9u-4Ld"/>
-                            <constraint firstItem="nLK-EX-gZv" firstAttribute="top" secondItem="IWg-co-XQz" secondAttribute="top" constant="5" id="Vd8-TZ-MVn"/>
+                            <constraint firstItem="nLK-EX-gZv" firstAttribute="top" secondItem="cWF-OU-htd" secondAttribute="bottom" constant="8" symbolic="YES" id="Ujx-u8-gMX"/>
                             <constraint firstItem="EpJ-DQ-EwE" firstAttribute="leading" secondItem="IWg-co-XQz" secondAttribute="leading" id="XWR-ec-cvH"/>
+                            <constraint firstItem="cWF-OU-htd" firstAttribute="leading" secondItem="nLK-EX-gZv" secondAttribute="leading" id="Xka-9P-N2f"/>
                             <constraint firstAttribute="trailing" secondItem="EpJ-DQ-EwE" secondAttribute="trailing" id="dp1-MP-Zyj"/>
                             <constraint firstItem="luD-0C-pPF" firstAttribute="top" secondItem="EpJ-DQ-EwE" secondAttribute="bottom" id="i3i-fv-SkV"/>
                             <constraint firstItem="g71-Ds-4pA" firstAttribute="centerX" secondItem="IWg-co-XQz" secondAttribute="centerX" id="lIH-4u-Bka"/>
@@ -379,7 +389,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jwB-OF-E99" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1321" y="1609"/>
+            <point key="canvasLocation" x="1279" y="1609"/>
         </scene>
         <!--I-405-->
         <scene sceneID="O0p-iq-jhF">
@@ -394,7 +404,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="m1a-Ef-gNW">
-                                <rect key="frame" x="0.0" y="40" width="375" height="480"/>
+                                <rect key="frame" x="0.0" y="78" width="375" height="442.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="I405TollRatesCell" rowHeight="98" id="6u9-pz-Cmm" customClass="GroupRouteCell" customModule="WSDOT" customModuleProvider="target">
@@ -441,7 +451,7 @@
                                 </connections>
                             </tableView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="cGV-A7-ToY">
-                                <rect key="frame" x="177.5" y="291.5" width="20" height="20"/>
+                                <rect key="frame" x="178" y="292" width="20" height="20"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estimated toll rates provided as a courtesy. You'll always pay the toll you see on actual road signs when you enter. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e23-89-8A2">
                                 <rect key="frame" x="0.0" y="520.5" width="375" height="33.5"/>
@@ -451,7 +461,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WHV-CI-O0e">
-                                <rect key="frame" x="16" y="5" width="343" height="29"/>
+                                <rect key="frame" x="16" y="42" width="343" height="29"/>
                                 <segments>
                                     <segment title="Northbound"/>
                                     <segment title="Southbound"/>
@@ -460,17 +470,27 @@
                                     <action selector="indexChanged:" destination="iiL-IM-c5I" eventType="valueChanged" id="beT-rZ-VDl"/>
                                 </connections>
                             </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fkd-79-b6Y">
+                                <rect key="frame" x="16" y="4" width="343" height="30"/>
+                                <state key="normal" title="Learn about tolling on I-405"/>
+                                <connections>
+                                    <action selector="infoLinkAction:" destination="iiL-IM-c5I" eventType="touchUpInside" id="4He-1P-g4w"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="WHV-CI-O0e" firstAttribute="top" secondItem="wvb-Oe-dcF" secondAttribute="top" constant="5" id="7IM-9I-TQq"/>
                             <constraint firstItem="cGV-A7-ToY" firstAttribute="centerX" secondItem="wvb-Oe-dcF" secondAttribute="centerX" id="9dZ-jh-Aee"/>
+                            <constraint firstItem="fkd-79-b6Y" firstAttribute="leading" secondItem="WHV-CI-O0e" secondAttribute="leading" id="AJ0-hl-PXk"/>
+                            <constraint firstItem="WHV-CI-O0e" firstAttribute="top" secondItem="fkd-79-b6Y" secondAttribute="bottom" constant="8" symbolic="YES" id="BF5-SY-qdy"/>
+                            <constraint firstItem="fkd-79-b6Y" firstAttribute="trailing" secondItem="WHV-CI-O0e" secondAttribute="trailing" id="CdU-ar-hU2"/>
                             <constraint firstItem="WHV-CI-O0e" firstAttribute="leading" secondItem="wvb-Oe-dcF" secondAttribute="leading" constant="16" id="EKf-le-HQM"/>
                             <constraint firstItem="cGV-A7-ToY" firstAttribute="centerY" secondItem="wvb-Oe-dcF" secondAttribute="centerY" id="Hca-Pw-ZDb"/>
                             <constraint firstAttribute="trailing" secondItem="m1a-Ef-gNW" secondAttribute="trailing" id="Sx0-NA-Tch"/>
                             <constraint firstItem="e23-89-8A2" firstAttribute="top" secondItem="m1a-Ef-gNW" secondAttribute="bottom" id="WJR-0a-sAT"/>
                             <constraint firstAttribute="trailing" secondItem="WHV-CI-O0e" secondAttribute="trailing" constant="16" id="ZBg-A5-hlD"/>
-                            <constraint firstItem="m1a-Ef-gNW" firstAttribute="top" secondItem="WHV-CI-O0e" secondAttribute="bottom" constant="7" id="fss-Pv-PUv"/>
+                            <constraint firstItem="m1a-Ef-gNW" firstAttribute="top" secondItem="WHV-CI-O0e" secondAttribute="bottom" constant="8" id="fss-Pv-PUv"/>
+                            <constraint firstItem="fkd-79-b6Y" firstAttribute="top" secondItem="wvb-Oe-dcF" secondAttribute="top" constant="4" id="luw-cY-TI6"/>
                             <constraint firstItem="e23-89-8A2" firstAttribute="leading" secondItem="wvb-Oe-dcF" secondAttribute="leading" id="nyt-2g-6Ih"/>
                             <constraint firstAttribute="trailing" secondItem="e23-89-8A2" secondAttribute="trailing" id="oeQ-zs-ing"/>
                             <constraint firstItem="yhz-Lw-oDG" firstAttribute="top" secondItem="e23-89-8A2" secondAttribute="bottom" id="p5W-vL-Erj"/>
@@ -486,7 +506,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bAw-P8-NNA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="401" y="1609"/>
+            <point key="canvasLocation" x="400.80000000000001" y="1608.8455772113944"/>
         </scene>
     </scenes>
     <resources>
