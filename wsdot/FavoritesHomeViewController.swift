@@ -542,88 +542,77 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             return passCell
             
         case .tollRate:
-        
+         
             let tollRateCell = tableView.dequeueReusableCell(withIdentifier: tollRatesCellIdentifier) as! GroupRouteCell
-
+        
             // Remove any RouteViews carried over from being recycled.
             for route in tollRateCell.dynamicRouteViews {
                 route.removeFromSuperview()
             }
+        
             tollRateCell.dynamicRouteViews.removeAll()
         
             let tollSign = tollRates[indexPath.row]
+
+            tollRateCell.routeLabel.text = "\(tollSign.locationTitle)"
         
-            var travelDirection = ""
-        
-            switch (tollSign.travelDirection.lowercased()) {
-                case "n":
-                    travelDirection = "Northbound"
-                break
-                case "s":
-                    travelDirection = "Southbound"
-                break
-                case "e":
-                    travelDirection = "Eastbound"
-                break
-                case "w":
-                    travelDirection = "Westbound"
-                break
-                default:
-                    travelDirection = ""
-            }
-        
-            tollRateCell.routeLabel.text = "\(tollSign.startLocationName) \(travelDirection) Entrance"
-        
+            // set up favorite button
             tollRateCell.favoriteButton.isHidden = true
+            
+            var lastTripView: TollTripView? = nil
         
-            var lastRouteView: RouteView? = nil
+            for trip in tollSign.trips {
         
-            for route in tollSign.trips {
-        
-                let routeView = RouteView.instantiateFromXib()
+                let tripView = TollTripView.instantiateFromXib()
             
-                routeView.translatesAutoresizingMaskIntoConstraints = false
-                routeView.contentView.translatesAutoresizingMaskIntoConstraints = false
-                routeView.titleLabel.translatesAutoresizingMaskIntoConstraints = false
-                routeView.subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
-                routeView.updatedLabel.translatesAutoresizingMaskIntoConstraints = false
-                routeView.valueLabel.translatesAutoresizingMaskIntoConstraints = false
+                tripView.translatesAutoresizingMaskIntoConstraints = false
+                tripView.contentView.translatesAutoresizingMaskIntoConstraints = false
+                tripView.topLabel.translatesAutoresizingMaskIntoConstraints = false
+                tripView.bottomLabel.translatesAutoresizingMaskIntoConstraints = false
+                tripView.actionButton.translatesAutoresizingMaskIntoConstraints = false
+                tripView.valueLabel.translatesAutoresizingMaskIntoConstraints = false
             
-                routeView.titleLabel.text = "\(route.endLocationName) Exit"
-            
-                routeView.subtitleLabel.text = route.message
-            
-                routeView.updatedLabel.text = TimeUtils.timeAgoSinceDate(date: route.updatedAt, numericDates: true)
-            
-                // Since messages are displayed in place of tolls, if we have a message don't show the toll
-                if (route.message == ""){
-                    routeView.valueLabel.text = "$" + String(format: "%.2f", locale: Locale.current, arguments: [route.toll])
+                tripView.actionButton.isHidden = true
+                
+                if tollSign.stateRoute == 405 {
+                    tripView.topLabel.text = "to \(trip.endLocationName)"
+                    tripView.topLabel.font = tripView.topLabel.font.withSize(17)
+                } else {
+                    tripView.topLabel.text = "Carpools and motorcycles free"
+                    tripView.topLabel.font = tripView.topLabel.font.withSize(14)
                 }
             
-                tollRateCell.contentView.addSubview(routeView)
+                tripView.bottomLabel.text = TimeUtils.timeAgoSinceDate(date: trip.updatedAt, numericDates: true)
             
-                let leadingSpaceConstraintForRouteView = NSLayoutConstraint(item: routeView.contentView, attribute: .leading, relatedBy: .equal, toItem: tollRateCell.routeLabel, attribute: .leading, multiplier: 1, constant: 0);
+                if (trip.message == ""){
+                    tripView.valueLabel.text = "$" + String(format: "%.2f", locale: Locale.current, arguments: [trip.toll])
+                } else {
+                    tripView.valueLabel.text = trip.message
+                }
+            
+                tollRateCell.contentView.addSubview(tripView)
+   
+                let leadingSpaceConstraintForRouteView = NSLayoutConstraint(item: tripView.contentView, attribute: .leading, relatedBy: .equal, toItem: tollRateCell.routeLabel, attribute: .leading, multiplier: 1, constant: 0);
                 tollRateCell.contentView.addConstraint(leadingSpaceConstraintForRouteView)
             
-                let trailingSpaceConstraintForRouteView = NSLayoutConstraint(item: routeView.contentView, attribute: .trailing, relatedBy: .equal, toItem: tollRateCell.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8);
+                let trailingSpaceConstraintForRouteView = NSLayoutConstraint(item: tripView.contentView, attribute: .trailing, relatedBy: .equal, toItem: tollRateCell.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8);
                 tollRateCell.contentView.addConstraint(trailingSpaceConstraintForRouteView)
-            
-                let topSpaceConstraintForRouteView = NSLayoutConstraint(item: routeView.contentView, attribute: .top, relatedBy: .equal, toItem: (lastRouteView == nil ? tollRateCell.routeLabel : lastRouteView!.updatedLabel), attribute: .bottom, multiplier: 1, constant: 8);
+ 
+                let topSpaceConstraintForRouteView = NSLayoutConstraint(item: tripView.contentView, attribute: .top, relatedBy: .equal, toItem: (lastTripView == nil ? tollRateCell.routeLabel : lastTripView!.bottomLabel), attribute: .bottom, multiplier: 1, constant: (lastTripView == nil ? 0 : 8));
                 tollRateCell.contentView.addConstraint(topSpaceConstraintForRouteView)
-       
-                if tollSign.trips.index(of: route) == tollSign.trips.index(of: tollSign.trips.last!) {
-                    let bottomSpaceConstraint = NSLayoutConstraint(item: routeView.updatedLabel, attribute: .bottom, relatedBy: .equal, toItem: tollRateCell.contentView, attribute: .bottom, multiplier: 1, constant: -16)
+            
+                if tollSign.trips.index(of: trip) == tollSign.trips.index(of: tollSign.trips.last!) {
+                    let bottomSpaceConstraint = NSLayoutConstraint(item: tripView.bottomLabel, attribute: .bottom, relatedBy: .equal, toItem: tollRateCell.contentView, attribute: .bottom, multiplier: 1, constant: -16)
                     tollRateCell.contentView.addConstraint(bottomSpaceConstraint)
-                    routeView.line.isHidden = true
+                    tripView.line.isHidden = true
                 }
             
-                tollRateCell.dynamicRouteViews.append(routeView)
-                lastRouteView = routeView
-            
+                tollRateCell.dynamicRouteViews.append(tripView)
+                lastTripView = tripView
+           
             }
 
             tollRateCell.sizeToFit()
-
             return tollRateCell
             
         case .route:

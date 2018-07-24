@@ -40,7 +40,7 @@ class TollTripDetailsViewController: UIViewController {
         
         let htmlStyleString = "<style>body{font-family: '\(infoLinkLabel.font.fontName)'; font-size:\(infoLinkLabel.font.pointSize)px;}</style>"
         
-        let htmlString = htmlStyleString + "Exits near " + text
+        let htmlString = htmlStyleString + "Travel as far as " + text
         
         let attrStr = try! NSMutableAttributedString(
             data: htmlString.data(using: String.Encoding.unicode, allowLossyConversion: false)!,
@@ -48,7 +48,6 @@ class TollTripDetailsViewController: UIViewController {
             documentAttributes: nil)
         
         infoLinkLabel.attributedText = attrStr
-        
         displayMap()
         
     }
