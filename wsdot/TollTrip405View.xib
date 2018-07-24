@@ -39,10 +39,11 @@
                             <rect key="frame" x="0.0" y="83" width="375" height="1"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZ8-ox-pff">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZ8-ox-pff" customClass="TripMapButton" customModule="WSDOT" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="27" width="94" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="94" id="1fY-7a-dYv"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="94" id="8bN-lo-6Bj"/>
                             </constraints>
                             <state key="normal" title="Show on map"/>
                         </button>
@@ -81,7 +82,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="JR6-CK-NOs"/>
             <connections>
-                <outlet property="actionButton" destination="SZ8-ox-pff" id="QW8-ER-UIw"/>
+                <outlet property="actionButton" destination="SZ8-ox-pff" id="1qu-FW-mis"/>
                 <outlet property="bottomLabel" destination="BaH-ib-CX6" id="JEb-8R-S5V"/>
                 <outlet property="contentView" destination="Iby-XJ-uVo" id="dtk-d5-OWa"/>
                 <outlet property="line" destination="zTJ-iX-9b9" id="SnG-au-Bpw"/>

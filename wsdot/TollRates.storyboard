@@ -385,11 +385,12 @@
                         <outlet property="activityIndicator" destination="g71-Ds-4pA" id="ueX-zL-J0m"/>
                         <outlet property="directionSegmentControl" destination="nLK-EX-gZv" id="lVh-4b-RkP"/>
                         <outlet property="tableView" destination="EpJ-DQ-EwE" id="fzo-Ph-NQ1"/>
+                        <segue destination="0fu-ap-K5V" kind="show" identifier="SegueTollTripDetailsViewController" id="M3o-fM-HcD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jwB-OF-E99" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1279" y="1609"/>
+            <point key="canvasLocation" x="1321" y="1609"/>
         </scene>
         <!--I-405-->
         <scene sceneID="O0p-iq-jhF">
@@ -502,11 +503,69 @@
                         <outlet property="activityIndicator" destination="cGV-A7-ToY" id="ydk-8f-Pb2"/>
                         <outlet property="directionSegmentControl" destination="WHV-CI-O0e" id="S6u-u4-6NF"/>
                         <outlet property="tableView" destination="m1a-Ef-gNW" id="xfi-ym-wgy"/>
+                        <segue destination="0fu-ap-K5V" kind="show" identifier="SegueTollTripDetailsViewController" id="xtX-gv-a7z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bAw-P8-NNA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="400.80000000000001" y="1608.8455772113944"/>
+        </scene>
+        <!--Toll Trip Details View Controller-->
+        <scene sceneID="Y0q-Ru-g2V">
+            <objects>
+                <viewController storyboardIdentifier="HighwayAlertViewController" hidesBottomBarWhenPushed="YES" id="0fu-ap-K5V" customClass="TollTripDetailsViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rpc-Yh-Air"/>
+                        <viewControllerLayoutGuide type="bottom" id="fOV-hu-CwK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rqH-5a-eRT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gVS-Qu-qTA">
+                                <rect key="frame" x="0.0" y="20" width="375" height="583"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AK6-9T-Ztl" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="8" width="359" height="0.0"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dh6-X8-T3V">
+                                        <rect key="frame" x="8" y="32" width="320" height="320"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="320" id="0uS-bb-I9y"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="AK6-9T-Ztl" firstAttribute="leading" secondItem="gVS-Qu-qTA" secondAttribute="leadingMargin" id="3ZL-js-DOM"/>
+                                    <constraint firstAttribute="bottom" secondItem="dh6-X8-T3V" secondAttribute="bottom" constant="8" id="4MA-uh-rJd"/>
+                                    <constraint firstItem="AK6-9T-Ztl" firstAttribute="centerX" secondItem="gVS-Qu-qTA" secondAttribute="centerX" id="8kI-eu-bOu"/>
+                                    <constraint firstItem="dh6-X8-T3V" firstAttribute="leading" secondItem="AK6-9T-Ztl" secondAttribute="leading" id="AhP-Ni-QZF"/>
+                                    <constraint firstAttribute="trailing" secondItem="dh6-X8-T3V" secondAttribute="trailing" constant="47" id="cKa-8W-1qL"/>
+                                    <constraint firstItem="AK6-9T-Ztl" firstAttribute="top" secondItem="gVS-Qu-qTA" secondAttribute="topMargin" id="euO-FQ-bkg"/>
+                                    <constraint firstItem="dh6-X8-T3V" firstAttribute="top" secondItem="AK6-9T-Ztl" secondAttribute="bottom" constant="24" id="uEp-X4-C3t"/>
+                                    <constraint firstItem="AK6-9T-Ztl" firstAttribute="trailing" secondItem="gVS-Qu-qTA" secondAttribute="trailingMargin" id="vob-By-rEx"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="gVS-Qu-qTA" firstAttribute="bottom" secondItem="fOV-hu-CwK" secondAttribute="top" id="L2v-xW-nxc"/>
+                            <constraint firstItem="gVS-Qu-qTA" firstAttribute="leading" secondItem="rqH-5a-eRT" secondAttribute="leading" id="asI-hR-vLX"/>
+                            <constraint firstAttribute="trailing" secondItem="gVS-Qu-qTA" secondAttribute="trailing" id="cJD-sK-ov3"/>
+                            <constraint firstItem="gVS-Qu-qTA" firstAttribute="top" secondItem="rpc-Yh-Air" secondAttribute="bottom" id="k2B-de-phF"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="infoLinkLabel" destination="AK6-9T-Ztl" id="54X-ys-9tI"/>
+                        <outlet property="mapImageView" destination="dh6-X8-T3V" id="AQg-Re-u5y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Qd-Dz-ZVu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="830" y="2397"/>
         </scene>
     </scenes>
     <resources>
@@ -516,4 +575,7 @@
         <image name="icTabSR167" width="32" height="32"/>
         <image name="icTabSR520" width="32" height="32"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="M3o-fM-HcD"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -77,4 +77,20 @@ class LatLonUtils {
     
     }
     
+    static func getCenterLocation(_ latitudeA: Double, _ longitudeA: Double, _ latitudeB: Double, _ longitudeB: Double) -> CLLocationCoordinate2D {
+    
+        let dLon = (longitudeB - longitudeA) * .pi / 180  // to radians?
+    
+        let latA = toRadians(latitudeA)
+        let latB = toRadians(latitudeB)
+        let lonA = toRadians(longitudeA)
+    
+        let Bx = cos(latB) * cos(dLon)
+        let By = cos(latB) * sin(dLon)
+        let latC = atan2(sin(latA) + sin(latB), sqrt((cos(latA) + Bx) * (cos(latA) + Bx) + By * Bx))
+        let lonC = lonA + atan2(By, cos(latA) + Bx)
+        
+        return CLLocationCoordinate2D(latitude: latC * 180 / .pi , longitude: lonC * 180 / .pi )
+    }
+    
 }

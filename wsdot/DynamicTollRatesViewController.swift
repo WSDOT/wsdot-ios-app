@@ -24,6 +24,7 @@ import SafariServices
 class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     let cellIdentifier = "I405TollRatesCell"
+    let SegueTollTripDetailsViewController = "SegueTollTripDetailsViewController"
 
     var stateRoute: String?
     
@@ -145,68 +146,64 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
         cell.favoriteButton.tag = indexPath.row
         cell.favoriteButton.addTarget(self, action: #selector(favoriteAction(_:)), for: .touchUpInside)
         
-
-            var lastTripView: TollTrip405View? = nil
+        var lastTripView: TollTrip405View? = nil
         
-            for trip in tollSign.trips {
+        for trip in tollSign.trips {
         
-                let tripView = TollTrip405View.instantiateFromXib()
-               
-                tripView.translatesAutoresizingMaskIntoConstraints = false
-                tripView.contentView.translatesAutoresizingMaskIntoConstraints = false
-                tripView.topLabel.translatesAutoresizingMaskIntoConstraints = false
-                tripView.bottomLabel.translatesAutoresizingMaskIntoConstraints = false
-                tripView.actionButton.translatesAutoresizingMaskIntoConstraints = false
-                tripView.valueLabel.translatesAutoresizingMaskIntoConstraints = false
-                
-                
-                if tollSign.stateRoute == 405 {
-                    tripView.topLabel.text = "to \(trip.endLocationName)"
-                    tripView.topLabel.font = tripView.topLabel.font.withSize(17)
-                } else {
-                    tripView.topLabel.text = "Carpools and motorcycles free"
-                    tripView.topLabel.font = tripView.topLabel.font.withSize(14)
-                }
-                
-        
-                tripView.bottomLabel.text = TimeUtils.timeAgoSinceDate(date: trip.updatedAt, numericDates: true)
-                
-                if (trip.message == ""){
-                    tripView.valueLabel.text = "$" + String(format: "%.2f", locale: Locale.current, arguments: [trip.toll])
-                } else {
-                    tripView.valueLabel.text = trip.message
-                }
+            let tripView = TollTrip405View.instantiateFromXib()
             
-                cell.contentView.addSubview(tripView)
+            tripView.translatesAutoresizingMaskIntoConstraints = false
+            tripView.contentView.translatesAutoresizingMaskIntoConstraints = false
+            tripView.topLabel.translatesAutoresizingMaskIntoConstraints = false
+            tripView.bottomLabel.translatesAutoresizingMaskIntoConstraints = false
+            tripView.actionButton.translatesAutoresizingMaskIntoConstraints = false
+            tripView.valueLabel.translatesAutoresizingMaskIntoConstraints = false
+            
+            tripView.actionButton.signIndex = indexPath.row
+            tripView.actionButton.tripIndex = tollSign.trips.index(of: trip)
+            tripView.actionButton.addTarget(self, action: #selector(tripButtonAction(_:)), for: .touchUpInside)
+            
+            if tollSign.stateRoute == 405 {
+                tripView.topLabel.text = "to \(trip.endLocationName)"
+                tripView.topLabel.font = tripView.topLabel.font.withSize(17)
+            } else {
+                tripView.topLabel.text = "Carpools and motorcycles free"
+                tripView.topLabel.font = tripView.topLabel.font.withSize(14)
+            }
+                
+            tripView.bottomLabel.text = TimeUtils.timeAgoSinceDate(date: trip.updatedAt, numericDates: true)
+                
+            if (trip.message == ""){
+                tripView.valueLabel.text = "$" + String(format: "%.2f", locale: Locale.current, arguments: [trip.toll])
+            } else {
+                tripView.valueLabel.text = trip.message
+            }
+            
+            cell.contentView.addSubview(tripView)
    
-                let leadingSpaceConstraintForRouteView = NSLayoutConstraint(item: tripView.contentView, attribute: .leading, relatedBy: .equal, toItem: cell.routeLabel, attribute: .leading, multiplier: 1, constant: 0);
-                cell.contentView.addConstraint(leadingSpaceConstraintForRouteView)
+            let leadingSpaceConstraintForRouteView = NSLayoutConstraint(item: tripView.contentView, attribute: .leading, relatedBy: .equal, toItem: cell.routeLabel, attribute: .leading, multiplier: 1, constant: 0);
+            cell.contentView.addConstraint(leadingSpaceConstraintForRouteView)
             
-                let trailingSpaceConstraintForRouteView = NSLayoutConstraint(item: tripView.contentView, attribute: .trailing, relatedBy: .equal, toItem: cell.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8);
-                cell.contentView.addConstraint(trailingSpaceConstraintForRouteView)
+            let trailingSpaceConstraintForRouteView = NSLayoutConstraint(item: tripView.contentView, attribute: .trailing, relatedBy: .equal, toItem: cell.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8);
+            cell.contentView.addConstraint(trailingSpaceConstraintForRouteView)
  
-                let topSpaceConstraintForRouteView = NSLayoutConstraint(item: tripView.contentView, attribute: .top, relatedBy: .equal, toItem: (lastTripView == nil ? cell.routeLabel : lastTripView!.bottomLabel), attribute: .bottom, multiplier: 1, constant: (lastTripView == nil ? 0 : 8));
-                cell.contentView.addConstraint(topSpaceConstraintForRouteView)
+            let topSpaceConstraintForRouteView = NSLayoutConstraint(item: tripView.contentView, attribute: .top, relatedBy: .equal, toItem: (lastTripView == nil ? cell.routeLabel : lastTripView!.bottomLabel), attribute: .bottom, multiplier: 1, constant: (lastTripView == nil ? 0 : 8));
+            cell.contentView.addConstraint(topSpaceConstraintForRouteView)
               
-                if tollSign.trips.index(of: trip) == tollSign.trips.index(of: tollSign.trips.last!) {
-                    let bottomSpaceConstraint = NSLayoutConstraint(item: tripView.bottomLabel, attribute: .bottom, relatedBy: .equal, toItem: cell.contentView, attribute: .bottom, multiplier: 1, constant: -16)
-                    cell.contentView.addConstraint(bottomSpaceConstraint)
-                    tripView.line.isHidden = true
-                }
+            if tollSign.trips.index(of: trip) == tollSign.trips.index(of: tollSign.trips.last!) {
+                let bottomSpaceConstraint = NSLayoutConstraint(item: tripView.bottomLabel, attribute: .bottom, relatedBy: .equal, toItem: cell.contentView, attribute: .bottom, multiplier: 1, constant: -16)
+                cell.contentView.addConstraint(bottomSpaceConstraint)
+                tripView.line.isHidden = true
+            }
             
-                cell.dynamicRouteViews.append(tripView)
-                lastTripView = tripView
+            cell.dynamicRouteViews.append(tripView)
+            lastTripView = tripView
         
            
-        
         }
-        
-
 
         cell.sizeToFit()
-    
         return cell
-    
     }
 
     @IBAction func indexChanged(_ sender: UISegmentedControl) {
@@ -221,6 +218,35 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
             break
         default:
             break
+        }
+    }
+
+    @objc func tripButtonAction(_ sender: UIButton) {
+        // Perform Segue
+        performSegue(withIdentifier: SegueTollTripDetailsViewController, sender: sender)
+    }
+
+    // MARK: Naviagtion
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == SegueTollTripDetailsViewController {
+
+            if let button = sender as? TripMapButton {
+            
+                let tollSign = displayedTollRates[button.signIndex!]
+                let tollTrip = tollSign.trips[button.tripIndex!]
+
+                let destinationViewController = segue.destination as! TollTripDetailsViewController
+                
+                destinationViewController.title = tollSign.locationTitle
+                destinationViewController.text = tollTrip.endLocationName
+                
+                destinationViewController.startLatitude = tollSign.startLatitude
+                destinationViewController.startLongitude = tollSign.startLongitude
+                
+                destinationViewController.endLatitude = tollTrip.endLatitude
+                destinationViewController.endLongitude = tollTrip.endLongitude
+            
+            }
         }
     }
 

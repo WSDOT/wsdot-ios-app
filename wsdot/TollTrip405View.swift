@@ -16,11 +16,17 @@ class TollTrip405View: UIView {
     @IBOutlet weak var bottomLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var actionButton: UIButton!
+    @IBOutlet weak var actionButton: TripMapButton!
     @IBOutlet weak var line: UIView!
 
     static func instantiateFromXib() -> TollTrip405View {
         return Bundle.main.loadNibNamed("TollTrip405View", owner: nil, options: nil)![0] as! TollTrip405View
     }
+}
+
+class TripMapButton: UIButton {
+
+    var signIndex: Int?
+    var tripIndex: Int?
 
 }
