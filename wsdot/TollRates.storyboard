@@ -298,7 +298,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SZD-WO-jx0">
-                                                    <rect key="frame" x="23" y="11" width="297" height="20.5"/>
+                                                    <rect key="frame" x="15" y="11" width="305" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -319,7 +319,7 @@
                                                 <constraint firstItem="LKL-wj-54n" firstAttribute="trailing" secondItem="gSi-Cc-QFz" secondAttribute="trailingMargin" id="iFU-3r-7SU"/>
                                                 <constraint firstItem="LKL-wj-54n" firstAttribute="leading" secondItem="SZD-WO-jx0" secondAttribute="trailing" constant="8" id="m35-s9-yKe"/>
                                                 <constraint firstItem="LKL-wj-54n" firstAttribute="top" secondItem="gSi-Cc-QFz" secondAttribute="topMargin" id="oPI-JX-2Ku"/>
-                                                <constraint firstItem="SZD-WO-jx0" firstAttribute="leading" secondItem="gSi-Cc-QFz" secondAttribute="leadingMargin" constant="8" id="ubo-he-bv1"/>
+                                                <constraint firstItem="SZD-WO-jx0" firstAttribute="leading" secondItem="gSi-Cc-QFz" secondAttribute="leadingMargin" id="ubo-he-bv1"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -353,9 +353,18 @@
                                     <action selector="indexChanged:" destination="5vQ-oe-eKM" eventType="valueChanged" id="O8h-Tl-sxX"/>
                                 </connections>
                             </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWF-OU-htd">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cWF-OU-htd">
                                 <rect key="frame" x="16" y="4" width="343" height="30"/>
-                                <state key="normal" title="Learn about tolling on SR 167"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Learn about tolling on SR 167">
+                                            <attributes>
+                                                <font key="NSFont" metaFont="system" size="15"/>
+                                                <integer key="NSUnderline" value="1"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
                                 <connections>
                                     <action selector="infoLinkAction:" destination="5vQ-oe-eKM" eventType="touchUpInside" id="zK0-fx-XXl"/>
                                 </connections>
@@ -384,6 +393,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="g71-Ds-4pA" id="ueX-zL-J0m"/>
                         <outlet property="directionSegmentControl" destination="nLK-EX-gZv" id="lVh-4b-RkP"/>
+                        <outlet property="infoLinkButton" destination="cWF-OU-htd" id="80e-Yn-hEY"/>
                         <outlet property="tableView" destination="EpJ-DQ-EwE" id="fzo-Ph-NQ1"/>
                         <segue destination="0fu-ap-K5V" kind="show" identifier="SegueTollTripDetailsViewController" id="M3o-fM-HcD"/>
                     </connections>
@@ -405,7 +415,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="m1a-Ef-gNW">
-                                <rect key="frame" x="0.0" y="78" width="375" height="442.5"/>
+                                <rect key="frame" x="0.0" y="81" width="375" height="439"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="I405TollRatesCell" rowHeight="98" id="6u9-pz-Cmm" customClass="GroupRouteCell" customModule="WSDOT" customModuleProvider="target">
@@ -416,7 +426,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubX-zJ-4HI">
-                                                    <rect key="frame" x="23" y="11" width="297" height="20.5"/>
+                                                    <rect key="frame" x="15" y="11" width="305" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -435,7 +445,7 @@
                                                 <constraint firstItem="umy-kh-536" firstAttribute="top" secondItem="X94-N2-Bfh" secondAttribute="topMargin" id="Aux-DJ-byM"/>
                                                 <constraint firstItem="umy-kh-536" firstAttribute="top" secondItem="X94-N2-Bfh" secondAttribute="topMargin" id="WGd-R4-lDb"/>
                                                 <constraint firstItem="ubX-zJ-4HI" firstAttribute="top" secondItem="X94-N2-Bfh" secondAttribute="topMargin" id="gQj-51-oPm"/>
-                                                <constraint firstItem="ubX-zJ-4HI" firstAttribute="leading" secondItem="X94-N2-Bfh" secondAttribute="leadingMargin" constant="8" id="iqt-ip-Gl1"/>
+                                                <constraint firstItem="ubX-zJ-4HI" firstAttribute="leading" secondItem="X94-N2-Bfh" secondAttribute="leadingMargin" id="iqt-ip-Gl1"/>
                                                 <constraint firstItem="umy-kh-536" firstAttribute="leading" secondItem="ubX-zJ-4HI" secondAttribute="trailing" constant="8" id="jhJ-9w-4mr"/>
                                                 <constraint firstItem="umy-kh-536" firstAttribute="trailing" secondItem="X94-N2-Bfh" secondAttribute="trailingMargin" id="rs2-im-681"/>
                                             </constraints>
@@ -461,8 +471,30 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fkd-79-b6Y">
+                                <rect key="frame" x="15" y="4" width="343" height="30"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Learn about tolling on I-405">
+                                            <attributes>
+                                                <font key="NSFont" metaFont="system" size="15"/>
+                                                <integer key="NSUnderline" value="1"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="infoLinkAction:" destination="iiL-IM-c5I" eventType="touchUpInside" id="4He-1P-g4w"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0RH-IO-SRE">
+                                <rect key="frame" x="0.0" y="37" width="375" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WHV-CI-O0e">
-                                <rect key="frame" x="16" y="42" width="343" height="29"/>
+                                <rect key="frame" x="16" y="45" width="343" height="29"/>
                                 <segments>
                                     <segment title="Northbound"/>
                                     <segment title="Southbound"/>
@@ -471,29 +503,25 @@
                                     <action selector="indexChanged:" destination="iiL-IM-c5I" eventType="valueChanged" id="beT-rZ-VDl"/>
                                 </connections>
                             </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fkd-79-b6Y">
-                                <rect key="frame" x="16" y="4" width="343" height="30"/>
-                                <state key="normal" title="Learn about tolling on I-405"/>
-                                <connections>
-                                    <action selector="infoLinkAction:" destination="iiL-IM-c5I" eventType="touchUpInside" id="4He-1P-g4w"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="0RH-IO-SRE" firstAttribute="leading" secondItem="wvb-Oe-dcF" secondAttribute="leading" id="1RK-2U-JWW"/>
                             <constraint firstItem="cGV-A7-ToY" firstAttribute="centerX" secondItem="wvb-Oe-dcF" secondAttribute="centerX" id="9dZ-jh-Aee"/>
-                            <constraint firstItem="fkd-79-b6Y" firstAttribute="leading" secondItem="WHV-CI-O0e" secondAttribute="leading" id="AJ0-hl-PXk"/>
-                            <constraint firstItem="WHV-CI-O0e" firstAttribute="top" secondItem="fkd-79-b6Y" secondAttribute="bottom" constant="8" symbolic="YES" id="BF5-SY-qdy"/>
-                            <constraint firstItem="fkd-79-b6Y" firstAttribute="trailing" secondItem="WHV-CI-O0e" secondAttribute="trailing" id="CdU-ar-hU2"/>
+                            <constraint firstItem="fkd-79-b6Y" firstAttribute="leading" secondItem="WHV-CI-O0e" secondAttribute="leading" constant="-1" id="AJ0-hl-PXk"/>
+                            <constraint firstItem="fkd-79-b6Y" firstAttribute="trailing" secondItem="WHV-CI-O0e" secondAttribute="trailing" constant="-1" id="CdU-ar-hU2"/>
                             <constraint firstItem="WHV-CI-O0e" firstAttribute="leading" secondItem="wvb-Oe-dcF" secondAttribute="leading" constant="16" id="EKf-le-HQM"/>
+                            <constraint firstItem="WHV-CI-O0e" firstAttribute="top" secondItem="0RH-IO-SRE" secondAttribute="bottom" constant="8" id="FlB-Fs-8sB"/>
                             <constraint firstItem="cGV-A7-ToY" firstAttribute="centerY" secondItem="wvb-Oe-dcF" secondAttribute="centerY" id="Hca-Pw-ZDb"/>
                             <constraint firstAttribute="trailing" secondItem="m1a-Ef-gNW" secondAttribute="trailing" id="Sx0-NA-Tch"/>
                             <constraint firstItem="e23-89-8A2" firstAttribute="top" secondItem="m1a-Ef-gNW" secondAttribute="bottom" id="WJR-0a-sAT"/>
                             <constraint firstAttribute="trailing" secondItem="WHV-CI-O0e" secondAttribute="trailing" constant="16" id="ZBg-A5-hlD"/>
                             <constraint firstItem="m1a-Ef-gNW" firstAttribute="top" secondItem="WHV-CI-O0e" secondAttribute="bottom" constant="8" id="fss-Pv-PUv"/>
+                            <constraint firstItem="0RH-IO-SRE" firstAttribute="top" secondItem="fkd-79-b6Y" secondAttribute="bottom" constant="3" id="jU2-37-JhP"/>
                             <constraint firstItem="fkd-79-b6Y" firstAttribute="top" secondItem="wvb-Oe-dcF" secondAttribute="top" constant="4" id="luw-cY-TI6"/>
                             <constraint firstItem="e23-89-8A2" firstAttribute="leading" secondItem="wvb-Oe-dcF" secondAttribute="leading" id="nyt-2g-6Ih"/>
                             <constraint firstAttribute="trailing" secondItem="e23-89-8A2" secondAttribute="trailing" id="oeQ-zs-ing"/>
+                            <constraint firstAttribute="trailing" secondItem="0RH-IO-SRE" secondAttribute="trailing" id="owg-PX-DEt"/>
                             <constraint firstItem="yhz-Lw-oDG" firstAttribute="top" secondItem="e23-89-8A2" secondAttribute="bottom" id="p5W-vL-Erj"/>
                             <constraint firstItem="m1a-Ef-gNW" firstAttribute="leading" secondItem="wvb-Oe-dcF" secondAttribute="leading" id="vke-Qx-2Nr"/>
                         </constraints>
@@ -502,7 +530,9 @@
                     <connections>
                         <outlet property="activityIndicator" destination="cGV-A7-ToY" id="ydk-8f-Pb2"/>
                         <outlet property="directionSegmentControl" destination="WHV-CI-O0e" id="S6u-u4-6NF"/>
+                        <outlet property="infoLinkButton" destination="fkd-79-b6Y" id="cWr-gD-hVG"/>
                         <outlet property="tableView" destination="m1a-Ef-gNW" id="xfi-ym-wgy"/>
+                        <outlet property="travelTimeTextLabel" destination="0RH-IO-SRE" id="wDa-VM-ybC"/>
                         <segue destination="0fu-ap-K5V" kind="show" identifier="SegueTollTripDetailsViewController" id="xtX-gv-a7z"/>
                     </connections>
                 </viewController>
@@ -576,6 +606,6 @@
         <image name="icTabSR520" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xtX-gv-a7z"/>
+        <segue reference="M3o-fM-HcD"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -32,9 +32,15 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
     var displayedTollRates = [TollRateSignItem]()
     var northboundTollRates = [TollRateSignItem]()
     var southboundTollRates = [TollRateSignItem]()
-
+    
+    var northboundTravelTime = ""
+    var southboundTravelTime = ""
+    
     let refreshControl = UIRefreshControl()
+    
+    @IBOutlet weak var travelTimeTextLabel: UILabel!
 
+    @IBOutlet weak var infoLinkButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var directionSegmentControl: UISegmentedControl!
@@ -90,6 +96,49 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
                 }
             })
         }
+        
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { [weak self] in
+            TravelTimesStore.updateTravelTimes(force, completion: { error in
+                if (error == nil) {
+                    // Reload tableview on UI thread
+                    DispatchQueue.main.async { [weak self] in
+                        if let selfValue = self {
+                            if let route = selfValue.stateRoute {
+                                if (route == "405") {
+                                  
+                                    if let travelTimeGroup = TravelTimesStore.getTravelTimeBy(id: 35) {
+                                        selfValue.northboundTravelTime = selfValue.getTravelTimeFromGroup(travelTimeGroup: travelTimeGroup)
+                                    }
+                                    
+                                    if let travelTimeGroup = TravelTimesStore.getTravelTimeBy(id: 38) {
+                                        selfValue.southboundTravelTime = selfValue.getTravelTimeFromGroup(travelTimeGroup: travelTimeGroup)
+                                    }
+                                }
+                                
+                                if (selfValue.directionSegmentControl.selectedSegmentIndex == 0){
+                                    if let label = selfValue.travelTimeTextLabel {
+                                        label.text = selfValue.northboundTravelTime
+                                    }
+                                } else {
+                                    if let label = selfValue.travelTimeTextLabel {
+                                        label.text = selfValue.southboundTravelTime
+                                    }
+                                }
+                                
+                            }
+                        }
+                    }
+                } else {
+                    DispatchQueue.main.async { [weak self] in
+                        if let selfValue = self {
+
+                            // TODO:
+                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                        }
+                    }
+                }
+            })
+        }
     }
 
     @IBAction func infoLinkAction(_ sender: UIButton) {
@@ -113,6 +162,31 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
                 svc.view.tintColor = ThemeManager.currentTheme().mainColor
             }
             self.present(svc, animated: true, completion: nil)
+        }
+    }
+
+    /*
+     * Creates a string for the travel time header,
+     * Checks if the group has a general purpose and HOV travel time.
+     * In the case of 405, the HOV time is the ETL time.
+     */
+    func getTravelTimeFromGroup(travelTimeGroup: TravelTimeItemGroup) -> String {
+        
+        var gpTime = -1
+        var etlTime = -1
+        
+        if let gpTimeItem = travelTimeGroup.routes.filter({ !$0.viaText.contains("HOV") }).first {
+            gpTime = gpTimeItem.currentTime
+        }
+        
+        if let etlTimeItem = travelTimeGroup.routes.filter({ $0.viaText.contains("HOV")}).first {
+            etlTime = etlTimeItem.currentTime
+        }
+        
+        if (gpTime != -1 && etlTime != -1) {
+            return "\(travelTimeGroup.title): \(gpTime) min / \(etlTime) min via ETL"
+        } else {
+            return ""
         }
     }
 
@@ -211,10 +285,16 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
         switch (sender.selectedSegmentIndex){
         case 0:
             displayedTollRates = northboundTollRates
+            if let label = travelTimeTextLabel {
+                label.text = northboundTravelTime
+            }
             tableView.reloadData()
             break
         case 1:
             displayedTollRates = southboundTollRates
+            if let label = travelTimeTextLabel {
+                label.text = southboundTravelTime
+            }
             tableView.reloadData()
             break
         default:
@@ -264,5 +344,5 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
             sender.setImage(UIImage(named: "icStarSmallFilled"), for: .normal)
         }
     }
-
+    
 }
