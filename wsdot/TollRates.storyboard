@@ -57,7 +57,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Toll Rates" id="l8t-7x-bNX">
-                        <barButtonItem key="rightBarButtonItem" title="MyGoodToGo" id="G3d-RC-B8c">
+                        <barButtonItem key="rightBarButtonItem" title="MyGoodToGo.com" id="G3d-RC-B8c">
                             <connections>
                                 <action selector="MyGoodToGoLinkTap:" destination="A9d-Xt-YdA" id="meb-3W-FRe"/>
                             </connections>
@@ -357,7 +357,7 @@
                                 <rect key="frame" x="16" y="4" width="343" height="30"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
-                                        <fragment content="Learn about tolling on SR 167">
+                                        <fragment content="Learn how SR 167 tolls work">
                                             <attributes>
                                                 <font key="NSFont" metaFont="system" size="15"/>
                                                 <integer key="NSUnderline" value="1"/>
@@ -475,9 +475,10 @@
                                 <rect key="frame" x="15" y="4" width="343" height="30"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
-                                        <fragment content="Learn about tolling on I-405">
+                                        <fragment content="Learn how I-405 tolls work">
                                             <attributes>
                                                 <font key="NSFont" metaFont="system" size="15"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 <integer key="NSUnderline" value="1"/>
                                             </attributes>
                                         </fragment>
