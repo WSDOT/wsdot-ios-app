@@ -554,7 +554,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
         
             let tollSign = tollRates[indexPath.row]
 
-            tollRateCell.routeLabel.text = "\(tollSign.locationTitle)"
+            tollRateCell.routeLabel.text = "\(tollSign.stateRoute) - \(tollSign.locationTitle)"
         
             // set up favorite button
             tollRateCell.favoriteButton.isHidden = true

@@ -67,7 +67,7 @@ class TollRatesStore {
     static func findFavoriteTolls() -> [TollRateSignItem]{
         let realm = try! Realm()
         let favoriteTollSignItems = realm.objects(TollRateSignItem.self).filter("selected == true").filter("delete == false")
-        return Array(favoriteTollSignItems)
+        return Array(favoriteTollSignItems).sorted(by: { $0.travelDirection < $1.travelDirection }).sorted(by: {$0.stateRoute < $1.stateRoute})
     }
 
     static func updateTollRates(_ force: Bool, completion: @escaping getTollRatesCompletion) {
@@ -186,7 +186,11 @@ class TollRatesStore {
                     tollRate.setCompoundLocationName(name: subJson["StartLocationName"].stringValue)
                     tollRate.setCompoundTravelDirection(direction: subJson["TravelDirection"].stringValue)
                 
-                    tollRate.locationTitle = getLocationTitle(location: subJson["StartLocationName"].stringValue, direction: subJson["TravelDirection"].stringValue)
+                    if subJson["StateRoute"].intValue == 405 {
+                        tollRate.locationTitle = get405LocationTitle(location: subJson["StartLocationName"].stringValue, direction: subJson["TravelDirection"].stringValue)
+                    } else if subJson["StateRoute"].intValue == 167 {
+                        tollRate.locationTitle = get167LocationTitle(location: subJson["StartLocationName"].stringValue, direction: subJson["TravelDirection"].stringValue)
+                    }
      
                     tollRate.milepost = subJson["StartMilepost"].intValue
                     tollRate.stateRoute = subJson["StateRoute"].intValue
@@ -206,6 +210,12 @@ class TollRatesStore {
     
     static func shouldSkipTrip(tripJson: JSON) -> Bool {
     
+        /*
+         * 405 trips to skip
+         *
+         * Removal of these routes since their displays are already shown
+         * by other signs from the API.
+         */
         if tripJson["StartLocationName"].stringValue == "NE 6th"
             && tripJson["TravelDirection"].stringValue == "N" {
             return true
@@ -220,13 +230,54 @@ class TollRatesStore {
                 && tripJson["TravelDirection"].stringValue == "S" {
             return true;
         }
+        
+        /*
+         * Removal suggested by tolling division since it's very similar to another location
+         * and difficult to come up with a label people will recognize.
+         */
+        if tripJson["StartLocationName"].stringValue == "NE 108th"
+                && tripJson["TravelDirection"].stringValue == "S" {
+            return true;
+        }
+        
+        // 167 trips to skip - Tolling suggested removal of these signs
+        if tripJson["StartLocationName"].stringValue == "James St"
+                && tripJson["TravelDirection"].stringValue == "N" {
+            return true;
+        }
+        
+        if tripJson["StartLocationName"].stringValue == "S 204th St"
+                && tripJson["TravelDirection"].stringValue == "N" {
+            return true;
+        }
+        
+        if tripJson["StartLocationName"].stringValue == "1st Ave S"
+                && tripJson["TravelDirection"].stringValue == "S" {
+            return true;
+        }
+        
+        if tripJson["StartLocationName"].stringValue == "12th St NW"
+                && tripJson["TravelDirection"].stringValue == "S" {
+            return true;
+        }
+        
+        if tripJson["StartLocationName"].stringValue == "37th St NW"
+                && tripJson["TravelDirection"].stringValue == "S" {
+            return true;
+        }
+        
+        if tripJson["StartLocationName"].stringValue == "Green River"
+                && tripJson["TravelDirection"].stringValue == "S" {
+            return true;
+        }
 
         return false;
     }
 
-    static func getLocationTitle(location: String, direction: String) -> String {
+    // Changes names from API to common names suggested by tolling
+    static func get405LocationTitle(location: String, direction: String) -> String {
     
-        var title = ""
+        var title = location
     
         // Southbound name changes
         if direction == "S" {
@@ -258,8 +309,53 @@ class TollRatesStore {
             let city = (direction == "N" ? "Bellevue" : "Lynnwood")
             title = "\(city) - Start of toll lanes"
         } else {
-            title = "Lane entrance near \(location)"
+            title = "Lane entrance near \(title)"
         }
+    
+        return title
+    }
+    
+    // Changes names from API to common names suggested by tolling
+    static func get167LocationTitle(location: String, direction: String) -> String {
+    
+        var title = location
+        print(location)
+    
+        // Southbound name changes
+        if direction == "S" {
+            if location == "4th Ave N" {
+                print("test")
+                title = "SR 516"
+            }
+            
+            if location == "S 192nd St" {
+                title = "S 180th St"
+            }
+            
+            if location == "S 23rd St" {
+                title = "I-405 (Renton)"
+            }
+        }
+
+        // Northbound name changes
+        if direction == "N" {
+            if location == "15th St SW" {
+                title = "SR 18 (Auburn)"
+            }
+            if location == "7th St NW" {
+                title = "15th St SW"
+            }
+            if location == "30th St NW" {
+                title = "S 277th St"
+            }
+            if location == "S 265th St" {
+                title = "SR 516"
+            }
+        }
+
+        title = "Lane entrance near \(title)"
+    
+        print(title)
     
         return title
     }
