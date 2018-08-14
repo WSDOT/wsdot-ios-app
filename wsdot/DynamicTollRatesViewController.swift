@@ -113,6 +113,14 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
                                     if let travelTimeGroup = TravelTimesStore.getTravelTimeBy(id: 38) {
                                         selfValue.southboundTravelTime = selfValue.getTravelTimeFromGroup(travelTimeGroup: travelTimeGroup)
                                     }
+                                } else if (route == "167") {
+                                    if let travelTimeGroup = TravelTimesStore.getTravelTimeBy(id: 67) {
+                                        selfValue.northboundTravelTime = selfValue.getTravelTimeFromGroup(travelTimeGroup: travelTimeGroup)
+                                    }
+                                    
+                                    if let travelTimeGroup = TravelTimesStore.getTravelTimeBy(id: 70) {
+                                        selfValue.southboundTravelTime = selfValue.getTravelTimeFromGroup(travelTimeGroup: travelTimeGroup)
+                                    }
                                 }
                                 
                                 if (selfValue.directionSegmentControl.selectedSegmentIndex == 0){
@@ -184,7 +192,7 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
         }
         
         if (gpTime != -1 && etlTime != -1) {
-            return "\(travelTimeGroup.title): \(gpTime) min / \(etlTime) min via ETL"
+            return "\(travelTimeGroup.title): \(gpTime) min or \(etlTime) min via ETL"
         } else {
             return ""
         }

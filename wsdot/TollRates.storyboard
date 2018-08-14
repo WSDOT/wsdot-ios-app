@@ -287,7 +287,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EpJ-DQ-EwE">
-                                <rect key="frame" x="0.0" y="78" width="375" height="442.5"/>
+                                <rect key="frame" x="0.0" y="81" width="375" height="439"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="I405TollRatesCell" rowHeight="98" id="mUn-Sj-h5B" customClass="GroupRouteCell" customModule="WSDOT" customModuleProvider="target">
@@ -343,16 +343,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="nLK-EX-gZv">
-                                <rect key="frame" x="16" y="42" width="343" height="29"/>
-                                <segments>
-                                    <segment title="Northbound"/>
-                                    <segment title="Southbound"/>
-                                </segments>
-                                <connections>
-                                    <action selector="indexChanged:" destination="5vQ-oe-eKM" eventType="valueChanged" id="O8h-Tl-sxX"/>
-                                </connections>
-                            </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cWF-OU-htd">
                                 <rect key="frame" x="16" y="4" width="343" height="30"/>
                                 <state key="normal">
@@ -369,18 +359,37 @@
                                     <action selector="infoLinkAction:" destination="5vQ-oe-eKM" eventType="touchUpInside" id="zK0-fx-XXl"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scp-TD-yjd">
+                                <rect key="frame" x="0.0" y="37" width="375" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="nLK-EX-gZv">
+                                <rect key="frame" x="16" y="45" width="343" height="29"/>
+                                <segments>
+                                    <segment title="Northbound"/>
+                                    <segment title="Southbound"/>
+                                </segments>
+                                <connections>
+                                    <action selector="indexChanged:" destination="5vQ-oe-eKM" eventType="valueChanged" id="O8h-Tl-sxX"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="EpJ-DQ-EwE" firstAttribute="top" secondItem="nLK-EX-gZv" secondAttribute="bottom" constant="8" id="1tW-9H-VEy"/>
                             <constraint firstItem="g71-Ds-4pA" firstAttribute="centerY" secondItem="IWg-co-XQz" secondAttribute="centerY" id="2f2-bf-Xpu"/>
+                            <constraint firstItem="nLK-EX-gZv" firstAttribute="top" secondItem="scp-TD-yjd" secondAttribute="bottom" constant="8" id="557-xY-NPP"/>
                             <constraint firstItem="cWF-OU-htd" firstAttribute="top" secondItem="IWg-co-XQz" secondAttribute="top" constant="4" id="5xA-bl-SHA"/>
                             <constraint firstItem="nLK-EX-gZv" firstAttribute="leading" secondItem="IWg-co-XQz" secondAttribute="leading" constant="16" id="Ain-s2-FJv"/>
+                            <constraint firstItem="scp-TD-yjd" firstAttribute="leading" secondItem="IWg-co-XQz" secondAttribute="leading" id="BHE-rj-9VT"/>
                             <constraint firstAttribute="trailing" secondItem="nLK-EX-gZv" secondAttribute="trailing" constant="16" id="Bdo-aN-pMQ"/>
                             <constraint firstItem="luD-0C-pPF" firstAttribute="leading" secondItem="IWg-co-XQz" secondAttribute="leading" id="Cej-1l-1dx"/>
                             <constraint firstItem="cWF-OU-htd" firstAttribute="trailing" secondItem="nLK-EX-gZv" secondAttribute="trailing" id="HaV-Yo-AUI"/>
                             <constraint firstAttribute="trailing" secondItem="luD-0C-pPF" secondAttribute="trailing" id="I86-9u-4Ld"/>
-                            <constraint firstItem="nLK-EX-gZv" firstAttribute="top" secondItem="cWF-OU-htd" secondAttribute="bottom" constant="8" symbolic="YES" id="Ujx-u8-gMX"/>
+                            <constraint firstAttribute="trailing" secondItem="scp-TD-yjd" secondAttribute="trailing" id="LDX-lp-Drn"/>
+                            <constraint firstItem="scp-TD-yjd" firstAttribute="top" secondItem="cWF-OU-htd" secondAttribute="bottom" constant="3" id="Nzk-il-IKu"/>
                             <constraint firstItem="EpJ-DQ-EwE" firstAttribute="leading" secondItem="IWg-co-XQz" secondAttribute="leading" id="XWR-ec-cvH"/>
                             <constraint firstItem="cWF-OU-htd" firstAttribute="leading" secondItem="nLK-EX-gZv" secondAttribute="leading" id="Xka-9P-N2f"/>
                             <constraint firstAttribute="trailing" secondItem="EpJ-DQ-EwE" secondAttribute="trailing" id="dp1-MP-Zyj"/>
@@ -395,12 +404,13 @@
                         <outlet property="directionSegmentControl" destination="nLK-EX-gZv" id="lVh-4b-RkP"/>
                         <outlet property="infoLinkButton" destination="cWF-OU-htd" id="80e-Yn-hEY"/>
                         <outlet property="tableView" destination="EpJ-DQ-EwE" id="fzo-Ph-NQ1"/>
+                        <outlet property="travelTimeTextLabel" destination="scp-TD-yjd" id="PjS-dm-X4e"/>
                         <segue destination="0fu-ap-K5V" kind="show" identifier="SegueTollTripDetailsViewController" id="M3o-fM-HcD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jwB-OF-E99" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1321" y="1609"/>
+            <point key="canvasLocation" x="1015.2" y="1608.8455772113944"/>
         </scene>
         <!--I-405-->
         <scene sceneID="O0p-iq-jhF">
@@ -607,6 +617,6 @@
         <image name="icTabSR520" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="M3o-fM-HcD"/>
+        <segue reference="xtX-gv-a7z"/>
     </inferredMetricsTieBreakers>
 </document>
