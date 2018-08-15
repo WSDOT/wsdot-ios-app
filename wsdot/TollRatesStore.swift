@@ -319,12 +319,10 @@ class TollRatesStore {
     static func get167LocationTitle(location: String, direction: String) -> String {
     
         var title = location
-        print(location)
     
         // Southbound name changes
         if direction == "S" {
             if location == "4th Ave N" {
-                print("test")
                 title = "SR 516"
             }
             
@@ -354,8 +352,6 @@ class TollRatesStore {
         }
 
         title = "Lane entrance near \(title)"
-    
-        print(title)
     
         return title
     }
