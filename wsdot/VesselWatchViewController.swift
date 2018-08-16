@@ -286,7 +286,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     }
     
     // MARK: MapMarkerViewController protocol method
-    func drawOverlays(){
+    func drawMapOverlays(){
     
         activityIndicator.startAnimating()
         

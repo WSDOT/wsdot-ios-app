@@ -55,17 +55,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     fileprivate let cameraBarButtonImage = UIImage(named: "icCamera")
     fileprivate let cameraHighlightBarButtonImage = UIImage(named: "icCameraHighlight")
     
-    fileprivate let alertHighIconImage = UIImage(named: "icMapAlertHigh")
-    fileprivate let alertHighestIconImage = UIImage(named: "icMapAlertHighest")
-    fileprivate let alertModerateIconImage = UIImage(named: "icMapAlertModerate")
-    fileprivate let alertLowIconImage = UIImage(named: "icMapAlertLow")
-    
-    fileprivate let constructionHighIconImage = UIImage(named: "icMapConstructionHigh")
-    fileprivate let constructionHighestIconImage = UIImage(named: "icMapConstructionHighest")
-    fileprivate let constructionModerateIconImage = UIImage(named: "icMapConstructionModerate")
-    fileprivate let constructionLowIconImage = UIImage(named: "icMapConstructionLow")
-    
-    fileprivate let closedIconImage = UIImage(named: "icMapClosed")
+
     
     var tipView = EasyTipView(text: "")
     
@@ -331,60 +321,14 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
                 let marker = GMSMarker(position: alertLocation)
                 marker.snippet = "alert"
                 
-                if alert.headlineDesc.lowercased().contains("construction")
-                    || alert.eventCategory.lowercased().contains("maintenance")
-                    || alert.eventCategory.lowercased().contains("construction"){
-                    switch alert.priority {
-                    case "Lowest":
-                        marker.icon = constructionLowIconImage
-                        break
-                    case "Low":
-                        marker.icon = constructionLowIconImage
-                        break
-                    case "Moderate":
-                        marker.icon = constructionModerateIconImage
-                        break
-                    case "High":
-                        marker.icon = constructionHighIconImage
-                        break
-                    case "Highest":
-                        marker.icon = constructionHighestIconImage
-                        break
-                    default:
-                        marker.icon = constructionModerateIconImage
-                        break
-                    }
-                    
-                }else if alert.headlineDesc.lowercased().contains("road closure") || alert.eventCategory.lowercased().contains("closure"){
-                    marker.icon = closedIconImage
-                }else {
-                    switch alert.priority {
-                    case "Lowest":
-                        marker.icon = alertLowIconImage
-                        break
-                    case "Low":
-                        marker.icon = alertLowIconImage
-                        break
-                    case "Moderate":
-                        marker.icon = alertModerateIconImage
-                        break
-                    case "High":
-                        marker.icon = alertHighIconImage
-                        break
-                    case "Highest":
-                        marker.icon = alertHighestIconImage
-                        break
-                    default:
-                        marker.icon = alertModerateIconImage
-                        break
-                    }
-                }
+                marker.icon = UIHelpers.getAlertIcon(forAlert: alert)
+                
                 marker.userData = alert
                 alertMarkers.insert(marker)
             }
         }
     }
-    
+
     func drawAlerts(){
         if let mapView = embeddedMapViewController.view as? GMSMapView{
             let alertsPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.alerts)
@@ -553,7 +497,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     }
     
     // MARK: MapMarkerViewController protocol method
-    func drawOverlays(){
+    func drawMapOverlays(){
         self.activityIndicatorView.isHidden = false
         activityIndicatorView.startAnimating()
         

@@ -21,22 +21,24 @@
 import Foundation
 import UIKit
 
-class RestAreaViewController: UIViewController {
+class RestAreaViewController: UIViewController, MapMarkerDelegate, GMSMapViewDelegate {
 
     var restAreaItem: RestAreaItem?
+    fileprivate let restAreaMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: 0, longitude: 0))
     
-
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var directionLabel: UILabel!
     @IBOutlet weak var milepostLabel: UILabel!
     @IBOutlet weak var amenities: UILabel!
 
-    @IBOutlet weak var mapImage: UIImageView!
+    weak fileprivate var embeddedMapViewController: SimpleMapViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Rest Area"
+    
+        embeddedMapViewController.view.isHidden = true
     
         locationLabel.text = restAreaItem!.route + " - " + restAreaItem!.location
         directionLabel.text = restAreaItem!.direction
@@ -44,26 +46,56 @@ class RestAreaViewController: UIViewController {
         
         amenities.text? = ""
         
+        restAreaMarker.position = CLLocationCoordinate2D(latitude: restAreaItem!.latitude, longitude: restAreaItem!.longitude)
+        
         for amenity in restAreaItem!.amenities {
             amenities.text?.append("• " + amenity + "\n")
         }
         
-        let staticMapUrl = "http://maps.googleapis.com/maps/api/staticmap?center="
-            + String(restAreaItem!.latitude) + "," + String(restAreaItem!.longitude)
-            + "&zoom=15&size=320x320&maptype=roadmap&markers="
-            + String(restAreaItem!.latitude) + "," + String(restAreaItem!.longitude)
-            + "&key=" + ApiKeys.getGoogleAPIKey()
-        
-        mapImage.sd_setImage(with: URL(string: staticMapUrl), placeholderImage: UIImage(named: "imagePlaceholder"), options: .refreshCached)
-        
         scrollView.contentMode = .scaleAspectFit
-        mapImage.sizeToFit()
-        scrollView.contentSize = CGSize(width: mapImage.frame.size.width, height: mapImage.frame.size.height)
+        
+        if let mapView = embeddedMapViewController.view as? GMSMapView{
+            restAreaMarker.map = mapView
+            mapView.settings.setAllGesturesEnabled(false)
+            if let restArea = restAreaItem {
+                mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: restArea.latitude, longitude: restArea.longitude), zoom: 14))
+                embeddedMapViewController.view.isHidden = false
+            }
+        }
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView(screenName: "/Traffic Map/Rest Area Details")
     }
+    
+    func drawMapOverlays() {
+        if let mapView = embeddedMapViewController.view as? GMSMapView{
+            restAreaMarker.map = mapView
+            mapView.settings.setAllGesturesEnabled(false)
+            if let restArea = restAreaItem {
+                mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: restArea.latitude, longitude: restArea.longitude), zoom: 14))
+                embeddedMapViewController.view.isHidden = false
+            }
+        }
+    }
+    
+    // MARK: Naviagtion
+    // Get refrence to child VC
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+        print("here 1")
+        
+        if let vc = segue.destination as? SimpleMapViewController, segue.identifier == "EmbedMapSegue" {
+            
+            print("here 2")
+            
+            vc.markerDelegate = self
+            vc.mapDelegate = self
+            self.embeddedMapViewController = vc
+        }
+    }
+    
 
 }

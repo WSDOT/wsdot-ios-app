@@ -22,14 +22,15 @@ import UIKit
 import Foundation
 import SafariServices
 
-class HighwayAlertViewController: UIViewController, INDLinkLabelDelegate {
-    
+class HighwayAlertViewController: UIViewController, INDLinkLabelDelegate, MapMarkerDelegate, GMSMapViewDelegate {
+
+
     var alertId = 0
     var alertItem = HighwayAlertItem()
+    fileprivate let alertMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: 0, longitude: 0))
     
     @IBOutlet weak var descLinkLabel: INDLinkLabel!
     @IBOutlet weak var updateTimeLabel: UILabel!
-    @IBOutlet weak var mapImage: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     
     var activityIndicator = UIActivityIndicatorView()
@@ -38,20 +39,21 @@ class HighwayAlertViewController: UIViewController, INDLinkLabelDelegate {
     var pushLat: Double = 0.0
     var pushLong: Double = 0.0
     
+    weak fileprivate var embeddedMapViewController: SimpleMapViewController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        embeddedMapViewController.view.isHidden = true
         
         descLinkLabel.delegate = self
         
         loadAlert()
         
         if (fromPush){
-        
             UserDefaults.standard.set(pushLat, forKey: UserDefaultsKeys.mapLat)
             UserDefaults.standard.set(pushLong, forKey: UserDefaultsKeys.mapLon)
             UserDefaults.standard.set(15, forKey: UserDefaultsKeys.mapZoom)
-        
         }
         
     }
@@ -78,6 +80,7 @@ class HighwayAlertViewController: UIViewController, INDLinkLabelDelegate {
                             
                                 selfValue.alertItem = alertItemValue
                                 selfValue.displayAlert()
+                                
                             } else {
                             
                                 selfValue.title = "Unavailable"
@@ -95,9 +98,7 @@ class HighwayAlertViewController: UIViewController, INDLinkLabelDelegate {
                             selfValue.hideOverlayView()
                             selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                         }
-                        
                     }
-                    
                 }
             })
         }
@@ -119,15 +120,14 @@ class HighwayAlertViewController: UIViewController, INDLinkLabelDelegate {
 
         updateTimeLabel.text = TimeUtils.timeAgoSinceDate(date: alertItem.lastUpdatedTime, numericDates: false)
         
-        let staticMapUrl = "http://maps.googleapis.com/maps/api/staticmap?center="
-            + String(alertItem.startLatitude) + "," + String(alertItem.startLongitude)
-            + "&zoom=15&size=320x320&maptype=roadmap&markers="
-            + String(alertItem.startLatitude) + "," + String(alertItem.startLongitude)
-            + "&key=" + ApiKeys.getGoogleAPIKey()
+        alertMarker.position = CLLocationCoordinate2D(latitude: self.alertItem.startLatitude, longitude: self.alertItem.startLongitude)
+        alertMarker.icon = UIHelpers.getAlertIcon(forAlert: self.alertItem)
         
+        if let mapView = embeddedMapViewController.view as? GMSMapView{
+            mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: self.alertItem.startLatitude, longitude: self.alertItem.startLongitude), zoom: 14))
+        }
         
-        mapImage.sd_setImage(with: URL(string: staticMapUrl), placeholderImage: UIImage(named: "imagePlaceholder"), options: .refreshCached)
-    
+        self.embeddedMapViewController.view.isHidden = false
     
     }
     
@@ -147,10 +147,29 @@ class HighwayAlertViewController: UIViewController, INDLinkLabelDelegate {
         activityIndicator.startAnimating()
     }
     
-    func hideOverlayView(){
+    func hideOverlayView() {
         activityIndicator.stopAnimating()
         activityIndicator.removeFromSuperview()
     }
+    
+    func drawMapOverlays() {
+        if let mapView = embeddedMapViewController.view as? GMSMapView{
+            alertMarker.map = mapView
+            mapView.settings.setAllGesturesEnabled(false)
+            mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: self.alertItem.startLatitude, longitude: self.alertItem.startLongitude), zoom: 14))
+        }
+    }
+    
+    // MARK: Naviagtion
+    // Get refrence to child VC
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? SimpleMapViewController, segue.identifier == "EmbedMapSegue" {
+            vc.markerDelegate = self
+            vc.mapDelegate = self
+            self.embeddedMapViewController = vc
+        }
+    }
+    
     
     // MARK: INDLinkLabelDelegate
     
