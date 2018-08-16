@@ -112,6 +112,60 @@ struct Utils {
 
 struct UIHelpers {
 
+    
+    static func getAlertIcon(forAlert: HighwayAlertItem) -> UIImage? {
+    
+        let alertHighIconImage = UIImage(named: "icMapAlertHigh")
+        let alertHighestIconImage = UIImage(named: "icMapAlertHighest")
+        let alertModerateIconImage = UIImage(named: "icMapAlertModerate")
+        let alertLowIconImage = UIImage(named: "icMapAlertLow")
+    
+        let constructionHighIconImage = UIImage(named: "icMapConstructionHigh")
+        let constructionHighestIconImage = UIImage(named: "icMapConstructionHighest")
+        let constructionModerateIconImage = UIImage(named: "icMapConstructionModerate")
+        let constructionLowIconImage = UIImage(named: "icMapConstructionLow")
+    
+        let closedIconImage = UIImage(named: "icMapClosed")
+    
+        if forAlert.headlineDesc.lowercased().contains("construction")
+                    || forAlert.eventCategory.lowercased().contains("maintenance")
+                    || forAlert.eventCategory.lowercased().contains("construction"){
+            switch forAlert.priority {
+                case "Lowest":
+                    return constructionLowIconImage
+                case "Low":
+                    return constructionLowIconImage
+                case "Moderate":
+                    return constructionModerateIconImage
+                case "High":
+                    return constructionHighIconImage
+                case "Highest":
+                    return constructionHighestIconImage
+                default:
+                    return constructionModerateIconImage
+            }
+
+        } else if forAlert.headlineDesc.lowercased().contains("road closure") || forAlert.eventCategory.lowercased().contains("closure"){
+            return closedIconImage
+        } else {
+            switch forAlert.priority {
+                case "Lowest":
+                    return alertLowIconImage
+                case "Low":
+                    return alertLowIconImage
+                case "Moderate":
+                    return alertModerateIconImage
+                case "High":
+                    return alertHighIconImage
+                case "Highest":
+                    return alertHighestIconImage
+                default:
+                    return alertModerateIconImage
+            }
+        }
+    }
+    
+
     static func getAlertLabel() -> UILabel {
         let label = UILabel(frame: CGRect(x: 10, y: -10, width: 20, height: 20))
         label.layer.borderColor = UIColor.clear.cgColor

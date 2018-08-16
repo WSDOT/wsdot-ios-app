@@ -52,6 +52,7 @@
 		9A398D74209A6F6A00BD84FF /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A398D73209A6F6A00BD84FF /* Notifications.storyboard */; };
 		9A398D76209A71B600BD84FF /* NotificationsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A398D75209A71B600BD84FF /* NotificationsStore.swift */; };
 		9A46C3B82034F5C1000F03C5 /* TravelTimeItemGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A46C3B72034F5C1000F03C5 /* TravelTimeItemGroup.swift */; };
+		9A4BBAB02125C53500DE6F1B /* SimpleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4BBAAF2125C53500DE6F1B /* SimpleMapViewController.swift */; };
 		9A50179C1D258F2000B9C49E /* RoutesCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */; };
 		9A6FBCC51D6B4C6500CDCE16 /* TravelerInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCC41D6B4C6500CDCE16 /* TravelerInfoViewController.swift */; };
 		9A6FBCCF1D6B520900CDCE16 /* RestAreaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCCE1D6B520900CDCE16 /* RestAreaItem.swift */; };
@@ -271,6 +272,7 @@
 		9A398D73209A6F6A00BD84FF /* Notifications.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notifications.storyboard; sourceTree = "<group>"; };
 		9A398D75209A71B600BD84FF /* NotificationsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsStore.swift; sourceTree = "<group>"; };
 		9A46C3B72034F5C1000F03C5 /* TravelTimeItemGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelTimeItemGroup.swift; sourceTree = "<group>"; };
+		9A4BBAAF2125C53500DE6F1B /* SimpleMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMapViewController.swift; sourceTree = "<group>"; };
 		9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutesCustomCell.swift; sourceTree = "<group>"; };
 		9A6FBCC41D6B4C6500CDCE16 /* TravelerInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelerInfoViewController.swift; sourceTree = "<group>"; };
 		9A6FBCCE1D6B520900CDCE16 /* RestAreaItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAreaItem.swift; sourceTree = "<group>"; };
@@ -505,6 +507,7 @@
 			isa = PBXGroup;
 			children = (
 				9A06167B1D622AE800126520 /* MapViewController.swift */,
+				9A4BBAAF2125C53500DE6F1B /* SimpleMapViewController.swift */,
 				9A06167E1D62602500126520 /* MapMarkerDelegate.swift */,
 				9A7BC0AB1D9DBAB400EF760C /* CameraClusterItem.swift */,
 				9A7BC0E11DA434F700EF760C /* WSDOTClusterRenderer.swift */,
@@ -1936,6 +1939,7 @@
 				9AEEDDA81D6F7FDF0032F5EC /* MountainPassReportViewController.swift in Sources */,
 				9AEF4DBE1D778ECF003ECA34 /* AmtrakCascadesScheduleViewController.swift in Sources */,
 				9A6FBD0D1D6CBC4E00CDCE16 /* TravelTimesRealmStore.swift in Sources */,
+				9A4BBAB02125C53500DE6F1B /* SimpleMapViewController.swift in Sources */,
 				9A06167F1D62602500126520 /* MapMarkerDelegate.swift in Sources */,
 				9AEEDDAA1D6F893B0032F5EC /* MountainPassCamerasViewController.swift in Sources */,
 				9AC5E86E202A2DB700C9BB02 /* EventViewController.swift in Sources */,

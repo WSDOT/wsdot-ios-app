@@ -97,7 +97,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
         view = mapView
         
         if let parent = markerDelegate {
-            parent.drawOverlays()
+            parent.drawMapOverlays()
         }
     }
     
@@ -152,7 +152,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
             } else {
                 self.locationManager.requestWhenInUseAuthorization()
             }
-        }
+        } 
     }
     
     // CLLocationManagerDelegate methods

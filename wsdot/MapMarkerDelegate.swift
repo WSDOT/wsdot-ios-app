@@ -21,5 +21,5 @@
 protocol MapMarkerDelegate: class {
     // Called by MapViewController when map is ready. 
     // All classes that use MapViewContoller must implement this method
-    func drawOverlays()
+    func drawMapOverlays()
 }
