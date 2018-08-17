@@ -4,6 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]:
 
+
+## [5.8.5] 2018-08
+
+### Changed
+* Replaces use of the Google Static Maps API with a native Google Map view with touch events disabled. 
+
 ## [5.8.4] 2018-07
 
 ### Added
