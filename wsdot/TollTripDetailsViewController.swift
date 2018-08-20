@@ -20,9 +20,12 @@
 
 import Foundation
 
-class TollTripDetailsViewController: UIViewController {
+class TollTripDetailsViewController: UIViewController, MapMarkerDelegate, GMSMapViewDelegate {
 
     var text = ""
+    
+    fileprivate var startMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0))
+    fileprivate var endMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0))
     
     var startLatitude = 0.0
     var startLongitude = 0.0
@@ -30,7 +33,8 @@ class TollTripDetailsViewController: UIViewController {
     var endLatitude = 0.0
     var endLongitude = 0.0
 
-    @IBOutlet weak var mapImageView: UIImageView!
+    weak fileprivate var embeddedMapViewController: SimpleMapViewController!
+
     @IBOutlet weak var infoLinkLabel: INDLinkLabel!
     
     override func viewDidLoad() {
@@ -48,40 +52,52 @@ class TollTripDetailsViewController: UIViewController {
             documentAttributes: nil)
         
         infoLinkLabel.attributedText = attrStr
-        displayMap()
         
     }
     
-    func displayMap() {
+    func drawMapOverlays() {
 
-        let center = LatLonUtils.getCenterLocation(startLatitude, startLongitude, endLatitude, endLongitude)
+        if let mapView = embeddedMapViewController.view as? GMSMapView{
+            
+            mapView.settings.setAllGesturesEnabled(false)
+            
+            startMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: startLatitude, longitude: startLongitude))
+            startMarker.icon = GMSMarker.markerImage(with: UIColor.green)
+            endMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: endLatitude, longitude: endLongitude))
+            
+            startMarker.map = mapView
+            endMarker.map = mapView
+            
+            let center = LatLonUtils.getCenterLocation(startLatitude, startLongitude, endLatitude, endLongitude)
 
-        let distanceInMiles = Double(LatLonUtils.haversine(startLatitude, lonA: startLongitude, latB: endLatitude, lonB: endLongitude)) * 0.000189394
-        var zoom = 0
+            let distanceInMiles = Double(LatLonUtils.haversine(startLatitude, lonA: startLongitude, latB: endLatitude, lonB: endLongitude)) * 0.000189394
+            var zoom: Float = 0
         
-        switch distanceInMiles {
-        case ..<4:
-            zoom = 12
-        case 4..<8:
-            zoom = 11
-        case 8..<15:
-            zoom = 10
-        case 15...:
-            zoom = 9
-        default:
-            fatalError()
+            switch distanceInMiles {
+            case ..<4:
+                zoom = 12
+            case 4..<8:
+                zoom = 11
+            case 8..<15:
+                zoom = 10
+            case 15...:
+                zoom = 9
+            default:
+                fatalError()
+            }
+          
+            mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: center.latitude, longitude: center.longitude), zoom: zoom))
         }
-
-        let staticMapUrl = "http://maps.googleapis.com/maps/api/staticmap?center="
-            + String(center.latitude) + "," + String(center.longitude)
-            + "&zoom=" + String(zoom) + "&size=320x320&maptype=roadmap"
-            + "&markers=color:green%7Clabel:S%7C"
-            + String(self.startLatitude) + "," + String(self.startLongitude)
-            + "&markers=color:red%7Clabel:E%7C"
-            + String(self.endLatitude) + "," + String(self.endLongitude)
-            + "&key=" + ApiKeys.getGoogleAPIKey()
-        
-        mapImageView.sd_setImage(with: URL(string: staticMapUrl), placeholderImage: UIImage(named: "imagePlaceholder"), options: .refreshCached)
-    
     }
+    
+    // MARK: Naviagtion
+    // Get refrence to child VC
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? SimpleMapViewController, segue.identifier == "EmbedMapSegue" {
+            vc.markerDelegate = self
+            vc.mapDelegate = self
+            self.embeddedMapViewController = vc
+        }
+    }
+    
 }

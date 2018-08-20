@@ -572,21 +572,24 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dh6-X8-T3V">
-                                        <rect key="frame" x="8" y="32" width="320" height="320"/>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tGZ-c7-WBI">
+                                        <rect key="frame" x="8" y="16" width="359" height="300"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="320" id="0uS-bb-I9y"/>
+                                            <constraint firstAttribute="height" constant="300" id="dGf-7V-AFV"/>
                                         </constraints>
-                                    </imageView>
+                                        <connections>
+                                            <segue destination="82n-ue-pHs" kind="embed" identifier="EmbedMapSegue" id="qz0-49-Rib"/>
+                                        </connections>
+                                    </containerView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="AK6-9T-Ztl" firstAttribute="leading" secondItem="gVS-Qu-qTA" secondAttribute="leadingMargin" id="3ZL-js-DOM"/>
-                                    <constraint firstAttribute="bottom" secondItem="dh6-X8-T3V" secondAttribute="bottom" constant="8" id="4MA-uh-rJd"/>
+                                    <constraint firstAttribute="bottom" secondItem="tGZ-c7-WBI" secondAttribute="bottom" constant="8" id="5x9-vN-I1F"/>
                                     <constraint firstItem="AK6-9T-Ztl" firstAttribute="centerX" secondItem="gVS-Qu-qTA" secondAttribute="centerX" id="8kI-eu-bOu"/>
-                                    <constraint firstItem="dh6-X8-T3V" firstAttribute="leading" secondItem="AK6-9T-Ztl" secondAttribute="leading" id="AhP-Ni-QZF"/>
-                                    <constraint firstAttribute="trailing" secondItem="dh6-X8-T3V" secondAttribute="trailing" constant="47" id="cKa-8W-1qL"/>
+                                    <constraint firstAttribute="trailing" secondItem="tGZ-c7-WBI" secondAttribute="trailing" constant="8" id="CM7-Ek-db2"/>
+                                    <constraint firstItem="tGZ-c7-WBI" firstAttribute="top" secondItem="AK6-9T-Ztl" secondAttribute="bottom" constant="8" id="E61-ZV-luS"/>
+                                    <constraint firstItem="tGZ-c7-WBI" firstAttribute="leading" secondItem="gVS-Qu-qTA" secondAttribute="leading" constant="8" id="Sul-RW-UKE"/>
                                     <constraint firstItem="AK6-9T-Ztl" firstAttribute="top" secondItem="gVS-Qu-qTA" secondAttribute="topMargin" id="euO-FQ-bkg"/>
-                                    <constraint firstItem="dh6-X8-T3V" firstAttribute="top" secondItem="AK6-9T-Ztl" secondAttribute="bottom" constant="24" id="uEp-X4-C3t"/>
                                     <constraint firstItem="AK6-9T-Ztl" firstAttribute="trailing" secondItem="gVS-Qu-qTA" secondAttribute="trailingMargin" id="vob-By-rEx"/>
                                 </constraints>
                             </scrollView>
@@ -601,12 +604,25 @@
                     </view>
                     <connections>
                         <outlet property="infoLinkLabel" destination="AK6-9T-Ztl" id="54X-ys-9tI"/>
-                        <outlet property="mapImageView" destination="dh6-X8-T3V" id="AQg-Re-u5y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Qd-Dz-ZVu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="830" y="2397"/>
+            <point key="canvasLocation" x="829.60000000000002" y="2396.8515742128939"/>
+        </scene>
+        <!--Simple Map View Controller-->
+        <scene sceneID="yXv-3T-c8a">
+            <objects>
+                <viewController id="82n-ue-pHs" customClass="SimpleMapViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pHv-Po-Wam">
+                        <rect key="frame" x="0.0" y="0.0" width="359" height="300"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MEa-1F-aae" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1575" y="2396"/>
         </scene>
     </scenes>
     <resources>
