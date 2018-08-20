@@ -50,10 +50,12 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
         
         // refresh controller
         refreshControl.addTarget(self, action: #selector(BorderWaitsViewController.refreshAction(_:)), for: .valueChanged)
- 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        refresh(true)
         tableView.addSubview(refreshControl)
         activityIndicator.startAnimating()
-        refresh(true)
     }
     
     @objc func refreshAction(_ refreshControl: UIRefreshControl) {

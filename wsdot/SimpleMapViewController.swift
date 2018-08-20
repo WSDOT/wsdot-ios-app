@@ -1,5 +1,5 @@
 //
-//  MapViewController.swift
+//  SimpleMapViewController.swift
 //  WSDOT
 //
 //  Copyright (c) 2018 Washington State Department of Transportation
