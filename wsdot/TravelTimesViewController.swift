@@ -135,18 +135,14 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! TravelTimeCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! GroupRouteCell
         let travelTimeGroup = filtered[indexPath.row]
         
-        // Remove any labels & lines carried over from being recycled.
-        for label in cell.dynamicLabels {
-            label.removeFromSuperview()
+        // Remove any RouteViews carried over from being recycled.
+        for route in cell.dynamicRouteViews {
+            route.removeFromSuperview()
         }
-        cell.dynamicLabels.removeAll()
-        for line in cell.dynamicLines {
-            line.removeFromSuperview()
-        }
-        cell.dynamicLines.removeAll()
+        cell.dynamicRouteViews.removeAll()
         
         cell.routeLabel.text = travelTimeGroup.title
 
@@ -157,123 +153,69 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
         cell.favoriteButton.tag = indexPath.row
         cell.favoriteButton.addTarget(self, action: #selector(favoriteAction(_:)), for: .touchUpInside)
 
-        var lastLine: UIView? = nil
+        var lastRouteView: RouteView? = nil
         
         for route in travelTimeGroup.routes {
         
-            let line = UIView()
-            line.backgroundColor = .lightGray
-            line.translatesAutoresizingMaskIntoConstraints = false
-            cell.contentView.addSubview(line)
-            cell.dynamicLines.append(line)
-            let negativeLineRightPadding: CGFloat = -24.0
-        
-            let viaLabel = UILabel()
-            viaLabel.text = "Via \(route.viaText)"
-            viaLabel.translatesAutoresizingMaskIntoConstraints = false
-            viaLabel.numberOfLines = 0
-            cell.contentView.addSubview(viaLabel)
-            cell.dynamicLabels.append(viaLabel)
-        
-            let distanceLabel = UILabel()
-            distanceLabel.text = "\(route.distance) miles / \(route.averageTime) min"
-            distanceLabel.font = UIFont.systemFont(ofSize: 15)
-            distanceLabel.translatesAutoresizingMaskIntoConstraints = false
-            cell.contentView.addSubview(distanceLabel)
-            cell.dynamicLabels.append(distanceLabel)
+            let routeView = RouteView.instantiateFromXib()
             
-            let updatedLabel = UILabel()
+            routeView.translatesAutoresizingMaskIntoConstraints = false
+            routeView.contentView.translatesAutoresizingMaskIntoConstraints = false
+            routeView.titleLabel.translatesAutoresizingMaskIntoConstraints = false
+            routeView.subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
+            routeView.updatedLabel.translatesAutoresizingMaskIntoConstraints = false
+            routeView.valueLabel.translatesAutoresizingMaskIntoConstraints = false
+            
+            routeView.titleLabel.text = "Via \(route.viaText)"
+            routeView.subtitleLabel.text = "\(route.distance) miles / \(route.averageTime) min"
+            
             do {
                 let updated = try TimeUtils.timeAgoSinceDate(date: TimeUtils.formatTimeStamp(route.updated), numericDates: true)
-                updatedLabel.text = updated
+                routeView.updatedLabel.text = updated
             } catch {
-                updatedLabel.text = "N/A"
+                routeView.updatedLabel.text = "N/A"
             }
             
-            updatedLabel.font = UIFont.systemFont(ofSize: 15)
-            updatedLabel.textColor = UIColor.lightGray
-            updatedLabel.translatesAutoresizingMaskIntoConstraints = false
-            cell.contentView.addSubview(updatedLabel)
-            cell.dynamicLabels.append(updatedLabel)
-        
-            let timeLabel = UILabel()
-            
             if (route.status == "open"){
-                timeLabel.text = "\(route.currentTime) min"                
-                distanceLabel.isHidden = false
+                routeView.valueLabel.text = "\(route.currentTime) min"
+                routeView.subtitleLabel.isHidden = false
             } else {
-                distanceLabel.isHidden = true
-                timeLabel.text = route.status
+                routeView.subtitleLabel.isHidden = true
+                routeView.valueLabel.text = route.status
             }
             
             if (route.averageTime > route.currentTime){
-                timeLabel.textColor = Colors.tintColor
+                routeView.valueLabel.textColor = Colors.tintColor
             } else if (route.averageTime < route.currentTime){
-                timeLabel.textColor = UIColor.red
+                routeView.valueLabel.textColor = UIColor.red
             } else {
-                timeLabel.textColor = UIColor.darkText
+                routeView.valueLabel.textColor = UIColor.darkText
             }
             
-            timeLabel.font = UIFont.systemFont(ofSize: 20)
-            timeLabel.translatesAutoresizingMaskIntoConstraints = false
-            cell.contentView.addSubview(timeLabel)
-            cell.dynamicLabels.append(timeLabel)
-        
-            // Align labels with title
-            let leadingSpaceConstraintForLine = NSLayoutConstraint(item: line, attribute: .leading, relatedBy: .equal, toItem: cell.routeLabel, attribute: .leading, multiplier: 1, constant: 0);
-            cell.contentView.addConstraint(leadingSpaceConstraintForLine)
+            cell.contentView.addSubview(routeView)
             
-            let trailingSpaceConstraintForLine = NSLayoutConstraint(item: line, attribute: .trailing, relatedBy: .equal, toItem: cell.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8);
-            cell.contentView.addConstraint(trailingSpaceConstraintForLine)
+            let leadingSpaceConstraintForRouteView = NSLayoutConstraint(item: routeView.contentView, attribute: .leading, relatedBy: .equal, toItem: cell.routeLabel, attribute: .leading, multiplier: 1, constant: 0);
+            cell.contentView.addConstraint(leadingSpaceConstraintForRouteView)
             
-            let leadingSpaceConstraintForViaLabel = NSLayoutConstraint(item: viaLabel, attribute: .leading, relatedBy: .equal, toItem: cell.routeLabel, attribute: .leading, multiplier: 1, constant: 0);
-            cell.contentView.addConstraint(leadingSpaceConstraintForViaLabel)
-        
-            let trailingConstraintForViaLabel = NSLayoutConstraint(item: viaLabel, attribute: .trailing, relatedBy: .equal, toItem: cell.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8)
-            cell.contentView.addConstraint(trailingConstraintForViaLabel)
-        
-            let leadingSpaceConstraintForDistanceLabel = NSLayoutConstraint(item: distanceLabel, attribute: .leading, relatedBy: .equal, toItem: cell.routeLabel, attribute: .leading, multiplier: 1, constant: 0)
-            cell.contentView.addConstraint(leadingSpaceConstraintForDistanceLabel)
+            let trailingSpaceConstraintForRouteView = NSLayoutConstraint(item: routeView.contentView, attribute: .trailing, relatedBy: .equal, toItem: cell.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8);
+            cell.contentView.addConstraint(trailingSpaceConstraintForRouteView)
             
-            let leadingSpaceConstraintForUpdatedLabel = NSLayoutConstraint(item: updatedLabel, attribute: .leading, relatedBy: .equal, toItem: cell.routeLabel, attribute: .leading, multiplier: 1, constant: 0)
-            cell.contentView.addConstraint(leadingSpaceConstraintForUpdatedLabel)
-        
-            // set top constraints
-            let topSpaceConstraintForViaLabel = NSLayoutConstraint(item: viaLabel, attribute: .top, relatedBy: .equal, toItem: (lastLine == nil ? cell.routeLabel : lastLine), attribute: .bottom, multiplier: 1, constant: 8);
-            cell.contentView.addConstraint(topSpaceConstraintForViaLabel)
-        
-            let topSpaceConstraintForDistanceLabel = NSLayoutConstraint(item: distanceLabel, attribute: .top, relatedBy: .equal, toItem: viaLabel, attribute: .bottom, multiplier: 1, constant: 8)
-            cell.contentView.addConstraint(topSpaceConstraintForDistanceLabel)
-       
-            let topSpaceConstraintForUpdatedLabel = NSLayoutConstraint(item: updatedLabel, attribute: .top, relatedBy: .equal, toItem: distanceLabel, attribute: .bottom, multiplier: 1, constant: 8)
-            cell.contentView.addConstraint(topSpaceConstraintForUpdatedLabel)
-       
-            let topSpaceConstraintForLine = NSLayoutConstraint(item: line, attribute: .top, relatedBy: .equal, toItem: updatedLabel, attribute: .bottom, multiplier: 1, constant: 8)
-            cell.contentView.addConstraint(topSpaceConstraintForLine)
-       
-            // Set travel time constraints
-            let centerYConstraintForTimeLabel = NSLayoutConstraint(item: timeLabel, attribute: .bottom, relatedBy: .equal, toItem: updatedLabel, attribute: .bottom, multiplier: 1, constant: 0)
-            cell.contentView.addConstraint(centerYConstraintForTimeLabel)
-        
-            let trailingConstraintForTimeLabel = NSLayoutConstraint(item: timeLabel, attribute: .trailing, relatedBy: .equal, toItem: cell.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8)
-            cell.contentView.addConstraint(trailingConstraintForTimeLabel)
+            let topSpaceConstraintForRouteView = NSLayoutConstraint(item: routeView.contentView, attribute: .top, relatedBy: .equal, toItem: (lastRouteView == nil ? cell.routeLabel : lastRouteView!.updatedLabel), attribute: .bottom, multiplier: 1, constant: 8);
+            cell.contentView.addConstraint(topSpaceConstraintForRouteView)
             
-            // Set line contraints
-            let widthConstraintForLine = NSLayoutConstraint(item: line, attribute: .width, relatedBy: .equal, toItem: cell.contentView, attribute: .width, multiplier: 1, constant: negativeLineRightPadding)
-            let heightConstraintForLine = NSLayoutConstraint(item: line, attribute: .height, relatedBy: .equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 1)
-            cell.contentView.addConstraint(widthConstraintForLine)
-            cell.contentView.addConstraint(heightConstraintForLine)
-        
             if travelTimeGroup.routes.index(of: route) == travelTimeGroup.routes.index(of: travelTimeGroup.routes.last!) {
-                let bottomSpaceConstraint = NSLayoutConstraint(item: updatedLabel, attribute: .bottom, relatedBy: .equal, toItem: cell.contentView, attribute: .bottom, multiplier: 1, constant: -8)
+                let bottomSpaceConstraint = NSLayoutConstraint(item: routeView.updatedLabel, attribute: .bottom, relatedBy: .equal, toItem: cell.contentView, attribute: .bottom, multiplier: 1, constant: -16)
                 cell.contentView.addConstraint(bottomSpaceConstraint)
-                line.isHidden = true
+                routeView.line.isHidden = true
             }
-        
-            lastLine = line
+            
+            cell.dynamicRouteViews.append(routeView)
+            lastRouteView = routeView
+            
         }
 
         cell.sizeToFit()
+     
         return cell
     }
 

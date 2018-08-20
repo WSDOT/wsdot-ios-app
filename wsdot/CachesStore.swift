@@ -29,6 +29,7 @@ enum CachedData {
     case borderWaits
     case mountainPasses
     case notifications
+    case tollRates
 }
 
 class CachesStore {
@@ -69,6 +70,8 @@ class CachesStore {
             return cacheItem!.mountainPassesLastUpdate as Date
         case .notifications:
             return cacheItem!.notificationsLastUpdate as Date
+        case .tollRates:
+            return cacheItem!.tollRatesLastUpdate as Date
         }
     }
 
@@ -99,6 +102,8 @@ class CachesStore {
                     break
                 case .notifications:
                     cacheItem?.notificationsLastUpdate = updated
+                case .tollRates:
+                    cacheItem?.tollRatesLastUpdate = updated
                 }
             }
         } catch {

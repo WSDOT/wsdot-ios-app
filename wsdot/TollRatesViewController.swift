@@ -2,7 +2,7 @@
 //  TollRatesViewController.swift
 //  WSDOT
 //
-//  Copyright (c) 2016 Washington State Department of Transportation
+//  Copyright (c) 2018 Washington State Department of Transportation
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -24,26 +24,13 @@ import SafariServices
 
 class TollRatesViewController: UIViewController{
 
-    @IBOutlet weak var SR520ContainerView: UIView!
-    @IBOutlet weak var SR16ContainerView: UIView!
-    @IBOutlet weak var SR167ContainerView: UIView!
-    @IBOutlet weak var I405ContainerView: UIView!
+    @IBOutlet weak var TollTabBarContainerView: UIView!
 
     let goodToGoUrlString = "https://mygoodtogo.com/olcsc/"
 
-    // Remove and add hairline for nav bar
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView(screenName: "/Toll Rates/SR520")
-    
-        let img = UIImage()
-        self.navigationController?.navigationBar.shadowImage = img
-        self.navigationController?.navigationBar.setBackgroundImage(img, for: .default)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.navigationBar.shadowImage = nil
-        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        GoogleAnalytics.screenView(screenName: "/Toll Rates/SR 520")
     }
     
     @IBAction func MyGoodToGoLinkTap(_ sender: UIBarButtonItem) {
@@ -58,40 +45,4 @@ class TollRatesViewController: UIViewController{
         self.present(svc, animated: true, completion: nil)
     }
     
-    @IBAction func indexChanged(_ sender: UISegmentedControl) {
-        
-        switch (sender.selectedSegmentIndex){
-            
-        case 0:
-            GoogleAnalytics.screenView(screenName: "/Toll Rates/SR520")
-            SR520ContainerView.isHidden = false
-            SR16ContainerView.isHidden = true
-            SR167ContainerView.isHidden = true
-            I405ContainerView.isHidden = true
-            break
-        case 1:
-            GoogleAnalytics.screenView(screenName: "/Toll Rates/SR16")
-            SR520ContainerView.isHidden = true
-            SR16ContainerView.isHidden = false
-            SR167ContainerView.isHidden = true
-            I405ContainerView.isHidden = true
-            break
-        case 2:
-            GoogleAnalytics.screenView(screenName: "/Toll Rates/SR167")
-            SR520ContainerView.isHidden = true
-            SR16ContainerView.isHidden = true
-            SR167ContainerView.isHidden = false
-            I405ContainerView.isHidden = true
-            break
-        case 3:
-            GoogleAnalytics.screenView(screenName: "/Toll Rates/I405")
-            SR520ContainerView.isHidden = true
-            SR16ContainerView.isHidden = true
-            SR167ContainerView.isHidden = true
-            I405ContainerView.isHidden = false
-            break
-        default:
-            break
-        }
-    }
 }

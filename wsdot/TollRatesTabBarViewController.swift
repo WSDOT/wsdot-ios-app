@@ -1,8 +1,8 @@
 //
-//  TravelTimeItemGroup.swift
+//  TollRatesTabBarViewController.swift
 //  WSDOT
 //
-//  Copyright (c) 2016 Washington State Department of Transportation
+//  Copyright (c) 2018 Washington State Department of Transportation
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -18,19 +18,23 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
 
-import RealmSwift
+import UIKit
 
-class TravelTimeItemGroup: Object {
+class TollRatesTabBarViewController: UITabBarController {
 
-    @objc dynamic var title: String = ""
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        let barViewControllers = self.viewControllers
+        let sr167VC = barViewControllers![2] as! DynamicTollRatesViewController
+        let i405VC = barViewControllers![3] as! DynamicTollRatesViewController
+
+        sr167VC.stateRoute = "167"
+        i405VC.stateRoute = "405"
+
+    }
     
-    let routes = List<TravelTimeItem>()
-
-    @objc dynamic var selected: Bool = false
-    @objc dynamic var delete: Bool = false
-    
-    override static func primaryKey() -> String? {
-        return "title"
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        GoogleAnalytics.screenView(screenName: "/Toll Rates/\(item.title!)")
     }
 }
-

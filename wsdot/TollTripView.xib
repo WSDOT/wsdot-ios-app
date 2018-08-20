@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Qj6-P6-hhX" customClass="TollTripView" customModule="WSDOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iby-XJ-uVo">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BaH-ib-CX6">
+                            <rect key="frame" x="0.0" y="57" width="250" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lyP-SK-sbD">
+                            <rect key="frame" x="290" y="54" width="85" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="85" id="3Dm-jr-6yo"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zTJ-iX-9b9">
+                            <rect key="frame" x="0.0" y="83" width="375" height="1"/>
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZ8-ox-pff" customClass="TripMapButton" customModule="WSDOT" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="27" width="94" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="94" id="1fY-7a-dYv"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="94" id="8bN-lo-6Bj"/>
+                            </constraints>
+                            <state key="normal" title="Show on map"/>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="twJ-Uy-vas">
+                            <rect key="frame" x="0.0" y="8" width="375" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="SZ8-ox-pff" firstAttribute="centerY" secondItem="Iby-XJ-uVo" secondAttribute="centerY" id="4Pq-fP-axW"/>
+                        <constraint firstItem="twJ-Uy-vas" firstAttribute="leading" secondItem="SZ8-ox-pff" secondAttribute="leading" id="8Px-rK-sIh"/>
+                        <constraint firstAttribute="trailing" secondItem="twJ-Uy-vas" secondAttribute="trailing" id="9wJ-0h-5zf"/>
+                        <constraint firstItem="lyP-SK-sbD" firstAttribute="leading" secondItem="BaH-ib-CX6" secondAttribute="trailing" constant="40" id="PzO-cK-cW1"/>
+                        <constraint firstItem="SZ8-ox-pff" firstAttribute="leading" secondItem="BaH-ib-CX6" secondAttribute="leading" id="UFj-7X-oLx"/>
+                        <constraint firstItem="BaH-ib-CX6" firstAttribute="centerY" secondItem="lyP-SK-sbD" secondAttribute="centerY" id="YX9-bI-X2n"/>
+                        <constraint firstAttribute="bottom" secondItem="zTJ-iX-9b9" secondAttribute="bottom" id="cUW-sC-oBf"/>
+                        <constraint firstItem="BaH-ib-CX6" firstAttribute="leading" secondItem="zTJ-iX-9b9" secondAttribute="leading" id="eEX-Br-gi4"/>
+                        <constraint firstItem="lyP-SK-sbD" firstAttribute="top" secondItem="twJ-Uy-vas" secondAttribute="bottom" constant="25" id="esa-Le-Qna"/>
+                        <constraint firstItem="BaH-ib-CX6" firstAttribute="top" secondItem="SZ8-ox-pff" secondAttribute="bottom" id="mVz-l5-NpR"/>
+                        <constraint firstItem="twJ-Uy-vas" firstAttribute="trailing" secondItem="lyP-SK-sbD" secondAttribute="trailing" id="pdp-xK-J3W"/>
+                        <constraint firstItem="lyP-SK-sbD" firstAttribute="trailing" secondItem="zTJ-iX-9b9" secondAttribute="trailing" id="sSi-fW-uKT"/>
+                        <constraint firstItem="twJ-Uy-vas" firstAttribute="top" secondItem="Iby-XJ-uVo" secondAttribute="topMargin" id="tHV-Xi-y26"/>
+                        <constraint firstItem="zTJ-iX-9b9" firstAttribute="top" secondItem="BaH-ib-CX6" secondAttribute="bottom" constant="8" symbolic="YES" id="uOs-Iv-PMH"/>
+                        <constraint firstItem="twJ-Uy-vas" firstAttribute="leading" secondItem="Iby-XJ-uVo" secondAttribute="leading" id="ueU-Lr-lVm"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Iby-XJ-uVo" firstAttribute="trailing" secondItem="JR6-CK-NOs" secondAttribute="trailing" id="2XF-gZ-hfX"/>
+                <constraint firstItem="Iby-XJ-uVo" firstAttribute="top" secondItem="JR6-CK-NOs" secondAttribute="top" id="9eU-qx-UvZ"/>
+                <constraint firstItem="Iby-XJ-uVo" firstAttribute="bottom" secondItem="JR6-CK-NOs" secondAttribute="bottom" id="EZI-FQ-7IQ"/>
+                <constraint firstItem="Iby-XJ-uVo" firstAttribute="leading" secondItem="JR6-CK-NOs" secondAttribute="leading" id="w31-2R-MhO"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="JR6-CK-NOs"/>
+            <connections>
+                <outlet property="actionButton" destination="SZ8-ox-pff" id="1qu-FW-mis"/>
+                <outlet property="bottomLabel" destination="BaH-ib-CX6" id="JEb-8R-S5V"/>
+                <outlet property="contentView" destination="Iby-XJ-uVo" id="dtk-d5-OWa"/>
+                <outlet property="line" destination="zTJ-iX-9b9" id="SnG-au-Bpw"/>
+                <outlet property="topLabel" destination="twJ-Uy-vas" id="oIM-3z-5Sm"/>
+                <outlet property="valueLabel" destination="lyP-SK-sbD" id="sIm-7H-Ijy"/>
+            </connections>
+            <point key="canvasLocation" x="20.5" y="-277"/>
+        </view>
+    </objects>
+</document>

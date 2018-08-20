@@ -1,5 +1,5 @@
 //
-//  TravelTimeItemGroup.swift
+//  TravelTimeCell.swift
 //  WSDOT
 //
 //  Copyright (c) 2016 Washington State Department of Transportation
@@ -17,20 +17,13 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
+import UIKit
 
-import RealmSwift
-
-class TravelTimeItemGroup: Object {
-
-    @objc dynamic var title: String = ""
+class GroupRouteCell: UITableViewCell {
     
-    let routes = List<TravelTimeItem>()
-
-    @objc dynamic var selected: Bool = false
-    @objc dynamic var delete: Bool = false
+    @IBOutlet weak var routeLabel: UILabel!
+    @IBOutlet weak var favoriteButton: UIButton!
     
-    override static func primaryKey() -> String? {
-        return "title"
-    }
+    var dynamicRouteViews = [UIView]()
+
 }
-

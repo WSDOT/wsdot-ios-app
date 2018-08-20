@@ -47,7 +47,6 @@ class HighwayAlertViewController: UIViewController, INDLinkLabelDelegate, MapMar
         embeddedMapViewController.view.isHidden = true
         
         descLinkLabel.delegate = self
-        
         loadAlert()
         
         if (fromPush){
@@ -126,9 +125,9 @@ class HighwayAlertViewController: UIViewController, INDLinkLabelDelegate, MapMar
         if let mapView = embeddedMapViewController.view as? GMSMapView{
             mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: self.alertItem.startLatitude, longitude: self.alertItem.startLongitude), zoom: 14))
         }
-        
+
         self.embeddedMapViewController.view.isHidden = false
-    
+
     }
     
     func showOverlay(_ view: UIView) {

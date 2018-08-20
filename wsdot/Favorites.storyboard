@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0hy-HL-p0M">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0hy-HL-p0M">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -89,7 +89,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TravelTimeCell" rowHeight="92" id="1ro-D1-IE8" customClass="TravelTimeCell" customModule="WSDOT" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TravelTimeCell" rowHeight="92" id="1ro-D1-IE8" customClass="GroupRouteCell" customModule="WSDOT" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="146" width="375" height="92"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1ro-D1-IE8" id="7pF-bP-Pih">
@@ -276,6 +276,43 @@
                                             <outlet property="checkAlertsButton" destination="faX-sK-Lym" id="Csy-Ld-JVo"/>
                                             <outlet property="openTrafficMapButton" destination="ytM-aX-YDP" id="Afz-da-TU7"/>
                                             <outlet property="routeNameLabel" destination="Vng-3f-W8s" id="Xwv-IT-lOi"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TollRatesCell" rowHeight="98" id="Vmx-Uy-moT" customClass="GroupRouteCell" customModule="WSDOT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="497" width="375" height="98"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vmx-Uy-moT" id="FEm-Et-olp">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="97.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gq1-rN-c23">
+                                                    <rect key="frame" x="23" y="11" width="297" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ms-nc-MDQ">
+                                                    <rect key="frame" x="328" y="11" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="Jai-1O-N0R"/>
+                                                        <constraint firstAttribute="width" constant="32" id="ufE-G4-PDq"/>
+                                                    </constraints>
+                                                    <state key="normal" image="icStarSmall"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="gq1-rN-c23" firstAttribute="top" secondItem="FEm-Et-olp" secondAttribute="topMargin" id="BmF-SN-d1Z"/>
+                                                <constraint firstItem="6ms-nc-MDQ" firstAttribute="trailing" secondItem="FEm-Et-olp" secondAttribute="trailingMargin" id="Nw3-Dq-q4y"/>
+                                                <constraint firstItem="6ms-nc-MDQ" firstAttribute="top" secondItem="FEm-Et-olp" secondAttribute="topMargin" id="aK2-jF-xqy"/>
+                                                <constraint firstItem="6ms-nc-MDQ" firstAttribute="top" secondItem="FEm-Et-olp" secondAttribute="topMargin" id="bPL-qv-Hvy"/>
+                                                <constraint firstItem="6ms-nc-MDQ" firstAttribute="leading" secondItem="gq1-rN-c23" secondAttribute="trailing" constant="8" id="c65-np-N2E"/>
+                                                <constraint firstItem="6ms-nc-MDQ" firstAttribute="trailing" secondItem="FEm-Et-olp" secondAttribute="trailingMargin" id="esI-1M-KFV"/>
+                                                <constraint firstItem="gq1-rN-c23" firstAttribute="leading" secondItem="FEm-Et-olp" secondAttribute="leadingMargin" constant="8" id="vqk-O3-7fV"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="favoriteButton" destination="6ms-nc-MDQ" id="82A-0Y-3qP"/>
+                                            <outlet property="routeLabel" destination="gq1-rN-c23" id="55l-ys-Y0P"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

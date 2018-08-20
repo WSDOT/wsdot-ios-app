@@ -43,6 +43,20 @@ class TravelTimesStore{
         return Array(travelTimeItems)
     }
     
+    static func getTravelTimeBy(id: Int) -> TravelTimeItemGroup? {
+    
+        let realm = try! Realm()
+        let travelTimeItem = realm.objects(TravelTimeItemGroup.self).filter {
+                let travelTimes = $0.routes.filter {
+                    return $0.routeid == id
+                }
+                return travelTimes.count > 0
+            }.first
+        
+        return travelTimeItem
+    
+    }
+    
     static func findFavoriteTimes() -> [TravelTimeItemGroup]{
         let realm = try! Realm()
         let favoriteTimeItems = realm.objects(TravelTimeItemGroup.self).filter("selected == true").filter("delete == false")
@@ -133,7 +147,8 @@ class TravelTimesStore{
         for (_,subJson):(String, JSON) in json {
    
             let time = TravelTimeItem()
-            time.routeid = subJson["routeid"].intValue
+            
+            time.routeid = subJson["travel_time_id"].intValue
             
             time.viaText = subJson["via"].stringValue.replacingOccurrences(of: "REV", with: "EXPRESS", options: .literal).replacingOccurrences(of: ",", with: ", ", options: .literal)
             

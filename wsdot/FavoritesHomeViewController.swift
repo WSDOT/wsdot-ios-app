@@ -26,7 +26,7 @@ class FavoritesHomeViewController: UIViewController {
     var activityIndicator = UIActivityIndicatorView()
 
     // content types for the favorites list in order to appear on list.
-    var sectionTypes: [FavoritesContent] = [.route, .ferrySchedule, .mountainPass, .camera, .travelTime]
+    var sectionTypes: [FavoritesContent] = [.route, .ferrySchedule, .mountainPass, .camera, .travelTime, .tollRate]
 
     let segueMyRouteAlertsViewController = "MyRouteAlertsViewController"
     let segueFavoritesSettingsViewController = "FavoritesSettingsViewController"
@@ -40,6 +40,7 @@ class FavoritesHomeViewController: UIViewController {
     let travelTimesCellIdentifier = "TravelTimeCell"
     let ferryScheduleCellIdentifier = "FerryScheduleCell"
     let mountainPassCellIdentifier = "MountainPassCell"
+    let tollRatesCellIdentifier = "TollRatesCell"
 
     var cameras = [CameraItem]()
     var travelTimeGroups = [TravelTimeItemGroup]()
@@ -47,6 +48,7 @@ class FavoritesHomeViewController: UIViewController {
     var mountainPasses = [MountainPassItem]()
     var savedLocations = [FavoriteLocationItem]()
     var myRoutes = [MyRouteItem]()
+    var tollRates = [TollRateSignItem]()
 
     @IBOutlet weak var emptyFavoritesView: UIView!
     @IBOutlet weak var tableView: UITableView!
@@ -64,9 +66,7 @@ class FavoritesHomeViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         sectionTypes = buildSectionTypeArray()
-        
         initContent()
     }
 
@@ -103,6 +103,8 @@ class FavoritesHomeViewController: UIViewController {
             return mountainPasses.count
         case .mapLocation:
             return savedLocations.count
+        case .tollRate:
+            return tollRates.count
         }
     }
     
@@ -131,6 +133,8 @@ class FavoritesHomeViewController: UIViewController {
             return mountainPasses.count > 0 ? MyRouteStore.sectionTitles[FavoritesContent.mountainPass.rawValue] : ""
         case .mapLocation:
             return savedLocations.count > 0 ? MyRouteStore.sectionTitles[FavoritesContent.mapLocation.rawValue] : ""
+        case .tollRate:
+            return tollRates.count > 0 ? MyRouteStore.sectionTitles[FavoritesContent.tollRate.rawValue] : ""
         }
     }
     
@@ -152,6 +156,10 @@ class FavoritesHomeViewController: UIViewController {
             sectionTypesOrderRawArray.append(FavoritesContent.mapLocation.rawValue)
             sectionTypesOrderRawArray.append(FavoritesContent.camera.rawValue)
             sectionTypesOrderRawArray.append(FavoritesContent.travelTime.rawValue)
+            sectionTypesOrderRawArray.append(FavoritesContent.tollRate.rawValue)
+            UserDefaults.standard.set(sectionTypesOrderRawArray, forKey: UserDefaultsKeys.favoritesOrder)
+        } else if sectionTypesOrderRawArray.count < 7 { // Added toll rates
+            sectionTypesOrderRawArray.append(FavoritesContent.tollRate.rawValue)
             UserDefaults.standard.set(sectionTypesOrderRawArray, forKey: UserDefaultsKeys.favoritesOrder)
         }
         
@@ -163,9 +171,6 @@ class FavoritesHomeViewController: UIViewController {
         
         return sections
     }
-    
-
-    
 }
 
 extension FavoritesHomeViewController: INDLinkLabelDelegate {}
@@ -186,6 +191,7 @@ extension FavoritesHomeViewController {
         mountainPasses = MountainPassStore.findFavoritePasses()
         savedLocations = FavoriteLocationStore.getFavorites()
         myRoutes = MyRouteStore.getSelectedRoutes()
+        tollRates = TollRatesStore.findFavoriteTolls()
         
         if (tableEmpty()){
             emptyFavoritesView.isHidden = false
@@ -217,6 +223,9 @@ extension FavoritesHomeViewController {
         if (self.mountainPasses.count > 0){
             self.requestMountainPassesUpdate(force, serviceGroup: serviceGroup)
         }
+        if (self.tollRates.count > 0){
+            self.requestTollRatesUpdate(force, serviceGroup: serviceGroup)
+        }
  
         serviceGroup.notify(queue: DispatchQueue.main) {
             self.cameras = CamerasStore.getFavoriteCameras()
@@ -224,6 +233,7 @@ extension FavoritesHomeViewController {
             self.ferrySchedules = FerryRealmStore.findFavoriteSchedules()
             self.mountainPasses = MountainPassStore.findFavoritePasses()
             self.savedLocations = FavoriteLocationStore.getFavorites()
+            self.tollRates = TollRatesStore.findFavoriteTolls()
             
             if (self.tableEmpty()){
                 self.emptyFavoritesView.isHidden = false
@@ -277,6 +287,7 @@ extension FavoritesHomeViewController {
             (self.ferrySchedules.count == 0) &&
             (self.mountainPasses.count == 0) &&
             (self.savedLocations.count == 0) &&
+            (self.tollRates.count == 0) &&
             (self.myRoutes.count == 0)
     }
 
@@ -345,6 +356,24 @@ extension FavoritesHomeViewController {
             })
         }
     }
+    
+    func requestTollRatesUpdate(_ force: Bool, serviceGroup: DispatchGroup) {
+        serviceGroup.enter()
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async { [weak self] in
+            TollRatesStore.updateTollRates(force, completion: { error in
+                if (error == nil) {
+                    serviceGroup.leave()
+                } else {
+                    serviceGroup.leave()
+                    DispatchQueue.main.async { [weak self] in
+                        if let selfValue = self{
+                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                        }
+                    }
+                }
+            })
+        }
+    }
 }
 
 // MARK: - TableView
@@ -390,19 +419,15 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             
         case .travelTime:
         
-            let travelTimeCell = tableView.dequeueReusableCell(withIdentifier: travelTimesCellIdentifier) as! TravelTimeCell
+            let travelTimeCell = tableView.dequeueReusableCell(withIdentifier: travelTimesCellIdentifier) as! GroupRouteCell
             
             let travelTimeGroup = travelTimeGroups[indexPath.row]
             
-            // Remove any labels & lines carried over from being recycled.
-            for label in travelTimeCell.dynamicLabels {
-                label.removeFromSuperview()
+            // Remove any RouteViews carried over from being recycled.
+            for route in travelTimeCell.dynamicRouteViews {
+                route.removeFromSuperview()
             }
-            travelTimeCell.dynamicLabels.removeAll()
-            for line in travelTimeCell.dynamicLines {
-                line.removeFromSuperview()
-            }
-            travelTimeCell.dynamicLines.removeAll()
+            travelTimeCell.dynamicRouteViews.removeAll()
             
             travelTimeCell.routeLabel.text = travelTimeGroup.title
 
@@ -412,123 +437,67 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             travelTimeCell.accessoryType = .none
             travelTimeCell.isUserInteractionEnabled = false
 
-            var lastLine: UIView? = nil
+            var lastRouteView: RouteView? = nil
         
             for route in travelTimeGroup.routes {
-            
-                let line = UIView()
-                line.backgroundColor = .lightGray
-                line.translatesAutoresizingMaskIntoConstraints = false
-                travelTimeCell.contentView.addSubview(line)
-                travelTimeCell.dynamicLines.append(line)
-                let negativeLineRightPadding: CGFloat = -24.0
         
-                let viaLabel = UILabel()
-                viaLabel.text = "Via \(route.viaText)"
-                viaLabel.translatesAutoresizingMaskIntoConstraints = false
-                viaLabel.numberOfLines = 0
-                travelTimeCell.contentView.addSubview(viaLabel)
-                travelTimeCell.dynamicLabels.append(viaLabel)
-        
-                let distanceLabel = UILabel()
-                distanceLabel.text = "\(route.distance) miles / \(route.averageTime) min"
-                distanceLabel.font = UIFont.systemFont(ofSize: 15)
-                distanceLabel.translatesAutoresizingMaskIntoConstraints = false
-                travelTimeCell.contentView.addSubview(distanceLabel)
-                travelTimeCell.dynamicLabels.append(distanceLabel)
+                let routeView = RouteView.instantiateFromXib()
             
-                let updatedLabel = UILabel()
+                routeView.translatesAutoresizingMaskIntoConstraints = false
+                routeView.contentView.translatesAutoresizingMaskIntoConstraints = false
+                routeView.titleLabel.translatesAutoresizingMaskIntoConstraints = false
+                routeView.subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
+                routeView.updatedLabel.translatesAutoresizingMaskIntoConstraints = false
+                routeView.valueLabel.translatesAutoresizingMaskIntoConstraints = false
+            
+                routeView.titleLabel.text = "Via \(route.viaText)"
+                routeView.subtitleLabel.text = "\(route.distance) miles / \(route.averageTime) min"
+            
                 do {
                     let updated = try TimeUtils.timeAgoSinceDate(date: TimeUtils.formatTimeStamp(route.updated), numericDates: true)
-                    updatedLabel.text = updated
+                    routeView.updatedLabel.text = updated
                 } catch {
-                    updatedLabel.text = "N/A"
+                    routeView.updatedLabel.text = "N/A"
                 }
             
-                updatedLabel.font = UIFont.systemFont(ofSize: 15)
-                updatedLabel.textColor = UIColor.lightGray
-                updatedLabel.translatesAutoresizingMaskIntoConstraints = false
-                travelTimeCell.contentView.addSubview(updatedLabel)
-                travelTimeCell.dynamicLabels.append(updatedLabel)
-        
-                let timeLabel = UILabel()
-            
                 if (route.status == "open"){
-                    timeLabel.text = "\(route.currentTime) min"
-                    distanceLabel.isHidden = false
+                    routeView.valueLabel.text = "\(route.currentTime) min"
+                    routeView.subtitleLabel.isHidden = false
                 } else {
-                    distanceLabel.isHidden = true
-                    timeLabel.text = route.status
+                    routeView.subtitleLabel.isHidden = true
+                    routeView.valueLabel.text = route.status
                 }
             
                 if (route.averageTime > route.currentTime){
-                    timeLabel.textColor = Colors.tintColor
+                    routeView.valueLabel.textColor = Colors.tintColor
                 } else if (route.averageTime < route.currentTime){
-                    timeLabel.textColor = UIColor.red
+                    routeView.valueLabel.textColor = UIColor.red
                 } else {
-                    timeLabel.textColor = UIColor.darkText
+                    routeView.valueLabel.textColor = UIColor.darkText
                 }
             
-                timeLabel.font = UIFont.systemFont(ofSize: 20)
-                timeLabel.translatesAutoresizingMaskIntoConstraints = false
-                travelTimeCell.contentView.addSubview(timeLabel)
-                travelTimeCell.dynamicLabels.append(timeLabel)
-        
-                // Align labels with title
-                let leadingSpaceConstraintForLine = NSLayoutConstraint(item: line, attribute: .leading, relatedBy: .equal, toItem: travelTimeCell.routeLabel, attribute: .leading, multiplier: 1, constant: 0);
-                travelTimeCell.contentView.addConstraint(leadingSpaceConstraintForLine)
+                travelTimeCell.contentView.addSubview(routeView)
             
-                let trailingSpaceConstraintForLine = NSLayoutConstraint(item: line, attribute: .trailing, relatedBy: .equal, toItem: travelTimeCell.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8);
-                travelTimeCell.contentView.addConstraint(trailingSpaceConstraintForLine)
+                let leadingSpaceConstraintForRouteView = NSLayoutConstraint(item: routeView.contentView, attribute: .leading, relatedBy: .equal, toItem: travelTimeCell.routeLabel, attribute: .leading, multiplier: 1, constant: 0);
+                travelTimeCell.contentView.addConstraint(leadingSpaceConstraintForRouteView)
             
-                let leadingSpaceConstraintForViaLabel = NSLayoutConstraint(item: viaLabel, attribute: .leading, relatedBy: .equal, toItem: travelTimeCell.routeLabel, attribute: .leading, multiplier: 1, constant: 0);
-                travelTimeCell.contentView.addConstraint(leadingSpaceConstraintForViaLabel)
-        
-                let trailingConstraintForViaLabel = NSLayoutConstraint(item: viaLabel, attribute: .trailing, relatedBy: .equal, toItem: travelTimeCell.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8)
-                travelTimeCell.contentView.addConstraint(trailingConstraintForViaLabel)
-        
-                let leadingSpaceConstraintForDistanceLabel = NSLayoutConstraint(item: distanceLabel, attribute: .leading, relatedBy: .equal, toItem: travelTimeCell.routeLabel, attribute: .leading, multiplier: 1, constant: 0)
-                travelTimeCell.contentView.addConstraint(leadingSpaceConstraintForDistanceLabel)
+                let trailingSpaceConstraintForRouteView = NSLayoutConstraint(item: routeView.contentView, attribute: .trailing, relatedBy: .equal, toItem: travelTimeCell.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8);
+                travelTimeCell.contentView.addConstraint(trailingSpaceConstraintForRouteView)
             
-                let leadingSpaceConstraintForUpdatedLabel = NSLayoutConstraint(item: updatedLabel, attribute: .leading, relatedBy: .equal, toItem: travelTimeCell.routeLabel, attribute: .leading, multiplier: 1, constant: 0)
-                travelTimeCell.contentView.addConstraint(leadingSpaceConstraintForUpdatedLabel)
-        
-                // set top constraints
-                let topSpaceConstraintForViaLabel = NSLayoutConstraint(item: viaLabel, attribute: .top, relatedBy: .equal, toItem: (lastLine == nil ? travelTimeCell.routeLabel : lastLine), attribute: .bottom, multiplier: 1, constant: 8);
-                travelTimeCell.contentView.addConstraint(topSpaceConstraintForViaLabel)
-        
-                let topSpaceConstraintForDistanceLabel = NSLayoutConstraint(item: distanceLabel, attribute: .top, relatedBy: .equal, toItem: viaLabel, attribute: .bottom, multiplier: 1, constant: 8)
-                travelTimeCell.contentView.addConstraint(topSpaceConstraintForDistanceLabel)
-       
-                let topSpaceConstraintForUpdatedLabel = NSLayoutConstraint(item: updatedLabel, attribute: .top, relatedBy: .equal, toItem: distanceLabel, attribute: .bottom, multiplier: 1, constant: 8)
-                travelTimeCell.contentView.addConstraint(topSpaceConstraintForUpdatedLabel)
-       
-                let topSpaceConstraintForLine = NSLayoutConstraint(item: line, attribute: .top, relatedBy: .equal, toItem: updatedLabel, attribute: .bottom, multiplier: 1, constant: 8)
-                travelTimeCell.contentView.addConstraint(topSpaceConstraintForLine)
-       
-                // Set travel time constraints
-                let centerYConstraintForTimeLabel = NSLayoutConstraint(item: timeLabel, attribute: .bottom, relatedBy: .equal, toItem: updatedLabel, attribute: .bottom, multiplier: 1, constant: 0)
-                travelTimeCell.contentView.addConstraint(centerYConstraintForTimeLabel)
-        
-                let trailingConstraintForTimeLabel = NSLayoutConstraint(item: timeLabel, attribute: .trailing, relatedBy: .equal, toItem: travelTimeCell.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8)
-                travelTimeCell.contentView.addConstraint(trailingConstraintForTimeLabel)
+                let topSpaceConstraintForRouteView = NSLayoutConstraint(item: routeView.contentView, attribute: .top, relatedBy: .equal, toItem: (lastRouteView == nil ? travelTimeCell.routeLabel : lastRouteView!.updatedLabel), attribute: .bottom, multiplier: 1, constant: 8);
+                travelTimeCell.contentView.addConstraint(topSpaceConstraintForRouteView)
             
-                // Set line contraints
-                let widthConstraintForLine = NSLayoutConstraint(item: line, attribute: .width, relatedBy: .equal, toItem: travelTimeCell.contentView, attribute: .width, multiplier: 1, constant: negativeLineRightPadding)
-                let heightConstraintForLine = NSLayoutConstraint(item: line, attribute: .height, relatedBy: .equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 1)
-                travelTimeCell.contentView.addConstraint(widthConstraintForLine)
-                travelTimeCell.contentView.addConstraint(heightConstraintForLine)
-        
                 if travelTimeGroup.routes.index(of: route) == travelTimeGroup.routes.index(of: travelTimeGroup.routes.last!) {
-                    let bottomSpaceConstraint = NSLayoutConstraint(item: updatedLabel, attribute: .bottom, relatedBy: .equal, toItem: travelTimeCell.contentView, attribute: .bottom, multiplier: 1, constant: -8)
+                    let bottomSpaceConstraint = NSLayoutConstraint(item: routeView.updatedLabel, attribute: .bottom, relatedBy: .equal, toItem: travelTimeCell.contentView, attribute: .bottom, multiplier: 1, constant: -16)
                     travelTimeCell.contentView.addConstraint(bottomSpaceConstraint)
-                    line.isHidden = true
+                    routeView.line.isHidden = true
                 }
-        
-                lastLine = line
+            
+                travelTimeCell.dynamicRouteViews.append(routeView)
+                lastRouteView = routeView
+            
             }
 
-        
             travelTimeCell.sizeToFit()
             
             return travelTimeCell
@@ -571,6 +540,80 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             passCell.updatedLabel.text = TimeUtils.timeAgoSinceDate(date: passItem.dateUpdated, numericDates: false)
             
             return passCell
+            
+        case .tollRate:
+         
+            let tollRateCell = tableView.dequeueReusableCell(withIdentifier: tollRatesCellIdentifier) as! GroupRouteCell
+        
+            // Remove any RouteViews carried over from being recycled.
+            for route in tollRateCell.dynamicRouteViews {
+                route.removeFromSuperview()
+            }
+        
+            tollRateCell.dynamicRouteViews.removeAll()
+        
+            let tollSign = tollRates[indexPath.row]
+
+            tollRateCell.routeLabel.text = "\(tollSign.stateRoute) - \(tollSign.locationTitle)"
+        
+            // set up favorite button
+            tollRateCell.favoriteButton.isHidden = true
+            
+            var lastTripView: TollTripView? = nil
+        
+            for trip in tollSign.trips {
+        
+                let tripView = TollTripView.instantiateFromXib()
+            
+                tripView.translatesAutoresizingMaskIntoConstraints = false
+                tripView.contentView.translatesAutoresizingMaskIntoConstraints = false
+                tripView.topLabel.translatesAutoresizingMaskIntoConstraints = false
+                tripView.bottomLabel.translatesAutoresizingMaskIntoConstraints = false
+                tripView.actionButton.translatesAutoresizingMaskIntoConstraints = false
+                tripView.valueLabel.translatesAutoresizingMaskIntoConstraints = false
+            
+                tripView.actionButton.isHidden = true
+                
+                if tollSign.stateRoute == 405 {
+                    tripView.topLabel.text = "to \(trip.endLocationName)"
+                    tripView.topLabel.font = tripView.topLabel.font.withSize(17)
+                } else {
+                    tripView.topLabel.text = "Carpools and motorcycles free"
+                    tripView.topLabel.font = tripView.topLabel.font.withSize(14)
+                }
+            
+                tripView.bottomLabel.text = TimeUtils.timeAgoSinceDate(date: trip.updatedAt, numericDates: true)
+            
+                if (trip.message == ""){
+                    tripView.valueLabel.text = "$" + String(format: "%.2f", locale: Locale.current, arguments: [trip.toll])
+                } else {
+                    tripView.valueLabel.text = trip.message
+                }
+            
+                tollRateCell.contentView.addSubview(tripView)
+   
+                let leadingSpaceConstraintForRouteView = NSLayoutConstraint(item: tripView.contentView, attribute: .leading, relatedBy: .equal, toItem: tollRateCell.routeLabel, attribute: .leading, multiplier: 1, constant: 0);
+                tollRateCell.contentView.addConstraint(leadingSpaceConstraintForRouteView)
+            
+                let trailingSpaceConstraintForRouteView = NSLayoutConstraint(item: tripView.contentView, attribute: .trailing, relatedBy: .equal, toItem: tollRateCell.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8);
+                tollRateCell.contentView.addConstraint(trailingSpaceConstraintForRouteView)
+ 
+                let topSpaceConstraintForRouteView = NSLayoutConstraint(item: tripView.contentView, attribute: .top, relatedBy: .equal, toItem: (lastTripView == nil ? tollRateCell.routeLabel : lastTripView!.bottomLabel), attribute: .bottom, multiplier: 1, constant: (lastTripView == nil ? 0 : 8));
+                tollRateCell.contentView.addConstraint(topSpaceConstraintForRouteView)
+            
+                if tollSign.trips.index(of: trip) == tollSign.trips.index(of: tollSign.trips.last!) {
+                    let bottomSpaceConstraint = NSLayoutConstraint(item: tripView.bottomLabel, attribute: .bottom, relatedBy: .equal, toItem: tollRateCell.contentView, attribute: .bottom, multiplier: 1, constant: -16)
+                    tollRateCell.contentView.addConstraint(bottomSpaceConstraint)
+                    tripView.line.isHidden = true
+                }
+            
+                tollRateCell.dynamicRouteViews.append(tripView)
+                lastTripView = tripView
+           
+            }
+
+            tollRateCell.sizeToFit()
+            return tollRateCell
             
         case .route:
         
@@ -631,8 +674,6 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             
         }
         
-        
-        
         let renameLocationAction = UITableViewRowAction(style: UITableViewRowActionStyle.normal, title: "Edit", handler: { (action:UITableViewRowAction,
             indexPath:IndexPath) -> Void in
             
@@ -642,6 +683,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             alertController.addTextField { (textfield) in
                 textfield.placeholder = self.savedLocations[indexPath.row].name
             }
+            
             alertController.view.tintColor = Colors.tintColor
 
             let okAction = UIAlertAction(title: "Ok", style: .default) { (_) -> Void in
@@ -694,6 +736,10 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 self.mountainPasses.remove(at: indexPath.row)
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
                 break
+            case .tollRate:
+                TollRatesStore.updateFavorite(self.tollRates[indexPath.row], newValue: false)
+                self.tollRates.remove(at: indexPath.row)
+                self.tableView.deleteRows(at: [indexPath], with: .fade)
             case .route:
                 _ = MyRouteStore.updateSelected(self.myRoutes[indexPath.row], newValue: false)
                 self.myRoutes.remove(at: indexPath.row)
@@ -701,6 +747,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 break
             }
         })
+        
         if getType(forSection: indexPath.section) == .route {
             return [deleteAction, renameRouteAction]
         } else if getType(forSection: indexPath.section) == .mapLocation {
@@ -730,6 +777,8 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
         case .mountainPass:
             performSegue(withIdentifier: segueMountainPassDetailsViewController, sender: nil)
             tableView.deselectRow(at: indexPath, animated: true)
+            break
+        case .tollRate:
             break
         case .route:
             tableView.deselectRow(at: indexPath, animated: true)

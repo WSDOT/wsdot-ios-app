@@ -1,8 +1,8 @@
 //
-//  TravelTimeItemGroup.swift
+//  TollRateCell.swift
 //  WSDOT
 //
-//  Copyright (c) 2016 Washington State Department of Transportation
+//  Copyright (c) 2018 Washington State Department of Transportation
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -18,19 +18,14 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
 
-import RealmSwift
+import UIKit
 
-class TravelTimeItemGroup: Object {
+class TollRateCell: UITableViewCell {
 
-    @objc dynamic var title: String = ""
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var rateLabel: UILabel!
     
-    let routes = List<TravelTimeItem>()
-
-    @objc dynamic var selected: Bool = false
-    @objc dynamic var delete: Bool = false
+    @IBOutlet weak var updatedLabel: UILabel!
     
-    override static func primaryKey() -> String? {
-        return "title"
-    }
 }
-
