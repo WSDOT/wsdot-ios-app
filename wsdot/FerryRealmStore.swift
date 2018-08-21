@@ -44,13 +44,13 @@ class FerryRealmStore {
     static func findAllSchedules() -> [FerryScheduleItem]{
         let realm = try! Realm()
         let scheduleItems = realm.objects(FerryScheduleItem.self).filter("delete == false")
-        return Array(scheduleItems)
+        return Array(scheduleItems.sorted(by: {$0.routeDescription < $1.routeDescription}))
     }
     
     static func findFavoriteSchedules() -> [FerryScheduleItem]{
         let realm = try! Realm()
         let favoriteScheduleItems = realm.objects(FerryScheduleItem.self).filter("selected == true").filter("delete == false")
-        return Array(favoriteScheduleItems)
+        return Array(favoriteScheduleItems.sorted(by: {$0.routeDescription < $1.routeDescription}))
     }
     
     static func findSchedule(withId: Int) -> FerryScheduleItem? {
