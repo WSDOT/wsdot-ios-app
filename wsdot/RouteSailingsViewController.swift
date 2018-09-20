@@ -73,18 +73,13 @@ class RouteSailingsViewController: UIViewController, UITableViewDataSource, UITa
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueRouteDeparturesViewController {
-            if let indexPath = tableView.indexPathForSelectedRow {
-                let destinationViewController = segue.destination as! RouteDeparturesViewController
-                
-                destinationViewController.sailingsByDate = routeItem.scheduleDates
-                destinationViewController.currentSailing = routeItem.terminalPairs[indexPath.row]
-                destinationViewController.routeId = routeItem.routeId
+            let destinationViewController = segue.destination as! RouteDeparturesViewController
+            
+            destinationViewController.routeId = routeItem.routeId
 
-                let backItem = UIBarButtonItem()
-                backItem.title = "Back"
-                self.tabBarController!.navigationItem.backBarButtonItem = backItem
-            }
+            let backItem = UIBarButtonItem()
+            backItem.title = "Back"
+            self.tabBarController!.navigationItem.backBarButtonItem = backItem
         }
     }
-
 }

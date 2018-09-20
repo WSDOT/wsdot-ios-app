@@ -26,7 +26,7 @@ import SafariServices
 class RouteSchedulesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate {
     
     let cellIdentifier = "FerriesRouteSchedulesCell"
-    let SegueRouteDeparturesViewController = "RouteSailingsViewController"
+    let SegueRouteDeparturesViewController = "RouteDeparturesViewController"
     
     var routes = [FerryScheduleItem]()
     
@@ -179,8 +179,9 @@ class RouteSchedulesViewController: UIViewController, UITableViewDelegate, UITab
         if segue.identifier == SegueRouteDeparturesViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let routeItem = self.routes[indexPath.row] as FerryScheduleItem
-                let destinationViewController: RouteTabBarViewController = segue.destination as! RouteTabBarViewController
+                let destinationViewController: RouteDeparturesViewController = segue.destination as! RouteDeparturesViewController
                 destinationViewController.title = routeItem.routeDescription
+                destinationViewController.routeItem = routeItem
                 destinationViewController.routeId = routeItem.routeId
             }
         }

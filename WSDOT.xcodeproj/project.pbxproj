@@ -144,7 +144,6 @@
 		9AD32E071D23172C000AEC28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E051D23172C000AEC28 /* LaunchScreen.storyboard */; };
 		9AD32E221D241AF4000AEC28 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32E211D241AF4000AEC28 /* HomeViewController.swift */; };
 		9AD32E281D2421E4000AEC28 /* Ferries.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E271D2421E4000AEC28 /* Ferries.storyboard */; };
-		9AD32E2A1D24233D000AEC28 /* FerriesHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32E291D24233D000AEC28 /* FerriesHomeViewController.swift */; };
 		9AD32E2C1D242A5A000AEC28 /* RouteSchedulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32E2B1D242A5A000AEC28 /* RouteSchedulesViewController.swift */; };
 		9ADEAE4D1D270CC800BA7DD4 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADEAE4C1D270CC800BA7DD4 /* Helpers.swift */; };
 		9ADF0E021D7F5EF600632F3D /* WSDOTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADF0E011D7F5EF600632F3D /* WSDOTUITests.swift */; };
@@ -396,7 +395,6 @@
 		9AD32E081D23172C000AEC28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AD32E211D241AF4000AEC28 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9AD32E271D2421E4000AEC28 /* Ferries.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Ferries.storyboard; path = Base.lproj/Ferries.storyboard; sourceTree = "<group>"; };
-		9AD32E291D24233D000AEC28 /* FerriesHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerriesHomeViewController.swift; sourceTree = "<group>"; };
 		9AD32E2B1D242A5A000AEC28 /* RouteSchedulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteSchedulesViewController.swift; sourceTree = "<group>"; };
 		9ADEAE4C1D270CC800BA7DD4 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		9ADF0DFF1D7F5EF600632F3D /* WSDOTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WSDOTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1058,7 +1056,6 @@
 		9A81A57D1D4F8FB90049913A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9AD32E291D24233D000AEC28 /* FerriesHomeViewController.swift */,
 				9A0616781D62283F00126520 /* VesselWatch */,
 				9A0CA8331D465F44009C67B7 /* Departures */,
 				9A0CA8321D465F24009C67B7 /* Sailings */,
@@ -1958,7 +1955,6 @@
 				9A7BC0D51DA3F31B00EF760C /* GMUDefaultClusterIconGenerator.m in Sources */,
 				9A6FBCF11D6C9B9A00CDCE16 /* FavoriteLocationRealmStore.swift in Sources */,
 				9A6FBCE11D6B96EE00CDCE16 /* HighwayAlertViewController.swift in Sources */,
-				9AD32E2A1D24233D000AEC28 /* FerriesHomeViewController.swift in Sources */,
 				9AEF4D8E1D7602FE003ECA34 /* FacebookCell.swift in Sources */,
 				9A9808C21F1FAAAE0034DA05 /* TravelChartImageCell.swift in Sources */,
 				9AEEDDA81D6F7FDF0032F5EC /* MountainPassReportViewController.swift in Sources */,
@@ -2157,7 +2153,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2209,7 +2205,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};

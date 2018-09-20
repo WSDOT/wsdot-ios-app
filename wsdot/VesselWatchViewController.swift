@@ -30,8 +30,6 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     let SegueCamerasViewController = "CamerasViewController"
     let SegueVesselDetailsViewController = "VesselDetailsViewController"
 
-    var routeId = 0
-
     fileprivate weak var timer: Timer?
 
     fileprivate weak var embeddedMapViewController: MapViewController!
@@ -52,13 +50,6 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Vessel Watch"
-        
-        let location = VesselWatchStore.getRouteLocation(scheduleId: routeId)
-        let zoom = VesselWatchStore.getRouteZoom(scheduleId: routeId)
-        
-        UserDefaults.standard.set(location.latitude, forKey: UserDefaultsKeys.mapLat)
-        UserDefaults.standard.set(location.longitude, forKey: UserDefaultsKeys.mapLon)
-        UserDefaults.standard.set(zoom, forKey: UserDefaultsKeys.mapZoom)
         
         // Set defualt value for camera display if there is none
         if (UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras) == nil){

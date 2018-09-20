@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (4.7.3)
-  - EasyTipView (1.0.2)
+  - EasyTipView (2.0.0)
   - Firebase/AdMob (5.9.0):
     - Firebase/Core
     - Google-Mobile-Ads-SDK (~> 7.33)
@@ -69,11 +69,11 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - Protobuf (3.6.1)
-  - Realm (3.5.0):
-    - Realm/Headers (= 3.5.0)
-  - Realm/Headers (3.5.0)
-  - RealmSwift (3.5.0):
-    - Realm (= 3.5.0)
+  - Realm (3.10.0):
+    - Realm/Headers (= 3.10.0)
+  - Realm/Headers (3.10.0)
+  - RealmSwift (3.10.0):
+    - Realm (= 3.10.0)
   - SCLAlertView (0.8)
   - SDWebImage (4.3.3):
     - SDWebImage/Core (= 4.3.3)
@@ -81,14 +81,14 @@ PODS:
   - SwiftyJSON (4.1.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.7.2)
-  - EasyTipView (~> 1.0.2)
+  - Alamofire (~> 4.7.3)
+  - EasyTipView (~> 2.0.0)
   - Firebase/AdMob
   - Firebase/Core
   - Firebase/Messaging
   - GoogleAnalytics
   - GoogleMaps (~> 2.5.0)
-  - RealmSwift (~> 3.5.0)
+  - RealmSwift (~> 3.10.0)
   - SCLAlertView (~> 0.8.0)
   - SDWebImage (~> 4.3.3)
   - SwiftyJSON (~> 4.1.0)
@@ -117,7 +117,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  EasyTipView: b93a19be981cc2221d6d7191d49872f547e0bebf
+  EasyTipView: f24313ded34b20c6e63811e218016ee3baaa7ee5
   Firebase: 383fa29aca93e371cab776b48a5c66544d3c2003
   FirebaseAnalytics: 831f1f127f4a75698e9875a87bf7e2668730d953
   FirebaseCore: 2a84b6b325792a4319ef71ee18819dcba08d2fd7
@@ -130,12 +130,12 @@ SPEC CHECKSUMS:
   GoogleUtilities: 760ccb53b7c7f40f9c02d8c241f76f841a7a6162
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
-  Realm: 0378021c424e4e2bd6a0e63b27881e929d9b9ad1
-  RealmSwift: 3322562622fda2ad596985ead4d8d8be30cf838c
+  Realm: 85ab9e4f779d66f6e9ffeb118dc25b7f130c96ac
+  RealmSwift: 69121c8b86d0ae005fb779efdb10e606732e1c74
   SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
 
-PODFILE CHECKSUM: 491992f6cf598f76a5d0a766e4153a6ffea45a50
+PODFILE CHECKSUM: af00ce38b72ff23661cb75d1a31af0a2ffd16982
 
 COCOAPODS: 1.5.2

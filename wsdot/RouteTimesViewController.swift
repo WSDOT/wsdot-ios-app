@@ -66,7 +66,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
             }
         }
 
-        dateButton.layer.cornerRadius = 8.0
+        dateButton.layer.cornerRadius = 6.0
         dateButton.setTitle(dayData[0], for: UIControl.State())
         dateButton.accessibilityHint = "double tap to change sailing day"
         

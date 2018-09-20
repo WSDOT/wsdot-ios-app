@@ -41,6 +41,24 @@ class FerryRealmStore {
         }
     }
     
+    static func toggleFavorite(_ routeId: Int) -> Int {
+        do {
+            let realm = try! Realm()
+            let scheduleItem = realm.object(ofType: FerryScheduleItem.self, forPrimaryKey: routeId)
+            
+            if let scheduleItemValue = scheduleItem {
+                try realm.write{
+                    scheduleItemValue.selected = !scheduleItemValue.selected
+                }
+                return scheduleItemValue.selected ? 1 : 0
+            }
+            return -1
+        } catch {
+            print("FerryRealmStore.updateFavorite: Realm write error")
+            return -1
+        }
+    }
+    
     static func findAllSchedules() -> [FerryScheduleItem]{
         let realm = try! Realm()
         let scheduleItems = realm.objects(FerryScheduleItem.self).filter("delete == false")
