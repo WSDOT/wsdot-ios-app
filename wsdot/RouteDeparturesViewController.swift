@@ -25,20 +25,25 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
     
     let timesViewSegue = "timesViewSegue"
     let camerasViewSegue = "camerasViewSegue"
+    let vesselWatchSegue = "vesselWatchSegue"
 
     @IBOutlet weak var timesContainerView: UIView!
     @IBOutlet weak var camerasContainerView: UIView!
+    @IBOutlet weak var vesselWatchContainerView: UIView!
+    
     @IBOutlet weak var bannerView: GADBannerView!
     
     // set by previous view controller
     var currentSailing = FerryTerminalPairItem()
     var sailingsByDate = List<FerryScheduleDateItem>()
+    var routeId = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = currentSailing.aTerminalName + " to " + currentSailing.bTterminalName
         self.camerasContainerView.isHidden = true
+        self.vesselWatchContainerView.isHidden = true
         
         // Ad Banner
         bannerView.adUnitID = ApiKeys.getAdId()
@@ -67,6 +72,11 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
             let dest: RouteCamerasViewController = segue.destination as! RouteCamerasViewController
             dest.departingTerminalId = getDepartingId()
         }
+        
+        if segue.identifier == vesselWatchSegue {
+             let dest: VesselWatchViewController = segue.destination as! VesselWatchViewController
+             dest.routeId = self.routeId
+        }
     }
     
     @IBAction func indexChanged(_ sender: UISegmentedControl) {
@@ -74,11 +84,19 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
             UIView.animate(withDuration: 0.3, animations: {
                 self.timesContainerView.isHidden = false
                 self.camerasContainerView.isHidden = true
+                self.vesselWatchContainerView.isHidden = true
+            })
+        } else if sender.selectedSegmentIndex == 1 {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.timesContainerView.isHidden = true
+                self.camerasContainerView.isHidden = false
+                self.vesselWatchContainerView.isHidden = true
             })
         } else {
             UIView.animate(withDuration: 0.3, animations: {
                 self.timesContainerView.isHidden = true
-                self.camerasContainerView.isHidden = false
+                self.camerasContainerView.isHidden = true
+                self.vesselWatchContainerView.isHidden = false
             })
         }
     }

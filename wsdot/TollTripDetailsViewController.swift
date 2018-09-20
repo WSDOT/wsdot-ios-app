@@ -55,7 +55,7 @@ class TollTripDetailsViewController: UIViewController, MapMarkerDelegate, GMSMap
         
     }
     
-    func drawMapOverlays() {
+    func mapReady() {
 
         if let mapView = embeddedMapViewController.view as? GMSMapView{
             

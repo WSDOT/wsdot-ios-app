@@ -23,13 +23,14 @@ import UIKit
 import GoogleMaps
 import GoogleMobileAds
 
-class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapViewDelegate, GADBannerViewDelegate{
+class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapViewDelegate {
     
     let serviceGroup = DispatchGroup()
     
     let SegueCamerasViewController = "CamerasViewController"
     let SegueVesselDetailsViewController = "VesselDetailsViewController"
-    let SegueGoToPopover = "GoToViewController"
+
+    var routeId = 0
 
     fileprivate weak var timer: Timer?
 
@@ -48,11 +49,16 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     @IBOutlet weak var myLocationBarButton: UIBarButtonItem!
     @IBOutlet weak var cameraBarButton: UIBarButtonItem!
     
-    @IBOutlet weak var bannerView: DFPBannerView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Vessel Watch"
+        
+        let location = VesselWatchStore.getRouteLocation(scheduleId: routeId)
+        let zoom = VesselWatchStore.getRouteZoom(scheduleId: routeId)
+        
+        UserDefaults.standard.set(location.latitude, forKey: UserDefaultsKeys.mapLat)
+        UserDefaults.standard.set(location.longitude, forKey: UserDefaultsKeys.mapLon)
+        UserDefaults.standard.set(zoom, forKey: UserDefaultsKeys.mapZoom)
         
         // Set defualt value for camera display if there is none
         if (UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras) == nil){
@@ -62,16 +68,6 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         if (UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras) == "on"){
             cameraBarButton.image = cameraHighlightBarButtonImage
         }
-        
-        // Ad Banner
-        bannerView.adUnitID = ApiKeys.getAdId()
-        bannerView.rootViewController = self
-        let request = DFPRequest()
-        request.customTargeting = ["wsdotapp":"ferries"]
-        
-        bannerView.load(request)
-        bannerView.delegate = self
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -92,46 +88,6 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         GoogleAnalytics.screenView(screenName: "/Ferries/VesselWatch")
     }
     
-    @IBAction func goToLocation(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: SegueGoToPopover, sender: self)
-    }
-    
-    func goTo(_ index: Int){
-        if let mapView = embeddedMapViewController.view as? GMSMapView{
-            switch(index){
-            case 0:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 48.535868, longitude: -123.013808, zoom: 10)))
-                break
-            case 1:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 47.803096, longitude: -122.438718, zoom: 12)))
-                break
-            case 2:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 47.513625, longitude: -122.450820, zoom: 12)))
-                break
-            case 3:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 47.963857, longitude: -122.327721, zoom: 13)))
-                break
-            case 4:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 47.319040, longitude: -122.510890, zoom: 13)))
-                break
-            case 5:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 48.135562, longitude: -122.714449, zoom: 12)))
-                break
-            case 6:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 48.557233, longitude: -122.897078, zoom: 12)))
-                break
-            case 7:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 47.565125, longitude: -122.480508, zoom: 11)))
-                break
-            case 8:
-                mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: 47.600325, longitude: -122.437249, zoom: 11)))
-                break
-            default:
-                break
-            }
-        }
-    }
-    
     @IBAction func myLocationButtonPressed(_ sender: UIBarButtonItem) {
         GoogleAnalytics.event(category: "Vessel Watch", action: "UIAction", label: "My Location")
         embeddedMapViewController.goToUsersLocation()
@@ -141,6 +97,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         let camerasPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras)
         if let camerasVisible = camerasPref {
             if (camerasVisible == "on") {
+            
                 UserDefaults.standard.set("off", forKey: UserDefaultsKeys.cameras)
                 sender.image = cameraBarButtonImage
                 removeCameras()
@@ -286,10 +243,10 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     }
     
     // MARK: MapMarkerViewController protocol method
-    func drawMapOverlays(){
+    func mapReady() {
     
         activityIndicator.startAnimating()
-        
+
         fetchVessels(true)
         fetchCameras(false)
 
@@ -305,7 +262,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         
         if marker.snippet == "camera" {
             performSegue(withIdentifier: SegueCamerasViewController, sender: marker)
-        }else if marker.snippet == "vessel" {
+        } else if marker.snippet == "vessel" {
             performSegue(withIdentifier: SegueVesselDetailsViewController, sender: marker)
         }
         return true
@@ -340,10 +297,6 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
             let destinationViewController = segue.destination as! VesselDetailsViewController
             destinationViewController.vesselItem = vesselItem
         }
-        
-        if segue.identifier == SegueGoToPopover {
-            let destinationViewController = segue.destination as! VesselWatchGoToViewController
-            destinationViewController.my_parent = self
-        }
+    
     }
 }

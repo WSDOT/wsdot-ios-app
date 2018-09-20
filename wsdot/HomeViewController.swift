@@ -28,7 +28,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     let SegueFavoritesViewController = "FavoritesViewController"
     
     let SegueTrafficMapViewController = "TrafficMapViewController"
-    let SegueFerriesHomeViewController = "FerriesHomeViewController"
+    let SegueFerriesRouteSchedulesViewController = "FerriesRouteSchedulesViewController"
     let SegueTollRatesViewController = "TollRatesViewController"
     let SegueBorderWaitsViewController = "BorderWaitsViewController"
     let SegueInfoViewController = "InfoViewController"
@@ -52,6 +52,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Set Title
         title = "WSDOT"
         
@@ -64,7 +65,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         imageView.image = image
         self.navigationItem.titleView = imageView
         
-        if (self.splitViewController!.viewControllers.count > 1){
+        if (self.splitViewController!.viewControllers.count > 1) {
             let navController = self.splitViewController!.viewControllers[1] as! UINavigationController
             navController.viewControllers[0].navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
             navController.viewControllers[0].navigationItem.leftItemsSupplementBackButton = true
@@ -203,7 +204,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 performSegue(withIdentifier: SegueTrafficMapViewController, sender: self)
                 break
             case 1:
-                performSegue(withIdentifier: SegueFerriesHomeViewController, sender: self)
+                performSegue(withIdentifier: SegueFerriesRouteSchedulesViewController, sender: self)
                 break
             case 2:
                 performSegue(withIdentifier: SegueMountainPassesViewController, sender: self)

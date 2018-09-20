@@ -92,4 +92,63 @@ class VesselWatchStore {
         }
         return vessels
     }
+    
+    static func getRouteLocation(scheduleId: Int) -> CLLocationCoordinate2D {
+
+        switch (scheduleId) {
+            case 9: // Ana-SJ
+                return CLLocationCoordinate2D(latitude: 48.550921, longitude: -122.840836);
+            case 10: // Ana-Sid
+                return CLLocationCoordinate2D(latitude: 48.550921, longitude: -122.840836);
+            case 6: // Ed-King
+                return CLLocationCoordinate2D(latitude: 47.803096, longitude: -122.438718);
+            case 13: // F-S
+                return CLLocationCoordinate2D(latitude: 47.513625, longitude: -122.450820);
+            case 14: // F-V
+                return CLLocationCoordinate2D(latitude: 47.513625, longitude: -122.450820);
+            case 7: // Muk-Cl
+                return CLLocationCoordinate2D(latitude: 47.963857, longitude: -122.327721);
+            case 8: // Pt-Key
+                return CLLocationCoordinate2D(latitude: 48.135562, longitude: -122.714449);
+            case 1: // Pd-Tal
+                return CLLocationCoordinate2D(latitude: 47.319040, longitude: -122.510890);
+            case 5: // Sea-Bi
+                return CLLocationCoordinate2D(latitude: 47.600325, longitude: -122.437249);
+            case 3: // Sea-Br
+                return CLLocationCoordinate2D(latitude: 47.565125, longitude: -122.480508);
+            case 15: // S-V
+                return CLLocationCoordinate2D(latitude: 47.513625, longitude: -122.450820);
+            default:
+                return CLLocationCoordinate2D(latitude: 47.565125, longitude: -122.480508);
+        }
+    }
+
+    static func getRouteZoom(scheduleId: Int) -> Float {
+        switch (scheduleId) {
+            case 9: // Ana-SJ
+                return 10;
+            case 10: // Ana-Sid
+                return 10;
+            case 6: // Ed-King
+                return 12;
+            case 13: // F-S
+                return 12;
+            case 14: // F-V
+                return 12;
+            case 7: // Muk-Cl
+                return 13;
+            case 8: // Pt-Key
+                return 12;
+            case 1: // Pd-Tal
+                return 13;
+            case 5: // Sea-Bi
+                return 11;
+            case 3: // Sea-Br
+                return 10;
+            case 15: // S-V
+                return 12;
+            default:
+                return 11;
+        }
+    }
 }

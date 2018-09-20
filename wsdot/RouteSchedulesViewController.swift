@@ -21,6 +21,7 @@
 import UIKit
 import RealmSwift
 import GoogleMobileAds
+import SafariServices
 
 class RouteSchedulesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate {
     
@@ -30,6 +31,8 @@ class RouteSchedulesViewController: UIViewController, UITableViewDelegate, UITab
     var routes = [FerryScheduleItem]()
     
     var overlayView = UIView()
+    
+    let reservationsUrlString = "https://secureapps.wsdot.wa.gov/Ferries/Reservations/Vehicle/default.aspx"
     
     let refreshControl = UIRefreshControl()
     var activityIndicator = UIActivityIndicatorView()
@@ -123,6 +126,18 @@ class RouteSchedulesViewController: UIViewController, UITableViewDelegate, UITab
     
     @IBAction func refreshAction() {
         refresh(true)
+    }
+    
+    @IBAction func reservationsAction(_ sender: Any) {
+        GoogleAnalytics.screenView(screenName: "/Ferries/Vehicle Reservations")
+        let svc = SFSafariViewController(url: URL(string: self.reservationsUrlString)!, entersReaderIfAvailable: true)
+        if #available(iOS 10.0, *) {
+            svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor
+            svc.preferredBarTintColor = ThemeManager.currentTheme().mainColor
+        } else {
+            svc.view.tintColor = ThemeManager.currentTheme().mainColor
+        }
+        self.present(svc, animated: true, completion: nil)
     }
     
     // MARK: Table View Data Source Methods

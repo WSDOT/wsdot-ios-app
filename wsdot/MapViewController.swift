@@ -79,6 +79,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
         
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: GMSCameraPosition.camera(withLatitude: lat, longitude: lon, zoom: zoom))
         
+        print("map made")
+        
         mapView.isTrafficEnabled = true
         mapView.settings.compassButton = true
         
@@ -97,10 +99,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
         view = mapView
         
         if let parent = markerDelegate {
-            parent.drawMapOverlays()
+            parent.mapReady()
         }
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
 
         var lat = UserDefaults.standard.double(forKey: UserDefaultsKeys.mapLat)
@@ -111,15 +113,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
         if lon == 0 {lon = -122.3350}
         if zoom == 0 {zoom = 12}
         
-        if let mapView = view as? GMSMapView{
-        
-            mapView.animate(toLocation: CLLocationCoordinate2D(latitude: CLLocationDegrees(lat), longitude: CLLocationDegrees(lon)))
-            mapView.animate(toZoom: zoom)
-
+        if let mapView = view as? GMSMapView {
+           mapView.animate(toLocation: CLLocationCoordinate2D(latitude: CLLocationDegrees(lat), longitude: CLLocationDegrees(lon)))
+           mapView.animate(toZoom: zoom)
         }
 
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         
         if let mapView = view as? GMSMapView{

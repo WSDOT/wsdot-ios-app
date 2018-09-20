@@ -15,7 +15,6 @@
 		9A0616B51D63672A00126520 /* VesselItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616B41D63672A00126520 /* VesselItem.swift */; };
 		9A0616B71D63674500126520 /* VesselWatchStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616B61D63674500126520 /* VesselWatchStore.swift */; };
 		9A0616B91D63867A00126520 /* VesselDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616B81D63867A00126520 /* VesselDetailsViewController.swift */; };
-		9A0616BB1D63BB9700126520 /* VesselWatchGoToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616BA1D63BB9700126520 /* VesselWatchGoToViewController.swift */; };
 		9A0616C21D651B1300126520 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616C11D651B1300126520 /* InfoViewController.swift */; };
 		9A0616C81D6601BD00126520 /* TollRates.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A0616C71D6601BD00126520 /* TollRates.storyboard */; };
 		9A0616CA1D66021B00126520 /* TollRatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616C91D66021B00126520 /* TollRatesViewController.swift */; };
@@ -243,7 +242,6 @@
 		9A0616B41D63672A00126520 /* VesselItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VesselItem.swift; sourceTree = "<group>"; };
 		9A0616B61D63674500126520 /* VesselWatchStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VesselWatchStore.swift; sourceTree = "<group>"; };
 		9A0616B81D63867A00126520 /* VesselDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VesselDetailsViewController.swift; sourceTree = "<group>"; };
-		9A0616BA1D63BB9700126520 /* VesselWatchGoToViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VesselWatchGoToViewController.swift; sourceTree = "<group>"; };
 		9A0616C11D651B1300126520 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		9A0616C71D6601BD00126520 /* TollRates.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TollRates.storyboard; sourceTree = "<group>"; };
 		9A0616C91D66021B00126520 /* TollRatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TollRatesViewController.swift; sourceTree = "<group>"; };
@@ -514,7 +512,6 @@
 			children = (
 				9A0616791D62285A00126520 /* VesselWatchViewController.swift */,
 				9A0616B81D63867A00126520 /* VesselDetailsViewController.swift */,
-				9A0616BA1D63BB9700126520 /* VesselWatchGoToViewController.swift */,
 			);
 			name = VesselWatch;
 			sourceTree = "<group>";
@@ -1907,7 +1904,6 @@
 				9A6FBD331D6E3EA200CDCE16 /* MountianPassItem.swift in Sources */,
 				9A0616CA1D66021B00126520 /* TollRatesViewController.swift in Sources */,
 				9A7BC0D01DA3F31B00EF760C /* GMUNonHierarchicalDistanceBasedAlgorithm.m in Sources */,
-				9A0616BB1D63BB9700126520 /* VesselWatchGoToViewController.swift in Sources */,
 				9AEF4D881D75FED8003ECA34 /* FacebookItem.swift in Sources */,
 				9AEF4D831D75CF42003ECA34 /* BloggerViewController.swift in Sources */,
 				9AD32DFD1D23172C000AEC28 /* AppDelegate.swift in Sources */,
@@ -2161,6 +2157,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2212,6 +2209,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};

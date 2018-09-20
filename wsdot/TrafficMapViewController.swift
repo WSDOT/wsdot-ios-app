@@ -497,7 +497,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     }
     
     // MARK: MapMarkerViewController protocol method
-    func drawMapOverlays(){
+    func mapReady(){
         self.activityIndicatorView.isHidden = false
         activityIndicatorView.startAnimating()
         

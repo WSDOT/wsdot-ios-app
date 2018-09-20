@@ -50,7 +50,7 @@ class SimpleMapViewController: UIViewController {
         view = mapView
         
         if let parent = markerDelegate {
-            parent.drawMapOverlays()
+            parent.mapReady()
         }
     }
 }
