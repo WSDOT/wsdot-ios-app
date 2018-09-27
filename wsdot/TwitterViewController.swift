@@ -64,10 +64,10 @@ class TwitterViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
     
         accountButton.layer.cornerRadius = 8.0
-        accountButton.setTitle(accountData[currentAccountIndex].name, for: UIControlState())
+        accountButton.setTitle(accountData[currentAccountIndex].name, for: UIControl.State())
         accountButton.accessibilityHint = "double tap to change account"
         
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         
         // refresh controller
         refreshControl.addTarget(self, action: #selector(TwitterViewController.refreshAction(_:)), for: .valueChanged)
@@ -119,7 +119,7 @@ class TwitterViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func showOverlay(_ view: UIView) {
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.style = .whiteLarge
         activityIndicator.color = UIColor.gray
         
         if self.splitViewController!.isCollapsed {
@@ -144,7 +144,7 @@ class TwitterViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func accountSelected(_ index: Int){
         currentAccountIndex = index
-        accountButton.setTitle(accountData[currentAccountIndex].name, for: UIControlState())
+        accountButton.setTitle(accountData[currentAccountIndex].name, for: UIControl.State())
         showOverlay(self.view)
         refresh(accountData[self.currentAccountIndex].screenName)
     }
@@ -152,7 +152,7 @@ class TwitterViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     // MARK: Table View Data Source Methods
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

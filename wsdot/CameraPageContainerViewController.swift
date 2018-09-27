@@ -76,7 +76,7 @@ extension CameraPageContainerViewController: EasyTipViewDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if ((cameras.count > 1) && (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasSeenCameraSwipeTipView) && !UIAccessibilityIsVoiceOverRunning())){
+        if ((cameras.count > 1) && (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasSeenCameraSwipeTipView) && !UIAccessibility.isVoiceOverRunning)){
             
             var preferences = EasyTipView.Preferences()
             preferences.drawing.font = EasyTipView.globalPreferences.drawing.font

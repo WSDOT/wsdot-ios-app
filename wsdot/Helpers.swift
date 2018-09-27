@@ -23,30 +23,30 @@ import UIKit
 struct AlertMessages {
 
     static func getConnectionAlert() ->  UIAlertController{
-        let alert = UIAlertController(title: "Connection Error", message: "Please check your connection", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Connection Error", message: "Please check your connection", preferredStyle: UIAlertController.Style.alert)
         alert.view.tintColor = Colors.tintColor
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
         return alert
     }
     
     static func getMailAlert() -> UIAlertController{
-        let alert = UIAlertController(title: "Cannot Compose Message", message: "Please add a mail account", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Cannot Compose Message", message: "Please add a mail account", preferredStyle: UIAlertController.Style.alert)
         alert.view.tintColor = Colors.tintColor
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
         return alert
     }
     
     static func getAlert(_ title: String, message: String, confirm: String) -> UIAlertController{
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.view.tintColor = Colors.tintColor
-        alert.addAction(UIAlertAction(title: confirm, style: UIAlertActionStyle.default, handler: nil))
+        alert.addAction(UIAlertAction(title: confirm, style: UIAlertAction.Style.default, handler: nil))
         return alert
     }
     
     static func getSingleActionAlert(_ title: String, message: String, confirm: String, comfirmHandler: @escaping (UIAlertAction) -> Void) -> UIAlertController{
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.view.tintColor = Colors.tintColor
-        alert.addAction(UIAlertAction(title: confirm, style: UIAlertActionStyle.default, handler: comfirmHandler))
+        alert.addAction(UIAlertAction(title: confirm, style: UIAlertAction.Style.default, handler: comfirmHandler))
         return alert
     }
     
@@ -54,7 +54,7 @@ struct AlertMessages {
     
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let settingsAction = UIAlertAction(title: "Open Settings", style: .default) { (alertAction) in
-            if let appSettings = URL(string: UIApplicationOpenSettingsURLString) {
+            if let appSettings = URL(string: UIApplication.openSettingsURLString) {
                 UIApplication.shared.openURL(appSettings)
             }
         }
@@ -83,9 +83,9 @@ struct Utils {
         
         // Setup the font attributes that will be later used to dictate how the text should be drawn
         let textFontAttributes = [
-            NSAttributedStringKey.font: textFont,
-            NSAttributedStringKey.foregroundColor: textColor,
-            NSAttributedStringKey.paragraphStyle: paragraphStyle
+            NSAttributedString.Key.font: textFont,
+            NSAttributedString.Key.foregroundColor: textColor,
+            NSAttributedString.Key.paragraphStyle: paragraphStyle
             ]
 
         // Put the image into a rectangle as large as the original image
@@ -181,7 +181,7 @@ struct UIHelpers {
     }
     
     static func createActivityIndicator() -> UIActivityIndicatorView {
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        let activityIndicator = UIActivityIndicatorView(style: .white)
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
         activityIndicator.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30)

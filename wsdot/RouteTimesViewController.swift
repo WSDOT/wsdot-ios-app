@@ -67,12 +67,12 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         }
 
         dateButton.layer.cornerRadius = 8.0
-        dateButton.setTitle(dayData[0], for: UIControlState())
+        dateButton.setTitle(dayData[0], for: UIControl.State())
         dateButton.accessibilityHint = "double tap to change sailing day"
         
         setDisplayedSailing(0)
         
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         
         // refresh controller
         refreshControl.addTarget(self, action: #selector(RouteTimesViewController.refreshAction(_:)), for: .valueChanged)
@@ -155,7 +155,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     
     func daySelected(_ index: Int) {
         currentDay = index
-        dateButton.setTitle(dayData[currentDay], for: UIControlState())
+        dateButton.setTitle(dayData[currentDay], for: UIControl.State())
         setDisplayedSailing(currentDay)
         self.tableView.reloadData()
         self.scrollToNextSailing(self.displayedTimes)
@@ -172,7 +172,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -245,7 +245,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                 options: [ NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html],
                 documentAttributes: nil)
             
-            attrAnnotationsStr.setAttributes([NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Light", size: 17)!], range: NSRangeFromString(annotationsString))
+            attrAnnotationsStr.setAttributes([NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size: 17)!], range: NSRangeFromString(annotationsString))
             
             cell.annotations.isHidden = false
             cell.annotations.attributedText = attrAnnotationsStr

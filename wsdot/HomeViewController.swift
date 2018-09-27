@@ -141,8 +141,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.view!.addSubview(eventBannerView)
 
             // Adjust the tableviw's content inset to make room for the event banner
-            tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
-            tableView.contentInset = UIEdgeInsetsMake(tableView.contentInset.top + eventBannerView.frame.height, tableView.contentInset.left, tableView.contentInset.bottom, tableView.contentInset.right)
+            tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
+            tableView.contentInset = UIEdgeInsets.init(top: tableView.contentInset.top + eventBannerView.frame.height, left: tableView.contentInset.left, bottom: tableView.contentInset.bottom, right: tableView.contentInset.right)
             
             // reset tableview scroll position
             tableView.setContentOffset(CGPoint(x: 0, y: -tableView.contentInset.top), animated:false)
@@ -258,7 +258,7 @@ extension HomeViewController: EasyTipViewDelegate {
         
         if (UserDefaults.standard.integer(forKey: UserDefaultsKeys.pushNotificationTopicVersion) > 0) {
         
-            if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasSeenNotificationsTipView) && !UIAccessibilityIsVoiceOverRunning()){
+            if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasSeenNotificationsTipView) && !UIAccessibility.isVoiceOverRunning){
                 
                 let tipViewText = UserDefaults.standard.string(forKey: UserDefaultsKeys.pushNotificationsTopicDescription) ?? "Notifications"
                 

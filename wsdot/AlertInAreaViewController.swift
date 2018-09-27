@@ -52,7 +52,7 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
         constructionAlerts = constructionAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
         specialEvents = specialEvents.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
 
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         
     }
     
@@ -63,7 +63,7 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
     
     // MARK: Table View Data Source Methods
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {

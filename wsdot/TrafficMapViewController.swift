@@ -652,7 +652,7 @@ extension TrafficMapViewController: EasyTipViewDelegate {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasSeenTravelerInfoTipView) && !UIAccessibilityIsVoiceOverRunning()){
+        if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasSeenTravelerInfoTipView) && !UIAccessibility.isVoiceOverRunning){
             tipView = EasyTipView(text: "Tap here for live traffic updates, travel times and more.", delegate: self)
             tipView.show(forItem: self.travelInformationButton)
         }

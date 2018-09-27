@@ -43,13 +43,13 @@ class CameraPageViewController: UIPageViewController, UIPageViewControllerDataSo
         self.containingVC!.title = cameras[selectedCameraIndex].title
     
         for camera in cameras {
-            let page: CameraViewController! = cameraStoryboard.instantiateViewController(withIdentifier: "CameraViewController") as! CameraViewController
+            let page: CameraViewController! = cameraStoryboard.instantiateViewController(withIdentifier: "CameraViewController") as? CameraViewController
             page.cameraItem = camera
             page.adsEnabled = false
             pages.append(page)
         }
     
-        setViewControllers([pages[selectedCameraIndex]], direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
+        setViewControllers([pages[selectedCameraIndex]], direction: UIPageViewController.NavigationDirection.forward, animated: false, completion: nil)
   
     }
     

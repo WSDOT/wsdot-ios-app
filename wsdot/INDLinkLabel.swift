@@ -36,7 +36,7 @@ import UIKit
     /// The delegate may determine whether to use the text's original attributes,
     /// use the proposed INDLinkLabel attributes (blue text color, and underlined),
     /// or supply a completely custom set of attributes for the given link.
-    @objc optional func linkLabel(_ label: INDLinkLabel, attributesForURL URL: URL, originalAttributes: [NSAttributedStringKey : Any], proposedAttributes: [NSAttributedStringKey : Any]) -> [NSAttributedStringKey : Any]
+    @objc optional func linkLabel(_ label: INDLinkLabel, attributesForURL URL: URL, originalAttributes: [NSAttributedString.Key : Any], proposedAttributes: [NSAttributedString.Key : Any]) -> [NSAttributedString.Key : Any]
 }
 
 /// A simple UILabel subclass that allows for tapping and long pressing on links
@@ -126,14 +126,14 @@ import UIKit
     
     fileprivate struct DefaultLinkAttributes {
         static let Color = UIColor.blue
-        static let UnderlineStyle = NSUnderlineStyle.styleSingle
+        static let UnderlineStyle = NSUnderlineStyle.single
     }
     
     fileprivate func processLinks() {
         var ranges = [LinkRange]()
         if let attributedText = attributedText {
             textStorage.setAttributedString(attributedText)
-            textStorage.enumerateAttribute(NSAttributedStringKey.link, in: NSRange(location: 0, length: textStorage.length), options: []) { (value, range, _) in
+            textStorage.enumerateAttribute(NSAttributedString.Key.link, in: NSRange(location: 0, length: textStorage.length), options: []) { (value, range, _) in
                 // Because NSLinkAttributeName supports both NSURL and NSString
                 // values. *sigh*
                 let URL: Foundation.URL? = {
@@ -150,16 +150,16 @@ import UIKit
                     
                     // Remove `NSLinkAttributeName` to prevent `UILabel` from applying
                     // the default styling.
-                    self.textStorage.removeAttribute(NSAttributedStringKey.link, range: range)
+                    self.textStorage.removeAttribute(NSAttributedString.Key.link, range: range)
                     
-                    let originalAttributes: [NSAttributedStringKey : Any] = self.textStorage.attributes(at: range.location, effectiveRange: nil)
+                    let originalAttributes: [NSAttributedString.Key : Any] = self.textStorage.attributes(at: range.location, effectiveRange: nil)
                     var proposedAttributes = originalAttributes
                     
-                    if originalAttributes[NSAttributedStringKey.foregroundColor] == nil {
-                        proposedAttributes[NSAttributedStringKey.foregroundColor] = DefaultLinkAttributes.Color
+                    if originalAttributes[NSAttributedString.Key.foregroundColor] == nil {
+                        proposedAttributes[NSAttributedString.Key.foregroundColor] = DefaultLinkAttributes.Color
                     }
-                    if originalAttributes[NSAttributedStringKey.underlineStyle] == nil {
-                        proposedAttributes[NSAttributedStringKey.underlineStyle] = DefaultLinkAttributes.UnderlineStyle.rawValue
+                    if originalAttributes[NSAttributedString.Key.underlineStyle] == nil {
+                        proposedAttributes[NSAttributedString.Key.underlineStyle] = DefaultLinkAttributes.UnderlineStyle.rawValue
                     }
                     
                     let acceptedAttributes = self.delegate?.linkLabel?(self, attributesForURL: URL, originalAttributes: originalAttributes, proposedAttributes: proposedAttributes)

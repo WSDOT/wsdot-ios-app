@@ -43,7 +43,7 @@ class MountainPassCamerasViewController: UIViewController, UITableViewDataSource
         let mountainPassTabBarContoller = self.tabBarController as! MountainPassTabBarViewController
         passItem = mountainPassTabBarContoller.passItem
         
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         
         // refresh controller
         refreshControl.addTarget(self, action: #selector(RouteCamerasViewController.refreshAction(_:)), for: .valueChanged)
@@ -105,7 +105,7 @@ class MountainPassCamerasViewController: UIViewController, UITableViewDataSource
     
     func showOverlay(_ view: UIView) {
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.style = .whiteLarge
         activityIndicator.color = UIColor.gray
         activityIndicator.center = CGPoint(x: view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
         view.addSubview(activityIndicator)
@@ -128,7 +128,7 @@ class MountainPassCamerasViewController: UIViewController, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

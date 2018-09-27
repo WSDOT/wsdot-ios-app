@@ -45,7 +45,7 @@ class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITable
         
         checkForTravelCharts()
         
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         
     }
     
@@ -98,7 +98,7 @@ class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITable
     // MARK: TableView methods
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
 
     // MARK: Table View Data Source Methods
