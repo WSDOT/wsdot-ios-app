@@ -265,11 +265,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     }
                 }
                 
+                /*
+                    Adds milepost and direction fields.
+                    Clears cache times to force refresh
+                */
                 if (oldSchemaVersion < 6) {
                     migration.enumerateObjects(ofType: CameraItem.className()) { oldObject, newObject in
                         newObject!["milepost"] = -1
                         newObject!["direction"] = ""
                     }
+                    migration.deleteData(forType: CacheItem.className())
                 }
         })
     }

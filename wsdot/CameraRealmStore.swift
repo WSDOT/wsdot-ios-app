@@ -117,6 +117,8 @@ class CamerasStore {
             camera.latitude = cameraJson["lat"].doubleValue
             camera.longitude = cameraJson["lon"].doubleValue
             camera.video = cameraJson["video"].boolValue
+            camera.direction = cameraJson["direction"].stringValue
+            camera.milepost = cameraJson["milepost"].doubleValue
             
             for oldCameras in oldFavoriteCameras {
                 if (oldCameras.cameraId == camera.cameraId){
