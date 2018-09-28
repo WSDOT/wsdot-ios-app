@@ -17,8 +17,32 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
+
 import Foundation
 import RealmSwift
+
+class CameraItem: Object {
+    
+    @objc dynamic var cameraId = 0
+    @objc dynamic var url = ""
+    @objc dynamic var title = ""
+    @objc dynamic var roadName = ""
+    @objc dynamic var latitude = 0.0
+    @objc dynamic var longitude = 0.0
+    @objc dynamic var video = false
+    @objc dynamic var selected = false
+
+    @objc dynamic var milepost = 0.0
+    @objc dynamic var direction = ""
+    
+    @objc dynamic var delete = false
+    
+    override static func primaryKey() -> String? {
+        return "cameraId"
+    }
+}
+
+/*
 
 class CameraItem: Object {
 
@@ -37,3 +61,5 @@ class CameraItem: Object {
         return "cameraId"
     }
 }
+
+*/

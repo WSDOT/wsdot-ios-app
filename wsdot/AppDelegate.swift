@@ -217,7 +217,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // MARK: Realm
     func migrateRealm(){
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
-            schemaVersion: 5,
+            schemaVersion: 6,
             
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
@@ -262,6 +262,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 if (oldSchemaVersion < 5) {
                     migration.enumerateObjects(ofType: CacheItem.className()) { oldObject, newObject in
                         newObject!["tollRatesLastUpdate"] = Date(timeIntervalSince1970: 0)
+                    }
+                }
+                
+                if (oldSchemaVersion < 6) {
+                    migration.enumerateObjects(ofType: CameraItem.className()) { oldObject, newObject in
+                        newObject!["milepost"] = -1
+                        newObject!["direction"] = ""
                     }
                 }
         })
