@@ -170,14 +170,15 @@ class TollRatesStore {
             
                 // check if we already have a sign item for this start location
                 let signItems = tollRates.filter { $0.compoundKey == (subJson["StartLocationName"].stringValue + "-" + subJson["TravelDirection"].stringValue) }
+                
                 if !signItems.isEmpty {
                     
                     signItems[0].trips.append(tripItem)
                     
                     if signItems[0].travelDirection == "N" {
-                        signItems[0].trips.sort(by: { $0.endMilepost < $1.endMilepost })
+                        signItems[0].trips = List(signItems[0].trips.sorted(by: { $0.endMilepost < $1.endMilepost }))
                     } else {
-                        signItems[0].trips.sort(by: { $0.endMilepost > $1.endMilepost })
+                        signItems[0].trips = List(signItems[0].trips.sorted(by: { $0.endMilepost > $1.endMilepost }))
                     }
                     
                 } else {
@@ -202,8 +203,6 @@ class TollRatesStore {
                 }
             }
         }
-        
-        
         
         return tollRates.sorted(by: { $0.startLocationName < $1.startLocationName }).sorted(by: { $0.travelDirection < $1.travelDirection })
     }

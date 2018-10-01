@@ -98,7 +98,7 @@ class MyRouteAlertsViewController: UIViewController {
                 self.constructionAlerts = self.constructionAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
                 self.specialEvents = self.specialEvents.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
 
-                self.tableView.rowHeight = UITableViewAutomaticDimension
+                self.tableView.rowHeight = UITableView.automaticDimension
             
                 self.tableView.reloadData()
                 self.hideOverlayView()
@@ -165,7 +165,7 @@ class MyRouteAlertsViewController: UIViewController {
      */
     func showOverlay(_ view: UIView) {
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.style = .whiteLarge
         activityIndicator.color = UIColor.gray
         activityIndicator.center = CGPoint(x: view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
         
@@ -198,11 +198,11 @@ class MyRouteAlertsViewController: UIViewController {
 extension MyRouteAlertsViewController:  UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     

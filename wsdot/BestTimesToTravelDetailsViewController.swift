@@ -32,7 +32,7 @@ class BestTimesToTravelDetailsViewController: UIViewController, UITableViewDataS
         super.viewDidLoad()
         
         self.title = routeItem.name
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,7 +51,7 @@ class BestTimesToTravelDetailsViewController: UIViewController, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
  
     

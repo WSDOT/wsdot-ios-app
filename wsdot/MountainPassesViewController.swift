@@ -50,7 +50,7 @@ class MountainPassesViewController: UIViewController, UITableViewDelegate, UITab
         self.tableView.reloadData()
         
         refresh(false)
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         
         // Ad Banner
         bannerView.adUnitID = ApiKeys.getAdId()
@@ -78,7 +78,7 @@ class MountainPassesViewController: UIViewController, UITableViewDelegate, UITab
                             selfValue.tableView.reloadData()
                             selfValue.refreshControl.endRefreshing()
                             selfValue.hideOverlayView()
-                            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, selfValue.tableView)
+                            UIAccessibility.post(notification: UIAccessibility.Notification.layoutChanged, argument: selfValue.tableView)
                         }
                     }
                 } else {
@@ -100,7 +100,7 @@ class MountainPassesViewController: UIViewController, UITableViewDelegate, UITab
 
     func showOverlay(_ view: UIView) {
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.style = .whiteLarge
         activityIndicator.color = UIColor.gray
         
         if self.splitViewController!.isCollapsed {
@@ -161,7 +161,7 @@ class MountainPassesViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     // MARK: Table View Delegate Methods

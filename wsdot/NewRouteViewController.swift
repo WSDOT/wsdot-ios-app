@@ -186,7 +186,7 @@ class NewRouteViewController: UIViewController {
             
                 self.mapView.settings.scrollGestures = false
                 self.mapView.settings.zoomGestures = false
-                UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
+                UIAccessibility.post(notification: UIAccessibility.Notification.layoutChanged, argument: nil);
             }else {
                 self.present(AlertMessages.getAlert("Not Enough Location Data to Save a Route", message: "", confirm: "OK"), animated: true)
                 self.stopLocationUpdates()
@@ -295,7 +295,7 @@ class NewRouteViewController: UIViewController {
             GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Discarded Route")
             self.mapView.clear()
             self.doneRecording()
-            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
+            UIAccessibility.post(notification: UIAccessibility.Notification.layoutChanged, argument: nil);
         })
         
         alertController.addAction(discardAction)
@@ -458,7 +458,7 @@ extension NewRouteViewController {
                 self.accessibilityCurrentLocationLabel.accessibilityLabel = "Unable to get current location. Please try again later."
             }
             if (!self.accessibilityCurrentLocationLabel.isHidden){
-                UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, self.accessibilityCurrentLocationLabel)
+                UIAccessibility.post(notification: UIAccessibility.Notification.layoutChanged, argument: self.accessibilityCurrentLocationLabel)
             }
         }
     }
@@ -519,6 +519,6 @@ extension NewRouteViewController {
     }
 
     @objc private func timerDidFire(timer: Timer) {
-        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.navigationItem.titleView)
+        UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: self.navigationItem.titleView)
     }
 }

@@ -37,7 +37,7 @@ class MountainPassWeatherViewController: UIViewController, UITableViewDelegate, 
         let mountainPassTabBarContoller = self.tabBarController as! MountainPassTabBarViewController
         passItem = mountainPassTabBarContoller.passItem
         
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
  
         // Ad Banner
         bannerView.adUnitID = ApiKeys.getAdId()
@@ -65,7 +65,7 @@ class MountainPassWeatherViewController: UIViewController, UITableViewDelegate, 
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

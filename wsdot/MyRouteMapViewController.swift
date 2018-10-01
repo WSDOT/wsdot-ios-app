@@ -130,7 +130,7 @@ extension MyRouteMapViewController {
     }
 
     @objc private func timerDidFire(timer: Timer) {
-        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.navigationItem.titleView)
+        UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: self.navigationItem.titleView)
     }
 
 }

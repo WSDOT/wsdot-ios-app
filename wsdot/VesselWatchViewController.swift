@@ -75,7 +75,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        if self.isBeingDismissed || self.isMovingFromParentViewController {
+        if self.isBeingDismissed || self.isMovingFromParent {
             if timer != nil {
                 self.timer?.invalidate()
             }

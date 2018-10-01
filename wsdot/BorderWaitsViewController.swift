@@ -63,7 +63,7 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
         self.tableView.reloadData()
         
         refresh(false)
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         
         // Ad Banner
         bannerView.adUnitID = ApiKeys.getAdId()
@@ -119,7 +119,7 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
     
     func showOverlay(_ view: UIView) {
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.style = .whiteLarge
         activityIndicator.color = UIColor.gray
         
         if self.splitViewController!.isCollapsed {
@@ -148,7 +148,7 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

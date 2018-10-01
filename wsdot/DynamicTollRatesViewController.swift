@@ -202,7 +202,7 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
 
     // MARK -- TableView delegate
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

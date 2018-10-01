@@ -32,10 +32,10 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
         self.delegate = self
         self.dataSource = self
         
-        let page: AlertContentViewController! = storyboard?.instantiateViewController(withIdentifier: "AlertContentViewController") as! AlertContentViewController
+        let page: AlertContentViewController! = storyboard?.instantiateViewController(withIdentifier: "AlertContentViewController") as? AlertContentViewController
         page.loadingPage = true
         pages.append(page)
-        setViewControllers([pages[0]], direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
+        setViewControllers([pages[0]], direction: UIPageViewController.NavigationDirection.forward, animated: false, completion: nil)
         
         view.backgroundColor = Colors.lightGrey
         
@@ -44,10 +44,10 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         pages.removeAll()
-        let page: AlertContentViewController! = storyboard?.instantiateViewController(withIdentifier: "AlertContentViewController") as! AlertContentViewController
+        let page: AlertContentViewController! = storyboard?.instantiateViewController(withIdentifier: "AlertContentViewController") as? AlertContentViewController
         page.loadingPage = true
         pages.append(page)
-        setViewControllers([pages[0]], direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
+        setViewControllers([pages[0]], direction: UIPageViewController.NavigationDirection.forward, animated: false, completion: nil)
         fetchAlerts(false)
         timer = Timer.scheduledTimer(timeInterval: TimeUtils.alertsUpdateTime, target: self, selector: #selector(AlertPagerViewController.updateAlerts(_:)), userInfo: nil, repeats: true)
 
@@ -86,13 +86,13 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
     func setUpContent(_ failed: Bool){
         
         if (failed){
-            let page: AlertContentViewController! = storyboard?.instantiateViewController(withIdentifier: "AlertContentViewController") as! AlertContentViewController
+            let page: AlertContentViewController! = storyboard?.instantiateViewController(withIdentifier: "AlertContentViewController") as? AlertContentViewController
             page.alertText = "Failed to load alerts"
             pages.append(page)
         }else {
             var alertNumber = 1
             for alert in alertItems {
-                let page: AlertContentViewController! = storyboard?.instantiateViewController(withIdentifier: "AlertContentViewController") as! AlertContentViewController
+                let page: AlertContentViewController! = storyboard?.instantiateViewController(withIdentifier: "AlertContentViewController") as? AlertContentViewController
                 page.alert = alert
                 page.alertText = alert.headlineDesc
                 page.alertCount = alertItems.count
@@ -101,12 +101,12 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
                 pages.append(page)
             }
             if (pages.count == 0){
-                let page: AlertContentViewController! = storyboard?.instantiateViewController(withIdentifier: "AlertContentViewController") as! AlertContentViewController
+                let page: AlertContentViewController! = storyboard?.instantiateViewController(withIdentifier: "AlertContentViewController") as? AlertContentViewController
                 page.alertText = "No highest impact alerts"
                 pages.append(page)
             }
         }
-        setViewControllers([pages[0]], direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
+        setViewControllers([pages[0]], direction: UIPageViewController.NavigationDirection.forward, animated: false, completion: nil)
         
     }
     

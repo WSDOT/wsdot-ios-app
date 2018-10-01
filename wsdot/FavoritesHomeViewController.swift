@@ -255,7 +255,7 @@ extension FavoritesHomeViewController {
     func showOverlay(_ view: UIView) {
     
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.style = .whiteLarge
         activityIndicator.color = UIColor.gray
         activityIndicator.center = CGPoint(x: view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
         
@@ -384,11 +384,11 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -674,7 +674,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             
         }
         
-        let renameLocationAction = UITableViewRowAction(style: UITableViewRowActionStyle.normal, title: "Edit", handler: { (action:UITableViewRowAction,
+        let renameLocationAction = UITableViewRowAction(style: UITableViewRowAction.Style.normal, title: "Edit", handler: { (action:UITableViewRowAction,
             indexPath:IndexPath) -> Void in
             
             tableView.reloadRows(at: [indexPath], with: .right)
@@ -707,7 +707,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             
         })
         
-        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Remove" , handler: { (action:UITableViewRowAction, indexPath:IndexPath) -> Void in
+        let deleteAction = UITableViewRowAction(style: UITableViewRowAction.Style.default, title: "Remove" , handler: { (action:UITableViewRowAction, indexPath:IndexPath) -> Void in
         
             // Delete the row from the data source
             switch self.getType(forSection: indexPath.section) {

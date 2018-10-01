@@ -28,6 +28,11 @@ class CameraViewController: UIViewController, GADBannerViewDelegate {
     
     @IBOutlet weak var bannerView: DFPBannerView!
     
+    @IBOutlet weak var directionLabel: UILabel!
+    @IBOutlet weak var milepostLabel: UILabel!
+    
+    @IBOutlet weak var cameraImageViewHeight: NSLayoutConstraint!
+    
     var cameraItem: CameraItem = CameraItem()
     var adTarget: String = "other"
     var adsEnabled = true
@@ -36,9 +41,26 @@ class CameraViewController: UIViewController, GADBannerViewDelegate {
         super.viewDidLoad()
         self.navigationItem.title = cameraItem.title;
         
+        let placeholder: UIImage? = UIImage(named: "imagePlaceholder")
+        
+        // set the image views frame to the size of the placeholder image
+        let ratio = placeholder!.size.width / placeholder!.size.height
+        let newHeight = cameraImage.frame.width / ratio
+        cameraImageViewHeight.constant = newHeight
+        view.layoutIfNeeded()
+        
         // Add timestamp to help prevent caching
         let urlString = cameraItem.url + "?" + String(Int(Date().timeIntervalSince1970 / 60))
-        cameraImage.sd_setImage(with: URL(string: urlString), placeholderImage: UIImage(named: "imagePlaceholder"), options: .refreshCached)
+        cameraImage.sd_setImage(with: URL(string: urlString), placeholderImage: placeholder, options: .refreshCached, completed: { image, error, cacheType, imageURL in
+            
+            // set the image views frame to the size of the downloaded image
+            let ratio = image!.size.width / image!.size.height
+            let newHeight = self.cameraImage.frame.width / ratio
+            self.cameraImageViewHeight.constant = newHeight
+            self.view.layoutIfNeeded()
+            
+        })
+        
         
         if (cameraItem.selected) {
             favoriteBarButton.image = UIImage(named: "icStarSmallFilled")
@@ -46,6 +68,36 @@ class CameraViewController: UIViewController, GADBannerViewDelegate {
         }else {
             favoriteBarButton.image = UIImage(named: "icStarSmall")
             favoriteBarButton.accessibilityLabel = "add to favorites"
+        }
+        
+
+        switch (cameraItem.direction) {
+            case "N":
+                directionLabel.text = "This camera faces north"
+                break
+            case "S":
+                directionLabel.text = "This camera faces south"
+                break
+            case "E":
+                directionLabel.text = "This camera faces east"
+                break
+            case "W":
+                directionLabel.text = "This camera faces west"
+                break
+            case "B":
+                directionLabel.text = "This camera could be pointing in a number of directions for operational reasons."
+                break
+            default:
+                directionLabel.isHidden = true
+                break
+        }
+        
+        
+        if (cameraItem.milepost == -1) {
+            milepostLabel.isHidden = true
+        } else {
+            milepostLabel.isHidden = false
+            milepostLabel.text = "near milepost \(cameraItem.milepost)"
         }
         
         favoriteBarButton.tintColor = Colors.yellow

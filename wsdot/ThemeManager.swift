@@ -134,7 +134,7 @@ class ThemeManager {
 
         UINavigationBar.appearance().barTintColor = theme.mainColor
         UINavigationBar.appearance().tintColor = theme.secondaryColor
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : theme.titleTextColor]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : theme.titleTextColor]
 
         UIPopoverBackgroundView.appearance().backgroundColor = theme.mainColor
         UIPopoverBackgroundView.appearance().tintColor = theme.mainColor

@@ -132,7 +132,7 @@ class HighwayAlertViewController: UIViewController, INDLinkLabelDelegate, MapMar
     
     func showOverlay(_ view: UIView) {
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.style = .whiteLarge
         activityIndicator.color = UIColor.gray
         
         if self.splitViewController!.isCollapsed {

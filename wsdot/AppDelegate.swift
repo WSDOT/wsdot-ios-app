@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     var window: UIWindow?
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     
         let theme = Theme(rawValue: EventStore.getActiveEventThemeId()) ?? .defaultTheme
         ThemeManager.applyTheme(theme: theme)
@@ -217,7 +217,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // MARK: Realm
     func migrateRealm(){
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
-            schemaVersion: 5,
+            schemaVersion: 6,
             
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
@@ -263,6 +263,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     migration.enumerateObjects(ofType: CacheItem.className()) { oldObject, newObject in
                         newObject!["tollRatesLastUpdate"] = Date(timeIntervalSince1970: 0)
                     }
+                }
+                
+                /*
+                    Adds milepost and direction fields.
+                    Clears cache times to force refresh
+                */
+                if (oldSchemaVersion < 6) {
+                    migration.enumerateObjects(ofType: CameraItem.className()) { oldObject, newObject in
+                        newObject!["milepost"] = -1
+                        newObject!["direction"] = ""
+                    }
+                    migration.deleteData(forType: CacheItem.className())
                 }
         })
     }

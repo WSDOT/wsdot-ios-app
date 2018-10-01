@@ -35,7 +35,7 @@ class BloggerViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         
         // refresh controller
         refreshControl.addTarget(self, action: #selector(BloggerViewController.refreshAction(_:)), for: .valueChanged)
@@ -81,7 +81,7 @@ class BloggerViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func showOverlay(_ view: UIView) {
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.style = .whiteLarge
         activityIndicator.color = UIColor.gray
         
         if self.splitViewController!.isCollapsed {
@@ -102,7 +102,7 @@ class BloggerViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // MARK: Table View Data Source Methods
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

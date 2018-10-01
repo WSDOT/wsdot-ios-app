@@ -47,7 +47,7 @@ class NotificationTopicsViewController: UIViewController, UITableViewDelegate, U
         self.topicItemsMap = NotificationsStore.getTopicsMap()
         self.topicCategoriesMap = getCategoriesMap(topicItemsMap: self.topicItemsMap)
         
-        self.tableView.estimatedRowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = UITableView.automaticDimension
        
         self.tableView.layoutIfNeeded()
         self.tableView.reloadData()
@@ -83,7 +83,7 @@ class NotificationTopicsViewController: UIViewController, UITableViewDelegate, U
 
                             selfValue.tableView.layoutIfNeeded()
                             selfValue.hideOverlayView()
-                            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, selfValue.tableView)
+                            UIAccessibility.post(notification: UIAccessibility.Notification.layoutChanged, argument: selfValue.tableView)
                         }
                     }
                 } else {
@@ -100,7 +100,7 @@ class NotificationTopicsViewController: UIViewController, UITableViewDelegate, U
     
     func showOverlay(_ view: UIView) {
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        activityIndicator.activityIndicatorViewStyle = .gray
+        activityIndicator.style = .gray
         activityIndicator.color = UIColor.gray
         
         if self.splitViewController!.isCollapsed {
@@ -162,7 +162,7 @@ class NotificationTopicsViewController: UIViewController, UITableViewDelegate, U
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     @objc func changeSubscriptionPref(_ sender: PassableUISwitch) {

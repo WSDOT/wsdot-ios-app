@@ -70,7 +70,7 @@ class AmtrakCascadesScheduleDetailsViewController: UIViewController, UITabBarDel
                             selfValue.tableView.reloadData()
                             selfValue.refreshControl.endRefreshing()
                             selfValue.hideOverlayView()
-                            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, selfValue.tableView)
+                            UIAccessibility.post(notification: UIAccessibility.Notification.layoutChanged, argument: selfValue.tableView)
                         }
                     }
                 } else {
@@ -89,7 +89,7 @@ class AmtrakCascadesScheduleDetailsViewController: UIViewController, UITabBarDel
     
     func showOverlay(_ view: UIView) {
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.style = .whiteLarge
         activityIndicator.color = UIColor.gray
         
         if self.splitViewController!.isCollapsed {

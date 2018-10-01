@@ -76,10 +76,10 @@ class RouteTabBarViewController: UITabBarController {
                         self.favoriteBarButton.accessibilityLabel = "add to favorites"
                     }
                 
-                    let sailings = self.childViewControllers[0] as! RouteSailingsViewController
+                    let sailings = self.children[0] as! RouteSailingsViewController
                     sailings.setRouteItemAndReload(routeItemValue)
                 
-                    let alerts = self.childViewControllers[1] as! RouteAlertsViewController
+                    let alerts = self.children[1] as! RouteAlertsViewController
                     alerts.setAlertsFromRouteItem(routeItemValue)
                 
                     self.pushAlertCheck(routeItemValue)
@@ -114,7 +114,7 @@ class RouteTabBarViewController: UITabBarController {
     
     func showOverlay(_ view: UIView) {
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.style = .whiteLarge
         activityIndicator.color = UIColor.gray
         
         if self.splitViewController!.isCollapsed {
