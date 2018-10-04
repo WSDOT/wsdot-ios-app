@@ -30,6 +30,8 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     let SegueCamerasViewController = "CamerasViewController"
     let SegueVesselDetailsViewController = "VesselDetailsViewController"
 
+    var routeId: Int = -1
+
     fileprivate weak var timer: Timer?
 
     fileprivate weak var embeddedMapViewController: MapViewController!
@@ -88,7 +90,6 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         let camerasPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras)
         if let camerasVisible = camerasPref {
             if (camerasVisible == "on") {
-            
                 UserDefaults.standard.set("off", forKey: UserDefaultsKeys.cameras)
                 sender.image = cameraBarButtonImage
                 removeCameras()
@@ -213,8 +214,8 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         }
     }
 
-    func removeVessels(){
-        for vessel in vesselMarkers{
+    func removeVessels() {
+        for vessel in vesselMarkers {
             vessel.map = nil
         }
     }
@@ -235,7 +236,20 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     
     // MARK: MapMarkerViewController protocol method
     func mapReady() {
-    
+
+        if embeddedMapViewController != nil {
+        
+            let location = VesselWatchStore.getRouteLocation(scheduleId: routeId)
+            let zoom = VesselWatchStore.getRouteZoom(scheduleId: routeId)
+            
+            embeddedMapViewController.goToLocation(location: location, zoom: zoom)
+
+            // don't save vessel watch locations
+            embeddedMapViewController.disableSaveLastLocation()
+  
+        }
+        
+
         activityIndicator.startAnimating()
 
         fetchVessels(true)

@@ -1,16 +1,15 @@
 //
-//  DepartureDaySelectionViewController.swift
+//  SailingSelectionViewController.swift
 //  WSDOT
 //
-//  Created by Logan Sims on 9/8/16.
-//  Copyright © 2016 WSDOT. All rights reserved.
-//
+//  Created by Logan Sims on 10/2/18.
+//  Copyright © 2018 WSDOT. All rights reserved.
 
 import UIKit
 
-class DepartureDaySelectionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TerminalSelectionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    let cellIdentifier = "dayCell"
+    let cellIdentifier = "terminalCell"
 
     var my_parent: RouteDeparturesViewController? = nil
 
@@ -51,8 +50,7 @@ class DepartureDaySelectionViewController: UIViewController, UITableViewDelegate
     
     // MARK: Table View Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        my_parent!.daySelected(indexPath.row)
+        my_parent!.terminalSelected(indexPath.row)
         self.dismiss(animated: true, completion: {()->Void in});
     }
 }
-

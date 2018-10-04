@@ -50,9 +50,14 @@ class VesselItem {
     var arrivingTerminal = "Not available"
     var departingTerminal = "Not available"
     
+    var arrivingTerminalID = -1
+    var departingTerminalID = -1
+    
     var nextDeparture: Date? = nil
     var leftDock: Date? = nil
     var eta: Date? = nil
+    
+    var atDock: Bool = true
     
     init(id: Int, name: String, lat: Double, lon: Double, heading: Int, speed: Float, inService: Bool, updated: Date) {
         self.vesselName = name

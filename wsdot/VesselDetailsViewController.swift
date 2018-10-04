@@ -39,6 +39,7 @@ class VesselDetailsViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         title = vesselItem?.vesselName
         
         routeLabel.text = vesselItem?.route
@@ -88,5 +89,4 @@ class VesselDetailsViewController: UIViewController{
         }
         self.present(svc, animated: true, completion: nil)
     }
-    
 }

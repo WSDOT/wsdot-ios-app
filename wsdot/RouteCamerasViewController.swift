@@ -38,14 +38,14 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
         super.viewDidLoad()
         
         tableView.rowHeight = UITableView.automaticDimension
-        
+
         // refresh controller
         refreshControl.addTarget(self, action: #selector(RouteCamerasViewController.refreshAction(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
-        
+
         self.tableView.contentOffset = CGPoint(x: 0, y: -self.refreshControl.frame.size.height)
-        refresh(false)
         
+        self.refresh(false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -105,11 +105,9 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
     
     // MARK: Table View Delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         // Perform Segue
         performSegue(withIdentifier: SegueCamerasViewController, sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

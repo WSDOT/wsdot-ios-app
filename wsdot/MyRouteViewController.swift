@@ -324,7 +324,6 @@ class MyRouteViewController: UIViewController {
             }
         }
         
-        
         if segue.identifier == segueMyRouteMapViewController {
             if let mapButton =  sender as! UIButton? {
                 let destinationViewController = segue.destination as! MyRouteMapViewController

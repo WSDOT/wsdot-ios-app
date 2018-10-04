@@ -433,8 +433,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
                         restAreaMarker.map = mapView
                     }
                 }
-                
-            }else{
+            } else {
                 UserDefaults.standard.set("on", forKey: UserDefaultsKeys.restAreas)
                 for restAreaMarker in restAreaMarkers{
                     restAreaMarker.map = mapView
@@ -547,6 +546,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         if marker.snippet == "restarea" {
             performSegue(withIdentifier: SegueRestAreaViewController, sender: marker)
         }
+        
         if marker.snippet == "jblm" {
             performSegue(withIdentifier: SegueCalloutViewController, sender: marker)
         }
@@ -565,6 +565,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     // MARK: Naviagtion
     // Get refrence to child VC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if let vc = segue.destination as? MapViewController, segue.identifier == "EmbedMapSegue" {
             vc.markerDelegate = self
             vc.mapDelegate = self

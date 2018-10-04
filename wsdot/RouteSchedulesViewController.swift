@@ -26,7 +26,9 @@ import SafariServices
 class RouteSchedulesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate {
     
     let cellIdentifier = "FerriesRouteSchedulesCell"
+    
     let SegueRouteDeparturesViewController = "RouteDeparturesViewController"
+    let SegueRouteAlertsViewController = "RouteAlertsViewController"
     
     var routes = [FerryScheduleItem]()
     
@@ -76,7 +78,6 @@ class RouteSchedulesViewController: UIViewController, UITableViewDelegate, UITab
     
     func refresh(_ force: Bool){
         
-        //UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, "Loading Ferry Routes")
         DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { [weak self] in
             FerryRealmStore.updateRouteSchedules(force, completion: { error in
                 if (error == nil) {
@@ -118,12 +119,12 @@ class RouteSchedulesViewController: UIViewController, UITableViewDelegate, UITab
         
         activityIndicator.startAnimating()
     }
-    
+
     func hideOverlayView(){
         activityIndicator.stopAnimating()
         activityIndicator.removeFromSuperview()
     }
-    
+
     @IBAction func refreshAction() {
         refresh(true)
     }
@@ -138,6 +139,14 @@ class RouteSchedulesViewController: UIViewController, UITableViewDelegate, UITab
             svc.view.tintColor = ThemeManager.currentTheme().mainColor
         }
         self.present(svc, animated: true, completion: nil)
+    }
+    
+    /**
+     * Method name: openAlerts
+     * Description: called when user taps an alert button on a route cell.
+     */
+    @objc func openAlerts(sender: UIButton){
+        performSegue(withIdentifier: SegueRouteAlertsViewController, sender: sender)
     }
     
     // MARK: Table View Data Source Methods
@@ -161,6 +170,20 @@ class RouteSchedulesViewController: UIViewController, UITableViewDelegate, UITab
         } else {
             cell.subTitleOne.isHidden = true
         }
+        
+        let alertCount = routes[indexPath.row].routeAlerts.count
+        
+        if (alertCount > 0){
+            cell.button.isHidden = false
+            cell.button.layer.cornerRadius = 5
+            cell.button.tag = indexPath.row
+            cell.button.addTarget(self, action: #selector(RouteSchedulesViewController.openAlerts), for: .touchUpInside)
+            let s = alertCount == 1 ? "" : "s"
+            cell.button.setTitle("\(routes[indexPath.row].routeAlerts.count) alert\(s)", for: .normal)
+        } else {
+            cell.button.isHidden = true
+        }
+
 
         cell.subTitleTwo.text = TimeUtils.timeAgoSinceDate(date: self.routes[indexPath.row].cacheDate, numericDates: false)
      
@@ -184,6 +207,12 @@ class RouteSchedulesViewController: UIViewController, UITableViewDelegate, UITab
                 destinationViewController.routeItem = routeItem
                 destinationViewController.routeId = routeItem.routeId
             }
+        }
+        
+        if segue.identifier == SegueRouteAlertsViewController {
+            let routeItem = self.routes[(sender as! UIButton).tag] as FerryScheduleItem
+            let destinationViewController: RouteAlertsViewController = segue.destination as! RouteAlertsViewController
+            destinationViewController.routeId = routeItem.routeId
         }
     }
 }

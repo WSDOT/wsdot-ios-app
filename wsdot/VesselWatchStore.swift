@@ -27,6 +27,7 @@ import SwiftyJSON
  */
 class VesselWatchStore {
 
+    typealias FetchVesselCompletion = (_ data: VesselItem?, _ error: Error?) -> ()
     typealias FetchVesselsCompletion = (_ data: [VesselItem]?, _ error: Error?) -> ()
     
     static func getVessels(_ completion: @escaping FetchVesselsCompletion) {
@@ -46,6 +47,33 @@ class VesselWatchStore {
         }
     }
     
+    static func getVesselForTerminalCombo(_ departingTerminalID: Int, arrivingTerminalID: Int, completion: @escaping FetchVesselCompletion) {
+    
+        Alamofire.request("http://www.wsdot.wa.gov/ferries/api/vessels/rest/vessellocations?apiaccesscode=" + ApiKeys.getWSDOTKey()).validate().responseJSON { response in
+            switch response.result {
+            case .success:
+                if let value = response.result.value {
+                    let json = JSON(value)
+                    let vessels = parseVesselsJSON(json)
+                    
+                    for vessel in vessels {
+                        if vessel.departingTerminalID == departingTerminalID && vessel.arrivingTerminalID == arrivingTerminalID {
+                            completion(vessel, nil)
+                            return
+                        }
+                    }
+                    
+                    completion(nil, nil)
+                }
+            case .failure(let error):
+                print(error)
+                completion(nil, error)
+            }
+        }
+    
+    
+    }
+    
     //Converts JSON from api into and array of FerriesRouteScheduleItems
     fileprivate static func parseVesselsJSON(_ json: JSON) ->[VesselItem]{
         
@@ -61,6 +89,10 @@ class VesselWatchStore {
                                     speed: vesselJson["Speed"].floatValue,
                                     inService: vesselJson["InService"].boolValue,
                                     updated: TimeUtils.parseJSONDateToNSDate(vesselJson["TimeStamp"].stringValue))
+            
+            if let atDock = vesselJson["AtDock"].bool {
+                vessel.atDock = atDock
+            }
             
             if let timeJson = vesselJson["Eta"].string{
                 vessel.eta = TimeUtils.parseJSONDateToNSDate(timeJson)
@@ -80,6 +112,14 @@ class VesselWatchStore {
             
             if let deptTerm = vesselJson["DepartingTerminalName"].string {
                 vessel.departingTerminal = deptTerm
+            }
+            
+            if let arrTermId = vesselJson["ArrivingTerminalID"].int {
+                vessel.arrivingTerminalID = arrTermId
+            }
+            
+            if let deptTermId = vesselJson["DepartingTerminalID"].int {
+                vessel.departingTerminalID = deptTermId
             }
             
             let routes = vesselJson["OpRouteAbbrev"].arrayValue
