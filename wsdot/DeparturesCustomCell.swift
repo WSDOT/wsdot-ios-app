@@ -22,9 +22,13 @@ import UIKit
 
 class DeparturesCustomCell: UITableViewCell {
     
+    @IBOutlet weak var etaLabel: UILabel!
+    
     @IBOutlet weak var departingTime: UILabel!
     @IBOutlet weak var arrivingTime: UILabel!
     @IBOutlet weak var sailingSpaces: UILabel!
+    @IBOutlet weak var actualDepartureLabel: UILabel!
+    
     @IBOutlet weak var annotations: INDLinkLabel!
     @IBOutlet weak var avaliableSpacesBar: UIProgressView!
     @IBOutlet weak var spacesDisclaimer: UILabel!

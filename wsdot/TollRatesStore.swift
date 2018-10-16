@@ -176,9 +176,13 @@ class TollRatesStore {
                     signItems[0].trips.append(tripItem)
                     
                     if signItems[0].travelDirection == "N" {
-                        signItems[0].trips = List(signItems[0].trips.sorted(by: { $0.endMilepost < $1.endMilepost }))
+                        let sortedTrips = signItems[0].trips.sorted{ return $0.endMilepost < $1.endMilepost }
+                        signItems[0].trips.removeAll()
+                        signItems[0].trips.append(objectsIn: sortedTrips)
                     } else {
-                        signItems[0].trips = List(signItems[0].trips.sorted(by: { $0.endMilepost > $1.endMilepost }))
+                        let sortedTrips = signItems[0].trips.sorted{ return $0.endMilepost > $1.endMilepost }
+                        signItems[0].trips.removeAll()
+                        signItems[0].trips.append(objectsIn: sortedTrips)
                     }
                     
                 } else {

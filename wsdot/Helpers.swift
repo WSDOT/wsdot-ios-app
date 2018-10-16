@@ -180,6 +180,20 @@ struct UIHelpers {
         return label
     }
     
+    static func getBadgeLabel(text: String) -> UILabel {
+        let label = UILabel(frame: CGRect(x: 10, y: -10, width: 20, height: 20))
+        label.layer.borderColor = UIColor.clear.cgColor
+        label.layer.borderWidth = 2
+        label.layer.cornerRadius = label.bounds.size.height / 2
+        label.textAlignment = .center
+        label.layer.masksToBounds = true
+        label.font = UIFont(name: "SanFranciscoText-Light", size: 13)
+        label.textColor = .white
+        label.backgroundColor = .red
+        label.text = text
+        return label
+    }
+    
     static func createActivityIndicator() -> UIActivityIndicatorView {
         let activityIndicator = UIActivityIndicatorView(style: .white)
         activityIndicator.hidesWhenStopped = true

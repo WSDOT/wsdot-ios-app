@@ -27,6 +27,7 @@ import SwiftyJSON
  */
 class VesselWatchStore {
 
+    typealias FetchVesselCompletion = (_ data: VesselItem?, _ error: Error?) -> ()
     typealias FetchVesselsCompletion = (_ data: [VesselItem]?, _ error: Error?) -> ()
     
     static func getVessels(_ completion: @escaping FetchVesselsCompletion) {
@@ -46,6 +47,33 @@ class VesselWatchStore {
         }
     }
     
+    static func getVesselForTerminalCombo(_ departingTerminalID: Int, arrivingTerminalID: Int, completion: @escaping FetchVesselCompletion) {
+    
+        Alamofire.request("http://www.wsdot.wa.gov/ferries/api/vessels/rest/vessellocations?apiaccesscode=" + ApiKeys.getWSDOTKey()).validate().responseJSON { response in
+            switch response.result {
+            case .success:
+                if let value = response.result.value {
+                    let json = JSON(value)
+                    let vessels = parseVesselsJSON(json)
+                    
+                    for vessel in vessels {
+                        if vessel.departingTerminalID == departingTerminalID && vessel.arrivingTerminalID == arrivingTerminalID {
+                            completion(vessel, nil)
+                            return
+                        }
+                    }
+                    
+                    completion(nil, nil)
+                }
+            case .failure(let error):
+                print(error)
+                completion(nil, error)
+            }
+        }
+    
+    
+    }
+    
     //Converts JSON from api into and array of FerriesRouteScheduleItems
     fileprivate static func parseVesselsJSON(_ json: JSON) ->[VesselItem]{
         
@@ -61,6 +89,10 @@ class VesselWatchStore {
                                     speed: vesselJson["Speed"].floatValue,
                                     inService: vesselJson["InService"].boolValue,
                                     updated: TimeUtils.parseJSONDateToNSDate(vesselJson["TimeStamp"].stringValue))
+            
+            if let atDock = vesselJson["AtDock"].bool {
+                vessel.atDock = atDock
+            }
             
             if let timeJson = vesselJson["Eta"].string{
                 vessel.eta = TimeUtils.parseJSONDateToNSDate(timeJson)
@@ -82,6 +114,14 @@ class VesselWatchStore {
                 vessel.departingTerminal = deptTerm
             }
             
+            if let arrTermId = vesselJson["ArrivingTerminalID"].int {
+                vessel.arrivingTerminalID = arrTermId
+            }
+            
+            if let deptTermId = vesselJson["DepartingTerminalID"].int {
+                vessel.departingTerminalID = deptTermId
+            }
+            
             let routes = vesselJson["OpRouteAbbrev"].arrayValue
             
             if (routes.count > 0){
@@ -91,5 +131,64 @@ class VesselWatchStore {
             vessels.append(vessel)
         }
         return vessels
+    }
+    
+    static func getRouteLocation(scheduleId: Int) -> CLLocationCoordinate2D {
+
+        switch (scheduleId) {
+            case 9: // Ana-SJ
+                return CLLocationCoordinate2D(latitude: 48.550921, longitude: -122.840836);
+            case 10: // Ana-Sid
+                return CLLocationCoordinate2D(latitude: 48.550921, longitude: -122.840836);
+            case 6: // Ed-King
+                return CLLocationCoordinate2D(latitude: 47.803096, longitude: -122.438718);
+            case 13: // F-S
+                return CLLocationCoordinate2D(latitude: 47.513625, longitude: -122.450820);
+            case 14: // F-V
+                return CLLocationCoordinate2D(latitude: 47.513625, longitude: -122.450820);
+            case 7: // Muk-Cl
+                return CLLocationCoordinate2D(latitude: 47.963857, longitude: -122.327721);
+            case 8: // Pt-Key
+                return CLLocationCoordinate2D(latitude: 48.135562, longitude: -122.714449);
+            case 1: // Pd-Tal
+                return CLLocationCoordinate2D(latitude: 47.319040, longitude: -122.510890);
+            case 5: // Sea-Bi
+                return CLLocationCoordinate2D(latitude: 47.600325, longitude: -122.437249);
+            case 3: // Sea-Br
+                return CLLocationCoordinate2D(latitude: 47.565125, longitude: -122.480508);
+            case 15: // S-V
+                return CLLocationCoordinate2D(latitude: 47.513625, longitude: -122.450820);
+            default:
+                return CLLocationCoordinate2D(latitude: 47.565125, longitude: -122.480508);
+        }
+    }
+
+    static func getRouteZoom(scheduleId: Int) -> Float {
+        switch (scheduleId) {
+            case 9: // Ana-SJ
+                return 10;
+            case 10: // Ana-Sid
+                return 10;
+            case 6: // Ed-King
+                return 12;
+            case 13: // F-S
+                return 12;
+            case 14: // F-V
+                return 12;
+            case 7: // Muk-Cl
+                return 13;
+            case 8: // Pt-Key
+                return 12;
+            case 1: // Pd-Tal
+                return 13;
+            case 5: // Sea-Bi
+                return 11;
+            case 3: // Sea-Br
+                return 10;
+            case 15: // S-V
+                return 12;
+            default:
+                return 11;
+        }
     }
 }

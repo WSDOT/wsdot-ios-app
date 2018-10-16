@@ -21,15 +21,20 @@
 import UIKit
 import RealmSwift
 import GoogleMobileAds
+import SafariServices
 
 class RouteSchedulesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate {
     
     let cellIdentifier = "FerriesRouteSchedulesCell"
-    let SegueRouteDeparturesViewController = "RouteSailingsViewController"
+    
+    let SegueRouteDeparturesViewController = "RouteDeparturesViewController"
+    let SegueRouteAlertsViewController = "RouteAlertsViewController"
     
     var routes = [FerryScheduleItem]()
     
     var overlayView = UIView()
+    
+    let reservationsUrlString = "https://secureapps.wsdot.wa.gov/Ferries/Reservations/Vehicle/default.aspx"
     
     let refreshControl = UIRefreshControl()
     var activityIndicator = UIActivityIndicatorView()
@@ -73,7 +78,6 @@ class RouteSchedulesViewController: UIViewController, UITableViewDelegate, UITab
     
     func refresh(_ force: Bool){
         
-        //UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, "Loading Ferry Routes")
         DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { [weak self] in
             FerryRealmStore.updateRouteSchedules(force, completion: { error in
                 if (error == nil) {
@@ -115,14 +119,34 @@ class RouteSchedulesViewController: UIViewController, UITableViewDelegate, UITab
         
         activityIndicator.startAnimating()
     }
-    
+
     func hideOverlayView(){
         activityIndicator.stopAnimating()
         activityIndicator.removeFromSuperview()
     }
-    
+
     @IBAction func refreshAction() {
         refresh(true)
+    }
+    
+    @IBAction func reservationsAction(_ sender: Any) {
+        GoogleAnalytics.screenView(screenName: "/Ferries/Vehicle Reservations")
+        let svc = SFSafariViewController(url: URL(string: self.reservationsUrlString)!, entersReaderIfAvailable: true)
+        if #available(iOS 10.0, *) {
+            svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor
+            svc.preferredBarTintColor = ThemeManager.currentTheme().mainColor
+        } else {
+            svc.view.tintColor = ThemeManager.currentTheme().mainColor
+        }
+        self.present(svc, animated: true, completion: nil)
+    }
+    
+    /**
+     * Method name: openAlerts
+     * Description: called when user taps an alert button on a route cell.
+     */
+    @objc func openAlerts(sender: UIButton){
+        performSegue(withIdentifier: SegueRouteAlertsViewController, sender: sender)
     }
     
     // MARK: Table View Data Source Methods
@@ -146,6 +170,20 @@ class RouteSchedulesViewController: UIViewController, UITableViewDelegate, UITab
         } else {
             cell.subTitleOne.isHidden = true
         }
+        
+        let alertCount = routes[indexPath.row].routeAlerts.count
+        
+        if (alertCount > 0){
+            cell.button.isHidden = false
+            cell.button.layer.cornerRadius = 5
+            cell.button.tag = indexPath.row
+            cell.button.addTarget(self, action: #selector(RouteSchedulesViewController.openAlerts), for: .touchUpInside)
+            let s = alertCount == 1 ? "" : "s"
+            cell.button.setTitle("\(routes[indexPath.row].routeAlerts.count) alert\(s)", for: .normal)
+        } else {
+            cell.button.isHidden = true
+        }
+
 
         cell.subTitleTwo.text = TimeUtils.timeAgoSinceDate(date: self.routes[indexPath.row].cacheDate, numericDates: false)
      
@@ -164,10 +202,17 @@ class RouteSchedulesViewController: UIViewController, UITableViewDelegate, UITab
         if segue.identifier == SegueRouteDeparturesViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let routeItem = self.routes[indexPath.row] as FerryScheduleItem
-                let destinationViewController: RouteTabBarViewController = segue.destination as! RouteTabBarViewController
+                let destinationViewController: RouteDeparturesViewController = segue.destination as! RouteDeparturesViewController
                 destinationViewController.title = routeItem.routeDescription
+                destinationViewController.routeItem = routeItem
                 destinationViewController.routeId = routeItem.routeId
             }
+        }
+        
+        if segue.identifier == SegueRouteAlertsViewController {
+            let routeItem = self.routes[(sender as! UIButton).tag] as FerryScheduleItem
+            let destinationViewController: RouteAlertsViewController = segue.destination as! RouteAlertsViewController
+            destinationViewController.routeId = routeItem.routeId
         }
     }
 }

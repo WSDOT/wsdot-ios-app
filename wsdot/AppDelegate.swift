@@ -17,6 +17,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
+
 import UIKit
 import Firebase
 import GoogleMobileAds
@@ -55,14 +56,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Make these preferences global for all future EasyTipViews
         EasyTipView.globalPreferences = preferences
         
-        if (GoogleAnalytics.analytics_enabled){
+        if (GoogleAnalytics.analytics_enabled) {
             
             // Optional: configure GAI options.
             if let gai = GAI.sharedInstance() {
             
                 gai.tracker(withTrackingId: ApiKeys.getGoogleAnalyticsID())
             
-                if (GoogleAnalytics.analytics_dryrun){
+                if (GoogleAnalytics.analytics_dryrun) {
                     gai.dryRun = GoogleAnalytics.analytics_dryrun
                     gai.logger.logLevel = GAILogLevel.verbose
                 }
@@ -182,16 +183,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Set up nav and vc stack
         let ferriesNav = mainStoryboard.instantiateViewController(withIdentifier: "FerriesNav") as! UINavigationController
         
-        let ferriesHome = mainStoryboard.instantiateViewController(withIdentifier: "FerriesHomeViewController") as! FerriesHomeViewController
         let ferrySchedules = mainStoryboard.instantiateViewController(withIdentifier: "RouteSchedulesViewController") as! RouteSchedulesViewController
-        let ferrySailings = mainStoryboard.instantiateViewController(withIdentifier: "RouteTabBarViewController") as! RouteTabBarViewController
+        let ferryAlerts = mainStoryboard.instantiateViewController(withIdentifier: "RouteAlertsViewController") as! RouteAlertsViewController
   
-        // set values for the sailings VC
-        ferrySailings.routeId = routeId
-        ferrySailings.selectedTab = 1
+        ferryAlerts.routeId = routeId
         
         // assign vc stack to new nav controller
-        ferriesNav.setViewControllers([ferriesHome, ferrySchedules, ferrySailings], animated: false)
+        ferriesNav.setViewControllers([ferrySchedules, ferryAlerts], animated: false)
 
         setNavController(newNavigationController: ferriesNav)
 

@@ -32,6 +32,7 @@ class FavoritesHomeViewController: UIViewController {
     let segueFavoritesSettingsViewController = "FavoritesSettingsViewController"
     let segueTrafficMapViewController = "TrafficMapViewController"
     let segueRouteDeparturesViewController = "SailingsViewController"
+    let segueRouteAlertsViewController = "RouteAlertsViewController"
     let segueCameraViewController = "CameraViewController"
     let segueMountainPassDetailsViewController = "MountianPassDetailsViewController"
 
@@ -519,6 +520,19 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             
             ferryCell.subTitleTwo.text = TimeUtils.timeAgoSinceDate(date: ferryScheduleItem.cacheDate, numericDates: true)
             
+            let alertCount = ferrySchedules[indexPath.row].routeAlerts.count
+            
+            if (alertCount > 0){
+                ferryCell.button.isHidden = false
+                ferryCell.button.layer.cornerRadius = 5
+                ferryCell.button.tag = indexPath.row
+                ferryCell.button.addTarget(self, action: #selector(FavoritesHomeViewController.openFerryAlerts), for: .touchUpInside)
+                let s = alertCount == 1 ? "" : "s"
+                ferryCell.button.setTitle("\(ferrySchedules[indexPath.row].routeAlerts.count) alert\(s)", for: .normal)
+            } else {
+                ferryCell.button.isHidden = true
+            }
+            
             return ferryCell
             
         case .mountainPass:
@@ -825,8 +839,17 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
         if segue.identifier == segueRouteDeparturesViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let routeItem = self.ferrySchedules[indexPath.row] as FerryScheduleItem
-                let destinationViewController = segue.destination as! RouteTabBarViewController
+                let destinationViewController = segue.destination as! RouteDeparturesViewController
                 destinationViewController.title = routeItem.routeDescription
+                destinationViewController.routeItem = routeItem
+                destinationViewController.routeId = routeItem.routeId
+            }
+        }
+        
+        if segue.identifier == segueRouteAlertsViewController {
+            if let alertButton = sender as? UIButton {
+                let routeItem = self.ferrySchedules[alertButton.tag] as FerryScheduleItem
+                let destinationViewController = segue.destination as! RouteAlertsViewController
                 destinationViewController.routeId = routeItem.routeId
             }
         }
@@ -862,3 +885,14 @@ extension FavoritesHomeViewController {
     }
 }
 
+extension FavoritesHomeViewController {
+    
+    /**
+     * Method name: openAlerts
+     * Description: called when user taps an alert button on a route cell.
+     */
+    @objc func openFerryAlerts(sender: UIButton) {
+        performSegue(withIdentifier: segueRouteAlertsViewController, sender: sender)
+    }
+    
+}

@@ -42,7 +42,7 @@ class SailingSpacesStore {
                 }
             case .failure(let error):
                 if let code = response.response?.statusCode {
-                    if code == 400{
+                    if code == 400 {
                         completion([SailingSpacesItem](), error)
                     } else {
                         completion(nil, error)

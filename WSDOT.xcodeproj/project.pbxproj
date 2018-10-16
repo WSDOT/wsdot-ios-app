@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02215F3A2167D87500051301 /* SegmentedControlWithBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02215F392167D87400051301 /* SegmentedControlWithBadge.swift */; };
 		9A0360481DECBC6100B88466 /* PassCameraIDItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0360471DECBC6100B88466 /* PassCameraIDItem.swift */; };
 		9A06167A1D62285A00126520 /* VesselWatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616791D62285A00126520 /* VesselWatchViewController.swift */; };
 		9A06167C1D622AE800126520 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A06167B1D622AE800126520 /* MapViewController.swift */; };
@@ -15,7 +16,6 @@
 		9A0616B51D63672A00126520 /* VesselItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616B41D63672A00126520 /* VesselItem.swift */; };
 		9A0616B71D63674500126520 /* VesselWatchStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616B61D63674500126520 /* VesselWatchStore.swift */; };
 		9A0616B91D63867A00126520 /* VesselDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616B81D63867A00126520 /* VesselDetailsViewController.swift */; };
-		9A0616BB1D63BB9700126520 /* VesselWatchGoToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616BA1D63BB9700126520 /* VesselWatchGoToViewController.swift */; };
 		9A0616C21D651B1300126520 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616C11D651B1300126520 /* InfoViewController.swift */; };
 		9A0616C81D6601BD00126520 /* TollRates.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A0616C71D6601BD00126520 /* TollRates.storyboard */; };
 		9A0616CA1D66021B00126520 /* TollRatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616C91D66021B00126520 /* TollRatesViewController.swift */; };
@@ -28,7 +28,6 @@
 		9A0616E41D676FB600126520 /* TrafficMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616E31D676FB600126520 /* TrafficMapViewController.swift */; };
 		9A0616E61D67838F00126520 /* TrafficMapGoToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616E51D67838F00126520 /* TrafficMapGoToViewController.swift */; };
 		9A07192C1D410FD5007BB4C5 /* RouteAlertsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A07192B1D410FD5007BB4C5 /* RouteAlertsViewController.swift */; };
-		9A07192E1D4110BC007BB4C5 /* RouteTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A07192D1D4110BC007BB4C5 /* RouteTabBarViewController.swift */; };
 		9A0719331D42732A007BB4C5 /* INDLinkLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0719321D42732A007BB4C5 /* INDLinkLabel.swift */; };
 		9A0719351D4274B8007BB4C5 /* LinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0719341D4274B8007BB4C5 /* LinkCell.swift */; };
 		9A0892A91E3A903800434AED /* MyRouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0892A81E3A903800434AED /* MyRouteCell.swift */; };
@@ -40,7 +39,6 @@
 		9A1F5FA31D47DBB700DA5F99 /* SailingSpacesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F5FA21D47DBB700DA5F99 /* SailingSpacesStore.swift */; };
 		9A1F5FA51D47DCB900DA5F99 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F5FA41D47DCB900DA5F99 /* ApiKeys.swift */; };
 		9A1F5FA71D47E27200DA5F99 /* SailingSpacesItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F5FA61D47E27200DA5F99 /* SailingSpacesItem.swift */; };
-		9A21E1CC1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A21E1CB1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift */; };
 		9A2BA5CF1F20FF2300B2092F /* BestTimesToTravelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2BA5CE1F20FF2300B2092F /* BestTimesToTravelStore.swift */; };
 		9A2C27251D679E5800F05D88 /* TrafficMapSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2C27241D679E5800F05D88 /* TrafficMapSettingsViewController.swift */; };
 		9A2C27271D67A1E400F05D88 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2C27261D67A1E400F05D88 /* SettingsCell.swift */; };
@@ -121,6 +119,7 @@
 		9A930A4120533782002D014C /* CameraPageContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A930A4020533782002D014C /* CameraPageContainerViewController.swift */; };
 		9A930A432056C74B002D014C /* CameraList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A930A422056C74B002D014C /* CameraList.storyboard */; };
 		9A93E0D61E707384004AB867 /* MyRoute.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A93E0D51E707384004AB867 /* MyRoute.storyboard */; };
+		9A946BBA2163B742006E5885 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A946BB92163B742006E5885 /* IconButton.swift */; };
 		9A9808BD1F1FA1780034DA05 /* BestTimesToTravelDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9808BC1F1FA1780034DA05 /* BestTimesToTravelDetailsViewController.swift */; };
 		9A9808C01F1FA2AF0034DA05 /* TravelChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9808BF1F1FA2AF0034DA05 /* TravelChartItem.swift */; };
 		9A9808C21F1FAAAE0034DA05 /* TravelChartImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9808C11F1FAAAE0034DA05 /* TravelChartImageCell.swift */; };
@@ -139,13 +138,13 @@
 		9AC5E86C2028B43900C9BB02 /* EventItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC5E86B2028B43900C9BB02 /* EventItem.swift */; };
 		9AC5E86E202A2DB700C9BB02 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC5E86D202A2DB700C9BB02 /* EventViewController.swift */; };
 		9ACAB9531F66ED64002683B7 /* TravelerInformation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9ACAB9521F66ED64002683B7 /* TravelerInformation.storyboard */; };
+		9ACDCA3F216405B5004972C5 /* TerminalSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACDCA3E216405B5004972C5 /* TerminalSelectionViewController.swift */; };
 		9AD32DFD1D23172C000AEC28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32DFC1D23172C000AEC28 /* AppDelegate.swift */; };
 		9AD32E021D23172C000AEC28 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E001D23172C000AEC28 /* Main.storyboard */; };
 		9AD32E041D23172C000AEC28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E031D23172C000AEC28 /* Assets.xcassets */; };
 		9AD32E071D23172C000AEC28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E051D23172C000AEC28 /* LaunchScreen.storyboard */; };
 		9AD32E221D241AF4000AEC28 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32E211D241AF4000AEC28 /* HomeViewController.swift */; };
 		9AD32E281D2421E4000AEC28 /* Ferries.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E271D2421E4000AEC28 /* Ferries.storyboard */; };
-		9AD32E2A1D24233D000AEC28 /* FerriesHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32E291D24233D000AEC28 /* FerriesHomeViewController.swift */; };
 		9AD32E2C1D242A5A000AEC28 /* RouteSchedulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32E2B1D242A5A000AEC28 /* RouteSchedulesViewController.swift */; };
 		9ADEAE4D1D270CC800BA7DD4 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADEAE4C1D270CC800BA7DD4 /* Helpers.swift */; };
 		9ADF0E021D7F5EF600632F3D /* WSDOTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADF0E011D7F5EF600632F3D /* WSDOTUITests.swift */; };
@@ -231,6 +230,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		02215F392167D87400051301 /* SegmentedControlWithBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlWithBadge.swift; sourceTree = "<group>"; };
 		08B5584F4B8FFF1035CFBE34 /* Pods_WSDOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WSDOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F733049676C72FA80F317B5 /* Pods-WSDOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.debug.xcconfig"; sourceTree = "<group>"; };
 		65D6D46116E71C14DDDD1497 /* Pods-WSDOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.release.xcconfig"; sourceTree = "<group>"; };
@@ -243,7 +243,6 @@
 		9A0616B41D63672A00126520 /* VesselItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VesselItem.swift; sourceTree = "<group>"; };
 		9A0616B61D63674500126520 /* VesselWatchStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VesselWatchStore.swift; sourceTree = "<group>"; };
 		9A0616B81D63867A00126520 /* VesselDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VesselDetailsViewController.swift; sourceTree = "<group>"; };
-		9A0616BA1D63BB9700126520 /* VesselWatchGoToViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VesselWatchGoToViewController.swift; sourceTree = "<group>"; };
 		9A0616C11D651B1300126520 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		9A0616C71D6601BD00126520 /* TollRates.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TollRates.storyboard; sourceTree = "<group>"; };
 		9A0616C91D66021B00126520 /* TollRatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TollRatesViewController.swift; sourceTree = "<group>"; };
@@ -256,7 +255,6 @@
 		9A0616E31D676FB600126520 /* TrafficMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficMapViewController.swift; sourceTree = "<group>"; };
 		9A0616E51D67838F00126520 /* TrafficMapGoToViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficMapGoToViewController.swift; sourceTree = "<group>"; };
 		9A07192B1D410FD5007BB4C5 /* RouteAlertsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteAlertsViewController.swift; sourceTree = "<group>"; };
-		9A07192D1D4110BC007BB4C5 /* RouteTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTabBarViewController.swift; sourceTree = "<group>"; };
 		9A0719321D42732A007BB4C5 /* INDLinkLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = INDLinkLabel.swift; sourceTree = "<group>"; };
 		9A0719341D4274B8007BB4C5 /* LinkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkCell.swift; sourceTree = "<group>"; };
 		9A0892A81E3A903800434AED /* MyRouteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRouteCell.swift; sourceTree = "<group>"; };
@@ -268,7 +266,6 @@
 		9A1F5FA21D47DBB700DA5F99 /* SailingSpacesStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SailingSpacesStore.swift; sourceTree = "<group>"; };
 		9A1F5FA41D47DCB900DA5F99 /* ApiKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
 		9A1F5FA61D47E27200DA5F99 /* SailingSpacesItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SailingSpacesItem.swift; sourceTree = "<group>"; };
-		9A21E1CB1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteSailingsViewController.swift; sourceTree = "<group>"; };
 		9A2BA5CE1F20FF2300B2092F /* BestTimesToTravelStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BestTimesToTravelStore.swift; sourceTree = "<group>"; };
 		9A2C27241D679E5800F05D88 /* TrafficMapSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficMapSettingsViewController.swift; sourceTree = "<group>"; };
 		9A2C27261D67A1E400F05D88 /* SettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
@@ -371,6 +368,7 @@
 		9A930A4020533782002D014C /* CameraPageContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPageContainerViewController.swift; sourceTree = "<group>"; };
 		9A930A422056C74B002D014C /* CameraList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CameraList.storyboard; sourceTree = "<group>"; };
 		9A93E0D51E707384004AB867 /* MyRoute.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyRoute.storyboard; sourceTree = "<group>"; };
+		9A946BB92163B742006E5885 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		9A9808BC1F1FA1780034DA05 /* BestTimesToTravelDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BestTimesToTravelDetailsViewController.swift; sourceTree = "<group>"; };
 		9A9808BF1F1FA2AF0034DA05 /* TravelChartItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelChartItem.swift; sourceTree = "<group>"; };
 		9A9808C11F1FAAAE0034DA05 /* TravelChartImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelChartImageCell.swift; sourceTree = "<group>"; };
@@ -390,6 +388,7 @@
 		9AC5E86B2028B43900C9BB02 /* EventItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventItem.swift; sourceTree = "<group>"; };
 		9AC5E86D202A2DB700C9BB02 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		9ACAB9521F66ED64002683B7 /* TravelerInformation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TravelerInformation.storyboard; sourceTree = "<group>"; };
+		9ACDCA3E216405B5004972C5 /* TerminalSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalSelectionViewController.swift; sourceTree = "<group>"; };
 		9AD32DF91D23172C000AEC28 /* WSDOT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WSDOT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD32DFC1D23172C000AEC28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9AD32E011D23172C000AEC28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -398,7 +397,6 @@
 		9AD32E081D23172C000AEC28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AD32E211D241AF4000AEC28 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9AD32E271D2421E4000AEC28 /* Ferries.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Ferries.storyboard; path = Base.lproj/Ferries.storyboard; sourceTree = "<group>"; };
-		9AD32E291D24233D000AEC28 /* FerriesHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerriesHomeViewController.swift; sourceTree = "<group>"; };
 		9AD32E2B1D242A5A000AEC28 /* RouteSchedulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteSchedulesViewController.swift; sourceTree = "<group>"; };
 		9ADEAE4C1D270CC800BA7DD4 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		9ADF0DFF1D7F5EF600632F3D /* WSDOTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WSDOTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -514,7 +512,6 @@
 			children = (
 				9A0616791D62285A00126520 /* VesselWatchViewController.swift */,
 				9A0616B81D63867A00126520 /* VesselDetailsViewController.swift */,
-				9A0616BA1D63BB9700126520 /* VesselWatchGoToViewController.swift */,
 			);
 			name = VesselWatch;
 			sourceTree = "<group>";
@@ -617,23 +614,14 @@
 			name = CustomLabels;
 			sourceTree = "<group>";
 		};
-		9A0CA8321D465F24009C67B7 /* Sailings */ = {
-			isa = PBXGroup;
-			children = (
-				9A07192D1D4110BC007BB4C5 /* RouteTabBarViewController.swift */,
-				9A21E1CB1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift */,
-				9A07192B1D410FD5007BB4C5 /* RouteAlertsViewController.swift */,
-			);
-			name = Sailings;
-			sourceTree = "<group>";
-		};
 		9A0CA8331D465F44009C67B7 /* Departures */ = {
 			isa = PBXGroup;
 			children = (
+				9ACDCA43216668CB004972C5 /* Selections */,
+				9A0616781D62283F00126520 /* VesselWatch */,
 				9A0CA8301D428EE9009C67B7 /* RouteDeparturesViewController.swift */,
 				9A81A5771D4AC5710049913A /* RouteTimesViewController.swift */,
 				9A81A5791D4AC5840049913A /* RouteCamerasViewController.swift */,
-				9A8486F71D81E96A0026F1CF /* DepartureDaySelectionViewController.swift */,
 			);
 			name = Departures;
 			sourceTree = "<group>";
@@ -1061,11 +1049,9 @@
 		9A81A57D1D4F8FB90049913A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9AD32E291D24233D000AEC28 /* FerriesHomeViewController.swift */,
-				9A0616781D62283F00126520 /* VesselWatch */,
-				9A0CA8331D465F44009C67B7 /* Departures */,
-				9A0CA8321D465F24009C67B7 /* Sailings */,
 				9A0CA8351D466005009C67B7 /* RouteSchedules */,
+				9A0CA8331D465F44009C67B7 /* Departures */,
+				9A9DDADC216FBB3D004B0143 /* RouteAlerts */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1109,6 +1095,14 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		9A946BB82163B721006E5885 /* CustomButtons */ = {
+			isa = PBXGroup;
+			children = (
+				9A946BB92163B742006E5885 /* IconButton.swift */,
+			);
+			name = CustomButtons;
+			sourceTree = "<group>";
+		};
 		9A9808BE1F1FA28D0034DA05 /* BestTimesToTravel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1125,6 +1119,14 @@
 				9A9808C31F1FF1C70034DA05 /* BestTimesToTravelRoutesViewController.swift */,
 			);
 			name = BestTimesToTravel;
+			sourceTree = "<group>";
+		};
+		9A9DDADC216FBB3D004B0143 /* RouteAlerts */ = {
+			isa = PBXGroup;
+			children = (
+				9A07192B1D410FD5007BB4C5 /* RouteAlertsViewController.swift */,
+			);
+			name = RouteAlerts;
 			sourceTree = "<group>";
 		};
 		9AB017771D514606004C228E /* Cameras */ = {
@@ -1189,6 +1191,15 @@
 			name = HappeningNow;
 			sourceTree = "<group>";
 		};
+		9ACDCA43216668CB004972C5 /* Selections */ = {
+			isa = PBXGroup;
+			children = (
+				9ACDCA3E216405B5004972C5 /* TerminalSelectionViewController.swift */,
+				9A8486F71D81E96A0026F1CF /* DepartureDaySelectionViewController.swift */,
+			);
+			name = Selections;
+			sourceTree = "<group>";
+		};
 		9AD32DF01D23172C000AEC28 = {
 			isa = PBXGroup;
 			children = (
@@ -1235,6 +1246,7 @@
 				9A6FBD101D6CEE0400CDCE16 /* TravelTimeDetails */,
 				9ADEAE4B1D270CBB00BA7DD4 /* Helpers */,
 				9AD32E1F1D231749000AEC28 /* Models */,
+				9AE6B77C209CF8CF001DE80F /* Extensions */,
 				9AD32E1D1D231739000AEC28 /* CustomViews */,
 				9AD32E051D23172C000AEC28 /* LaunchScreen.storyboard */,
 				9AD32DFC1D23172C000AEC28 /* AppDelegate.swift */,
@@ -1250,12 +1262,15 @@
 		9AD32E1D1D231739000AEC28 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				9A946BB82163B721006E5885 /* CustomButtons */,
 				9A0719311D427310007BB4C5 /* CustomLabels */,
 				9A5017921D258EFF00B9C49E /* CustomCells */,
 				9AF474AF20E3E9BC00E7740C /* RouteView.swift */,
 				9A6A002C210238350005CC7F /* TollTripView.swift */,
+				9AE6B77D209CF965001DE80F /* PassableSwitch.swift */,
 				9A6A002A210237B20005CC7F /* TollTripView.xib */,
 				9AF474B120E3F6A800E7740C /* RouteView.xib */,
+				02215F392167D87400051301 /* SegmentedControlWithBadge.swift */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -1272,7 +1287,6 @@
 		9ADEAE4B1D270CBB00BA7DD4 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				9AE6B77C209CF8CF001DE80F /* Extensions */,
 				9ADEAE4C1D270CC800BA7DD4 /* Helpers.swift */,
 				9A0CA8361D466045009C67B7 /* TimeUtils.swift */,
 				9A1F5FA41D47DCB900DA5F99 /* ApiKeys.swift */,
@@ -1324,7 +1338,6 @@
 		9AE6B77C209CF8CF001DE80F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				9AE6B77D209CF965001DE80F /* PassableSwitch.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1907,14 +1920,12 @@
 				9A6FBD331D6E3EA200CDCE16 /* MountianPassItem.swift in Sources */,
 				9A0616CA1D66021B00126520 /* TollRatesViewController.swift in Sources */,
 				9A7BC0D01DA3F31B00EF760C /* GMUNonHierarchicalDistanceBasedAlgorithm.m in Sources */,
-				9A0616BB1D63BB9700126520 /* VesselWatchGoToViewController.swift in Sources */,
 				9AEF4D881D75FED8003ECA34 /* FacebookItem.swift in Sources */,
 				9AEF4D831D75CF42003ECA34 /* BloggerViewController.swift in Sources */,
 				9AD32DFD1D23172C000AEC28 /* AppDelegate.swift in Sources */,
 				9A0616B51D63672A00126520 /* VesselItem.swift in Sources */,
 				9AEEDDB31D70C0B70032F5EC /* AlertContentViewController.swift in Sources */,
 				9A2F4A6E1D539C1600911AF5 /* CacheItem.swift in Sources */,
-				9A21E1CC1D3D8C3F00F3DA18 /* RouteSailingsViewController.swift in Sources */,
 				9A1F5F9F1D47C2E800DA5F99 /* DeparturesCustomCell.swift in Sources */,
 				9AEF4D971D760B72003ECA34 /* FlickrCollectionCell.swift in Sources */,
 				9A6FBCEC1D6C953D00CDCE16 /* CalloutViewController.swift in Sources */,
@@ -1934,7 +1945,6 @@
 				9AEF4D911D7608DA003ECA34 /* FlickrItem.swift in Sources */,
 				9A0616C21D651B1300126520 /* InfoViewController.swift in Sources */,
 				9AE486471D495E90007A92E3 /* CameraItem.swift in Sources */,
-				9A07192E1D4110BC007BB4C5 /* RouteTabBarViewController.swift in Sources */,
 				9A39E8D720D45D5800ED694D /* TollRateCell.swift in Sources */,
 				9A9309B12051D7E6002D014C /* CameraPageViewController.swift in Sources */,
 				9A7BC0CF1DA3F31B00EF760C /* GMUGridBasedClusterAlgorithm.m in Sources */,
@@ -1954,6 +1964,7 @@
 				9AB0177C1D514668004C228E /* CameraViewController.swift in Sources */,
 				9A2F4A701D53AA5C00911AF5 /* CameraRealmStore.swift in Sources */,
 				9A6FBCFE1D6CAE5700CDCE16 /* ExpressLaneItem.swift in Sources */,
+				9ACDCA3F216405B5004972C5 /* TerminalSelectionViewController.swift in Sources */,
 				9A6FBCFC1D6CAC0800CDCE16 /* ExpressLaneCell.swift in Sources */,
 				9A2BA5CF1F20FF2300B2092F /* BestTimesToTravelStore.swift in Sources */,
 				9A7BC0D11DA3F31B00EF760C /* GMUSimpleClusterAlgorithm.m in Sources */,
@@ -1962,7 +1973,6 @@
 				9A7BC0D51DA3F31B00EF760C /* GMUDefaultClusterIconGenerator.m in Sources */,
 				9A6FBCF11D6C9B9A00CDCE16 /* FavoriteLocationRealmStore.swift in Sources */,
 				9A6FBCE11D6B96EE00CDCE16 /* HighwayAlertViewController.swift in Sources */,
-				9AD32E2A1D24233D000AEC28 /* FerriesHomeViewController.swift in Sources */,
 				9AEF4D8E1D7602FE003ECA34 /* FacebookCell.swift in Sources */,
 				9A9808C21F1FAAAE0034DA05 /* TravelChartImageCell.swift in Sources */,
 				9AEEDDA81D6F7FDF0032F5EC /* MountainPassReportViewController.swift in Sources */,
@@ -1996,7 +2006,9 @@
 				9A0892A91E3A903800434AED /* MyRouteCell.swift in Sources */,
 				9A0616CE1D660CC800126520 /* SR16ViewController.swift in Sources */,
 				9AB549011D7874E000927F13 /* AmtrakCascadesStationItem.swift in Sources */,
+				02215F3A2167D87500051301 /* SegmentedControlWithBadge.swift in Sources */,
 				9AE6B780209CF9B1001DE80F /* SwitchCell.swift in Sources */,
+				9A946BBA2163B742006E5885 /* IconButton.swift in Sources */,
 				9A9808BD1F1FA1780034DA05 /* BestTimesToTravelDetailsViewController.swift in Sources */,
 				9AB549031D78758400927F13 /* AmtrakCascadesStore.swift in Sources */,
 				9AEF4DA01D773256003ECA34 /* NewsCell.swift in Sources */,
@@ -2161,6 +2173,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2212,6 +2225,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};

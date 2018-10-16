@@ -36,7 +36,7 @@
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>WSDOT wants to save your location to your device for My Routes</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This allows WSDOT to display your current location on maps, suggest train stations near you, and save location data to your device when creating routes with the My Routes feature.</string>
+	<string>This allows WSDOT to display your current location on maps, suggest stations and terminals near you, or save location data to your device when creating routes with the My Routes feature.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

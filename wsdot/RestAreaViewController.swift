@@ -70,7 +70,7 @@ class RestAreaViewController: UIViewController, MapMarkerDelegate, GMSMapViewDel
         GoogleAnalytics.screenView(screenName: "/Traffic Map/Rest Area Details")
     }
     
-    func drawMapOverlays() {
+    func mapReady() {
         if let mapView = embeddedMapViewController.view as? GMSMapView{
             restAreaMarker.map = mapView
             mapView.settings.setAllGesturesEnabled(false)

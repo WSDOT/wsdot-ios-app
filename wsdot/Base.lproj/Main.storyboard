@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aoS-Ss-JPz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aoS-Ss-JPz">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -250,7 +250,7 @@
                         <segue destination="1dr-DE-avD" kind="showDetail" identifier="BorderWaitsViewController" id="pPy-E3-cH6"/>
                         <segue destination="zFS-FS-RUm" kind="showDetail" identifier="TollRatesViewController" id="blP-PL-Ibi"/>
                         <segue destination="pqP-mh-773" kind="showDetail" identifier="MountainPassesViewController" id="TJe-rH-FOH"/>
-                        <segue destination="r96-qW-X6r" kind="showDetail" identifier="FerriesHomeViewController" id="CbP-zR-c9M"/>
+                        <segue destination="r96-qW-X6r" kind="showDetail" identifier="FerriesRouteSchedulesViewController" id="CbP-zR-c9M"/>
                         <segue destination="nqe-tc-muW" kind="showDetail" identifier="MyRouteViewController" id="03P-z7-5GX"/>
                         <segue destination="NKl-R2-BiL" kind="showDetail" identifier="AmtrakCascadesViewController" id="klt-53-Bmj"/>
                         <segue destination="zqY-uR-LD3" kind="showDetail" identifier="EventViewController" id="7SE-Sd-Joi"/>

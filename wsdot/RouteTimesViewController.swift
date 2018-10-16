@@ -26,9 +26,8 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     let departuresSailingSpacesCellIdentifier = "RouteDeparturesSailingSpaces"
     let departureCellIdentifier = "RouteDeparture"
     
-    let segueDepartureDaySelectionViewController = "DepartureDaySelectionViewController"
-    
     var sailingSpaces : [SailingSpacesItem]?
+    var vessel : VesselItem?
     
     // Set by parent view
     var currentSailing: FerryTerminalPairItem?
@@ -48,10 +47,9 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     let refreshControl = UIRefreshControl()
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var dateButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var departuresHeader: UIView!
-        
+
     deinit {
         displayedSailing = nil
         sailingSpaces = nil
@@ -60,33 +58,35 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setDisplayedSailing(0)
+        
         if let sailingsByDateValue = sailingsByDate {
             if let firstSailingDateValue = sailingsByDateValue.first {
                 dayData = TimeUtils.nextSevenDaysStrings(firstSailingDateValue.date)
             }
         }
-
-        dateButton.layer.cornerRadius = 8.0
-        dateButton.setTitle(dayData[0], for: UIControl.State())
-        dateButton.accessibilityHint = "double tap to change sailing day"
         
-        setDisplayedSailing(0)
+        self.tableView.isHidden = true
         
-        tableView.rowHeight = UITableView.automaticDimension
+        //self.tableView.rowHeight = UITableView.automaticDimension
         
         // refresh controller
         refreshControl.addTarget(self, action: #selector(RouteTimesViewController.refreshAction(_:)), for: .valueChanged)
-        refreshControl.attributedTitle = NSAttributedString.init(string: "loading sailing spaces")
-
+        
+        // attribute title still displays after loading when voice over is enabled.
+        // Remove until better solution is found
+        if (UIAccessibility.isVoiceOverRunning){
+            refreshControl.attributedTitle = NSAttributedString.init(string: "loading sailing spaces")
+        }
+        
         activityIndicator.startAnimating()
         
         tableView.addSubview(refreshControl)
         
         timer = Timer.scheduledTimer(timeInterval: TimeUtils.spacesUpdateTime, target: self, selector: #selector(RouteTimesViewController.spacesTimerTask), userInfo: nil, repeats: true)
     
-        refresh(timerRefresh:  false)
-    
-    
+        refresh(scrollToCurrentSailing: true)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -100,20 +100,26 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     @objc func spacesTimerTask(_ timer:Timer) {
-        refresh(timerRefresh: true)
+        refresh(scrollToCurrentSailing: false)
     }
     
     @objc func refreshAction(_ refreshControl: UIRefreshControl) {
         showConnectionAlert = true
-        refresh(timerRefresh: false)
+        refresh(scrollToCurrentSailing: true)
     }
     
-    func refresh(timerRefresh: Bool) {
+    func refresh(scrollToCurrentSailing: Bool) {
+        
+        // hidden when not in use, prevents
+        // view from showing while voice over is on
+        refreshControl.isHidden = false
+        
         if (currentDay == 0) && (displayedSailing != nil){
             
             let departingId = displayedSailing!.departingTerminalId
             let arrivingId = displayedSailing!.arrivingTerminalId
             
+            // fetch sailings spaces to show along side times
             DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async { [weak self] in
                 SailingSpacesStore.getSailingSpacesForTerminal(departingId, arrivingId: arrivingId, completion: { data, error in
                     if let validData = data {
@@ -122,9 +128,11 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                                 selfValue.sailingSpaces = validData
                                 selfValue.updatedAt = Date()
                                 selfValue.tableView.reloadData()
+                                selfValue.tableView.layoutIfNeeded()
                                 selfValue.refreshControl.endRefreshing()
+                                selfValue.refreshControl.isHidden = true
                                 selfValue.activityIndicator.stopAnimating()
-                                if (!timerRefresh){
+                                if (scrollToCurrentSailing){
                                     selfValue.scrollToNextSailing(selfValue.displayedTimes)
                                 }
                             }
@@ -133,6 +141,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                         DispatchQueue.main.async { [weak self] in
                             if let selfValue = self{
                                 selfValue.refreshControl.endRefreshing()
+                                selfValue.refreshControl.isHidden = true
                                 selfValue.activityIndicator.stopAnimating()
                                 if (selfValue.showConnectionAlert){
                                     selfValue.showConnectionAlert = false
@@ -143,22 +152,43 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                     }
                 })
             }
+            
+            // fetch vessel actual departures and ETAs
+            DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async { [weak self] in
+                VesselWatchStore.getVesselForTerminalCombo(departingId, arrivingTerminalID: arrivingId, completion: { data, error in
+                    if let vessel = data {
+                        DispatchQueue.main.async { [weak self] in
+                            if let selfValue = self {
+                                selfValue.vessel = vessel
+                                selfValue.tableView.reloadData()
+                            }
+                        }
+                    }
+                })
+            }
         } else {
             self.refreshControl.endRefreshing()
+            self.refreshControl.isHidden = true
             self.activityIndicator.stopAnimating()
         }
     }
     
-    @IBAction func selectAccountAction(_ sender: UIButton) {
-        performSegue(withIdentifier: segueDepartureDaySelectionViewController, sender: self)
+    override func viewDidLayoutSubviews() {
+        self.scrollToNextSailing(self.displayedTimes)
     }
     
-    func daySelected(_ index: Int) {
+    func changeDay(_ index: Int) {
         currentDay = index
-        dateButton.setTitle(dayData[currentDay], for: UIControl.State())
         setDisplayedSailing(currentDay)
         self.tableView.reloadData()
         self.scrollToNextSailing(self.displayedTimes)
+    }
+    
+    func changeTerminal(_ terminal: FerryTerminalPairItem?) {
+        self.refreshControl.beginRefreshing()
+        self.currentSailing = terminal
+        self.setDisplayedSailing(currentDay)
+        self.tableView.reloadData()
     }
     
     // MARK: -
@@ -175,13 +205,19 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         return UITableView.automaticDimension
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var cell = tableView.dequeueReusableCell(withIdentifier: departureCellIdentifier) as! DeparturesCustomCell
         
         // Check if sailing space information is avaliable. If so change prototype cell.
-        if let sailingSpacesValue = sailingSpaces{
+        if let sailingSpacesValue = sailingSpaces {
+        
             for spaceItem: SailingSpacesItem in sailingSpacesValue {
+
                 if displayedTimes[indexPath.row].departingTime == spaceItem.date {
                 
                     // Only add sailing spaces for future sailings
@@ -198,6 +234,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                         cell.avaliableSpacesBar.transform = cell.avaliableSpacesBar.transform.scaledBy(x: 1, y: 3)
                     
                         cell.spacesDisclaimer.isHidden = false
+                        cell.updated.isHidden = false
                         cell.updated.text = "Drive-up spaces updated " + TimeUtils.timeAgoSinceDate(date: updatedAt, numericDates: true)
                     
                     }
@@ -205,20 +242,35 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
             }
         }
         
-        let displayDepartingTime = TimeUtils.getTimeOfDay(displayedTimes[indexPath.row].departingTime)
-        
-        cell.departingTime.text = displayDepartingTime
-        
-        // turn past departures gray
-        if (displayedTimes[indexPath.row].departingTime.compare(NSDate() as Date) != .orderedDescending) {
-            cell.departingTime.textColor = UIColor.gray
-            cell.arrivingTime.textColor = UIColor.gray
-            cell.annotations.textColor = UIColor.gray
-        } else {
-            cell.departingTime.textColor = UIColor.black
-            cell.arrivingTime.textColor = UIColor.black
-            cell.annotations.textColor = UIColor.black
+        // check for actual departure time and ETA
+        cell.actualDepartureLabel.text = ""
+        cell.etaLabel.text = ""
+
+        if let vesselValue = vessel {
+
+            if let departure = vesselValue.nextDeparture {
+                if departure == displayedTimes[indexPath.row].departingTime {
+
+                    if let leftDock = vesselValue.leftDock {
+                        cell.actualDepartureLabel.text = "Actual departure \(TimeUtils.getTimeOfDay(leftDock))"
+                    }
+
+                    if let eta = vesselValue.eta {
+                        cell.etaLabel.text = "ETA \(TimeUtils.getTimeOfDay(eta))"
+                        
+                        // turn past etas gray
+                        if (eta.compare(NSDate() as Date) != .orderedDescending) {
+                            cell.etaLabel.textColor = UIColor.gray
+                        } else {
+                            cell.etaLabel.textColor = UIColor.black
+                        }
+                    }
+                }
+            }
         }
+    
+        let displayDepartingTime = TimeUtils.getTimeOfDay(displayedTimes[indexPath.row].departingTime)
+        cell.departingTime.text = displayDepartingTime
         
         if let arrivingTime = displayedTimes[indexPath.row].arrivingTime {
             let displayArrivingTime = TimeUtils.getTimeOfDay(arrivingTime)
@@ -226,7 +278,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
             cell.arrivingTime.accessibilityLabel = displayArrivingTime
         } else {
             cell.arrivingTime.text = ""
-            cell.arrivingTime.accessibilityLabel = "not available"
+            cell.arrivingTime.accessibilityLabel = ""
         }
         
         var annotationsString = ""
@@ -235,27 +287,39 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
             annotationsString += displayedSailing!.annotations[indexObj.index].message + " "
         }
         
-        cell.annotations.attributedText = nil
-        cell.annotations.text = nil
-        
-        if (annotationsString != ""){
-            let htmlStyleString = "<style>body{font-family: '\(cell.annotations.font.fontName)'; font-size:\(cell.annotations.font.pointSize)px;}</style>"
-            let attrAnnotationsStr = try! NSMutableAttributedString(
-                data: (htmlStyleString + annotationsString).data(using: String.Encoding.unicode, allowLossyConversion: false)!,
-                options: [ NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html],
-                documentAttributes: nil)
-            
-            attrAnnotationsStr.setAttributes([NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size: 17)!], range: NSRangeFromString(annotationsString))
-            
+        if (annotationsString != "") {
             cell.annotations.isHidden = false
-            cell.annotations.attributedText = attrAnnotationsStr
-        }else {
-            cell.annotations.attributedText = nil
+            let taglessString = annotationsString.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
+            cell.annotations.text = taglessString
+        } else {
             cell.annotations.text = nil
+        }
+        
+        // turn past departures gray
+        if (displayedTimes[indexPath.row].departingTime.compare(NSDate() as Date) != .orderedDescending) {
+            cell.departingTime.textColor = UIColor.gray
+            cell.arrivingTime.textColor = UIColor.gray
+            cell.annotations.textColor = UIColor.gray
+            cell.actualDepartureLabel.textColor = UIColor.gray
+        } else {
+            cell.departingTime.textColor = UIColor.black
+            cell.arrivingTime.textColor = UIColor.black
+            cell.annotations.textColor = UIColor.black
+            cell.actualDepartureLabel.textColor = UIColor.black
         }
  
         // Accessibility Setup
-        cell.accessibilityLabel = "departing " + cell.departingTime.text! + ". arriving " + cell.arrivingTime.accessibilityLabel! + ". "
+        cell.accessibilityLabel = "departing " + cell.departingTime.text!
+            + (cell.arrivingTime.accessibilityLabel != "" ? ". arriving " + cell.arrivingTime.accessibilityLabel! + ". " : ".")
+        
+        if (cell.actualDepartureLabel.text != nil) {
+            cell.accessibilityLabel = cell.accessibilityLabel! + cell.actualDepartureLabel.text!
+        }
+        
+        // ETA text
+        if (cell.arrivingTime.text != nil) {
+            cell.accessibilityLabel = cell.accessibilityLabel! + cell.arrivingTime.text!
+        }
         
         if (cell.annotations.attributedText != nil){
             cell.accessibilityLabel = cell.accessibilityLabel! + (cell.annotations.attributedText?.string)! + ". "
@@ -270,18 +334,8 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         return cell
     }
     
-    // MARK: Naviagtion
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == segueDepartureDaySelectionViewController {
-            let destinationViewController = segue.destination as! DepartureDaySelectionViewController
-            destinationViewController.my_parent = self
-            destinationViewController.menu_options = dayData
-            destinationViewController.selectedIndex = currentDay
-        }
-    }
-    
     // MARK: Helper functions
-    fileprivate func setDisplayedSailing(_ day: Int){
+    func setDisplayedSailing(_ day: Int){
         
         var sailings = List<FerrySailingsItem>()
         
@@ -309,12 +363,19 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     
     // Scrolls table view to the next departure. Compares departing times with
     // current time to find it.
+    // uses a quick sleep timer to ensure the cells have had time to get their size
+    // so we scroll to the correct location.
     fileprivate func scrollToNextSailing(_ sailings: List<FerryDepartureTimeItem>) {
         let index = getNextSailingIndex(sailings)
-        
-        if tableView.numberOfRows(inSection: 0) > index {
-            let indexPath = IndexPath(row: index, section: 0)
-            tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+        DispatchQueue.global(qos: .background).async {
+            usleep(50000)
+            DispatchQueue.main.async {
+                if self.tableView.numberOfRows(inSection: 0) > index {
+                    let indexPath = IndexPath(row: index, section: 0)
+                    self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+                    self.tableView.isHidden = false
+                }
+            }
         }
     }
     

@@ -2,10 +2,11 @@
 //  RouteAlertsViewController.swift
 //  WSDOT
 //
-//  Copyright (c) 2016 Washington State Department of Transportation
+//  Copyright (c) 2018 Washington State Department of Transportation
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
+
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
 //
@@ -28,26 +29,69 @@ class RouteAlertsViewController: UIViewController, UITableViewDataSource, UITabl
     
     let cellIdentifier = "RouteAlerts"
 
+    var routeId = 0
     var alertItems = [FerryAlertItem]()
+    
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = UITableView.automaticDimension
+        
+        // refresh controller
+        refreshControl.addTarget(self, action: #selector(RouteAlertsViewController.refreshAction(_:)), for: .valueChanged)
+        tableView.addSubview(refreshControl)
+        
+        fetchAlerts()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GoogleAnalytics.screenView(screenName: "/Ferries/Schedules/Alerts")
-   
     }
     
-    func setAlertsFromRouteItem(_ routeItem: FerryScheduleItem){
-        alertItems = routeItem.routeAlerts.sorted(by: {$0.publishDate > $1.publishDate})
-        if (tableView != nil){
-            tableView.reloadData()
+    @objc func refreshAction(_ refreshControl: UIRefreshControl) {
+       // showConnectionAlert = true
+        fetchAlerts()
+    }
+    
+    func fetchAlerts() {
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { [weak self] in
+            FerryRealmStore.updateRouteSchedules(false, completion: { error in
+                if (error == nil) {
+                    // Reload tableview on UI thread
+                    DispatchQueue.main.async { [weak self] in
+                        if let selfValue = self {
+                            
+                            if let routeItem = FerryRealmStore.findSchedule(withId: selfValue.routeId) {
+                                selfValue.title = "\(routeItem.routeDescription) Alerts"
+                                selfValue.alertItems = routeItem.routeAlerts.sorted(by: {$0.publishDate > $1.publishDate})
+                                selfValue.tableView.reloadData()
+                            }
+                            
+                            if selfValue.alertItems.count == 0 {
+                                selfValue.title = "No Alerts"
+                            }
+                            
+                            selfValue.refreshControl.endRefreshing()
+                            UIAccessibility.post(notification: UIAccessibility.Notification.layoutChanged, argument: selfValue.tableView)
+                        }
+                    }
+                } else {
+                    DispatchQueue.main.async { [weak self] in
+                        if let selfValue = self{
+                            selfValue.refreshControl.endRefreshing()
+                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                        }
+                    }
+                }
+            })
         }
     }
     
+    
+    // MARK: tableview
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }

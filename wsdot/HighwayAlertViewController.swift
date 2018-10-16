@@ -151,7 +151,7 @@ class HighwayAlertViewController: UIViewController, INDLinkLabelDelegate, MapMar
         activityIndicator.removeFromSuperview()
     }
     
-    func drawMapOverlays() {
+    func mapReady() {
         if let mapView = embeddedMapViewController.view as? GMSMapView{
             alertMarker.map = mapView
             mapView.settings.setAllGesturesEnabled(false)

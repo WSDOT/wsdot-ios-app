@@ -8,11 +8,11 @@ target 'WSDOT' do
     pod 'Firebase/Messaging'
     pod 'GoogleMaps', '~> 2.5.0'
     pod 'GoogleAnalytics'
-    pod 'RealmSwift', '~> 3.5.0'
-    pod 'Alamofire', '~> 4.7.2'
+    pod 'RealmSwift', '~> 3.10.0'
+    pod 'Alamofire', '~> 4.7.3'
     pod 'SwiftyJSON', '~> 4.1.0'
     pod 'SDWebImage', '~> 4.3.3'
-    pod 'EasyTipView', '~> 1.0.2'
+    pod 'EasyTipView', '~> 2.0.0'
     pod 'SCLAlertView', '~> 0.8.0'
 end
 
@@ -22,11 +22,11 @@ target 'WSDOTTests' do
     pod 'Firebase/Messaging'
     pod 'GoogleMaps', '~> 2.5.0'
     pod 'GoogleAnalytics'
-    pod 'RealmSwift', '~> 3.5.0'
-    pod 'Alamofire', '~> 4.7.2'
+    pod 'RealmSwift', '~> 3.10.0'
+    pod 'Alamofire', '~> 4.7.3'
     pod 'SwiftyJSON', '~> 4.1.0'
     pod 'SDWebImage', '~> 4.3.3'
-    pod 'EasyTipView', '~> 1.0.2'
+    pod 'EasyTipView', '~> 2.0.0'
     pod 'SCLAlertView', '~> 0.8.0'
 end
 
