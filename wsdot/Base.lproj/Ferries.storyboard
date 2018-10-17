@@ -901,7 +901,7 @@
                                     <outlet property="delegate" destination="Whq-2K-wR1" id="1vz-Zl-Mmy"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="751" verticalHuggingPriority="751" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="2sB-gh-yRe">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="751" verticalHuggingPriority="751" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="2sB-gh-yRe">
                                 <rect key="frame" x="169" y="214.5" width="37" height="37"/>
                                 <color key="color" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
@@ -910,20 +910,15 @@
                         <constraints>
                             <constraint firstItem="ea4-dX-pgd" firstAttribute="top" secondItem="tvM-vn-PsU" secondAttribute="bottom" identifier="departure times table top" id="3Gf-Ze-Tt8"/>
                             <constraint firstItem="ea4-dX-pgd" firstAttribute="leading" secondItem="z2y-8B-H2y" secondAttribute="leading" identifier="departure times table leading" id="6C5-hs-dh9"/>
+                            <constraint firstItem="2sB-gh-yRe" firstAttribute="centerY" secondItem="OXS-G6-73x" secondAttribute="centerY" id="K5a-a0-wg1"/>
                             <constraint firstItem="ea4-dX-pgd" firstAttribute="trailing" secondItem="z2y-8B-H2y" secondAttribute="trailing" identifier="departures table trailing" id="NsJ-nX-4cW"/>
                             <constraint firstItem="ea4-dX-pgd" firstAttribute="bottom" secondItem="z2y-8B-H2y" secondAttribute="bottom" identifier="departure times tabel bottom" id="Q7T-bJ-nUK"/>
-                            <constraint firstItem="2sB-gh-yRe" firstAttribute="centerX" secondItem="OXS-G6-73x" secondAttribute="centerX" identifier="activitty indicator center X" id="Tu6-vO-nJH"/>
                             <constraint firstItem="tvM-vn-PsU" firstAttribute="leading" secondItem="ea4-dX-pgd" secondAttribute="leading" identifier="departures header leading" id="ckq-lu-4LM"/>
                             <constraint firstItem="tvM-vn-PsU" firstAttribute="trailing" secondItem="ea4-dX-pgd" secondAttribute="trailing" identifier="departures header trailing" id="eFs-JR-nVz"/>
-                            <constraint firstItem="2sB-gh-yRe" firstAttribute="centerY" secondItem="OXS-G6-73x" secondAttribute="centerY" identifier="activity indicator center Y" id="kEy-Bj-Hq0"/>
+                            <constraint firstItem="2sB-gh-yRe" firstAttribute="centerX" secondItem="OXS-G6-73x" secondAttribute="centerX" id="vEf-hY-ye1"/>
                             <constraint firstItem="tvM-vn-PsU" firstAttribute="top" secondItem="z2y-8B-H2y" secondAttribute="top" identifier="departures header top" id="vFr-EO-aUA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="z2y-8B-H2y"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="2sB-gh-yRe"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="2sB-gh-yRe" id="6dV-dl-wR3"/>

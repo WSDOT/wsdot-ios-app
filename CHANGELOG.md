@@ -4,8 +4,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]:
 
+## [5.10.0] 2018-10
 
-## [5.8.5] 2018-08
+## Changed
+* Ferries section layout. 
+* Vessel watch is now a tab on the departures screen.
+* Ferry alerts now display as a button on the route table cell.
+* Removes sailings screen in favor of drop down on departures screen.
+* reservations link is now located at the top of the routes screen.
+
+## [5.9.0] 2018-08-28
+
+## Added 
+* I-405 Express Toll Lanes and SR 167 HOT Lanes rates in the toll rates section
+
+## [5.8.5] 2018-08-20
 
 ### Changed
 * Replaces use of the Google Static Maps API with a native Google Map view with touch events disabled. 

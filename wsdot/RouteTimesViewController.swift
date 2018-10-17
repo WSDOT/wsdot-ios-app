@@ -68,8 +68,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         
         self.tableView.isHidden = true
         
-        //self.tableView.rowHeight = UITableView.automaticDimension
-        
         // refresh controller
         refreshControl.addTarget(self, action: #selector(RouteTimesViewController.refreshAction(_:)), for: .valueChanged)
         
@@ -113,6 +111,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         // hidden when not in use, prevents
         // view from showing while voice over is on
         refreshControl.isHidden = false
+        refreshControl.beginRefreshing()
         
         if (currentDay == 0) && (displayedSailing != nil){
             
@@ -171,10 +170,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
             self.refreshControl.isHidden = true
             self.activityIndicator.stopAnimating()
         }
-    }
-    
-    override func viewDidLayoutSubviews() {
-        self.scrollToNextSailing(self.displayedTimes)
     }
     
     func changeDay(_ index: Int) {

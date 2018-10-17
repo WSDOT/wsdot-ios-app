@@ -51,7 +51,6 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
     var selectedTerminal = 0
     
     var overlayView = UIView()
-    var activityIndicator = UIActivityIndicatorView()
     
     let favoriteBarButton = UIBarButtonItem()
     
