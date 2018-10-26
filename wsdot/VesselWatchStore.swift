@@ -136,6 +136,8 @@ class VesselWatchStore {
     static func getRouteLocation(scheduleId: Int) -> CLLocationCoordinate2D {
 
         switch (scheduleId) {
+            case 272: // Ana-SJ
+                return CLLocationCoordinate2D(latitude: 48.550921, longitude: -122.840836);
             case 9: // Ana-SJ
                 return CLLocationCoordinate2D(latitude: 48.550921, longitude: -122.840836);
             case 10: // Ana-Sid
@@ -165,6 +167,8 @@ class VesselWatchStore {
 
     static func getRouteZoom(scheduleId: Int) -> Float {
         switch (scheduleId) {
+            case 272: // Ana-SJ
+                return 10;
             case 9: // Ana-SJ
                 return 10;
             case 10: // Ana-Sid
