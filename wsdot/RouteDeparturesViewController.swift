@@ -39,6 +39,7 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     var routeTimesVC: RouteTimesViewController!
+    var routeCamerasVC: RouteCamerasViewController!
     
     @IBOutlet weak var sailingButton: IconButton!
     @IBOutlet weak var dayButton: IconButton!
@@ -160,6 +161,9 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
         routeTimesVC.changeTerminal(terminal)
         sailingButton.setTitle("\(terminal.aTerminalName) to \(terminal.bTterminalName)", for: UIControl.State())
         routeTimesVC.refresh(scrollToCurrentSailing: true)
+        
+        routeCamerasVC.departingTerminalId = terminal.aTerminalId
+        routeCamerasVC.refresh(false)
     }
     
     // MARK - Navigation
@@ -181,8 +185,8 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
         }
 
         if segue.identifier == camerasViewSegue {
-            let dest = segue.destination as! RouteCamerasViewController
-            dest.departingTerminalId = getDepartingId()
+            routeCamerasVC = segue.destination as? RouteCamerasViewController
+            routeCamerasVC.departingTerminalId = getDepartingId()
 
         }
 
