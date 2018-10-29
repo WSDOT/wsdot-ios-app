@@ -4,6 +4,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]:
 
+
+## [5.10.2]
+
+## Fixed
+* Terminal cameras list now updates when a terminal is selected.
+
+## [5.10.1]
+
+## Fixed
+* Vessel Watch opens to correct location for ANA-SJ routes.
+
 ## [5.10.0] 2018-10
 
 ## Changed
