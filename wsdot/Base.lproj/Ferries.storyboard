@@ -517,7 +517,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s3p-vV-1U1">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s3p-vV-1U1">
                                 <rect key="frame" x="0.0" y="546" width="375" height="57"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -614,14 +614,17 @@
                             <constraint firstItem="s3p-vV-1U1" firstAttribute="bottom" secondItem="5Hg-dA-IcU" secondAttribute="bottom" identifier="main view bottom " id="4PE-ZG-vRI"/>
                             <constraint firstItem="jQQ-2t-Te6" firstAttribute="bottom" secondItem="92X-rn-RaJ" secondAttribute="top" constant="-2" identifier="time container bottom" id="86H-X8-dag"/>
                             <constraint firstItem="jQQ-2t-Te6" firstAttribute="centerX" secondItem="92X-rn-RaJ" secondAttribute="centerX" identifier="times container center x" id="9PM-3v-p65"/>
+                            <constraint firstItem="4au-rT-O5d" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YIR-vv-XbB" secondAttribute="trailing" priority="999" constant="21.5" id="9oj-Ow-eSz"/>
                             <constraint firstItem="jQQ-2t-Te6" firstAttribute="trailing" secondItem="5Hg-dA-IcU" secondAttribute="trailing" identifier="times view trailing" id="G1I-6c-hyZ"/>
                             <constraint firstItem="qiG-uG-uoY" firstAttribute="leading" secondItem="5Hg-dA-IcU" secondAttribute="leading" constant="8" identifier="seg control leading" id="JaX-iB-hld"/>
                             <constraint firstItem="kSn-7K-XNe" firstAttribute="trailing" secondItem="5Hg-dA-IcU" secondAttribute="trailing" identifier="vessel watch container trailing" id="Qka-4W-zez"/>
                             <constraint firstItem="7in-bp-hzl" firstAttribute="trailing" secondItem="5Hg-dA-IcU" secondAttribute="trailing" identifier="cameras container trailing" id="RN0-Xi-68s"/>
+                            <constraint firstItem="s3p-vV-1U1" firstAttribute="leading" secondItem="5Hg-dA-IcU" secondAttribute="leading" id="SNz-7x-4fv"/>
                             <constraint firstItem="s3p-vV-1U1" firstAttribute="top" secondItem="92X-rn-RaJ" secondAttribute="top" constant="-6" identifier="main view bottom" id="SnY-cr-78h"/>
                             <constraint firstItem="92X-rn-RaJ" firstAttribute="centerX" secondItem="5Hg-dA-IcU" secondAttribute="centerX" id="TOW-rn-sz5"/>
                             <constraint firstItem="4au-rT-O5d" firstAttribute="trailing" secondItem="dNL-ZE-gHM" secondAttribute="trailingMargin" constant="8" identifier="day button trailing" id="UzL-NX-Tiu"/>
                             <constraint firstItem="kSn-7K-XNe" firstAttribute="top" secondItem="qiG-uG-uoY" secondAttribute="bottom" constant="9" identifier="vessel watch container top" id="WsS-op-avN"/>
+                            <constraint firstItem="s3p-vV-1U1" firstAttribute="trailing" secondItem="5Hg-dA-IcU" secondAttribute="trailing" id="Wya-YT-P9U"/>
                             <constraint firstItem="7in-bp-hzl" firstAttribute="bottom" secondItem="92X-rn-RaJ" secondAttribute="top" constant="-2" identifier="cameras container bottom" id="YeO-HQ-KQA"/>
                             <constraint firstItem="4au-rT-O5d" firstAttribute="width" secondItem="5Hg-dA-IcU" secondAttribute="width" multiplier="0.3" identifier="day button width" id="Z2e-kk-irj"/>
                             <constraint firstItem="4au-rT-O5d" firstAttribute="top" secondItem="YIR-vv-XbB" secondAttribute="top" identifier="day button top" id="bXb-uq-dXw"/>
@@ -901,7 +904,7 @@
                                     <outlet property="delegate" destination="Whq-2K-wR1" id="1vz-Zl-Mmy"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="751" verticalHuggingPriority="751" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="2sB-gh-yRe">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="751" verticalHuggingPriority="751" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="2sB-gh-yRe">
                                 <rect key="frame" x="169" y="214.5" width="37" height="37"/>
                                 <color key="color" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
