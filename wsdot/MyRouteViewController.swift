@@ -41,7 +41,7 @@ class MyRouteViewController: UIViewController {
         tableView.isEditing = true
         tableView.allowsSelectionDuringEditing = true
         
-        GoogleAnalytics.screenView(screenName: "/Favorites/My Routes")
+        MyAnalytics.screenView(screenName: "My Routes")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -191,7 +191,7 @@ class MyRouteViewController: UIViewController {
     
     @objc func editRoute(sender: UIButton){
     
-        GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Route Settings")
+        MyAnalytics.event(category: "My Route", action: "UIAction", label: "Route Settings")
     
         let editController = (UIDevice.current.userInterfaceIdiom == .phone ?
               UIAlertController(title: "Route: \(self.myRoutes[sender.tag].name)", message: nil, preferredStyle: .actionSheet)
@@ -205,7 +205,7 @@ class MyRouteViewController: UIViewController {
         
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (result : UIAlertAction) -> Void in
         
-            GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Delete Route")
+            MyAnalytics.event(category: "My Route", action: "UIAction", label: "Delete Route")
         
             let alertController = UIAlertController(title: "Delete route \(self.myRoutes[sender.tag].name)?", message:"This cannot be undone", preferredStyle: .alert)
 
@@ -213,7 +213,7 @@ class MyRouteViewController: UIViewController {
 
             let confirmDeleteAction = UIAlertAction(title: "Delete", style: .destructive) { (_) -> Void in
             
-                GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Delete Route Confirmed")
+                MyAnalytics.event(category: "My Route", action: "UIAction", label: "Delete Route Confirmed")
             
                 _ = MyRouteStore.delete(route: self.myRoutes.remove(at: sender.tag))
                 if self.myRoutes.count == 0 {
@@ -231,7 +231,7 @@ class MyRouteViewController: UIViewController {
         
         let renameAction = UIAlertAction(title: "Rename", style: .default) { (result : UIAlertAction) -> Void in
         
-            GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Rename Route")
+            MyAnalytics.event(category: "My Route", action: "UIAction", label: "Rename Route")
         
             let alertController = UIAlertController(title: "Edit Name", message:nil, preferredStyle: .alert)
             alertController.addTextField { (textfield) in
@@ -262,7 +262,7 @@ class MyRouteViewController: UIViewController {
         
         let reloadAction = UIAlertAction(title: "Add Favorites on Route", style: .default) { (result : UIAlertAction) -> Void in
             
-            GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Reload Favorites")
+            MyAnalytics.event(category: "My Route", action: "UIAction", label: "Reload Favorites")
             
             self.showRouteOverlay()
                 
@@ -289,7 +289,7 @@ class MyRouteViewController: UIViewController {
         }
         
         let showRouteOnMapAction = UIAlertAction(title: "Check Route on Map", style: .default) { (result : UIAlertAction) -> Void in
-            GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "View Route")
+            MyAnalytics.event(category: "My Route", action: "UIAction", label: "View Route")
             self.performSegue(withIdentifier: self.segueMyRouteMapViewController, sender: sender)
         }
         
@@ -346,7 +346,7 @@ class MyRouteViewController: UIViewController {
      * Description: action func for check alerts button on a route cell
      */
     @objc func checkAlerts(sender: UIButton){
-        GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Check Alerts")
+        MyAnalytics.event(category: "My Route", action: "UIAction", label: "Check Alerts")
         performSegue(withIdentifier: segueMyRouteAlertsViewController, sender: sender)
     }
     
@@ -355,7 +355,7 @@ class MyRouteViewController: UIViewController {
      * Description: action fun for openMap button on a route cell
      */
     @objc func openMap(sender: UIButton){
-        GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Open Route")
+        MyAnalytics.event(category: "My Route", action: "UIAction", label: "Open Route")
         performSegue(withIdentifier: segueTrafficMapViewController, sender: sender)
     }
 }

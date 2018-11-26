@@ -62,7 +62,7 @@ class FavoritesHomeViewController: UIViewController {
         // refresh controller
         refreshControl.addTarget(self, action: #selector(FavoritesHomeViewController.refreshAction(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
-        GoogleAnalytics.screenView(screenName: "/Favorites")
+        MyAnalytics.screenView(screenName: "/Favorites")
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -871,7 +871,7 @@ extension FavoritesHomeViewController {
      * Description: action func for check alerts button on a route cell
      */
     @objc func checkAlerts(sender: UIButton){
-        GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Check Alerts")
+        MyAnalytics.event(category: "My Route", action: "UIAction", label: "Check Alerts")
         performSegue(withIdentifier: segueMyRouteAlertsViewController, sender: sender)
     }
     
@@ -880,7 +880,7 @@ extension FavoritesHomeViewController {
      * Description: action fun for openMap button on a route cell
      */
     @objc func openMap(sender: UIButton){
-        GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Open Route")
+        MyAnalytics.event(category: "My Route", action: "UIAction", label: "Open Route")
         performSegue(withIdentifier: segueTrafficMapViewController, sender: sender)
     }
 }

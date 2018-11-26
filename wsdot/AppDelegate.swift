@@ -56,22 +56,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Make these preferences global for all future EasyTipViews
         EasyTipView.globalPreferences = preferences
         
-        if (GoogleAnalytics.analytics_enabled) {
-            
-            // Optional: configure GAI options.
-            if let gai = GAI.sharedInstance() {
-            
-                gai.tracker(withTrackingId: ApiKeys.getGoogleAnalyticsID())
-            
-                if (GoogleAnalytics.analytics_dryrun) {
-                    gai.dryRun = GoogleAnalytics.analytics_dryrun
-                    gai.logger.logLevel = GAILogLevel.verbose
-                }
-                
-                gai.trackUncaughtExceptions = true  // report uncaught exceptions
-            }
-        }
-        
         // Reset Warning each time app starts
         UserDefaults.standard.set(false, forKey: UserDefaultsKeys.hasSeenWarning)
         
@@ -134,14 +118,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
             if let alertType = userInfo["type"] as? String {
                 if alertType == "ferry_alert" {
-                    GoogleAnalytics.event(category: "Notification", action: "Message Opened" , label: "Ferry Alert")
+                    MyAnalytics.event(category: "Notification", action: "Message Opened" , label: "Ferry Alert")
                     if let routeIdString = userInfo["route_id"] as? String {
                         if let routeId = Int(routeIdString){
                             launchFerriesAlertScreen(routeId: routeId)
                         }
                     }
                 } else if alertType == "highway_alert" {
-                    GoogleAnalytics.event(category: "Notification", action: "Message Opened" , label: "Traffic Alert")
+                    MyAnalytics.event(category: "Notification", action: "Message Opened" , label: "Traffic Alert")
                     if let alertIdString = userInfo["alert_id"] as? String, let latString = userInfo["lat"] as? String, let longString = userInfo["long"] as? String    {
                         if let alertId = Int(alertIdString), let lat = Double(latString), let long = Double(longString) {
                             launchTrafficAlertDetailsScreen(alertId: alertId, latitude: lat, longitude: long)

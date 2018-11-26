@@ -19,29 +19,20 @@
 //
 
 import Foundation
+import FirebaseAnalytics
 
-class GoogleAnalytics {
-    
-    static let analytics_enabled = true
-    static let analytics_dryrun = false
+class MyAnalytics {
     
     static func screenView(screenName: String){
-        if (GoogleAnalytics.analytics_enabled){
-            if let tracker = GAI
-            .sharedInstance().defaultTracker {
-                tracker.set(kGAIScreenName, value: screenName)
-                if let builder = GAIDictionaryBuilder.createScreenView() {
-                    tracker.send(builder.build() as [NSObject : AnyObject])
-                }
-            }
-        }
+        Analytics.logEvent("wsdot_screen_view", parameters: [
+            "screen_name": screenName
+        ])
     }
     
     static func event(category: String, action: String, label: String){
-        if (GoogleAnalytics.analytics_enabled){
-            if let tracker = GAI.sharedInstance().defaultTracker {
-                tracker.send(GAIDictionaryBuilder.createEvent(withCategory: category, action: action, label: label, value: nil).build() as [NSObject : AnyObject])
-            }
-        }
+        Analytics.logEvent(action, parameters: [
+            "category": category,
+            "label": label
+        ])
     }
 }

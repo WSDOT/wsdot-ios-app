@@ -39,7 +39,7 @@ class CameraClusterViewController: UIViewController, UITableViewDataSource, UITa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView(screenName: "/Traffic Map/Camera Cluster List")
+        MyAnalytics.screenView(screenName: "Camera Cluster List")
     }
 
     

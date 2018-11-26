@@ -110,12 +110,12 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView(screenName: "/Traffic Map")
+        MyAnalytics.screenView(screenName: "Traffic Map")
     }
     
     @IBAction func refreshPressed(_ sender: UIBarButtonItem) {
     
-        GoogleAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Refresh")
+        MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Refresh")
     
         self.activityIndicatorView.isHidden = false
         self.activityIndicatorView.startAnimating()
@@ -132,7 +132,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     }
     
     @IBAction func myLocationButtonPressed(_ sender: UIBarButtonItem) {
-        GoogleAnalytics.event(category: "Traffic Map", action: "UIAction", label: "My Location")
+        MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "My Location")
         embeddedMapViewController.goToUsersLocation()
     }
     
@@ -148,12 +148,12 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         let camerasPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras)
         if let camerasVisible = camerasPref {
             if (camerasVisible == "on") {
-                GoogleAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Hide Cameras")
+                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Hide Cameras")
                 UserDefaults.standard.set("off", forKey: UserDefaultsKeys.cameras)
                 sender.image = cameraBarButtonImage
                 removeCameras()
             } else {
-                GoogleAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Show Cameras")
+                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Show Cameras")
                 sender.image = cameraHighlightBarButtonImage
                 UserDefaults.standard.set("on", forKey: UserDefaultsKeys.cameras)
                 drawCameras()
@@ -475,7 +475,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         alertController.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
 
         let okAction = UIAlertAction(title: "Ok", style: .default) { (_) -> Void in
-            GoogleAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Favorite Location Saved")
+            MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Favorite Location Saved")
             let textf = alertController.textFields![0] as UITextField
             if let mapView = self.embeddedMapViewController.view as? GMSMapView{
                 let favoriteLocation = FavoriteLocationItem()

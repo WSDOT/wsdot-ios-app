@@ -61,7 +61,7 @@ class NotificationTopicsViewController: UIViewController, UITableViewDelegate, U
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView(screenName: "/Notification Settings")
+        MyAnalytics.screenView(screenName: "Notification Settings")
     }
 
     func refresh(_ force: Bool) {
@@ -177,7 +177,7 @@ class NotificationTopicsViewController: UIViewController, UITableViewDelegate, U
                             
                                     let topic = sender.params["topic"] as! NotificationTopicItem
         
-                                    GoogleAnalytics.event(category: "Notification", action: (!topic.subscribed ? "subscribed" : "unsubscribed") , label: topic.title)
+                                    MyAnalytics.event(category: "Notification", action: (!topic.subscribed ? "subscribed" : "unsubscribed") , label: topic.title)
         
                                     NotificationsStore.updateSubscription(topic, newValue: !topic.subscribed)
 

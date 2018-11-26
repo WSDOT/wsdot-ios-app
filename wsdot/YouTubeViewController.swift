@@ -49,7 +49,7 @@ class YouTubeViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView(screenName: "/Traffic Map/Traveler Information/YouTube")
+        MyAnalytics.screenView(screenName: "YouTube")
     }
     
     @objc func refreshAction(_ sender: UIRefreshControl){

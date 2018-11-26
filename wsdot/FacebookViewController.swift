@@ -48,7 +48,7 @@ class FacebookViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView(screenName: "/Traffic Map/Traveler Information/Facebook")
+        MyAnalytics.screenView(screenName: "Facebook")
     }
     
     @objc func refreshAction(_ sender: UIRefreshControl){

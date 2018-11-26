@@ -88,7 +88,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView(screenName: "/Home")
+        MyAnalytics.screenView(screenName: "Home")
         displayEventBannerIfNeeded()
     }
 

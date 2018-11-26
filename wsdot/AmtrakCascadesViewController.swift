@@ -31,7 +31,7 @@ class AmtrakCascadesViewController: UIViewController, UITableViewDelegate, UITab
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView(screenName: "/Amtrak Cascades")
+        MyAnalytics.screenView(screenName: "Amtrak Cascades")
     }
 
     // MARK: Table View Data Source Methods
@@ -56,7 +56,7 @@ class AmtrakCascadesViewController: UIViewController, UITableViewDelegate, UITab
         // Perform Segue
         switch (indexPath.row) {
         case 0:
-            GoogleAnalytics.screenView(screenName: "/Amtrak Cascades/Buy Tickets")
+            MyAnalytics.screenView(screenName: "Buy Tickets")
             let svc = SFSafariViewController(url: URL(string: self.amtrakUrlString)!, entersReaderIfAvailable: true)
             
             if #available(iOS 10.0, *) {

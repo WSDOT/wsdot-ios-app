@@ -37,7 +37,7 @@ class EventViewController: UIViewController, UITextViewDelegate {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView(screenName: "/Event")
+        MyAnalytics.screenView(screenName: "Event")
     }
  
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {

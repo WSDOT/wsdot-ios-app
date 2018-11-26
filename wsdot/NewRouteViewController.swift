@@ -71,7 +71,7 @@ class NewRouteViewController: UIViewController {
         self.accessibilityCurrentLocationLabel.accessibilityLabel = "Finding location..."
         self.accessibilityMapLabel.isHidden = true
         
-        GoogleAnalytics.screenView(screenName: "/Favorites/My Route/New Route")
+        MyAnalytics.screenView(screenName: "New My Route")
     }
     
     override func viewDidLoad() {
@@ -115,7 +115,7 @@ class NewRouteViewController: UIViewController {
      */
     @IBAction func startRoutePressed(_ sender: UIButton) {
  
-        GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Started Recording Route")
+        MyAnalytics.event(category: "My Route", action: "UIAction", label: "Started Recording Route")
         accessibilityCurrentLocationLabel.isHidden = true
  
         if !CLLocationManager.locationServicesEnabled() {
@@ -233,7 +233,7 @@ class NewRouteViewController: UIViewController {
                 name = "My Route"
             }
                 
-            GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Saved Route")
+            MyAnalytics.event(category: "My Route", action: "UIAction", label: "Saved Route")
 
             let id =  MyRouteStore.save(route: self.locations, name: name,
                                         displayLat: self.mapView.projection.coordinate(for: self.mapView.center).latitude,
@@ -292,7 +292,7 @@ class NewRouteViewController: UIViewController {
         let alertController = UIAlertController(title: "Discard this route?", message: "This cannot be undone.", preferredStyle: .alert)
         
         let discardAction = UIAlertAction(title: "Discard", style: .destructive, handler: {(_) -> Void in
-            GoogleAnalytics.event(category: "My Route", action: "UIAction", label: "Discarded Route")
+            MyAnalytics.event(category: "My Route", action: "UIAction", label: "Discarded Route")
             self.mapView.clear()
             self.doneRecording()
             UIAccessibility.post(notification: UIAccessibility.Notification.layoutChanged, argument: nil);

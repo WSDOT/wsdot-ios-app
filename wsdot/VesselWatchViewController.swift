@@ -78,11 +78,11 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView(screenName: "/Ferries/VesselWatch")
+        MyAnalytics.screenView(screenName: "VesselWatch")
     }
     
     @IBAction func myLocationButtonPressed(_ sender: UIBarButtonItem) {
-        GoogleAnalytics.event(category: "Vessel Watch", action: "UIAction", label: "My Location")
+        MyAnalytics.event(category: "Vessel Watch", action: "UIAction", label: "My Location")
         embeddedMapViewController.goToUsersLocation()
     }
     

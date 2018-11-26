@@ -30,8 +30,7 @@ class MyRouteMapViewController: UIViewController {
             mapView.animate(toLocation: myLocation.coordinate)
         }
     
-        
-        GoogleAnalytics.screenView(screenName: "/Favorites/My Route/Route Map")
+        MyAnalytics.screenView(screenName: "Route Map")
     }
 
     /**

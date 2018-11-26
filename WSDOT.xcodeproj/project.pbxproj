@@ -132,7 +132,7 @@
 		9AB549051D78899600927F13 /* AmtrakCascadesScheduleDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB549041D78899600927F13 /* AmtrakCascadesScheduleDetailsViewController.swift */; };
 		9AB549071D78A81000927F13 /* AmtrakCascadesServiceStopItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB549061D78A81000927F13 /* AmtrakCascadesServiceStopItem.swift */; };
 		9AB549091D78DE6000927F13 /* AmtrakCascadesDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB549081D78DE6000927F13 /* AmtrakCascadesDetailsCell.swift */; };
-		9AB5490C1D7A1D2800927F13 /* GoogleAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB5490B1D7A1D2800927F13 /* GoogleAnalytics.swift */; };
+		9AB5490C1D7A1D2800927F13 /* MyAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB5490B1D7A1D2800927F13 /* MyAnalytics.swift */; };
 		9AC5E8652024E95200C9BB02 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC5E8642024E95200C9BB02 /* ThemeManager.swift */; };
 		9AC5E86A2028B36800C9BB02 /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC5E8692028B36800C9BB02 /* EventStore.swift */; };
 		9AC5E86C2028B43900C9BB02 /* EventItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC5E86B2028B43900C9BB02 /* EventItem.swift */; };
@@ -382,7 +382,7 @@
 		9AB549061D78A81000927F13 /* AmtrakCascadesServiceStopItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmtrakCascadesServiceStopItem.swift; sourceTree = "<group>"; };
 		9AB549081D78DE6000927F13 /* AmtrakCascadesDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmtrakCascadesDetailsCell.swift; sourceTree = "<group>"; };
 		9AB5490A1D7A184F00927F13 /* WSDOT-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WSDOT-Bridging-Header.h"; sourceTree = "<group>"; };
-		9AB5490B1D7A1D2800927F13 /* GoogleAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleAnalytics.swift; sourceTree = "<group>"; };
+		9AB5490B1D7A1D2800927F13 /* MyAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAnalytics.swift; sourceTree = "<group>"; };
 		9AC5E8642024E95200C9BB02 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		9AC5E8692028B36800C9BB02 /* EventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStore.swift; sourceTree = "<group>"; };
 		9AC5E86B2028B43900C9BB02 /* EventItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventItem.swift; sourceTree = "<group>"; };
@@ -1292,7 +1292,7 @@
 				9A1F5FA41D47DCB900DA5F99 /* ApiKeys.swift */,
 				9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */,
 				9A0616801D6265FB00126520 /* UserDefaultsKeys.swift */,
-				9AB5490B1D7A1D2800927F13 /* GoogleAnalytics.swift */,
+				9AB5490B1D7A1D2800927F13 /* MyAnalytics.swift */,
 				9AC5E8642024E95200C9BB02 /* ThemeManager.swift */,
 			);
 			name = Helpers;
@@ -2056,7 +2056,7 @@
 				9A7BC0AC1D9DBAB400EF760C /* CameraClusterItem.swift in Sources */,
 				9A0616D51D6638AB00126520 /* TollRatesStore.swift in Sources */,
 				9A81A57A1D4AC5840049913A /* RouteCamerasViewController.swift in Sources */,
-				9AB5490C1D7A1D2800927F13 /* GoogleAnalytics.swift in Sources */,
+				9AB5490C1D7A1D2800927F13 /* MyAnalytics.swift in Sources */,
 				9AEEDDA41D6F3D810032F5EC /* MountainPassCell.swift in Sources */,
 				9AEF4D931D7608ED003ECA34 /* FlickrStore.swift in Sources */,
 				9A06167C1D622AE800126520 /* MapViewController.swift in Sources */,

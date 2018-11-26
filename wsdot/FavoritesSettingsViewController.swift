@@ -35,12 +35,12 @@ class FavoritesSettingsViewController: UIViewController {
         super.viewDidLoad()
         tableView.isEditing = true
         tableView.allowsSelectionDuringEditing = true
-        GoogleAnalytics.screenView(screenName: "/Favorites/Settings")
+        MyAnalytics.screenView(screenName: "Favorite Settings")
     }
     
     func clearFavorites(){
     
-        GoogleAnalytics.event(category: "Favorites", action: "UIAction", label: "Cleared Favorites")
+        MyAnalytics.event(category: "Favorites", action: "UIAction", label: "Cleared Favorites")
         
         for camera in CamerasStore.getFavoriteCameras() {
             CamerasStore.updateFavorite(camera, newValue: false)

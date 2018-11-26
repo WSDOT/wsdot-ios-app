@@ -59,7 +59,7 @@ class HighwayAlertViewController: UIViewController, INDLinkLabelDelegate, MapMar
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView(screenName: "/Highway Alert")
+        MyAnalytics.screenView(screenName: "Highway Alert")
     }
     
     func loadAlert(){

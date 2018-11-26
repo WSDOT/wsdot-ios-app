@@ -59,12 +59,12 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate,
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView(screenName: "/About")
+        MyAnalytics.screenView(screenName: "About")
     }
     
     
     @IBAction func openJobsSite(_ sender: UIButton) {
-        GoogleAnalytics.screenView(screenName: "/About/Jobs")
+        MyAnalytics.screenView(screenName: "Jobs")
         let svc = SFSafariViewController(url: URL(string: self.jobsUrlString)!, entersReaderIfAvailable: true)
         if #available(iOS 10.0, *) {
             svc.preferredControlTintColor = UIColor.white

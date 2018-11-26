@@ -48,7 +48,7 @@ class RouteAlertsViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView(screenName: "/Ferries/Schedules/Alerts")
+        MyAnalytics.screenView(screenName: "Ferry Alerts")
     }
     
     @objc func refreshAction(_ refreshControl: UIRefreshControl) {

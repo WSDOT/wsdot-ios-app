@@ -76,7 +76,7 @@ class VesselDetailsViewController: UIViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView(screenName: "/Ferries/VesselWatch/Vessel Details/" + self.title!)
+        MyAnalytics.screenView(screenName: "Vessel Details" + self.title!)
     }
     
     @IBAction func linkAction(_ sender: UIBarButtonItem) {

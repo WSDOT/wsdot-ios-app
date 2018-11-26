@@ -51,7 +51,7 @@ class MyRouteAlertsViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(FavoritesHomeViewController.refreshAction(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
         
-        GoogleAnalytics.screenView(screenName: "/Favorites/My Route Alerts")
+        MyAnalytics.screenView(screenName: "My Route Alerts")
     }
 
     func refreshAction(_ refreshController: UIRefreshControl){

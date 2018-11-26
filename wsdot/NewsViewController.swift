@@ -48,7 +48,7 @@ class NewsViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView(screenName: "/Traffic Map/Traveler Information/News")
+        MyAnalytics.screenView(screenName: "News")
     }
     
     @objc func refreshAction(_ sender: UIRefreshControl){

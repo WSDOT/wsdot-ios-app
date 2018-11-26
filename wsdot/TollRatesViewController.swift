@@ -30,11 +30,11 @@ class TollRatesViewController: UIViewController{
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView(screenName: "/Toll Rates/SR 520")
+        MyAnalytics.screenView(screenName: "SR 520 Toll Rates")
     }
     
     @IBAction func MyGoodToGoLinkTap(_ sender: UIBarButtonItem) {
-        GoogleAnalytics.screenView(screenName: "/Toll Rates/MyGoodToGo.com")
+        MyAnalytics.screenView(screenName: "MyGoodToGo.com")
         let svc = SFSafariViewController(url: URL(string: self.goodToGoUrlString)!, entersReaderIfAvailable: true)
         if #available(iOS 10.0, *) {
             svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor

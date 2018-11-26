@@ -40,7 +40,7 @@ class TollTripDetailsViewController: UIViewController, MapMarkerDelegate, GMSMap
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        GoogleAnalytics.screenView(screenName: "/Toll Rates/Toll Trip Details")
+        MyAnalytics.screenView(screenName: "Toll Trip Details")
         
         let htmlStyleString = "<style>body{font-family: '\(infoLinkLabel.font.fontName)'; font-size:\(infoLinkLabel.font.pointSize)px;}</style>"
         

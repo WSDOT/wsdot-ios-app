@@ -42,7 +42,7 @@ class BestTimesToTravelRoutesViewController: UIViewController, UITableViewDataSo
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        GoogleAnalytics.screenView(screenName: "/Traffic Map/Traveler Information/Best Times To Travel Routes")
+        MyAnalytics.screenView(screenName: "Best Times To Travel")
     }
 
     // Builds table

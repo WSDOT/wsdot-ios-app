@@ -46,7 +46,7 @@ class BloggerViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView(screenName: "/Traffic Map/Traveler Information/Blogger")
+        MyAnalytics.screenView(screenName: "Blogger")
     }
     
     @objc func refreshAction(_ sender: UIRefreshControl){

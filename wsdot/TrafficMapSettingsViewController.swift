@@ -42,7 +42,7 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView(screenName: "/Traffic Map/More")
+        MyAnalytics.screenView(screenName: "Traffic Map Options")
     }
     
     @IBAction func closeAction(_ sender: AnyObject) {
@@ -182,10 +182,10 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
         let clusterPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.shouldCluster)
         if let clusterVisible = clusterPref {
             if (clusterVisible == "on") {
-                GoogleAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Camera Clustering Off")
+                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Camera Clustering Off")
                 UserDefaults.standard.set("off", forKey: UserDefaultsKeys.shouldCluster)
             } else {
-                GoogleAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Camera Clustering On")
+                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Camera Clustering On")
                 UserDefaults.standard.set("on", forKey: UserDefaultsKeys.shouldCluster)
             }
             my_parent!.resetMapCamera()
@@ -196,11 +196,11 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
         let alertsPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.alerts)
         if let alertsVisible = alertsPref {
             if (alertsVisible == "on") {
-                GoogleAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Hide Alerts")
+                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Hide Alerts")
                 UserDefaults.standard.set("off", forKey: UserDefaultsKeys.alerts)
                 my_parent!.removeAlerts()
             } else {
-                GoogleAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Show Alerts")
+                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Show Alerts")
                 UserDefaults.standard.set("on", forKey: UserDefaultsKeys.alerts)
                 my_parent!.drawAlerts()
             }
@@ -211,11 +211,11 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
         let restAreaPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.restAreas)
         if let restAreaVisible = restAreaPref {
             if (restAreaVisible == "on") {
-                GoogleAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Hide Rest Areas")
+                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Hide Rest Areas")
                 UserDefaults.standard.set("off", forKey: UserDefaultsKeys.restAreas)
                 my_parent!.removeRestAreas()
             } else {
-                GoogleAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Show Rest Areas")
+                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Show Rest Areas")
                 UserDefaults.standard.set("on", forKey: UserDefaultsKeys.restAreas)
                 my_parent!.drawRestArea()
             }
@@ -226,11 +226,11 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
         let jblmPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.jblmCallout)
         if let jblmVisible = jblmPref {
             if (jblmVisible == "on") {
-                GoogleAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Hide JBLM")
+                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Hide JBLM")
                 UserDefaults.standard.set("off", forKey: UserDefaultsKeys.jblmCallout)
                 my_parent!.removeJBLM()
             } else {
-                GoogleAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Show JBLM")
+                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Show JBLM")
                 UserDefaults.standard.set("on", forKey: UserDefaultsKeys.jblmCallout)
                 my_parent!.drawJBLM()
             }

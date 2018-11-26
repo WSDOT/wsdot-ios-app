@@ -50,7 +50,7 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView(screenName: "/Ferries/Schedules/Sailings/Cameras")
+        MyAnalytics.screenView(screenName: "Ferry Cameras")
     }
     
     @objc func refreshAction(_ refreshControl: UIRefreshControl) {

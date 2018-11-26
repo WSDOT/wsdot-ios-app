@@ -20,12 +20,7 @@
 
 #ifndef WSDOT_Bridging_Header_h
 #define WSDOT_Bridging_Header_h
-//Google Analytics
-#import "GAI.h"
-#import "GAITracker.h"
-#import "GAIFields.h"
-#import "GAIDictionaryBuilder.h"
-#import "GAIDictionaryBuilder.h"
+
 // Marker Clustering
 #import "GMUMarkerClustering.h"
 #endif /* WSDOT_Bridging_Header_h */

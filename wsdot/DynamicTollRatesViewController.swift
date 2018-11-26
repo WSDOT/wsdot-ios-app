@@ -153,7 +153,7 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
 
     @IBAction func infoLinkAction(_ sender: UIButton) {
         if stateRoute == "405" {
-            GoogleAnalytics.screenView(screenName: "/Toll Rates/MyGoodToGo.com")
+            MyAnalytics.screenView(screenName: "MyGoodToGo.com")
             let svc = SFSafariViewController(url: URL(string: "https://www.wsdot.wa.gov/Tolling/405/rates.htm")!, entersReaderIfAvailable: true)
             if #available(iOS 10.0, *) {
                 svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor
@@ -163,7 +163,7 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
             }
             self.present(svc, animated: true, completion: nil)
         } else if stateRoute == "167" {
-            GoogleAnalytics.screenView(screenName: "/Toll Rates/MyGoodToGo.com")
+            MyAnalytics.screenView(screenName: "MyGoodToGo.com")
             let svc = SFSafariViewController(url: URL(string: "https://www.wsdot.wa.gov/Tolling/SR167HotLanes/HOTtollrates.htm")!, entersReaderIfAvailable: true)
             if #available(iOS 10.0, *) {
                 svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor

@@ -52,7 +52,7 @@ class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITable
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.screenView(screenName: "/Traffic Map/Traveler Information/Express Lanes")
+        MyAnalytics.screenView(screenName: "Express Lanes")
     }
 
     @objc func refresh(_ refreshControl: UIRefreshControl) {
@@ -146,7 +146,7 @@ class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.row) {
         case expressLanes.count:
-            GoogleAnalytics.screenView(screenName: "/Traffic Map/Traveler Information/Express Lanes/Express Lanes Schedule Website")
+            MyAnalytics.screenView(screenName: "Express Lanes Schedule Website")
             let svc = SFSafariViewController(url: URL(string: self.expressLanesUrlString)!, entersReaderIfAvailable: true)
             if #available(iOS 10.0, *) {
                 svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor
