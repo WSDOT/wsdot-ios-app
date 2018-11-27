@@ -26,13 +26,12 @@ class CalloutViewController: UIViewController {
     var calloutURL = ""
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        MyAnalytics.screenView(screenName: "Callout")
         // Add timestamp to help prevent caching
         let urlString = calloutURL + "?" + String(Int(Date().timeIntervalSince1970 / 60))
         calloutImageView.sd_setImage(with: URL(string: urlString), placeholderImage: UIImage(named: "imagePlaceholder"), options: .refreshCached)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        MyAnalytics.screenView(screenName: "JBLM Flow Map")
-    }
 }

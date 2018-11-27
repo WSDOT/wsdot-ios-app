@@ -61,7 +61,12 @@ class NotificationTopicsViewController: UIViewController, UITableViewDelegate, U
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        MyAnalytics.screenView(screenName: "Notification Settings")
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MyAnalytics.screenView(screenName: "NotificationSettings")
     }
 
     func refresh(_ force: Bool) {

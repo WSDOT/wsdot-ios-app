@@ -62,13 +62,18 @@ class FavoritesHomeViewController: UIViewController {
         // refresh controller
         refreshControl.addTarget(self, action: #selector(FavoritesHomeViewController.refreshAction(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
-        MyAnalytics.screenView(screenName: "/Favorites")
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         sectionTypes = buildSectionTypeArray()
         initContent()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MyAnalytics.screenView(screenName: "Favorites")
     }
 
     @IBAction func favoritesSettingButtonPressed(_ sender: UIBarButtonItem) {

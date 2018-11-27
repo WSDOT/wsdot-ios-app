@@ -71,7 +71,6 @@ class NewRouteViewController: UIViewController {
         self.accessibilityCurrentLocationLabel.accessibilityLabel = "Finding location..."
         self.accessibilityMapLabel.isHidden = true
         
-        MyAnalytics.screenView(screenName: "New My Route")
     }
     
     override func viewDidLoad() {
@@ -80,8 +79,14 @@ class NewRouteViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        MyAnalytics.screenView(screenName: "NewMyRoute")
         locationManager.requestWhenInUseAuthorization()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+}
     
     func showRecordingAlert(){
 

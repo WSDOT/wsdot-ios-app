@@ -107,7 +107,7 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
                         if let selfValue = self {
                             if let route = selfValue.stateRoute {
                                 if (route == "405") {
-                                  
+                                    MyAnalytics.screenView(screenName: "I405TollRates")
                                     if let travelTimeGroup = TravelTimesStore.getTravelTimeBy(id: 35) {
                                         selfValue.northboundTravelTime = selfValue.getTravelTimeFromGroup(travelTimeGroup: travelTimeGroup)
                                     }
@@ -116,6 +116,7 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
                                         selfValue.southboundTravelTime = selfValue.getTravelTimeFromGroup(travelTimeGroup: travelTimeGroup)
                                     }
                                 } else if (route == "167") {
+                                    MyAnalytics.screenView(screenName: "SR167TollRates")
                                     if let travelTimeGroup = TravelTimesStore.getTravelTimeBy(id: 67) {
                                         selfValue.northboundTravelTime = selfValue.getTravelTimeFromGroup(travelTimeGroup: travelTimeGroup)
                                     }
@@ -153,7 +154,7 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
 
     @IBAction func infoLinkAction(_ sender: UIButton) {
         if stateRoute == "405" {
-            MyAnalytics.screenView(screenName: "MyGoodToGo.com")
+            MyAnalytics.event(category: "tolling", action: "open_link", label: "tolling_405")
             let svc = SFSafariViewController(url: URL(string: "https://www.wsdot.wa.gov/Tolling/405/rates.htm")!, entersReaderIfAvailable: true)
             if #available(iOS 10.0, *) {
                 svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor
@@ -163,7 +164,7 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
             }
             self.present(svc, animated: true, completion: nil)
         } else if stateRoute == "167" {
-            MyAnalytics.screenView(screenName: "MyGoodToGo.com")
+            MyAnalytics.event(category: "tolling", action: "open_link", label: "tolling_hot_lanes")
             let svc = SFSafariViewController(url: URL(string: "https://www.wsdot.wa.gov/Tolling/SR167HotLanes/HOTtollrates.htm")!, entersReaderIfAvailable: true)
             if #available(iOS 10.0, *) {
                 svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor

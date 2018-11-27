@@ -49,9 +49,9 @@ class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITable
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        MyAnalytics.screenView(screenName: "Traveler Information")
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MyAnalytics.screenView(screenName: "TravelerInformation")
     }
     
     /*

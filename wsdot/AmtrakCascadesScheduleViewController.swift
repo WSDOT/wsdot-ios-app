@@ -64,9 +64,9 @@ class AmtrakCascadesScheduleViewController: UITableViewController, CLLocationMan
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        MyAnalytics.screenView(screenName: "Amtrak Schedules")
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MyAnalytics.screenView(screenName: "AmtrakSchedules")
     }
 
 

@@ -56,9 +56,9 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        MyAnalytics.screenView(screenName: "Area Alerts")
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MyAnalytics.screenView(screenName: "AreaAlerts")
     }
     
     // MARK: Table View Data Source Methods

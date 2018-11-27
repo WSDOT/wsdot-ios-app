@@ -67,9 +67,9 @@ class RouteSchedulesViewController: UIViewController, UITableViewDelegate, UITab
         self.refresh(false)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        MyAnalytics.screenView(screenName: "Ferry Schedules")
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MyAnalytics.screenView(screenName: "FerrySchedules")
     }
     
     @objc func refreshAction(_ refreshControl: UIRefreshControl) {
@@ -131,6 +131,9 @@ class RouteSchedulesViewController: UIViewController, UITableViewDelegate, UITab
     
     @IBAction func reservationsAction(_ sender: Any) {
         MyAnalytics.screenView(screenName: "Vehicle Reservations")
+        
+        MyAnalytics.event(category: "ferries", action: "open_link", label: "vehicle_reservations")
+        
         let svc = SFSafariViewController(url: URL(string: self.reservationsUrlString)!, entersReaderIfAvailable: true)
         if #available(iOS 10.0, *) {
             svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor

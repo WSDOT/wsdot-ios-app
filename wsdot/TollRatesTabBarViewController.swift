@@ -33,8 +33,5 @@ class TollRatesTabBarViewController: UITabBarController {
         i405VC.stateRoute = "405"
 
     }
-    
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        MyAnalytics.screenView(screenName: "\(item.title!) Toll Rates")
-    }
+
 }

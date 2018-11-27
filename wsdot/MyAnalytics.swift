@@ -23,10 +23,9 @@ import FirebaseAnalytics
 
 class MyAnalytics {
     
+    // Sets screen name for current VC
     static func screenView(screenName: String){
-        Analytics.logEvent("wsdot_screen_view", parameters: [
-            "screen_name": screenName
-        ])
+        Analytics.setScreenName(screenName, screenClass: nil)
     }
     
     static func event(category: String, action: String, label: String){

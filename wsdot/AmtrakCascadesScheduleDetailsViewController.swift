@@ -47,9 +47,9 @@ class AmtrakCascadesScheduleDetailsViewController: UIViewController, UITabBarDel
         refresh()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        MyAnalytics.screenView(screenName: "Amtrak Schedule Details")
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MyAnalytics.screenView(screenName: "AmtrakScheduleDetails")
     }
     
     @objc func refreshAction(_ sender: UIRefreshControl){

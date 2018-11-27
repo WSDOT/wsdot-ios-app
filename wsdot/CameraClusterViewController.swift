@@ -31,15 +31,14 @@ class CameraClusterViewController: UIViewController, UITableViewDataSource, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.title = "Camera Group"
         tableView.rowHeight = UITableView.automaticDimension
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        MyAnalytics.screenView(screenName: "Camera Cluster List")
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MyAnalytics.screenView(screenName: "CameraList")
     }
 
     

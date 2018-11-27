@@ -51,7 +51,11 @@ class MyRouteAlertsViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(FavoritesHomeViewController.refreshAction(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
         
-        MyAnalytics.screenView(screenName: "My Route Alerts")
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MyAnalytics.screenView(screenName: "MyRouteAlerts")
     }
 
     func refreshAction(_ refreshController: UIRefreshControl){

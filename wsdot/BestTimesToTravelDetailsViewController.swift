@@ -35,9 +35,9 @@ class BestTimesToTravelDetailsViewController: UIViewController, UITableViewDataS
         tableView.rowHeight = UITableView.automaticDimension
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        MyAnalytics.screenView(screenName: "Best Times To Travel Route")
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MyAnalytics.screenView(screenName: "TravelChartsRoute")
     }
     
     // MARK: -

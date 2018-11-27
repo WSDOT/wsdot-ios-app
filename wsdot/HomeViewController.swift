@@ -88,10 +88,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        MyAnalytics.screenView(screenName: "Home")
         displayEventBannerIfNeeded()
     }
-
+  
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         displayEventBannerIfNeeded()
@@ -256,6 +255,7 @@ extension HomeViewController: EasyTipViewDelegate {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        MyAnalytics.screenView(screenName: "Home")
         
         if (UserDefaults.standard.integer(forKey: UserDefaultsKeys.pushNotificationTopicVersion) > 0) {
         

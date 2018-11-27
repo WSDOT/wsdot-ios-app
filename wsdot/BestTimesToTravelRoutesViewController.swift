@@ -41,8 +41,9 @@ class BestTimesToTravelRoutesViewController: UIViewController, UITableViewDataSo
 
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        MyAnalytics.screenView(screenName: "Best Times To Travel")
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MyAnalytics.screenView(screenName: "TravelCharts")
     }
 
     // Builds table

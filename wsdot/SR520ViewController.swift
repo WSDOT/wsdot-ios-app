@@ -32,6 +32,11 @@ class SR520ViewController: UIViewController, UITableViewDelegate, UITableViewDat
         data = TollRatesStore.getSR520data()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MyAnalytics.screenView(screenName: "SR520TollRates")
+    }
+    
     // MARK: Table View Data Source Methods
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

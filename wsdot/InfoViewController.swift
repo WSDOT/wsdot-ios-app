@@ -57,14 +57,15 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate,
         styleButtons()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         MyAnalytics.screenView(screenName: "About")
     }
     
-    
     @IBAction func openJobsSite(_ sender: UIButton) {
-        MyAnalytics.screenView(screenName: "Jobs")
+        
+        MyAnalytics.event(category: "about", action: "open_link", label: "jobs")
+        
         let svc = SFSafariViewController(url: URL(string: self.jobsUrlString)!, entersReaderIfAvailable: true)
         if #available(iOS 10.0, *) {
             svc.preferredControlTintColor = UIColor.white

@@ -50,9 +50,9 @@ class MountainPassWeatherViewController: UIViewController, UITableViewDelegate, 
  
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        MyAnalytics.screenView(screenName: "Pass Forecast")
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MyAnalytics.screenView(screenName: "PassForecast")
     }
     
     // MARK: Table View Data source methods

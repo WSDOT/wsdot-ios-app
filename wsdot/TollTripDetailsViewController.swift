@@ -40,8 +40,6 @@ class TollTripDetailsViewController: UIViewController, MapMarkerDelegate, GMSMap
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        MyAnalytics.screenView(screenName: "Toll Trip Details")
-        
         let htmlStyleString = "<style>body{font-family: '\(infoLinkLabel.font.fontName)'; font-size:\(infoLinkLabel.font.pointSize)px;}</style>"
         
         let htmlString = htmlStyleString + "Travel as far as " + text
@@ -53,6 +51,11 @@ class TollTripDetailsViewController: UIViewController, MapMarkerDelegate, GMSMap
         
         infoLinkLabel.attributedText = attrStr
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MyAnalytics.screenView(screenName: "TollTripDetails")
     }
     
     func mapReady() {

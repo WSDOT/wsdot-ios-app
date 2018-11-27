@@ -121,9 +121,9 @@ class CameraViewController: UIViewController, GADBannerViewDelegate {
         bannerView.accessibilityLabel = "advertisement banner."
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        MyAnalytics.screenView(screenName: "Camera Details")
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MyAnalytics.screenView(screenName: "CameraImage")
     }
     
     @IBAction func updateFavorite(_ sender: UIBarButtonItem) {

@@ -40,9 +40,9 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
         self.view.backgroundColor = ThemeManager.currentTheme().mainColor
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        MyAnalytics.screenView(screenName: "Traffic Map Options")
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MyAnalytics.screenView(screenName: "TrafficMapOptions")
     }
     
     @IBAction func closeAction(_ sender: AnyObject) {

@@ -35,7 +35,11 @@ class FavoritesSettingsViewController: UIViewController {
         super.viewDidLoad()
         tableView.isEditing = true
         tableView.allowsSelectionDuringEditing = true
-        MyAnalytics.screenView(screenName: "Favorite Settings")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MyAnalytics.screenView(screenName: "Settings")
     }
     
     func clearFavorites(){

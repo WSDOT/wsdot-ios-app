@@ -107,12 +107,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         bannerView.isAccessibilityElement = true
         bannerView.accessibilityLabel = "advertisement banner."
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        MyAnalytics.screenView(screenName: "Traffic Map")
-    }
-    
+ 
     @IBAction func refreshPressed(_ sender: UIBarButtonItem) {
     
         MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Refresh")
@@ -653,6 +648,7 @@ extension TrafficMapViewController: EasyTipViewDelegate {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        MyAnalytics.screenView(screenName: "TrafficMap")
         if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasSeenTravelerInfoTipView) && !UIAccessibility.isVoiceOverRunning){
             tipView = EasyTipView(text: "Tap here for live traffic updates, travel times and more.", delegate: self)
             tipView.show(forItem: self.travelInformationButton)

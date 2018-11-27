@@ -74,9 +74,9 @@ class VesselDetailsViewController: UIViewController{
 
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        MyAnalytics.screenView(screenName: "Vessel Details" + self.title!)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MyAnalytics.screenView(screenName: "VesselDetails")
     }
     
     @IBAction func linkAction(_ sender: UIBarButtonItem) {

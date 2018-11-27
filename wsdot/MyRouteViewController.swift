@@ -41,7 +41,6 @@ class MyRouteViewController: UIViewController {
         tableView.isEditing = true
         tableView.allowsSelectionDuringEditing = true
         
-        MyAnalytics.screenView(screenName: "My Routes")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,6 +62,8 @@ class MyRouteViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        MyAnalytics.screenView(screenName: "MyRoutes")
+        
         // Check if user has added a new route, and requested app favorites items on route
         for route in myRoutes {
             if !route.foundMountainPasses || !route.foundFerrySchedules || !route.foundCameras || !route.foundTravelTimes {

@@ -206,10 +206,14 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
     // Remove and add hairline for nav bar
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        MyAnalytics.screenView(screenName: "Border Waits")
         let img = UIImage()
         self.navigationController?.navigationBar.shadowImage = img
         self.navigationController?.navigationBar.setBackgroundImage(img, for: .default)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MyAnalytics.screenView(screenName: "BorderWaitsNorthbound")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -220,10 +224,12 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
     @IBAction func indexChanged(_ sender: UISegmentedControl) {
         switch (sender.selectedSegmentIndex){
         case 0:
+            MyAnalytics.screenView(screenName: "BorderWaitsNorthbound")
             displayedWaits = northboundWaits
             tableView.reloadData()
             break
         case 1:
+            MyAnalytics.screenView(screenName: "BorderWaitsSouthBound")
             displayedWaits = southboundWaits
             tableView.reloadData()
             break

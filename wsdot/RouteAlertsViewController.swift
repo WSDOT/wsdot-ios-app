@@ -46,9 +46,9 @@ class RouteAlertsViewController: UIViewController, UITableViewDataSource, UITabl
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        MyAnalytics.screenView(screenName: "Ferry Alerts")
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MyAnalytics.screenView(screenName: "FerryBulletins")
     }
     
     @objc func refreshAction(_ refreshControl: UIRefreshControl) {

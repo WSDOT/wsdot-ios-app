@@ -64,9 +64,9 @@ class MountainPassCamerasViewController: UIViewController, UITableViewDataSource
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        MyAnalytics.screenView(screenName: "Pass Cameras")
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MyAnalytics.screenView(screenName: "PassCameras")
     }
     
     func refreshAction(_ refreshControl: UIRefreshControl) {

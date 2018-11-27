@@ -30,7 +30,11 @@ class MyRouteMapViewController: UIViewController {
             mapView.animate(toLocation: myLocation.coordinate)
         }
     
-        MyAnalytics.screenView(screenName: "Route Map")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MyAnalytics.screenView(screenName: "MyRouteMap")
     }
 
     /**

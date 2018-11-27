@@ -65,9 +65,9 @@ class RestAreaViewController: UIViewController, MapMarkerDelegate, GMSMapViewDel
         
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        MyAnalytics.screenView(screenName: "Rest Area Details")
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MyAnalytics.screenView(screenName: "RestArea")
     }
     
     func mapReady() {

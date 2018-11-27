@@ -31,6 +31,11 @@ class SR16ViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         data = TollRatesStore.getSR16data()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MyAnalytics.screenView(screenName: "SR16TollRates")
+    }
 
     // MARK: Table View Data Source Methods
     func numberOfSections(in tableView: UITableView) -> Int {
