@@ -51,14 +51,18 @@ class CameraViewController: UIViewController, GADBannerViewDelegate {
         
         // Add timestamp to help prevent caching
         let urlString = cameraItem.url + "?" + String(Int(Date().timeIntervalSince1970 / 60))
+        
         cameraImage.sd_setImage(with: URL(string: urlString), placeholderImage: placeholder, options: .refreshCached, completed: { image, error, cacheType, imageURL in
             
-            // set the image views frame to the size of the downloaded image
-            let ratio = image!.size.width / image!.size.height
-            let newHeight = self.cameraImage.frame.width / ratio
-            self.cameraImageViewHeight.constant = newHeight
-            self.view.layoutIfNeeded()
-            
+            if (error != nil) {
+                self.cameraImage.image = UIImage(named: "cameraOffline")
+            } else {
+                // set the image views frame to the size of the downloaded image
+                let ratio = image!.size.width / image!.size.height
+                let newHeight = self.cameraImage.frame.width / ratio
+                self.cameraImageViewHeight.constant = newHeight
+                self.view.layoutIfNeeded()
+            }
         })
         
         
