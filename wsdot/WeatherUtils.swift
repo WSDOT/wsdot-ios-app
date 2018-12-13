@@ -23,7 +23,11 @@ class WeatherUtils {
     
     // Returns the first sentance from input String
     static func getForecastBriefDescription(_ fullForecast: String) -> String {
-        return fullForecast.split(separator: ".").map(String.init)[0]
+        if (fullForecast != ""){
+            return fullForecast.split(separator: ".").map(String.init)[0]
+        } else {
+            return ""
+        }
     }
     
     static fileprivate let clear = ("icClear", "icClearNight", ["fair", "sunny", "clear"])
