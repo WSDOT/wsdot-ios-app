@@ -46,7 +46,7 @@ class MountainPassCamerasViewController: UIViewController, UITableViewDataSource
         tableView.rowHeight = UITableView.automaticDimension
         
         // refresh controller
-        refreshControl.addTarget(self, action: #selector(RouteCamerasViewController.refreshAction(_:)), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(MountainPassCamerasViewController.refreshAction(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
         
         self.tableView.contentOffset = CGPoint(x: 0, y: -self.refreshControl.frame.size.height)
@@ -69,7 +69,7 @@ class MountainPassCamerasViewController: UIViewController, UITableViewDataSource
         MyAnalytics.screenView(screenName: "PassCameras")
     }
     
-    func refreshAction(_ refreshControl: UIRefreshControl) {
+    @objc func refreshAction(_ refreshControl: UIRefreshControl) {
         refresh(true)
     }
     
@@ -136,7 +136,13 @@ class MountainPassCamerasViewController: UIViewController, UITableViewDataSource
         
         // Add timestamp to help prevent caching
         let urlString = cameras[indexPath.row].url + "?" + String(Int(Date().timeIntervalSince1970 / 60))
-        cell.CameraImage.sd_setImage(with: URL(string: urlString), placeholderImage: UIImage(named: "imagePlaceholder"), options: .refreshCached)
+        
+        cell.CameraImage.sd_setImage(with: URL(string: urlString), placeholderImage: UIImage(named: "imagePlaceholder"), options: .refreshCached, completed: { image, error, cacheType, imageURL in
+            if (error != nil) {
+                cell.CameraImage.image = UIImage(named: "cameraOffline")
+            }
+        })
+ 
         return cell
     }
     
