@@ -64,7 +64,7 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate,
     
     @IBAction func openJobsSite(_ sender: UIButton) {
         
-        MyAnalytics.event(category: "about", action: "open_link", label: "jobs")
+        MyAnalytics.event(category: "About", action: "open_link", label: "jobs")
         
         let svc = SFSafariViewController(url: URL(string: self.jobsUrlString)!, entersReaderIfAvailable: true)
         if #available(iOS 10.0, *) {

@@ -148,7 +148,7 @@ class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITable
         case expressLanes.count:
             MyAnalytics.screenView(screenName: "Express Lanes Schedule Website")
             
-            MyAnalytics.event(category: "travel_information", action: "open_link", label: "express_lanes_schedule")
+            MyAnalytics.event(category: "Travel Information", action: "open_link", label: "express_lanes_schedule")
             
             let svc = SFSafariViewController(url: URL(string: self.expressLanesUrlString)!, entersReaderIfAvailable: true)
             if #available(iOS 10.0, *) {

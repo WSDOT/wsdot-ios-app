@@ -117,7 +117,11 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
 
                     self.title = routeItemValue.routeDescription
 
-                    self.sailingButton.setTitle("\(routeItemValue.terminalPairs[0].aTerminalName) to \(routeItemValue.terminalPairs[0].bTterminalName)", for: UIControl.State())
+                    if (routeItemValue.terminalPairs.count == 2) {
+                        self.sailingButton.setTitle("Leave \(routeItemValue.terminalPairs[0].aTerminalName)", for: UIControl.State())
+                    } else {
+                        self.sailingButton.setTitle("\(routeItemValue.terminalPairs[0].aTerminalName) to \(routeItemValue.terminalPairs[0].bTterminalName)", for: UIControl.State())
+                    }
                 
                     if (routeItemValue.selected){
                         self.favoriteBarButton.image = UIImage(named: "icStarSmallFilled")
@@ -159,7 +163,13 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
         selectedTerminal = index
         let terminal = self.routeItem!.terminalPairs[index]
         routeTimesVC.changeTerminal(terminal)
-        sailingButton.setTitle("\(terminal.aTerminalName) to \(terminal.bTterminalName)", for: UIControl.State())
+        
+        if (self.routeItem!.terminalPairs.count == 2){
+            sailingButton.setTitle("Leave \(terminal.aTerminalName)", for: UIControl.State())
+        } else {
+            sailingButton.setTitle("\(terminal.aTerminalName) to \(terminal.bTterminalName)", for: UIControl.State())
+        }
+        
         routeTimesVC.refresh(scrollToCurrentSailing: true)
         
         routeCamerasVC.departingTerminalId = terminal.aTerminalId

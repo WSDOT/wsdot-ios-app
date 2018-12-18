@@ -132,7 +132,7 @@ class RouteSchedulesViewController: UIViewController, UITableViewDelegate, UITab
     @IBAction func reservationsAction(_ sender: Any) {
         MyAnalytics.screenView(screenName: "Vehicle Reservations")
         
-        MyAnalytics.event(category: "ferries", action: "open_link", label: "vehicle_reservations")
+        MyAnalytics.event(category: "Ferries", action: "open_link", label: "vehicle_reservations")
         
         let svc = SFSafariViewController(url: URL(string: self.reservationsUrlString)!, entersReaderIfAvailable: true)
         if #available(iOS 10.0, *) {

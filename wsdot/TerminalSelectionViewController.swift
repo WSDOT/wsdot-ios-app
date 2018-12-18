@@ -50,7 +50,9 @@ class TerminalSelectionViewController: UIViewController, UITableViewDelegate, UI
     
     // MARK: Table View Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        MyAnalytics.event(category: "Ferries", action: "UIAction", label: "Select Sailing")
         my_parent!.terminalSelected(indexPath.row)
         self.dismiss(animated: true, completion: {()->Void in});
     }
+    
 }

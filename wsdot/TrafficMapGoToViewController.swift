@@ -82,7 +82,7 @@ class TrafficMapGoToViewController: UIViewController, UITableViewDataSource, UIT
     // MARK: -
     // MARK: Table View Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        MyAnalytics.event(category: "traffic_map", action: "ui_action", label: ("go_to_location_" + menu_options[indexPath.row]))
+        MyAnalytics.event(category: "Traffic Map", action: "ui_action", label: ("go_to_location_" + menu_options[indexPath.row]))
         setGoToLocation(index: indexPath.row)
         self.dismiss(animated: true, completion: {()->Void in});
     }

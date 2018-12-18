@@ -57,7 +57,7 @@ class AmtrakCascadesViewController: UIViewController, UITableViewDelegate, UITab
         switch (indexPath.row) {
         case 0:
             MyAnalytics.screenView(screenName: "BuyTickets")
-            MyAnalytics.event(category: "amtrak", action: "open_url", label: "buy_tickets")
+            MyAnalytics.event(category: "Amtrak", action: "open_url", label: "buy_tickets")
             let svc = SFSafariViewController(url: URL(string: self.amtrakUrlString)!, entersReaderIfAvailable: true)
             
             if #available(iOS 10.0, *) {
