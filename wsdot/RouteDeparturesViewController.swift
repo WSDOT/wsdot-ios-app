@@ -197,7 +197,6 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
         if segue.identifier == camerasViewSegue {
             routeCamerasVC = segue.destination as? RouteCamerasViewController
             routeCamerasVC.departingTerminalId = getDepartingId()
-
         }
 
         if segue.identifier == segueDepartureDaySelectionViewController {
@@ -210,8 +209,13 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
         if segue.identifier == segueTerminalSelectionViewController {
             let destinationViewController = segue.destination as! TerminalSelectionViewController
             destinationViewController.my_parent = self
-            let sailingsArray: Array = self.routeItem!.terminalPairs.map { return "\($0.aTerminalName) to \($0.bTterminalName)" }
-            destinationViewController.menu_options = sailingsArray
+            
+            if (self.routeItem!.terminalPairs.count == 2) {
+                destinationViewController.menu_options = self.routeItem!.terminalPairs.map { return "Leave \($0.aTerminalName)" }
+            } else {
+                destinationViewController.menu_options = self.routeItem!.terminalPairs.map { return "\($0.aTerminalName) to \($0.bTterminalName)" }
+            }
+            
             destinationViewController.selectedIndex = selectedTerminal
         }
     }

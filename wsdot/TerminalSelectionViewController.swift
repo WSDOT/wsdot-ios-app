@@ -19,7 +19,7 @@ class TerminalSelectionViewController: UIViewController, UITableViewDelegate, UI
     @IBAction func cancelAction(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: {()->Void in});
     }
-    
+
     override func viewDidLoad() {
         self.view.backgroundColor = ThemeManager.currentTheme().mainColor
     }
@@ -28,11 +28,11 @@ class TerminalSelectionViewController: UIViewController, UITableViewDelegate, UI
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menu_options.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
