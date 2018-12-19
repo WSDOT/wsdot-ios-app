@@ -20,6 +20,12 @@ class TerminalSelectionViewController: UIViewController, UITableViewDelegate, UI
         self.dismiss(animated: true, completion: {()->Void in});
     }
 
+    @IBAction func infoAction(_ sender: Any) {
+        MyAnalytics.event(category: "Ferries", action: "UIAction", label: "sailings info")
+        self.present(AlertMessages.getAlert("", message: "Select a departing terminal. If location services are enabled, the terminal closest to you will be automatically selected.", confirm: "OK"), animated: true)
+    }
+    
+
     override func viewDidLoad() {
         self.view.backgroundColor = ThemeManager.currentTheme().mainColor
     }
@@ -32,7 +38,7 @@ class TerminalSelectionViewController: UIViewController, UITableViewDelegate, UI
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menu_options.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         

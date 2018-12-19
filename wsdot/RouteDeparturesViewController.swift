@@ -226,18 +226,25 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
                 self.timesContainerView.isHidden = false
                 self.camerasContainerView.isHidden = true
                 self.vesselWatchContainerView.isHidden = true
+                self.dayButton.isHidden = false
+                self.sailingButton.isHidden = false
+                
             })
         } else if sender.selectedSegmentIndex == 1 {
             UIView.animate(withDuration: 0.3, animations: {
                 self.timesContainerView.isHidden = true
                 self.camerasContainerView.isHidden = false
                 self.vesselWatchContainerView.isHidden = true
+                self.dayButton.isHidden = true
+                self.sailingButton.isHidden = false
             })
         } else if sender.selectedSegmentIndex == 2 {
             UIView.animate(withDuration: 0.3, animations: {
                 self.timesContainerView.isHidden = true
                 self.camerasContainerView.isHidden = true
                 self.vesselWatchContainerView.isHidden = false
+                self.dayButton.isHidden = true
+                self.sailingButton.isHidden = true
             })
         }
     }
