@@ -524,19 +524,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             }
             
             ferryCell.subTitleTwo.text = TimeUtils.timeAgoSinceDate(date: ferryScheduleItem.cacheDate, numericDates: true)
-            
-            let alertCount = ferrySchedules[indexPath.row].routeAlerts.count
-            
-            if (alertCount > 0){
-                ferryCell.button.isHidden = false
-                ferryCell.button.layer.cornerRadius = 5
-                ferryCell.button.tag = indexPath.row
-                ferryCell.button.addTarget(self, action: #selector(FavoritesHomeViewController.openFerryAlerts), for: .touchUpInside)
-                let s = alertCount == 1 ? "" : "s"
-                ferryCell.button.setTitle("\(ferrySchedules[indexPath.row].routeAlerts.count) alert\(s)", for: .normal)
-            } else {
-                ferryCell.button.isHidden = true
-            }
+
             
             return ferryCell
             

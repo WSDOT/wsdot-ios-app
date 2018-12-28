@@ -32,10 +32,15 @@ class RouteAlertsViewController: UIViewController, UITableViewDataSource, UITabl
     var routeId = 0
     var alertItems = [FerryAlertItem]()
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        activityIndicator.startAnimating()
+        
         tableView.rowHeight = UITableView.automaticDimension
         
         // refresh controller
@@ -74,6 +79,8 @@ class RouteAlertsViewController: UIViewController, UITableViewDataSource, UITabl
                                 selfValue.title = "No Alerts"
                             }
                             
+                            selfValue.activityIndicator.stopAnimating()
+                            selfValue.activityIndicator.isHidden = true
                             selfValue.refreshControl.endRefreshing()
                             UIAccessibility.post(notification: UIAccessibility.Notification.layoutChanged, argument: selfValue.tableView)
                         }
@@ -117,6 +124,7 @@ class RouteAlertsViewController: UIViewController, UITableViewDataSource, UITabl
             documentAttributes: nil)
         
         let alertPubDate = TimeUtils.parseJSONDateToNSDate(alertItems[indexPath.row].publishDate)
+        
         cell.updateTime.text = TimeUtils.timeAgoSinceDate(date: alertPubDate, numericDates: false)
         
         cell.linkLabel.attributedText = attrStr

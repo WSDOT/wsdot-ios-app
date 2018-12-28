@@ -168,12 +168,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let ferriesNav = mainStoryboard.instantiateViewController(withIdentifier: "FerriesNav") as! UINavigationController
         
         let ferrySchedules = mainStoryboard.instantiateViewController(withIdentifier: "RouteSchedulesViewController") as! RouteSchedulesViewController
+        
+        let ferrySailings = mainStoryboard.instantiateViewController(withIdentifier: "RouteDeparturesViewController") as! RouteDeparturesViewController
+        
+        ferrySailings.routeId = routeId
+        
         let ferryAlerts = mainStoryboard.instantiateViewController(withIdentifier: "RouteAlertsViewController") as! RouteAlertsViewController
   
         ferryAlerts.routeId = routeId
         
         // assign vc stack to new nav controller
-        ferriesNav.setViewControllers([ferrySchedules, ferryAlerts], animated: false)
+        ferriesNav.setViewControllers([ferrySchedules, ferrySailings, ferryAlerts], animated: false)
 
         setNavController(newNavigationController: ferriesNav)
 

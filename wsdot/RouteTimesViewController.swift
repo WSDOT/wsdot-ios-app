@@ -168,7 +168,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         } else {
             self.refreshControl.endRefreshing()
             self.refreshControl.isHidden = true
-            self.activityIndicator.stopAnimating()
         }
     }
     

@@ -31,6 +31,7 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
     
     let segueDepartureDaySelectionViewController = "DepartureDaySelectionViewController"
     let segueTerminalSelectionViewController = "TerminalSelectionViewController"
+    let SegueRouteAlertsViewController = "RouteAlertsViewController"
 
     @IBOutlet weak var timesContainerView: UIView!
     @IBOutlet weak var camerasContainerView: UIView!
@@ -54,6 +55,7 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
     var overlayView = UIView()
     
     let favoriteBarButton = UIBarButtonItem()
+    let alertBarButton = UIBarButtonItem()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,8 +81,12 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
         self.favoriteBarButton.tintColor = Colors.yellow
         self.favoriteBarButton.image = UIImage(named: "icStarSmall")
         self.favoriteBarButton.accessibilityLabel = "add to favorites"
-
-        self.navigationItem.rightBarButtonItem = self.favoriteBarButton
+        
+        self.alertBarButton.image = UIImage(named: "icAlert")
+        self.alertBarButton.accessibilityLabel = "Ferry Alert Bulletins"
+        self.alertBarButton.action = #selector(RouteDeparturesViewController.openAlerts(_:))
+        
+        self.navigationItem.rightBarButtonItems = [self.favoriteBarButton, self.alertBarButton]
         
         loadSailings()
         
@@ -114,6 +120,33 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
                 self.routeItem = FerryRealmStore.findSchedule(withId: self.routeId)
                 
                 if let routeItemValue = self.routeItem {
+
+                    // Set sailings for RouteTimesVC
+                    self.routeTimesVC.currentSailing = routeItemValue.terminalPairs[0]
+                    self.routeTimesVC.sailingsByDate = routeItemValue.scheduleDates
+                    self.routeTimesVC.setDisplayedSailing(0)
+                    self.routeTimesVC.refresh(scrollToCurrentSailing: true)
+
+                    // set terminal for CamerasVC
+                    self.routeCamerasVC.departingTerminalId = self.getDepartingId()
+                    self.routeCamerasVC.refresh(true)
+                    
+                    // add aldert badge
+                    if(routeItemValue.routeAlerts.count > 0){
+                    
+                        let customAlertButton = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+        
+                        let menuImage = UIImage(named: "icAlert")
+                        let templateImage = menuImage?.withRenderingMode(.alwaysTemplate)
+        
+                        customAlertButton.setBackgroundImage(templateImage, for: .normal)
+                        customAlertButton.addTarget(self, action: #selector(self.openAlerts(_:)), for: .touchUpInside)
+    
+                        customAlertButton.addSubview(UIHelpers.getBadgeLabel(text: "\(routeItemValue.routeAlerts.count)", color: UIColor.orange))
+  
+                        self.alertBarButton.customView = customAlertButton
+                    
+                    }
 
                     self.title = routeItemValue.routeDescription
 
@@ -182,11 +215,14 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
         // Save a reference to this VC for passing it days and sailings
         if segue.identifier == timesViewSegue {
             routeTimesVC = segue.destination as? RouteTimesViewController
-            routeTimesVC.currentSailing = routeItem!.terminalPairs[0]
-            routeTimesVC.sailingsByDate = routeItem!.scheduleDates
-
             // get the day title from container vc after set up
             dayButton.setTitle(routeTimesVC.dayData[routeTimesVC.currentDay], for: UIControl.State())
+        }
+        
+        if segue.identifier == SegueRouteAlertsViewController {
+            let dest: RouteAlertsViewController = segue.destination as! RouteAlertsViewController
+            dest.title = routeItem!.routeDescription + " Alerts"
+            dest.routeId = routeId
         }
 
         if segue.identifier == vesselWatchSegue {
@@ -196,7 +232,7 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
 
         if segue.identifier == camerasViewSegue {
             routeCamerasVC = segue.destination as? RouteCamerasViewController
-            routeCamerasVC.departingTerminalId = getDepartingId()
+          
         }
 
         if segue.identifier == segueDepartureDaySelectionViewController {
@@ -264,6 +300,14 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
         }
         
         return -1
+    }
+    
+    /**
+     * Method name: openAlerts
+     * Description: called when user taps an alert button on a route cell.
+     */
+    @objc func openAlerts(_ sender: UIButton){
+        performSegue(withIdentifier: SegueRouteAlertsViewController, sender: sender)
     }
     
     @objc func updateFavorite(_ sender: UIBarButtonItem) {

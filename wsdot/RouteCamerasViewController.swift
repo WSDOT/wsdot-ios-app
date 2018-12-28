@@ -122,22 +122,28 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     // MARK: -
-    // MARK: Helper functinos
+    // MARK: Helper functions
     func filterCameras(_ cameras: [CameraItem]) -> [CameraItem] {
     
         var filteredCameras = [CameraItem]()
-        for camera in cameras {
+        
+        if departingTerminalId != -1 {
+        
+            for camera in cameras {
             
-            let distance = LatLonUtils.haversine(
-                (FerriesConsts().terminalMap[departingTerminalId]?.latitude)!,
-                lonA: (FerriesConsts().terminalMap[departingTerminalId]?.longitude)!,
-                latB: camera.latitude,
-                lonB: camera.longitude)
+                let distance = LatLonUtils.haversine(
+                    (FerriesConsts().terminalMap[departingTerminalId]?.latitude)!,
+                    lonA: (FerriesConsts().terminalMap[departingTerminalId]?.longitude)!,
+                    latB: camera.latitude,
+                    lonB: camera.longitude)
             
-            if (distance < 5280){
-                filteredCameras.append(camera)
+                if (distance < 5280){
+                    filteredCameras.append(camera)
+                }
             }
+        
         }
+        
         return filteredCameras
     }
 }
