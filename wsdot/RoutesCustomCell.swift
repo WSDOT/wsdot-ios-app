@@ -25,6 +25,5 @@ class RoutesCustomCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var subTitleOne: UILabel!
     @IBOutlet weak var subTitleTwo: UILabel!
-    @IBOutlet weak var button: UIButton!
     
 }

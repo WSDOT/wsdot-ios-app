@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0hy-HL-p0M">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0hy-HL-p0M">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -150,16 +150,6 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="swG-Qd-xjx">
-                                                    <rect key="frame" x="236" y="61" width="106" height="30"/>
-                                                    <color key="backgroundColor" red="0.93581814240000005" green="0.41981336809999997" blue="0.088704427079999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="27" id="3AN-wb-EZK"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Button">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </state>
-                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="lKR-ce-07i" firstAttribute="trailing" secondItem="0Qp-7c-ZQx" secondAttribute="trailingMargin" id="2NT-Zx-Bt9"/>
@@ -170,16 +160,12 @@
                                                 <constraint firstItem="v8j-O9-DLU" firstAttribute="centerY" secondItem="0Qp-7c-ZQx" secondAttribute="centerY" id="WuL-kf-mrV"/>
                                                 <constraint firstItem="lKR-ce-07i" firstAttribute="trailing" secondItem="v8j-O9-DLU" secondAttribute="trailing" id="YVI-ca-prQ"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="z0c-hp-BKz" secondAttribute="bottom" constant="11" id="YkR-G6-bL2"/>
-                                                <constraint firstItem="swG-Qd-xjx" firstAttribute="top" secondItem="v8j-O9-DLU" secondAttribute="bottom" constant="4" id="aGB-cJ-LIC"/>
-                                                <constraint firstItem="swG-Qd-xjx" firstAttribute="leading" secondItem="z0c-hp-BKz" secondAttribute="trailing" constant="8" id="eRi-R1-tpW"/>
                                                 <constraint firstItem="lKR-ce-07i" firstAttribute="leading" secondItem="0Qp-7c-ZQx" secondAttribute="leadingMargin" constant="8" id="hIb-p9-O5d"/>
-                                                <constraint firstAttribute="trailing" secondItem="swG-Qd-xjx" secondAttribute="trailing" id="pRh-NN-fdo"/>
                                                 <constraint firstItem="z0c-hp-BKz" firstAttribute="top" secondItem="v8j-O9-DLU" secondAttribute="bottom" constant="8" id="rVo-wt-Dzs"/>
                                                 <constraint firstItem="z0c-hp-BKz" firstAttribute="width" secondItem="0Qp-7c-ZQx" secondAttribute="width" multiplier="0.6" id="wlo-OE-sQF"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="button" destination="swG-Qd-xjx" id="uBp-X7-4f5"/>
                                             <outlet property="subTitleOne" destination="v8j-O9-DLU" id="WrX-bT-1gq"/>
                                             <outlet property="subTitleTwo" destination="z0c-hp-BKz" id="wxq-EE-5XN"/>
                                             <outlet property="title" destination="lKR-ce-07i" id="De5-e7-pKL"/>
@@ -254,7 +240,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ytM-aX-YDP">
-                                                    <rect key="frame" x="317" y="15.5" width="24" height="24"/>
+                                                    <rect key="frame" x="317" y="3.5" width="24" height="48"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="24" id="lJU-Ac-c0g"/>
                                                     </constraints>
@@ -265,7 +251,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="faX-sK-Lym">
-                                                    <rect key="frame" x="255" y="15.5" width="24" height="24"/>
+                                                    <rect key="frame" x="255" y="3.5" width="24" height="48"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="24" id="lPR-Q1-jO8"/>
                                                     </constraints>
@@ -525,10 +511,10 @@ Tap star icons to add Favorites</string>
         </scene>
     </scenes>
     <resources>
-        <image name="icAlert" width="24" height="24"/>
-        <image name="icFavoriteDefault" width="32" height="32"/>
-        <image name="icGear" width="24" height="24"/>
-        <image name="icMap" width="24" height="24"/>
-        <image name="icStarSmall" width="24" height="24"/>
+        <image name="icAlert" width="48" height="48"/>
+        <image name="icFavoriteDefault" width="64" height="64"/>
+        <image name="icGear" width="48" height="48"/>
+        <image name="icMap" width="48" height="48"/>
+        <image name="icStarSmall" width="48" height="48"/>
     </resources>
 </document>

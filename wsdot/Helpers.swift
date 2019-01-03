@@ -180,7 +180,7 @@ struct UIHelpers {
         return label
     }
     
-    static func getBadgeLabel(text: String) -> UILabel {
+    static func getBadgeLabel(text: String, color: UIColor) -> UILabel {
         let label = UILabel(frame: CGRect(x: 10, y: -10, width: 20, height: 20))
         label.layer.borderColor = UIColor.clear.cgColor
         label.layer.borderWidth = 2
@@ -189,7 +189,7 @@ struct UIHelpers {
         label.layer.masksToBounds = true
         label.font = UIFont(name: "SanFranciscoText-Light", size: 13)
         label.textColor = .white
-        label.backgroundColor = .red
+        label.backgroundColor = color
         label.text = text
         return label
     }
