@@ -189,7 +189,7 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
     // Pass the selected day index from DepartureDaySelectionVC to the RouteTimesVC
     func daySelected(_ index: Int) {
         routeTimesVC.changeDay(index)
-        dayButton.setTitle(routeTimesVC.dayData[routeTimesVC.currentDay], for: UIControl.State())
+        dayButton.setTitle(TimeUtils.getDayOfWeekString(routeTimesVC.dateData[routeTimesVC.currentDay]), for: UIControl.State())
     }
     
     func terminalSelected(_ index: Int) {
@@ -215,8 +215,9 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
         // Save a reference to this VC for passing it days and sailings
         if segue.identifier == timesViewSegue {
             routeTimesVC = segue.destination as? RouteTimesViewController
+            routeTimesVC.routeId = self.routeId
             // get the day title from container vc after set up
-            dayButton.setTitle(routeTimesVC.dayData[routeTimesVC.currentDay], for: UIControl.State())
+            dayButton.setTitle(TimeUtils.getDayOfWeekString(routeTimesVC.dateData[routeTimesVC.currentDay]), for: UIControl.State())
         }
         
         if segue.identifier == SegueRouteAlertsViewController {
@@ -238,7 +239,7 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
         if segue.identifier == segueDepartureDaySelectionViewController {
             let destinationViewController = segue.destination as! DepartureDaySelectionViewController
             destinationViewController.my_parent = self
-            destinationViewController.menu_options = routeTimesVC.dayData
+            destinationViewController.date_data = routeTimesVC.dateData
             destinationViewController.selectedIndex = routeTimesVC.currentDay
         }
     

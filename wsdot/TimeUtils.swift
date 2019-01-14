@@ -44,7 +44,7 @@ class TimeUtils {
     }
 
     // formates a /Date(1468516282113-0700)/ date into NSDate
-    static func parseJSONDateToNSDate(_ date: String) -> Date{
+    static func parseJSONDateToNSDate(_ date: String) -> Date {
         let parseDateString = date[date.index(date.startIndex, offsetBy: 6)..<date.index(date.startIndex, offsetBy: 16)]
         if let date = Double(parseDateString) {
             return Date(timeIntervalSince1970: date)
@@ -77,7 +77,7 @@ class TimeUtils {
     static func nextSevenDaysStrings(_ date: Date) -> [String]{
         let weekdays = DateFormatter().weekdaySymbols
         let dayOfWeekInt = getDayOfWeek(date)
-        return Array(weekdays![dayOfWeekInt-1..<weekdays!.count]) + weekdays![0..<dayOfWeekInt-1]
+        return Array(weekdays![dayOfWeekInt-1..<weekdays!.count]) + weekdays![0..<dayOfWeekInt]
     }
 
     fileprivate static func getDayOfWeek(_ date: Date)->Int {
@@ -85,6 +85,21 @@ class TimeUtils {
         let myComponents = (myCalendar as NSCalendar).components(.weekday, from: date)
         let weekDay = myComponents.weekday
         return weekDay!
+    }
+
+    
+    // Returns an array of dates n days out from givin day, including the given date
+    static func nextNDayDates(n: Int, _ date: Date) -> [Date]{
+        let array = [Int](0...(n-1))
+        let dates: [Date] = array.enumerated().map { (index, element) in
+            return date.addingTimeInterval(TimeInterval(86400 * element))
+        }
+        return dates
+    }
+    
+    static func getDayOfWeekString(_ date: Date) -> String {
+        let weekdays = DateFormatter().weekdaySymbols
+        return weekdays![getDayOfWeek(date)-1]
     }
     
     // Returns an NSDate object form a date string with the given format "yyyy-MM-dd hh:mm a"

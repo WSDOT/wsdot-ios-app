@@ -26,6 +26,8 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     let departuresSailingSpacesCellIdentifier = "RouteDeparturesSailingSpaces"
     let departureCellIdentifier = "RouteDeparture"
     
+    var routeId = -1
+    
     var sailingSpaces : [SailingSpacesItem]?
     var vessel : VesselItem?
     
@@ -39,7 +41,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     var displayedSailing: FerrySailingsItem?
     var displayedTimes = List<FerryDepartureTimeItem>()
     
-    var dayData = TimeUtils.nextSevenDaysStrings(Date())
+    var dateData = TimeUtils.nextNDayDates(n: 1, Date())
     
     fileprivate var timer: Timer?
     
@@ -60,9 +62,22 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
 
         setDisplayedSailing(0)
         
-        if let sailingsByDateValue = sailingsByDate {
-            if let firstSailingDateValue = sailingsByDateValue.first {
-                dayData = TimeUtils.nextSevenDaysStrings(firstSailingDateValue.date)
+        let routeItem = FerryRealmStore.findSchedule(withId: self.routeId)
+        
+        if let routeItemValue = routeItem {
+
+            // Set sailings for RouteTimesVC
+            self.currentSailing = routeItemValue.terminalPairs[0]
+            self.sailingsByDate = routeItemValue.scheduleDates
+            self.setDisplayedSailing(0)
+            self.refresh(scrollToCurrentSailing: true)
+            
+            if let sailingsByDateValue = sailingsByDate {
+        
+                if let firstSailingDateValue = sailingsByDateValue.first {
+            
+                    dateData = TimeUtils.nextNDayDates(n: sailingsByDateValue.count, firstSailingDateValue.date)
+                }
             }
         }
         

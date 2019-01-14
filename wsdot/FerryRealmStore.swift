@@ -78,16 +78,18 @@ class FerryRealmStore {
     }
     
     static func updateRouteSchedules(_ force: Bool, completion: @escaping UpdateRoutesCompletion) {
+    
         DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { 
             var delta = TimeUtils.updateTime
             let deltaUpdated = (Calendar.current as NSCalendar).components(.second, from: CachesStore.getUpdatedTime(CachedData.ferries), to: Date(), options: []).second
+            
             if let deltaValue = deltaUpdated {
                 delta = deltaValue
             }
         
             if ((delta > TimeUtils.updateTime) || force){
             
-                Alamofire.request("http://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js").validate().responseJSON { response in
+                Alamofire.request("https://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js").validate().responseJSON { response in
                     switch response.result {
                     case .success:
                         if let value = response.result.value {
@@ -234,6 +236,7 @@ class FerryRealmStore {
             alert.alertFullText = alertJSON["AlertFullText"].stringValue
             alert.alertDescription = alertJSON["AlertDescription"].stringValue
             alert.publishDate = alertJSON["PublishDate"].stringValue
+            
             routeAlerts.append(alert)
         }
         return routeAlerts

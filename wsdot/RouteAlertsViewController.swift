@@ -123,18 +123,27 @@ class RouteAlertsViewController: UIViewController, UITableViewDataSource, UITabl
             options: [ NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html],
             documentAttributes: nil)
         
-        let alertPubDate = TimeUtils.parseJSONDateToNSDate(alertItems[indexPath.row].publishDate)
+        var alertPubDate: Date? = nil
         
-        cell.updateTime.text = TimeUtils.timeAgoSinceDate(date: alertPubDate, numericDates: false)
-        
+        if let alertPubDateValue = try? TimeUtils.formatTimeStamp(alertItems[indexPath.row].publishDate, dateFormat: "yyyy-MM-dd HH:mm aa") {
+            alertPubDate = alertPubDateValue
+        } else {
+            alertPubDate = TimeUtils.parseJSONDateToNSDate(alertItems[indexPath.row].publishDate)
+        }
+
+        if let date = alertPubDate {
+            cell.updateTime.text = TimeUtils.timeAgoSinceDate(date: date, numericDates: false)
+        } else {
+            cell.updateTime.text = "unavailable"
+        }
+
         cell.linkLabel.attributedText = attrStr
         cell.linkLabel.delegate = self
-        
+
         return cell
     }
-    
+
     // MARK: INDLinkLabelDelegate
-    
     func linkLabel(_ label: INDLinkLabel, didLongPressLinkWithURL URL: Foundation.URL) {
         let activityController = UIActivityViewController(activityItems: [URL], applicationActivities: nil)
         self.present(activityController, animated: true, completion: nil)

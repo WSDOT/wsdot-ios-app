@@ -12,9 +12,11 @@ class DepartureDaySelectionViewController: UIViewController, UITableViewDelegate
 
     let cellIdentifier = "dayCell"
 
+    let df = DateFormatter()
+
     var my_parent: RouteDeparturesViewController? = nil
 
-    var menu_options: [String] = []
+    var date_data: [Date] = []
     var selectedIndex = 0
     
     @IBAction func cancelAction(_ sender: UIBarButtonItem) {
@@ -22,6 +24,7 @@ class DepartureDaySelectionViewController: UIViewController, UITableViewDelegate
     }
     
     override func viewDidLoad() {
+        df.dateFormat = "MM/dd"
         self.view.backgroundColor = ThemeManager.currentTheme().mainColor
     }
     
@@ -31,15 +34,15 @@ class DepartureDaySelectionViewController: UIViewController, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return menu_options.count
+        return date_data.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
         // Configure Cell
-        cell.textLabel?.text = menu_options[indexPath.row]
-     
+        cell.textLabel?.text = "\(TimeUtils.getDayOfWeekString(date_data[indexPath.row])) - \(df.string(from: date_data[indexPath.row]))"
+
         if (indexPath.row == selectedIndex){
             cell.accessoryType = .checkmark
         } else {
