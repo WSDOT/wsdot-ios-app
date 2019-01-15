@@ -60,26 +60,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setDisplayedSailing(0)
-        
-        let routeItem = FerryRealmStore.findSchedule(withId: self.routeId)
-        
-        if let routeItemValue = routeItem {
-
-            // Set sailings for RouteTimesVC
-            self.currentSailing = routeItemValue.terminalPairs[0]
-            self.sailingsByDate = routeItemValue.scheduleDates
-            self.setDisplayedSailing(0)
-            self.refresh(scrollToCurrentSailing: true)
-            
-            if let sailingsByDateValue = sailingsByDate {
-        
-                if let firstSailingDateValue = sailingsByDateValue.first {
-            
-                    dateData = TimeUtils.nextNDayDates(n: sailingsByDateValue.count, firstSailingDateValue.date)
-                }
-            }
-        }
+        setDisplayedSailing(0)   
         
         self.tableView.isHidden = true
         

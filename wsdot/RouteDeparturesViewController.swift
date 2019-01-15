@@ -126,7 +126,12 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
                     self.routeTimesVC.sailingsByDate = routeItemValue.scheduleDates
                     self.routeTimesVC.setDisplayedSailing(0)
                     self.routeTimesVC.refresh(scrollToCurrentSailing: true)
-
+  
+                    if let firstSailingDateValue = routeItemValue.scheduleDates.first {
+                        self.routeTimesVC.dateData = TimeUtils.nextNDayDates(n: routeItemValue.scheduleDates.count, firstSailingDateValue.date)
+                        self.dayButton.setTitle(TimeUtils.getDayOfWeekString(self.routeTimesVC.dateData[self.routeTimesVC.currentDay]), for: UIControl.State())
+                    }
+                    
                     // set terminal for CamerasVC
                     self.routeCamerasVC.departingTerminalId = self.getDepartingId()
                     self.routeCamerasVC.refresh(true)
@@ -216,8 +221,6 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
         if segue.identifier == timesViewSegue {
             routeTimesVC = segue.destination as? RouteTimesViewController
             routeTimesVC.routeId = self.routeId
-            // get the day title from container vc after set up
-            dayButton.setTitle(TimeUtils.getDayOfWeekString(routeTimesVC.dateData[routeTimesVC.currentDay]), for: UIControl.State())
         }
         
         if segue.identifier == SegueRouteAlertsViewController {
