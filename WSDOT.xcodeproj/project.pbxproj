@@ -1585,7 +1585,7 @@
 				66C8D8D6CB7FBC355F7E46A6 /* [CP] Embed Pods Frameworks */,
 				9D171E847602D9A1BEE959D4 /* [CP] Copy Pods Resources */,
 				9A58F3DD21EE85090041A373 /* Firebase Crashlytics Script */,
-				9A58F3DE21EE99870041A373 /* Firebase Upload dSYM */,
+				9AD1B6FF21EF93F400911FC3 /* Firebase dSYM Upload Script */,
 			);
 			buildRules = (
 			);
@@ -1870,7 +1870,7 @@
 		};
 		9A58F3DD21EE85090041A373 /* Firebase Crashlytics Script */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -1883,27 +1883,27 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\"\n";
 		};
-		9A58F3DE21EE99870041A373 /* Firebase Upload dSYM */ = {
+		9AD1B6FF21EF93F400911FC3 /* Firebase dSYM Upload Script */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
 			);
 			inputPaths = (
 			);
-			name = "Firebase Upload dSYM";
+			name = "Firebase dSYM Upload Script";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/upload-symbols\" -gsp \"${PROJECT_DIR}/wsdot/GoogleService-Info.plist\" -p ios \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\n\n";
+			shellScript = "\"${PODS_ROOT}/Fabric/upload-symbols\" -gsp \"${PROJECT_DIR}/wsdot/GoogleService-Info.plist\" -p ios \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\n";
 		};
 		9D171E847602D9A1BEE959D4 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;

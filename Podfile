@@ -8,12 +8,12 @@ target 'WSDOT' do
     pod 'Firebase/Messaging'
     pod 'Fabric', '~> 1.9.0'
     pod 'Crashlytics', '~> 3.12.0'
-    pod 'GoogleMaps', '~> 2.5.0'
-    pod 'RealmSwift', '~> 3.10.0'
-    pod 'Alamofire', '~> 4.7.3'
-    pod 'SwiftyJSON', '~> 4.1.0'
+    pod 'GoogleMaps', '~> 2.6.0'
+    pod 'RealmSwift', '~> 3.13.1'
+    pod 'Alamofire', '~> 4.8.0'
+    pod 'SwiftyJSON', '~> 4.2.0'
     pod 'SDWebImage', '~> 4.3.3'
-    pod 'EasyTipView', '~> 2.0.0'
+    pod 'EasyTipView', '~> 2.0.1'
     pod 'SCLAlertView', '~> 0.8.0'
 end
 
@@ -23,19 +23,19 @@ target 'WSDOTTests' do
     pod 'Firebase/Messaging'
     pod 'Fabric', '~> 1.9.0'
     pod 'Crashlytics', '~> 3.12.0'
-    pod 'GoogleMaps', '~> 2.5.0'
-    pod 'RealmSwift', '~> 3.10.0'
-    pod 'Alamofire', '~> 4.7.3'
-    pod 'SwiftyJSON', '~> 4.1.0'
+    pod 'GoogleMaps', '~> 2.6.0'
+    pod 'RealmSwift', '~> 3.13.1'
+    pod 'Alamofire', '~> 4.8.0'
+    pod 'SwiftyJSON', '~> 4.2.0'
     pod 'SDWebImage', '~> 4.3.3'
-    pod 'EasyTipView', '~> 2.0.0'
+    pod 'EasyTipView', '~> 2.0.1'
     pod 'SCLAlertView', '~> 0.8.0'
 end
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
-      config.build_settings['SWIFT_VERSION'] = '4.1'
+      config.build_settings['SWIFT_VERSION'] = '4.2'
     end
   end
 end
