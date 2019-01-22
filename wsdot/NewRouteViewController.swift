@@ -22,7 +22,7 @@ import UIKit
 import CoreLocation
 import HealthKit
 import GoogleMaps
-import SCLAlertView
+
 /**
  * Handles creation of new MyRoutes
  */
@@ -40,7 +40,7 @@ class NewRouteViewController: UIViewController {
         return _locationManager
     }()
  
-    var recordingAlertView = SCLAlertView()
+    var recordingAlertView = UIAlertController()
 
     lazy var locations = [CLLocation]()
 
@@ -76,6 +76,13 @@ class NewRouteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         styleButtons()
+        
+        self.recordingAlertView = UIAlertController(title: "Tracking Route...", message: "Begin traveling to your destination. \n\n Please do not use your device if you are driving.", preferredStyle: .alert)
+        
+        self.recordingAlertView.addAction(UIAlertAction(title: NSLocalizedString("I've arrived at my destination", comment: "Default action"), style: .default, handler: { _ in
+             self.stopRecordingPressed()
+        }))
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -90,23 +97,10 @@ class NewRouteViewController: UIViewController {
     
     func showRecordingAlert(){
 
-        let alertViewIcon = UIImage(named: "icCar")
-        
-        self.recordingAlertView = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
-            showCloseButton: false,
-            showCircularIcon: true,
-            shouldAutoDismiss: false)
-        )
-
-        let button = self.recordingAlertView.addButton("Finish") {
-            self.stopRecordingPressed()
-        }
-        button.accessibilityHint = "Double Tap to stop tracking route."
-        
         navigationItem.hidesBackButton = true
         self.view.accessibilityElementsHidden = true
         
-        _ = self.recordingAlertView.showCustom("Let's Go!", subTitle: "\nTracking route...\n\nTap Finish when you have completed your route.\n\nPlease do not use the WSDOT app while you are driving.", color: Colors.tintColor, icon: alertViewIcon!)
+        self.present(self.recordingAlertView, animated: true, completion: nil)
         
         screenChange()
 
@@ -179,7 +173,7 @@ class NewRouteViewController: UIViewController {
         
         let resultsAction = UIAlertAction(title: "Yes", style: .default, handler: {(_) -> Void in
             
-            self.recordingAlertView.hideView()
+            self.recordingAlertView.dismiss(animated: true, completion: nil)
             self.navigationItem.hidesBackButton = false
             self.view.accessibilityElementsHidden = false
             
@@ -207,7 +201,7 @@ class NewRouteViewController: UIViewController {
         
         alert.addAction(cancelAction)
 
-        self.recordingAlertView.hideView()
+        self.recordingAlertView.dismiss(animated: true, completion: nil)
         self.present(alert, animated: true, completion: nil)
         
     }
