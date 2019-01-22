@@ -19,7 +19,6 @@
 //
 
 import UIKit
-import SCLAlertView
 
 class MyRouteViewController: UIViewController {
 
@@ -40,7 +39,6 @@ class MyRouteViewController: UIViewController {
         super.viewDidLoad()
         tableView.isEditing = true
         tableView.allowsSelectionDuringEditing = true
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -425,4 +423,3 @@ extension MyRouteViewController:  UITableViewDataSource, UITableViewDelegate {
     }
     
 }
-

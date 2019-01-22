@@ -110,7 +110,6 @@ PODS:
   - Realm/Headers (3.13.1)
   - RealmSwift (3.13.1):
     - Realm (= 3.13.1)
-  - SCLAlertView (0.8)
   - SDWebImage (4.3.3):
     - SDWebImage/Core (= 4.3.3)
   - SDWebImage/Core (4.3.3)
@@ -127,7 +126,6 @@ DEPENDENCIES:
   - Firebase/Performance
   - GoogleMaps (~> 2.6.0)
   - RealmSwift (~> 3.13.1)
-  - SCLAlertView (~> 0.8.0)
   - SDWebImage (~> 4.3.3)
   - SwiftyJSON (~> 4.2.0)
 
@@ -156,7 +154,6 @@ SPEC REPOS:
     - Protobuf
     - Realm
     - RealmSwift
-    - SCLAlertView
     - SDWebImage
     - SwiftyJSON
 
@@ -184,10 +181,9 @@ SPEC CHECKSUMS:
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   Realm: 50071da38fe079e0735e47c9f2eae738c68c5996
   RealmSwift: 8a1e6a02b7a08cd17a31e3115143fb69fe5f3fb9
-  SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 9e58dbbdede24f80dfa2f6f5d598ebaa5d37da77
+PODFILE CHECKSUM: 27b99503e203ce6831930404d9b5b4e1c9490a7d
 
 COCOAPODS: 1.5.2
