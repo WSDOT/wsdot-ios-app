@@ -4,20 +4,51 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]:
 
+### Added
+* Border waits can be added to the favorites list.
 
-## [5.10.2]
+### Removed
+* SCLAlertView library. Replaced with a simple alert view
 
-## Fixed
+## [5.11.4]
+
+### Added
+* Firebase Crashlytics
+* Firebase Performance monitoring
+
+### Fixed
+* Fixes crash when using new date format for ferry bulletins.
+
+## [5.11.3] 2019-01-09
+
+### Changed
+* Ferry alert bulletins are now available on the sailings screen.
+* Ferry drop down options are now screen aware. Disappear when they are not needed
+
+## [5.11.1] 2018-12-14
+
+### Fixed
+* Crash when refreshing pass cameras.
+* crash when camera images fail to load.
+
+## [5.11.0] 2018-12-05
+
+### Changed
+* Traffic camera images will now fill the width of the device screen.
+
+## [5.10.2] 2018-10-30
+
+### Fixed
 * Terminal cameras list now updates when a terminal is selected.
 
-## [5.10.1]
+## [5.10.1] 2018-10-27
 
-## Fixed
+### Fixed
 * Vessel Watch opens to correct location for ANA-SJ routes.
 
-## [5.10.0] 2018-10
+## [5.10.0] 2018-10-22
 
-## Changed
+### Changed
 * Ferries section layout. 
 * Vessel watch is now a tab on the departures screen.
 * Ferry alerts now display as a button on the route table cell.
@@ -26,7 +57,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [5.9.0] 2018-08-28
 
-## Added 
+### Added 
 * I-405 Express Toll Lanes and SR 167 HOT Lanes rates in the toll rates section
 
 ## [5.8.5] 2018-08-20
