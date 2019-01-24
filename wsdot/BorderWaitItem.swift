@@ -29,9 +29,10 @@ class BorderWaitItem: Object {
     @objc dynamic var lane: String = ""
     @objc dynamic var direction: String = ""
     @objc dynamic var updated: String = ""
+    @objc dynamic var selected: Bool = false
+    @objc dynamic var delete: Bool = false
 
     override static func primaryKey() -> String? {
         return "id"
     }
-
 }

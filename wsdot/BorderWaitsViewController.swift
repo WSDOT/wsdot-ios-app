@@ -32,18 +32,6 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
     var northboundWaits = [BorderWaitItem]()
     var southboundWaits = [BorderWaitItem]()
     
-    let i5Icon = UIImage(named:"icListI5")
-    let sr9Icon = UIImage(named: "icListSR9")
-    let sr539Icon = UIImage(named: "icListSR539")
-    let sr543Icon = UIImage(named: "icListSR543")
-    let us97Icon = UIImage(named: "icListUS97")
-    
-    let bc11Icon = UIImage(named: "icListBC11")
-    let bc13Icon = UIImage(named: "icListBC13")
-    let bc15Icon = UIImage(named: "icListBC15")
-    let bc97Icon = UIImage(named: "icListBC97")
-    let bc99Icon = UIImage(named: "icListBC99")
-    
     let refreshControl = UIRefreshControl()
     var activityIndicator = UIActivityIndicatorView()
     
@@ -176,32 +164,19 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
             cell.waitTimeLabel.text = String(wait.waitTime) + " min"
         }
         
-        cell.RouteImage.image = getIcon(wait.route)
+        // set up favorite button
+        cell.favoriteButton.setImage(wait.selected ? UIImage(named: "icStarSmallFilled") : UIImage(named: "icStarSmall"), for: .normal)
+        cell.favoriteButton.tintColor = ThemeManager.currentTheme().mainColor
+
+        cell.favoriteButton.tag = indexPath.row
+        cell.favoriteButton.addTarget(self, action: #selector(favoriteAction(_:)), for: .touchUpInside)
+        
+        cell.RouteImage.image = UIHelpers.getRouteIconFor(borderWait: wait)
         
         return cell
     }
     
-    func getIcon(_ route: Int) -> UIImage?{
-        
-        if (segmentedControlView.selectedSegmentIndex == 0){
-            switch(route){
-            case 5: return i5Icon
-            case 9: return sr9Icon
-            case 97: return us97Icon
-            case 539: return sr539Icon
-            case 543: return sr543Icon
-            default: return nil
-            }
-        }else{
-            switch(route){
-            case 5: return bc99Icon
-            case 9: return bc11Icon
-            case 539: return bc13Icon
-            case 543: return bc15Icon
-            default: return nil
-            }
-        }
-    }
+
     
     // Remove and add hairline for nav bar
     override func viewWillAppear(_ animated: Bool) {
@@ -237,4 +212,19 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
             break
         }
     }
+    
+    // MARK: Favorite action
+    @objc func favoriteAction(_ sender: UIButton) {
+        let index = sender.tag
+        let wait = displayedWaits[index]
+        
+        if (wait.selected){
+            BorderWaitStore.updateFavorite(wait, newValue: false)
+            sender.setImage(UIImage(named: "icStarSmall"), for: .normal)
+        }else {
+            BorderWaitStore.updateFavorite(wait, newValue: true)
+            sender.setImage(UIImage(named: "icStarSmallFilled"), for: .normal)
+        }
+    }
+    
 }

@@ -26,7 +26,7 @@ class FavoritesHomeViewController: UIViewController {
     var activityIndicator = UIActivityIndicatorView()
 
     // content types for the favorites list in order to appear on list.
-    var sectionTypes: [FavoritesContent] = [.route, .ferrySchedule, .mountainPass, .camera, .travelTime, .tollRate]
+    var sectionTypes: [FavoritesContent] = [.route, .ferrySchedule, .mountainPass, .camera, .travelTime, .tollRate, .borderWait]
 
     let segueMyRouteAlertsViewController = "MyRouteAlertsViewController"
     let segueFavoritesSettingsViewController = "FavoritesSettingsViewController"
@@ -42,6 +42,7 @@ class FavoritesHomeViewController: UIViewController {
     let ferryScheduleCellIdentifier = "FerryScheduleCell"
     let mountainPassCellIdentifier = "MountainPassCell"
     let tollRatesCellIdentifier = "TollRatesCell"
+    let borderWaitCellIdentifier = "BorderWaitCell"
 
     var cameras = [CameraItem]()
     var travelTimeGroups = [TravelTimeItemGroup]()
@@ -50,6 +51,7 @@ class FavoritesHomeViewController: UIViewController {
     var savedLocations = [FavoriteLocationItem]()
     var myRoutes = [MyRouteItem]()
     var tollRates = [TollRateSignItem]()
+    var borderWaits = [BorderWaitItem]()
 
     @IBOutlet weak var emptyFavoritesView: UIView!
     @IBOutlet weak var tableView: UITableView!
@@ -111,6 +113,8 @@ class FavoritesHomeViewController: UIViewController {
             return savedLocations.count
         case .tollRate:
             return tollRates.count
+        case .borderWait:
+            return borderWaits.count
         }
     }
     
@@ -141,6 +145,8 @@ class FavoritesHomeViewController: UIViewController {
             return savedLocations.count > 0 ? MyRouteStore.sectionTitles[FavoritesContent.mapLocation.rawValue] : ""
         case .tollRate:
             return tollRates.count > 0 ? MyRouteStore.sectionTitles[FavoritesContent.tollRate.rawValue] : ""
+        case .borderWait:
+            return borderWaits.count > 0 ? MyRouteStore.sectionTitles[FavoritesContent.borderWait.rawValue] : ""
         }
     }
     
@@ -166,6 +172,9 @@ class FavoritesHomeViewController: UIViewController {
             UserDefaults.standard.set(sectionTypesOrderRawArray, forKey: UserDefaultsKeys.favoritesOrder)
         } else if sectionTypesOrderRawArray.count < 7 { // Added toll rates
             sectionTypesOrderRawArray.append(FavoritesContent.tollRate.rawValue)
+            UserDefaults.standard.set(sectionTypesOrderRawArray, forKey: UserDefaultsKeys.favoritesOrder)
+        } else if sectionTypesOrderRawArray.count < 8 { // Added border waits
+            sectionTypesOrderRawArray.append(FavoritesContent.borderWait.rawValue)
             UserDefaults.standard.set(sectionTypesOrderRawArray, forKey: UserDefaultsKeys.favoritesOrder)
         }
         
@@ -198,6 +207,7 @@ extension FavoritesHomeViewController {
         savedLocations = FavoriteLocationStore.getFavorites()
         myRoutes = MyRouteStore.getSelectedRoutes()
         tollRates = TollRatesStore.findFavoriteTolls()
+        borderWaits = BorderWaitStore.getFavoriteWaits()
         
         if (tableEmpty()){
             emptyFavoritesView.isHidden = false
@@ -232,6 +242,9 @@ extension FavoritesHomeViewController {
         if (self.tollRates.count > 0){
             self.requestTollRatesUpdate(force, serviceGroup: serviceGroup)
         }
+        if (self.borderWaits.count > 0){
+            self.requestBorderWaitsUpdate(force, serviceGroup: serviceGroup)
+        }
  
         serviceGroup.notify(queue: DispatchQueue.main) {
             self.cameras = CamerasStore.getFavoriteCameras()
@@ -240,6 +253,7 @@ extension FavoritesHomeViewController {
             self.mountainPasses = MountainPassStore.findFavoritePasses()
             self.savedLocations = FavoriteLocationStore.getFavorites()
             self.tollRates = TollRatesStore.findFavoriteTolls()
+            self.borderWaits = BorderWaitStore.getFavoriteWaits()
             
             if (self.tableEmpty()){
                 self.emptyFavoritesView.isHidden = false
@@ -294,7 +308,8 @@ extension FavoritesHomeViewController {
             (self.mountainPasses.count == 0) &&
             (self.savedLocations.count == 0) &&
             (self.tollRates.count == 0) &&
-            (self.myRoutes.count == 0)
+            (self.myRoutes.count == 0) &&
+            (self.borderWaits.count == 0)
     }
 
     func requestCamerasUpdate(_ force: Bool, serviceGroup: DispatchGroup) {
@@ -373,6 +388,24 @@ extension FavoritesHomeViewController {
                     serviceGroup.leave()
                     DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
+                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                        }
+                    }
+                }
+            })
+        }
+    }
+    
+    func requestBorderWaitsUpdate(_ force: Bool, serviceGroup: DispatchGroup) {
+        serviceGroup.enter()
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async { [weak self] in
+            BorderWaitStore.updateWaits(force, completion: { error in
+                if (error == nil) {
+                    serviceGroup.leave()
+                } else {
+                    serviceGroup.leave()
+                    DispatchQueue.main.async {
+                        if let selfValue = self {
                             selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                         }
                     }
@@ -622,6 +655,38 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             tollRateCell.sizeToFit()
             return tollRateCell
             
+        case .borderWait:
+        
+            let waitCell = tableView.dequeueReusableCell(withIdentifier: borderWaitCellIdentifier) as! BorderWaitCell
+        
+            let wait = borderWaits[indexPath.row]
+        
+            waitCell.nameLabel.text = wait.name + " (" + wait.lane + ")"
+        
+            do {
+                let updated = try TimeUtils.timeAgoSinceDate(date: TimeUtils.formatTimeStamp(wait.updated), numericDates: false)
+                waitCell.updatedLabel.text = updated
+            } catch TimeUtils.TimeUtilsError.invalidTimeString {
+                waitCell.updatedLabel.text = "N/A"
+            } catch {
+                waitCell.updatedLabel.text = "N/A"
+            }
+        
+            if wait.waitTime == -1 {
+                waitCell.waitTimeLabel.text = "N/A"
+            }else if wait.waitTime < 5 {
+                waitCell.waitTimeLabel.text = "< 5 min"
+            }else{
+                waitCell.waitTimeLabel.text = String(wait.waitTime) + " min"
+            }
+        
+            // set up favorite button
+            waitCell.favoriteButton.isHidden = true
+        
+            waitCell.RouteImage.image = UIHelpers.getRouteIconFor(borderWait: wait)
+        
+            return waitCell
+        
         case .route:
         
             let routeCell = tableView.dequeueReusableCell(withIdentifier: myRouteCellIdentifier, for: indexPath) as! MyRouteFavoritesCell
@@ -752,6 +817,10 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 self.myRoutes.remove(at: indexPath.row)
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
                 break
+            case .borderWait:
+                BorderWaitStore.updateFavorite(self.borderWaits[indexPath.row], newValue: false)
+                self.borderWaits.remove(at: indexPath.row)
+                self.tableView.deleteRows(at: [indexPath], with: .fade)
             }
         })
         
@@ -786,6 +855,8 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             tableView.deselectRow(at: indexPath, animated: true)
             break
         case .tollRate:
+            break
+        case .borderWait:
             break
         case .route:
             tableView.deselectRow(at: indexPath, animated: true)

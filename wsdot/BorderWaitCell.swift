@@ -26,4 +26,6 @@ class BorderWaitCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var updatedLabel: UILabel!
     @IBOutlet weak var waitTimeLabel: UILabel!
+    @IBOutlet weak var favoriteButton: UIButton!
+    
 }

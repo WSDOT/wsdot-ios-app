@@ -23,9 +23,26 @@ import RealmSwift
 import Alamofire
 import SwiftyJSON
 
-class BorderWaitStore{
+class BorderWaitStore {
 
     typealias getBorderWaitsCompletion = (_ error: Error?) -> ()
+
+    static func updateFavorite(_ borderWait: BorderWaitItem, newValue: Bool){
+        do {
+            let realm = try Realm()
+            try realm.write{
+                borderWait.selected = newValue
+            }
+        } catch {
+            print("BorderWaitStore.updateFavorite: Realm write error")
+        }
+    }
+    
+    static func getFavoriteWaits() -> [BorderWaitItem]{
+        let realm = try! Realm()
+        let favoriteBorderWaitItems = realm.objects(BorderWaitItem.self).filter("selected == true")
+        return Array(favoriteBorderWaitItems)
+    }
 
     static func getNorthboundWaits() -> [BorderWaitItem]{
         let realm = try! Realm()
@@ -72,18 +89,45 @@ class BorderWaitStore{
         }
     }
     
-    fileprivate static func saveWaits(_ waits: [BorderWaitItem]){
+    fileprivate static func saveWaits(_ waits: [BorderWaitItem]) {
         
         let realm = try! Realm()
-
+        
+        let oldFavoriteWaits = self.getFavoriteWaits()
+        
+        for wait in waits {
+            if (oldFavoriteWaits.filter{ $0.id == wait.id}.first != nil) {
+                wait.selected = true
+            }
+        }
+        
+        let oldWaits = self.getNorthboundWaits() + self.getSouthboundWaits()
+        
         do {
             try realm.write{
+                // mark old waits for removal. This will get over written if the new waits include updates for old ones.
+                for oldWait in oldWaits {
+                    oldWait.delete = true
+                }
                 realm.add(waits, update: true)
             }
         }catch {
-            print("BorderWaitStore.saveWaits: Realm write error")
+            print("TravelTimesStore.saveTravelTimes: Realm write error")
         }
     }
+    
+    static func flushOldData(){
+        do {
+            let realm = try Realm()
+            let waits = realm.objects(BorderWaitItem.self).filter("delete == true")
+            try! realm.write{
+                realm.delete(waits)
+            }
+        }catch {
+            print("BorderWaitsRealmStore.flushOldData: Realm write error")
+        }
+    }
+    
     
     fileprivate static func parseBorderWaitsJSON(_ json: JSON) ->[BorderWaitItem]{
         var waits = [BorderWaitItem]()
@@ -98,16 +142,11 @@ class BorderWaitStore{
             wait.direction = subJson["direction"].stringValue
             wait.updated = subJson["updated"].stringValue
             wait.lane = subJson["lane"].stringValue
+            wait.delete = false
             
             waits.append(wait)
         }
         
         return waits
     }
-
-
-
-
-
-
 }

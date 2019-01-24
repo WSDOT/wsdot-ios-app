@@ -17,6 +17,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
+
 import Alamofire
 import SwiftyJSON
 import Foundation
@@ -102,9 +103,9 @@ class EventStore {
         guard let endDate = dateFormatter.date(from: endDateString) else {
             return false
         }
-    
+
         return (startDate ... endDate).contains(Date())
-    
+
     }
     
     static func getActiveEventThemeId() -> Int {
