@@ -204,7 +204,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // MARK: Realm
     func migrateRealm(){
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
-            schemaVersion: 6,
+            schemaVersion: 7,
             
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
@@ -260,6 +260,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     migration.enumerateObjects(ofType: CameraItem.className()) { oldObject, newObject in
                         newObject!["milepost"] = -1
                         newObject!["direction"] = ""
+                    }
+                    migration.deleteData(forType: CacheItem.className())
+                }
+                
+                /*
+                    Adds favorite field to borderwaits.
+                    Clears cache times to force refresh
+                */
+                if (oldSchemaVersion < 7) {
+                    migration.enumerateObjects(ofType: BorderWaitItem.className()) { oldObject, newObject in
+                        newObject!["selected"] = false
+                        newObject!["delete"] = false
                     }
                     migration.deleteData(forType: CacheItem.className())
                 }

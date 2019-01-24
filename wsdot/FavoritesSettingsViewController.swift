@@ -25,7 +25,7 @@ class FavoritesSettingsViewController: UIViewController {
     let sectionCellIdentifier = "SectionCell"
     let textCellIdentifier = "TextCell"
     
-    let numFavoriteSections = 7
+    let numFavoriteSections = 8
     
     var sectionTypesOrderRawArray = UserDefaults.standard.array(forKey: UserDefaultsKeys.favoritesOrder) as? [Int] ?? [Int]()
 
@@ -67,6 +67,10 @@ class FavoritesSettingsViewController: UIViewController {
         for toll in TollRatesStore.findFavoriteTolls() {
             TollRatesStore.updateFavorite(toll, newValue: false)
         }
+        for wait in BorderWaitStore.getFavoriteWaits() {
+            BorderWaitStore.updateFavorite(wait, newValue: false)
+        }
+        
     }
     
 }

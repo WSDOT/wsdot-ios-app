@@ -202,5 +202,27 @@ struct UIHelpers {
         return activityIndicator
     }
 
+    static func getRouteIconFor(borderWait: BorderWaitItem) -> UIImage?{
+        
+        if (borderWait.direction.lowercased() == "northbound"){
+            switch(borderWait.route){
+            case 5: return UIImage(named:"icListI5")
+            case 9: return UIImage(named: "icListSR9")
+            case 97: return UIImage(named: "icListUS97")
+            case 539: return UIImage(named: "icListSR539")
+            case 543: return UIImage(named: "icListSR543")
+            default: return nil
+            }
+        }else{
+            switch(borderWait.route){
+            case 5: return UIImage(named: "icListBC99")
+            case 9: return UIImage(named: "icListBC11")
+            case 539: return UIImage(named: "icListBC13")
+            case 543: return UIImage(named: "icListBC15")
+            default: return nil
+            }
+        }
+    }
+
 }
 
