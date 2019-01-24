@@ -28,27 +28,26 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.delegate = self
         self.dataSource = self
-        
-        let page: AlertContentViewController! = storyboard?.instantiateViewController(withIdentifier: "AlertContentViewController") as? AlertContentViewController
-        page.loadingPage = true
-        pages.append(page)
-        setViewControllers([pages[0]], direction: UIPageViewController.NavigationDirection.forward, animated: false, completion: nil)
-        
         view.backgroundColor = Colors.lightGrey
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         pages.removeAll()
+        
         let page: AlertContentViewController! = storyboard?.instantiateViewController(withIdentifier: "AlertContentViewController") as? AlertContentViewController
+        
         page.loadingPage = true
+        
         pages.append(page)
+        
         setViewControllers([pages[0]], direction: UIPageViewController.NavigationDirection.forward, animated: false, completion: nil)
+        
         fetchAlerts(false)
+        
         timer = Timer.scheduledTimer(timeInterval: TimeUtils.alertsUpdateTime, target: self, selector: #selector(AlertPagerViewController.updateAlerts(_:)), userInfo: nil, repeats: true)
 
     }
