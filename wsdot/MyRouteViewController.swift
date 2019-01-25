@@ -22,7 +22,7 @@ import UIKit
 
 class MyRouteViewController: UIViewController {
 
-    let segueNewRouteViewController = "NewRouteViewController"
+    let segueNewRouteViewController = "RouteSetupViewController"
     let segueMyRouteMapViewController = "MyRouteMapViewController"
     let segueMyRouteAlertsViewController = "MyRouteAlertsViewController"
     let segueTrafficMapViewController = "TrafficMapViewController"

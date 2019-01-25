@@ -103,7 +103,6 @@ class NewRouteViewController: UIViewController {
         self.present(self.recordingAlertView, animated: true, completion: nil)
         
         screenChange()
-
     }
 
     /**
@@ -488,9 +487,10 @@ extension NewRouteViewController {
 
                             }
                         }
-                    }else {
+                    } else {
                         self.accessibilityMapLabel.accessibilityLabel = "Route starts near " + startAddress + " and ends at an unknown location"
                     }
+                    
                 } else {
                     self.accessibilityMapLabel.accessibilityLabel = "Route recorded but unable to determine recorded route start and end points because of network issues. Double tap to try again."
                     print(error ?? "no error found")
@@ -507,7 +507,6 @@ extension NewRouteViewController {
    
     @objc func tapResponse(_ recognizer: UITapGestureRecognizer) {
         setRouteAccessibilityLabel(locations: locations)
-    
     }
     
     func screenChange() {
