@@ -12,59 +12,68 @@ import MapKit
 /**
  * Handles creation of new MyRoutes
  */
-class MyRouteSetupViewController: UITableViewController{
+class MyRouteSetupViewController: UIViewController{
 
-
-    let segueLocationSelectionViewController = "LocationSelectionViewController"
     let segueMyRouteRouteSelectionViewController = "MyRouteRouteSelectionViewController"
-
-
-    @IBOutlet weak var originCell: SelectionCell!
-    @IBOutlet weak var destinationCell: SelectionCell!
     
-    @IBOutlet weak var submitCell: UITableViewCell!
-    @IBOutlet weak var submitLabel: UILabel!
+    let segueNewRouteMenuTableViewController = "NewRouteMenuTableViewController"
+    let segueLocationSearchViewController = "LocationSearchViewController"
     
-    var selectionType = 0
+    var searchController: UISearchController!
+    
+    var locationIndex = 0
+    
+    var newRouteMenuViewController: NewRouteMenuTableViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
         title = "New Route"
-        submitLabel.textColor = Colors.wsdotPrimary
+      
         
-             //getRoute(source: CLLocationCoordinate2D(latitude: 48.756302, longitude: -122.46151), destination: CLLocationCoordinate2D(latitude: 47.021461, longitude: -122.899933))
+        //getRoute(source: CLLocationCoordinate2D(latitude: 48.756302, longitude: -122.46151), destination: CLLocationCoordinate2D(latitude: 47.021461, longitude: -122.899933))
         
-    }
-
-    // MARK: Table View Delegate Methods
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.section {
-        case 1:
-            performSegue(withIdentifier: segueMyRouteRouteSelectionViewController, sender: self)
-            tableView.deselectRow(at: indexPath, animated: true)
-            break
-        default:
-            selectionType = indexPath.row
-            performSegue(withIdentifier: segueLocationSelectionViewController, sender: self)
-            tableView.deselectRow(at: indexPath, animated: true)
-        }
     }
     
     
     // MARK: Naviagtion
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == segueLocationSelectionViewController {
-        
-            let destViewController = segue.destination as! LocationSelectionViewController
-            destViewController.handleLocationPickedDelegate = self
-        }
         
         
         if segue.identifier == segueMyRouteRouteSelectionViewController {
-
+            // TODO:
         }
-
+        
+        
+        // container view segue for new route table
+        if segue.identifier == segueNewRouteMenuTableViewController {
+            if let vc = segue.destination as? NewRouteMenuTableViewController {
+   
+                vc.newRouteMenuEventDelegate = self
+                newRouteMenuViewController = vc
+            
+            }
+        }
+        
+        // container view segue for search table
+        if segue.identifier == segueLocationSearchViewController {
+            if let vc = segue.destination as? LocationSearchViewController {
+                vc.mapSearchDelegate = self
+                
+                searchController = UISearchController(searchResultsController: vc)
+                searchController?.searchResultsUpdater = vc
+                
+                let searchBar = searchController!.searchBar
+                searchBar.sizeToFit()
+                searchBar.placeholder = "Search for a place"
+                
+                searchController?.hidesNavigationBarDuringPresentation = false
+                searchController?.dimsBackgroundDuringPresentation = true
+                
+                definesPresentationContext = true
+                
+            }
+        }
     }
     
     // MARK: Presentation
@@ -123,7 +132,9 @@ class MyRouteSetupViewController: UITableViewController{
         }
         return false
     }
+    
 }
+
 
 // MARK: Map Delegate methods
 extension MyRouteSetupViewController {
@@ -133,27 +144,88 @@ extension MyRouteSetupViewController {
         renderer.strokeColor = UIColor.blue
         return renderer
     }
-    
-
-
 }
 
-extension MyRouteSetupViewController: HandleLocationPicked {
+extension MyRouteSetupViewController: LocationSearchDelegate {
 
     func locationSelected(placemark: MKPlacemark) {
         
-         switch (selectionType){
+        let alertController = (UIDevice.current.userInterfaceIdiom == .phone ?
+              UIAlertController(title: placemark.title, message: nil, preferredStyle: .actionSheet)
+            : UIAlertController(title: "Use this location?", message: nil, preferredStyle: .alert) )
+        
+        let mapView = MKMapView()
+        alertController.view.addSubview(mapView)
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        mapView.topAnchor.constraint(equalTo: alertController.view.topAnchor, constant: 45).isActive = true
+        mapView.rightAnchor.constraint(equalTo: alertController.view.rightAnchor, constant: -10).isActive = true
+        mapView.leftAnchor.constraint(equalTo: alertController.view.leftAnchor, constant: 10).isActive = true
+        mapView.heightAnchor.constraint(equalToConstant: 250).isActive = true
+
+        mapView.removeAnnotations(mapView.annotations)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = placemark.coordinate
+        annotation.title = placemark.name
+        if let city = placemark.locality,
+            let state = placemark.administrativeArea {
+            annotation.subtitle = "\(city) \(state)"
+        }
+        mapView.addAnnotation(annotation)
+        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        let region = MKCoordinateRegion(center: placemark.coordinate, span: span)
+        mapView.setRegion(region, animated: false)
+
+        alertController.view.translatesAutoresizingMaskIntoConstraints = false
+        alertController.view.heightAnchor.constraint(equalToConstant: 430).isActive = true
+
+        alertController.view.tintColor = Colors.tintColor
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (result : UIAlertAction) -> Void in
+
+        }
+        
+        let confirmAction = UIAlertAction(title: "Confirm", style: .default) { (result : UIAlertAction) -> Void in
+            self.locationConfirmed(placemark: placemark)
+            self.searchController.searchBar.text = nil
+            self.searchController.dismiss(animated: true, completion: nil)
+        }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(confirmAction)
+    
+        self.present(alertController, animated: true, completion: nil)
+    }
+
+    func locationConfirmed(placemark: MKPlacemark) {
+        
+         switch (locationIndex){
             case 0: // Point A
-                originCell.selection.text = placemark.title
+                newRouteMenuViewController.originCell.selection.text = placemark.title
                 break
             case 1: // Point B
-                destinationCell.selection.text = placemark.title
+                newRouteMenuViewController.destinationCell.selection.text = placemark.title
                 break
             default: break
         }
-    
-        
-        
+    }
+}
+
+extension MyRouteSetupViewController: NewRouteMenuEventDelegate {
+
+
+    func searchRoutes() {
+         performSegue(withIdentifier: segueMyRouteRouteSelectionViewController, sender: self)
     }
 
+    func locationSearch(_ cellIndex: Int) {
+        locationIndex = cellIndex
+        
+        present(searchController, animated: true, completion: nil)
+        
+    }
+    
+
 }
+
+
+

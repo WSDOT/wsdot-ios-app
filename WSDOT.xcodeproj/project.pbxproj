@@ -47,7 +47,6 @@
 		9A2F4A681D528A5100911AF5 /* FerryRealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A671D528A5100911AF5 /* FerryRealmStore.swift */; };
 		9A2F4A6E1D539C1600911AF5 /* CacheItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A6D1D539C1600911AF5 /* CacheItem.swift */; };
 		9A2F4A701D53AA5C00911AF5 /* CameraRealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2F4A6F1D53AA5C00911AF5 /* CameraRealmStore.swift */; };
-		9A345DCF21FA58A500903E71 /* LocationSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A345DCE21FA58A500903E71 /* LocationSelectionViewController.swift */; };
 		9A345DD121FA676E00903E71 /* MapExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A345DD021FA676E00903E71 /* MapExtensions.swift */; };
 		9A398D74209A6F6A00BD84FF /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A398D73209A6F6A00BD84FF /* Notifications.storyboard */; };
 		9A398D76209A71B600BD84FF /* NotificationsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A398D75209A71B600BD84FF /* NotificationsStore.swift */; };
@@ -128,6 +127,8 @@
 		9A9808C21F1FAAAE0034DA05 /* TravelChartImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9808C11F1FAAAE0034DA05 /* TravelChartImageCell.swift */; };
 		9A9808C41F1FF1C70034DA05 /* BestTimesToTravelRoutesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9808C31F1FF1C70034DA05 /* BestTimesToTravelRoutesViewController.swift */; };
 		9AA5F4BD2200CBB600E1D4CA /* LocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA5F4BC2200CBB600E1D4CA /* LocationSearchViewController.swift */; };
+		9AA5F4C1220109DE00E1D4CA /* NewRouteMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA5F4C0220109DE00E1D4CA /* NewRouteMenuTableViewController.swift */; };
+		9AA5F4C322010B7300E1D4CA /* NewRouteMenuEventDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA5F4C222010B7300E1D4CA /* NewRouteMenuEventDelegate.swift */; };
 		9AB0177A1D51464B004C228E /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AB017791D51464B004C228E /* Camera.storyboard */; };
 		9AB0177C1D514668004C228E /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0177B1D514668004C228E /* CameraViewController.swift */; };
 		9AB3AC391E65CE8A00784795 /* MyRouteMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB3AC381E65CE8A00784795 /* MyRouteMapViewController.swift */; };
@@ -150,8 +151,7 @@
 		9AD32E221D241AF4000AEC28 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32E211D241AF4000AEC28 /* HomeViewController.swift */; };
 		9AD32E281D2421E4000AEC28 /* Ferries.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E271D2421E4000AEC28 /* Ferries.storyboard */; };
 		9AD32E2C1D242A5A000AEC28 /* RouteSchedulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32E2B1D242A5A000AEC28 /* RouteSchedulesViewController.swift */; };
-		9ADD915D21FF670E0068AC28 /* HandleMapSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADD915C21FF670E0068AC28 /* HandleMapSearch.swift */; };
-		9ADD915F21FF672E0068AC28 /* HandleLocationPicked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADD915E21FF672E0068AC28 /* HandleLocationPicked.swift */; };
+		9ADD915D21FF670E0068AC28 /* LocationSearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADD915C21FF670E0068AC28 /* LocationSearchDelegate.swift */; };
 		9ADEAE4D1D270CC800BA7DD4 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADEAE4C1D270CC800BA7DD4 /* Helpers.swift */; };
 		9ADF0E021D7F5EF600632F3D /* WSDOTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADF0E011D7F5EF600632F3D /* WSDOTUITests.swift */; };
 		9ADF0E0A1D7F5F8400632F3D /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADF0E091D7F5F8400632F3D /* SnapshotHelper.swift */; };
@@ -280,7 +280,6 @@
 		9A2F4A671D528A5100911AF5 /* FerryRealmStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerryRealmStore.swift; sourceTree = "<group>"; };
 		9A2F4A6D1D539C1600911AF5 /* CacheItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheItem.swift; sourceTree = "<group>"; };
 		9A2F4A6F1D53AA5C00911AF5 /* CameraRealmStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraRealmStore.swift; sourceTree = "<group>"; };
-		9A345DCE21FA58A500903E71 /* LocationSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSelectionViewController.swift; sourceTree = "<group>"; };
 		9A345DD021FA676E00903E71 /* MapExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapExtensions.swift; sourceTree = "<group>"; };
 		9A398D73209A6F6A00BD84FF /* Notifications.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notifications.storyboard; sourceTree = "<group>"; };
 		9A398D75209A71B600BD84FF /* NotificationsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsStore.swift; sourceTree = "<group>"; };
@@ -383,6 +382,8 @@
 		9A9808C11F1FAAAE0034DA05 /* TravelChartImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelChartImageCell.swift; sourceTree = "<group>"; };
 		9A9808C31F1FF1C70034DA05 /* BestTimesToTravelRoutesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BestTimesToTravelRoutesViewController.swift; sourceTree = "<group>"; };
 		9AA5F4BC2200CBB600E1D4CA /* LocationSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchViewController.swift; sourceTree = "<group>"; };
+		9AA5F4C0220109DE00E1D4CA /* NewRouteMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRouteMenuTableViewController.swift; sourceTree = "<group>"; };
+		9AA5F4C222010B7300E1D4CA /* NewRouteMenuEventDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRouteMenuEventDelegate.swift; sourceTree = "<group>"; };
 		9AB017791D51464B004C228E /* Camera.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
 		9AB0177B1D514668004C228E /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		9AB3AC381E65CE8A00784795 /* MyRouteMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRouteMapViewController.swift; sourceTree = "<group>"; };
@@ -408,8 +409,7 @@
 		9AD32E211D241AF4000AEC28 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9AD32E271D2421E4000AEC28 /* Ferries.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Ferries.storyboard; path = Base.lproj/Ferries.storyboard; sourceTree = "<group>"; };
 		9AD32E2B1D242A5A000AEC28 /* RouteSchedulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteSchedulesViewController.swift; sourceTree = "<group>"; };
-		9ADD915C21FF670E0068AC28 /* HandleMapSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandleMapSearch.swift; sourceTree = "<group>"; };
-		9ADD915E21FF672E0068AC28 /* HandleLocationPicked.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandleLocationPicked.swift; sourceTree = "<group>"; };
+		9ADD915C21FF670E0068AC28 /* LocationSearchDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchDelegate.swift; sourceTree = "<group>"; };
 		9ADEAE4C1D270CC800BA7DD4 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		9ADF0DFF1D7F5EF600632F3D /* WSDOTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WSDOTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9ADF0E011D7F5EF600632F3D /* WSDOTUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSDOTUITests.swift; sourceTree = "<group>"; };
@@ -511,11 +511,9 @@
 		0263A86521FBD5D10090A954 /* NewMyRoute */ = {
 			isa = PBXGroup;
 			children = (
-				9AA5F4BC2200CBB600E1D4CA /* LocationSearchViewController.swift */,
 				0263A86621FBD73E0090A954 /* MyRouteSetupViewController.swift */,
-				9A345DCE21FA58A500903E71 /* LocationSelectionViewController.swift */,
-				9ADD915E21FF672E0068AC28 /* HandleLocationPicked.swift */,
-				9ADD915C21FF670E0068AC28 /* HandleMapSearch.swift */,
+				9AA5F4C52201102600E1D4CA /* ContainerViewControllers */,
+				9AA5F4C42201101400E1D4CA /* ContainerDelegates */,
 			);
 			name = NewMyRoute;
 			sourceTree = "<group>";
@@ -1152,6 +1150,24 @@
 				9A07192B1D410FD5007BB4C5 /* RouteAlertsViewController.swift */,
 			);
 			name = RouteAlerts;
+			sourceTree = "<group>";
+		};
+		9AA5F4C42201101400E1D4CA /* ContainerDelegates */ = {
+			isa = PBXGroup;
+			children = (
+				9AA5F4C222010B7300E1D4CA /* NewRouteMenuEventDelegate.swift */,
+				9ADD915C21FF670E0068AC28 /* LocationSearchDelegate.swift */,
+			);
+			name = ContainerDelegates;
+			sourceTree = "<group>";
+		};
+		9AA5F4C52201102600E1D4CA /* ContainerViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9AA5F4BC2200CBB600E1D4CA /* LocationSearchViewController.swift */,
+				9AA5F4C0220109DE00E1D4CA /* NewRouteMenuTableViewController.swift */,
+			);
+			name = ContainerViewControllers;
 			sourceTree = "<group>";
 		};
 		9AB017771D514606004C228E /* Cameras */ = {
@@ -1977,6 +1993,7 @@
 				9A7BC0D41DA3F31B00EF760C /* GMUStaticCluster.m in Sources */,
 				9A345DD121FA676E00903E71 /* MapExtensions.swift in Sources */,
 				9AFDEA7A1E428970008DD51E /* MyRouteViewController.swift in Sources */,
+				9AA5F4C1220109DE00E1D4CA /* NewRouteMenuTableViewController.swift in Sources */,
 				9AEF4D951D7608F7003ECA34 /* FlickrViewController.swift in Sources */,
 				9AEF4D8C1D75FEEC003ECA34 /* FacebookViewController.swift in Sources */,
 				9AEF4D851D75DC47003ECA34 /* BloggerCell.swift in Sources */,
@@ -1993,8 +2010,8 @@
 				9AEF4D971D760B72003ECA34 /* FlickrCollectionCell.swift in Sources */,
 				9A6FBCEC1D6C953D00CDCE16 /* CalloutViewController.swift in Sources */,
 				9AEEDDAC1D6F89D90032F5EC /* MountainPassWeatherViewController.swift in Sources */,
+				9AA5F4C322010B7300E1D4CA /* NewRouteMenuEventDelegate.swift in Sources */,
 				9A6FBCCF1D6B520900CDCE16 /* RestAreaItem.swift in Sources */,
-				9A345DCF21FA58A500903E71 /* LocationSelectionViewController.swift in Sources */,
 				9A6FBD001D6CB0A700CDCE16 /* ExpressLanesStore.swift in Sources */,
 				9A0616B91D63867A00126520 /* VesselDetailsViewController.swift in Sources */,
 				9A398D76209A71B600BD84FF /* NotificationsStore.swift in Sources */,
@@ -2068,7 +2085,7 @@
 				9A6FBCE31D6BA2DC00CDCE16 /* AlertInAreaViewController.swift in Sources */,
 				9AEF4DA61D773641003ECA34 /* YouTubeStore.swift in Sources */,
 				9A0892A91E3A903800434AED /* MyRouteCell.swift in Sources */,
-				9ADD915D21FF670E0068AC28 /* HandleMapSearch.swift in Sources */,
+				9ADD915D21FF670E0068AC28 /* LocationSearchDelegate.swift in Sources */,
 				9A0616CE1D660CC800126520 /* SR16ViewController.swift in Sources */,
 				9AB549011D7874E000927F13 /* AmtrakCascadesStationItem.swift in Sources */,
 				02215F3A2167D87500051301 /* SegmentedControlWithBadge.swift in Sources */,
@@ -2128,7 +2145,6 @@
 				9A06167C1D622AE800126520 /* MapViewController.swift in Sources */,
 				9A930A4120533782002D014C /* CameraPageContainerViewController.swift in Sources */,
 				9A6FBCC51D6B4C6500CDCE16 /* TravelerInfoViewController.swift in Sources */,
-				9ADD915F21FF672E0068AC28 /* HandleLocationPicked.swift in Sources */,
 				9A7BC0D31DA3F31B00EF760C /* GMUClusterManager.m in Sources */,
 				9A2C27251D679E5800F05D88 /* TrafficMapSettingsViewController.swift in Sources */,
 			);

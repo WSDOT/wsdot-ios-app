@@ -1,5 +1,5 @@
 //
-//  HandleLocationConfirmed.swift
+//  HandleMapSearch.swift
 //  WSDOT
 //
 //  Created by Logan Sims on 1/28/19.
@@ -8,6 +8,6 @@
 
 import MapKit
 
-protocol HandleLocationPicked {
-    func locationSelected(placemark: MKPlacemark)
+protocol LocationSearchDelegate {
+    func locationSelected(placemark:MKPlacemark)
 }

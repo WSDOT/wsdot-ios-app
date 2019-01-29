@@ -10,7 +10,7 @@ class LocationSearchViewController : UIViewController {
     
     var matchingItems: [MKMapItem] = []
     var mapView: MKMapView!
-    var handleMapSearchDelegate: HandleMapSearch!
+    var mapSearchDelegate: LocationSearchDelegate!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -20,6 +20,26 @@ class LocationSearchViewController : UIViewController {
     // WA is 240 miles long, thats 386243 meters.
     // Set the latitudinal meters (north-to-south) distance to 400,000
     let washingtionRegion = MKCoordinateRegion.init(center: CLLocationCoordinate2D(latitude: 47.3268164, longitude: -118.611365), latitudinalMeters: 400000, longitudinalMeters: 600000)
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        definesPresentationContext = false
+        
+        // always show table view, even when there are no results
+        view.isHidden = false
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.matchingItems = []
+        self.tableView.reloadData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.matchingItems = []
+        self.tableView.reloadData()
+    }
     
     func parseAddress(_ selectedItem:MKPlacemark) -> String {
         // put a space between "4" and "Melrose Place"
@@ -51,6 +71,9 @@ extension LocationSearchViewController : UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         
+        // always show table view, even when there are no results
+        view.isHidden = false
+        
         guard let searchBarText = searchController.searchBar.text else { return }
 
         let request = MKLocalSearch.Request()
@@ -69,6 +92,7 @@ extension LocationSearchViewController : UISearchResultsUpdating {
             self.tableView.reloadData()
         }
     }
+    
 }
 
 extension LocationSearchViewController: UITableViewDataSource, UITableViewDelegate {
@@ -87,9 +111,6 @@ extension LocationSearchViewController: UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedItem = matchingItems[indexPath.row].placemark
-        
-        handleMapSearchDelegate?.locationSelected(placemark: selectedItem)
-        
-        dismiss(animated: true, completion: nil)
+        mapSearchDelegate!.locationSelected(placemark: selectedItem)
     }
 }
