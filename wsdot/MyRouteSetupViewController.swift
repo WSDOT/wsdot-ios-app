@@ -12,9 +12,9 @@ import MapKit
 /**
  * Handles creation of new MyRoutes
  */
-class MyRouteSetupViewController: UIViewController{
+class MyRouteSetupViewController: UIViewController {
 
-    let segueMyRouteRouteSelectionViewController = "MyRouteRouteSelectionViewController"
+    let segueNewRouteSelectionViewController = "NewRouteSelectionViewController"
     
     let segueNewRouteMenuTableViewController = "NewRouteMenuTableViewController"
     let segueLocationSearchViewController = "LocationSearchViewController"
@@ -25,25 +25,26 @@ class MyRouteSetupViewController: UIViewController{
     
     var newRouteMenuViewController: NewRouteMenuTableViewController!
     
+    var pointA: MKPlacemark!
+    var pointB: MKPlacemark!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
         title = "New Route"
-      
-        
-        //getRoute(source: CLLocationCoordinate2D(latitude: 48.756302, longitude: -122.46151), destination: CLLocationCoordinate2D(latitude: 47.021461, longitude: -122.899933))
-        
+   
     }
     
     
     // MARK: Naviagtion
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        
-        if segue.identifier == segueMyRouteRouteSelectionViewController {
-            // TODO:
+        if segue.identifier == segueNewRouteSelectionViewController {
+            if let vc = segue.destination as? NewRouteSelectionViewController {
+                vc.pointA = pointA
+                vc.pointB = pointB
+            }
         }
-        
         
         // container view segue for new route table
         if segue.identifier == segueNewRouteMenuTableViewController {
@@ -80,71 +81,9 @@ class MyRouteSetupViewController: UIViewController{
     func adaptivePresentationStyleForPresentationController(_ controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.none
     }
-
-    // MARK: Helper methods
-    func getRoute(source: CLLocationCoordinate2D, destination: CLLocationCoordinate2D) {
-        
-        let request = MKDirections.Request()
-        request.source = MKMapItem(placemark: MKPlacemark(coordinate: source, addressDictionary: nil))
-        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: destination, addressDictionary: nil))
-        request.requestsAlternateRoutes = true
-        request.transportType = .automobile
-
-        let directions = MKDirections(request: request)
-
-        // Make a MKDirections request and plot the first returned route
-        directions.calculate { [unowned self] response, error in
-            guard let unwrappedResponse = response else { return }
-
-            //self.mapView.addOverlay(unwrappedResponse.routes[0].polyline)
-            //self.mapView.setVisibleMapRect(unwrappedResponse.routes[0].polyline.boundingMapRect, animated: true)
-            
-            self.getAlertsOnPolyline(polyline: unwrappedResponse.routes[0].polyline)
-        }
-    }
-    
-    func getAlertsOnPolyline(polyline: MKPolyline) {
-    
-        let alerts = HighwayAlertsStore.getAllAlerts()
-        
-        for alert in alerts {
-        
-            if polylineIsNearby(locations:
-                    [CLLocation(latitude: alert.startLatitude, longitude: alert.startLongitude),
-                    CLLocation(latitude: alert.endLatitude, longitude: alert.endLongitude)], polyline: polyline) {
-        
-                print(alert.headlineDesc)
-            }
-        }
-    }
-    
-    
-    func polylineIsNearby(locations: [CLLocation], polyline:MKPolyline) -> Bool {
-    
-        for coord in polyline.coordinates {
-            for location in locations {
-                let coordLocation = CLLocation(latitude: coord.latitude, longitude: coord.longitude)
-                // distance in meters
-                if location.distance(from: coordLocation) < 400 {
-                    return true
-                }
-            }
-        }
-        return false
-    }
     
 }
 
-
-// MARK: Map Delegate methods
-extension MyRouteSetupViewController {
-
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        let renderer = MKPolylineRenderer(polyline: overlay as! MKPolyline)
-        renderer.strokeColor = UIColor.blue
-        return renderer
-    }
-}
 
 extension MyRouteSetupViewController: LocationSearchDelegate {
 
@@ -201,30 +140,34 @@ extension MyRouteSetupViewController: LocationSearchDelegate {
          switch (locationIndex){
             case 0: // Point A
                 newRouteMenuViewController.originCell.selection.text = placemark.title
+                pointA = placemark
                 break
             case 1: // Point B
                 newRouteMenuViewController.destinationCell.selection.text = placemark.title
+                pointB = placemark
                 break
             default: break
         }
+        
+        if (pointA != nil && pointB != nil) {
+            newRouteMenuViewController.submitLabel.textColor = Colors.wsdotPrimary
+            newRouteMenuViewController.submitCell.isUserInteractionEnabled = true
+        }
+        
     }
 }
 
 extension MyRouteSetupViewController: NewRouteMenuEventDelegate {
 
-
     func searchRoutes() {
-         performSegue(withIdentifier: segueMyRouteRouteSelectionViewController, sender: self)
+        performSegue(withIdentifier: segueNewRouteSelectionViewController, sender: self)
     }
 
     func locationSearch(_ cellIndex: Int) {
         locationIndex = cellIndex
-        
         present(searchController, animated: true, completion: nil)
-        
     }
     
-
 }
 
 

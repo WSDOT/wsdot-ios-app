@@ -34,11 +34,13 @@ class MyRouteViewController: UIViewController {
 
     @IBOutlet weak var noRoutesView: UIView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var newRouteButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.isEditing = true
         tableView.allowsSelectionDuringEditing = true
+        styleButtons()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -356,6 +358,11 @@ class MyRouteViewController: UIViewController {
     @objc func openMap(sender: UIButton){
         MyAnalytics.event(category: "My Route", action: "UIAction", label: "Open Route")
         performSegue(withIdentifier: segueTrafficMapViewController, sender: sender)
+    }
+    
+    func styleButtons() {
+        newRouteButton.layer.cornerRadius = 5
+        newRouteButton.clipsToBounds = true
     }
 }
 

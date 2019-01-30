@@ -19,8 +19,13 @@ class NewRouteMenuTableViewController: UITableViewController  {
     var newRouteMenuEventDelegate: NewRouteMenuEventDelegate!
     
     override func viewDidLoad() {
-          submitLabel.textColor = Colors.wsdotPrimary
-          definesPresentationContext = false
+        submitLabel.textColor = Colors.wsdotPrimary
+        definesPresentationContext = false
+
+        // submit diabled until we get two points
+        submitLabel.textColor = .gray
+        submitCell.isUserInteractionEnabled = false
+        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

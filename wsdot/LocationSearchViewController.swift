@@ -12,6 +12,8 @@ class LocationSearchViewController : UIViewController {
     var mapView: MKMapView!
     var mapSearchDelegate: LocationSearchDelegate!
     
+    var search: MKLocalSearch!
+    
     @IBOutlet weak var tableView: UITableView!
     
     // Center at the center of Washington
@@ -39,6 +41,9 @@ class LocationSearchViewController : UIViewController {
         super.viewWillDisappear(animated)
         self.matchingItems = []
         self.tableView.reloadData()
+        if (search != nil) {
+            search.cancel()
+        }
     }
     
     func parseAddress(_ selectedItem:MKPlacemark) -> String {
@@ -81,7 +86,11 @@ extension LocationSearchViewController : UISearchResultsUpdating {
         request.naturalLanguageQuery = searchBarText
         request.region = washingtionRegion
         
-        let search = MKLocalSearch(request: request)
+        if (search != nil){
+            search.cancel()
+        }
+        
+        search = MKLocalSearch(request: request)
         
         search.start { response, _ in
             guard let response = response else {

@@ -106,94 +106,38 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjL-1O-N5b">
                                                 <rect key="frame" x="8" y="537.5" width="359" height="57.5"/>
-                                                <string key="text">*Your route information is stored on your device and
+                                                <string key="text">Your route information is stored on your device and
 is not shared with anyone. 
 WSDOT provides traffic alert information for
  Washington State highways only.</string>
                                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
+                                                <string key="userLabel">*Your route information is stored on your device and is not shared with anyone.  WSDOT provides traffic alert information for  Washington State highways only.</string>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hc0-K8-jcU">
-                                                <rect key="frame" x="8" y="180" width="359" height="72"/>
-                                                <attributedString key="attributedText">
-                                                    <fragment>
-                                                        <string key="content">Create a custom route by tracking your commute using your phone's GPS. Once created, you can check for alerts on your route and automatically add content on your route to your favorites.</string>
-                                                        <attributes>
-                                                            <color key="NSColor" red="0.11764705882352941" green="0.14509803921568626" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <font key="NSFont" size="15" name=".AppleSystemUIFont"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                    <fragment content="*">
-                                                        <attributes>
-                                                            <color key="NSColor" red="0.11764705882352941" green="0.14509803921568629" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <font key="NSFont" size="15" name="HelveticaNeue"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
-                                                <nil key="highlightedColor"/>
-                                                <variation key="heightClass=compact">
-                                                    <attributedString key="attributedText">
-                                                        <fragment>
-                                                            <string key="content">Create a custom route by tracking your commute using your phone's GPS. Once created, you can check for alerts on your route and automatically add content on your route to your favorites.</string>
-                                                            <attributes>
-                                                                <color key="NSColor" red="0.11764705882352941" green="0.14509803921568626" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" size="15" name=".AppleSystemUIFont"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                        <fragment content="*">
-                                                            <attributes>
-                                                                <color key="NSColor" red="0.11764705882352941" green="0.14509803921568629" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" size="15" name="HelveticaNeue"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                </variation>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ejw-0o-DZu">
-                                                <rect key="frame" x="8" y="352" width="359" height="50"/>
+                                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ejw-0o-DZu">
+                                                <rect key="frame" x="61" y="181" width="253" height="50"/>
+                                                <color key="backgroundColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="qIJ-ub-vNh"/>
+                                                    <constraint firstAttribute="height" constant="50" id="t5R-HV-VS7"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <state key="normal" title="Create Your First Route">
-                                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="firstNewRouteButtonPressed:" destination="03C-G7-6I3" eventType="touchUpInside" id="enp-Qt-XMq"/>
                                                 </connections>
                                             </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" image="icGreenCar" translatesAutoresizingMaskIntoConstraints="NO" id="39k-hg-tXB">
-                                                <rect key="frame" x="137.5" y="40" width="100" height="100"/>
-                                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="100" id="4DL-0Z-jAi"/>
-                                                    <constraint firstAttribute="height" constant="100" id="Szs-Aq-BkK"/>
-                                                </constraints>
-                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="Hc0-K8-jcU" firstAttribute="top" secondItem="39k-hg-tXB" secondAttribute="bottom" priority="249" constant="40" id="1hF-yx-wdv"/>
-                                            <constraint firstItem="Ejw-0o-DZu" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Hc0-K8-jcU" secondAttribute="bottom" constant="4" id="59u-ud-fMv"/>
-                                            <constraint firstItem="39k-hg-tXB" firstAttribute="centerX" secondItem="Af5-gr-Ho8" secondAttribute="centerX" id="AS9-C1-9Yc"/>
-                                            <constraint firstItem="39k-hg-tXB" firstAttribute="top" secondItem="Af5-gr-Ho8" secondAttribute="top" priority="249" constant="40" id="CgH-kj-r9s"/>
+                                            <constraint firstItem="Ejw-0o-DZu" firstAttribute="top" secondItem="Af5-gr-Ho8" secondAttribute="top" constant="181" id="4jX-EL-ZF9"/>
                                             <constraint firstAttribute="trailing" secondItem="xjL-1O-N5b" secondAttribute="trailing" constant="8" id="Cyc-ks-S0P"/>
-                                            <constraint firstItem="Hc0-K8-jcU" firstAttribute="leading" secondItem="Af5-gr-Ho8" secondAttribute="leading" constant="8" id="ERH-7L-InG"/>
-                                            <constraint firstItem="39k-hg-tXB" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Af5-gr-Ho8" secondAttribute="top" constant="4" id="KcQ-70-PMW"/>
-                                            <constraint firstItem="Ejw-0o-DZu" firstAttribute="leading" secondItem="Af5-gr-Ho8" secondAttribute="leading" constant="8" id="MgL-qg-Q5m"/>
-                                            <constraint firstAttribute="trailing" secondItem="Ejw-0o-DZu" secondAttribute="trailing" constant="8" id="X0H-T1-f2R"/>
-                                            <constraint firstItem="xjL-1O-N5b" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Ejw-0o-DZu" secondAttribute="bottom" constant="4" id="Yjn-JY-5GE"/>
                                             <constraint firstItem="xjL-1O-N5b" firstAttribute="leading" secondItem="Af5-gr-Ho8" secondAttribute="leading" constant="8" id="a6t-NV-OE8"/>
-                                            <constraint firstItem="Ejw-0o-DZu" firstAttribute="top" secondItem="Hc0-K8-jcU" secondAttribute="bottom" priority="249" constant="100" id="dra-BR-9sO"/>
-                                            <constraint firstItem="xjL-1O-N5b" firstAttribute="top" secondItem="Ejw-0o-DZu" secondAttribute="bottom" priority="249" constant="135" id="dwx-9T-OHh"/>
+                                            <constraint firstItem="Ejw-0o-DZu" firstAttribute="centerX" secondItem="xjL-1O-N5b" secondAttribute="centerX" id="gNJ-UK-ssq"/>
                                             <constraint firstAttribute="bottom" secondItem="xjL-1O-N5b" secondAttribute="bottom" constant="8" id="iUp-nx-qBk"/>
-                                            <constraint firstAttribute="trailing" secondItem="Hc0-K8-jcU" secondAttribute="trailing" constant="8" id="kia-1v-lET"/>
-                                            <constraint firstItem="Hc0-K8-jcU" firstAttribute="top" relation="greaterThanOrEqual" secondItem="39k-hg-tXB" secondAttribute="bottom" constant="4" id="oy3-3o-TiY"/>
+                                            <constraint firstItem="Ejw-0o-DZu" firstAttribute="leading" secondItem="Af5-gr-Ho8" secondAttribute="leading" constant="61" id="nVV-p2-Fem"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -213,13 +157,14 @@ WSDOT provides traffic alert information for
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RouteCell" rowHeight="43" id="DVl-Tm-cta" customClass="MyRouteCell" customModule="WSDOT" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="DVl-Tm-cta" id="qB2-s5-rin">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DVl-Tm-cta" id="qB2-s5-rin">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="42.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8l8-Ww-YNV">
-                                                    <rect key="frame" x="54" y="13" width="173" height="16"/>
+                                                    <rect key="frame" x="54" y="13" width="173" height="20.5"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="ML6-jb-Dvk"/>
                                                         <constraint firstAttribute="width" constant="173" id="r8a-sM-EtX"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -289,6 +234,7 @@ WSDOT provides traffic alert information for
                                                 <constraint firstAttribute="bottomMargin" secondItem="8l8-Ww-YNV" secondAttribute="bottom" constant="3" id="PAq-q5-0Ly"/>
                                                 <constraint firstItem="mHE-eN-ZZv" firstAttribute="leading" secondItem="UJe-JT-Ad7" secondAttribute="trailing" constant="27" id="dta-8W-KvO"/>
                                                 <constraint firstItem="B0T-Kn-eX4" firstAttribute="leading" secondItem="qB2-s5-rin" secondAttribute="leadingMargin" constant="6" id="iTM-YD-6lB"/>
+                                                <constraint firstItem="8l8-Ww-YNV" firstAttribute="centerY" secondItem="qB2-s5-rin" secondAttribute="centerY" id="ivx-ip-dc8"/>
                                                 <constraint firstItem="V5D-3z-fG7" firstAttribute="leading" secondItem="mHE-eN-ZZv" secondAttribute="trailing" constant="27" id="mVB-Sa-dxo"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="V5D-3z-fG7" secondAttribute="trailing" constant="13" id="neX-P7-G1j"/>
                                                 <constraint firstItem="8l8-Ww-YNV" firstAttribute="top" secondItem="qB2-s5-rin" secondAttribute="topMargin" constant="2" id="pgJ-kI-oYn"/>
@@ -337,6 +283,7 @@ WSDOT provides traffic alert information for
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
+                        <outlet property="newRouteButton" destination="Ejw-0o-DZu" id="VFp-fu-D2H"/>
                         <outlet property="noRoutesView" destination="lPD-Y6-jfx" id="qV6-ZI-3mS"/>
                         <outlet property="tableView" destination="qNq-WC-ZIi" id="Ev7-bZ-2Vg"/>
                         <segue destination="xFY-dz-YTB" kind="show" identifier="MyRouteMapViewController" id="3Tl-RR-3re"/>
@@ -347,7 +294,7 @@ WSDOT provides traffic alert information for
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XJq-ei-9aR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-285" y="-699"/>
+            <point key="canvasLocation" x="-285.60000000000002" y="-699.40029985007504"/>
         </scene>
         <!--TrafficMap-->
         <scene sceneID="waL-74-g2b">
@@ -518,10 +465,13 @@ WSDOT provides traffic alert information for
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <segue destination="ytH-ri-Kzn" kind="show" identifier="NewRouteSelectionViewController" id="kHl-TK-Hj6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OTI-fb-HEc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1877.5999999999999" y="-720.08995502248877"/>
+            <point key="canvasLocation" x="1068" y="-700"/>
         </scene>
         <!--New Route Menu Table View Controller-->
         <scene sceneID="2ok-3c-gul">
@@ -650,12 +600,87 @@ WSDOT provides traffic alert information for
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lFZ-Eb-U4n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2676" y="-360"/>
+            <point key="canvasLocation" x="1788" y="-672"/>
+        </scene>
+        <!--New Route Selection View Controller-->
+        <scene sceneID="lO4-92-5DA">
+            <objects>
+                <viewController id="ytH-ri-Kzn" customClass="NewRouteSelectionViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hew-Vd-QwP"/>
+                        <viewControllerLayoutGuide type="bottom" id="3wk-kf-5vC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zKM-D2-Sy6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="al8-2s-AyL">
+                                <rect key="frame" x="0.0" y="64" width="375" height="368"/>
+                                <connections>
+                                    <outlet property="delegate" destination="ytH-ri-Kzn" id="aSp-78-xcz"/>
+                                </connections>
+                            </mapView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xQw-Od-ate">
+                                <rect key="frame" x="0.0" y="440" width="375" height="170"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="170" id="NXS-Ne-qzK"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="routeCell" id="oUe-RH-5If">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oUe-RH-5If" id="xBZ-9U-ch4">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="ytH-ri-Kzn" id="JCr-RP-RKP"/>
+                                    <outlet property="delegate" destination="ytH-ri-Kzn" id="zJG-Nc-pzc"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s6q-zm-sVT">
+                                <rect key="frame" x="92" y="618" width="191" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Use This Route">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="al8-2s-AyL" firstAttribute="top" secondItem="hew-Vd-QwP" secondAttribute="bottom" id="HYX-T6-d7u"/>
+                            <constraint firstItem="al8-2s-AyL" firstAttribute="leading" secondItem="zKM-D2-Sy6" secondAttribute="leading" id="ImS-hf-VhM"/>
+                            <constraint firstItem="s6q-zm-sVT" firstAttribute="top" secondItem="xQw-Od-ate" secondAttribute="bottom" constant="8" symbolic="YES" id="Iuv-T2-v83"/>
+                            <constraint firstItem="s6q-zm-sVT" firstAttribute="leading" secondItem="zKM-D2-Sy6" secondAttribute="leadingMargin" constant="76" id="NBI-M3-Mh7"/>
+                            <constraint firstAttribute="trailing" secondItem="al8-2s-AyL" secondAttribute="trailing" id="V8l-qd-0h9"/>
+                            <constraint firstItem="al8-2s-AyL" firstAttribute="leading" secondItem="xQw-Od-ate" secondAttribute="leading" id="aFO-l0-7wD"/>
+                            <constraint firstItem="xQw-Od-ate" firstAttribute="top" secondItem="al8-2s-AyL" secondAttribute="bottom" constant="8" symbolic="YES" id="hhH-ir-7Jb"/>
+                            <constraint firstItem="al8-2s-AyL" firstAttribute="trailing" secondItem="xQw-Od-ate" secondAttribute="trailing" id="keo-I7-XDO"/>
+                            <constraint firstItem="s6q-zm-sVT" firstAttribute="centerX" secondItem="xQw-Od-ate" secondAttribute="centerX" id="ta0-aA-jy0"/>
+                            <constraint firstItem="3wk-kf-5vC" firstAttribute="top" secondItem="s6q-zm-sVT" secondAttribute="bottom" constant="19" id="xNw-br-7J1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="al8-2s-AyL" id="Daf-7r-2zT"/>
+                        <outlet property="submitButton" destination="s6q-zm-sVT" id="j2f-Ba-tjG"/>
+                        <outlet property="tableView" destination="xQw-Od-ate" id="aCA-D7-c34"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vq1-IX-iGo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2701.5999999999999" y="-701.19940029985014"/>
         </scene>
         <!--Location Search View Controller-->
         <scene sceneID="glW-2j-eGQ">
             <objects>
                 <viewController storyboardIdentifier="LocationSearchViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="chM-2h-P1K" customClass="LocationSearchViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XKV-Um-nrp"/>
+                        <viewControllerLayoutGuide type="bottom" id="rkc-AJ-ggX"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="mcF-Zn-pC5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -710,14 +735,13 @@ WSDOT provides traffic alert information for
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zK2-UG-X0F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2711" y="-1154"/>
+            <point key="canvasLocation" x="1788" y="-1334"/>
         </scene>
     </scenes>
     <resources>
         <image name="icAlert" width="48" height="48"/>
         <image name="icFavoriteDefault" width="64" height="64"/>
         <image name="icGear" width="48" height="48"/>
-        <image name="icGreenCar" width="240" height="240"/>
         <image name="icMap" width="48" height="48"/>
     </resources>
 </document>
