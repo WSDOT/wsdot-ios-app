@@ -56,7 +56,7 @@ class MyRouteStore {
     }
     
     // Creates a new MyRouteItem, returns the id of the newly saved route, or -1 on error
-    static func save(route: [CLLocation], name: String, displayLat: Double, displayLong: Double, displayZoom: Float) -> Int {
+    static func save(route: [CLLocationCoordinate2D], name: String, displayLat: Double, displayLong: Double, displayZoom: Float) -> Int {
     
         let myRouteItem = MyRouteItem()
         
@@ -68,8 +68,8 @@ class MyRouteStore {
         
         for location in route {
             let locationItem = MyRouteLocationItem()
-            locationItem.lat = location.coordinate.latitude
-            locationItem.long = location.coordinate.longitude
+            locationItem.lat = location.latitude
+            locationItem.long = location.longitude
             myRouteItem.route.append(locationItem)
         }
     

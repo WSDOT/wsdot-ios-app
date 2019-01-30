@@ -23,9 +23,7 @@ import UIKit
 class MyRouteViewController: UIViewController {
 
     let segueNewRouteViewController = "RouteSetupViewController"
-    let segueMyRouteMapViewController = "MyRouteMapViewController"
     let segueMyRouteAlertsViewController = "MyRouteAlertsViewController"
-    let segueTrafficMapViewController = "TrafficMapViewController"
     
     let routeCellIdentifier = "RouteCell"
     
@@ -35,6 +33,7 @@ class MyRouteViewController: UIViewController {
     @IBOutlet weak var noRoutesView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var newRouteButton: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -289,16 +288,10 @@ class MyRouteViewController: UIViewController {
             self.tableView.reloadData()
         }
         
-        let showRouteOnMapAction = UIAlertAction(title: "Check Route on Map", style: .default) { (result : UIAlertAction) -> Void in
-            MyAnalytics.event(category: "My Route", action: "UIAction", label: "View Route")
-            self.performSegue(withIdentifier: self.segueMyRouteMapViewController, sender: sender)
-        }
-        
         editController.addAction(cancelAction)
         editController.addAction(deleteAction)
         editController.addAction(renameAction)
         editController.addAction(reloadAction)
-        editController.addAction(showRouteOnMapAction)
     
         self.present(editController, animated: true, completion: nil)
 
@@ -306,15 +299,7 @@ class MyRouteViewController: UIViewController {
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == segueTrafficMapViewController {
-            if let mapButton = sender as! UIButton? {
-                UserDefaults.standard.set(myRoutes[mapButton.tag].displayLatitude, forKey: UserDefaultsKeys.mapLat)
-                UserDefaults.standard.set(myRoutes[mapButton.tag].displayLongitude, forKey: UserDefaultsKeys.mapLon)
-                UserDefaults.standard.set(myRoutes[mapButton.tag].displayZoom, forKey: UserDefaultsKeys.mapZoom)
-                segue.destination.title = "Traffic Map"
-            }
-        }
+    
        
         if segue.identifier == segueMyRouteAlertsViewController {
             if let alertButton =  sender as! UIButton? {
@@ -324,22 +309,7 @@ class MyRouteViewController: UIViewController {
                 destinationViewController.navigationController?.navigationBar.tintColor = Colors.tintColor
             }
         }
-        
-        if segue.identifier == segueMyRouteMapViewController {
-            if let mapButton =  sender as! UIButton? {
-                let destinationViewController = segue.destination as! MyRouteMapViewController
-                destinationViewController.title = "Route: \(myRoutes[mapButton.tag].name)"
-                
-                var locations = [CLLocation]()
-                
-                for location in myRoutes[mapButton.tag].route {
-                    locations.append(CLLocation(latitude: location.lat, longitude: location.long))
-                }
-            
-                destinationViewController.myRouteLocations = locations
-                destinationViewController.navigationController?.navigationBar.tintColor = Colors.tintColor
-            }
-        }
+
     }
     
     /**
@@ -351,14 +321,7 @@ class MyRouteViewController: UIViewController {
         performSegue(withIdentifier: segueMyRouteAlertsViewController, sender: sender)
     }
     
-    /**
-     * Method name: checkAlerts
-     * Description: action fun for openMap button on a route cell
-     */
-    @objc func openMap(sender: UIButton){
-        MyAnalytics.event(category: "My Route", action: "UIAction", label: "Open Route")
-        performSegue(withIdentifier: segueTrafficMapViewController, sender: sender)
-    }
+
     
     func styleButtons() {
         newRouteButton.layer.cornerRadius = 5
@@ -372,6 +335,10 @@ extension MyRouteViewController:  UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return myRoutes.count
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -396,9 +363,6 @@ extension MyRouteViewController:  UITableViewDataSource, UITableViewDelegate {
         
         routeCell.checkAlertsButton.tag = indexPath.row
         routeCell.checkAlertsButton.addTarget(self, action:#selector(MyRouteViewController.checkAlerts), for: .touchUpInside)
-            
-        routeCell.checkMapButton.tag = indexPath.row
-        routeCell.checkMapButton.addTarget(self, action: #selector(MyRouteViewController.openMap), for: .touchUpInside)
         
         routeCell.setButton.tag = indexPath.row
         routeCell.setButton.addTarget(self, action:#selector(MyRouteViewController.setRoute), for: .touchUpInside)

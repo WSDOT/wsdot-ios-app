@@ -36,7 +36,49 @@ class NewRouteSelectionViewController: UIViewController  {
         getRoute(source: CLLocationCoordinate2D(latitude: pointA.coordinate.latitude, longitude: pointA.coordinate.longitude), destination: CLLocationCoordinate2D(latitude: pointB.coordinate.latitude, longitude: pointB.coordinate.longitude))
         
     }
+    
+    @IBAction func submitAction(_ sender: UIButton) {
+    
+        let route = routes[selectedRouteIndex]
 
+        let name = "\(pointA.name!) to \(pointB.name!) via \(route.name)"
+
+        let id =  MyRouteStore.save(route: route.polyline.coordinates, name: name,
+            displayLat: 0,
+            displayLong: 0,
+            displayZoom: 11)
+        
+        
+        let addFavoritesAlertController = UIAlertController(title: "Add Favorites?", message:"Traffic cameras, travel times, pass reports, and other content will be added to your favorites if they are on this route. \n\n You can do this later by tapping Edit on the My Routes screen.", preferredStyle: .alert)
+        
+        
+        let addAction = UIAlertAction(title: "Yes", style: .default) { (_) -> Void in
+            self.navigationItem.hidesBackButton = false
+            self.view.accessibilityElementsHidden = false
+            
+            let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
+            self.navigationController!.popToViewController(viewControllers[viewControllers.count - 3], animated: true)
+        }
+        
+        let noAction = UIAlertAction(title: "No", style: .cancel) { (_) -> Void in
+            self.navigationItem.hidesBackButton = false
+            self.view.accessibilityElementsHidden = false
+            _ = MyRouteStore.updateFindNearby(forRoute: MyRouteStore.getRouteById(id)!, foundCameras: true, foundTimes: true, foundFerries: true, foundPasses: true)
+            
+            let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
+            self.navigationController!.popToViewController(viewControllers[viewControllers.count - 3], animated: true)
+            
+        }
+        
+        addFavoritesAlertController.addAction(addAction)
+        addFavoritesAlertController.addAction(noAction)
+        
+        addFavoritesAlertController.view.tintColor = Colors.tintColor
+        
+        self.present(addFavoritesAlertController, animated: false, completion: nil)
+    
+    }
+    
     func getRoute(source: CLLocationCoordinate2D, destination: CLLocationCoordinate2D) {
         
         let request = MKDirections.Request()

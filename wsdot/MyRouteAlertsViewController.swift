@@ -38,8 +38,12 @@ class MyRouteAlertsViewController: UIViewController {
     let refreshControl = UIRefreshControl()
     var activityIndicator = UIActivityIndicatorView()
 
-    @IBOutlet weak var noAlertsView: UIView!
+    fileprivate var alertMarkers = Set<GMSMarker>()
+
+    @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var tableView: UITableView!
+    
+    //@IBOutlet weak var accessibilityMapLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,8 +51,15 @@ class MyRouteAlertsViewController: UIViewController {
         showOverlay(self.view)
         loadAlerts(force: true)
         
+        // Prepare Google mapView
+        mapView.delegate = self
+        mapView.isMyLocationEnabled = true
+        mapView.isTrafficEnabled = true
+        
+        _ = drawRouteOnMap(Array(route!.route))
+        
         // refresh controller
-        refreshControl.addTarget(self, action: #selector(FavoritesHomeViewController.refreshAction(_:)), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(MyRouteAlertsViewController.refreshAction(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
         
     }
@@ -58,13 +69,7 @@ class MyRouteAlertsViewController: UIViewController {
         MyAnalytics.screenView(screenName: "MyRouteAlerts")
     }
 
-    func refreshAction(_ refreshController: UIRefreshControl){
-        loadAlerts(force: true)
-    }
-
-    @IBAction func checkAgainButtonPressed(_ sender: UIButton) {
-        //noAlertsView.isHidden = true
-        showOverlay(self.view)
+    @objc func refreshAction(_ refreshController: UIRefreshControl){
         loadAlerts(force: true)
     }
     
@@ -77,12 +82,7 @@ class MyRouteAlertsViewController: UIViewController {
             requestAlertsUpdate(force, serviceGroup: serviceGroup)
                 
             serviceGroup.notify(queue: DispatchQueue.main) {
-            
-                if self.alerts.count == 0 {
-                    self.noAlertsView.isHidden = false
-                } else {
-                    self.noAlertsView.isHidden = true
-                }
+
                 
                 self.constructionAlerts.removeAll()
                 self.specialEvents.removeAll()
@@ -106,6 +106,9 @@ class MyRouteAlertsViewController: UIViewController {
             
                 self.tableView.reloadData()
                 self.hideOverlayView()
+                
+                self.drawAlerts()
+                
                 self.refreshControl.endRefreshing()
             }
         }
@@ -190,12 +193,150 @@ class MyRouteAlertsViewController: UIViewController {
     // Get refrence to child VC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == segueHighwayAlertViewController {
-            let alertItem = (sender as! HighwayAlertItem)
-            let destinationViewController = segue.destination as! HighwayAlertViewController
-            destinationViewController.alertItem = alertItem
+            
+            if let alertItem = (sender as? HighwayAlertItem) {
+                let destinationViewController = segue.destination as! HighwayAlertViewController
+            
+                destinationViewController.alertId = alertItem.alertId
+            }
+            
+            if let marker = sender as? GMSMarker {
+            
+                if let alertId = marker.userData as? Int {
+            
+                    let destinationViewController = segue.destination as! HighwayAlertViewController
+                    destinationViewController.alertId = alertId
+                }
+            
+            }
         }
     }
 
+}
+
+extension MyRouteAlertsViewController: GMSMapViewDelegate {
+
+    // MARK: GMSMapViewDelegate
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+
+        // Check for overlapping markers.
+        var markers = alertMarkers
+        markers.remove(marker)
+ 
+        performSegue(withIdentifier: segueHighwayAlertViewController, sender: marker)
+       
+        return true
+    }
+
+    func drawAlerts(){
+    
+        // clear any old markers
+        for marker in alertMarkers {
+            marker.map = nil
+        }
+        
+        alertMarkers.removeAll()
+    
+        for alert in self.alerts {
+    
+            let alertLocation = CLLocationCoordinate2D(latitude: alert.startLatitude, longitude: alert.startLongitude)
+            let marker = GMSMarker(position: alertLocation)
+            marker.snippet = "alert"
+        
+            marker.icon = UIHelpers.getAlertIcon(forAlert: alert)
+        
+            marker.userData = alert.alertId
+            marker.map = mapView
+        
+            alertMarkers.insert(marker)
+        }
+    
+    }
+
+    /**
+     * Method name: displayRouteOnMap()
+     * Description: sets mapView camera to show all of the newly recording route if there is data.
+     * Parameters: locations: Array of CLLocations that make up the route.
+     */
+    func drawRouteOnMap(_ route: [MyRouteLocationItem]) -> Bool {
+        
+        var locations = [CLLocation]()
+        
+        for location in route {
+            locations.append(CLLocation(latitude: location.lat, longitude: location.long))
+        }
+        
+        if let region = MyRouteStore.getRouteMapRegion(locations: locations) {
+            
+            // set Map Bounds
+            let bounds = GMSCoordinateBounds(coordinate: region.nearLeft,coordinate: region.farRight)
+            let camera = mapView.camera(for: bounds, insets:UIEdgeInsets.zero)
+            mapView.camera = camera!
+            
+            let myPath = GMSMutablePath()
+            
+            for location in locations {
+                myPath.add(location.coordinate)
+            }
+            
+            let MyRoute = GMSPolyline(path: myPath)
+            
+            //setRouteAccessibilityLabel(locations: locations)
+            
+            MyRoute.spans = [GMSStyleSpan(color: UIColor(red: 0, green: 0.6588, blue: 0.9176, alpha: 1))] /* #00a8ea */
+            MyRoute.strokeWidth = 2
+            MyRoute.map = mapView
+            mapView.animate(toZoom: (camera?.zoom)! - 0.5)
+        
+            return true
+        } else {
+            return false
+        }
+    }
+/*
+    func setRouteAccessibilityLabel(locations: [CLLocation]) {
+    
+        self.accessibilityMapLabel.isHidden = false
+        self.accessibilityMapLabel.accessibilityLabel = "Checking route start and end points..."
+    
+        if let firstLocation = locations.first {
+            
+            let geocoder = GMSGeocoder()
+            geocoder.reverseGeocodeCoordinate(firstLocation.coordinate) { response, error in
+                if let address = response?.firstResult() {
+ 
+                    let lines = address.lines!
+                    let startAddress = lines.joined(separator: "\n")
+                    
+                    if let endLocation = locations.last {
+                    
+                        geocoder.reverseGeocodeCoordinate(endLocation.coordinate) { response, error in
+                            if let address = response?.firstResult() {
+ 
+                                let lines = address.lines!
+                                let endAddress = lines.joined(separator: "\n")
+ 
+                                self.accessibilityMapLabel.accessibilityLabel = "Route starts near " + startAddress + " and ends near " + endAddress
+
+                            }
+                        }
+                    }else {
+                        self.accessibilityMapLabel.accessibilityLabel = "Route starts near " + startAddress + " and ends at an unknown location"
+                    }
+                } else {
+                    self.accessibilityMapLabel.accessibilityLabel = "Uable to determine recorded route start and end points because of network issues. Double tap to try again."
+                    print(error ?? "no error found")
+
+                    let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tapResponse(_:)))
+                    tapGesture.numberOfTapsRequired = 1
+                    self.accessibilityMapLabel.isUserInteractionEnabled =  true
+                    self.accessibilityMapLabel.addGestureRecognizer(tapGesture)
+
+                }
+            }
+        }
+    }
+*/
 }
 
 // MARK: - TableView
