@@ -39,6 +39,9 @@ class MyRouteItem: Object {
     
     let route = List<MyRouteLocationItem>()
     
+    let cameraIds = List<Int>()
+    let travelTimeIds = List<Int>()
+    
     override static func primaryKey() -> String? {
         return "id"
     }

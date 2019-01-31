@@ -25,6 +25,7 @@ import SafariServices
 class MyRouteReportViewController: UIViewController {
 
     var alerts = [HighwayAlertItem]()
+    var cameras = [CameraItem]()
     
     var trafficAlerts = [HighwayAlertItem]()
     var constructionAlerts = [HighwayAlertItem]()
@@ -39,6 +40,7 @@ class MyRouteReportViewController: UIViewController {
     var activityIndicator = UIActivityIndicatorView()
 
     fileprivate var alertMarkers = Set<GMSMarker>()
+    fileprivate var cameraMarkers = Set<GMSMarker>()
 
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var tableView: UITableView!
@@ -156,9 +158,9 @@ class MyRouteReportViewController: UIViewController {
             let serviceGroup = DispatchGroup();
             
             requestAlertsUpdate(force, serviceGroup: serviceGroup)
+            //requestCamerasUpdate(force, serviceGroup: serviceGroup)
                 
             serviceGroup.notify(queue: DispatchQueue.main) {
-
                 
                 self.constructionAlerts.removeAll()
                 self.specialEvents.removeAll()
@@ -184,11 +186,13 @@ class MyRouteReportViewController: UIViewController {
                 self.hideOverlayView()
                 
                 self.drawAlerts()
+                //self.drawCameras()
                 
                 self.refreshControl.endRefreshing()
             }
         }
     }
+    
 
     fileprivate func requestAlertsUpdate(_ force: Bool, serviceGroup: DispatchGroup) {
         serviceGroup.enter()
@@ -227,6 +231,50 @@ class MyRouteReportViewController: UIViewController {
                     }
 
                     self.alerts = self.alerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
+                    
+                    serviceGroup.leave()
+                }else{
+                    serviceGroup.leave()
+                    DispatchQueue.main.async { [weak self] in
+                        if let selfValue = self{
+                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                        }
+                    }
+                }
+            })
+        
+    }
+    
+    fileprivate func requestCamerasUpdate(_ force: Bool, serviceGroup: DispatchGroup) {
+        serviceGroup.enter()
+        
+        let routeRef = ThreadSafeReference(to: self.route!)
+        
+            CamerasStore.updateCameras(force, completion: { error in
+                if (error == nil){
+                
+                    let routeItem = try! Realm().resolve(routeRef)
+                    let nearbyCameras = MyRouteStore.getNearbyCameras(forRoute: routeItem!, withCameras: CamerasStore.getAllCameras())
+                    
+                    self.cameras.removeAll()
+                    
+                    // copy alerts to unmanaged Realm object so we can access on main thread.
+                    for camera in nearbyCameras {
+                        let tempCamera = CameraItem()
+                        
+                        tempCamera.cameraId = camera.cameraId
+                        tempCamera.latitude = camera.latitude
+                        tempCamera.longitude = camera.longitude
+                        tempCamera.direction = camera.direction
+                        tempCamera.milepost = camera.milepost
+                        tempCamera.roadName = camera.roadName
+                        tempCamera.selected = camera.selected
+                        tempCamera.title = camera.title
+                        tempCamera.url = camera.url
+                        tempCamera.video = camera.video
+                        
+                        self.cameras.append(tempCamera)
+                    }
                     
                     serviceGroup.leave()
                 }else{
@@ -324,6 +372,31 @@ extension MyRouteReportViewController: GMSMapViewDelegate {
             marker.map = mapView
         
             alertMarkers.insert(marker)
+        }
+    
+    }
+    
+    func drawCameras(){
+    
+        // clear any old markers
+        for marker in cameraMarkers {
+            marker.map = nil
+        }
+        
+        cameraMarkers.removeAll()
+    
+        for camera in self.cameras {
+    
+            let alertLocation = CLLocationCoordinate2D(latitude: camera.latitude, longitude: camera.longitude)
+            let marker = GMSMarker(position: alertLocation)
+            marker.snippet = "camera"
+        
+            marker.icon = UIImage(named: "icMapCamera")
+        
+            marker.userData = camera.cameraId
+            marker.map = mapView
+        
+            cameraMarkers.insert(marker)
         }
     
     }

@@ -202,6 +202,20 @@ class MyRouteStore {
         return nearbyAlerts
     }
     
+    static func getNearbyCameras(forRoute: MyRouteItem, withCameras: [CameraItem]) -> [CameraItem] {
+     
+        var nearbyCameras = [CameraItem]()
+        for camera in withCameras{
+        
+            if routeIsNearbyAny(locations:
+                [CLLocation(latitude: camera.latitude, longitude: camera.longitude)], myRoute: forRoute) {
+                nearbyCameras.append(camera)
+            }
+        }
+        return nearbyCameras
+    }
+    
+    /////////////////
     
     static func selectNearbyFerries(forRoute: MyRouteItem) -> Bool {
     

@@ -509,9 +509,8 @@
 		0263A86521FBD5D10090A954 /* NewMyRoute */ = {
 			isa = PBXGroup;
 			children = (
-				9AD653652202102300D86823 /* NewRouteSelectionViewController.swift */,
-				0263A86621FBD73E0090A954 /* MyRouteSetupViewController.swift */,
-				9AA5F4C52201102600E1D4CA /* ContainerViewControllers */,
+				9A5DA5A22203A0DD0060A51D /* ManualRoute */,
+				9A5DA5A12203A0AC0060A51D /* AutomaticRoute */,
 			);
 			name = NewMyRoute;
 			sourceTree = "<group>";
@@ -738,6 +737,23 @@
 				9AE6B77F209CF9B1001DE80F /* SwitchCell.swift */,
 			);
 			name = CustomCells;
+			sourceTree = "<group>";
+		};
+		9A5DA5A12203A0AC0060A51D /* AutomaticRoute */ = {
+			isa = PBXGroup;
+			children = (
+				9AD653652202102300D86823 /* NewRouteSelectionViewController.swift */,
+				0263A86621FBD73E0090A954 /* MyRouteSetupViewController.swift */,
+				9AA5F4C52201102600E1D4CA /* ContainerViewControllers */,
+			);
+			name = AutomaticRoute;
+			sourceTree = "<group>";
+		};
+		9A5DA5A22203A0DD0060A51D /* ManualRoute */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ManualRoute;
 			sourceTree = "<group>";
 		};
 		9A6FBCC21D6B4C1000CDCE16 /* TrafficMap */ = {

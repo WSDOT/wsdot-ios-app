@@ -83,8 +83,8 @@ WSDOT provides traffic alert information for
                                                     <color key="tintColor" red="0.0" green="0.47843137250000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" image="icFavoriteDefault"/>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8l8-Ww-YNV">
-                                                    <rect key="frame" x="54" y="12" width="280" height="23"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8l8-Ww-YNV">
+                                                    <rect key="frame" x="54" y="13" width="272" height="23"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -92,6 +92,7 @@ WSDOT provides traffic alert information for
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="8l8-Ww-YNV" firstAttribute="leading" secondItem="B0T-Kn-eX4" secondAttribute="trailing" constant="8" id="9ya-b2-dNu"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="8l8-Ww-YNV" secondAttribute="trailing" constant="8" id="EsM-F1-ogo"/>
                                                 <constraint firstItem="B0T-Kn-eX4" firstAttribute="top" secondItem="qB2-s5-rin" secondAttribute="topMargin" id="Nhj-NK-ibr"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="8l8-Ww-YNV" secondAttribute="bottom" constant="11" id="PAq-q5-0Ly"/>
                                                 <constraint firstItem="B0T-Kn-eX4" firstAttribute="leading" secondItem="qB2-s5-rin" secondAttribute="leadingMargin" constant="6" id="iTM-YD-6lB"/>
@@ -210,17 +211,28 @@ WSDOT provides traffic alert information for
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iI3-fX-TeK" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="64" width="375" height="213"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="172"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0kd-eh-pDp">
+                                <rect key="frame" x="16" y="244" width="343" height="29"/>
+                                <segments>
+                                    <segment title="Alerts"/>
+                                    <segment title="Travel Times"/>
+                                    <segment title="Cameras"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="0kd-eh-pDp" firstAttribute="trailing" secondItem="G8s-Vz-QNl" secondAttribute="trailingMargin" id="9Ai-8v-uCI"/>
+                            <constraint firstItem="aEY-fn-5Yo" firstAttribute="top" secondItem="0kd-eh-pDp" secondAttribute="bottom" constant="6" id="EW5-An-kzh"/>
                             <constraint firstItem="aEY-fn-5Yo" firstAttribute="leading" secondItem="G8s-Vz-QNl" secondAttribute="leading" id="Gis-mD-d0f"/>
                             <constraint firstItem="iI3-fX-TeK" firstAttribute="leading" secondItem="G8s-Vz-QNl" secondAttribute="leading" id="XNo-MX-2W9"/>
                             <constraint firstItem="iI3-fX-TeK" firstAttribute="top" secondItem="NSO-m5-zhT" secondAttribute="bottom" id="ZgO-5N-0ot"/>
+                            <constraint firstItem="0kd-eh-pDp" firstAttribute="leading" secondItem="G8s-Vz-QNl" secondAttribute="leadingMargin" id="cJz-dp-OfE"/>
                             <constraint firstItem="jyw-Rj-ubL" firstAttribute="top" secondItem="aEY-fn-5Yo" secondAttribute="bottom" id="d7P-d4-qy4"/>
-                            <constraint firstItem="aEY-fn-5Yo" firstAttribute="top" secondItem="iI3-fX-TeK" secondAttribute="bottom" constant="1" id="jxu-IP-8dy"/>
+                            <constraint firstItem="0kd-eh-pDp" firstAttribute="top" secondItem="iI3-fX-TeK" secondAttribute="bottom" constant="8" id="fUR-aF-4o6"/>
                             <constraint firstAttribute="trailing" secondItem="aEY-fn-5Yo" secondAttribute="trailing" id="m0L-pg-4Vs"/>
                             <constraint firstAttribute="trailing" secondItem="iI3-fX-TeK" secondAttribute="trailing" id="nEO-lC-bfK"/>
                         </constraints>
@@ -240,7 +252,7 @@ WSDOT provides traffic alert information for
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hMu-YN-x9f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="738" y="-402"/>
+            <point key="canvasLocation" x="736.79999999999995" y="-402.54872563718146"/>
         </scene>
         <!--HighwayAlert-->
         <scene sceneID="y5u-Gf-Za9">
@@ -248,7 +260,7 @@ WSDOT provides traffic alert information for
                 <viewControllerPlaceholder storyboardName="HighwayAlert" id="q4c-sP-Zby" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j5k-Bk-keu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1362" y="-455"/>
+            <point key="canvasLocation" x="1384" y="-617"/>
         </scene>
         <!--My Route Setup View Controller-->
         <scene sceneID="HUo-80-DGn">
