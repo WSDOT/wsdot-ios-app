@@ -210,7 +210,7 @@
 		9AFA0A851E300A56000D0C70 /* MyRouteLocationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA0A841E300A56000D0C70 /* MyRouteLocationItem.swift */; };
 		9AFA0A871E300AEA000D0C70 /* MyRouteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA0A861E300AEA000D0C70 /* MyRouteStore.swift */; };
 		9AFDEA761E410626008DD51E /* MyRouteFavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFDEA751E410626008DD51E /* MyRouteFavoritesCell.swift */; };
-		9AFDEA781E410BF9008DD51E /* MyRouteAlertsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFDEA771E410BF9008DD51E /* MyRouteAlertsViewController.swift */; };
+		9AFDEA781E410BF9008DD51E /* MyRouteReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFDEA771E410BF9008DD51E /* MyRouteReportViewController.swift */; };
 		9AFDEA7A1E428970008DD51E /* MyRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFDEA791E428970008DD51E /* MyRouteViewController.swift */; };
 		9AFEECE11D3925400078A781 /* CachesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFEECE01D3925400078A781 /* CachesStore.swift */; };
 		C5EA6357148A1CD981855088 /* Pods_WSDOTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 690E6882E64B87BDA185B4DC /* Pods_WSDOTTests.framework */; };
@@ -472,7 +472,7 @@
 		9AFA0A841E300A56000D0C70 /* MyRouteLocationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRouteLocationItem.swift; sourceTree = "<group>"; };
 		9AFA0A861E300AEA000D0C70 /* MyRouteStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRouteStore.swift; sourceTree = "<group>"; };
 		9AFDEA751E410626008DD51E /* MyRouteFavoritesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRouteFavoritesCell.swift; sourceTree = "<group>"; };
-		9AFDEA771E410BF9008DD51E /* MyRouteAlertsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRouteAlertsViewController.swift; sourceTree = "<group>"; };
+		9AFDEA771E410BF9008DD51E /* MyRouteReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRouteReportViewController.swift; sourceTree = "<group>"; };
 		9AFDEA791E428970008DD51E /* MyRouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRouteViewController.swift; sourceTree = "<group>"; };
 		9AFEECE01D3925400078A781 /* CachesStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachesStore.swift; sourceTree = "<group>"; };
 		D8D316727AAA338CBCFCA3B1 /* Pods-WSDOTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOTTests/Pods-WSDOTTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -1100,7 +1100,7 @@
 			isa = PBXGroup;
 			children = (
 				0263A86521FBD5D10090A954 /* NewMyRoute */,
-				9AFDEA771E410BF9008DD51E /* MyRouteAlertsViewController.swift */,
+				9AFDEA771E410BF9008DD51E /* MyRouteReportViewController.swift */,
 				9AFDEA791E428970008DD51E /* MyRouteViewController.swift */,
 			);
 			name = Controllers;
@@ -1965,7 +1965,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AFDEA781E410BF9008DD51E /* MyRouteAlertsViewController.swift in Sources */,
+				9AFDEA781E410BF9008DD51E /* MyRouteReportViewController.swift in Sources */,
 				9ADEAE4D1D270CC800BA7DD4 /* Helpers.swift in Sources */,
 				9AEF4D9A1D772F9C003ECA34 /* NewsItem.swift in Sources */,
 				9A46C3B82034F5C1000F03C5 /* TravelTimeItemGroup.swift in Sources */,

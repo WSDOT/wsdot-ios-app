@@ -22,7 +22,7 @@ import UIKit
 import RealmSwift
 import SafariServices
 
-class MyRouteAlertsViewController: UIViewController {
+class MyRouteReportViewController: UIViewController {
 
     var alerts = [HighwayAlertItem]()
     
@@ -59,7 +59,7 @@ class MyRouteAlertsViewController: UIViewController {
         _ = drawRouteOnMap(Array(route!.route))
         
         // refresh controller
-        refreshControl.addTarget(self, action: #selector(MyRouteAlertsViewController.refreshAction(_:)), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(MyRouteReportViewController.refreshAction(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
         
     }
@@ -69,6 +69,82 @@ class MyRouteAlertsViewController: UIViewController {
         MyAnalytics.screenView(screenName: "MyRouteAlerts")
     }
 
+
+    @IBAction func settingsAction(_ sender: UIBarButtonItem) {
+    
+        MyAnalytics.event(category: "My Route", action: "UIAction", label: "Route Settings")
+    
+        let editController = (UIDevice.current.userInterfaceIdiom == .phone ?
+              UIAlertController(title: "Settings", message: nil, preferredStyle: .actionSheet)
+            : UIAlertController(title: "Settings", message: nil, preferredStyle: .alert) )
+        
+        editController.view.tintColor = Colors.tintColor
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (result : UIAlertAction) -> Void in
+            //action when pressed button
+        }
+        
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (result : UIAlertAction) -> Void in
+        
+            MyAnalytics.event(category: "My Route", action: "UIAction", label: "Delete Route")
+        
+            let alertController = UIAlertController(title: "Delete route \(self.route!.name)?", message:"This cannot be undone", preferredStyle: .alert)
+
+            alertController.view.tintColor = Colors.tintColor
+
+            let confirmDeleteAction = UIAlertAction(title: "Delete", style: .destructive) { (_) -> Void in
+            
+                MyAnalytics.event(category: "My Route", action: "UIAction", label: "Delete Route Confirmed")
+                _ = MyRouteStore.delete(route: self.route!)
+                self.navigationController?.popViewController(animated: true)
+            }
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            alertController.addAction(confirmDeleteAction)
+            
+            self.present(alertController, animated: false, completion: nil)
+        }
+        
+        let renameAction = UIAlertAction(title: "Rename", style: .default) { (result : UIAlertAction) -> Void in
+        
+            MyAnalytics.event(category: "My Route", action: "UIAction", label: "Rename Route")
+        
+            let alertController = UIAlertController(title: "Edit Name", message:nil, preferredStyle: .alert)
+            alertController.addTextField { (textfield) in
+                textfield.placeholder = self.route!.name
+            }
+            alertController.view.tintColor = Colors.tintColor
+
+            let okAction = UIAlertAction(title: "Ok", style: .default) { (_) -> Void in
+        
+                let textf = alertController.textFields![0] as UITextField
+                var name = textf.text!
+                if name.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "" {
+                    name = self.route!.name
+                }
+                
+                _ = MyRouteStore.updateName(forRoute: self.route!, name)
+                self.title = name
+            }
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            alertController.addAction(cancelAction)
+            alertController.addAction(okAction)
+            
+            self.present(alertController, animated: false, completion: nil)
+
+        }
+        
+        editController.addAction(cancelAction)
+        editController.addAction(deleteAction)
+        editController.addAction(renameAction)
+    
+        self.present(editController, animated: true, completion: nil)
+    
+    }
+    
     @objc func refreshAction(_ refreshController: UIRefreshControl){
         loadAlerts(force: true)
     }
@@ -211,10 +287,9 @@ class MyRouteAlertsViewController: UIViewController {
             }
         }
     }
-
 }
 
-extension MyRouteAlertsViewController: GMSMapViewDelegate {
+extension MyRouteReportViewController: GMSMapViewDelegate {
 
     // MARK: GMSMapViewDelegate
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
@@ -340,7 +415,7 @@ extension MyRouteAlertsViewController: GMSMapViewDelegate {
 }
 
 // MARK: - TableView
-extension MyRouteAlertsViewController:  UITableViewDataSource, UITableViewDelegate {
+extension MyRouteReportViewController:  UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
@@ -439,7 +514,7 @@ extension MyRouteAlertsViewController:  UITableViewDataSource, UITableViewDelega
     }
 }
 
-extension MyRouteAlertsViewController:  INDLinkLabelDelegate {
+extension MyRouteReportViewController:  INDLinkLabelDelegate {
     func linkLabel(_ label: INDLinkLabel, didLongPressLinkWithURL URL: Foundation.URL) {
         let activityController = UIActivityViewController(activityItems: [URL], applicationActivities: nil)
         self.present(activityController, animated: true, completion: nil)

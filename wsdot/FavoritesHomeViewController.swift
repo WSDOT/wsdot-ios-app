@@ -884,7 +884,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
        
         if segue.identifier == segueMyRouteAlertsViewController {
             if let alertButton =  sender as! UIButton? {
-                let destinationViewController = segue.destination as! MyRouteAlertsViewController
+                let destinationViewController = segue.destination as! MyRouteReportViewController
                 destinationViewController.title = "Alerts On Route: \(myRoutes[alertButton.tag].name)"
                 destinationViewController.route = myRoutes[alertButton.tag]
                 destinationViewController.navigationController?.navigationBar.tintColor = Colors.tintColor

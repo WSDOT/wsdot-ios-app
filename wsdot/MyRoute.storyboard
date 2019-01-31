@@ -37,92 +37,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lPD-Y6-jfx">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Af5-gr-Ho8">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjL-1O-N5b">
-                                                <rect key="frame" x="8" y="537.5" width="359" height="57.5"/>
-                                                <string key="text">Your route information is stored on your device and
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjL-1O-N5b">
+                                <rect key="frame" x="43" y="601.5" width="289.5" height="57.5"/>
+                                <string key="text">Your route information is stored on your device and
 is not shared with anyone. 
 WSDOT provides traffic alert information for
  Washington State highways only.</string>
-                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                                <string key="userLabel">*Your route information is stored on your device and is not shared with anyone.  WSDOT provides traffic alert information for  Washington State highways only.</string>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ejw-0o-DZu">
-                                                <rect key="frame" x="61" y="181" width="253" height="50"/>
-                                                <color key="backgroundColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="t5R-HV-VS7"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <state key="normal" title="Create Your First Route">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="firstNewRouteButtonPressed:" destination="03C-G7-6I3" eventType="touchUpInside" id="enp-Qt-XMq"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstItem="Ejw-0o-DZu" firstAttribute="top" secondItem="Af5-gr-Ho8" secondAttribute="top" constant="181" id="4jX-EL-ZF9"/>
-                                            <constraint firstAttribute="trailing" secondItem="xjL-1O-N5b" secondAttribute="trailing" constant="8" id="Cyc-ks-S0P"/>
-                                            <constraint firstItem="xjL-1O-N5b" firstAttribute="leading" secondItem="Af5-gr-Ho8" secondAttribute="leading" constant="8" id="a6t-NV-OE8"/>
-                                            <constraint firstItem="Ejw-0o-DZu" firstAttribute="centerX" secondItem="xjL-1O-N5b" secondAttribute="centerX" id="gNJ-UK-ssq"/>
-                                            <constraint firstAttribute="bottom" secondItem="xjL-1O-N5b" secondAttribute="bottom" constant="8" id="iUp-nx-qBk"/>
-                                            <constraint firstItem="Ejw-0o-DZu" firstAttribute="leading" secondItem="Af5-gr-Ho8" secondAttribute="leading" constant="61" id="nVV-p2-Fem"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <string key="userLabel">*Your route information is stored on your device and is not shared with anyone.  WSDOT provides traffic alert information for  Washington State highways only.</string>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ejw-0o-DZu">
+                                <rect key="frame" x="65" y="266" width="245" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Af5-gr-Ho8" secondAttribute="bottom" id="W08-Nl-YSi"/>
-                                    <constraint firstAttribute="trailing" secondItem="Af5-gr-Ho8" secondAttribute="trailing" id="gUf-Sn-nab"/>
-                                    <constraint firstItem="Af5-gr-Ho8" firstAttribute="centerY" secondItem="lPD-Y6-jfx" secondAttribute="centerY" id="icU-f3-Fsf"/>
-                                    <constraint firstItem="Af5-gr-Ho8" firstAttribute="centerX" secondItem="lPD-Y6-jfx" secondAttribute="centerX" id="kGf-MO-LD4"/>
-                                    <constraint firstItem="Af5-gr-Ho8" firstAttribute="leading" secondItem="lPD-Y6-jfx" secondAttribute="leading" id="kRh-aQ-jDy"/>
-                                    <constraint firstItem="Af5-gr-Ho8" firstAttribute="top" secondItem="lPD-Y6-jfx" secondAttribute="top" id="x8W-R0-icC"/>
+                                    <constraint firstAttribute="height" constant="50" id="t5R-HV-VS7"/>
+                                    <constraint firstAttribute="width" constant="245" id="vVI-yq-gQ5"/>
                                 </constraints>
-                            </scrollView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qNq-WC-ZIi">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Create Your First Route">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="firstNewRouteButtonPressed:" destination="03C-G7-6I3" eventType="touchUpInside" id="enp-Qt-XMq"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="58" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qNq-WC-ZIi">
+                                <rect key="frame" x="0.0" y="64" width="375" height="529.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RouteCell" rowHeight="43" id="DVl-Tm-cta" customClass="MyRouteCell" customModule="WSDOT" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="43"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RouteCell" rowHeight="58" id="DVl-Tm-cta" customClass="MyRouteCell" customModule="WSDOT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="58"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DVl-Tm-cta" id="qB2-s5-rin">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="42.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="57.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8l8-Ww-YNV">
-                                                    <rect key="frame" x="54" y="13" width="173" height="20.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="173" id="r8a-sM-EtX"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V5D-3z-fG7">
-                                                    <rect key="frame" x="323" y="11" width="24" height="24"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="24" id="0SD-UH-PyU"/>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="CmG-wS-p3f"/>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="JYF-eT-qn9"/>
-                                                        <constraint firstAttribute="width" constant="24" id="i09-lQ-DWb"/>
-                                                    </constraints>
-                                                    <color key="tintColor" red="0.0" green="0.47843137250000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <state key="normal" image="icGear"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="route settings"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B0T-Kn-eX4">
                                                     <rect key="frame" x="21" y="11" width="25" height="25"/>
                                                     <constraints>
@@ -132,39 +83,23 @@ WSDOT provides traffic alert information for
                                                     <color key="tintColor" red="0.0" green="0.47843137250000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" image="icFavoriteDefault"/>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UJe-JT-Ad7">
-                                                    <rect key="frame" x="263" y="11" width="24" height="24"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="24" id="DDZ-xE-oEi"/>
-                                                        <constraint firstAttribute="width" constant="24" id="ak5-14-9DE"/>
-                                                    </constraints>
-                                                    <color key="tintColor" red="1" green="0.42352941179999998" blue="0.047058823530000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <state key="normal" image="icAlert">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="check alerts"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8l8-Ww-YNV">
+                                                    <rect key="frame" x="54" y="12" width="280" height="23"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="UJe-JT-Ad7" firstAttribute="leading" secondItem="8l8-Ww-YNV" secondAttribute="trailing" constant="36" id="2Gi-Q4-Q8Y"/>
-                                                <constraint firstItem="UJe-JT-Ad7" firstAttribute="top" secondItem="qB2-s5-rin" secondAttribute="topMargin" id="9NQ-9D-yjn"/>
                                                 <constraint firstItem="8l8-Ww-YNV" firstAttribute="leading" secondItem="B0T-Kn-eX4" secondAttribute="trailing" constant="8" id="9ya-b2-dNu"/>
                                                 <constraint firstItem="B0T-Kn-eX4" firstAttribute="top" secondItem="qB2-s5-rin" secondAttribute="topMargin" id="Nhj-NK-ibr"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="8l8-Ww-YNV" secondAttribute="bottom" constant="-1.5" id="PAq-q5-0Ly"/>
-                                                <constraint firstItem="V5D-3z-fG7" firstAttribute="leading" secondItem="UJe-JT-Ad7" secondAttribute="trailing" constant="36" id="Wwv-EK-whC"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="8l8-Ww-YNV" secondAttribute="bottom" constant="11" id="PAq-q5-0Ly"/>
                                                 <constraint firstItem="B0T-Kn-eX4" firstAttribute="leading" secondItem="qB2-s5-rin" secondAttribute="leadingMargin" constant="6" id="iTM-YD-6lB"/>
-                                                <constraint firstItem="8l8-Ww-YNV" firstAttribute="centerY" secondItem="qB2-s5-rin" secondAttribute="centerY" constant="2" id="ivx-ip-dc8"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="V5D-3z-fG7" secondAttribute="trailing" constant="13" id="neX-P7-G1j"/>
                                                 <constraint firstItem="8l8-Ww-YNV" firstAttribute="top" secondItem="qB2-s5-rin" secondAttribute="topMargin" constant="2" id="pgJ-kI-oYn"/>
-                                                <constraint firstItem="V5D-3z-fG7" firstAttribute="top" secondItem="qB2-s5-rin" secondAttribute="topMargin" id="qeB-SB-qhs"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="checkAlertsButton" destination="UJe-JT-Ad7" id="mNX-Dd-XfD"/>
                                             <outlet property="setButton" destination="B0T-Kn-eX4" id="3q7-GU-5JP"/>
-                                            <outlet property="settingsButton" destination="V5D-3z-fG7" id="DM0-NC-U5g"/>
                                             <outlet property="titleLabel" destination="8l8-Ww-YNV" id="8c3-DB-9or"/>
                                         </connections>
                                     </tableViewCell>
@@ -178,14 +113,17 @@ WSDOT provides traffic alert information for
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.18647282900000001" green="0.68235294120000001" blue="0.11432351139999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="lPD-Y6-jfx" firstAttribute="top" secondItem="qNq-WC-ZIi" secondAttribute="top" id="7ic-3O-ZBd"/>
-                            <constraint firstItem="lPD-Y6-jfx" firstAttribute="leading" secondItem="olc-Tz-aX4" secondAttribute="leading" id="86m-Rh-2B7"/>
-                            <constraint firstItem="lPD-Y6-jfx" firstAttribute="bottom" secondItem="oEX-UY-6Bt" secondAttribute="top" id="Bxc-cl-dGH"/>
-                            <constraint firstItem="lPD-Y6-jfx" firstAttribute="leading" secondItem="qNq-WC-ZIi" secondAttribute="leading" id="LjD-QL-Y6f"/>
-                            <constraint firstItem="lPD-Y6-jfx" firstAttribute="bottom" secondItem="qNq-WC-ZIi" secondAttribute="bottom" id="NkX-td-V7Q"/>
-                            <constraint firstAttribute="trailing" secondItem="lPD-Y6-jfx" secondAttribute="trailing" id="Uks-nO-AAA"/>
-                            <constraint firstItem="lPD-Y6-jfx" firstAttribute="top" secondItem="YZP-tq-YsG" secondAttribute="bottom" id="Zcd-PD-JSW"/>
-                            <constraint firstItem="lPD-Y6-jfx" firstAttribute="trailing" secondItem="qNq-WC-ZIi" secondAttribute="trailing" id="gP6-TE-AqY"/>
+                            <constraint firstAttribute="trailing" secondItem="qNq-WC-ZIi" secondAttribute="trailing" id="3AM-Qq-36i"/>
+                            <constraint firstItem="oEX-UY-6Bt" firstAttribute="top" secondItem="xjL-1O-N5b" secondAttribute="bottom" constant="8" id="3FS-FB-5jj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xjL-1O-N5b" secondAttribute="trailing" constant="26.5" id="96u-1f-v8l"/>
+                            <constraint firstItem="Ejw-0o-DZu" firstAttribute="leading" secondItem="olc-Tz-aX4" secondAttribute="leadingMargin" constant="49" id="CS7-Qk-kQS"/>
+                            <constraint firstItem="Ejw-0o-DZu" firstAttribute="top" secondItem="YZP-tq-YsG" secondAttribute="bottom" constant="202" id="Gpr-Ln-U8V"/>
+                            <constraint firstItem="Ejw-0o-DZu" firstAttribute="centerX" secondItem="olc-Tz-aX4" secondAttribute="centerX" id="HKN-7l-B8V"/>
+                            <constraint firstItem="qNq-WC-ZIi" firstAttribute="top" secondItem="YZP-tq-YsG" secondAttribute="bottom" id="esm-Ne-bL5"/>
+                            <constraint firstItem="xjL-1O-N5b" firstAttribute="top" secondItem="qNq-WC-ZIi" secondAttribute="bottom" constant="8" id="mbK-r7-ciO"/>
+                            <constraint firstItem="xjL-1O-N5b" firstAttribute="leading" secondItem="olc-Tz-aX4" secondAttribute="leadingMargin" constant="27" id="ouT-gL-Y8F"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ejw-0o-DZu" secondAttribute="trailing" constant="49" id="qZB-hT-KjO"/>
+                            <constraint firstItem="qNq-WC-ZIi" firstAttribute="leading" secondItem="olc-Tz-aX4" secondAttribute="leading" id="w0R-8H-LJ7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Routes" id="Ggt-TW-Ae7">
@@ -203,7 +141,6 @@ WSDOT provides traffic alert information for
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="newRouteButton" destination="Ejw-0o-DZu" id="VFp-fu-D2H"/>
-                        <outlet property="noRoutesView" destination="lPD-Y6-jfx" id="qV6-ZI-3mS"/>
                         <outlet property="tableView" destination="qNq-WC-ZIi" id="Ev7-bZ-2Vg"/>
                         <segue destination="Rq4-8Z-v0h" kind="show" identifier="MyRouteAlertsViewController" id="wHS-dI-knZ"/>
                         <segue destination="Xg1-9k-WBp" kind="show" identifier="RouteSetupViewController" id="V8A-aq-1mC"/>
@@ -213,10 +150,10 @@ WSDOT provides traffic alert information for
             </objects>
             <point key="canvasLocation" x="-285.60000000000002" y="-699.40029985007504"/>
         </scene>
-        <!--My Route Alerts View Controller-->
+        <!--Title-->
         <scene sceneID="Y74-f9-8m9">
             <objects>
-                <viewController storyboardIdentifier="MyRouteAlertsViewController" id="Rq4-8Z-v0h" customClass="MyRouteAlertsViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyRouteAlertsViewController" id="Rq4-8Z-v0h" customClass="MyRouteReportViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NSO-m5-zhT"/>
                         <viewControllerLayoutGuide type="bottom" id="jyw-Rj-ubL"/>
@@ -288,6 +225,13 @@ WSDOT provides traffic alert information for
                             <constraint firstAttribute="trailing" secondItem="iI3-fX-TeK" secondAttribute="trailing" id="nEO-lC-bfK"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="nQl-PZ-qZY">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="icGear" id="et6-MK-Gmq">
+                            <connections>
+                                <action selector="settingsAction:" destination="Rq4-8Z-v0h" id="als-hj-86V"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="iI3-fX-TeK" id="eSR-mx-RmI"/>
                         <outlet property="tableView" destination="aEY-fn-5Yo" id="Pmk-GG-zDp"/>
@@ -296,7 +240,7 @@ WSDOT provides traffic alert information for
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hMu-YN-x9f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="372" y="17.541229385307346"/>
+            <point key="canvasLocation" x="738" y="-402"/>
         </scene>
         <!--HighwayAlert-->
         <scene sceneID="y5u-Gf-Za9">
@@ -304,7 +248,7 @@ WSDOT provides traffic alert information for
                 <viewControllerPlaceholder storyboardName="HighwayAlert" id="q4c-sP-Zby" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j5k-Bk-keu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1067" y="-60"/>
+            <point key="canvasLocation" x="1362" y="-455"/>
         </scene>
         <!--My Route Setup View Controller-->
         <scene sceneID="HUo-80-DGn">
@@ -351,7 +295,7 @@ WSDOT provides traffic alert information for
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OTI-fb-HEc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1068" y="-700"/>
+            <point key="canvasLocation" x="772" y="-1122"/>
         </scene>
         <!--New Route Menu Table View Controller-->
         <scene sceneID="2ok-3c-gul">
@@ -480,7 +424,7 @@ WSDOT provides traffic alert information for
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lFZ-Eb-U4n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1788" y="-672"/>
+            <point key="canvasLocation" x="772" y="-1784"/>
         </scene>
         <!--New Route Selection View Controller-->
         <scene sceneID="lO4-92-5DA">
@@ -554,7 +498,7 @@ WSDOT provides traffic alert information for
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vq1-IX-iGo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2701.5999999999999" y="-701.19940029985014"/>
+            <point key="canvasLocation" x="2206" y="-1123"/>
         </scene>
         <!--Location Search View Controller-->
         <scene sceneID="glW-2j-eGQ">
@@ -618,11 +562,10 @@ WSDOT provides traffic alert information for
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zK2-UG-X0F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1788" y="-1334"/>
+            <point key="canvasLocation" x="1593" y="-1756"/>
         </scene>
     </scenes>
     <resources>
-        <image name="icAlert" width="48" height="48"/>
         <image name="icFavoriteDefault" width="64" height="64"/>
         <image name="icGear" width="48" height="48"/>
     </resources>
