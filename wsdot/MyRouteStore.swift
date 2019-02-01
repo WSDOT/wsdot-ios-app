@@ -102,22 +102,6 @@ class MyRouteStore {
         return true
     }
     
-    static func updateFindNearby(forRoute: MyRouteItem, foundCameras: Bool, foundTimes: Bool, foundFerries: Bool, foundPasses: Bool) -> Bool {
-        let realm = try! Realm()
-        
-        do {
-            try realm.write {
-                forRoute.foundCameras = foundCameras
-                forRoute.foundTravelTimes = foundTimes
-                forRoute.foundFerrySchedules = foundFerries
-                forRoute.foundMountainPasses = foundPasses
-            }
-        }catch {
-            return false
-        }
-        return true
-    }
-    
     static func updateSelected(_ selectedRoute: MyRouteItem, newValue: Bool) -> Bool {
     
         let realm = try! Realm()
@@ -130,7 +114,6 @@ class MyRouteStore {
         } catch {
             return false
         }
-    
     }
     
     static func updateName(forRoute: MyRouteItem, _ newName: String) -> Bool{
@@ -202,74 +185,35 @@ class MyRouteStore {
         return nearbyAlerts
     }
     
-    static func getNearbyCameras(forRoute: MyRouteItem, withCameras: [CameraItem]) -> [CameraItem] {
+    static func getNearbyCameraIds(forRoute: MyRouteItem) -> Bool {
      
-        var nearbyCameras = [CameraItem]()
-        for camera in withCameras{
+        let realm = try! Realm()
+        
+        let cameras = realm.objects(CameraItem.self)
+        
+        var nearbyCameraIds = [Int]()
+        for camera in cameras {
         
             if routeIsNearbyAny(locations:
                 [CLLocation(latitude: camera.latitude, longitude: camera.longitude)], myRoute: forRoute) {
-                nearbyCameras.append(camera)
+                nearbyCameraIds.append(camera.cameraId)
             }
         }
-        return nearbyCameras
+        
+        do {
+            try realm.write{
+                forRoute.cameraIds.append(objectsIn: nearbyCameraIds)
+                forRoute.foundCameras = true
+            }
+        } catch {
+            return false
+        }
+        
+        return true
     }
     
     /////////////////
     
-    static func selectNearbyFerries(forRoute: MyRouteItem) -> Bool {
-    
-        let realm = try! Realm()
-        
-        let ferrySchedules = realm.objects(FerryScheduleItem.self)
-        
-        let terminalMap = FerriesConsts().terminalMap
-        
-        do {
-            try realm.write {
-                for schedule in ferrySchedules {
-            
-                    for terminalPair in schedule.terminalPairs {
-                
-                        let terminalA = terminalMap[terminalPair.aTerminalId]!
-                        let terminalB = terminalMap[terminalPair.bTerminalId]!
-                
-                        if routeIsNearbyBoth(startLocation: CLLocation(latitude: terminalA.latitude, longitude: terminalA.longitude),
-                                                endLocation: CLLocation(latitude: terminalB.latitude, longitude: terminalB.longitude),
-                                                myRoute: forRoute) {
-                            schedule.selected = true
-                        }
-                    }
-                }
-            }
-        
-        } catch {
-            return false
-        }
-        return true
-    }
-    
-    static func selectNearbyPasses(forRoute: MyRouteItem) -> Bool {
-    
-        let realm = try! Realm()
-        
-        let mountainPasses = realm.objects(MountainPassItem.self)
-        
-        do {
-            try realm.write {
-            
-                for pass in mountainPasses {
-                    if routeIsNearbyAny(locations: [CLLocation(latitude: pass.latitude, longitude: pass.longitude)], myRoute: forRoute) {
-                        pass.selected = true
-                    }
-                }
-            }
-        
-        } catch {
-            return false
-        }
-        return true
-    }
     
     static func routeIsNearbyAny(locations: [CLLocation], myRoute: MyRouteItem) -> Bool {
     

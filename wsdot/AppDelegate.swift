@@ -283,7 +283,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 if (oldSchemaVersion < 8) {
                     migration.enumerateObjects(ofType: MyRouteItem.className()) { oldObject, newObject in
                         newObject!["cameraIds"] = List<Int>()
+                        newObject!["foundCameras"] = false
                         newObject!["travelTimeIds"] = List<Int>()
+                        newObject!["foundTravelTimes"] = false
                     }
                     migration.deleteData(forType: CacheItem.className())
                 }

@@ -34,8 +34,12 @@ class MyRouteReportViewController: UIViewController {
     var route: MyRouteItem?
     
     let cellIdentifier = "AlertCell"
+    
     let segueHighwayAlertViewController = "HighwayAlertViewController"
-
+    
+    let segueMyRouteAlertViewController = "MyRouteAlertsViewController"
+    let segueMyRouteCamerasViewController = "MyRouteCamerasViewControllers"
+    
     let refreshControl = UIRefreshControl()
     var activityIndicator = UIActivityIndicatorView()
 
@@ -43,7 +47,11 @@ class MyRouteReportViewController: UIViewController {
     fileprivate var cameraMarkers = Set<GMSMarker>()
 
     @IBOutlet weak var mapView: GMSMapView!
-    @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var alertsContainerView: UIView!
+    @IBOutlet weak var camerasContainerView: UIView!
+    
+    var alertsTableView: UITableView!
     
     //@IBOutlet weak var accessibilityMapLabel: UILabel!
     
@@ -51,18 +59,16 @@ class MyRouteReportViewController: UIViewController {
         super.viewDidLoad()
         
         showOverlay(self.view)
-        loadAlerts(force: true)
         
         // Prepare Google mapView
         mapView.delegate = self
         mapView.isMyLocationEnabled = true
         mapView.isTrafficEnabled = true
         
-        _ = drawRouteOnMap(Array(route!.route))
+        alertsContainerView.isHidden = false
+        camerasContainerView.isHidden = true
         
-        // refresh controller
-        refreshControl.addTarget(self, action: #selector(MyRouteReportViewController.refreshAction(_:)), for: .valueChanged)
-        tableView.addSubview(refreshControl)
+        _ = drawRouteOnMap(Array(route!.route))
         
     }
 
@@ -71,7 +77,30 @@ class MyRouteReportViewController: UIViewController {
         MyAnalytics.screenView(screenName: "MyRouteAlerts")
     }
 
-
+    @IBAction func segmentSelected(_ sender: UISegmentedControl) {
+        
+        switch (sender.selectedSegmentIndex) {
+        
+        case 0:
+        
+            alertsContainerView.isHidden = false
+            camerasContainerView.isHidden = true
+            break
+        case 1:
+            alertsContainerView.isHidden = true
+            camerasContainerView.isHidden = true
+            break
+        case 2:
+            
+            alertsContainerView.isHidden = true
+            camerasContainerView.isHidden = false
+            break
+        default:
+            return
+        }
+        
+    }
+    
     @IBAction func settingsAction(_ sender: UIBarButtonItem) {
     
         MyAnalytics.event(category: "My Route", action: "UIAction", label: "Route Settings")
@@ -180,13 +209,12 @@ class MyRouteReportViewController: UIViewController {
                 self.constructionAlerts = self.constructionAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
                 self.specialEvents = self.specialEvents.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
 
-                self.tableView.rowHeight = UITableView.automaticDimension
-            
-                self.tableView.reloadData()
+                self.alertsTableView.rowHeight = UITableView.automaticDimension
+                self.alertsTableView.reloadData()
+                
                 self.hideOverlayView()
                 
                 self.drawAlerts()
-                //self.drawCameras()
                 
                 self.refreshControl.endRefreshing()
             }
@@ -242,53 +270,8 @@ class MyRouteReportViewController: UIViewController {
                     }
                 }
             })
-        
     }
     
-    fileprivate func requestCamerasUpdate(_ force: Bool, serviceGroup: DispatchGroup) {
-        serviceGroup.enter()
-        
-        let routeRef = ThreadSafeReference(to: self.route!)
-        
-            CamerasStore.updateCameras(force, completion: { error in
-                if (error == nil){
-                
-                    let routeItem = try! Realm().resolve(routeRef)
-                    let nearbyCameras = MyRouteStore.getNearbyCameras(forRoute: routeItem!, withCameras: CamerasStore.getAllCameras())
-                    
-                    self.cameras.removeAll()
-                    
-                    // copy alerts to unmanaged Realm object so we can access on main thread.
-                    for camera in nearbyCameras {
-                        let tempCamera = CameraItem()
-                        
-                        tempCamera.cameraId = camera.cameraId
-                        tempCamera.latitude = camera.latitude
-                        tempCamera.longitude = camera.longitude
-                        tempCamera.direction = camera.direction
-                        tempCamera.milepost = camera.milepost
-                        tempCamera.roadName = camera.roadName
-                        tempCamera.selected = camera.selected
-                        tempCamera.title = camera.title
-                        tempCamera.url = camera.url
-                        tempCamera.video = camera.video
-                        
-                        self.cameras.append(tempCamera)
-                    }
-                    
-                    serviceGroup.leave()
-                }else{
-                    serviceGroup.leave()
-                    DispatchQueue.main.async { [weak self] in
-                        if let selfValue = self{
-                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
-                        }
-                    }
-                }
-            })
-        
-    }
-
     /**
      * Method name: showOverlay
      * Description: creates an loading indicator in the center of the screen.
@@ -331,9 +314,37 @@ class MyRouteReportViewController: UIViewController {
                     let destinationViewController = segue.destination as! HighwayAlertViewController
                     destinationViewController.alertId = alertId
                 }
-            
             }
+        } else if segue.identifier == segueMyRouteAlertViewController {
+            if let destinationViewController = segue.destination as? MyRouteAlertsViewController {
+                destinationViewController.alertDataDelegate = self
+            }
+        } else if segue.identifier == segueMyRouteCamerasViewController {
+            if let destinationViewController = segue.destination as? MyRouteCamerasViewController {
+                print("setting route for cameras vc")
+                destinationViewController.route = self.route
+            }
+            
         }
+    }
+}
+
+// Acts as a delegate for the MyRouteAlertViewController
+// so we can share alerts betweenn the two VCs
+extension MyRouteReportViewController: AlertTableDataDelegate {
+    func alertTableReady(_ tableView: UITableView) {
+        
+        self.alertsTableView = tableView
+        
+        self.alertsTableView.delegate = self
+        self.alertsTableView.dataSource = self
+        
+        // refresh controller
+        self.refreshControl.addTarget(self, action: #selector(MyRouteReportViewController.refreshAction(_:)), for: .valueChanged)
+        self.alertsTableView.addSubview(refreshControl)
+        
+        self.loadAlerts(force: true)
+        
     }
 }
 
@@ -375,31 +386,6 @@ extension MyRouteReportViewController: GMSMapViewDelegate {
         }
     
     }
-    
-    func drawCameras(){
-    
-        // clear any old markers
-        for marker in cameraMarkers {
-            marker.map = nil
-        }
-        
-        cameraMarkers.removeAll()
-    
-        for camera in self.cameras {
-    
-            let alertLocation = CLLocationCoordinate2D(latitude: camera.latitude, longitude: camera.longitude)
-            let marker = GMSMarker(position: alertLocation)
-            marker.snippet = "camera"
-        
-            marker.icon = UIImage(named: "icMapCamera")
-        
-            marker.userData = camera.cameraId
-            marker.map = mapView
-        
-            cameraMarkers.insert(marker)
-        }
-    
-    }
 
     /**
      * Method name: displayRouteOnMap()
@@ -429,8 +415,6 @@ extension MyRouteReportViewController: GMSMapViewDelegate {
             
             let MyRoute = GMSPolyline(path: myPath)
             
-            //setRouteAccessibilityLabel(locations: locations)
-            
             MyRoute.spans = [GMSStyleSpan(color: UIColor(red: 0, green: 0.6588, blue: 0.9176, alpha: 1))] /* #00a8ea */
             MyRoute.strokeWidth = 2
             MyRoute.map = mapView
@@ -441,50 +425,7 @@ extension MyRouteReportViewController: GMSMapViewDelegate {
             return false
         }
     }
-/*
-    func setRouteAccessibilityLabel(locations: [CLLocation]) {
-    
-        self.accessibilityMapLabel.isHidden = false
-        self.accessibilityMapLabel.accessibilityLabel = "Checking route start and end points..."
-    
-        if let firstLocation = locations.first {
-            
-            let geocoder = GMSGeocoder()
-            geocoder.reverseGeocodeCoordinate(firstLocation.coordinate) { response, error in
-                if let address = response?.firstResult() {
- 
-                    let lines = address.lines!
-                    let startAddress = lines.joined(separator: "\n")
-                    
-                    if let endLocation = locations.last {
-                    
-                        geocoder.reverseGeocodeCoordinate(endLocation.coordinate) { response, error in
-                            if let address = response?.firstResult() {
- 
-                                let lines = address.lines!
-                                let endAddress = lines.joined(separator: "\n")
- 
-                                self.accessibilityMapLabel.accessibilityLabel = "Route starts near " + startAddress + " and ends near " + endAddress
 
-                            }
-                        }
-                    }else {
-                        self.accessibilityMapLabel.accessibilityLabel = "Route starts near " + startAddress + " and ends at an unknown location"
-                    }
-                } else {
-                    self.accessibilityMapLabel.accessibilityLabel = "Uable to determine recorded route start and end points because of network issues. Double tap to try again."
-                    print(error ?? "no error found")
-
-                    let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tapResponse(_:)))
-                    tapGesture.numberOfTapsRequired = 1
-                    self.accessibilityMapLabel.isUserInteractionEnabled =  true
-                    self.accessibilityMapLabel.addGestureRecognizer(tapGesture)
-
-                }
-            }
-        }
-    }
-*/
 }
 
 // MARK: - TableView

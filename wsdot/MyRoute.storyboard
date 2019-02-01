@@ -163,57 +163,26 @@ WSDOT provides traffic alert information for
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="AlertCell" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aEY-fn-5Yo">
-                                <rect key="frame" x="0.0" y="278" width="375" height="389"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="389" id="bgZ-Fu-FdN"/>
-                                </constraints>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="AlertCell" rowHeight="72" id="9IH-LX-7la" customClass="LinkCell" customModule="WSDOT" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="72"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9IH-LX-7la" id="5Fb-YN-hqh">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="71.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jkg-Jb-pY0" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
-                                                    <rect key="frame" x="23" y="15" width="311" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ChP-GK-vfb">
-                                                    <rect key="frame" x="23" y="40" width="37.5" height="22"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="ChP-GK-vfb" firstAttribute="top" secondItem="Jkg-Jb-pY0" secondAttribute="bottom" constant="4.5" id="2yM-B5-x7z"/>
-                                                <constraint firstItem="Jkg-Jb-pY0" firstAttribute="top" secondItem="5Fb-YN-hqh" secondAttribute="topMargin" constant="4" id="7T1-YI-HXm"/>
-                                                <constraint firstItem="Jkg-Jb-pY0" firstAttribute="leading" secondItem="5Fb-YN-hqh" secondAttribute="leadingMargin" constant="8" id="Iek-KL-Q6X"/>
-                                                <constraint firstAttribute="bottom" secondItem="ChP-GK-vfb" secondAttribute="bottom" constant="9.5" id="qnu-Cx-caM"/>
-                                                <constraint firstItem="ChP-GK-vfb" firstAttribute="leading" secondItem="Jkg-Jb-pY0" secondAttribute="leading" id="roA-7z-PFH"/>
-                                                <constraint firstItem="Jkg-Jb-pY0" firstAttribute="trailing" secondItem="5Fb-YN-hqh" secondAttribute="trailingMargin" id="sE3-dz-xHd"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="linkLabel" destination="Jkg-Jb-pY0" id="VUz-YR-FPI"/>
-                                            <outlet property="updateTime" destination="ChP-GK-vfb" id="gD9-qi-Vbt"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="Rq4-8Z-v0h" id="UXP-P9-1Qa"/>
-                                    <outlet property="delegate" destination="Rq4-8Z-v0h" id="0Tc-RX-TJz"/>
-                                </connections>
-                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iI3-fX-TeK" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="64" width="375" height="172"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Wr-xZ-BDL">
+                                <rect key="frame" x="0.0" y="280" width="375" height="387"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="387" id="Phg-PN-Zzv"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="ayy-Vi-YPD" kind="embed" identifier="MyRouteAlertsViewController" id="zNx-0y-cxV"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Tc-R5-gGF">
+                                <rect key="frame" x="0.0" y="280" width="375" height="387"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="tNY-sE-m3x" kind="embed" identifier="MyRouteCamerasViewControllers" id="6Bv-Uq-Xcp"/>
+                                </connections>
+                            </containerView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0kd-eh-pDp">
                                 <rect key="frame" x="16" y="244" width="343" height="29"/>
                                 <segments>
@@ -221,21 +190,47 @@ WSDOT provides traffic alert information for
                                     <segment title="Travel Times"/>
                                     <segment title="Cameras"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segmentSelected:" destination="Rq4-8Z-v0h" eventType="valueChanged" id="h6w-aI-xXs"/>
+                                </connections>
                             </segmentedControl>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fnP-NS-jGn">
+                                <rect key="frame" x="0.0" y="280" width="375" height="387"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="387" id="b42-sO-2xA"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="fkx-Se-RRe" kind="embed" id="eHJ-2D-lEu"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="0kd-eh-pDp" firstAttribute="trailing" secondItem="G8s-Vz-QNl" secondAttribute="trailingMargin" id="9Ai-8v-uCI"/>
-                            <constraint firstItem="aEY-fn-5Yo" firstAttribute="top" secondItem="0kd-eh-pDp" secondAttribute="bottom" constant="6" id="EW5-An-kzh"/>
-                            <constraint firstItem="aEY-fn-5Yo" firstAttribute="leading" secondItem="G8s-Vz-QNl" secondAttribute="leading" id="Gis-mD-d0f"/>
-                            <constraint firstItem="iI3-fX-TeK" firstAttribute="leading" secondItem="G8s-Vz-QNl" secondAttribute="leading" id="XNo-MX-2W9"/>
-                            <constraint firstItem="iI3-fX-TeK" firstAttribute="top" secondItem="NSO-m5-zhT" secondAttribute="bottom" id="ZgO-5N-0ot"/>
-                            <constraint firstItem="0kd-eh-pDp" firstAttribute="leading" secondItem="G8s-Vz-QNl" secondAttribute="leadingMargin" id="cJz-dp-OfE"/>
-                            <constraint firstItem="jyw-Rj-ubL" firstAttribute="top" secondItem="aEY-fn-5Yo" secondAttribute="bottom" id="d7P-d4-qy4"/>
-                            <constraint firstItem="0kd-eh-pDp" firstAttribute="top" secondItem="iI3-fX-TeK" secondAttribute="bottom" constant="8" id="fUR-aF-4o6"/>
-                            <constraint firstAttribute="trailing" secondItem="aEY-fn-5Yo" secondAttribute="trailing" id="m0L-pg-4Vs"/>
-                            <constraint firstAttribute="trailing" secondItem="iI3-fX-TeK" secondAttribute="trailing" id="nEO-lC-bfK"/>
+                            <constraint firstAttribute="trailing" secondItem="0Wr-xZ-BDL" secondAttribute="trailing" id="2Sf-Y8-bRw"/>
+                            <constraint firstItem="iI3-fX-TeK" firstAttribute="leading" secondItem="G8s-Vz-QNl" secondAttribute="leading" id="6pb-Wf-Kdu"/>
+                            <constraint firstAttribute="trailing" secondItem="0Wr-xZ-BDL" secondAttribute="trailing" id="9ko-Wb-IN7"/>
+                            <constraint firstItem="0kd-eh-pDp" firstAttribute="trailing" secondItem="G8s-Vz-QNl" secondAttribute="trailingMargin" id="9vH-5W-EVA"/>
+                            <constraint firstItem="0Wr-xZ-BDL" firstAttribute="leading" secondItem="G8s-Vz-QNl" secondAttribute="leading" id="BQ2-3g-W5H"/>
+                            <constraint firstItem="0Wr-xZ-BDL" firstAttribute="top" secondItem="0kd-eh-pDp" secondAttribute="bottom" constant="8" id="F9N-s4-sNr"/>
+                            <constraint firstItem="jyw-Rj-ubL" firstAttribute="top" secondItem="0Wr-xZ-BDL" secondAttribute="bottom" id="FM5-kb-bYx"/>
+                            <constraint firstItem="0kd-eh-pDp" firstAttribute="top" secondItem="iI3-fX-TeK" secondAttribute="bottom" constant="8" id="GyP-uN-rJg"/>
+                            <constraint firstItem="jyw-Rj-ubL" firstAttribute="top" secondItem="0Wr-xZ-BDL" secondAttribute="bottom" id="Qep-B1-QJw"/>
+                            <constraint firstItem="fnP-NS-jGn" firstAttribute="leading" secondItem="G8s-Vz-QNl" secondAttribute="leading" id="UNl-uw-XUq"/>
+                            <constraint firstItem="0Wr-xZ-BDL" firstAttribute="top" secondItem="0kd-eh-pDp" secondAttribute="bottom" constant="8" id="Wtq-lE-Rto"/>
+                            <constraint firstAttribute="trailing" secondItem="fnP-NS-jGn" secondAttribute="trailing" id="Xdw-uJ-odv"/>
+                            <constraint firstAttribute="trailing" secondItem="iI3-fX-TeK" secondAttribute="trailing" id="cqb-Lw-928"/>
+                            <constraint firstItem="iI3-fX-TeK" firstAttribute="top" secondItem="NSO-m5-zhT" secondAttribute="bottom" id="jay-Zo-4c1"/>
+                            <constraint firstItem="fnP-NS-jGn" firstAttribute="top" secondItem="0kd-eh-pDp" secondAttribute="bottom" constant="8" id="kLX-6F-84d"/>
+                            <constraint firstItem="0kd-eh-pDp" firstAttribute="leading" secondItem="G8s-Vz-QNl" secondAttribute="leadingMargin" id="pQT-ht-fWq"/>
+                            <constraint firstItem="0Wr-xZ-BDL" firstAttribute="top" secondItem="0kd-eh-pDp" secondAttribute="bottom" constant="8" id="qfq-2P-UbY"/>
+                            <constraint firstItem="0Wr-xZ-BDL" firstAttribute="leading" secondItem="G8s-Vz-QNl" secondAttribute="leading" id="sGd-dO-prq"/>
+                            <constraint firstItem="jyw-Rj-ubL" firstAttribute="top" secondItem="fnP-NS-jGn" secondAttribute="bottom" id="y6M-Wm-Bau"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="8Tc-R5-gGF"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="nQl-PZ-qZY">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="icGear" id="et6-MK-Gmq">
@@ -245,8 +240,9 @@ WSDOT provides traffic alert information for
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="alertsContainerView" destination="0Wr-xZ-BDL" id="di8-ym-tCx"/>
+                        <outlet property="camerasContainerView" destination="fnP-NS-jGn" id="Up5-Iy-Kly"/>
                         <outlet property="mapView" destination="iI3-fX-TeK" id="eSR-mx-RmI"/>
-                        <outlet property="tableView" destination="aEY-fn-5Yo" id="Pmk-GG-zDp"/>
                         <segue destination="q4c-sP-Zby" kind="show" identifier="HighwayAlertViewController" id="3uX-xA-Tjz"/>
                     </connections>
                 </viewController>
@@ -260,7 +256,7 @@ WSDOT provides traffic alert information for
                 <viewControllerPlaceholder storyboardName="HighwayAlert" id="q4c-sP-Zby" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j5k-Bk-keu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1384" y="-617"/>
+            <point key="canvasLocation" x="1333" y="-543"/>
         </scene>
         <!--My Route Setup View Controller-->
         <scene sceneID="HUo-80-DGn">
@@ -576,9 +572,136 @@ WSDOT provides traffic alert information for
             </objects>
             <point key="canvasLocation" x="1593" y="-1756"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="0XX-Ua-cCn">
+            <objects>
+                <viewController id="fkx-Se-RRe" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tbF-CZ-AUz"/>
+                        <viewControllerLayoutGuide type="bottom" id="PrC-yB-raa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="B9v-aU-9R5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="387"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1mL-16-5A7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1542" y="-263"/>
+        </scene>
+        <!--My Route Alerts View Controller-->
+        <scene sceneID="eVn-AC-Bxp">
+            <objects>
+                <viewController id="ayy-Vi-YPD" customClass="MyRouteAlertsViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kVT-HP-oJz"/>
+                        <viewControllerLayoutGuide type="bottom" id="ahz-MV-cc0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HA6-KC-oyz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="387"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="AlertCell" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c0x-Hq-pv0">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="387"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="AlertCell" rowHeight="72" id="6oL-q8-e6h" customClass="LinkCell" customModule="WSDOT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="72"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6oL-q8-e6h" id="jzz-kE-5eh">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="71.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTv-QR-uIH" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
+                                                    <rect key="frame" x="23" y="15" width="311" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gcG-Ax-2JZ">
+                                                    <rect key="frame" x="23" y="40" width="37.5" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="gcG-Ax-2JZ" firstAttribute="top" secondItem="VTv-QR-uIH" secondAttribute="bottom" constant="4.5" id="35F-H7-evn"/>
+                                                <constraint firstItem="gcG-Ax-2JZ" firstAttribute="leading" secondItem="VTv-QR-uIH" secondAttribute="leading" id="Vh4-xF-FXc"/>
+                                                <constraint firstItem="VTv-QR-uIH" firstAttribute="leading" secondItem="jzz-kE-5eh" secondAttribute="leadingMargin" constant="8" id="d3X-WR-dVt"/>
+                                                <constraint firstAttribute="bottom" secondItem="gcG-Ax-2JZ" secondAttribute="bottom" constant="9.5" id="eSk-wa-t96"/>
+                                                <constraint firstItem="VTv-QR-uIH" firstAttribute="trailing" secondItem="jzz-kE-5eh" secondAttribute="trailingMargin" id="gJM-iG-i1l"/>
+                                                <constraint firstItem="VTv-QR-uIH" firstAttribute="top" secondItem="jzz-kE-5eh" secondAttribute="topMargin" constant="4" id="j5m-DJ-I7B"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="linkLabel" destination="VTv-QR-uIH" id="fcW-K1-AXT"/>
+                                            <outlet property="updateTime" destination="gcG-Ax-2JZ" id="ugn-vG-Is8"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Rq4-8Z-v0h" id="mEF-I7-ghq"/>
+                                    <outlet property="delegate" destination="Rq4-8Z-v0h" id="Pcf-lr-63X"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="c0x-Hq-pv0" firstAttribute="leading" secondItem="HA6-KC-oyz" secondAttribute="leading" id="O7P-iP-7lm"/>
+                            <constraint firstAttribute="trailing" secondItem="c0x-Hq-pv0" secondAttribute="trailing" id="jl2-hy-SDc"/>
+                            <constraint firstItem="ahz-MV-cc0" firstAttribute="top" secondItem="c0x-Hq-pv0" secondAttribute="bottom" id="tNl-tA-9iR"/>
+                            <constraint firstItem="c0x-Hq-pv0" firstAttribute="top" secondItem="kVT-HP-oJz" secondAttribute="bottom" id="tl3-8E-XL4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="c0x-Hq-pv0" id="otb-vK-j0X"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YE3-99-Iqw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="737" y="238"/>
+        </scene>
+        <!--My Route Cameras View Controller-->
+        <scene sceneID="4cx-4x-0Tm">
+            <objects>
+                <viewController id="tNY-sE-m3x" customClass="MyRouteCamerasViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JpZ-fd-Qkk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="387"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hNe-ko-jKi">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="387"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="bJ2-4K-A06">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bJ2-4K-A06" id="R6q-wU-zXF">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hNe-ko-jKi" firstAttribute="top" secondItem="JpZ-fd-Qkk" secondAttribute="top" id="QQl-a0-ioh"/>
+                            <constraint firstAttribute="bottom" secondItem="hNe-ko-jKi" secondAttribute="bottom" id="oMM-iT-Nvu"/>
+                            <constraint firstAttribute="trailing" secondItem="hNe-ko-jKi" secondAttribute="trailing" id="qoJ-q5-Zqn"/>
+                            <constraint firstItem="hNe-ko-jKi" firstAttribute="leading" secondItem="JpZ-fd-Qkk" secondAttribute="leading" id="r23-eL-EAW"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m8h-3w-oFN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1496.8" y="245.12743628185908"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="icFavoriteDefault" width="64" height="64"/>
-        <image name="icGear" width="48" height="48"/>
+        <image name="icFavoriteDefault" width="32" height="32"/>
+        <image name="icGear" width="24" height="24"/>
     </resources>
 </document>

@@ -1,5 +1,5 @@
 //
-//  MyRouteItem.swift
+//  MyRouteAlertsViewController.swift
 //  WSDOT
 //
 //  Copyright (c) 2017 Washington State Department of Transportation
@@ -18,29 +18,18 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
 
-import Foundation
+import UIKit
 import RealmSwift
+import SafariServices
 
-class MyRouteItem: Object {
+class MyRouteAlertsViewController: UIViewController {
     
-    @objc dynamic var id = 1
-    @objc dynamic var name = ""
+    var alertDataDelegate: AlertTableDataDelegate!
     
-    @objc dynamic var foundTravelTimes = false
-    @objc dynamic var foundCameras = false
-    
-    @objc dynamic var displayLatitude = 0.0
-    @objc dynamic var displayLongitude = 0.0
-    @objc dynamic var displayZoom = 0.0
-    
-    @objc dynamic var selected = false
-    
-    let route = List<MyRouteLocationItem>()
-    
-    var cameraIds = List<Int>()
-    var travelTimeIds = List<Int>()
-    
-    override static func primaryKey() -> String? {
-        return "id"
+    @IBOutlet weak var tableView: UITableView!
+   
+    override func viewDidLoad() {
+        alertDataDelegate.alertTableReady(tableView)
     }
+    
 }

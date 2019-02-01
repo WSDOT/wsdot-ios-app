@@ -56,26 +56,24 @@ class MyRouteViewController: UIViewController {
         super.viewDidAppear(animated)
         MyAnalytics.screenView(screenName: "MyRoutes")
         
+        /*
         // Check if user has added a new route, and requested app favorites items on route
         for route in myRoutes {
-            if !route.foundMountainPasses || !route.foundFerrySchedules || !route.foundCameras || !route.foundTravelTimes {
+            if !route.foundCameras || !route.foundTravelTimes {
                 
                 self.showRouteOverlay()
                 
                 let serviceGroup = DispatchGroup();
                 
-                if !route.foundFerrySchedules { requestFerriesUpdate(true, serviceGroup: serviceGroup) }
                 if !route.foundCameras { requestCamerasUpdate(true, serviceGroup: serviceGroup) }
                 if !route.foundTravelTimes { requestTravelTimesUpdate(true, serviceGroup: serviceGroup) }
-                if !route.foundMountainPasses { requestMountainPassesUpdate(true, serviceGroup: serviceGroup) }
-                
+        
                 serviceGroup.notify(queue: DispatchQueue.main) {
                     
                     if !route.foundCameras { _ = MyRouteStore.selectNearbyCameras(forRoute: route) }
                     if !route.foundTravelTimes { _ = MyRouteStore.selectNearbyTravelTimes(forRoute: route) }
-                    if !route.foundFerrySchedules { _ = MyRouteStore.selectNearbyFerries(forRoute: route) }
-                    if !route.foundMountainPasses { _ = MyRouteStore.selectNearbyPasses(forRoute: route) }
-                    
+         
+         // TODO: make new helper for just cameras and travel times
                     _ = MyRouteStore.updateFindNearby(forRoute: route, foundCameras: true, foundTimes: true, foundFerries: true, foundPasses: true)
                     
                     // dismiss the routeLoadingOverlay
@@ -83,6 +81,7 @@ class MyRouteViewController: UIViewController {
                 }
             }
         }
+         */
 
     }
 
