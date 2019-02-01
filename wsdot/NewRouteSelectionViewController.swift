@@ -23,6 +23,7 @@ class NewRouteSelectionViewController: UIViewController  {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +56,10 @@ class NewRouteSelectionViewController: UIViewController  {
     
     func getRoute(source: CLLocationCoordinate2D, destination: CLLocationCoordinate2D) {
         
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        submitButton.isEnabled = false
+        
         let request = MKDirections.Request()
         request.source = MKMapItem(placemark: MKPlacemark(coordinate: source, addressDictionary: nil))
         request.destination = MKMapItem(placemark: MKPlacemark(coordinate: destination, addressDictionary: nil))
@@ -73,6 +78,10 @@ class NewRouteSelectionViewController: UIViewController  {
             let indexPath = IndexPath(row: 0, section: 0)
             self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .top)
             self.tableView(self.tableView, didSelectRowAt: indexPath)
+
+            self.activityIndicator.isHidden = true
+            self.activityIndicator.stopAnimating()
+            self.submitButton.isEnabled = true
 
         }
     }

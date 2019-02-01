@@ -55,6 +55,10 @@
 		9A46C3B82034F5C1000F03C5 /* TravelTimeItemGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A46C3B72034F5C1000F03C5 /* TravelTimeItemGroup.swift */; };
 		9A4BBAB02125C53500DE6F1B /* SimpleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4BBAAF2125C53500DE6F1B /* SimpleMapViewController.swift */; };
 		9A50179C1D258F2000B9C49E /* RoutesCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */; };
+		9A52F1EB22089F400008038B /* MyRouteAlertsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A52F1EA22089F400008038B /* MyRouteAlertsViewController.swift */; };
+		9A52F1ED22089F520008038B /* MyRouteCamerasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A52F1EC22089F520008038B /* MyRouteCamerasViewController.swift */; };
+		9A52F1EF22089F660008038B /* AlertTableDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A52F1EE22089F660008038B /* AlertTableDataDelegate.swift */; };
+		9A52F1F12208AA9B0008038B /* MyRouteTravelTimesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A52F1F02208AA9B0008038B /* MyRouteTravelTimesViewController.swift */; };
 		9A63788520E52D9D0079BFAA /* TollTripItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A63788420E52D9D0079BFAA /* TollTripItem.swift */; };
 		9A6A0029210105070005CC7F /* TollRatesTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6A0028210105070005CC7F /* TollRatesTabBarViewController.swift */; };
 		9A6A002B210237B20005CC7F /* TollTripView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A6A002A210237B20005CC7F /* TollTripView.xib */; };
@@ -287,6 +291,10 @@
 		9A46C3B72034F5C1000F03C5 /* TravelTimeItemGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelTimeItemGroup.swift; sourceTree = "<group>"; };
 		9A4BBAAF2125C53500DE6F1B /* SimpleMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMapViewController.swift; sourceTree = "<group>"; };
 		9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutesCustomCell.swift; sourceTree = "<group>"; };
+		9A52F1EA22089F400008038B /* MyRouteAlertsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRouteAlertsViewController.swift; sourceTree = "<group>"; };
+		9A52F1EC22089F520008038B /* MyRouteCamerasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRouteCamerasViewController.swift; sourceTree = "<group>"; };
+		9A52F1EE22089F660008038B /* AlertTableDataDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertTableDataDelegate.swift; sourceTree = "<group>"; };
+		9A52F1F02208AA9B0008038B /* MyRouteTravelTimesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRouteTravelTimesViewController.swift; sourceTree = "<group>"; };
 		9A63788420E52D9D0079BFAA /* TollTripItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TollTripItem.swift; sourceTree = "<group>"; };
 		9A6A0028210105070005CC7F /* TollRatesTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TollRatesTabBarViewController.swift; sourceTree = "<group>"; };
 		9A6A002A210237B20005CC7F /* TollTripView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TollTripView.xib; sourceTree = "<group>"; };
@@ -1117,6 +1125,10 @@
 			children = (
 				0263A86521FBD5D10090A954 /* NewMyRoute */,
 				9AFDEA771E410BF9008DD51E /* MyRouteReportViewController.swift */,
+				9A52F1EE22089F660008038B /* AlertTableDataDelegate.swift */,
+				9A52F1EC22089F520008038B /* MyRouteCamerasViewController.swift */,
+				9A52F1EA22089F400008038B /* MyRouteAlertsViewController.swift */,
+				9A52F1F02208AA9B0008038B /* MyRouteTravelTimesViewController.swift */,
 				9AFDEA791E428970008DD51E /* MyRouteViewController.swift */,
 			);
 			name = Controllers;
@@ -1988,6 +2000,7 @@
 				9A0616E61D67838F00126520 /* TrafficMapGoToViewController.swift in Sources */,
 				9A6FBD311D6E3E9100CDCE16 /* MountainPassesViewController.swift in Sources */,
 				9A6FBCD41D6B54E300CDCE16 /* RestAreaStore.swift in Sources */,
+				9A52F1EF22089F660008038B /* AlertTableDataDelegate.swift in Sources */,
 				9AA5F4BD2200CBB600E1D4CA /* LocationSearchViewController.swift in Sources */,
 				9AFEECE11D3925400078A781 /* CachesStore.swift in Sources */,
 				9A2F4A5D1D52747900911AF5 /* FerryScheduleRealmDataModel.swift in Sources */,
@@ -2000,6 +2013,7 @@
 				9A6FBD0B1D6CBC3A00CDCE16 /* TravelTimeItem.swift in Sources */,
 				9A9808C01F1FA2AF0034DA05 /* TravelChartItem.swift in Sources */,
 				9A1F5FA71D47E27200DA5F99 /* SailingSpacesItem.swift in Sources */,
+				9A52F1EB22089F400008038B /* MyRouteAlertsViewController.swift in Sources */,
 				9A6A002D210238350005CC7F /* TollTripView.swift in Sources */,
 				9A06167A1D62285A00126520 /* VesselWatchViewController.swift in Sources */,
 				9A63788520E52D9D0079BFAA /* TollTripItem.swift in Sources */,
@@ -2081,6 +2095,7 @@
 				9A7BC0D61DA3F31B00EF760C /* GMUDefaultClusterRenderer.m in Sources */,
 				9AD653662202102300D86823 /* NewRouteSelectionViewController.swift in Sources */,
 				9A0616D21D660DC500126520 /* DynamicTollRatesViewController.swift in Sources */,
+				9A52F1ED22089F520008038B /* MyRouteCamerasViewController.swift in Sources */,
 				9AB549051D78899600927F13 /* AmtrakCascadesScheduleDetailsViewController.swift in Sources */,
 				9A8DD9F81D946B6200CE0B76 /* HomeSplitViewController.swift in Sources */,
 				9A0CA8371D466045009C67B7 /* TimeUtils.swift in Sources */,
@@ -2151,6 +2166,7 @@
 				0263A86721FBD73E0090A954 /* MyRouteSetupViewController.swift in Sources */,
 				9A0616D51D6638AB00126520 /* TollRatesStore.swift in Sources */,
 				9A81A57A1D4AC5840049913A /* RouteCamerasViewController.swift in Sources */,
+				9A52F1F12208AA9B0008038B /* MyRouteTravelTimesViewController.swift in Sources */,
 				9AB5490C1D7A1D2800927F13 /* MyAnalytics.swift in Sources */,
 				9AEEDDA41D6F3D810032F5EC /* MountainPassCell.swift in Sources */,
 				9AEF4D931D7608ED003ECA34 /* FlickrStore.swift in Sources */,

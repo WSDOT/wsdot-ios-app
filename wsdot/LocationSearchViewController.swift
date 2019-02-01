@@ -12,6 +12,8 @@ class LocationSearchViewController : UIViewController {
     var mapView: MKMapView!
     var mapSearchDelegate: LocationSearchDelegate!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     var search: MKLocalSearch!
     
     @IBOutlet weak var tableView: UITableView!
@@ -92,7 +94,14 @@ extension LocationSearchViewController : UISearchResultsUpdating {
         
         search = MKLocalSearch(request: request)
         
+        self.activityIndicator.isHidden = false
+        self.activityIndicator.startAnimating()
+        
         search.start { response, _ in
+        
+            self.activityIndicator.isHidden = true
+            self.activityIndicator.stopAnimating()
+        
             guard let response = response else {
                 return
             }

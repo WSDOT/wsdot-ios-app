@@ -25,7 +25,6 @@ import SafariServices
 class MyRouteReportViewController: UIViewController {
 
     var alerts = [HighwayAlertItem]()
-    var cameras = [CameraItem]()
     
     var trafficAlerts = [HighwayAlertItem]()
     var constructionAlerts = [HighwayAlertItem]()
@@ -39,21 +38,20 @@ class MyRouteReportViewController: UIViewController {
     
     let segueMyRouteAlertViewController = "MyRouteAlertsViewController"
     let segueMyRouteCamerasViewController = "MyRouteCamerasViewControllers"
+    let segueMyRouteTravelTimesViewController = "MyRouteTravelTimesViewController"
     
     let refreshControl = UIRefreshControl()
     var activityIndicator = UIActivityIndicatorView()
 
     fileprivate var alertMarkers = Set<GMSMarker>()
-    fileprivate var cameraMarkers = Set<GMSMarker>()
 
     @IBOutlet weak var mapView: GMSMapView!
     
     @IBOutlet weak var alertsContainerView: UIView!
     @IBOutlet weak var camerasContainerView: UIView!
+    @IBOutlet weak var travelTimesContainerView: UIView!
     
     var alertsTableView: UITableView!
-    
-    //@IBOutlet weak var accessibilityMapLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +65,7 @@ class MyRouteReportViewController: UIViewController {
         
         alertsContainerView.isHidden = false
         camerasContainerView.isHidden = true
+        travelTimesContainerView.isHidden = true
         
         _ = drawRouteOnMap(Array(route!.route))
         
@@ -82,18 +81,19 @@ class MyRouteReportViewController: UIViewController {
         switch (sender.selectedSegmentIndex) {
         
         case 0:
-        
             alertsContainerView.isHidden = false
             camerasContainerView.isHidden = true
+            travelTimesContainerView.isHidden = true
             break
         case 1:
             alertsContainerView.isHidden = true
             camerasContainerView.isHidden = true
+            travelTimesContainerView.isHidden = false
             break
         case 2:
-            
             alertsContainerView.isHidden = true
             camerasContainerView.isHidden = false
+            travelTimesContainerView.isHidden = true
             break
         default:
             return
@@ -187,7 +187,6 @@ class MyRouteReportViewController: UIViewController {
             let serviceGroup = DispatchGroup();
             
             requestAlertsUpdate(force, serviceGroup: serviceGroup)
-            //requestCamerasUpdate(force, serviceGroup: serviceGroup)
                 
             serviceGroup.notify(queue: DispatchQueue.main) {
                 
@@ -321,10 +320,12 @@ class MyRouteReportViewController: UIViewController {
             }
         } else if segue.identifier == segueMyRouteCamerasViewController {
             if let destinationViewController = segue.destination as? MyRouteCamerasViewController {
-                print("setting route for cameras vc")
                 destinationViewController.route = self.route
             }
-            
+        } else if segue.identifier == segueMyRouteTravelTimesViewController {
+            if let destinationViewController = segue.destination as? MyRouteTravelTimesViewController {
+                destinationViewController.route = self.route
+            }
         }
     }
 }
@@ -418,14 +419,13 @@ extension MyRouteReportViewController: GMSMapViewDelegate {
             MyRoute.spans = [GMSStyleSpan(color: UIColor(red: 0, green: 0.6588, blue: 0.9176, alpha: 1))] /* #00a8ea */
             MyRoute.strokeWidth = 2
             MyRoute.map = mapView
-            mapView.animate(toZoom: (camera?.zoom)! - 0.5)
+            mapView.animate(toZoom: (camera?.zoom)! - 0.0)
         
             return true
         } else {
             return false
         }
     }
-
 }
 
 // MARK: - TableView

@@ -57,6 +57,25 @@ class TravelTimesStore{
     
     }
     
+    static func getTravelTimesBy(ids: [Int]) -> [TravelTimeItemGroup] {
+    
+        let realm = try! Realm()
+        let travelTimeItems = realm.objects(TravelTimeItemGroup.self).filter {
+                let travelTimes = $0.routes.filter {
+                    for id in ids {
+                        if ($0.routeid == id){
+                            return true
+                        }
+                    }
+                    return false
+                }
+                return travelTimes.count > 0
+            }
+        
+        return Array(travelTimeItems)
+    
+    }
+    
     static func findFavoriteTimes() -> [TravelTimeItemGroup]{
         let realm = try! Realm()
         let favoriteTimeItems = realm.objects(TravelTimeItemGroup.self).filter("selected == true").filter("delete == false")
@@ -156,7 +175,7 @@ class TravelTimesStore{
             time.startLongitude = subJson["startLocationLongitude"].doubleValue
             
             time.endLatitude = subJson["endLocationLatitude"].doubleValue
-            time.endLongitude = subJson["endLocationLatitude"].doubleValue
+            time.endLongitude = subJson["endLocationLongitude"].doubleValue
             
             time.distance = subJson["miles"].floatValue
             time.averageTime = subJson["avg_time"].intValue

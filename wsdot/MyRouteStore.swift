@@ -128,47 +128,7 @@ class MyRouteStore {
         }
         return true
     }
-    
-    static func selectNearbyCameras(forRoute: MyRouteItem) -> Bool {
-        let realm = try! Realm()
-        
-        let cameras = realm.objects(CameraItem.self)
-        
-        do {
-            try realm.write {
-                for camera in cameras {
-                    if routeIsNearbyAny(locations: [CLLocation(latitude: camera.latitude, longitude: camera.longitude)], myRoute: forRoute) {
-                        camera.selected = true
-                    }
-                }
-            }
-        }catch {
-            return false
-        }
-        return true
-    }
-    
-    static func selectNearbyTravelTimes(forRoute: MyRouteItem) -> Bool {
-        let realm = try! Realm()
-        
-        let travelTimeGroups = realm.objects(TravelTimeItemGroup.self)
-        do {
-            try realm.write {
-                for timeGroup in travelTimeGroups {
-                    for time in timeGroup.routes {
-                        if routeIsNearbyBoth(startLocation: CLLocation(latitude: time.startLatitude, longitude: time.startLongitude),
-                                            endLocation: CLLocation(latitude: time.endLatitude, longitude: time.endLongitude),
-                                            myRoute: forRoute){
-                            timeGroup.selected = true
-                        }
-                    }
-                }
-            }
-        } catch {
-            return false
-        }
-        return true
-    }
+
     
     static func getNearbyAlerts(forRoute: MyRouteItem, withAlerts: [HighwayAlertItem]) -> [HighwayAlertItem] {
     
@@ -212,8 +172,35 @@ class MyRouteStore {
         return true
     }
     
-    /////////////////
-    
+    static func getNearbyTravelTimeIds(forRoute: MyRouteItem) -> Bool {
+     
+        let realm = try! Realm()
+        
+        let travelTimeGroups = realm.objects(TravelTimeItemGroup.self)
+        
+        var nearbyTravelTimeIds = [Int]()
+        
+        for timeGroup in travelTimeGroups {
+        
+                for time in timeGroup.routes {
+                    
+                    if routeIsNearbyBoth(startLocation: CLLocation(latitude: time.startLatitude, longitude: time.startLongitude), endLocation: CLLocation(latitude: time.endLatitude, longitude: time.endLongitude), myRoute: forRoute) {
+                        nearbyTravelTimeIds.append(time.routeid)
+                    }
+                }
+            }
+        
+        do {
+            try realm.write{
+                forRoute.travelTimeIds.append(objectsIn: nearbyTravelTimeIds)
+                forRoute.foundTravelTimes = true
+            }
+        } catch {
+            return false
+        }
+        
+        return true
+    }
     
     static func routeIsNearbyAny(locations: [CLLocation], myRoute: MyRouteItem) -> Bool {
     
@@ -225,6 +212,7 @@ class MyRouteStore {
                 if location.distance(from: pointLocation) < 400 {
                     return true
                 }
+                
             }
         }
         return false
@@ -240,19 +228,22 @@ class MyRouteStore {
         
             let pointLocation = CLLocation(latitude: point.lat, longitude: point.long)
         
+
             // distance in meters
-            if startLocation.distance(from: pointLocation) < 400 {
+            if startLocation.distance(from: pointLocation) < 500 {
                 isNearbyStart = true
             }
 
-            if endLocation.distance(from: pointLocation) < 400 {
+            if endLocation.distance(from: pointLocation) < 500 {
                 isNearbyEnd = true
             }
 
             if isNearbyStart && isNearbyEnd {
                 return true
             }
+            
         }
+
         return false
     }
 

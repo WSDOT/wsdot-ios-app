@@ -10,17 +10,13 @@ import UIKit
 import RealmSwift
 import SafariServices
 
-class MyRouteCamerasViewController: UIViewController {
+class MyRouteCamerasViewController: CameraClusterViewController {
     
     var route: MyRouteItem!
     
-    var cameras = [CameraItem]()
-    
     override func viewDidLoad() {
-        print(route.name)
-        
+        super.viewDidLoad()
         loadCamerasOnRoute(force: true)
-        
     }
     
     func loadCamerasOnRoute(force: Bool){
@@ -32,15 +28,20 @@ class MyRouteCamerasViewController: UIViewController {
             requestCamerasUpdate(force, serviceGroup: serviceGroup)
             
             serviceGroup.notify(queue: DispatchQueue.main) {
-              
-                print("done")
                 
-                //self.tableView.rowHeight = UITableView.automaticDimension
-                //self.tableView.reloadData()
+                let nearbyCameras = CamerasStore.getCamerasByID(Array(self.route.cameraIds))
                 
-                //self.hideOverlayView()
-              
-                //self.refreshControl.endRefreshing()
+                self.cameraItems.removeAll()
+                self.cameraItems.append(contentsOf: nearbyCameras)
+                
+                self.tableView.reloadData()
+                
+                if self.cameraItems.count == 0 {
+                    self.tableView.isHidden = true
+                } else {
+                    self.tableView.isHidden = false
+                }
+                
             }
         }
     }
@@ -63,31 +64,6 @@ class MyRouteCamerasViewController: UIViewController {
                         _ = MyRouteStore.getNearbyCameraIds(forRoute: route)
                     }
                     
-                    let nearbyCameras = CamerasStore.getCamerasByID(Array(route.cameraIds))
-                
-                    self.cameras.removeAll()
-                
-                    // copy alerts to unmanaged Realm object so we can access on main thread.
-                    for camera in nearbyCameras {
-                    
-                        print(camera.roadName)
-                        
-                        let tempCamera = CameraItem()
-                    
-                        tempCamera.cameraId = camera.cameraId
-                        tempCamera.latitude = camera.latitude
-                        tempCamera.longitude = camera.longitude
-                        tempCamera.direction = camera.direction
-                        tempCamera.milepost = camera.milepost
-                        tempCamera.roadName = camera.roadName
-                        tempCamera.selected = camera.selected
-                        tempCamera.title = camera.title
-                        tempCamera.url = camera.url
-                        tempCamera.video = camera.video
-                    
-                        self.cameras.append(tempCamera)
-                    }
-                
                     serviceGroup.leave()
                 } else {
                     serviceGroup.leave()
@@ -100,5 +76,4 @@ class MyRouteCamerasViewController: UIViewController {
             }
         })
     }
-    
 }
