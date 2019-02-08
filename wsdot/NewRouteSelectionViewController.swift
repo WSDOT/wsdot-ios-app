@@ -34,7 +34,7 @@ class NewRouteSelectionViewController: UIViewController  {
         
         styleButtons()
         mapView.setRegion(washingtionRegion, animated: false)
-      
+        
         getRoute(source: CLLocationCoordinate2D(latitude: pointA.coordinate.latitude, longitude: pointA.coordinate.longitude), destination: CLLocationCoordinate2D(latitude: pointB.coordinate.latitude, longitude: pointB.coordinate.longitude))
         
     }
@@ -45,6 +45,12 @@ class NewRouteSelectionViewController: UIViewController  {
         if let directionsValue = directions {
             directionsValue.cancel()
         }
+    }
+    
+    // Make sure table has the latest data when the view displays
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
     
     @IBAction func submitAction(_ sender: UIButton) {
@@ -71,6 +77,7 @@ class NewRouteSelectionViewController: UIViewController  {
         
         let request = MKDirections.Request()
         request.source = MKMapItem(placemark: MKPlacemark(coordinate: source, addressDictionary: nil))
+        
         request.destination = MKMapItem(placemark: MKPlacemark(coordinate: destination, addressDictionary: nil))
         request.requestsAlternateRoutes = true
         request.transportType = .automobile
@@ -82,7 +89,6 @@ class NewRouteSelectionViewController: UIViewController  {
             guard let unwrappedResponse = response else { return }
 
             self.routes = unwrappedResponse.routes
-            
             
             if self.routes.count == 0 {
             

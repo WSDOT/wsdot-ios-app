@@ -29,6 +29,10 @@ class MyRouteCamerasViewController: CameraClusterViewController {
             
             serviceGroup.notify(queue: DispatchQueue.main) {
                 
+                if !self.route.foundCameras {
+                    _ = MyRouteStore.getNearbyCameraIds(forRoute: self.route)
+                }
+                
                 let nearbyCameras = CamerasStore.getCamerasByID(Array(self.route.cameraIds))
                 
                 self.cameraItems.removeAll()
@@ -41,39 +45,25 @@ class MyRouteCamerasViewController: CameraClusterViewController {
                 } else {
                     self.tableView.isHidden = false
                 }
-                
             }
         }
     }
-    
     
     fileprivate func requestCamerasUpdate(_ force: Bool, serviceGroup: DispatchGroup) {
         
         serviceGroup.enter()
         
-        let routeRef = ThreadSafeReference(to: self.route!)
-        
         CamerasStore.updateCameras(force, completion: { error in
-            if (error == nil){
-                
-                let routeItem = try! Realm().resolve(routeRef)
-                
-                if let route = routeItem {
-                    
-                    if !route.foundCameras {
-                        _ = MyRouteStore.getNearbyCameraIds(forRoute: route)
-                    }
-                    
-                    serviceGroup.leave()
-                } else {
-                    serviceGroup.leave()
-                    DispatchQueue.main.async { [weak self] in
-                        if let selfValue = self{
-                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion:   nil)
-                        }
+            if (error != nil) {
+              
+                serviceGroup.leave()
+                DispatchQueue.main.async { [weak self] in
+                    if let selfValue = self{
+                        selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion:   nil)
                     }
                 }
             }
+            serviceGroup.leave()
         })
     }
 }

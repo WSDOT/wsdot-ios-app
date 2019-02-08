@@ -165,17 +165,6 @@ class MyRouteViewController: UIViewController {
         }
     }
     
-    func showRouteOverlay(){
-        loadingRouteAlert = UIAlertController(title: nil, message: "Please wait.\nAdding Favorites...", preferredStyle: .alert)
-        loadingRouteAlert.view.tintColor = UIColor.black
-        let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame:CGRect(x:10, y:5, width:50, height:50)) as UIActivityIndicatorView
-        loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.style = UIActivityIndicatorView.Style.gray
-        loadingIndicator.startAnimating();
-        loadingRouteAlert.view.addSubview(loadingIndicator)
-        self.present(loadingRouteAlert, animated: true, completion: nil)
-    }
-    
     @objc func setRoute(sender: UIButton) {
         _ = MyRouteStore.updateSelected(myRoutes[sender.tag], newValue: !myRoutes[sender.tag].selected)
         tableView.reloadData()
@@ -191,10 +180,8 @@ class MyRouteViewController: UIViewController {
                 destinationViewController.title = myRoutes[indexPath.row].name
                 destinationViewController.route = myRoutes[indexPath.row]
                 destinationViewController.navigationController?.navigationBar.tintColor = Colors.tintColor
-            
             }
         }
-
     }
     
     func styleButtons() {

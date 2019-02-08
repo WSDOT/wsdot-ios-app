@@ -42,11 +42,19 @@ class MyRouteTravelTimesViewController: TravelTimesViewController {
             
             serviceGroup.notify(queue: DispatchQueue.main) {
                 
+                if !self.route.foundTravelTimes {
+                    _ = MyRouteStore.getNearbyTravelTimeIds(forRoute: self.route)
+                }
+                
                 let nearbyTimes = TravelTimesStore.getTravelTimesBy(ids: Array(self.route.travelTimeIds))
             
                 self.travelTimeGroups.removeAll()
                 self.travelTimeGroups.append(contentsOf: nearbyTimes)
-                self.filtered = self.travelTimeGroups
+                
+                // sort by via text
+                self.filtered = self.travelTimeGroups.sorted(by: {$0.routes[0].viaText < $1.routes[0].viaText })
+                
+                
                 self.refreshControl.endRefreshing()
                 self.hideOverlayView()
                 self.tableView.reloadData()
@@ -61,35 +69,19 @@ class MyRouteTravelTimesViewController: TravelTimesViewController {
         }
     }
     
-    
     fileprivate func requestTravelTimesUpdate(_ force: Bool, serviceGroup: DispatchGroup) {
         
         serviceGroup.enter()
         
-        let routeRef = ThreadSafeReference(to: self.route!)
-        
         TravelTimesStore.updateTravelTimes(force, completion: { error in
-            if (error == nil){
-                
-                let routeItem = try! Realm().resolve(routeRef)
-                
-                if let route = routeItem {
-                    
-                    if !route.foundTravelTimes {
-                        _ = MyRouteStore.getNearbyTravelTimeIds(forRoute: route)
-                    }
-                    
-                    serviceGroup.leave()
-                } else {
-                    serviceGroup.leave()
-                    DispatchQueue.main.async { [weak self] in
-                        if let selfValue = self{
-                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion:   nil)
-                        }
+            if (error != nil) {
+                DispatchQueue.main.async { [weak self] in
+                    if let selfValue = self{
+                        selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion:   nil)
                     }
                 }
             }
+            serviceGroup.leave()
         })
     }
-    
 }

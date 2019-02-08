@@ -153,7 +153,6 @@ class MyRouteStore {
         
         var nearbyCameraIds = [Int]()
         for camera in cameras {
-        
             if routeIsNearbyAny(locations:
                 [CLLocation(latitude: camera.latitude, longitude: camera.longitude)], myRoute: forRoute) {
                 nearbyCameraIds.append(camera.cameraId)

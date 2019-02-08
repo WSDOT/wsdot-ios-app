@@ -126,7 +126,9 @@ class MyRouteReportViewController: UIViewController {
             let confirmDeleteAction = UIAlertAction(title: "Delete", style: .destructive) { (_) -> Void in
             
                 MyAnalytics.event(category: "My Route", action: "UIAction", label: "Delete Route Confirmed")
+                
                 _ = MyRouteStore.delete(route: self.route!)
+                
                 self.navigationController?.popViewController(animated: true)
             }
             

@@ -98,7 +98,7 @@ extension LocationSearchViewController : UISearchResultsUpdating {
         self.activityIndicator.startAnimating()
         
         search.start { response, _ in
-        
+            
             self.activityIndicator.isHidden = true
             self.activityIndicator.stopAnimating()
         
