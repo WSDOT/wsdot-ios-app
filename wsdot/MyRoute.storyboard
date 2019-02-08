@@ -437,10 +437,6 @@ WSDOT provides traffic alert information for
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="IVM-8e-NIE">
-                                <rect key="frame" x="169" y="315" width="37" height="37"/>
-                                <color key="color" white="0.67000000000000004" alpha="1" colorSpace="calibratedWhite"/>
-                            </activityIndicatorView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="al8-2s-AyL">
                                 <rect key="frame" x="0.0" y="64" width="375" height="368"/>
                                 <connections>
@@ -468,6 +464,10 @@ WSDOT provides traffic alert information for
                                     <outlet property="delegate" destination="ytH-ri-Kzn" id="zJG-Nc-pzc"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="IVM-8e-NIE">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <color key="color" white="0.67000000000000004" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s6q-zm-sVT">
                                 <rect key="frame" x="92" y="618" width="191" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.68235294120000001" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -814,8 +814,8 @@ WSDOT provides traffic alert information for
         </scene>
     </scenes>
     <resources>
-        <image name="icFavoriteDefault" width="64" height="64"/>
-        <image name="icGear" width="48" height="48"/>
-        <image name="icStarSmall" width="48" height="48"/>
+        <image name="icFavoriteDefault" width="32" height="32"/>
+        <image name="icGear" width="24" height="24"/>
+        <image name="icStarSmall" width="24" height="24"/>
     </resources>
 </document>

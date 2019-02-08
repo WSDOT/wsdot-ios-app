@@ -212,7 +212,6 @@ class MyRouteStore {
                 if location.distance(from: pointLocation) < 400 {
                     return true
                 }
-                
             }
         }
         return false
@@ -228,7 +227,6 @@ class MyRouteStore {
         
             let pointLocation = CLLocation(latitude: point.lat, longitude: point.long)
         
-
             // distance in meters
             if startLocation.distance(from: pointLocation) < 500 {
                 isNearbyStart = true
@@ -277,4 +275,4 @@ class MyRouteStore {
         }
         return nil
     }
-    }
+}

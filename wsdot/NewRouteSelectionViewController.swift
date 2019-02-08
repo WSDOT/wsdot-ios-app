@@ -13,6 +13,8 @@ class NewRouteSelectionViewController: UIViewController  {
 
     let washingtionRegion = MKCoordinateRegion.init(center: CLLocationCoordinate2D(latitude: 47.3268164, longitude: -120.611365), latitudinalMeters: 400000, longitudinalMeters: 600000)
 
+    var directions: MKDirections!
+    
     var pointA: MKPlacemark!
     var pointB: MKPlacemark!
     
@@ -31,11 +33,18 @@ class NewRouteSelectionViewController: UIViewController  {
         title = "Routes"
         
         styleButtons()
-        
         mapView.setRegion(washingtionRegion, animated: false)
       
         getRoute(source: CLLocationCoordinate2D(latitude: pointA.coordinate.latitude, longitude: pointA.coordinate.longitude), destination: CLLocationCoordinate2D(latitude: pointB.coordinate.latitude, longitude: pointB.coordinate.longitude))
         
+    }
+    
+    // Cancel any pending request when user leaves screen
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if let directionsValue = directions {
+            directionsValue.cancel()
+        }
     }
     
     @IBAction func submitAction(_ sender: UIButton) {
@@ -66,8 +75,8 @@ class NewRouteSelectionViewController: UIViewController  {
         request.requestsAlternateRoutes = true
         request.transportType = .automobile
 
-        let directions = MKDirections(request: request)
-
+        directions = MKDirections(request: request)
+        
         // Make a MKDirections request and plot the first returned route
         directions.calculate { [unowned self] response, error in
             guard let unwrappedResponse = response else { return }
