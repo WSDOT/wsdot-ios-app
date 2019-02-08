@@ -82,12 +82,26 @@ class NewRouteSelectionViewController: UIViewController  {
             guard let unwrappedResponse = response else { return }
 
             self.routes = unwrappedResponse.routes
-            self.tableView.reloadData()
             
-            let indexPath = IndexPath(row: 0, section: 0)
-            self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .top)
-            self.tableView(self.tableView, didSelectRowAt: indexPath)
-
+            
+            if self.routes.count == 0 {
+            
+                self.tableView.isHidden = true
+                self.submitButton.isHidden = true
+            
+            } else {
+            
+                self.tableView.isHidden = false
+                self.submitButton.isHidden = false
+                
+                self.tableView.reloadData()
+                
+                let indexPath = IndexPath(row: 0, section: 0)
+                self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .top)
+                self.tableView(self.tableView, didSelectRowAt: indexPath)
+                
+            }
+            
             self.activityIndicator.isHidden = true
             self.activityIndicator.stopAnimating()
             self.submitButton.isEnabled = true
@@ -105,7 +119,6 @@ class NewRouteSelectionViewController: UIViewController  {
                     [CLLocation(latitude: alert.startLatitude, longitude: alert.startLongitude),
                     CLLocation(latitude: alert.endLatitude, longitude: alert.endLongitude)], polyline: polyline) {
         
-                print(alert.headlineDesc)
             }
         }
     }
@@ -132,7 +145,6 @@ class NewRouteSelectionViewController: UIViewController  {
         submitButton.layer.cornerRadius = 5
         submitButton.clipsToBounds = true
     }
-
 }
 
 extension NewRouteSelectionViewController: UITableViewDelegate, UITableViewDataSource {
@@ -156,10 +168,7 @@ extension NewRouteSelectionViewController: UITableViewDelegate, UITableViewDataS
         
         mapView.addOverlay(self.routes[selectedRouteIndex].polyline)
         
-        //getAlertsOnPolyline(polyline: self.routes[selectedRouteIndex].polyline)
-        
     }
-    
 }
 
 // MARK: Map Delegate methods
