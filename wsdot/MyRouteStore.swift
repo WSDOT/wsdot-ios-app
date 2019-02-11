@@ -237,10 +237,46 @@ class MyRouteStore {
             if isNearbyStart && isNearbyEnd {
                 return true
             }
-            
         }
 
         return false
+    }
+    
+    // Used to check if the new incoming times differ from the current.
+    // If there is a difference update the foundTravelTimes field
+    // so we can check if there are new times on users routes
+    static func shouldUpdateRouteTravelTimes(_ newTimes: [TravelTimeItemGroup]) {
+        
+        let realm = try! Realm()
+        let oldTimes = realm.objects(TravelTimeItemGroup.self)
+        
+        var shouldUpdate = false
+        
+        for newTime in newTimes {
+            if oldTimes.first(where: {$0.title == newTime.title}) == nil {
+                shouldUpdate = true
+            }
+        }
+        
+        for oldTime in oldTimes {
+            if newTimes.first(where: {$0.title == oldTime.title}) == nil {
+                shouldUpdate = true
+            }
+        }
+        
+        if shouldUpdate {
+            do {
+                try realm.write {
+                    let routes = realm.objects(MyRouteItem.self)
+                    for route in routes {
+                        route.travelTimeIds.removeAll()
+                        route.foundTravelTimes = false
+                    }
+                }
+            } catch {
+                print("error updating route")
+            }
+        }
     }
 
     /**

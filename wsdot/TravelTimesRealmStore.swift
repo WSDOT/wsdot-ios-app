@@ -117,33 +117,30 @@ class TravelTimesStore{
         }
     }
     
-    // TODO: Make this smarter
-    fileprivate static func saveTravelTimes(_ travelTimes: [TravelTimeItemGroup]){
+    
+    fileprivate static func saveTravelTimes(_ travelTimes: [TravelTimeItemGroup]) {
         
         let realm = try! Realm()
         
+        // update the favorites field on the new incoming times
         let oldFavoriteTimes = self.findFavoriteTimes()
-        let newTimes = List<TravelTimeItemGroup>()
-        
-        for time in travelTimes {
-            for oldTime in oldFavoriteTimes {
-                if (oldTime.title == time.title){
-                    time.selected = true
-                }
+        for oldFavTime in oldFavoriteTimes {
+            if let time = travelTimes.first(where: {$0.title == oldFavTime.title} ) {
+                travelTimes[travelTimes.firstIndex(of: time)!].selected = true
             }
-            newTimes.append(time)
         }
         
-        let oldTimes = realm.objects(TravelTimeItemGroup.self)
+        MyRouteStore.shouldUpdateRouteTravelTimes(travelTimes)
         
+        let oldTimes = realm.objects(TravelTimeItemGroup.self)
         do {
-            try realm.write{
+            try realm.write {
                 for time in oldTimes{
                     time.delete = true
                 }
-                realm.add(newTimes, update: true)
+                realm.add(travelTimes, update: true)
             }
-        }catch {
+        } catch {
             print("TravelTimesStore.saveTravelTimes: Realm write error")
         }
     }
