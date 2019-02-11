@@ -154,7 +154,7 @@ WSDOT provides traffic alert information for
         <!--Title-->
         <scene sceneID="Y74-f9-8m9">
             <objects>
-                <viewController storyboardIdentifier="MyRouteAlertsViewController" id="Rq4-8Z-v0h" customClass="MyRouteReportViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyRouteReportViewController" id="Rq4-8Z-v0h" customClass="MyRouteReportViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NSO-m5-zhT"/>
                         <viewControllerLayoutGuide type="bottom" id="jyw-Rj-ubL"/>
@@ -824,8 +824,8 @@ WSDOT provides traffic alert information for
         </scene>
     </scenes>
     <resources>
-        <image name="icFavoriteDefault" width="32" height="32"/>
-        <image name="icGear" width="24" height="24"/>
-        <image name="icStarSmall" width="24" height="24"/>
+        <image name="icFavoriteDefault" width="64" height="64"/>
+        <image name="icGear" width="48" height="48"/>
+        <image name="icStarSmall" width="48" height="48"/>
     </resources>
 </document>

@@ -52,7 +52,8 @@ class MyRouteTravelTimesViewController: TravelTimesViewController {
                 self.travelTimeGroups.append(contentsOf: nearbyTimes)
                 
                 // sort by via text
-                self.filtered = self.travelTimeGroups.sorted(by: {$0.routes[0].viaText < $1.routes[0].viaText })
+                self.filtered = self.travelTimeGroups.sorted(by: {$0.routes[0].routeid < $1.routes[0].routeid })
+                
                 
                 
                 self.refreshControl.endRefreshing()

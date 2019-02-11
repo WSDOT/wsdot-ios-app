@@ -23,7 +23,5 @@ import UIKit
 class MyRouteFavoritesCell: UITableViewCell {
 
     @IBOutlet weak var routeNameLabel: UILabel!
-    @IBOutlet weak var openTrafficMapButton: UIButton!
-    @IBOutlet weak var checkAlertsButton: UIButton!
 
 }

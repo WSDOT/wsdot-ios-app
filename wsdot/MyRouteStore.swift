@@ -128,7 +128,6 @@ class MyRouteStore {
         }
         return true
     }
-
     
     static func getNearbyAlerts(forRoute: MyRouteItem, withAlerts: [HighwayAlertItem]) -> [HighwayAlertItem] {
     

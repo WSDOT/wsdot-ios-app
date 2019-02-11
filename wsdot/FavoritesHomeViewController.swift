@@ -28,7 +28,7 @@ class FavoritesHomeViewController: UIViewController {
     // content types for the favorites list in order to appear on list.
     var sectionTypes: [FavoritesContent] = [.route, .ferrySchedule, .mountainPass, .camera, .travelTime, .tollRate, .borderWait]
 
-    let segueMyRouteAlertsViewController = "MyRouteAlertsViewController"
+    let segueMyRouteReportViewController = "MyRouteReportViewController"
     let segueFavoritesSettingsViewController = "FavoritesSettingsViewController"
     let segueTrafficMapViewController = "TrafficMapViewController"
     let segueRouteDeparturesViewController = "SailingsViewController"
@@ -691,12 +691,6 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
         
             let routeCell = tableView.dequeueReusableCell(withIdentifier: myRouteCellIdentifier, for: indexPath) as! MyRouteFavoritesCell
             
-            routeCell.checkAlertsButton.tag = indexPath.row
-            routeCell.checkAlertsButton.addTarget(self, action:#selector(FavoritesHomeViewController.checkAlerts), for: .touchUpInside)
-            
-            routeCell.openTrafficMapButton.tag = indexPath.row
-            routeCell.openTrafficMapButton.addTarget(self, action: #selector(FavoritesHomeViewController.openMap), for: .touchUpInside)
-            
             routeCell.routeNameLabel.text = myRoutes[indexPath.row].name
             return routeCell
         
@@ -859,6 +853,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
         case .borderWait:
             break
         case .route:
+            performSegue(withIdentifier: segueMyRouteReportViewController, sender: nil)
             tableView.deselectRow(at: indexPath, animated: true)
             break
         }
@@ -882,11 +877,10 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             }
         }
        
-        if segue.identifier == segueMyRouteAlertsViewController {
-            if let alertButton =  sender as! UIButton? {
+        if segue.identifier == segueMyRouteReportViewController {
+            if let indexPath = tableView.indexPathForSelectedRow {
                 let destinationViewController = segue.destination as! MyRouteReportViewController
-                destinationViewController.title = "Alerts On Route: \(myRoutes[alertButton.tag].name)"
-                destinationViewController.route = myRoutes[alertButton.tag]
+                destinationViewController.route = myRoutes[indexPath.row]
                 destinationViewController.navigationController?.navigationBar.tintColor = Colors.tintColor
             }
         }
@@ -925,27 +919,6 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 destinationViewController.passItem = passItem
             }
         }
-    }
-}
-
-// MyRoute settings/options
-extension FavoritesHomeViewController {
-    /**
-     * Method name: checkAlerts
-     * Description: action func for check alerts button on a route cell
-     */
-    @objc func checkAlerts(sender: UIButton){
-        MyAnalytics.event(category: "My Route", action: "UIAction", label: "Check Alerts")
-        performSegue(withIdentifier: segueMyRouteAlertsViewController, sender: sender)
-    }
-    
-    /**
-     * Method name: checkAlerts
-     * Description: action fun for openMap button on a route cell
-     */
-    @objc func openMap(sender: UIButton){
-        MyAnalytics.event(category: "My Route", action: "UIAction", label: "Open Route")
-        performSegue(withIdentifier: segueTrafficMapViewController, sender: sender)
     }
 }
 
