@@ -130,9 +130,10 @@ class TravelTimesStore{
             }
         }
         
-        MyRouteStore.shouldUpdateRouteTravelTimes(travelTimes)
-        
         let oldTimes = realm.objects(TravelTimeItemGroup.self)
+        
+        MyRouteStore.shouldUpdateMyRouteTravelTimes(newTimes: travelTimes, oldTimes: Array(oldTimes))
+        
         do {
             try realm.write {
                 for time in oldTimes{

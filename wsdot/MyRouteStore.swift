@@ -242,13 +242,48 @@ class MyRouteStore {
         return false
     }
     
+    // Used to check if the new incoming cameras differ from the current.
+    // If there is a difference update the foundCameras field
+    // so we can get the new camera on users routes, or remove old ones
+    static func shouldUpdateMyRouteCameras(newCameras: [CameraItem], oldCameras: [CameraItem]) {
+        
+        var shouldUpdate = false
+        
+        for newCam in newCameras {
+            if oldCameras.first(where: {$0.cameraId == newCam.cameraId}) == nil {
+                shouldUpdate = true
+            }
+        }
+        
+        for oldCam in oldCameras {
+            if newCameras.first(where: {$0.cameraId == oldCam.cameraId}) == nil {
+                shouldUpdate = true
+            }
+        }
+        
+        if shouldUpdate {
+            
+            let realm = try! Realm()
+            
+            do {
+                try realm.write {
+                    let routes = realm.objects(MyRouteItem.self)
+                    for route in routes {
+                        route.cameraIds.removeAll()
+                        route.foundCameras = false
+                    }
+                }
+            } catch {
+                print("error updating route")
+            }
+        }
+    }
+    
+    
     // Used to check if the new incoming times differ from the current.
     // If there is a difference update the foundTravelTimes field
-    // so we can check if there are new times on users routes
-    static func shouldUpdateRouteTravelTimes(_ newTimes: [TravelTimeItemGroup]) {
-        
-        let realm = try! Realm()
-        let oldTimes = realm.objects(TravelTimeItemGroup.self)
+    // so we can get the new times on users routes or remove old ones
+    static func shouldUpdateMyRouteTravelTimes(newTimes: [TravelTimeItemGroup], oldTimes: [TravelTimeItemGroup]) {
         
         var shouldUpdate = false
         
@@ -265,6 +300,9 @@ class MyRouteStore {
         }
         
         if shouldUpdate {
+            
+            let realm = try! Realm()
+            
             do {
                 try realm.write {
                     let routes = realm.objects(MyRouteItem.self)

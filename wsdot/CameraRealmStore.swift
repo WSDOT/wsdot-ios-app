@@ -132,6 +132,8 @@ class CamerasStore {
         
         let oldCameras = realm.objects(CameraItem.self)
         
+        MyRouteStore.shouldUpdateMyRouteCameras(newCameras: Array(newCameras), oldCameras: Array(oldCameras))
+        
         do {
             try realm.write{
                 for oldCamera in oldCameras {
