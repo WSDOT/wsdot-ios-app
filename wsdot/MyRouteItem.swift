@@ -28,8 +28,6 @@ class MyRouteItem: Object {
     
     @objc dynamic var foundTravelTimes = false
     @objc dynamic var foundCameras = false
-    @objc dynamic var foundMountainPasses = false
-    @objc dynamic var foundFerrySchedules = false
     
     @objc dynamic var displayLatitude = 0.0
     @objc dynamic var displayLongitude = 0.0
@@ -38,6 +36,9 @@ class MyRouteItem: Object {
     @objc dynamic var selected = false
     
     let route = List<MyRouteLocationItem>()
+    
+    var cameraIds = List<Int>()
+    var travelTimeIds = List<Int>()
     
     override static func primaryKey() -> String? {
         return "id"

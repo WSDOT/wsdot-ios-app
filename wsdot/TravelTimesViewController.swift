@@ -36,6 +36,7 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
     
     var searchController: UISearchController!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Travel Times"
@@ -47,7 +48,7 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
         searchController.view.tintColor = Colors.tintColor
         searchController.searchBar.sizeToFit()
         tableView.tableHeaderView = searchController.searchBar
-        
+    
         definesPresentationContext = true
         
         // refresh controller
@@ -104,10 +105,14 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
         activityIndicator.style = .whiteLarge
         activityIndicator.color = UIColor.gray
         
-        if self.splitViewController!.isCollapsed {
-            activityIndicator.center = CGPoint(x: view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
+        if let splitVC = self.splitViewController {
+            if splitVC.isCollapsed {
+                activityIndicator.center = CGPoint(x: view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
+            } else {
+                activityIndicator.center = CGPoint(x: view.center.x - self.splitViewController!.viewControllers[0].view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
+            }
         } else {
-            activityIndicator.center = CGPoint(x: view.center.x - self.splitViewController!.viewControllers[0].view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
+            activityIndicator.center = CGPoint(x: view.center.x, y: view.center.y - self.tableView.frame.size.height)
         }
         
         view.addSubview(activityIndicator)

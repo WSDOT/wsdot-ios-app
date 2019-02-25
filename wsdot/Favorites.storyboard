@@ -226,55 +226,26 @@
                                             <outlet property="weatherImage" destination="bQ7-DG-KBi" id="fXa-9c-qSX"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyRouteFavoritesCell" rowHeight="55" id="OeY-Ui-hxY" customClass="MyRouteFavoritesCell" customModule="WSDOT" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyRouteFavoritesCell" rowHeight="55" id="OeY-Ui-hxY" customClass="MyRouteFavoritesCell" customModule="WSDOT" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="442" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OeY-Ui-hxY" id="0d8-XZ-D9p">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="54.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vng-3f-W8s">
-                                                    <rect key="frame" x="24" y="17" width="206" height="20.5"/>
+                                                    <rect key="frame" x="24" y="17" width="42" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ytM-aX-YDP">
-                                                    <rect key="frame" x="317" y="3.5" width="24" height="48"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="24" id="lJU-Ac-c0g"/>
-                                                    </constraints>
-                                                    <color key="tintColor" red="0.0" green="0.47843137250000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <state key="normal" image="icMap"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="open traffic map on route"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="faX-sK-Lym">
-                                                    <rect key="frame" x="255" y="3.5" width="24" height="48"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="24" id="lPR-Q1-jO8"/>
-                                                    </constraints>
-                                                    <color key="tintColor" red="1" green="0.42352941179999998" blue="0.047058823530000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <state key="normal" image="icAlert"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="check alerts"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Vng-3f-W8s" firstAttribute="leading" secondItem="0d8-XZ-D9p" secondAttribute="leadingMargin" constant="9" id="1kX-BK-sKs"/>
                                                 <constraint firstItem="Vng-3f-W8s" firstAttribute="centerY" secondItem="0d8-XZ-D9p" secondAttribute="centerY" id="NLD-tT-C08"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="ytM-aX-YDP" secondAttribute="trailing" constant="19" id="XI5-Un-Csx"/>
-                                                <constraint firstItem="faX-sK-Lym" firstAttribute="top" secondItem="ytM-aX-YDP" secondAttribute="top" id="XxT-DD-QX7"/>
-                                                <constraint firstItem="ytM-aX-YDP" firstAttribute="leading" secondItem="faX-sK-Lym" secondAttribute="trailing" constant="38" id="YIY-Tv-OYO"/>
-                                                <constraint firstItem="faX-sK-Lym" firstAttribute="leading" secondItem="Vng-3f-W8s" secondAttribute="trailing" constant="25" id="g2a-c0-eJc"/>
-                                                <constraint firstItem="Vng-3f-W8s" firstAttribute="centerY" secondItem="faX-sK-Lym" secondAttribute="centerY" id="jlo-pd-Atf"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="checkAlertsButton" destination="faX-sK-Lym" id="Csy-Ld-JVo"/>
-                                            <outlet property="openTrafficMapButton" destination="ytM-aX-YDP" id="Afz-da-TU7"/>
                                             <outlet property="routeNameLabel" destination="Vng-3f-W8s" id="Xwv-IT-lOi"/>
                                         </connections>
                                     </tableViewCell>
@@ -460,7 +431,7 @@ Tap star icons to add Favorites</string>
                         <segue destination="hHk-Zh-SEc" kind="show" identifier="CameraViewController" id="p2d-g6-8fW"/>
                         <segue destination="fds-7b-6dM" kind="show" identifier="TrafficMapViewController" id="CHj-Cw-w4r"/>
                         <segue destination="HBz-Ys-0pP" kind="show" identifier="MountianPassDetailsViewController" id="2Xi-uu-lpF"/>
-                        <segue destination="0lX-t0-vJz" kind="show" identifier="MyRouteAlertsViewController" id="JXq-Vi-ZkZ"/>
+                        <segue destination="0lX-t0-vJz" kind="show" identifier="MyRouteReportViewController" id="JXq-Vi-ZkZ"/>
                         <segue destination="QtI-NJ-tN5" kind="show" identifier="RouteAlertsViewController" id="54S-Ei-Egu"/>
                     </connections>
                 </viewController>
@@ -542,13 +513,13 @@ Tap star icons to add Favorites</string>
             </objects>
             <point key="canvasLocation" x="848" y="305"/>
         </scene>
-        <!--MyRouteAlertsViewController-->
+        <!--MyRouteReportViewController-->
         <scene sceneID="rVV-YH-j4z">
             <objects>
-                <viewControllerPlaceholder storyboardName="MyRoute" referencedIdentifier="MyRouteAlertsViewController" id="0lX-t0-vJz" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="MyRouteReportViewController" storyboardName="MyRoute" referencedIdentifier="MyRouteReportViewController" id="0lX-t0-vJz" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9XZ-tU-MmD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="184" y="529"/>
+            <point key="canvasLocation" x="184" y="528"/>
         </scene>
         <!--TrafficMap-->
         <scene sceneID="gSX-rc-vXL">
@@ -576,10 +547,8 @@ Tap star icons to add Favorites</string>
         </scene>
     </scenes>
     <resources>
-        <image name="icAlert" width="48" height="48"/>
         <image name="icFavoriteDefault" width="64" height="64"/>
         <image name="icGear" width="48" height="48"/>
-        <image name="icMap" width="48" height="48"/>
         <image name="icStarSmall" width="48" height="48"/>
     </resources>
 </document>

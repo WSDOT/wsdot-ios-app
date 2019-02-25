@@ -56,7 +56,7 @@ class MyRouteStore {
     }
     
     // Creates a new MyRouteItem, returns the id of the newly saved route, or -1 on error
-    static func save(route: [CLLocation], name: String, displayLat: Double, displayLong: Double, displayZoom: Float) -> Int {
+    static func save(route: [CLLocationCoordinate2D], name: String, displayLat: Double, displayLong: Double, displayZoom: Float) -> Int {
     
         let myRouteItem = MyRouteItem()
         
@@ -68,8 +68,8 @@ class MyRouteStore {
         
         for location in route {
             let locationItem = MyRouteLocationItem()
-            locationItem.lat = location.coordinate.latitude
-            locationItem.long = location.coordinate.longitude
+            locationItem.lat = location.latitude
+            locationItem.long = location.longitude
             myRouteItem.route.append(locationItem)
         }
     
@@ -102,22 +102,6 @@ class MyRouteStore {
         return true
     }
     
-    static func updateFindNearby(forRoute: MyRouteItem, foundCameras: Bool, foundTimes: Bool, foundFerries: Bool, foundPasses: Bool) -> Bool {
-        let realm = try! Realm()
-        
-        do {
-            try realm.write {
-                forRoute.foundCameras = foundCameras
-                forRoute.foundTravelTimes = foundTimes
-                forRoute.foundFerrySchedules = foundFerries
-                forRoute.foundMountainPasses = foundPasses
-            }
-        }catch {
-            return false
-        }
-        return true
-    }
-    
     static func updateSelected(_ selectedRoute: MyRouteItem, newValue: Bool) -> Bool {
     
         let realm = try! Realm()
@@ -130,7 +114,6 @@ class MyRouteStore {
         } catch {
             return false
         }
-    
     }
     
     static func updateName(forRoute: MyRouteItem, _ newName: String) -> Bool{
@@ -141,47 +124,6 @@ class MyRouteStore {
                 forRoute.name = newName
             }
         }catch {
-            return false
-        }
-        return true
-    }
-    
-    static func selectNearbyCameras(forRoute: MyRouteItem) -> Bool {
-        let realm = try! Realm()
-        
-        let cameras = realm.objects(CameraItem.self)
-        
-        do {
-            try realm.write {
-                for camera in cameras {
-                    if routeIsNearbyAny(locations: [CLLocation(latitude: camera.latitude, longitude: camera.longitude)], myRoute: forRoute) {
-                        camera.selected = true
-                    }
-                }
-            }
-        }catch {
-            return false
-        }
-        return true
-    }
-    
-    static func selectNearbyTravelTimes(forRoute: MyRouteItem) -> Bool {
-        let realm = try! Realm()
-        
-        let travelTimeGroups = realm.objects(TravelTimeItemGroup.self)
-        do {
-            try realm.write {
-                for timeGroup in travelTimeGroups {
-                    for time in timeGroup.routes {
-                        if routeIsNearbyBoth(startLocation: CLLocation(latitude: time.startLatitude, longitude: time.startLongitude),
-                                            endLocation: CLLocation(latitude: time.endLatitude, longitude: time.endLongitude),
-                                            myRoute: forRoute){
-                            timeGroup.selected = true
-                        }
-                    }
-                }
-            }
-        } catch {
             return false
         }
         return true
@@ -202,58 +144,59 @@ class MyRouteStore {
         return nearbyAlerts
     }
     
-    
-    static func selectNearbyFerries(forRoute: MyRouteItem) -> Bool {
-    
+    static func getNearbyCameraIds(forRoute: MyRouteItem) -> Bool {
+     
         let realm = try! Realm()
         
-        let ferrySchedules = realm.objects(FerryScheduleItem.self)
+        let cameras = realm.objects(CameraItem.self)
         
-        let terminalMap = FerriesConsts().terminalMap
+        var nearbyCameraIds = [Int]()
+        for camera in cameras {
+            if routeIsNearbyAny(locations:
+                [CLLocation(latitude: camera.latitude, longitude: camera.longitude)], myRoute: forRoute) {
+                nearbyCameraIds.append(camera.cameraId)
+            }
+        }
         
         do {
-            try realm.write {
-                for schedule in ferrySchedules {
-            
-                    for terminalPair in schedule.terminalPairs {
-                
-                        let terminalA = terminalMap[terminalPair.aTerminalId]!
-                        let terminalB = terminalMap[terminalPair.bTerminalId]!
-                
-                        if routeIsNearbyBoth(startLocation: CLLocation(latitude: terminalA.latitude, longitude: terminalA.longitude),
-                                                endLocation: CLLocation(latitude: terminalB.latitude, longitude: terminalB.longitude),
-                                                myRoute: forRoute) {
-                            schedule.selected = true
-                        }
-                    }
-                }
+            try realm.write{
+                forRoute.cameraIds.append(objectsIn: nearbyCameraIds)
+                forRoute.foundCameras = true
             }
-        
         } catch {
             return false
         }
+        
         return true
     }
     
-    static func selectNearbyPasses(forRoute: MyRouteItem) -> Bool {
-    
+    static func getNearbyTravelTimeIds(forRoute: MyRouteItem) -> Bool {
+     
         let realm = try! Realm()
         
-        let mountainPasses = realm.objects(MountainPassItem.self)
+        let travelTimeGroups = realm.objects(TravelTimeItemGroup.self)
         
-        do {
-            try realm.write {
-            
-                for pass in mountainPasses {
-                    if routeIsNearbyAny(locations: [CLLocation(latitude: pass.latitude, longitude: pass.longitude)], myRoute: forRoute) {
-                        pass.selected = true
+        var nearbyTravelTimeIds = [Int]()
+        
+        for timeGroup in travelTimeGroups {
+        
+                for time in timeGroup.routes {
+                    
+                    if routeIsNearbyBoth(startLocation: CLLocation(latitude: time.startLatitude, longitude: time.startLongitude), endLocation: CLLocation(latitude: time.endLatitude, longitude: time.endLongitude), myRoute: forRoute) {
+                        nearbyTravelTimeIds.append(time.routeid)
                     }
                 }
             }
         
+        do {
+            try realm.write{
+                forRoute.travelTimeIds.append(objectsIn: nearbyTravelTimeIds)
+                forRoute.foundTravelTimes = true
+            }
         } catch {
             return false
         }
+        
         return true
     }
     
@@ -283,11 +226,11 @@ class MyRouteStore {
             let pointLocation = CLLocation(latitude: point.lat, longitude: point.long)
         
             // distance in meters
-            if startLocation.distance(from: pointLocation) < 400 {
+            if startLocation.distance(from: pointLocation) < 500 {
                 isNearbyStart = true
             }
 
-            if endLocation.distance(from: pointLocation) < 400 {
+            if endLocation.distance(from: pointLocation) < 500 {
                 isNearbyEnd = true
             }
 
@@ -295,7 +238,83 @@ class MyRouteStore {
                 return true
             }
         }
+
         return false
+    }
+    
+    // Used to check if the new incoming cameras differ from the current.
+    // If there is a difference update the foundCameras field
+    // so we can get the new camera on users routes, or remove old ones
+    static func shouldUpdateMyRouteCameras(newCameras: [CameraItem], oldCameras: [CameraItem]) {
+        
+        var shouldUpdate = false
+        
+        for newCam in newCameras {
+            if oldCameras.first(where: {$0.cameraId == newCam.cameraId}) == nil {
+                shouldUpdate = true
+            }
+        }
+        
+        for oldCam in oldCameras {
+            if newCameras.first(where: {$0.cameraId == oldCam.cameraId}) == nil {
+                shouldUpdate = true
+            }
+        }
+        
+        if shouldUpdate {
+            
+            let realm = try! Realm()
+            
+            do {
+                try realm.write {
+                    let routes = realm.objects(MyRouteItem.self)
+                    for route in routes {
+                        route.cameraIds.removeAll()
+                        route.foundCameras = false
+                    }
+                }
+            } catch {
+                print("error updating route")
+            }
+        }
+    }
+    
+    
+    // Used to check if the new incoming times differ from the current.
+    // If there is a difference update the foundTravelTimes field
+    // so we can get the new times on users routes or remove old ones
+    static func shouldUpdateMyRouteTravelTimes(newTimes: [TravelTimeItemGroup], oldTimes: [TravelTimeItemGroup]) {
+        
+        var shouldUpdate = false
+        
+        for newTime in newTimes {
+            if oldTimes.first(where: {$0.title == newTime.title}) == nil {
+                shouldUpdate = true
+            }
+        }
+        
+        for oldTime in oldTimes {
+            if newTimes.first(where: {$0.title == oldTime.title}) == nil {
+                shouldUpdate = true
+            }
+        }
+        
+        if shouldUpdate {
+            
+            let realm = try! Realm()
+            
+            do {
+                try realm.write {
+                    let routes = realm.objects(MyRouteItem.self)
+                    for route in routes {
+                        route.travelTimeIds.removeAll()
+                        route.foundTravelTimes = false
+                    }
+                }
+            } catch {
+                print("error updating route")
+            }
+        }
     }
 
     /**
@@ -328,4 +347,4 @@ class MyRouteStore {
         }
         return nil
     }
-    }
+}

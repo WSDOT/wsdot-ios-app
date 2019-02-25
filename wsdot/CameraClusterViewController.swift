@@ -32,6 +32,7 @@ class CameraClusterViewController: UIViewController, UITableViewDataSource, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Camera Group"
+        
         tableView.rowHeight = UITableView.automaticDimension
         
     }

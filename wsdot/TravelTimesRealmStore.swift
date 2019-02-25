@@ -57,6 +57,25 @@ class TravelTimesStore{
     
     }
     
+    static func getTravelTimesBy(ids: [Int]) -> [TravelTimeItemGroup] {
+    
+        let realm = try! Realm()
+        let travelTimeItems = realm.objects(TravelTimeItemGroup.self).filter {
+                let travelTimes = $0.routes.filter {
+                    for id in ids {
+                        if ($0.routeid == id){
+                            return true
+                        }
+                    }
+                    return false
+                }
+                return travelTimes.count > 0
+            }
+        
+        return Array(travelTimeItems)
+    
+    }
+    
     static func findFavoriteTimes() -> [TravelTimeItemGroup]{
         let realm = try! Realm()
         let favoriteTimeItems = realm.objects(TravelTimeItemGroup.self).filter("selected == true").filter("delete == false")
@@ -98,33 +117,31 @@ class TravelTimesStore{
         }
     }
     
-    // TODO: Make this smarter
-    fileprivate static func saveTravelTimes(_ travelTimes: [TravelTimeItemGroup]){
+    
+    fileprivate static func saveTravelTimes(_ travelTimes: [TravelTimeItemGroup]) {
         
         let realm = try! Realm()
         
+        // update the favorites field on the new incoming times
         let oldFavoriteTimes = self.findFavoriteTimes()
-        let newTimes = List<TravelTimeItemGroup>()
-        
-        for time in travelTimes {
-            for oldTime in oldFavoriteTimes {
-                if (oldTime.title == time.title){
-                    time.selected = true
-                }
+        for oldFavTime in oldFavoriteTimes {
+            if let time = travelTimes.first(where: {$0.title == oldFavTime.title} ) {
+                travelTimes[travelTimes.firstIndex(of: time)!].selected = true
             }
-            newTimes.append(time)
         }
         
         let oldTimes = realm.objects(TravelTimeItemGroup.self)
         
+        MyRouteStore.shouldUpdateMyRouteTravelTimes(newTimes: travelTimes, oldTimes: Array(oldTimes))
+        
         do {
-            try realm.write{
+            try realm.write {
                 for time in oldTimes{
                     time.delete = true
                 }
-                realm.add(newTimes, update: true)
+                realm.add(travelTimes, update: true)
             }
-        }catch {
+        } catch {
             print("TravelTimesStore.saveTravelTimes: Realm write error")
         }
     }
@@ -156,7 +173,7 @@ class TravelTimesStore{
             time.startLongitude = subJson["startLocationLongitude"].doubleValue
             
             time.endLatitude = subJson["endLocationLatitude"].doubleValue
-            time.endLongitude = subJson["endLocationLatitude"].doubleValue
+            time.endLongitude = subJson["endLocationLongitude"].doubleValue
             
             time.distance = subJson["miles"].floatValue
             time.averageTime = subJson["avg_time"].intValue

@@ -204,7 +204,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // MARK: Realm
     func migrateRealm(){
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
-            schemaVersion: 7,
+            schemaVersion: 8,
             
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
@@ -272,6 +272,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     migration.enumerateObjects(ofType: BorderWaitItem.className()) { oldObject, newObject in
                         newObject!["selected"] = false
                         newObject!["delete"] = false
+                    }
+                    migration.deleteData(forType: CacheItem.className())
+                }
+                
+                /*
+                    Adds cameraId and tavelTimeId field to my route item.
+                    Clears cache times to force refresh
+                */
+                if (oldSchemaVersion < 8) {
+                    migration.enumerateObjects(ofType: MyRouteItem.className()) { oldObject, newObject in
+                        newObject!["cameraIds"] = List<Int>()
+                        newObject!["foundCameras"] = false
+                        newObject!["travelTimeIds"] = List<Int>()
+                        newObject!["foundTravelTimes"] = false
                     }
                     migration.deleteData(forType: CacheItem.className())
                 }
