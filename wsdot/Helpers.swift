@@ -124,6 +124,8 @@ struct UIHelpers {
         let constructionHighestIconImage = UIImage(named: "icMapConstructionHighest")
         let constructionModerateIconImage = UIImage(named: "icMapConstructionModerate")
         let constructionLowIconImage = UIImage(named: "icMapConstructionLow")
+        
+        let roadReportIconImage = UIImage(named: "icMapRoadReport")
     
         let closedIconImage = UIImage(named: "icMapClosed")
     
@@ -145,8 +147,10 @@ struct UIHelpers {
                     return constructionModerateIconImage
             }
 
-        } else if forAlert.headlineDesc.lowercased().contains("road closure") || forAlert.eventCategory.lowercased().contains("closure"){
+        } else if forAlert.headlineDesc.lowercased().contains("road closure") || forAlert.eventCategory.lowercased().contains("closure") {
             return closedIconImage
+        } else if forAlert.eventCategory.lowercased().contains("road report") {
+            return roadReportIconImage
         } else {
             switch forAlert.priority {
                 case "Lowest":
