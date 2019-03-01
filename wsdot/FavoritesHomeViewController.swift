@@ -169,9 +169,11 @@ class FavoritesHomeViewController: UIViewController {
             sectionTypesOrderRawArray.append(FavoritesContent.camera.rawValue)
             sectionTypesOrderRawArray.append(FavoritesContent.travelTime.rawValue)
             sectionTypesOrderRawArray.append(FavoritesContent.tollRate.rawValue)
+            sectionTypesOrderRawArray.append(FavoritesContent.borderWait.rawValue)
             UserDefaults.standard.set(sectionTypesOrderRawArray, forKey: UserDefaultsKeys.favoritesOrder)
-        } else if sectionTypesOrderRawArray.count < 7 { // Added toll rates
+        } else if sectionTypesOrderRawArray.count < 7 { // Add toll rates & border waits
             sectionTypesOrderRawArray.append(FavoritesContent.tollRate.rawValue)
+            sectionTypesOrderRawArray.append(FavoritesContent.borderWait.rawValue)
             UserDefaults.standard.set(sectionTypesOrderRawArray, forKey: UserDefaultsKeys.favoritesOrder)
         } else if sectionTypesOrderRawArray.count < 8 { // Added border waits
             sectionTypesOrderRawArray.append(FavoritesContent.borderWait.rawValue)

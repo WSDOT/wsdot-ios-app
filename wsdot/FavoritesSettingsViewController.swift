@@ -24,9 +24,9 @@ class FavoritesSettingsViewController: UIViewController {
 
     let sectionCellIdentifier = "SectionCell"
     let textCellIdentifier = "TextCell"
-    
+
     let numFavoriteSections = 8
-    
+
     var sectionTypesOrderRawArray = UserDefaults.standard.array(forKey: UserDefaultsKeys.favoritesOrder) as? [Int] ?? [Int]()
 
     @IBOutlet weak var tableView: UITableView!
@@ -70,18 +70,14 @@ class FavoritesSettingsViewController: UIViewController {
         for wait in BorderWaitStore.getFavoriteWaits() {
             BorderWaitStore.updateFavorite(wait, newValue: false)
         }
-        
     }
-    
 }
 
 // MARK: - TableView
 
 extension FavoritesSettingsViewController:  UITableViewDataSource, UITableViewDelegate {
 
-
     func numberOfSections(in tableView: UITableView) -> Int {
-    
         return 2
     }
     
@@ -121,23 +117,14 @@ extension FavoritesSettingsViewController:  UITableViewDataSource, UITableViewDe
         
         case 0:
             let sectionCell = tableView.dequeueReusableCell(withIdentifier: sectionCellIdentifier, for: indexPath)
-            
             sectionCell.textLabel?.text = MyRouteStore.sectionTitles[sectionTypesOrderRawArray[indexPath.row]]
-            
             return sectionCell
-        
         case 1:
-        
             let deleteCell = tableView.dequeueReusableCell(withIdentifier: textCellIdentifier, for: indexPath)
             deleteCell.textLabel?.text = "Clear Favorites"
             deleteCell.textLabel?.textColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1.0)
-            
             deleteCell.textLabel?.textAlignment = .center
-            
-            
             return deleteCell
-            
-            
         default:
             return tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
         }
