@@ -882,6 +882,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
         if segue.identifier == segueMyRouteReportViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let destinationViewController = segue.destination as! MyRouteReportViewController
+                destinationViewController.title = myRoutes[indexPath.row].name
                 destinationViewController.route = myRoutes[indexPath.row]
                 destinationViewController.navigationController?.navigationBar.tintColor = Colors.tintColor
             }
