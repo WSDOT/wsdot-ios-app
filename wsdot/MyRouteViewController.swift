@@ -2,7 +2,7 @@
 //  MyRouteViewController.swift
 //  WSDOT
 //
-//  Copyright (c) 2017 Washington State Department of Transportation
+//  Copyright (c) 2019 Washington State Department of Transportation
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -187,6 +187,7 @@ class MyRouteViewController: UIViewController {
     func styleButtons() {
         newRouteButton.layer.cornerRadius = 5
         newRouteButton.clipsToBounds = true
+        newRouteButton.titleLabel?.lineBreakMode = .byWordWrapping
     }
 }
 
