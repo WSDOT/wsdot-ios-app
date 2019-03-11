@@ -2,8 +2,20 @@
 //  RouteSetupViewController.swift
 //  WSDOT
 //
-//  Created by Logan Sims on 1/25/19.
-//  Copyright © 2019 WSDOT. All rights reserved.
+//  Copyright (c) 2019 Washington State Department of Transportation
+//
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
 
 import Foundation
@@ -84,21 +96,12 @@ class MyRouteSetupViewController: UIViewController {
     
 }
 
-
 extension MyRouteSetupViewController: LocationSearchDelegate {
 
     func locationSelected(placemark: MKPlacemark) {
         
-        let alertController = (UIDevice.current.userInterfaceIdiom == .phone ?
-              UIAlertController(title: placemark.title, message: nil, preferredStyle: .actionSheet)
-            : UIAlertController(title: "Use this location?", message: nil, preferredStyle: .alert) )
-        
         let mapView = MKMapView()
-        alertController.view.addSubview(mapView)
-        mapView.translatesAutoresizingMaskIntoConstraints = false
-        mapView.topAnchor.constraint(equalTo: alertController.view.topAnchor, constant: 45).isActive = true
-        mapView.rightAnchor.constraint(equalTo: alertController.view.rightAnchor, constant: -10).isActive = true
-        mapView.leftAnchor.constraint(equalTo: alertController.view.leftAnchor, constant: 10).isActive = true
+    
         mapView.heightAnchor.constraint(equalToConstant: 250).isActive = true
 
         mapView.removeAnnotations(mapView.annotations)
@@ -113,15 +116,17 @@ extension MyRouteSetupViewController: LocationSearchDelegate {
         let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
         let region = MKCoordinateRegion(center: placemark.coordinate, span: span)
         mapView.setRegion(region, animated: false)
+        
+        mapView.backgroundColor = UIColor.clear
 
-        alertController.view.translatesAutoresizingMaskIntoConstraints = false
-        alertController.view.heightAnchor.constraint(equalToConstant: 430).isActive = true
+        let alertController = UIAlertController(title: placemark.title,
+                                customView: mapView,
+                                fallbackMessage: "Map unavalible",
+                                preferredStyle: .actionSheet)
 
         alertController.view.tintColor = Colors.tintColor
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (result : UIAlertAction) -> Void in
-
-        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (result : UIAlertAction) -> Void in }
         
         let confirmAction = UIAlertAction(title: "Confirm", style: .default) { (result : UIAlertAction) -> Void in
             self.locationConfirmed(placemark: placemark)
@@ -133,6 +138,7 @@ extension MyRouteSetupViewController: LocationSearchDelegate {
         alertController.addAction(confirmAction)
     
         self.present(alertController, animated: true, completion: nil)
+        
     }
 
     func locationConfirmed(placemark: MKPlacemark) {
@@ -167,8 +173,4 @@ extension MyRouteSetupViewController: NewRouteMenuEventDelegate {
         locationIndex = cellIndex
         present(searchController, animated: true, completion: nil)
     }
-    
 }
-
-
-
