@@ -163,63 +163,78 @@ WSDOT provides traffic alert information for
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iI3-fX-TeK" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="64" width="375" height="172"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="172" id="TIf-kT-mn7"/>
-                                </constraints>
-                            </view>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Wr-xZ-BDL">
-                                <rect key="frame" x="0.0" y="280" width="375" height="387"/>
-                                <connections>
-                                    <segue destination="ayy-Vi-YPD" kind="embed" identifier="MyRouteAlertsViewController" id="zNx-0y-cxV"/>
-                                </connections>
-                            </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Tc-R5-gGF">
-                                <rect key="frame" x="0.0" y="280" width="375" height="387"/>
-                                <connections>
-                                    <segue destination="tNY-sE-m3x" kind="embed" identifier="MyRouteCamerasViewControllers" id="6Bv-Uq-Xcp"/>
-                                </connections>
-                            </containerView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0kd-eh-pDp">
-                                <rect key="frame" x="16" y="244" width="343" height="29"/>
-                                <segments>
-                                    <segment title="Alerts"/>
-                                    <segment title="Travel Times"/>
-                                    <segment title="Cameras"/>
-                                </segments>
-                                <connections>
-                                    <action selector="segmentSelected:" destination="Rq4-8Z-v0h" eventType="valueChanged" id="h6w-aI-xXs"/>
-                                </connections>
-                            </segmentedControl>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="87W-72-0ne">
-                                <rect key="frame" x="0.0" y="280" width="375" height="387"/>
-                                <connections>
-                                    <segue destination="4Rs-pk-Ej7" kind="embed" identifier="MyRouteTravelTimesViewController" id="yJ6-wn-cfK"/>
-                                </connections>
-                            </containerView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n98-71-2Jn">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iI3-fX-TeK" customClass="GMSMapView">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="250" id="NfH-gT-aHq"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8b1-1R-Tk3">
+                                        <rect key="frame" x="0.0" y="250" width="375" height="353"/>
+                                        <subviews>
+                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="87W-72-0ne">
+                                                <rect key="frame" x="0.0" y="44" width="375" height="309"/>
+                                                <connections>
+                                                    <segue destination="4Rs-pk-Ej7" kind="embed" identifier="MyRouteTravelTimesViewController" id="yJ6-wn-cfK"/>
+                                                </connections>
+                                            </containerView>
+                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Wr-xZ-BDL">
+                                                <rect key="frame" x="0.0" y="44" width="375" height="309"/>
+                                                <connections>
+                                                    <segue destination="ayy-Vi-YPD" kind="embed" identifier="MyRouteAlertsViewController" id="zNx-0y-cxV"/>
+                                                </connections>
+                                            </containerView>
+                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Tc-R5-gGF">
+                                                <rect key="frame" x="0.0" y="44" width="375" height="309"/>
+                                                <connections>
+                                                    <segue destination="tNY-sE-m3x" kind="embed" identifier="MyRouteCamerasViewControllers" id="6Bv-Uq-Xcp"/>
+                                                </connections>
+                                            </containerView>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0kd-eh-pDp">
+                                                <rect key="frame" x="0.0" y="8" width="375" height="29"/>
+                                                <segments>
+                                                    <segment title="Alerts"/>
+                                                    <segment title="Travel Times"/>
+                                                    <segment title="Cameras"/>
+                                                </segments>
+                                                <connections>
+                                                    <action selector="segmentSelected:" destination="Rq4-8Z-v0h" eventType="valueChanged" id="h6w-aI-xXs"/>
+                                                </connections>
+                                            </segmentedControl>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="87W-72-0ne" secondAttribute="bottom" id="CfA-MC-C1H"/>
+                                            <constraint firstAttribute="bottom" secondItem="0Wr-xZ-BDL" secondAttribute="bottom" id="CnN-7V-71f"/>
+                                            <constraint firstAttribute="trailing" secondItem="0kd-eh-pDp" secondAttribute="trailing" id="JBX-Om-DYn"/>
+                                            <constraint firstItem="0kd-eh-pDp" firstAttribute="leading" secondItem="8b1-1R-Tk3" secondAttribute="leading" id="SUx-q5-d7s"/>
+                                            <constraint firstItem="0kd-eh-pDp" firstAttribute="top" secondItem="8b1-1R-Tk3" secondAttribute="top" constant="8" id="XtB-wf-Pif"/>
+                                            <constraint firstAttribute="bottom" secondItem="8Tc-R5-gGF" secondAttribute="bottom" id="liN-0c-E29"/>
+                                            <constraint firstAttribute="trailing" secondItem="87W-72-0ne" secondAttribute="trailing" id="m7h-ea-PsY"/>
+                                            <constraint firstItem="8Tc-R5-gGF" firstAttribute="leading" secondItem="8b1-1R-Tk3" secondAttribute="leading" id="pad-of-pNh"/>
+                                            <constraint firstItem="0Wr-xZ-BDL" firstAttribute="top" secondItem="0kd-eh-pDp" secondAttribute="bottom" constant="8" id="pqz-mA-Nxe"/>
+                                            <constraint firstItem="87W-72-0ne" firstAttribute="top" secondItem="0kd-eh-pDp" secondAttribute="bottom" constant="8" id="qfN-N1-prH"/>
+                                            <constraint firstAttribute="trailing" secondItem="8Tc-R5-gGF" secondAttribute="trailing" id="qxd-yv-E5U"/>
+                                            <constraint firstAttribute="trailing" secondItem="0Wr-xZ-BDL" secondAttribute="trailing" id="uo6-Ya-ucd"/>
+                                            <constraint firstItem="8Tc-R5-gGF" firstAttribute="top" secondItem="0kd-eh-pDp" secondAttribute="bottom" constant="8" id="vO3-k9-vGH"/>
+                                            <constraint firstItem="87W-72-0ne" firstAttribute="leading" secondItem="8b1-1R-Tk3" secondAttribute="leading" id="wT6-32-hTw"/>
+                                            <constraint firstItem="0Wr-xZ-BDL" firstAttribute="leading" secondItem="8b1-1R-Tk3" secondAttribute="leading" id="z27-1z-2Tp"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <variation key="heightClass=compact" axis="horizontal"/>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="8Tc-R5-gGF" firstAttribute="trailing" secondItem="0Wr-xZ-BDL" secondAttribute="trailing" id="67t-aC-UXl"/>
-                            <constraint firstItem="iI3-fX-TeK" firstAttribute="leading" secondItem="G8s-Vz-QNl" secondAttribute="leading" id="6pb-Wf-Kdu"/>
-                            <constraint firstAttribute="trailing" secondItem="0Wr-xZ-BDL" secondAttribute="trailing" id="9ko-Wb-IN7"/>
-                            <constraint firstItem="0kd-eh-pDp" firstAttribute="trailing" secondItem="G8s-Vz-QNl" secondAttribute="trailingMargin" id="9vH-5W-EVA"/>
-                            <constraint firstItem="0Wr-xZ-BDL" firstAttribute="leading" secondItem="G8s-Vz-QNl" secondAttribute="leading" id="BQ2-3g-W5H"/>
-                            <constraint firstItem="jyw-Rj-ubL" firstAttribute="top" secondItem="0Wr-xZ-BDL" secondAttribute="bottom" id="FM5-kb-bYx"/>
-                            <constraint firstItem="0kd-eh-pDp" firstAttribute="top" secondItem="iI3-fX-TeK" secondAttribute="bottom" constant="8" id="GyP-uN-rJg"/>
-                            <constraint firstItem="8Tc-R5-gGF" firstAttribute="top" secondItem="0kd-eh-pDp" secondAttribute="bottom" constant="8" id="Ie7-2x-Z5E"/>
-                            <constraint firstAttribute="trailing" secondItem="87W-72-0ne" secondAttribute="trailing" id="K6h-1m-V9f"/>
-                            <constraint firstItem="8Tc-R5-gGF" firstAttribute="leading" secondItem="0Wr-xZ-BDL" secondAttribute="leading" id="Shd-gr-gVG"/>
-                            <constraint firstItem="jyw-Rj-ubL" firstAttribute="top" secondItem="87W-72-0ne" secondAttribute="bottom" id="b89-oM-ddt"/>
-                            <constraint firstAttribute="trailing" secondItem="iI3-fX-TeK" secondAttribute="trailing" id="cqb-Lw-928"/>
-                            <constraint firstItem="iI3-fX-TeK" firstAttribute="top" secondItem="NSO-m5-zhT" secondAttribute="bottom" id="jay-Zo-4c1"/>
-                            <constraint firstItem="0kd-eh-pDp" firstAttribute="leading" secondItem="G8s-Vz-QNl" secondAttribute="leadingMargin" id="pQT-ht-fWq"/>
-                            <constraint firstItem="0Wr-xZ-BDL" firstAttribute="top" secondItem="0kd-eh-pDp" secondAttribute="bottom" constant="8" id="qfq-2P-UbY"/>
-                            <constraint firstItem="8Tc-R5-gGF" firstAttribute="bottom" secondItem="jyw-Rj-ubL" secondAttribute="top" id="vCk-iV-Rig"/>
-                            <constraint firstItem="87W-72-0ne" firstAttribute="leading" secondItem="G8s-Vz-QNl" secondAttribute="leading" id="zNp-5l-Bnx"/>
-                            <constraint firstItem="87W-72-0ne" firstAttribute="top" secondItem="0kd-eh-pDp" secondAttribute="bottom" constant="8" id="zdU-zO-bJ4"/>
+                            <constraint firstAttribute="trailing" secondItem="n98-71-2Jn" secondAttribute="trailing" id="37U-5C-P6J"/>
+                            <constraint firstItem="n98-71-2Jn" firstAttribute="top" secondItem="NSO-m5-zhT" secondAttribute="bottom" id="3cm-Pt-QlU"/>
+                            <constraint firstItem="n98-71-2Jn" firstAttribute="leading" secondItem="G8s-Vz-QNl" secondAttribute="leading" id="LAs-uo-9Bf"/>
+                            <constraint firstAttribute="bottom" secondItem="n98-71-2Jn" secondAttribute="bottom" id="bLQ-Nr-5O0"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="nQl-PZ-qZY">
@@ -233,13 +248,14 @@ WSDOT provides traffic alert information for
                         <outlet property="alertsContainerView" destination="0Wr-xZ-BDL" id="di8-ym-tCx"/>
                         <outlet property="camerasContainerView" destination="8Tc-R5-gGF" id="KET-uj-XOM"/>
                         <outlet property="mapView" destination="iI3-fX-TeK" id="eSR-mx-RmI"/>
+                        <outlet property="stackView" destination="n98-71-2Jn" id="IHM-6L-eZY"/>
                         <outlet property="travelTimesContainerView" destination="87W-72-0ne" id="IGb-EJ-0Ft"/>
                         <segue destination="q4c-sP-Zby" kind="show" identifier="HighwayAlertViewController" id="3uX-xA-Tjz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hMu-YN-x9f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="736.79999999999995" y="-402.54872563718146"/>
+            <point key="canvasLocation" x="694" y="-423"/>
         </scene>
         <!--HighwayAlert-->
         <scene sceneID="y5u-Gf-Za9">
@@ -596,11 +612,11 @@ WSDOT provides traffic alert information for
                         <viewControllerLayoutGuide type="bottom" id="ahz-MV-cc0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="HA6-KC-oyz">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="387"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="309"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="AlertCell" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c0x-Hq-pv0">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="387"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="309"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="AlertCell" rowHeight="72" id="6oL-q8-e6h" customClass="LinkCell" customModule="WSDOT" customModuleProvider="target">
@@ -658,7 +674,7 @@ WSDOT provides traffic alert information for
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YE3-99-Iqw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="737" y="238"/>
+            <point key="canvasLocation" x="710" y="342"/>
         </scene>
         <!--My Route Cameras View Controller-->
         <scene sceneID="4cx-4x-0Tm">
@@ -669,35 +685,41 @@ WSDOT provides traffic alert information for
                         <viewControllerLayoutGuide type="bottom" id="dtv-z1-I6k"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="JpZ-fd-Qkk">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="387"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="309"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Cameras Avaliable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="meO-i0-dFb">
-                                <rect key="frame" x="104" y="183" width="167" height="21"/>
+                                <rect key="frame" x="104" y="144" width="167" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hNe-ko-jKi">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="387"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="309"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CamerasCell" rowHeight="189" id="bJ2-4K-A06" customClass="CameraImageCustomCell" customModule="WSDOT" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="189"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CamerasCell" rowHeight="229" id="bJ2-4K-A06" customClass="CameraImageCustomCell" customModule="WSDOT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="229"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bJ2-4K-A06" id="R6q-wU-zXF">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="188.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="228.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PRa-vB-AU9">
-                                                    <rect key="frame" x="15" y="11" width="319" height="167"/>
+                                                    <rect key="frame" x="15" y="11" width="292.5" height="207"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="PRa-vB-AU9" secondAttribute="height" multiplier="4:3" constant="16.333333333333343" id="wPq-Ce-nDe"/>
+                                                    </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="PRa-vB-AU9" firstAttribute="top" secondItem="R6q-wU-zXF" secondAttribute="topMargin" id="D49-sU-Gjb"/>
                                                 <constraint firstItem="PRa-vB-AU9" firstAttribute="top" secondItem="R6q-wU-zXF" secondAttribute="topMargin" id="EM4-Et-T5b"/>
-                                                <constraint firstItem="PRa-vB-AU9" firstAttribute="trailing" secondItem="R6q-wU-zXF" secondAttribute="trailingMargin" id="fqf-hE-nk2"/>
+                                                <constraint firstItem="PRa-vB-AU9" firstAttribute="bottom" secondItem="R6q-wU-zXF" secondAttribute="bottomMargin" id="QEf-ZC-uaW"/>
+                                                <constraint firstItem="PRa-vB-AU9" firstAttribute="leading" secondItem="R6q-wU-zXF" secondAttribute="leadingMargin" id="a0n-hF-yIg"/>
                                                 <constraint firstItem="PRa-vB-AU9" firstAttribute="leading" secondItem="R6q-wU-zXF" secondAttribute="leadingMargin" id="hSF-UT-jEr"/>
                                                 <constraint firstItem="PRa-vB-AU9" firstAttribute="bottom" secondItem="R6q-wU-zXF" secondAttribute="bottomMargin" id="r8T-aF-IP1"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="PRa-vB-AU9" secondAttribute="trailing" id="rFU-lG-Zob"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -728,7 +750,7 @@ WSDOT provides traffic alert information for
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m8h-3w-oFN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1541.5999999999999" y="237.93103448275863"/>
+            <point key="canvasLocation" x="1541.5999999999999" y="237.48125937031486"/>
         </scene>
         <!--Camera-->
         <scene sceneID="TJY-yX-rUo">
@@ -747,17 +769,17 @@ WSDOT provides traffic alert information for
                         <viewControllerLayoutGuide type="bottom" id="0Ou-q1-ow4"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="hDI-Bk-o4x">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="387"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="309"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Travel Times Avaliable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UX3-jI-fyQ">
-                                <rect key="frame" x="90" y="183" width="195" height="21"/>
+                                <rect key="frame" x="90" y="144" width="195" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="98" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fPL-WH-yCN">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="387"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="309"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TravelTimeCell" rowHeight="98" id="kHa-fc-T5L" customClass="GroupRouteCell" customModule="WSDOT" customModuleProvider="target">

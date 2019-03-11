@@ -50,6 +50,7 @@ class MyRouteReportViewController: UIViewController {
     @IBOutlet weak var alertsContainerView: UIView!
     @IBOutlet weak var camerasContainerView: UIView!
     @IBOutlet weak var travelTimesContainerView: UIView!
+    @IBOutlet weak var stackView: UIStackView!
     
     var alertsTableView: UITableView!
     
@@ -68,6 +69,7 @@ class MyRouteReportViewController: UIViewController {
         travelTimesContainerView.isHidden = true
         
         _ = drawRouteOnMap(Array(route!.route))
+    
         
     }
 
@@ -75,6 +77,7 @@ class MyRouteReportViewController: UIViewController {
         super.viewDidAppear(animated)
         MyAnalytics.screenView(screenName: "MyRouteAlerts")
     }
+    
 
     @IBAction func segmentSelected(_ sender: UISegmentedControl) {
         
