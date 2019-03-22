@@ -143,7 +143,6 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
                     DispatchQueue.main.async { [weak self] in
                         if let selfValue = self {
 
-                            // TODO:
                             selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                         }
                     }
@@ -262,6 +261,8 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
             if (trip.message == ""){
                 tripView.valueLabel.text = "$" + String(format: "%.2f", locale: Locale.current, arguments: [trip.toll])
             } else {
+                tripView.valueLabel.adjustsFontSizeToFitWidth = true
+                tripView.valueLabel.allowsDefaultTighteningForTruncation = true
                 tripView.valueLabel.text = trip.message
             }
             
@@ -285,7 +286,6 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
             cell.dynamicRouteViews.append(tripView)
             lastTripView = tripView
         
-           
         }
 
         cell.sizeToFit()
