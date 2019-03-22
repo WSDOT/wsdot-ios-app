@@ -119,10 +119,18 @@ extension MyRouteSetupViewController: LocationSearchDelegate {
         
         mapView.backgroundColor = UIColor.clear
 
+        var preferredStyle = UIAlertController.Style.alert
+        
+        if let splitView = self.splitViewController {
+            if splitView.isCollapsed {
+                preferredStyle = .actionSheet
+            }
+        }
+        
         let alertController = UIAlertController(title: placemark.title,
                                 customView: mapView,
                                 fallbackMessage: "Map unavalible",
-                                preferredStyle: .actionSheet)
+                                preferredStyle: preferredStyle)
 
         alertController.view.tintColor = Colors.tintColor
         
