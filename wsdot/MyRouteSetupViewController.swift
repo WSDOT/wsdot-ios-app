@@ -108,10 +108,12 @@ extension MyRouteSetupViewController: LocationSearchDelegate {
         let annotation = MKPointAnnotation()
         annotation.coordinate = placemark.coordinate
         annotation.title = placemark.name
+        
         if let city = placemark.locality,
             let state = placemark.administrativeArea {
             annotation.subtitle = "\(city) \(state)"
         }
+        
         mapView.addAnnotation(annotation)
         let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
         let region = MKCoordinateRegion(center: placemark.coordinate, span: span)
@@ -119,18 +121,10 @@ extension MyRouteSetupViewController: LocationSearchDelegate {
         
         mapView.backgroundColor = UIColor.clear
 
-        var preferredStyle = UIAlertController.Style.alert
-        
-        if let splitView = self.splitViewController {
-            if splitView.isCollapsed {
-                preferredStyle = .actionSheet
-            }
-        }
-        
         let alertController = UIAlertController(title: placemark.title,
                                 customView: mapView,
                                 fallbackMessage: "Map unavalible",
-                                preferredStyle: preferredStyle)
+                                preferredStyle: UIAlertController.Style.alert)
 
         alertController.view.tintColor = Colors.tintColor
         
