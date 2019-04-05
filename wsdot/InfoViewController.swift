@@ -100,6 +100,7 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate,
             mail.navigationBar.tintColor = Colors.yellow
             mail.mailComposeDelegate = self
             mail.setToRecipients(["wsfinfo@wsdot.wa.gov"])
+            mail.setSubject("Ferries Feedback")
             present(mail, animated: true, completion: nil)
         } else {
             UIApplication.shared.openURL(URL(string: "mailto:")!)
