@@ -42,7 +42,7 @@ class TimeUtils {
             return Int64(floor(Date().timeIntervalSince1970 * 1000))
         }
     }
-
+    
     // formates a /Date(1468516282113-0700)/ date into NSDate
     static func parseJSONDateToNSDate(_ date: String) -> Date {
         let parseDateString = date[date.index(date.startIndex, offsetBy: 6)..<date.index(date.startIndex, offsetBy: 16)]
