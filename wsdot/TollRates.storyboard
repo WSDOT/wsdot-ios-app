@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7nX-QB-1g8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7nX-QB-1g8">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -85,6 +83,7 @@
                     <connections>
                         <segue destination="0ki-xc-aX5" kind="relationship" relationship="viewControllers" id="qE3-Q9-Jmb"/>
                         <segue destination="XRc-2T-yQd" kind="relationship" relationship="viewControllers" id="MTa-Zw-O26"/>
+                        <segue destination="vkj-nx-uYl" kind="relationship" relationship="viewControllers" id="k7Z-Ea-1Nr"/>
                         <segue destination="5vQ-oe-eKM" kind="relationship" relationship="viewControllers" id="1Wy-5V-Gce"/>
                         <segue destination="iiL-IM-c5I" kind="relationship" relationship="viewControllers" id="OsH-dL-RPz"/>
                     </connections>
@@ -93,10 +92,97 @@
             </objects>
             <point key="canvasLocation" x="402" y="907"/>
         </scene>
+        <!--SR 99-->
+        <scene sceneID="t5g-hc-4Rq">
+            <objects>
+                <viewController id="vkj-nx-uYl" customClass="TollTableViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="X6O-Sf-onX"/>
+                        <viewControllerLayoutGuide type="bottom" id="tcz-Wt-ljO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="M94-zf-yaP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="x0o-lO-kvk">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="threeColCell" id="rQW-75-swr" customClass="ThreeColTableCell" customModule="WSDOT">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rQW-75-swr" id="4RW-Bb-hGl">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m9A-kW-bJz">
+                                                    <rect key="frame" x="15" y="11" width="125" height="22"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1bK-au-alR">
+                                                    <rect key="frame" x="140" y="11" width="125" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4cQ-xn-LUO">
+                                                    <rect key="frame" x="265" y="11" width="125" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="4cQ-xn-LUO" firstAttribute="width" secondItem="m9A-kW-bJz" secondAttribute="width" id="0D6-Fa-1b9"/>
+                                                <constraint firstItem="1bK-au-alR" firstAttribute="top" secondItem="m9A-kW-bJz" secondAttribute="top" id="5ZV-B4-w9k"/>
+                                                <constraint firstItem="m9A-kW-bJz" firstAttribute="top" secondItem="4RW-Bb-hGl" secondAttribute="topMargin" id="DRK-IW-8tX"/>
+                                                <constraint firstItem="1bK-au-alR" firstAttribute="width" secondItem="m9A-kW-bJz" secondAttribute="width" id="I9g-dh-rWp"/>
+                                                <constraint firstItem="4cQ-xn-LUO" firstAttribute="leading" secondItem="1bK-au-alR" secondAttribute="trailing" id="NGO-xh-sCt"/>
+                                                <constraint firstItem="4cQ-xn-LUO" firstAttribute="bottom" secondItem="m9A-kW-bJz" secondAttribute="bottom" id="Ngj-Y1-Gp2"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="m9A-kW-bJz" secondAttribute="bottom" id="PMX-07-VBL"/>
+                                                <constraint firstItem="1bK-au-alR" firstAttribute="bottom" secondItem="m9A-kW-bJz" secondAttribute="bottom" id="Rr4-se-I8W"/>
+                                                <constraint firstItem="4cQ-xn-LUO" firstAttribute="top" secondItem="m9A-kW-bJz" secondAttribute="top" id="Ziu-v2-BfO"/>
+                                                <constraint firstItem="m9A-kW-bJz" firstAttribute="leading" secondItem="4RW-Bb-hGl" secondAttribute="leadingMargin" id="fwe-Ze-oOJ"/>
+                                                <constraint firstItem="m9A-kW-bJz" firstAttribute="width" secondItem="4RW-Bb-hGl" secondAttribute="width" multiplier="1:3" id="kpx-Rh-Jy7"/>
+                                                <constraint firstItem="1bK-au-alR" firstAttribute="leading" secondItem="m9A-kW-bJz" secondAttribute="trailing" id="l7p-TJ-6yy"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="colOneLabel" destination="m9A-kW-bJz" id="eaq-mq-Vs0"/>
+                                            <outlet property="colThreeLabel" destination="4cQ-xn-LUO" id="v9f-dW-BxW"/>
+                                            <outlet property="colTwoLabel" destination="1bK-au-alR" id="0aB-Xh-PJl"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="vkj-nx-uYl" id="IV5-hs-LAP"/>
+                                    <outlet property="delegate" destination="vkj-nx-uYl" id="0Ec-U0-olu"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="x0o-lO-kvk" secondAttribute="trailing" id="E3s-Ux-wSg"/>
+                            <constraint firstAttribute="bottom" secondItem="x0o-lO-kvk" secondAttribute="bottom" id="hPV-1Z-0aY"/>
+                            <constraint firstItem="x0o-lO-kvk" firstAttribute="top" secondItem="M94-zf-yaP" secondAttribute="top" id="ki3-8m-yO5"/>
+                            <constraint firstItem="x0o-lO-kvk" firstAttribute="leading" secondItem="M94-zf-yaP" secondAttribute="leading" id="uCl-mm-G9I"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="SR 99" image="icTabSR99" id="jEp-5V-LxN"/>
+                    <connections>
+                        <outlet property="tableView" destination="x0o-lO-kvk" id="HxL-mG-1Vw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MXI-oD-QiK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="471" y="267"/>
+        </scene>
         <!--SR 520-->
         <scene sceneID="yCU-LM-uiI">
             <objects>
-                <viewController id="XRc-2T-yQd" customClass="SR520ViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XRc-2T-yQd" customClass="TollTableViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="O4i-sN-DEj"/>
                         <viewControllerLayoutGuide type="bottom" id="0ly-op-1jM"/>
@@ -123,13 +209,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nxf-Vp-zRG">
-                                                    <rect key="frame" x="140" y="11" width="124.5" height="22"/>
+                                                    <rect key="frame" x="140" y="11" width="125" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OCk-RG-Ab3">
-                                                    <rect key="frame" x="264.5" y="11" width="125" height="22"/>
+                                                    <rect key="frame" x="265" y="11" width="125" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -174,6 +260,9 @@
                     <tabBarItem key="tabBarItem" title="SR 520" image="icTabSR520" id="iBS-BK-UAg">
                         <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="tableView" destination="0Af-Ai-0ue" id="p5o-sa-OgT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4V6-Bg-nFp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -287,7 +376,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EpJ-DQ-EwE">
-                                <rect key="frame" x="0.0" y="81" width="375" height="439"/>
+                                <rect key="frame" x="0.0" y="81" width="375" height="439.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="I405TollRatesCell" rowHeight="98" id="mUn-Sj-h5B" customClass="GroupRouteCell" customModule="WSDOT" customModuleProvider="target">
@@ -334,7 +423,7 @@
                                 </connections>
                             </tableView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="g71-Ds-4pA">
-                                <rect key="frame" x="178" y="292" width="20" height="20"/>
+                                <rect key="frame" x="177.5" y="291.5" width="20" height="20"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estimated toll rates provided as a courtesy. You'll always pay the toll you see on actual road signs when you enter. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="luD-0C-pPF">
                                 <rect key="frame" x="0.0" y="520.5" width="375" height="33.5"/>
@@ -425,7 +514,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="m1a-Ef-gNW">
-                                <rect key="frame" x="0.0" y="81" width="375" height="439"/>
+                                <rect key="frame" x="0.0" y="81" width="375" height="439.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="I405TollRatesCell" rowHeight="98" id="6u9-pz-Cmm" customClass="GroupRouteCell" customModule="WSDOT" customModuleProvider="target">
@@ -472,7 +561,7 @@
                                 </connections>
                             </tableView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="cGV-A7-ToY">
-                                <rect key="frame" x="178" y="292" width="20" height="20"/>
+                                <rect key="frame" x="177.5" y="291.5" width="20" height="20"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estimated toll rates provided as a courtesy. You'll always pay the toll you see on actual road signs when you enter. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e23-89-8A2">
                                 <rect key="frame" x="0.0" y="520.5" width="375" height="33.5"/>
@@ -614,6 +703,10 @@
         <scene sceneID="yXv-3T-c8a">
             <objects>
                 <viewController id="82n-ue-pHs" customClass="SimpleMapViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZuJ-ra-uQJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="bSt-Lt-RAI"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="pHv-Po-Wam">
                         <rect key="frame" x="0.0" y="0.0" width="359" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -631,6 +724,7 @@
         <image name="icTabSR16" width="32" height="32"/>
         <image name="icTabSR167" width="32" height="32"/>
         <image name="icTabSR520" width="32" height="32"/>
+        <image name="icTabSR99" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="xtX-gv-a7z"/>

@@ -208,7 +208,7 @@ extension FavoritesHomeViewController {
         mountainPasses = MountainPassStore.findFavoritePasses()
         savedLocations = FavoriteLocationStore.getFavorites()
         myRoutes = MyRouteStore.getSelectedRoutes()
-        tollRates = TollRatesStore.findFavoriteTolls()
+        tollRates = TollRateSignsStore.findFavoriteTollSigns()
         borderWaits = BorderWaitStore.getFavoriteWaits()
         
         if (tableEmpty()){
@@ -254,7 +254,7 @@ extension FavoritesHomeViewController {
             self.ferrySchedules = FerryRealmStore.findFavoriteSchedules()
             self.mountainPasses = MountainPassStore.findFavoritePasses()
             self.savedLocations = FavoriteLocationStore.getFavorites()
-            self.tollRates = TollRatesStore.findFavoriteTolls()
+            self.tollRates = TollRateSignsStore.findFavoriteTollSigns()
             self.borderWaits = BorderWaitStore.getFavoriteWaits()
             
             if (self.tableEmpty()){
@@ -383,7 +383,7 @@ extension FavoritesHomeViewController {
     func requestTollRatesUpdate(_ force: Bool, serviceGroup: DispatchGroup) {
         serviceGroup.enter()
         DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async { [weak self] in
-            TollRatesStore.updateTollRates(force, completion: { error in
+            TollRateSignsStore.updateTollRateSigns(force, completion: { error in
                 if (error == nil) {
                     serviceGroup.leave()
                 } else {
@@ -805,7 +805,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
                 break
             case .tollRate:
-                TollRatesStore.updateFavorite(self.tollRates[indexPath.row], newValue: false)
+                TollRateSignsStore.updateFavorite(self.tollRates[indexPath.row], newValue: false)
                 self.tollRates.remove(at: indexPath.row)
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
             case .route:

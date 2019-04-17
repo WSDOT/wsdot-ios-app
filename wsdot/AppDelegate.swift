@@ -70,7 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         TravelTimesStore.flushOldData()
         HighwayAlertsStore.flushOldData()
         NotificationsStore.flushOldData()
-        TollRatesStore.flushOldData()
+        TollRateSignsStore.flushOldData()
         
         return true
     }
@@ -81,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         TravelTimesStore.flushOldData()
         HighwayAlertsStore.flushOldData()
         NotificationsStore.flushOldData()
-        TollRatesStore.flushOldData()
+        TollRateSignsStore.flushOldData()
     }
     
     // MARK: Push Notifications
@@ -204,7 +204,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // MARK: Realm
     func migrateRealm(){
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
-            schemaVersion: 8,
+            schemaVersion: 9,
             
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {

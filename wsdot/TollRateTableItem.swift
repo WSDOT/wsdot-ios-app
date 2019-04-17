@@ -1,5 +1,5 @@
 //
-//  TollRatesTabBarViewController.swift
+//  TollRateItem.swift
 //  WSDOT
 //
 //  Copyright (c) 2018 Washington State Department of Transportation
@@ -18,28 +18,19 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
 
-import UIKit
+// Toll data structure for mostly static tolls (SR 16, 99. 520)
 
-class TollRatesTabBarViewController: UITabBarController {
+import RealmSwift
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+class TollRateTableItem: Object {
 
-        let barViewControllers = self.viewControllers
-        
-        let sr520VC = barViewControllers![1] as! TollTableViewController
-        let sr99VC = barViewControllers![2] as! TollTableViewController
-        
-        let sr167VC = barViewControllers![3] as! DynamicTollRatesViewController
-        let i405VC = barViewControllers![4] as! DynamicTollRatesViewController
+    @objc dynamic var route: Int = 0
+    @objc dynamic var message: String = ""
+    var tollTable = List<TollRateRowItem>()
 
-        sr520VC.stateRoute = 520
-        sr99VC.stateRoute = 99
+    @objc dynamic var delete: Bool = false
 
-        sr167VC.stateRoute = "167"
-        i405VC.stateRoute = "405"
-        
-
+    override static func primaryKey() -> String? {
+        return "route"
     }
-
 }

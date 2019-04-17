@@ -1,5 +1,5 @@
 //
-//  TollRatesTabBarViewController.swift
+//  TollRateRowItem.swift
 //  WSDOT
 //
 //  Copyright (c) 2018 Washington State Department of Transportation
@@ -18,28 +18,15 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
 
-import UIKit
+import RealmSwift
 
-class TollRatesTabBarViewController: UITabBarController {
+class TollRateRowItem: Object {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        let barViewControllers = self.viewControllers
-        
-        let sr520VC = barViewControllers![1] as! TollTableViewController
-        let sr99VC = barViewControllers![2] as! TollTableViewController
-        
-        let sr167VC = barViewControllers![3] as! DynamicTollRatesViewController
-        let i405VC = barViewControllers![4] as! DynamicTollRatesViewController
-
-        sr520VC.stateRoute = 520
-        sr99VC.stateRoute = 99
-
-        sr167VC.stateRoute = "167"
-        i405VC.stateRoute = "405"
-        
-
-    }
-
+    @objc dynamic var index: Int = 0
+    @objc dynamic var header: Bool = false
+    @objc dynamic var startHourString = ""
+    @objc dynamic var endHourString = ""
+    @objc dynamic var weekday = true
+    var rows = List<String>()
+    
 }

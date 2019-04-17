@@ -237,6 +237,5 @@ class TimeUtils {
         } else {
             return "Just now"
         }
-
     }
 }
