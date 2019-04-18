@@ -23,13 +23,14 @@ import UIKit
 
 class TollTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    let cellIdentifier = "threeColCell"
-
+    let threeColCellIdentifier = "threeColCell"
+    let fourColCellIdentifier = "fourColCell"
+    
     var tollTableItem = TollRateTableItem()
-    var data = [ThreeColItem]()
     
     var stateRoute: Int = 0
 
+    @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -37,17 +38,13 @@ class TollTableViewController: UIViewController, UITableViewDelegate, UITableVie
         
         if let tolls = TollRateTableStore.getTollRateTableByRoute(route: self.stateRoute) {
             self.tollTableItem = tolls
-            self.data = self.getTollData(tolls: tolls)
         }
-        
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         MyAnalytics.screenView(screenName: "SR520TollRates")
-        
         refresh(true)
-        
     }
 
     func refresh(_ force: Bool){
@@ -61,11 +58,10 @@ class TollTableViewController: UIViewController, UITableViewDelegate, UITableVie
                             
                             if let tolls = TollRateTableStore.getTollRateTableByRoute(route: selfValue.stateRoute) {
                                 selfValue.tollTableItem = tolls
-                                selfValue.data = selfValue.getTollData(tolls: tolls)
-                            }
+                                selfValue.messageLabel.text = tolls.message
                             
+                            }
                             selfValue.tableView.reloadData()
-
                         }
                     }
                 } else {
@@ -79,27 +75,13 @@ class TollTableViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
 
-    private func getTollData(tolls: TollRateTableItem) -> [ThreeColItem] {
- 
-        var data = [ThreeColItem]()
-                            
-        for rowItem in tolls.tollTable {
-            if (rowItem.rows.count == 3) {
-                let item = ThreeColItem(colOne: rowItem.rows[0], colTwo: rowItem.rows[1], colThree: rowItem.rows[2], header: rowItem.header)
-                    data.append(item)
-            }
-        }
-    
-        return data
-    }
-
     // MARK: Table View Data Source Methods
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return tollTableItem.tollTable.count
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -107,31 +89,64 @@ class TollTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! ThreeColTableCell
 
-        cell.colOneLabel.text = data[indexPath.row].colOne
-        cell.colTwoLabel.text = data[indexPath.row].colTwo
-        cell.colThreeLabel.text = data[indexPath.row].colThree
-        
-        if (data[indexPath.row].header) {
-            cell.backgroundColor = UIColor.groupTableViewBackground
-        } else {
-            cell.backgroundColor = UIColor.lightText
-            
-            // highlight current toll
-            if TollRateTableStore.isTollActive(
-                    startHour: tollTableItem.tollTable[indexPath.row].startHourString,
-                    endHour: tollTableItem.tollTable[indexPath.row].endHourString) {
-            
-                let now = Date()
+        if tollTableItem.numCol == 3 {
 
-                if ((now.isWeekend || now.is_WAC_468_270_071_Holiday) != tollTableItem.tollTable[indexPath.row].weekday ) {
-                    cell.backgroundColor = Colors.lightGreen
+            let cell = tableView.dequeueReusableCell(withIdentifier: threeColCellIdentifier) as! ThreeColTableCell
+
+            cell.colOneLabel.text = tollTableItem.tollTable[indexPath.row].rows[0]
+            cell.colTwoLabel.text = tollTableItem.tollTable[indexPath.row].rows[1]
+            cell.colThreeLabel.text = tollTableItem.tollTable[indexPath.row].rows[2]
+            
+            if (tollTableItem.tollTable[indexPath.row].header) {
+                cell.backgroundColor = UIColor.groupTableViewBackground
+            } else {
+                cell.backgroundColor = UIColor.lightText
+            
+                // highlight current toll
+                if TollRateTableStore.isTollActive(
+                        startHour: tollTableItem.tollTable[indexPath.row].startHourString,
+                        endHour: tollTableItem.tollTable[indexPath.row].endHourString) {
+            
+                    let now = Date()
+
+                    if ((now.isWeekend || now.is_WAC_468_270_071_Holiday) != tollTableItem.tollTable[indexPath.row].weekday ) {
+                        cell.backgroundColor = Colors.lightGreen
+                    }
+            
                 }
-            
             }
+        
+            return cell
+            
+        } else if tollTableItem.numCol == 4 {
+        
+            let cell = tableView.dequeueReusableCell(withIdentifier: fourColCellIdentifier) as! FourColTableCell
+
+            cell.colOneLabel.text = tollTableItem.tollTable[indexPath.row].rows[0]
+            cell.colTwoLabel.text = tollTableItem.tollTable[indexPath.row].rows[1]
+            cell.colThreeLabel.text = tollTableItem.tollTable[indexPath.row].rows[2]
+            cell.colFourLabel.text = tollTableItem.tollTable[indexPath.row].rows[3]
+        
+            if (tollTableItem.tollTable[indexPath.row].header) {
+                cell.backgroundColor = UIColor.groupTableViewBackground
+            } else {
+                cell.backgroundColor = UIColor.lightText
+            
+                // highlight current toll
+                if TollRateTableStore.isTollActive(
+                        startHour: tollTableItem.tollTable[indexPath.row].startHourString,
+                        endHour: tollTableItem.tollTable[indexPath.row].endHourString) {
+            
+                    let now = Date()
+
+                    if ((now.isWeekend || now.is_WAC_468_270_071_Holiday) != tollTableItem.tollTable[indexPath.row].weekday ) {
+                        cell.backgroundColor = Colors.lightGreen
+                    }
+                }
+            }
+            return cell
         }
-        return cell
+        return UITableViewCell()
     }
 }

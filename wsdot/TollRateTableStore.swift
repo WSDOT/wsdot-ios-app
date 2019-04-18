@@ -54,6 +54,7 @@ class TollRateTableStore {
             Alamofire.request("http://data.wsdot.wa.gov/mobile/StaticTollRates.js").validate().responseJSON { response in
                 switch response.result {
                 case .success:
+                
                     if let value = response.result.value {
                         DispatchQueue.global().async {
                             let json = JSON(value)
@@ -63,7 +64,9 @@ class TollRateTableStore {
                         
                             completion(nil)
                         }
+                        
                     }
+                    
                 case .failure(let error):
                     print(error)
                     completion(error)
@@ -86,6 +89,7 @@ class TollRateTableStore {
     
             tollRate.route = tollJson["route"].intValue
             tollRate.message = tollJson["message"].stringValue
+            tollRate.numCol = tollJson["numCol"].intValue
             
             for (_, rowJson):(String, JSON) in tollJson["tollTable"] {
             
@@ -141,11 +145,23 @@ class TollRateTableStore {
 
     static func isTollActive(startHour: String, endHour: String) -> Bool {
     
-        guard let start_hour = Int( startHour.split(separator: ":")[0] ) else { return false }
-        guard let start_min = Int( startHour.split(separator: ":")[1] ) else { return false }
+        let start_time_array = startHour.split(separator: ":")
 
-        guard let end_hour = Int( endHour.split(separator: ":")[0] ) else { return false }
-        guard let end_min = Int( endHour.split(separator: ":")[1] ) else { return false }
+        if start_time_array.count != 2 {
+            return false
+        }
+
+        guard let start_hour = Int( start_time_array[0] ) else { return false }
+        guard let start_min = Int( start_time_array[1] ) else { return false }
+
+        let end_time_array = endHour.split(separator: ":")
+        
+        if end_time_array.count != 2  {
+            return false
+        }
+    
+        guard let end_hour = Int( end_time_array[0] ) else { return false }
+        guard let end_min = Int( end_time_array[1] ) else { return false }
     
         let calendar = Calendar.current
         let now = Date()

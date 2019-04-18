@@ -26,6 +26,8 @@ class TollRateTableItem: Object {
 
     @objc dynamic var route: Int = 0
     @objc dynamic var message: String = ""
+    @objc dynamic var numCol: Int = 0
+    
     var tollTable = List<TollRateRowItem>()
 
     @objc dynamic var delete: Bool = false
