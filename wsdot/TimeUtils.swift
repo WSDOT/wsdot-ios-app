@@ -25,17 +25,7 @@ class TimeUtils {
     enum TimeUtilsError: Error {
         case invalidTimeString
     }
-    
-    static let tollUpdateTime: Int = 60
-    
-    static let updateTime: Int = 900
-    static let cameraUpdateTime: Int = 604800
 
-    static let vesselUpdateTime: TimeInterval = 30
-    static let spacesUpdateTime: TimeInterval = 60
-
-    static let alertsUpdateTime: TimeInterval = 60
-    static let alertsCacheTime: Int = 60
 
     static var currentTime: Int64{
         get {

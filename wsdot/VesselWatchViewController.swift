@@ -258,7 +258,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         serviceGroup.notify(queue: DispatchQueue.main) {
             self.activityIndicator.stopAnimating()
             self.activityIndicator.isHidden = true
-            self.timer = Timer.scheduledTimer(timeInterval: TimeUtils.vesselUpdateTime, target: self, selector: #selector(VesselWatchViewController.vesselUpdateTask(_:)), userInfo: nil, repeats: true)
+            self.timer = Timer.scheduledTimer(timeInterval: CachesStore.vesselUpdateTime, target: self, selector: #selector(VesselWatchViewController.vesselUpdateTask(_:)), userInfo: nil, repeats: true)
         }
     }
     

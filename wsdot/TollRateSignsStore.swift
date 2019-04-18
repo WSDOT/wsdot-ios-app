@@ -75,14 +75,14 @@ class TollRateSignsStore {
 
     static func updateTollRateSigns(_ force: Bool, completion: @escaping getTollRateSignsCompletion) {
     
-        var delta = TimeUtils.tollUpdateTime
+        var delta = CachesStore.tollUpdateTime
         let deltaUpdated = (Calendar.current as NSCalendar).components(.second, from: CachesStore.getUpdatedTime(CachedData.tollRates), to: Date(), options: []).second
         
         if let deltaValue = deltaUpdated {
             delta = deltaValue
         }
          
-        if ((delta > TimeUtils.updateTime) || force) {
+        if ((delta > CachesStore.updateTime) || force) {
             
             Alamofire.request("http://wsdot.com/traffic/api/api/tolling?accesscode=" + ApiKeys.getWSDOTKey()).validate().responseJSON { response in
                 switch response.result {

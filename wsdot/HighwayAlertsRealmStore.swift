@@ -47,14 +47,14 @@ class HighwayAlertsStore {
     
     static func updateAlerts(_ force: Bool, completion: @escaping UpdateHighwayAlertsCompletion) {
         DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { 
-            var delta = TimeUtils.updateTime
+            var delta = CachesStore.updateTime
             let deltaUpdated = (Calendar.current as NSCalendar).components(.second, from: CachesStore.getUpdatedTime(CachedData.highwayAlerts), to: Date(), options: []).second
         
             if let deltaValue = deltaUpdated {
                 delta = deltaValue
             }
          
-            if ((delta > TimeUtils.alertsCacheTime) || force){
+            if ((delta > CachesStore.alertsCacheTime) || force){
             
                 Alamofire.request("http://data.wsdot.wa.gov/mobile/HighwayAlerts.js").validate().responseJSON { response in
                     switch response.result {

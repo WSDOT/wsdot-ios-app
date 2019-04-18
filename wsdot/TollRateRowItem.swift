@@ -22,7 +22,6 @@ import RealmSwift
 
 class TollRateRowItem: Object {
 
-    @objc dynamic var index: Int = 0
     @objc dynamic var header: Bool = false
     @objc dynamic var startHourString = ""
     @objc dynamic var endHourString = ""

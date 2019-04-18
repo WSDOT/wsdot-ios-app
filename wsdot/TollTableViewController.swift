@@ -39,6 +39,7 @@ class TollTableViewController: UIViewController, UITableViewDelegate, UITableVie
         if let tolls = TollRateTableStore.getTollRateTableByRoute(route: self.stateRoute) {
             self.tollTableItem = tolls
         }
+        
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -79,7 +80,7 @@ class TollTableViewController: UIViewController, UITableViewDelegate, UITableVie
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tollTableItem.tollTable.count
     }
@@ -90,7 +91,7 @@ class TollTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        if tollTableItem.numCol == 3 {
+        if tollTableItem.tollTable[indexPath.row].rows.count == 3 {
 
             let cell = tableView.dequeueReusableCell(withIdentifier: threeColCellIdentifier) as! ThreeColTableCell
 
@@ -119,7 +120,7 @@ class TollTableViewController: UIViewController, UITableViewDelegate, UITableVie
         
             return cell
             
-        } else if tollTableItem.numCol == 4 {
+        } else if tollTableItem.tollTable[indexPath.row].rows.count == 4 {
         
             let cell = tableView.dequeueReusableCell(withIdentifier: fourColCellIdentifier) as! FourColTableCell
 
@@ -145,8 +146,11 @@ class TollTableViewController: UIViewController, UITableViewDelegate, UITableVie
                     }
                 }
             }
+        
             return cell
+            
         }
+        
         return UITableViewCell()
     }
 }

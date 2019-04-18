@@ -21,7 +21,6 @@
 		9A0616C81D6601BD00126520 /* TollRates.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A0616C71D6601BD00126520 /* TollRates.storyboard */; };
 		9A0616CA1D66021B00126520 /* TollRatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616C91D66021B00126520 /* TollRatesViewController.swift */; };
 		9A0616CC1D660BD500126520 /* TollTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616CB1D660BD500126520 /* TollTableViewController.swift */; };
-		9A0616CE1D660CC800126520 /* SR16ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616CD1D660CC800126520 /* SR16ViewController.swift */; };
 		9A0616D21D660DC500126520 /* DynamicTollRatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616D11D660DC500126520 /* DynamicTollRatesViewController.swift */; };
 		9A0616D51D6638AB00126520 /* TollRateSignsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616D41D6638AB00126520 /* TollRateSignsStore.swift */; };
 		9A0616D71D664D2300126520 /* FourColTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616D61D664D2300126520 /* FourColTableViewCell.swift */; };
@@ -261,7 +260,6 @@
 		9A0616C71D6601BD00126520 /* TollRates.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TollRates.storyboard; sourceTree = "<group>"; };
 		9A0616C91D66021B00126520 /* TollRatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TollRatesViewController.swift; sourceTree = "<group>"; };
 		9A0616CB1D660BD500126520 /* TollTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TollTableViewController.swift; sourceTree = "<group>"; };
-		9A0616CD1D660CC800126520 /* SR16ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SR16ViewController.swift; sourceTree = "<group>"; };
 		9A0616D11D660DC500126520 /* DynamicTollRatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicTollRatesViewController.swift; sourceTree = "<group>"; };
 		9A0616D41D6638AB00126520 /* TollRateSignsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TollRateSignsStore.swift; sourceTree = "<group>"; };
 		9A0616D61D664D2300126520 /* FourColTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourColTableViewCell.swift; sourceTree = "<group>"; };
@@ -606,7 +604,6 @@
 				9A6A0028210105070005CC7F /* TollRatesTabBarViewController.swift */,
 				9A0616CB1D660BD500126520 /* TollTableViewController.swift */,
 				9A6A0034210777EC0005CC7F /* TollTripDetailsViewController.swift */,
-				9A0616CD1D660CC800126520 /* SR16ViewController.swift */,
 				9A0616D11D660DC500126520 /* DynamicTollRatesViewController.swift */,
 			);
 			name = Controllers;
@@ -2148,7 +2145,6 @@
 				9AEF4DA61D773641003ECA34 /* YouTubeStore.swift in Sources */,
 				9A0892A91E3A903800434AED /* MyRouteCell.swift in Sources */,
 				9ADD915D21FF670E0068AC28 /* LocationSearchDelegate.swift in Sources */,
-				9A0616CE1D660CC800126520 /* SR16ViewController.swift in Sources */,
 				9AB549011D7874E000927F13 /* AmtrakCascadesStationItem.swift in Sources */,
 				02215F3A2167D87500051301 /* SegmentedControlWithBadge.swift in Sources */,
 				9AE6B780209CF9B1001DE80F /* SwitchCell.swift in Sources */,

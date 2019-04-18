@@ -30,9 +30,22 @@ enum CachedData {
     case mountainPasses
     case notifications
     case tollRates
+    case staticTollRates
 }
 
 class CachesStore {
+    
+    static let tollUpdateTime: Int = 60 // once a minute
+    static let staticTollUpdateTime: Int = 604800 // once a week
+    
+    static let updateTime: Int = 900 // once every 15 minutes
+    static let cameraUpdateTime: Int = 604800 // once a week
+
+    static let vesselUpdateTime: TimeInterval = 30 // once every 30 seconds
+    static let spacesUpdateTime: TimeInterval = 60 // once a minute
+
+    static let alertsUpdateTime: TimeInterval = 60 // once a minute
+    static let alertsCacheTime: Int = 60 // once a minute
     
     static func initCacheItem(){
         do {
@@ -72,6 +85,8 @@ class CachesStore {
             return cacheItem!.notificationsLastUpdate as Date
         case .tollRates:
             return cacheItem!.tollRatesLastUpdate as Date
+        case .staticTollRates:
+            return cacheItem!.staticTollRatesLastUpdate as Date
         }
     }
 
@@ -104,6 +119,8 @@ class CachesStore {
                     cacheItem?.notificationsLastUpdate = updated
                 case .tollRates:
                     cacheItem?.tollRatesLastUpdate = updated
+                case .staticTollRates:
+                    cacheItem?.staticTollRatesLastUpdate = updated
                 }
             }
         } catch {
