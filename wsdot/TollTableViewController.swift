@@ -21,7 +21,7 @@
 import Foundation
 import UIKit
 
-class TollTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TollTableViewController: RefreshViewController, UITableViewDelegate, UITableViewDataSource {
 
     let threeColCellIdentifier = "threeColCell"
     let fourColCellIdentifier = "fourColCell"
@@ -30,11 +30,19 @@ class TollTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var stateRoute: Int = 0
 
+    let refreshControl = UIRefreshControl()
+
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        showOverlay(self.view)
+        
+        // refresh controller
+        refreshControl.addTarget(self, action: #selector(TollTableViewController.refreshAction(_:)), for: .valueChanged)
+        tableView.addSubview(refreshControl)
         
         if let tolls = TollRateTableStore.getTollRateTableByRoute(route: self.stateRoute) {
             self.tollTableItem = tolls
@@ -45,6 +53,10 @@ class TollTableViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         MyAnalytics.screenView(screenName: "SR520TollRates")
+        refresh(true)
+    }
+
+    @objc func refreshAction(_ refreshControl: UIRefreshControl) {
         refresh(true)
     }
 
@@ -62,16 +74,22 @@ class TollTableViewController: UIViewController, UITableViewDelegate, UITableVie
                                 selfValue.messageLabel.text = tolls.message
                             
                             }
+                            
                             selfValue.tableView.reloadData()
+                            selfValue.refreshControl.endRefreshing()
+                            selfValue.hideOverlayView()
                         }
                     }
                 } else {
                     DispatchQueue.main.async { [weak self] in
                         if let selfValue = self {
                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                           selfValue.refreshControl.endRefreshing()
+                           selfValue.hideOverlayView()
                         }
                     }
                 }
+                
             })
         }
     }

@@ -42,6 +42,7 @@ class RouteSchedulesViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var bannerView: DFPBannerView!
     
     override func viewDidLoad() {
+    
         super.viewDidLoad()
         title = "Route Schedules"
         
