@@ -53,7 +53,7 @@
 		9A39E8D720D45D5800ED694D /* TollRateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A39E8D620D45D5800ED694D /* TollRateCell.swift */; };
 		9A3E9F0B226634E2003066F4 /* TollRateRowItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3E9F0A226634E2003066F4 /* TollRateRowItem.swift */; };
 		9A3E9F0F22663B7D003066F4 /* TollRateTableStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3E9F0E22663B7D003066F4 /* TollRateTableStore.swift */; };
-		9A3E9F1122692766003066F4 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3E9F1022692766003066F4 /* LoadingViewController.swift */; };
+		9A3E9F1122692766003066F4 /* RefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3E9F1022692766003066F4 /* RefreshViewController.swift */; };
 		9A46C3B82034F5C1000F03C5 /* TravelTimeItemGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A46C3B72034F5C1000F03C5 /* TravelTimeItemGroup.swift */; };
 		9A4BBAB02125C53500DE6F1B /* SimpleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4BBAAF2125C53500DE6F1B /* SimpleMapViewController.swift */; };
 		9A50179C1D258F2000B9C49E /* RoutesCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */; };
@@ -293,7 +293,7 @@
 		9A39E8D620D45D5800ED694D /* TollRateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TollRateCell.swift; sourceTree = "<group>"; };
 		9A3E9F0A226634E2003066F4 /* TollRateRowItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TollRateRowItem.swift; sourceTree = "<group>"; };
 		9A3E9F0E22663B7D003066F4 /* TollRateTableStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TollRateTableStore.swift; sourceTree = "<group>"; };
-		9A3E9F1022692766003066F4 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		9A3E9F1022692766003066F4 /* RefreshViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshViewController.swift; sourceTree = "<group>"; };
 		9A46C3B72034F5C1000F03C5 /* TravelTimeItemGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelTimeItemGroup.swift; sourceTree = "<group>"; };
 		9A4BBAAF2125C53500DE6F1B /* SimpleMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMapViewController.swift; sourceTree = "<group>"; };
 		9A50179B1D258F2000B9C49E /* RoutesCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutesCustomCell.swift; sourceTree = "<group>"; };
@@ -1432,7 +1432,7 @@
 			children = (
 				9A87A7112236CC60005277C6 /* AlertControllerExtension.swift */,
 				9A345DD021FA676E00903E71 /* MapExtensions.swift */,
-				9A3E9F1022692766003066F4 /* LoadingViewController.swift */,
+				9A3E9F1022692766003066F4 /* RefreshViewController.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -2171,7 +2171,7 @@
 				9AEF4DBC1D778B2D003ECA34 /* AmtrakCascadesViewController.swift in Sources */,
 				9A0CA8311D428EE9009C67B7 /* RouteDeparturesViewController.swift in Sources */,
 				9A6FBCDC1D6B6E1200CDCE16 /* HighwayAlertsRealmStore.swift in Sources */,
-				9A3E9F1122692766003066F4 /* LoadingViewController.swift in Sources */,
+				9A3E9F1122692766003066F4 /* RefreshViewController.swift in Sources */,
 				9AEF4DAC1D773F94003ECA34 /* TwitterViewController.swift in Sources */,
 				9A1F5FA11D47D3D100DA5F99 /* CameraImageCustomCell.swift in Sources */,
 				9AD32E2C1D242A5A000AEC28 /* RouteSchedulesViewController.swift in Sources */,

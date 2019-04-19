@@ -20,10 +20,9 @@
 
 import UIKit
 
-class FavoritesHomeViewController: UIViewController {
+class FavoritesHomeViewController: RefreshViewController {
     
     let refreshControl = UIRefreshControl()
-    var activityIndicator = UIActivityIndicatorView()
 
     // content types for the favorites list in order to appear on list.
     var sectionTypes: [FavoritesContent] = [.route, .ferrySchedule, .mountainPass, .camera, .travelTime, .tollRate, .borderWait]
@@ -249,6 +248,7 @@ extension FavoritesHomeViewController {
         }
  
         serviceGroup.notify(queue: DispatchQueue.main) {
+
             self.cameras = CamerasStore.getFavoriteCameras()
             self.travelTimeGroups = TravelTimesStore.findFavoriteTimes()
             self.ferrySchedules = FerryRealmStore.findFavoriteSchedules()
@@ -267,31 +267,6 @@ extension FavoritesHomeViewController {
             self.hideOverlayView()
             self.refreshControl.endRefreshing()
         }
-    }
-
-    /**
-     * Method name: showOverlay
-     * Description: creates an loading indicator in the center of the screen.
-     * Parameters: view: The view to display the loading indicator on.
-     */
-    func showOverlay(_ view: UIView) {
-    
-        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        activityIndicator.style = .whiteLarge
-        activityIndicator.color = UIColor.gray
-        activityIndicator.center = CGPoint(x: view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
-        
-        view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-    }
-    
-    /**
-     * Method name: hideOverlayView
-     * Description: Removes the loading overlay created in showOverlay
-     */
-    func hideOverlayView(){
-        activityIndicator.stopAnimating()
-        activityIndicator.removeFromSuperview()
     }
 
     @objc func refreshAction(_ refreshController: UIRefreshControl){

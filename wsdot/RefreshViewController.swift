@@ -1,7 +1,7 @@
 
 class RefreshViewController: UIViewController {
 
- var activityIndicator = UIActivityIndicatorView()
+    var activityIndicator = UIActivityIndicatorView()
 
     func showOverlay(_ view: UIView) {
     
