@@ -2,8 +2,8 @@
 
 Washington State Traveler information provide by The Washington State Department of Transportation.
 
-* Written in Swift 3
-* Developed with Xcode 8.0
+* Written in Swift 4.2
+* Developed with Xcode 10.1
 
 Features - [View on the App Store](https://itunes.apple.com/us/app/wsdot/id387209224?mt=8)
 ----------------------------------
