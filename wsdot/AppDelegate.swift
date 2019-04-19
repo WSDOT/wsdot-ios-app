@@ -71,6 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         HighwayAlertsStore.flushOldData()
         NotificationsStore.flushOldData()
         TollRateSignsStore.flushOldData()
+        TollRateTableStore.flushOldData()
         
         return true
     }
@@ -82,6 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         HighwayAlertsStore.flushOldData()
         NotificationsStore.flushOldData()
         TollRateSignsStore.flushOldData()
+        TollRateTableStore.flushOldData()
     }
     
     // MARK: Push Notifications
@@ -288,6 +290,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                         newObject!["foundTravelTimes"] = false
                     }
                     migration.deleteData(forType: CacheItem.className())
+                }
+                
+                /*
+                   tollTableItem added and cache item for toll table data
+                */
+                if (oldSchemaVersion < 9) {
+                    migration.enumerateObjects(ofType: CacheItem.className()) { oldObject, newObject in
+                        newObject!["staticTollRatesLastUpdate"] = Date(timeIntervalSince1970: 0)
+                    }
                 }
         })
     }
