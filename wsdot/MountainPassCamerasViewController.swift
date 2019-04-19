@@ -22,13 +22,12 @@ import Foundation
 import UIKit
 import GoogleMobileAds
 
-class MountainPassCamerasViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, GADBannerViewDelegate {
+class MountainPassCamerasViewController: RefreshViewController, UITableViewDataSource, UITableViewDelegate, GADBannerViewDelegate {
     
     let camerasCellIdentifier = "PassCamerasCell"
     let SegueCamerasViewController = "CamerasViewController"
     
     let refreshControl = UIRefreshControl()
-    var activityIndicator = UIActivityIndicatorView()
     
     var passItem : MountainPassItem = MountainPassItem()
     
@@ -101,20 +100,6 @@ class MountainPassCamerasViewController: UIViewController, UITableViewDataSource
                 }
             })
         }
-    }
-    
-    func showOverlay(_ view: UIView) {
-        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        activityIndicator.style = .whiteLarge
-        activityIndicator.color = UIColor.gray
-        activityIndicator.center = CGPoint(x: view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
-        view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-    }
-    
-    func hideOverlayView(){
-        activityIndicator.stopAnimating()
-        activityIndicator.removeFromSuperview()
     }
     
     // MARK: -

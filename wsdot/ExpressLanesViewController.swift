@@ -21,7 +21,7 @@
 import UIKit
 import SafariServices
 
-class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ExpressLanesViewController: RefreshViewController, UITableViewDelegate, UITableViewDataSource {
 
     let cellIdentifier = "ExpressLanesCell"
     let webLinkcellIdentifier = "WebsiteLinkCell"
@@ -32,7 +32,6 @@ class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITable
     let expressLanesUrlString = "http://www.wsdot.wa.gov/Northwest/King/ExpressLanes"
     let refreshControl = UIRefreshControl()
     var overlayView = UIView()
-    var activityIndicator = UIActivityIndicatorView()
     
 
     override func viewDidLoad() {
@@ -81,26 +80,6 @@ class ExpressLanesViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
-    func showOverlay(_ view: UIView) {
-        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        activityIndicator.style = .whiteLarge
-        activityIndicator.color = UIColor.gray
-        
-        if self.splitViewController!.isCollapsed {
-            activityIndicator.center = CGPoint(x: view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
-        } else {
-            activityIndicator.center = CGPoint(x: view.center.x - self.splitViewController!.viewControllers[0].view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
-        }
-        
-        view.addSubview(activityIndicator)
-        
-        activityIndicator.startAnimating()
-    }
-    
-    func hideOverlayView(){
-        activityIndicator.stopAnimating()
-        activityIndicator.removeFromSuperview()
-    }
 
     // MARK: Table View Data Source Methods
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {

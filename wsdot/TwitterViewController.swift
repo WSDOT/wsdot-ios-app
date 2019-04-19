@@ -22,7 +22,7 @@ import Foundation
 import UIKit
 import SafariServices
 
-class TwitterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, INDLinkLabelDelegate {
+class TwitterViewController: RefreshViewController, UITableViewDelegate, UITableViewDataSource, INDLinkLabelDelegate {
     
     let cellIdentifier = "TwitterCell"
     
@@ -34,7 +34,6 @@ class TwitterViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var accountButton: UIButton!
     
     let refreshControl = UIRefreshControl()
-    var activityIndicator = UIActivityIndicatorView()
 
     let accountData: [(name:String, screenName:String?)] =
         [("All Accounts", nil),
@@ -116,27 +115,7 @@ class TwitterViewController: UIViewController, UITableViewDelegate, UITableViewD
             })
         }
     }
-    
-    func showOverlay(_ view: UIView) {
-        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        activityIndicator.style = .whiteLarge
-        activityIndicator.color = UIColor.gray
-        
-        if self.splitViewController!.isCollapsed {
-            activityIndicator.center = CGPoint(x: view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
-        } else {
-            activityIndicator.center = CGPoint(x: view.center.x - self.splitViewController!.viewControllers[0].view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
-        }
-        
-        view.addSubview(activityIndicator)
-        
-        activityIndicator.startAnimating()
-    }
-    
-    func hideOverlayView(){
-        activityIndicator.stopAnimating()
-        activityIndicator.removeFromSuperview()
-    }
+
     
     @IBAction func selectAccountAction(_ sender: UIButton) {
         performSegue(withIdentifier: segueTwitterAccountSelectionViewController, sender: self)

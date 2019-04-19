@@ -48,7 +48,7 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
         
         fetchAlerts(false)
         
-        timer = Timer.scheduledTimer(timeInterval: TimeUtils.alertsUpdateTime, target: self, selector: #selector(AlertPagerViewController.updateAlerts(_:)), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: CachesStore.alertsUpdateTime, target: self, selector: #selector(AlertPagerViewController.updateAlerts(_:)), userInfo: nil, repeats: true)
 
     }
     

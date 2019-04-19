@@ -22,7 +22,7 @@ import UIKit
 import RealmSwift
 import SafariServices
 
-class MyRouteReportViewController: UIViewController {
+class MyRouteReportViewController: RefreshViewController {
 
     var alerts = [HighwayAlertItem]()
     
@@ -41,7 +41,6 @@ class MyRouteReportViewController: UIViewController {
     let segueMyRouteTravelTimesViewController = "MyRouteTravelTimesViewController"
     
     let refreshControl = UIRefreshControl()
-    var activityIndicator = UIActivityIndicatorView()
 
     fileprivate var alertMarkers = Set<GMSMarker>()
 
@@ -70,7 +69,6 @@ class MyRouteReportViewController: UIViewController {
         
         _ = drawRouteOnMap(Array(route!.route))
     
-        
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -78,7 +76,6 @@ class MyRouteReportViewController: UIViewController {
         MyAnalytics.screenView(screenName: "MyRouteAlerts")
     }
     
-
     @IBAction func segmentSelected(_ sender: UISegmentedControl) {
         
         switch (sender.selectedSegmentIndex) {
@@ -101,7 +98,6 @@ class MyRouteReportViewController: UIViewController {
         default:
             return
         }
-        
     }
     
     @IBAction func settingsAction(_ sender: UIBarButtonItem) {
@@ -274,30 +270,6 @@ class MyRouteReportViewController: UIViewController {
                     }
                 }
             })
-    }
-    
-    /**
-     * Method name: showOverlay
-     * Description: creates an loading indicator in the center of the screen.
-     * Parameters: view: The view to display the loading indicator on.
-     */
-    func showOverlay(_ view: UIView) {
-        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        activityIndicator.style = .whiteLarge
-        activityIndicator.color = UIColor.gray
-        activityIndicator.center = CGPoint(x: view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
-        
-        view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-    }
-    
-    /**
-     * Method name: hideOverlayView
-     * Description: Removes the loading overlay created in showOverlay
-     */
-    func hideOverlayView(){
-        activityIndicator.stopAnimating()
-        activityIndicator.removeFromSuperview()
     }
 
     // MARK: Naviagtion

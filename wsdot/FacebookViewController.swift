@@ -22,7 +22,7 @@ import UIKit
 import Foundation
 import SafariServices
 
-class FacebookViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, INDLinkLabelDelegate {
+class FacebookViewController: RefreshViewController, UITableViewDataSource, UITableViewDelegate, INDLinkLabelDelegate {
     
     let cellIdentifier = "postCell"
     
@@ -30,7 +30,6 @@ class FacebookViewController: UIViewController, UITableViewDataSource, UITableVi
     
     var posts = [FacebookItem]()
     let refreshControl = UIRefreshControl()
-    var activityIndicator = UIActivityIndicatorView()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -79,27 +78,6 @@ class FacebookViewController: UIViewController, UITableViewDataSource, UITableVi
                 }
             })
         }
-    }
-    
-    func showOverlay(_ view: UIView) {
-        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        activityIndicator.style = .whiteLarge
-        activityIndicator.color = UIColor.gray
-        
-        if self.splitViewController!.isCollapsed {
-            activityIndicator.center = CGPoint(x: view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
-        } else {
-            activityIndicator.center = CGPoint(x: view.center.x - self.splitViewController!.viewControllers[0].view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
-        }
-        
-        view.addSubview(activityIndicator)
-        
-        activityIndicator.startAnimating()
-    }
-    
-    func hideOverlayView(){
-        activityIndicator.stopAnimating()
-        activityIndicator.removeFromSuperview()
     }
     
     // MARK: Table View Data Source Methods

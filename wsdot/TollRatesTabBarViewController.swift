@@ -26,11 +26,21 @@ class TollRatesTabBarViewController: UITabBarController {
         super.viewDidLoad()
 
         let barViewControllers = self.viewControllers
-        let sr167VC = barViewControllers![2] as! DynamicTollRatesViewController
-        let i405VC = barViewControllers![3] as! DynamicTollRatesViewController
+        
+        let sr16VC = barViewControllers![0] as! TollTableViewController
+        let sr520VC = barViewControllers![1] as! TollTableViewController
+        let sr99VC = barViewControllers![2] as! TollTableViewController
+        
+        let sr167VC = barViewControllers![3] as! DynamicTollRatesViewController
+        let i405VC = barViewControllers![4] as! DynamicTollRatesViewController
+
+        sr16VC.stateRoute = 16
+        sr520VC.stateRoute = 520
+        sr99VC.stateRoute = 99
 
         sr167VC.stateRoute = "167"
         i405VC.stateRoute = "405"
+        
 
     }
 

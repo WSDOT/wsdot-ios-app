@@ -72,14 +72,14 @@ class NotificationsStore {
      */
     static func updateTopics(_ force: Bool, completion: @escaping UpdateTopicsCompletion) {
     
-        var delta = TimeUtils.updateTime
+        var delta = CachesStore.updateTime
         let deltaUpdated = (Calendar.current as NSCalendar).components(.second, from: CachesStore.getUpdatedTime(CachedData.notifications), to: Date(), options: []).second
        
         if let deltaValue = deltaUpdated {
              delta = deltaValue
         }
         
-        if ((delta > TimeUtils.updateTime) || force || true){
+        if ((delta > CachesStore.updateTime) || force || true){
      
             Alamofire.request("http://data.wsdot.wa.gov/mobile/NotificationTopics.js").validate().responseJSON { response in
             

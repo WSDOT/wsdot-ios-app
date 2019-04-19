@@ -21,7 +21,7 @@
 import UIKit
 import GoogleMobileAds
 
-class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate {
+class BorderWaitsViewController: RefreshViewController, UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate {
     
     let cellIdentifier = "borderwaitcell"
     
@@ -33,7 +33,6 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
     var southboundWaits = [BorderWaitItem]()
     
     let refreshControl = UIRefreshControl()
-    var activityIndicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,27 +103,7 @@ class BorderWaitsViewController: UIViewController, UITableViewDelegate, UITableV
             })
         }
     }
-    
-    func showOverlay(_ view: UIView) {
-        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        activityIndicator.style = .whiteLarge
-        activityIndicator.color = UIColor.gray
-        
-        if self.splitViewController!.isCollapsed {
-            activityIndicator.center = CGPoint(x: view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
-        } else {
-            activityIndicator.center = CGPoint(x: view.center.x - self.splitViewController!.viewControllers[0].view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
-        }
-        
-        view.addSubview(activityIndicator)
-        
-        activityIndicator.startAnimating()
-    }
-    
-    func hideOverlayView(){
-        activityIndicator.stopAnimating()
-        activityIndicator.removeFromSuperview()
-    }
+
     
     // MARK: Table View Data Source Methods
     func numberOfSections(in tableView: UITableView) -> Int {

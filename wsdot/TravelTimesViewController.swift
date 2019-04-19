@@ -20,7 +20,7 @@
 
 import UIKit
 
-class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating{
+class TravelTimesViewController: RefreshViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating{
     
     let cellIdentifier = "TravelTimeCell"
     
@@ -32,7 +32,6 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var tableView: UITableView!
     
     let refreshControl = UIRefreshControl()
-    var activityIndicator = UIActivityIndicatorView()
     
     var searchController: UISearchController!
     
@@ -98,31 +97,6 @@ class TravelTimesViewController: UIViewController, UITableViewDelegate, UITableV
                 }
             })
         }
-    }
-    
-    func showOverlay(_ view: UIView) {
-        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        activityIndicator.style = .whiteLarge
-        activityIndicator.color = UIColor.gray
-        
-        if let splitVC = self.splitViewController {
-            if splitVC.isCollapsed {
-                activityIndicator.center = CGPoint(x: view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
-            } else {
-                activityIndicator.center = CGPoint(x: view.center.x - self.splitViewController!.viewControllers[0].view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
-            }
-        } else {
-            activityIndicator.center = CGPoint(x: view.center.x, y: view.center.y - self.tableView.frame.size.height)
-        }
-        
-        view.addSubview(activityIndicator)
-        
-        activityIndicator.startAnimating()
-    }
-    
-    func hideOverlayView(){
-        activityIndicator.stopAnimating()
-        activityIndicator.removeFromSuperview()
     }
     
     // MARK: Table View Data Source Methods

@@ -70,7 +70,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         TravelTimesStore.flushOldData()
         HighwayAlertsStore.flushOldData()
         NotificationsStore.flushOldData()
-        TollRatesStore.flushOldData()
+        TollRateSignsStore.flushOldData()
+        TollRateTableStore.flushOldData()
         
         return true
     }
@@ -81,7 +82,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         TravelTimesStore.flushOldData()
         HighwayAlertsStore.flushOldData()
         NotificationsStore.flushOldData()
-        TollRatesStore.flushOldData()
+        TollRateSignsStore.flushOldData()
+        TollRateTableStore.flushOldData()
     }
     
     // MARK: Push Notifications
@@ -204,7 +206,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // MARK: Realm
     func migrateRealm(){
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
-            schemaVersion: 8,
+            schemaVersion: 9,
             
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
@@ -288,6 +290,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                         newObject!["foundTravelTimes"] = false
                     }
                     migration.deleteData(forType: CacheItem.className())
+                }
+                
+                /*
+                   tollTableItem added and cache item for toll table data
+                */
+                if (oldSchemaVersion < 9) {
+                    migration.enumerateObjects(ofType: CacheItem.className()) { oldObject, newObject in
+                        newObject!["staticTollRatesLastUpdate"] = Date(timeIntervalSince1970: 0)
+                    }
                 }
         })
     }

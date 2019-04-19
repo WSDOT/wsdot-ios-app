@@ -77,7 +77,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         
         tableView.addSubview(refreshControl)
         
-        timer = Timer.scheduledTimer(timeInterval: TimeUtils.spacesUpdateTime, target: self, selector: #selector(RouteTimesViewController.spacesTimerTask), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: CachesStore.spacesUpdateTime, target: self, selector: #selector(RouteTimesViewController.spacesTimerTask), userInfo: nil, repeats: true)
     
         refresh(scrollToCurrentSailing: true)
 

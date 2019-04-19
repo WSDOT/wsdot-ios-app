@@ -64,15 +64,15 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
     
     func refresh(_ force: Bool){
         DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { [weak self] in
-            TollRatesStore.updateTollRates(force, completion: { error in
+            TollRateSignsStore.updateTollRateSigns(force, completion: { error in
                 if (error == nil) {
                     // Reload tableview on UI thread
                     DispatchQueue.main.async { [weak self] in
                         if let selfValue = self {
                             if let route = selfValue.stateRoute {
                             
-                                selfValue.northboundTollRates = TollRatesStore.getNorthboundTollRatesByRoute(route: route)
-                                selfValue.southboundTollRates = TollRatesStore.getSouthboundTollRatesByRoute(route: route)
+                                selfValue.northboundTollRates = TollRateSignsStore.getNorthboundTollRatesByRoute(route: route)
+                                selfValue.southboundTollRates = TollRateSignsStore.getSouthboundTollRatesByRoute(route: route)
                                 
                                 if (selfValue.directionSegmentControl.selectedSegmentIndex == 0){
                                     selfValue.displayedTollRates = selfValue.northboundTollRates
@@ -348,10 +348,10 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
         let tollSign = self.displayedTollRates[index]
         
         if (tollSign.selected){
-            TollRatesStore.updateFavorite(tollSign, newValue: false)
+            TollRateSignsStore.updateFavorite(tollSign, newValue: false)
             sender.setImage(UIImage(named: "icStarSmall"), for: .normal)
         }else {
-            TollRatesStore.updateFavorite(tollSign, newValue: true)
+            TollRateSignsStore.updateFavorite(tollSign, newValue: true)
             sender.setImage(UIImage(named: "icStarSmallFilled"), for: .normal)
         }
     }

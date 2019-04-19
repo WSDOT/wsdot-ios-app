@@ -64,8 +64,8 @@ class FavoritesSettingsViewController: UIViewController {
         for route in MyRouteStore.getSelectedRoutes() {
             _ = MyRouteStore.updateSelected(route, newValue: false)
         }
-        for toll in TollRatesStore.findFavoriteTolls() {
-            TollRatesStore.updateFavorite(toll, newValue: false)
+        for toll in TollRateSignsStore.findFavoriteTollSigns() {
+            TollRateSignsStore.updateFavorite(toll, newValue: false)
         }
         for wait in BorderWaitStore.getFavoriteWaits() {
             BorderWaitStore.updateFavorite(wait, newValue: false)
