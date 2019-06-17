@@ -35,7 +35,7 @@ class BestTimesToTravelStore {
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
         sessionManager = Alamofire.SessionManager(configuration: configuration)
 
-        sessionManager!.request("http://data.wsdot.wa.gov/mobile/travelCharts.js").validate().responseJSON { response in
+        sessionManager!.request("https://data.wsdot.wa.gov/mobile/travelCharts.js").validate().responseJSON { response in
             switch response.result {
             case .success:
                 if let value = response.result.value {
@@ -55,7 +55,7 @@ class BestTimesToTravelStore {
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
         sessionManager = Alamofire.SessionManager(configuration: configuration)
 
-        sessionManager!.request("http://data.wsdot.wa.gov/mobile/travelCharts.js").validate().responseJSON { response in
+        sessionManager!.request("https://data.wsdot.wa.gov/mobile/travelCharts.js").validate().responseJSON { response in
             switch response.result {
             case .success:
                 if let value = response.result.value {

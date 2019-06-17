@@ -51,7 +51,7 @@ class TollRateTableStore {
         
         if ((delta > CachesStore.updateTime) || force) {
             
-            Alamofire.request("http://data.wsdot.wa.gov/mobile/StaticTollRates.js").validate().responseJSON { response in
+            Alamofire.request("https://data.wsdot.wa.gov/mobile/StaticTollRates.js").validate().responseJSON { response in
                 switch response.result {
                 case .success:
                 

@@ -28,7 +28,7 @@ class TwitterStore {
     
     static func getTweets(_ screenName: String?, completion: @escaping FetchTweetsCompletion) {
         
-        var url = "http://www.wsdot.wa.gov/news/socialroom/posts/twitter/"
+        var url = "https://www.wsdot.wa.gov/news/socialroom/posts/twitter/"
         
         if let screenNameValue = screenName {
             url = url + screenNameValue

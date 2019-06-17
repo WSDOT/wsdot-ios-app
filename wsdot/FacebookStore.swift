@@ -28,7 +28,7 @@ class FacebookStore {
     
     static func getPosts(_ completion: @escaping FetchPostsCompletion) {
         
-        Alamofire.request("http://www.wsdot.wa.gov/news/socialroom/posts/facebook").validate().responseJSON { response in
+        Alamofire.request("https://www.wsdot.wa.gov/news/socialroom/posts/facebook").validate().responseJSON { response in
             switch response.result {
             case .success:
                 if let value = response.result.value {

@@ -81,7 +81,7 @@ class NotificationsStore {
         
         if ((delta > CachesStore.updateTime) || force || true){
      
-            Alamofire.request("http://data.wsdot.wa.gov/mobile/NotificationTopics.js").validate().responseJSON { response in
+            Alamofire.request("https://data.wsdot.wa.gov/mobile/NotificationTopics.js").validate().responseJSON { response in
             
                 switch response.result {
                 case .success:

@@ -84,7 +84,7 @@ class TollRateSignsStore {
          
         if ((delta > CachesStore.updateTime) || force) {
             
-            Alamofire.request("http://wsdot.com/traffic/api/api/tolling?accesscode=" + ApiKeys.getWSDOTKey()).validate().responseJSON { response in
+            Alamofire.request("https://wsdot.com/traffic/api/api/tolling?accesscode=" + ApiKeys.getWSDOTKey()).validate().responseJSON { response in
                 switch response.result {
                 case .success:
                     if let value = response.result.value {

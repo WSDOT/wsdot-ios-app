@@ -28,7 +28,7 @@ class ExpressLanesStore {
     
     static func getExpressLanes(_ completion: @escaping FetchExpressLanesCompletion) {
         
-        Alamofire.request("http://data.wsdot.wa.gov/mobile/ExpressLanes.js").validate().responseJSON { response in
+        Alamofire.request("https://data.wsdot.wa.gov/mobile/ExpressLanes.js").validate().responseJSON { response in
             switch response.result {
             case .success:
                 if let value = response.result.value {

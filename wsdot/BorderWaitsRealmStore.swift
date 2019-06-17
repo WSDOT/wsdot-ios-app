@@ -66,7 +66,7 @@ class BorderWaitStore {
          
         if ((delta > CachesStore.updateTime) || force){
             
-            Alamofire.request("http://data.wsdot.wa.gov/mobile/BorderCrossings.js").validate().responseJSON { response in
+            Alamofire.request("https://data.wsdot.wa.gov/mobile/BorderCrossings.js").validate().responseJSON { response in
                 switch response.result {
                 case .success:
                     if let value = response.result.value {

@@ -51,7 +51,7 @@ class YouTubeStore {
             let post = YouTubeItem()
             
             post.title = postJson["snippet"]["title"].stringValue
-            post.link = "http://www.youtube.com/watch?v=" + postJson["snippet"]["resourceId"]["videoId"].stringValue
+            post.link = "https://www.youtube.com/watch?v=" + postJson["snippet"]["resourceId"]["videoId"].stringValue
             post.thumbnailLink = postJson["snippet"]["thumbnails"]["default"]["url"].stringValue
             post.published = TimeUtils.postPubDateToNSDate(postJson["snippet"]["publishedAt"].stringValue, formatStr: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", isUTC: true)
             

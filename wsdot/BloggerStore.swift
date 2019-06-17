@@ -27,7 +27,7 @@ class BloggerStore {
     
     static func getBlogPosts(_ completion: @escaping FetchBlogPostsCompletion) {
         
-        Alamofire.request("http://wsdotblog.blogspot.com/feeds/posts/default?alt=json&max-results=10").validate().responseJSON { response in
+        Alamofire.request("https://wsdotblog.blogspot.com/feeds/posts/default?alt=json&max-results=10").validate().responseJSON { response in
             switch response.result {
             case .success:
                 if let value = response.result.value {

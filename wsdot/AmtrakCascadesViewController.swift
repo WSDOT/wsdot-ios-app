@@ -27,7 +27,7 @@ class AmtrakCascadesViewController: UIViewController, UITableViewDelegate, UITab
     let segueAmtrakSchedulesViewController = "AmtrakCascadesScheduleViewController"
 
     let menu_options = ["Buy Tickets on Amtrak.com", "Check Schedules and Status"]
-    let amtrakUrlString = "http://m.amtrak.com"
+    let amtrakUrlString = "https://m.amtrak.com"
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

@@ -23,7 +23,7 @@ import SwiftyJSON
 import RealmSwift
 /*
  Collects new ferry schedule information from
- the schedule API at: http://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js
+ the schedule API at: https://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js
  */
 class FerryRealmStore {
     

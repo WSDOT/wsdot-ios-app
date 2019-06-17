@@ -24,7 +24,7 @@ import SafariServices
 
 class VesselDetailsViewController: UIViewController{
     
-    let vesselBaseUrlString = "http://www.wsdot.com/ferries/vesselwatch/VesselDetail.aspx?vessel_id="
+    let vesselBaseUrlString = "https://www.wsdot.com/ferries/vesselwatch/VesselDetail.aspx?vessel_id="
     
     var vesselItem: VesselItem? = nil
     

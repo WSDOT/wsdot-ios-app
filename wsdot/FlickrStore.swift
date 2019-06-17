@@ -27,7 +27,7 @@ class FlickrStore {
     
     static func getPosts(_ completion: @escaping FetchFlickrPostsCompletion) {
         
-        Alamofire.request("http://data.wsdot.wa.gov/mobile/FlickrPhotos.js").validate().responseJSON  { response in
+        Alamofire.request("https://data.wsdot.wa.gov/mobile/FlickrPhotos.js").validate().responseJSON  { response in
             switch response.result {
             case .success:
                 if let value = response.result.value {

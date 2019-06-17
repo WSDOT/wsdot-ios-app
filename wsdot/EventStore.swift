@@ -43,7 +43,7 @@ class EventStore {
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
         pushSessionManager = Alamofire.SessionManager(configuration: configuration)
 
-        pushSessionManager!.request("http://data.wsdot.wa.gov/mobile/NotificationTopicsVersion.js").validate().responseJSON { response in
+        pushSessionManager!.request("https://data.wsdot.wa.gov/mobile/NotificationTopicsVersion.js").validate().responseJSON { response in
             switch response.result {
             case .success:
                 if let value = response.result.value {
@@ -69,7 +69,7 @@ class EventStore {
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
         eventSessionManager = Alamofire.SessionManager(configuration: configuration)
 
-        eventSessionManager!.request("http://data.wsdot.wa.gov/mobile/EventStatus.js").validate().responseJSON { response in
+        eventSessionManager!.request("https://data.wsdot.wa.gov/mobile/EventStatus.js").validate().responseJSON { response in
             switch response.result {
             case .success:
                 if let value = response.result.value {

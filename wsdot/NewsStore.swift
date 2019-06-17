@@ -28,7 +28,7 @@ class NewsStore {
     
     static func getNews(_ completion: @escaping FetchNewsCompletion) {
         
-        Alamofire.request("http://data.wsdot.wa.gov/mobile/News.js").validate().responseJSON { response in
+        Alamofire.request("https://data.wsdot.wa.gov/mobile/News.js").validate().responseJSON { response in
             switch response.result {
             case .success:
                 if let value = response.result.value {
