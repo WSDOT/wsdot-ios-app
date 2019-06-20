@@ -21,7 +21,9 @@ class RefreshViewController: UIViewController {
                 
             }
         } else {
-            activityIndicator.center = CGPoint(x: view.center.x, y: view.center.y - self.navigationController!.navigationBar.frame.size.height)
+            if let nav = self.navigationController  {
+                activityIndicator.center = CGPoint(x: view.center.x, y: view.center.y - nav.navigationBar.frame.size.height)
+            }
         }
     
         view.addSubview(activityIndicator)
