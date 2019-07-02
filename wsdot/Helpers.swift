@@ -28,10 +28,11 @@ struct AlertMessages {
             banner.onTap = {
                 UIApplication.shared.openURL(NSURL(string: url)! as URL)
             }
-            
+            banner.haptic = .light
             banner.show()
         } else {
-            let banner = StatusBarNotificationBanner(title: "We're having trouble connecting to our server", style: .warning)
+            let banner = NotificationBanner(title: "We're having trouble connecting", subtitle: nil, style: .warning)
+            banner.haptic = .none
             banner.show()
         }
     }
@@ -57,7 +58,7 @@ struct AlertMessages {
         return alert
     }
     
-    static func getAcessDeniedAlert(_ title: String, message: String) -> UIAlertController {
+    static func getAccessDeniedAlert(_ title: String, message: String) -> UIAlertController {
     
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let settingsAction = UIAlertAction(title: "Open Settings", style: .default) { (alertAction) in

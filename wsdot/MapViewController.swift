@@ -173,6 +173,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
             if let location = manager.location {
                 if location.speed > 11 {
                     UserDefaults.standard.set(true, forKey: UserDefaultsKeys.hasSeenWarning)
+                    
                     parent!.present(AlertMessages.getAlert("You're moving fast.", message: "Please do not use the app while driving.", confirm: "I'm a Passenger"), animated: true, completion: { })
                 }
             }

@@ -166,7 +166,7 @@ class NotificationTopicsViewController: RefreshViewController, UITableViewDelega
 
                                 } else {
                                     
-                                    selfValue.present(AlertMessages.getAcessDeniedAlert("Turn On Notifications", message: "Please allow notifications from Settings"), animated: true, completion: {sender.setOn(!sender.isOn, animated: true)})
+                                    selfValue.present(AlertMessages.getAccessDeniedAlert("Turn On Notifications", message: "Please allow notifications from Settings"), animated: true, completion: {sender.setOn(!sender.isOn, animated: true)})
                                 }
                             case .failure(let error): print(error)
                         }
