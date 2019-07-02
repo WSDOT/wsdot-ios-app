@@ -92,7 +92,7 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
                         if let selfValue = self {
                             selfValue.refreshControl.endRefreshing()
                             selfValue.activityIndicator.stopAnimating()
-                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                            AlertMessages.getConnectionAlert(backupURL: WsdotURLS.tolling)
                         }
                     }
                 }
@@ -140,11 +140,8 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
                         }
                     }
                 } else {
-                    DispatchQueue.main.async { [weak self] in
-                        if let selfValue = self {
-
-                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
-                        }
+                    DispatchQueue.main.async {
+                        AlertMessages.getConnectionAlert(backupURL: WsdotURLS.tolling)
                     }
                 }
             })

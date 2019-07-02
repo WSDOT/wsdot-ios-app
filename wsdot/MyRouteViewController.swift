@@ -95,16 +95,14 @@ class MyRouteViewController: UIViewController {
     
     func requestCamerasUpdate(_ force: Bool, serviceGroup: DispatchGroup) {
         serviceGroup.enter()
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async {[weak self] in
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async {
             CamerasStore.updateCameras(force, completion: { error in
                 if (error == nil){
                     serviceGroup.leave()
                 }else{
                     serviceGroup.leave()
-                    DispatchQueue.main.async { [weak self] in
-                        if let selfValue = self{
-                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
-                        }
+                    DispatchQueue.main.async {
+                        AlertMessages.getConnectionAlert(backupURL: nil)
                     }
                 }
             })
@@ -113,16 +111,14 @@ class MyRouteViewController: UIViewController {
     
     func requestTravelTimesUpdate(_ force: Bool, serviceGroup: DispatchGroup){
         serviceGroup.enter()
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async { [weak self] in
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async {
             TravelTimesStore.updateTravelTimes(force, completion: { error in
                 if (error == nil) {
                     serviceGroup.leave()
                 } else {
                     serviceGroup.leave()
-                    DispatchQueue.main.async { [weak self] in
-                        if let selfValue = self{
-                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
-                        }
+                    DispatchQueue.main.async {
+                        AlertMessages.getConnectionAlert(backupURL: nil)
                     }
                 }
             })
@@ -131,16 +127,14 @@ class MyRouteViewController: UIViewController {
     
     func requestFerriesUpdate(_ force: Bool, serviceGroup: DispatchGroup){
         serviceGroup.enter()
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async { [weak self] in
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async {
             FerryRealmStore.updateRouteSchedules(force, completion: { error in
                 if (error == nil) {
                     serviceGroup.leave()
                 } else {
                     serviceGroup.leave()
-                    DispatchQueue.main.async { [weak self] in
-                        if let selfValue = self{
-                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
-                        }
+                    DispatchQueue.main.async {
+                        AlertMessages.getConnectionAlert(backupURL: nil)
                     }
                 }
             })
@@ -149,16 +143,14 @@ class MyRouteViewController: UIViewController {
     
     func requestMountainPassesUpdate(_ force: Bool, serviceGroup: DispatchGroup){
         serviceGroup.enter()
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async {[weak self] in
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async {
             MountainPassStore.updatePasses(force, completion: { error in
                 if (error == nil){
                     serviceGroup.leave()
                 }else{
                     serviceGroup.leave()
-                    DispatchQueue.main.async { [weak self] in
-                        if let selfValue = self{
-                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
-                        }
+                    DispatchQueue.main.async {
+                        AlertMessages.getConnectionAlert(backupURL: nil)
                     }
                 }
             })

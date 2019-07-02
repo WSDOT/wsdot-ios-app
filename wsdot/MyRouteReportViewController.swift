@@ -263,10 +263,8 @@ class MyRouteReportViewController: RefreshViewController {
                     serviceGroup.leave()
                 }else{
                     serviceGroup.leave()
-                    DispatchQueue.main.async { [weak self] in
-                        if let selfValue = self{
-                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
-                        }
+                    DispatchQueue.main.async {
+                        AlertMessages.getConnectionAlert(backupURL: nil)
                     }
                 }
             })

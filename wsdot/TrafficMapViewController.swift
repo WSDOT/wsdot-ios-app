@@ -228,7 +228,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
                     DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
                             selfValue.serviceGroup.leave()
-                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                            AlertMessages.getConnectionAlert(backupURL: WsdotURLS.trafficCameras)
                         }
                     }
                 }
@@ -284,11 +284,9 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
                     }
                 }
             }else{
-                DispatchQueue.main.async { [weak self] in
-                    if let selfValue = self{
-                        group.leave()
-                        selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
-                    }
+                DispatchQueue.main.async {  
+                    group.leave()
+                    AlertMessages.getConnectionAlert(backupURL: WsdotURLS.trafficAlerts)
                 }
             }
         })

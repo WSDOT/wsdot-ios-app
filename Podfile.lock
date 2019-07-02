@@ -99,11 +99,15 @@ PODS:
   - GoogleUtilities/UserDefaults (5.3.7):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.2.1)
+  - MarqueeLabel/Swift (3.2.0)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - NotificationBannerSwift (2.0.1):
+    - MarqueeLabel/Swift (~> 3.2.0)
+    - SnapKit (~> 4.2.0)
   - Protobuf (3.6.1)
   - Realm (3.13.1):
     - Realm/Headers (= 3.13.1)
@@ -113,6 +117,7 @@ PODS:
   - SDWebImage (4.3.3):
     - SDWebImage/Core (= 4.3.3)
   - SDWebImage/Core (4.3.3)
+  - SnapKit (4.2.0)
   - SwiftyJSON (4.2.0)
 
 DEPENDENCIES:
@@ -125,6 +130,7 @@ DEPENDENCIES:
   - Firebase/Messaging
   - Firebase/Performance
   - GoogleMaps (~> 2.6.0)
+  - NotificationBannerSwift (= 2.0.1)
   - RealmSwift (~> 3.13.1)
   - SDWebImage (~> 4.3.3)
   - SwiftyJSON (~> 4.2.0)
@@ -150,11 +156,14 @@ SPEC REPOS:
     - GoogleToolboxForMac
     - GoogleUtilities
     - GTMSessionFetcher
+    - MarqueeLabel
     - nanopb
+    - NotificationBannerSwift
     - Protobuf
     - Realm
     - RealmSwift
     - SDWebImage
+    - SnapKit
     - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -177,13 +186,16 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: ff31605b7d66400dcec09bed5861689aebadda4d
   GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
+  MarqueeLabel: 440a502b91a9179bd98f9fff00ba1150650a1c0e
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  NotificationBannerSwift: 007774aa590cc9680647b92b2f217bef5c00c32c
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   Realm: 50071da38fe079e0735e47c9f2eae738c68c5996
   RealmSwift: 8a1e6a02b7a08cd17a31e3115143fb69fe5f3fb9
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 27b99503e203ce6831930404d9b5b4e1c9490a7d
+PODFILE CHECKSUM: e926ece757e61e9c2a65a8486d4b37092a4ad918
 
 COCOAPODS: 1.5.2

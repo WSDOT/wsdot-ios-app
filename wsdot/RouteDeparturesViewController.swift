@@ -185,7 +185,7 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
                 }
 
             } else {
-                self.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                AlertMessages.getConnectionAlert(backupURL: WsdotURLS.ferries)
             }
         })
     }

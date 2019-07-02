@@ -83,9 +83,9 @@ class TollTableViewController: RefreshViewController, UITableViewDelegate, UITab
                 } else {
                     DispatchQueue.main.async { [weak self] in
                         if let selfValue = self {
-                           selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
                            selfValue.refreshControl.endRefreshing()
                            selfValue.hideOverlayView()
+                           AlertMessages.getConnectionAlert(backupURL: WsdotURLS.tolling)
                         }
                     }
                 }

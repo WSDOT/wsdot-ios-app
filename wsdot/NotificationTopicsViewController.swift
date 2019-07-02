@@ -93,7 +93,7 @@ class NotificationTopicsViewController: RefreshViewController, UITableViewDelega
                     DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
                             selfValue.hideOverlayView()
-                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                            AlertMessages.getConnectionAlert(backupURL: nil)
                         }
                     }
                 }

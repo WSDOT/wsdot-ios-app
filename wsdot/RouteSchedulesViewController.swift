@@ -23,6 +23,8 @@ import RealmSwift
 import GoogleMobileAds
 import SafariServices
 
+import NotificationBannerSwift
+
 class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate {
     
     let cellIdentifier = "FerriesRouteSchedulesCell"
@@ -76,7 +78,6 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
     }
     
     func refresh(_ force: Bool){
-        
         DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { [weak self] in
             FerryRealmStore.updateRouteSchedules(force, completion: { error in
                 if (error == nil) {
@@ -95,7 +96,7 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
                         if let selfValue = self{
                             selfValue.hideOverlayView()
                             selfValue.refreshControl.endRefreshing()
-                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                            AlertMessages.getConnectionAlert(backupURL: WsdotURLS.ferries)
                         }
                     }
                 }

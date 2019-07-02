@@ -126,7 +126,7 @@ class MountainPassTabBarViewController: UITabBarController{
                         if let selfValue = self{
                             selfValue.refreshBarButton = selfValue.createRefreshButton()
                             selfValue.navigationItem.rightBarButtonItems = [selfValue.favoriteBarButton, selfValue.refreshBarButton]
-                            selfValue.present(AlertMessages.getAlert("Connection Error", message: "Failed to refresh pass report", confirm: "OK"), animated: true, completion: nil)
+                            AlertMessages.getConnectionAlert(backupURL: WsdotURLS.passes)
                         }
                     }
                 }

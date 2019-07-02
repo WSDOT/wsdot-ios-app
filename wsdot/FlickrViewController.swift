@@ -68,7 +68,7 @@ class FlickrViewController: RefreshViewController, UICollectionViewDataSource, U
                         if let selfValue = self{
                             selfValue.hideOverlayView()
                             selfValue.refreshControl.endRefreshing()
-                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                            AlertMessages.getConnectionAlert(backupURL: nil)
                             
                         }
                     }

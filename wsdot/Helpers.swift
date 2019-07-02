@@ -10,23 +10,30 @@
 //  (at your option) any later version.
 //
 //  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  but WITHOUT ANY WARRANTY; without even the implied warranty ofFailed//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
 import UIKit
-
+import NotificationBannerSwift
 
 struct AlertMessages {
 
-    static func getConnectionAlert() ->  UIAlertController{
-        let alert = UIAlertController(title: "Connection Error", message: "Please check your connection", preferredStyle: UIAlertController.Style.alert)
-        alert.view.tintColor = Colors.tintColor
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-        return alert
+    static func getConnectionAlert(backupURL: String?) {
+        NotificationBannerQueue.default.removeAll()
+        if let url = backupURL {
+            let banner = NotificationBanner(title: "We're having trouble connecting", subtitle: "Tap here for similar information on our website", style: .warning)
+            banner.onTap = {
+                UIApplication.shared.openURL(NSURL(string: url)! as URL)
+            }
+            
+            banner.show()
+        } else {
+            let banner = StatusBarNotificationBanner(title: "We're having trouble connecting to our server", style: .warning)
+            banner.show()
+        }
     }
     
     static func getMailAlert() -> UIAlertController{

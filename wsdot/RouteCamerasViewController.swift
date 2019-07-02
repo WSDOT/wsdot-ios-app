@@ -72,7 +72,7 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
                     DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
                             selfValue.refreshControl.endRefreshing()
-                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                            AlertMessages.getConnectionAlert(backupURL: WsdotURLS.ferries)
                         }
                     }
                 }

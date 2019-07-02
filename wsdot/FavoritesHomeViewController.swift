@@ -291,16 +291,14 @@ extension FavoritesHomeViewController {
 
     func requestCamerasUpdate(_ force: Bool, serviceGroup: DispatchGroup) {
         serviceGroup.enter()
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async {[weak self] in
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async {
             CamerasStore.updateCameras(force, completion: { error in
                 if (error == nil){
                     serviceGroup.leave()
                 }else{
                     serviceGroup.leave()
-                    DispatchQueue.main.async { [weak self] in
-                        if let selfValue = self{
-                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
-                        }
+                    DispatchQueue.main.async {
+                        AlertMessages.getConnectionAlert(backupURL: nil)
                     }
                 }
             })
@@ -309,16 +307,14 @@ extension FavoritesHomeViewController {
     
     func requestTravelTimesUpdate(_ force: Bool, serviceGroup: DispatchGroup){
         serviceGroup.enter()
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async { [weak self] in
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async {
             TravelTimesStore.updateTravelTimes(force, completion: { error in
                 if (error == nil) {
                     serviceGroup.leave()
                 } else {
                     serviceGroup.leave()
-                    DispatchQueue.main.async { [weak self] in
-                        if let selfValue = self{
-                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
-                        }
+                    DispatchQueue.main.async {
+                        AlertMessages.getConnectionAlert(backupURL: nil)
                     }
                 }
             })
@@ -332,23 +328,21 @@ extension FavoritesHomeViewController {
                 serviceGroup.leave()
             } else {
                 serviceGroup.leave()
-                self.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
+                AlertMessages.getConnectionAlert(backupURL: nil)
             }
         })
     }
     
     func requestMountainPassesUpdate(_ force: Bool, serviceGroup: DispatchGroup){
         serviceGroup.enter()
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async {[weak self] in
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async {
             MountainPassStore.updatePasses(force, completion: { error in
                 if (error == nil){
                     serviceGroup.leave()
                 }else{
                     serviceGroup.leave()
-                    DispatchQueue.main.async { [weak self] in
-                        if let selfValue = self{
-                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
-                        }
+                    DispatchQueue.main.async {
+                        AlertMessages.getConnectionAlert(backupURL: nil)
                     }
                 }
             })
@@ -357,16 +351,14 @@ extension FavoritesHomeViewController {
     
     func requestTollRatesUpdate(_ force: Bool, serviceGroup: DispatchGroup) {
         serviceGroup.enter()
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async { [weak self] in
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async {
             TollRateSignsStore.updateTollRateSigns(force, completion: { error in
                 if (error == nil) {
                     serviceGroup.leave()
                 } else {
                     serviceGroup.leave()
-                    DispatchQueue.main.async { [weak self] in
-                        if let selfValue = self{
-                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
-                        }
+                    DispatchQueue.main.async {
+                        AlertMessages.getConnectionAlert(backupURL: nil)
                     }
                 }
             })
@@ -375,16 +367,14 @@ extension FavoritesHomeViewController {
     
     func requestBorderWaitsUpdate(_ force: Bool, serviceGroup: DispatchGroup) {
         serviceGroup.enter()
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async { [weak self] in
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async {
             BorderWaitStore.updateWaits(force, completion: { error in
                 if (error == nil) {
                     serviceGroup.leave()
                 } else {
                     serviceGroup.leave()
                     DispatchQueue.main.async {
-                        if let selfValue = self {
-                            selfValue.present(AlertMessages.getConnectionAlert(), animated: true, completion: nil)
-                        }
+                        AlertMessages.getConnectionAlert(backupURL: nil)
                     }
                 }
             })

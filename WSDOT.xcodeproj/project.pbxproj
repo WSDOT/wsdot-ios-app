@@ -169,6 +169,7 @@
 		9AE6B77B209BA40E001DE80F /* NotificationTopicItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6B77A209BA40E001DE80F /* NotificationTopicItem.swift */; };
 		9AE6B77E209CF965001DE80F /* PassableSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6B77D209CF965001DE80F /* PassableSwitch.swift */; };
 		9AE6B780209CF9B1001DE80F /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6B77F209CF9B1001DE80F /* SwitchCell.swift */; };
+		9AE6D0BE22CBDE81009A70E8 /* WsdotURLS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6D0BD22CBDE81009A70E8 /* WsdotURLS.swift */; };
 		9AE9557F2265404000C41B84 /* TollRateTableItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE9557E2265404000C41B84 /* TollRateTableItem.swift */; };
 		9AEDA2AA1D8C3B1C00302F80 /* WSDOTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEDA2A91D8C3B1C00302F80 /* WSDOTTests.swift */; };
 		9AEEDDA41D6F3D810032F5EC /* MountainPassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEDDA31D6F3D810032F5EC /* MountainPassCell.swift */; };
@@ -436,6 +437,7 @@
 		9AE6B77A209BA40E001DE80F /* NotificationTopicItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTopicItem.swift; sourceTree = "<group>"; };
 		9AE6B77D209CF965001DE80F /* PassableSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassableSwitch.swift; sourceTree = "<group>"; };
 		9AE6B77F209CF9B1001DE80F /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
+		9AE6D0BD22CBDE81009A70E8 /* WsdotURLS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WsdotURLS.swift; sourceTree = "<group>"; };
 		9AE9557E2265404000C41B84 /* TollRateTableItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TollRateTableItem.swift; sourceTree = "<group>"; };
 		9AEBB70C20A23DDB00D09027 /* WSDOT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = WSDOT.entitlements; path = WSDOT/WSDOT.entitlements; sourceTree = "<group>"; };
 		9AEDA2A71D8C3B1C00302F80 /* WSDOTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WSDOTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1381,6 +1383,7 @@
 			children = (
 				9ADEAE4C1D270CC800BA7DD4 /* Helpers.swift */,
 				9A0CA8361D466045009C67B7 /* TimeUtils.swift */,
+				9AE6D0BD22CBDE81009A70E8 /* WsdotURLS.swift */,
 				9A1F5FA41D47DCB900DA5F99 /* ApiKeys.swift */,
 				9A81A57B1D4BB41B0049913A /* LatLonUtils.swift */,
 				9A0616801D6265FB00126520 /* UserDefaultsKeys.swift */,
@@ -1850,10 +1853,13 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -1864,10 +1870,13 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NotificationBannerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -1942,10 +1951,13 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -1956,10 +1968,13 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NotificationBannerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -2087,6 +2102,7 @@
 				9A9309B12051D7E6002D014C /* CameraPageViewController.swift in Sources */,
 				9A7BC0CF1DA3F31B00EF760C /* GMUGridBasedClusterAlgorithm.m in Sources */,
 				9A0719331D42732A007BB4C5 /* INDLinkLabel.swift in Sources */,
+				9AE6D0BE22CBDE81009A70E8 /* WsdotURLS.swift in Sources */,
 				9A6FBD371D6E413A00CDCE16 /* MountainPassTabBarViewController.swift in Sources */,
 				9AE6B77E209CF965001DE80F /* PassableSwitch.swift in Sources */,
 				9A6A0029210105070005CC7F /* TollRatesTabBarViewController.swift in Sources */,
