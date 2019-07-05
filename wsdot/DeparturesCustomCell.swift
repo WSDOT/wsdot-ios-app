@@ -24,7 +24,10 @@ class DeparturesCustomCell: UITableViewCell {
     
     @IBOutlet weak var etaLabel: UILabel!
     
+    @IBOutlet weak var departingTimeBox: UIView!
     @IBOutlet weak var departingTime: UILabel!
+    
+    @IBOutlet weak var arrivingTimeBox: UIView!
     @IBOutlet weak var arrivingTime: UILabel!
     @IBOutlet weak var sailingSpaces: UILabel!
     @IBOutlet weak var actualDepartureLabel: UILabel!
@@ -35,4 +38,7 @@ class DeparturesCustomCell: UITableViewCell {
     
     @IBOutlet weak var updated: UILabel!
     
+    @IBOutlet weak var deptAndETAStack: UIStackView!
+    @IBOutlet weak var annotationsStack: UIStackView!
+    @IBOutlet weak var spacesStack: UIStackView!
 }

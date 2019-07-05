@@ -51,7 +51,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var departuresHeader: UIView!
-
+    
     deinit {
         displayedSailing = nil
         sailingSpaces = nil
@@ -190,20 +190,22 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return displayedTimes.count
     }
-    
+  
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-    
+  
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-    
+  
+ 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCell(withIdentifier: departureCellIdentifier) as! DeparturesCustomCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: departuresSailingSpacesCellIdentifier) as! DeparturesCustomCell
         
-        // Check if sailing space information is avaliable. If so change prototype cell.
+        cell.spacesStack.isHidden = true
+
         if let sailingSpacesValue = sailingSpaces {
         
             for spaceItem: SailingSpacesItem in sailingSpacesValue {
@@ -213,28 +215,24 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                     // Only add sailing spaces for future sailings
                     if (displayedTimes[indexPath.row].departingTime.compare(NSDate() as Date) == .orderedDescending) {
                 
-                        cell = tableView.dequeueReusableCell(withIdentifier: departuresSailingSpacesCellIdentifier) as! DeparturesCustomCell
-                        cell.sailingSpaces.isHidden = false
+                        cell.spacesStack.isHidden = false
+                
                         cell.sailingSpaces.text = String(spaceItem.remainingSpaces) + " Drive-up Spaces"
-                        cell.avaliableSpacesBar.isHidden = false
-                    
                         cell.avaliableSpacesBar.progress = spaceItem.percentAvaliable
                     
                         cell.avaliableSpacesBar.transform = UIProgressView().transform
                         cell.avaliableSpacesBar.transform = cell.avaliableSpacesBar.transform.scaledBy(x: 1, y: 3)
-                    
-                        cell.spacesDisclaimer.isHidden = false
-                        cell.updated.isHidden = false
+                
                         cell.updated.text = "Drive-up spaces updated " + TimeUtils.timeAgoSinceDate(date: updatedAt, numericDates: true)
-                    
                     }
                 }
             }
         }
         
         // check for actual departure time and ETA
-        cell.actualDepartureLabel.text = ""
-        cell.etaLabel.text = ""
+        cell.deptAndETAStack.isHidden = true
+        cell.etaLabel.isHidden = true
+        cell.actualDepartureLabel.isHidden = true
 
         if let vesselValue = vessel {
 
@@ -243,33 +241,30 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
 
                     if let leftDock = vesselValue.leftDock {
                         cell.actualDepartureLabel.text = "Actual departure \(TimeUtils.getTimeOfDay(leftDock))"
+                        cell.actualDepartureLabel.isHidden = false
+                        cell.deptAndETAStack.isHidden = false
+                        
                     }
 
                     if let eta = vesselValue.eta {
                         cell.etaLabel.text = "ETA \(TimeUtils.getTimeOfDay(eta))"
+                        cell.etaLabel.isHidden = false
+                        cell.deptAndETAStack.isHidden = false
                         
                         // turn past etas gray
                         if (eta.compare(NSDate() as Date) != .orderedDescending) {
-                            cell.etaLabel.textColor = UIColor.gray
+                            cell.departingTimeBox.backgroundColor = UIColor.gray
                         } else {
-                            cell.etaLabel.textColor = UIColor.black
+                            cell.departingTimeBox.backgroundColor = Colors.wsdotPrimary
                         }
                     }
                 }
             }
         }
     
-        let displayDepartingTime = TimeUtils.getTimeOfDay(displayedTimes[indexPath.row].departingTime)
-        cell.departingTime.text = displayDepartingTime
-        
-        if let arrivingTime = displayedTimes[indexPath.row].arrivingTime {
-            let displayArrivingTime = TimeUtils.getTimeOfDay(arrivingTime)
-            cell.arrivingTime.text = displayArrivingTime
-            cell.arrivingTime.accessibilityLabel = displayArrivingTime
-        } else {
-            cell.arrivingTime.text = ""
-            cell.arrivingTime.accessibilityLabel = ""
-        }
+        // Check for annotations
+
+        cell.annotationsStack.isHidden = true
         
         var annotationsString = ""
         
@@ -278,22 +273,38 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         }
         
         if (annotationsString != "") {
-            cell.annotations.isHidden = false
+            cell.annotationsStack.isHidden = false
             let taglessString = annotationsString.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
             cell.annotations.text = taglessString
-        } else {
-            cell.annotations.text = nil
         }
+    
+        let displayDepartingTime = TimeUtils.getTimeOfDay(displayedTimes[indexPath.row].departingTime)
+        cell.departingTime.text = displayDepartingTime
         
+        if let arrivingTime = displayedTimes[indexPath.row].arrivingTime {
+            let displayArrivingTime = TimeUtils.getTimeOfDay(arrivingTime)
+                cell.arrivingTime.text = displayArrivingTime
+                cell.arrivingTime.accessibilityLabel = displayArrivingTime
+            
+            if (arrivingTime.compare(NSDate() as Date) != .orderedDescending) {
+                cell.arrivingTimeBox.backgroundColor = UIColor.gray
+            } else {
+                cell.arrivingTimeBox.backgroundColor = Colors.wsdotPrimary
+            }
+
+        } else {
+            cell.arrivingTime.text = ""
+            cell.arrivingTimeBox.backgroundColor = UIColor.clear
+            cell.arrivingTime.accessibilityLabel = ""
+        }
+
         // turn past departures gray
         if (displayedTimes[indexPath.row].departingTime.compare(NSDate() as Date) != .orderedDescending) {
-            cell.departingTime.textColor = UIColor.gray
-            cell.arrivingTime.textColor = UIColor.gray
+            cell.departingTimeBox.backgroundColor = UIColor.gray
             cell.annotations.textColor = UIColor.gray
             cell.actualDepartureLabel.textColor = UIColor.gray
         } else {
-            cell.departingTime.textColor = UIColor.black
-            cell.arrivingTime.textColor = UIColor.black
+            cell.departingTimeBox.backgroundColor = Colors.wsdotPrimary
             cell.annotations.textColor = UIColor.black
             cell.actualDepartureLabel.textColor = UIColor.black
         }
@@ -320,7 +331,13 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
             cell.accessibilityLabel = cell.accessibilityLabel! + cell.updated.text!
         }
         cell.isAccessibilityElement = true
+       
         
+        // Round only the right corners
+        cell.departingTimeBox.roundCorners(corners: UIRectCorner(arrayLiteral: [.bottomRight, .topRight]), radius: 5)
+        cell.arrivingTimeBox.roundCorners(corners: UIRectCorner(arrayLiteral: [.bottomLeft, .topLeft]), radius: 5)
+      
+    
         return cell
     }
     
@@ -377,4 +394,5 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         }
         return 0
     }
+ 
 }
