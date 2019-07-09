@@ -130,14 +130,14 @@ class RouteCamerasViewController: UIViewController, UITableViewDataSource, UITab
         if departingTerminalId != -1 {
         
             for camera in cameras {
-            
+
                 let distance = LatLonUtils.haversine(
                     (FerriesConsts().terminalMap[departingTerminalId]?.latitude)!,
                     lonA: (FerriesConsts().terminalMap[departingTerminalId]?.longitude)!,
                     latB: camera.latitude,
                     lonB: camera.longitude)
             
-                if (distance < 5280){
+                if (distance < 10000){
                     filteredCameras.append(camera)
                 }
             }
