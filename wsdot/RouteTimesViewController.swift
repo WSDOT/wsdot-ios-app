@@ -190,21 +190,33 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return displayedTimes.count
     }
-  
+ 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-  
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-  
- 
+
+    // reload data on rotations to ensure cells display correctly
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        self.tableView.reloadData()
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: nil, completion: {
+            _ in
+            self.tableView.reloadData()
+        })
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: departuresSailingSpacesCellIdentifier) as! DeparturesCustomCell
-        
+     
         cell.spacesStack.isHidden = true
+        cell.spacesDisclaimer.isHidden = true
+        cell.avaliableSpacesBar.isHidden = true
+        cell.updated.isHidden = true
 
         if let sailingSpacesValue = sailingSpaces {
         
@@ -216,6 +228,9 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                     if (displayedTimes[indexPath.row].departingTime.compare(NSDate() as Date) == .orderedDescending) {
                 
                         cell.spacesStack.isHidden = false
+                        cell.spacesDisclaimer.isHidden = false
+                        cell.avaliableSpacesBar.isHidden = false
+                        cell.updated.isHidden = false
                 
                         cell.sailingSpaces.text = String(spaceItem.remainingSpaces) + " Drive-up Spaces"
                         cell.avaliableSpacesBar.progress = spaceItem.percentAvaliable
@@ -332,12 +347,10 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         }
         cell.isAccessibilityElement = true
        
-        
         // Round only the right corners
         cell.departingTimeBox.roundCorners(corners: UIRectCorner(arrayLiteral: [.bottomRight, .topRight]), radius: 5)
         cell.arrivingTimeBox.roundCorners(corners: UIRectCorner(arrayLiteral: [.bottomLeft, .topLeft]), radius: 5)
       
-    
         return cell
     }
     
