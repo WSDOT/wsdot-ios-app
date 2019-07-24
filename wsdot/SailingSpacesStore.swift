@@ -57,6 +57,7 @@ class SailingSpacesStore {
     //Converts JSON from api into and array of FerriesRouteScheduleItems
     fileprivate static func parseSailingSpacesJSON(_ departingId: Int, arrivingId: Int, json: JSON) ->[SailingSpacesItem]{
         
+        
         var sailingSpaces = [SailingSpacesItem]()
         var hasSailingSpace = false
 
@@ -68,7 +69,7 @@ class SailingSpacesStore {
                 hasSailingSpace = false
                         
                 for (_,arrivalTermials):(String, JSON) in arrivingTerminalSpace["ArrivalTerminalIDs"]{
-                    if( arrivalTermials.intValue == arrivingId){
+                    if(arrivalTermials.intValue == arrivingId) {
                         hasSailingSpace = true
                         sailingSpaceItem.date = TimeUtils.parseJSONDateToNSDate(departure["Departure"].stringValue)
                         sailingSpaceItem.maxSpace = arrivingTerminalSpace["MaxSpaceCount"].intValue
