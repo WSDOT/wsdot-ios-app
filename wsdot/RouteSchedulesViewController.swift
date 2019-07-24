@@ -30,6 +30,7 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
     let cellIdentifier = "FerriesRouteSchedulesCell"
     
     let SegueRouteDeparturesViewController = "RouteDeparturesViewController"
+    let SegueVesselWatchViewController = "VesselWatchViewController"
     
     var routes = [FerryScheduleItem]()
     
@@ -46,7 +47,7 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
     
     @IBOutlet weak var ticketsButton: UIButton!
     @IBOutlet weak var reservationsButton: UIButton!
-    
+    @IBOutlet weak var vesselWatchButton: UIButton!
     
     override func viewDidLoad() {
     
@@ -112,10 +113,15 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
         }
     }
 
-
     @IBAction func refreshAction() {
         refresh(true)
     }
+    
+    
+    @IBAction func vesselWatchAction(_ sender: UIButton) {
+        performSegue(withIdentifier: SegueVesselWatchViewController, sender: self)
+    }
+    
     
     @IBAction func ticketsAction(_ sender: Any) {
         MyAnalytics.screenView(screenName: "Buy Ferries TIckets")
@@ -154,7 +160,7 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Routes"
+        return "Route Schedules"
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -200,6 +206,11 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
     }
     
     fileprivate func styleButtons() {
+    
+        vesselWatchButton.layer.cornerRadius = 5
+        vesselWatchButton.clipsToBounds = true
+        vesselWatchButton.titleLabel?.lineBreakMode = .byWordWrapping
+    
         ticketsButton.layer.cornerRadius = 5
         ticketsButton.clipsToBounds = true
         ticketsButton.titleLabel?.lineBreakMode = .byWordWrapping
