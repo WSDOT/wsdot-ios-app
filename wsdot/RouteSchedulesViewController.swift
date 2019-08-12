@@ -30,10 +30,13 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
     let cellIdentifier = "FerriesRouteSchedulesCell"
     
     let SegueRouteDeparturesViewController = "RouteDeparturesViewController"
+    let SegueVesselWatchViewController = "VesselWatchViewController"
     
     var routes = [FerryScheduleItem]()
     
     var overlayView = UIView()
+    
+    let ticketsUrlString = "https://wave2go.wsdot.com/Webstore/Content.aspx?Kind=LandingPage&CG=21&C=10"
     
     let reservationsUrlString = "https://secureapps.wsdot.wa.gov/Ferries/Reservations/Vehicle/default.aspx"
     
@@ -42,10 +45,14 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bannerView: DFPBannerView!
     
+    @IBOutlet weak var ticketsButton: UIButton!
+    @IBOutlet weak var reservationsButton: UIButton!
+    @IBOutlet weak var vesselWatchButton: UIButton!
+    
     override func viewDidLoad() {
     
         super.viewDidLoad()
-        title = "Route Schedules"
+        title = "Ferries"
         
         // refresh controller
         refreshControl.addTarget(self, action: #selector(RouteSchedulesViewController.refreshAction(_:)), for: .valueChanged)
@@ -61,6 +68,8 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
         
         bannerView.load(request)
         bannerView.delegate = self
+        
+        styleButtons()
         
         self.routes = FerryRealmStore.findAllSchedules()
         self.tableView.reloadData()
@@ -104,9 +113,29 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
         }
     }
 
-
     @IBAction func refreshAction() {
         refresh(true)
+    }
+    
+    
+    @IBAction func vesselWatchAction(_ sender: UIButton) {
+        performSegue(withIdentifier: SegueVesselWatchViewController, sender: self)
+    }
+    
+    
+    @IBAction func ticketsAction(_ sender: Any) {
+        MyAnalytics.screenView(screenName: "Buy Ferries TIckets")
+        
+        MyAnalytics.event(category: "Ferries", action: "open_link", label: "buy_tickets_ferries")
+        
+        let svc = SFSafariViewController(url: URL(string: self.ticketsUrlString)!, entersReaderIfAvailable: true)
+        if #available(iOS 10.0, *) {
+            svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor
+            svc.preferredBarTintColor = ThemeManager.currentTheme().mainColor
+        } else {
+            svc.view.tintColor = ThemeManager.currentTheme().mainColor
+        }
+        self.present(svc, animated: true, completion: nil)
     }
     
     @IBAction func reservationsAction(_ sender: Any) {
@@ -128,6 +157,10 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
     // MARK: Table View Data Source Methods
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Route Schedules"
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -170,7 +203,20 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
                 destinationViewController.routeId = routeItem.routeId
             }
         }
+    }
+    
+    fileprivate func styleButtons() {
+    
+        vesselWatchButton.layer.cornerRadius = 5
+        vesselWatchButton.clipsToBounds = true
+        vesselWatchButton.titleLabel?.lineBreakMode = .byWordWrapping
+    
+        ticketsButton.layer.cornerRadius = 5
+        ticketsButton.clipsToBounds = true
+        ticketsButton.titleLabel?.lineBreakMode = .byWordWrapping
         
-
+        reservationsButton.layer.cornerRadius = 5
+        reservationsButton.clipsToBounds = true
+        reservationsButton.titleLabel?.lineBreakMode = .byWordWrapping
     }
 }
