@@ -123,6 +123,7 @@
 		9A8486F81D81E96A0026F1CF /* DepartureDaySelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8486F71D81E96A0026F1CF /* DepartureDaySelectionViewController.swift */; };
 		9A87A7122236CC60005277C6 /* AlertControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A87A7112236CC60005277C6 /* AlertControllerExtension.swift */; };
 		9A8DD9F81D946B6200CE0B76 /* HomeSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8DD9F71D946B6200CE0B76 /* HomeSplitViewController.swift */; };
+		9A8E2E92233D27D200E6E202 /* map_dark_style.json in Resources */ = {isa = PBXBuildFile; fileRef = 9A8E2E91233D27D200E6E202 /* map_dark_style.json */; };
 		9A9309B12051D7E6002D014C /* CameraPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9309B02051D7E6002D014C /* CameraPageViewController.swift */; };
 		9A9309B32051D7FF002D014C /* CameraPager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A9309B22051D7FF002D014C /* CameraPager.storyboard */; };
 		9A930A4120533782002D014C /* CameraPageContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A930A4020533782002D014C /* CameraPageContainerViewController.swift */; };
@@ -383,6 +384,7 @@
 		9A8486F71D81E96A0026F1CF /* DepartureDaySelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartureDaySelectionViewController.swift; sourceTree = "<group>"; };
 		9A87A7112236CC60005277C6 /* AlertControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertControllerExtension.swift; sourceTree = "<group>"; };
 		9A8DD9F71D946B6200CE0B76 /* HomeSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeSplitViewController.swift; sourceTree = "<group>"; };
+		9A8E2E91233D27D200E6E202 /* map_dark_style.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = map_dark_style.json; sourceTree = "<group>"; };
 		9A9309B02051D7E6002D014C /* CameraPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPageViewController.swift; sourceTree = "<group>"; };
 		9A9309B22051D7FF002D014C /* CameraPager.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CameraPager.storyboard; sourceTree = "<group>"; };
 		9A930A4020533782002D014C /* CameraPageContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPageContainerViewController.swift; sourceTree = "<group>"; };
@@ -884,6 +886,7 @@
 			isa = PBXGroup;
 			children = (
 				9A6FBCD11D6B541F00CDCE16 /* restareas.json */,
+				9A8E2E91233D27D200E6E202 /* map_dark_style.json */,
 			);
 			name = StaticJSONData;
 			sourceTree = "<group>";
@@ -1768,6 +1771,7 @@
 				9A6FBCEA1D6C953000CDCE16 /* Callout.storyboard in Resources */,
 				9AEF4DBA1D778AF9003ECA34 /* AmtrakCascades.storyboard in Resources */,
 				9A0D1B9F1E92992A00893B92 /* Secrets.plist in Resources */,
+				9A8E2E92233D27D200E6E202 /* map_dark_style.json in Resources */,
 				9A6FBD1C1D6DF8F700CDCE16 /* BorderWaits.storyboard in Resources */,
 				9A0616C81D6601BD00126520 /* TollRates.storyboard in Resources */,
 				9A6FBCD61D6B5EBB00CDCE16 /* RestArea.storyboard in Resources */,
@@ -2352,7 +2356,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 9544S8BX77;
 				INFOPLIST_FILE = wsdot/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = gov.wa.wsdot.iphone.WSDOT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2374,7 +2378,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9544S8BX77;
 				INFOPLIST_FILE = wsdot/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = gov.wa.wsdot.iphone.WSDOT;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -320,8 +320,8 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
             cell.actualDepartureLabel.textColor = UIColor.gray
         } else {
             cell.departingTimeBox.backgroundColor = Colors.wsdotPrimary
-            cell.annotations.textColor = UIColor.black
-            cell.actualDepartureLabel.textColor = UIColor.black
+            cell.annotations.textColor = UIColor.label
+            cell.actualDepartureLabel.textColor = UIColor.label
         }
  
         // Accessibility Setup

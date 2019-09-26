@@ -82,10 +82,25 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
         
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: GMSCameraPosition.camera(withLatitude: lat, longitude: lon, zoom: zoom))
         
+        // Set Dark mode if needed
+        if traitCollection.userInterfaceStyle == .dark {
+            do {
+                if let styleURL = Bundle.main.url(forResource: "map_dark_style", withExtension: "json") {
+                    mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
+                } else {
+                    NSLog("Unable to find style.json")
+                }
+            } catch {
+                NSLog("One or more of the map styles failed to load. \(error)")
+            }
+        }
+        
         mapView.isTrafficEnabled = true
         mapView.settings.compassButton = true
         
         mapView.delegate = mapDelegate
+        
+
         
         // Set up the cluster manager with the supplied icon generator and
         // renderer.
