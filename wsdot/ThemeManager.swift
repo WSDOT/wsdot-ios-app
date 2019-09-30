@@ -11,7 +11,8 @@ import Foundation
 
 struct Colors {
     
-    static let wsdotPrimary = UIColor.init(red: 0.0/255.0, green: 122.0/255.0, blue: 96.0/255.0, alpha: 1)
+    static let wsdotPrimary = UIColor.init(red: 0.0/255.0, green: 123.0/255.0, blue: 95.0/255.0, alpha: 1)
+    static let wsdotPrimaryDark = UIColor.init(red: 0.0/255.0, green: 81.0/255.0, blue: 81.0/255.0, alpha: 1)
     static let wsdotOrange = UIColor.init(red: 255.0/255.0, green: 108.0/255.0, blue: 12.0/255.0, alpha: 1)
     static let wsdotDarkOrange = UIColor.init(red: 196.0/255.0, green: 59.0/255.0, blue: 0.0/255.0, alpha: 1)
     
@@ -34,7 +35,19 @@ enum Theme: Int {
     var mainColor: UIColor {
         switch self {
         case .defaultTheme:
+            
+            if #available(iOS 13, *) {
+                return UIColor.init { (trait) -> UIColor in
+                    return trait.userInterfaceStyle == .dark ? Colors.wsdotPrimaryDark : Colors.wsdotPrimary
+                }
+            }
+        
             return Colors.wsdotPrimary
+            
+            
+            
+            
+            
         case .orangeTheme:
             return Colors.wsdotOrange
         case .blueTheme:

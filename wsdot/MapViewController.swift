@@ -70,6 +70,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
     
     override func loadView() {
         super.loadView()
+        
         locationManager.delegate = self
         
         var lat = UserDefaults.standard.double(forKey: UserDefaultsKeys.mapLat)
@@ -81,17 +82,19 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
         if zoom == 0 {zoom = 12}
         
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: GMSCameraPosition.camera(withLatitude: lat, longitude: lon, zoom: zoom))
-        
+  
         // Set Dark mode if needed
-        if traitCollection.userInterfaceStyle == .dark {
-            do {
-                if let styleURL = Bundle.main.url(forResource: "map_dark_style", withExtension: "json") {
-                    mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
-                } else {
-                    NSLog("Unable to find style.json")
+        if #available(iOS 13, *){
+            if traitCollection.userInterfaceStyle == .dark {
+                do {
+                    if let styleURL = Bundle.main.url(forResource: "map_dark_style", withExtension: "json") {
+                        mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
+                    } else {
+                        NSLog("Unable to find style.json")
+                    }
+                } catch {
+                    NSLog("One or more of the map styles failed to load. \(error)")
                 }
-            } catch {
-                NSLog("One or more of the map styles failed to load. \(error)")
             }
         }
         
@@ -99,9 +102,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
         mapView.settings.compassButton = true
         
         mapView.delegate = mapDelegate
-        
-
-        
         // Set up the cluster manager with the supplied icon generator and
         // renderer.
         let iconGenerator = GMUDefaultClusterIconGenerator()
@@ -113,12 +113,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
                                            renderer: renderer)
         
         view = mapView
-        
         if let parent = markerDelegate {
             parent.mapReady()
         }
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         
         if (saveLastLocation) {
@@ -131,10 +130,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
         
         super.viewWillDisappear(animated)
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)

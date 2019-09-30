@@ -139,7 +139,11 @@ class RouteAlertsViewController: UIViewController, UITableViewDataSource, UITabl
 
         cell.linkLabel.attributedText = attrStr
         cell.linkLabel.delegate = self
-
+        
+        if #available(iOS 13, *) {
+            cell.linkLabel.textColor = UIColor.label
+        }
+        
         return cell
     }
 

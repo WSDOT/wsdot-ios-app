@@ -490,6 +490,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     // MARK: MapMarkerViewController protocol method
     func mapReady(){
+    
         self.activityIndicatorView.isHidden = false
         activityIndicatorView.startAnimating()
         

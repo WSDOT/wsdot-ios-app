@@ -35,7 +35,11 @@ class AlertContentViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.secondarySystemBackground
+        if #available(iOS 13, *) {
+            self.view.backgroundColor = UIColor.secondarySystemBackground
+        } else {
+            self.view.backgroundColor = Colors.lightGrey
+        }
         self.view.frame = parent!.view.frame
         
         if loadingPage {
