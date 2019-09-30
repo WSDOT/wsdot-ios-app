@@ -43,11 +43,7 @@ enum Theme: Int {
             }
         
             return Colors.wsdotPrimary
-            
-            
-            
-            
-            
+       
         case .orangeTheme:
             return Colors.wsdotOrange
         case .blueTheme:
@@ -135,8 +131,8 @@ class ThemeManager {
         let sharedApplication = UIApplication.shared
         sharedApplication.delegate?.window??.tintColor = theme.mainColor
 
-        UIToolbar.appearance().tintColor = theme.mainColor
-        UITabBar.appearance().tintColor = theme.mainColor
+        UIToolbar.appearance().tintColor = theme.darkColor
+        UITabBar.appearance().tintColor = theme.darkColor
         
         UIProgressView.appearance().tintColor = theme.mainColor
         
