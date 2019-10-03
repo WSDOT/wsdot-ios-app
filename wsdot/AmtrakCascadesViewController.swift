@@ -29,9 +29,14 @@ class AmtrakCascadesViewController: UIViewController, UITableViewDelegate, UITab
     let menu_options = ["Buy Tickets on Amtrak.com", "Check Schedules and Status"]
     let amtrakUrlString = "https://m.amtrak.com"
 
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         MyAnalytics.screenView(screenName: "AmtrakCascades")
+        
+        setStandardTableLayout(tableView)
+        
     }
 
     // MARK: Table View Data Source Methods

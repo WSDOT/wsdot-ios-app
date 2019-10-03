@@ -43,6 +43,8 @@ class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITable
         title = "Traveler Information"
         menu_options = ["Happening Now", "Travel Times", "Express Lanes", "News Releases"]
         
+        setStandardTableLayout(tableView)
+        
         checkForTravelCharts()
         
         tableView.rowHeight = UITableView.automaticDimension

@@ -148,7 +148,7 @@ class TwitterViewController: RefreshViewController, UITableViewDelegate, UITable
         
         let tweet = tweets[indexPath.row]
         
-        let htmlStyleString = "<style>body{font-family: '.SFUIText'; font-size: 17.0px;}</style> "
+        let htmlStyleString = "<style>body{font-family: \(cell.contentLabel.font.familyName); font-size: 17.0px;}</style> "
         
         let htmlString = htmlStyleString + tweet.text
         
@@ -173,6 +173,10 @@ class TwitterViewController: RefreshViewController, UITableViewDelegate, UITable
             cell.mediaImageView.layer.cornerRadius = 8.0
         }else{
             cell.mediaImageView.sd_setImage(with: nil)
+        }
+        
+        if #available(iOS 13, *) {
+            cell.contentLabel.textColor = UIColor.label
         }
         
         return cell

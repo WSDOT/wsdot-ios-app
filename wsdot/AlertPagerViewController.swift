@@ -30,11 +30,6 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
         super.viewDidLoad()
         self.delegate = self
         self.dataSource = self
-        if #available(iOS 13, *) {
-            self.view.backgroundColor = UIColor.secondarySystemBackground
-        } else {
-            self.view.backgroundColor = Colors.lightGrey
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

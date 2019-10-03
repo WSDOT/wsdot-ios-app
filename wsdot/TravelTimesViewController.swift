@@ -44,14 +44,32 @@ class TravelTimesViewController: RefreshViewController, UITableViewDelegate, UIT
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
-        searchController.view.tintColor = Colors.tintColor
+        searchController.view.tintColor = ThemeManager.currentTheme().darkColor
         searchController.searchBar.sizeToFit()
+        
+        if #available(iOS 13, *) {
+            searchController.searchBar.backgroundColor = UIColor.tertiarySystemBackground
+            searchController.searchBar.barTintColor = UIColor.tertiarySystemBackground
+            searchController.searchBar.searchTextField.borderStyle = .none
+            searchController.searchBar.searchTextField.backgroundColor = UIColor.secondarySystemBackground
+            searchController.searchBar.searchTextField.layer.cornerRadius = 10
+            searchController.searchBar.searchTextField.clipsToBounds = true
+            
+            view.backgroundColor = UIColor.systemBackground
+            searchController.view.backgroundColor = UIColor.systemBackground
+            
+        }
+        
         tableView.tableHeaderView = searchController.searchBar
     
         definesPresentationContext = true
         
         // refresh controller
         refreshControl.addTarget(self, action: #selector(TravelTimesViewController.refreshAction(_:)), for: .valueChanged)
+        if #available(iOS 13, *) {
+            refreshControl.backgroundColor = UIColor.tertiarySystemBackground
+        }
+        
         tableView.addSubview(refreshControl)
         
         showOverlay(self.view)
@@ -127,7 +145,7 @@ class TravelTimesViewController: RefreshViewController, UITableViewDelegate, UIT
 
         // set up favorite button
         cell.favoriteButton.setImage(travelTimeGroup.selected ? UIImage(named: "icStarSmallFilled") : UIImage(named: "icStarSmall"), for: .normal)
-        cell.favoriteButton.tintColor = ThemeManager.currentTheme().mainColor
+        cell.favoriteButton.tintColor = ThemeManager.currentTheme().darkColor
 
         cell.favoriteButton.tag = indexPath.row
         cell.favoriteButton.addTarget(self, action: #selector(favoriteAction(_:)), for: .touchUpInside)
@@ -168,7 +186,13 @@ class TravelTimesViewController: RefreshViewController, UITableViewDelegate, UIT
             } else if (route.averageTime < route.currentTime){
                 routeView.valueLabel.textColor = UIColor.red
             } else {
-                routeView.valueLabel.textColor = UIColor.darkText
+           
+                if #available(iOS 13, *) {
+                    routeView.valueLabel.textColor = UIColor.label
+                } else {
+                    routeView.valueLabel.textColor = UIColor.darkText
+                }
+           
             }
             
             cell.contentView.addSubview(routeView)

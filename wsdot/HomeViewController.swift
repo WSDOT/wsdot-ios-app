@@ -56,6 +56,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Set Title
         title = "WSDOT"
         
+        removeEmptyCells(tableView)
+        
         menu_options = ["Traffic Map", "Ferries", "Mountain Passes", "Toll Rates", "Border Waits", "Amtrak Cascades", "My Routes", "Favorites"]
         menu_icon_names = ["icHomeTraffic","icHomeFerries","icHomePasses","icHomeTollRates","icHomeBorderWaits","icHomeAmtrakCascades", "icHomeMyRoutes", "icHomeFavorites"]
 

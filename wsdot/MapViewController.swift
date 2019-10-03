@@ -85,6 +85,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
   
         // Set Dark mode if needed
         if #available(iOS 13, *){
+        
             if traitCollection.userInterfaceStyle == .dark {
                 do {
                     if let styleURL = Bundle.main.url(forResource: "map_dark_style", withExtension: "json") {
@@ -102,6 +103,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
         mapView.settings.compassButton = true
         
         mapView.delegate = mapDelegate
+        
         // Set up the cluster manager with the supplied icon generator and
         // renderer.
         let iconGenerator = GMUDefaultClusterIconGenerator()
@@ -130,7 +132,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
         
         super.viewWillDisappear(animated)
     }
-
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
