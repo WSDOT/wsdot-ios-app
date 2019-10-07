@@ -63,6 +63,24 @@ class MyRouteReportViewController: RefreshViewController {
         mapView.isMyLocationEnabled = true
         mapView.isTrafficEnabled = true
         
+        
+        // Set Dark mode if needed
+        if #available(iOS 13, *){
+        
+            if traitCollection.userInterfaceStyle == .dark {
+                do {
+                    if let styleURL = Bundle.main.url(forResource: "map_dark_style", withExtension: "json") {
+                        mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
+                    } else {
+                        NSLog("Unable to find style.json")
+                    }
+                } catch {
+                    NSLog("One or more of the map styles failed to load. \(error)")
+                }
+            }
+        }
+        
+        
         alertsContainerView.isHidden = false
         camerasContainerView.isHidden = true
         travelTimesContainerView.isHidden = true
@@ -468,7 +486,7 @@ extension MyRouteReportViewController:  UITableViewDataSource, UITableViewDelega
             break
         }
         
-        let htmlStyleString = "<style>body{font-family: '\(cell.linkLabel.font.fontName)'; font-size:\(cell.linkLabel.font.pointSize)px;}</style>"
+        let htmlStyleString = "<style>body{font-family: '\(cell.linkLabel.font.familyName)'; font-size:\(cell.linkLabel.font.pointSize)px;}</style>"
         var htmlString = ""
     
         cell.updateTime.text = TimeUtils.timeAgoSinceDate(date: alert.lastUpdatedTime, numericDates: false)
@@ -482,8 +500,13 @@ extension MyRouteReportViewController:  UITableViewDataSource, UITableViewDelega
         cell.linkLabel.attributedText = attrStr
         cell.linkLabel.delegate = self
         
+        if #available(iOS 13, *){
+            cell.linkLabel.textColor = UIColor.label
+        }
+        
+        
+        /*
         switch (alert.priority){
-            
         case "highest":
             cell.backgroundColor = UIColor(red: 255/255, green: 232/255, blue: 232/255, alpha: 1.0) /* #ffe8e8 */
             break
@@ -493,6 +516,7 @@ extension MyRouteReportViewController:  UITableViewDataSource, UITableViewDelega
         default:
             cell.backgroundColor = UIColor(red: 255/255, green: 254/255, blue: 232/255, alpha: 1.0) /* #fffee8 */
         }
+        */
         
         return cell
     }

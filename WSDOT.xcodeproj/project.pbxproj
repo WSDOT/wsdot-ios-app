@@ -31,6 +31,7 @@
 		9A0719331D42732A007BB4C5 /* INDLinkLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0719321D42732A007BB4C5 /* INDLinkLabel.swift */; };
 		9A0719351D4274B8007BB4C5 /* LinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0719341D4274B8007BB4C5 /* LinkCell.swift */; };
 		9A0892A91E3A903800434AED /* MyRouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0892A81E3A903800434AED /* MyRouteCell.swift */; };
+		9A09158F23450A5200E9D11E /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A09158E23450A5200E9D11E /* UIViewControllerExtensions.swift */; };
 		9A0CA8311D428EE9009C67B7 /* RouteDeparturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0CA8301D428EE9009C67B7 /* RouteDeparturesViewController.swift */; };
 		9A0CA8371D466045009C67B7 /* TimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0CA8361D466045009C67B7 /* TimeUtils.swift */; };
 		9A0D1B9F1E92992A00893B92 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A0D1B9E1E92992A00893B92 /* Secrets.plist */; };
@@ -123,6 +124,7 @@
 		9A8486F81D81E96A0026F1CF /* DepartureDaySelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8486F71D81E96A0026F1CF /* DepartureDaySelectionViewController.swift */; };
 		9A87A7122236CC60005277C6 /* AlertControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A87A7112236CC60005277C6 /* AlertControllerExtension.swift */; };
 		9A8DD9F81D946B6200CE0B76 /* HomeSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8DD9F71D946B6200CE0B76 /* HomeSplitViewController.swift */; };
+		9A8E2E92233D27D200E6E202 /* map_dark_style.json in Resources */ = {isa = PBXBuildFile; fileRef = 9A8E2E91233D27D200E6E202 /* map_dark_style.json */; };
 		9A9309B12051D7E6002D014C /* CameraPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9309B02051D7E6002D014C /* CameraPageViewController.swift */; };
 		9A9309B32051D7FF002D014C /* CameraPager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A9309B22051D7FF002D014C /* CameraPager.storyboard */; };
 		9A930A4120533782002D014C /* CameraPageContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A930A4020533782002D014C /* CameraPageContainerViewController.swift */; };
@@ -269,6 +271,7 @@
 		9A0719321D42732A007BB4C5 /* INDLinkLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = INDLinkLabel.swift; sourceTree = "<group>"; };
 		9A0719341D4274B8007BB4C5 /* LinkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkCell.swift; sourceTree = "<group>"; };
 		9A0892A81E3A903800434AED /* MyRouteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRouteCell.swift; sourceTree = "<group>"; };
+		9A09158E23450A5200E9D11E /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		9A0CA8301D428EE9009C67B7 /* RouteDeparturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteDeparturesViewController.swift; sourceTree = "<group>"; };
 		9A0CA8361D466045009C67B7 /* TimeUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUtils.swift; sourceTree = "<group>"; };
 		9A0D1B9E1E92992A00893B92 /* Secrets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
@@ -383,6 +386,7 @@
 		9A8486F71D81E96A0026F1CF /* DepartureDaySelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartureDaySelectionViewController.swift; sourceTree = "<group>"; };
 		9A87A7112236CC60005277C6 /* AlertControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertControllerExtension.swift; sourceTree = "<group>"; };
 		9A8DD9F71D946B6200CE0B76 /* HomeSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeSplitViewController.swift; sourceTree = "<group>"; };
+		9A8E2E91233D27D200E6E202 /* map_dark_style.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = map_dark_style.json; sourceTree = "<group>"; };
 		9A9309B02051D7E6002D014C /* CameraPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPageViewController.swift; sourceTree = "<group>"; };
 		9A9309B22051D7FF002D014C /* CameraPager.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CameraPager.storyboard; sourceTree = "<group>"; };
 		9A930A4020533782002D014C /* CameraPageContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPageContainerViewController.swift; sourceTree = "<group>"; };
@@ -884,6 +888,7 @@
 			isa = PBXGroup;
 			children = (
 				9A6FBCD11D6B541F00CDCE16 /* restareas.json */,
+				9A8E2E91233D27D200E6E202 /* map_dark_style.json */,
 			);
 			name = StaticJSONData;
 			sourceTree = "<group>";
@@ -1428,6 +1433,7 @@
 			children = (
 				9A87A7112236CC60005277C6 /* AlertControllerExtension.swift */,
 				9A345DD021FA676E00903E71 /* MapExtensions.swift */,
+				9A09158E23450A5200E9D11E /* UIViewControllerExtensions.swift */,
 				9AB2D9B922CD486000C9DB12 /* UIViewExtensions.swift */,
 				9A3E9F1022692766003066F4 /* RefreshViewController.swift */,
 			);
@@ -1691,7 +1697,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = WSDOT;
 				TargetAttributes = {
 					9AD32DF81D23172C000AEC28 = {
@@ -1768,6 +1774,7 @@
 				9A6FBCEA1D6C953000CDCE16 /* Callout.storyboard in Resources */,
 				9AEF4DBA1D778AF9003ECA34 /* AmtrakCascades.storyboard in Resources */,
 				9A0D1B9F1E92992A00893B92 /* Secrets.plist in Resources */,
+				9A8E2E92233D27D200E6E202 /* map_dark_style.json in Resources */,
 				9A6FBD1C1D6DF8F700CDCE16 /* BorderWaits.storyboard in Resources */,
 				9A0616C81D6601BD00126520 /* TollRates.storyboard in Resources */,
 				9A6FBCD61D6B5EBB00CDCE16 /* RestArea.storyboard in Resources */,
@@ -2039,6 +2046,7 @@
 				9A2F4A681D528A5100911AF5 /* FerryRealmStore.swift in Sources */,
 				9A1F5FA51D47DCB900DA5F99 /* ApiKeys.swift in Sources */,
 				9A6FBCDA1D6B6DF700CDCE16 /* HighwayAlertItem.swift in Sources */,
+				9A09158F23450A5200E9D11E /* UIViewControllerExtensions.swift in Sources */,
 				9A9808C41F1FF1C70034DA05 /* BestTimesToTravelRoutesViewController.swift in Sources */,
 				9A81A57C1D4BB41B0049913A /* LatLonUtils.swift in Sources */,
 				9A8486F61D81DD4B0026F1CF /* TwitterAccountSelectionViewController.swift in Sources */,
@@ -2231,6 +2239,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -2290,6 +2299,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -2349,11 +2359,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5.15.0.0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 9544S8BX77;
 				INFOPLIST_FILE = wsdot/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 5.15.0;
 				PRODUCT_BUNDLE_IDENTIFIER = gov.wa.wsdot.iphone.WSDOT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2372,10 +2384,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5.15.0.0;
 				DEVELOPMENT_TEAM = 9544S8BX77;
 				INFOPLIST_FILE = wsdot/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 5.15.0;
 				PRODUCT_BUNDLE_IDENTIFIER = gov.wa.wsdot.iphone.WSDOT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

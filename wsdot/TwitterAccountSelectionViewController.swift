@@ -21,6 +21,10 @@ class TwitterAccountSelectionViewController: UIViewController, UITableViewDelega
         self.dismiss(animated: true, completion: {()->Void in});
     }
     
+    override func viewDidLoad() {
+        self.view.backgroundColor = ThemeManager.currentTheme().mainColor
+    }
+    
     // MARK: Table View Data Source Methods
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

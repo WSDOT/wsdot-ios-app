@@ -30,7 +30,6 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
         super.viewDidLoad()
         self.delegate = self
         self.dataSource = self
-        view.backgroundColor = Colors.lightGrey
     }
     
     override func viewWillAppear(_ animated: Bool) {

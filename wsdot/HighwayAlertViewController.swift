@@ -104,7 +104,7 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
     func displayAlert() {
         title = alertItem.eventCategory
         
-        let htmlStyleString = "<style>body{font-family: '\(descLinkLabel.font.fontName)'; font-size:\(descLinkLabel.font.pointSize)px;}</style>"
+        let htmlStyleString = "<style>body{font-family: '\(descLinkLabel.font.familyName)'; font-size:\(descLinkLabel.font.pointSize)px;}</style>"
         
         let htmlString = htmlStyleString + alertItem.headlineDesc
         
@@ -125,6 +125,10 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
         }
 
         self.embeddedMapViewController.view.isHidden = false
+
+        if #available(iOS 13, *){
+            descLinkLabel.textColor = UIColor.label
+        }
 
     }
 

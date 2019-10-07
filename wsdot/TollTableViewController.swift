@@ -117,10 +117,26 @@ class TollTableViewController: RefreshViewController, UITableViewDelegate, UITab
             cell.colTwoLabel.text = tollTableItem.tollTable[indexPath.row].rows[1]
             cell.colThreeLabel.text = tollTableItem.tollTable[indexPath.row].rows[2]
             
+            if #available(iOS 13, *){
+                cell.colOneLabel.textColor = UIColor.label
+                cell.colTwoLabel.textColor = UIColor.label
+                cell.colThreeLabel.textColor = UIColor.label
+            } else {
+                cell.colOneLabel.textColor = UIColor.black
+                cell.colTwoLabel.textColor = UIColor.black
+                cell.colThreeLabel.textColor = UIColor.black
+            }
+            
+            
             if (tollTableItem.tollTable[indexPath.row].header) {
                 cell.backgroundColor = UIColor.groupTableViewBackground
             } else {
-                cell.backgroundColor = UIColor.lightText
+            
+                if #available(iOS 13, *){
+                    cell.backgroundColor = UIColor.secondarySystemGroupedBackground
+                } else {
+                    cell.backgroundColor = UIColor.lightText
+                }
             
                 // highlight current toll
                 if TollRateTableStore.isTollActive(
@@ -130,7 +146,16 @@ class TollTableViewController: RefreshViewController, UITableViewDelegate, UITab
                     let now = Date()
 
                     if ((now.isWeekend || now.is_WAC_468_270_071_Holiday) != tollTableItem.tollTable[indexPath.row].weekday ) {
-                        cell.backgroundColor = Colors.lightGreen
+                        
+                        if #available(iOS 13, *){
+                            cell.backgroundColor = ThemeManager.currentTheme().darkColor
+                            cell.colOneLabel.textColor = UIColor.white
+                            cell.colTwoLabel.textColor = UIColor.white
+                            cell.colThreeLabel.textColor = UIColor.white
+                        } else {
+                            cell.backgroundColor = Colors.lightGreen
+                        }
+                        
                     }
             
                 }
@@ -147,10 +172,28 @@ class TollTableViewController: RefreshViewController, UITableViewDelegate, UITab
             cell.colThreeLabel.text = tollTableItem.tollTable[indexPath.row].rows[2]
             cell.colFourLabel.text = tollTableItem.tollTable[indexPath.row].rows[3]
         
+            if #available(iOS 13, *){
+                cell.colOneLabel.textColor = UIColor.label
+                cell.colTwoLabel.textColor = UIColor.label
+                cell.colThreeLabel.textColor = UIColor.label
+                cell.colFourLabel.textColor = UIColor.label
+            } else {
+                cell.colOneLabel.textColor = UIColor.black
+                cell.colTwoLabel.textColor = UIColor.black
+                cell.colThreeLabel.textColor = UIColor.black
+                cell.colFourLabel.textColor = UIColor.black
+            }
+        
+        
             if (tollTableItem.tollTable[indexPath.row].header) {
                 cell.backgroundColor = UIColor.groupTableViewBackground
             } else {
-                cell.backgroundColor = UIColor.lightText
+                
+                if #available(iOS 13, *){
+                    cell.backgroundColor = UIColor.secondarySystemGroupedBackground
+                } else {
+                    cell.backgroundColor = UIColor.lightText
+                }
             
                 // highlight current toll
                 if TollRateTableStore.isTollActive(
@@ -160,7 +203,14 @@ class TollTableViewController: RefreshViewController, UITableViewDelegate, UITab
                     let now = Date()
 
                     if ((now.isWeekend || now.is_WAC_468_270_071_Holiday) != tollTableItem.tollTable[indexPath.row].weekday ) {
-                        cell.backgroundColor = Colors.lightGreen
+                        if #available(iOS 13, *){
+                            cell.backgroundColor = ThemeManager.currentTheme().darkColor
+                            cell.colOneLabel.textColor = UIColor.white
+                            cell.colTwoLabel.textColor = UIColor.white
+                            cell.colThreeLabel.textColor = UIColor.white
+                        } else {
+                            cell.backgroundColor = Colors.lightGreen
+                        }
                     }
                 }
             }

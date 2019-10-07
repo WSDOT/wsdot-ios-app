@@ -223,7 +223,7 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
         
         // set up favorite button
         cell.favoriteButton.setImage(tollSign.selected ? UIImage(named: "icStarSmallFilled") : UIImage(named: "icStarSmall"), for: .normal)
-        cell.favoriteButton.tintColor = ThemeManager.currentTheme().mainColor
+        cell.favoriteButton.tintColor = ThemeManager.currentTheme().darkColor
 
         cell.favoriteButton.tag = indexPath.row
         cell.favoriteButton.addTarget(self, action: #selector(favoriteAction(_:)), for: .touchUpInside)

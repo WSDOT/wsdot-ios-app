@@ -98,7 +98,7 @@ class FacebookViewController: RefreshViewController, UITableViewDataSource, UITa
         
         let post = posts[indexPath.row]
         
-        let htmlStyleString = "<style>body{font-family: '\(cell.contentLabel.font.fontName)'; font-size:\(cell.contentLabel.font.pointSize)px;}</style>"
+        let htmlStyleString = "<style>body{font-family: '\(cell.contentLabel.font.familyName)'; font-size:\(cell.contentLabel.font.pointSize)px;}</style>"
         
         let htmlString = htmlStyleString + post.message
         
@@ -110,6 +110,10 @@ class FacebookViewController: RefreshViewController, UITableViewDataSource, UITa
         cell.contentLabel.delegate = self
         cell.contentLabel.attributedText = attrStr
         cell.updatedLabel.text = TimeUtils.formatTime(post.createdAt, format: "MMMM dd, YYYY h:mm a")
+        
+        if #available(iOS 13, *) {
+            cell.contentLabel.textColor = UIColor.label
+        }
         
         return cell
     }

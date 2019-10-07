@@ -95,7 +95,7 @@ extension LocationSearchViewController : UISearchResultsUpdating {
         
         // always show table view, even when there are no results
         view.isHidden = false
-        
+    
         guard let searchBarText = searchController.searchBar.text else { return }
 
         let request = MKLocalSearch.Request()

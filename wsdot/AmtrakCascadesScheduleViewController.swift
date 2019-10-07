@@ -53,7 +53,7 @@ class AmtrakCascadesScheduleViewController: UITableViewController, CLLocationMan
     
         title = "Find Schedules" 
         
-        submitLabel.textColor = Colors.wsdotPrimary
+        submitLabel.textColor = ThemeManager.currentTheme().darkColor
         
         dayCell.selection.text = dayTableData[0]
         originCell.selection.text = originTableData[0]
