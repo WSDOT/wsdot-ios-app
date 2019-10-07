@@ -220,9 +220,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="b3O-Qj-rZv" secondAttribute="trailing" constant="-20" id="CZW-AO-OkP"/>
                             <constraint firstItem="peh-Jp-BEr" firstAttribute="top" secondItem="Umz-jt-fUb" secondAttribute="top" id="DMt-aC-rnZ"/>
                             <constraint firstItem="Umz-jt-fUb" firstAttribute="bottom" secondItem="b3O-Qj-rZv" secondAttribute="bottom" id="KxQ-N5-kXJ"/>
-                            <constraint firstItem="peh-Jp-BEr" firstAttribute="leading" secondItem="bpP-bq-5j3" secondAttribute="leadingMargin" constant="-20" id="Wtz-gx-Mfp"/>
                             <constraint firstItem="b3O-Qj-rZv" firstAttribute="top" secondItem="peh-Jp-BEr" secondAttribute="bottom" id="c0T-Ps-V7v"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="peh-Jp-BEr" secondAttribute="trailing" constant="-20" id="v4S-8T-9zx"/>
+                            <constraint firstItem="peh-Jp-BEr" firstAttribute="leading" secondItem="Umz-jt-fUb" secondAttribute="leading" id="icz-lb-OXm"/>
+                            <constraint firstItem="peh-Jp-BEr" firstAttribute="trailing" secondItem="Umz-jt-fUb" secondAttribute="trailing" id="v4S-8T-9zx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Umz-jt-fUb"/>
                     </view>

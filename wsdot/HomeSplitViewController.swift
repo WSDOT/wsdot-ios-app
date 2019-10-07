@@ -22,18 +22,15 @@ import UIKit
 
 class HomeSplitViewController: UISplitViewController, UISplitViewControllerDelegate {
 
-    private var shouldCollapse = true
-
     override func viewDidLoad() {
         self.delegate = self
         self.preferredDisplayMode = .allVisible
     }
 
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
-        return shouldCollapse
-    }
-    
-    func setShouldCollapseFalse() {
-        shouldCollapse = false
+        if (splitViewController.isCollapsed) {
+            return false
+        }
+        return true
     }
 }
