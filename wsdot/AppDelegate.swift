@@ -194,12 +194,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             let nav = rootViewController.viewControllers[0] as! UINavigationController
             nav.popToRootViewController(animated: false)
             nav.pushViewController(newNavigationController, animated: true)
+            
+            print("1")
         
         } else {
             // Master/Detail displayed, swap out the current detail view with the new stack of view controllers.
             newNavigationController.viewControllers[0].navigationItem.leftBarButtonItem = rootViewController.displayModeButtonItem
             newNavigationController.viewControllers[0].navigationItem.leftItemsSupplementBackButton = true
             rootViewController.showDetailViewController(newNavigationController, sender: self)
+            
+            print("2")
+            
         }
     }
     
