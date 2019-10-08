@@ -129,7 +129,7 @@ class TollRateTableStore {
                 for toll in oldTolls {
                     toll.delete = true
                 }
-                realm.add(newTolls, update: true)
+                realm.add(newTolls, update: .all)
                 
             }
         } catch {

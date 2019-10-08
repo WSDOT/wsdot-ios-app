@@ -79,7 +79,7 @@ class MyRouteStore {
         
         do {
             try realm.write{
-                realm.add(myRouteItem, update: true)
+                realm.add(myRouteItem, update: .all)
             }
         } catch {
             return -1

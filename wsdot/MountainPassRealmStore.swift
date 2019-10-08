@@ -109,7 +109,7 @@ class MountainPassStore {
                 for pass in oldPasses{
                     pass.delete = true
                 }
-                realm.add(newPasses, update: true)
+                realm.add(newPasses, update: .all)
             }
         }catch {
             print("MountainPassStore.savePasses: Realm write error")

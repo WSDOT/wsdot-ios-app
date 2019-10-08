@@ -132,7 +132,7 @@ class TollRateSignsStore {
                 for sign in oldTolls {
                     sign.delete = true
                 }
-                realm.add(newTolls, update: true)
+                realm.add(newTolls, update: .all)
             }
         }catch {
             print("TollRatesStore.saveTollRates: Realm write error")

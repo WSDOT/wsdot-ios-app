@@ -121,7 +121,7 @@ class HighwayAlertsStore {
                 for alert in oldAlerts {
                     alert.delete = true
                 }
-                realm.add(newAlerts, update: true)
+                realm.add(newAlerts, update: .all)
             }
         }catch{
             print("HighwayAlertsStore.saveAlerts: Realm write error")

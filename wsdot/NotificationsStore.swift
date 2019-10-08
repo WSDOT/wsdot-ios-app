@@ -151,7 +151,7 @@ class NotificationsStore {
                 for topic in oldTopics {
                     topic.delete = true
                 }
-                realm.add(newTopcis, update: true)
+                realm.add(newTopcis, update: .all)
             }
         } catch {
             print("NotificationsStore.saveTopics: Realm write error")
