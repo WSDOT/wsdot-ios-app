@@ -139,7 +139,7 @@ class TravelTimesStore{
                 for time in oldTimes{
                     time.delete = true
                 }
-                realm.add(travelTimes, update: true)
+                realm.add(travelTimes, update: .all)
             }
         } catch {
             print("TravelTimesStore.saveTravelTimes: Realm write error")

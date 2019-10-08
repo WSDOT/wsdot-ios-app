@@ -139,7 +139,7 @@ class CamerasStore {
                 for oldCamera in oldCameras {
                     oldCamera.delete = true
                 }
-                realm.add(newCameras, update: true)
+                realm.add(newCameras, update: .all)
             }
         }catch{
             print("CamerasStore.saveCameras: Realm write error")

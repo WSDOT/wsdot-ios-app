@@ -109,7 +109,7 @@ class BorderWaitStore {
                 for oldWait in oldWaits {
                     oldWait.delete = true
                 }
-                realm.add(waits, update: true)
+                realm.add(waits, update: .all)
             }
         }catch {
             print("TravelTimesStore.saveTravelTimes: Realm write error")

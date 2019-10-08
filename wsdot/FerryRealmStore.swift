@@ -136,7 +136,7 @@ class FerryRealmStore {
                 for route in oldRoutes{
                     route.delete = true
                 }
-                realm.add(newRoutes, update: true)
+                realm.add(newRoutes, update: .all)
             }
         }catch {
             print("FerryRealmStore.saveRouteSchedules: Realm write error")
