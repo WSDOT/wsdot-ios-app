@@ -177,7 +177,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     func resetMapStyle() {
         if let mapView = embeddedMapViewController.view as? GMSMapView{
-            embeddedMapViewController.setMapStyle(mapView: mapView)
+            MapThemeUtils.setMapStyle(mapView, traitCollection)
         }
     }
     

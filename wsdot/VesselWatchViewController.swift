@@ -29,6 +29,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     
     let SegueCamerasViewController = "CamerasViewController"
     let SegueVesselDetailsViewController = "VesselDetailsViewController"
+    let SegueSettingsPopover = "VesselWatchSettingsViewController"
 
     var routeId: Int = -1
 
@@ -84,6 +85,11 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     @IBAction func myLocationButtonPressed(_ sender: UIBarButtonItem) {
         MyAnalytics.event(category: "Vessel Watch", action: "UIAction", label: "My Location")
         embeddedMapViewController.goToUsersLocation()
+    }
+    
+    @IBAction func mapSettingsButtonPressed(_ sender: UIBarButtonItem) {
+        MyAnalytics.event(category: "Vessel Watch", action: "UIAction", label: "Map Settings")
+        performSegue(withIdentifier: SegueSettingsPopover, sender: self)
     }
     
     @IBAction func cameraToggleButtonPressed(_ sender: UIBarButtonItem) {
@@ -249,7 +255,6 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
   
         }
         
-
         activityIndicator.startAnimating()
 
         fetchVessels(true)
@@ -281,6 +286,12 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         serviceGroup.leave()
     }
     
+    func resetMapStyle() {
+        if let mapView = embeddedMapViewController.view as? GMSMapView{
+            MapThemeUtils.setMapStyle(mapView, traitCollection)
+        }
+    }
+    
     // MARK: Naviagtion
     // Get refrence to child VC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -301,6 +312,11 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
             let vesselItem = ((sender as! GMSMarker).userData as! VesselItem)
             let destinationViewController = segue.destination as! VesselDetailsViewController
             destinationViewController.vesselItem = vesselItem
+        }
+        
+        if segue.identifier == SegueSettingsPopover {
+            let destinationViewController = segue.destination as! VesselWatchSettingsViewController
+            destinationViewController.my_parent = self
         }
     
     }
