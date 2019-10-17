@@ -175,6 +175,12 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         }
     }
     
+    func resetMapStyle() {
+        if let mapView = embeddedMapViewController.view as? GMSMapView{
+            embeddedMapViewController.setMapStyle(mapView: mapView)
+        }
+    }
+    
     func goTo(_ lat: Double, _ long: Double, _ zoom: Float){
         if let mapView = embeddedMapViewController.view as? GMSMapView{
             mapView.moveCamera(GMSCameraUpdate.setCamera(GMSCameraPosition.camera(withLatitude: lat, longitude: long, zoom: zoom)))

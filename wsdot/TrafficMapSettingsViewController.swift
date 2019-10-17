@@ -21,6 +21,7 @@ import UIKit
 
 class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    let mapStyleCellIdentifier = "MapStyleCell"
     let cellIdentifier = "SettingCell"
     let legendCellIdentifier = "LegendCell"
     
@@ -63,19 +64,39 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return menu_options.count + 1 // for the legend cell
+        return menu_options.count + 2 // for the legend and map style cell
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row < 5 {
+        if indexPath.row == 0 {
+        
+            let cell = tableView.dequeueReusableCell(withIdentifier: mapStyleCellIdentifier) as! MapStyleCell
+        
+            let mapStylePref = UserDefaults.standard.string(forKey: UserDefaultsKeys.mapStyle)
+            
+            if let mapStyle = mapStylePref {
+                if (mapStyle == "system") {
+                    cell.mapSettingControl.selectedSegmentIndex = 0
+                } else if (mapStyle == "light"){
+                    cell.mapSettingControl.selectedSegmentIndex = 1
+                } else if (mapStyle == "dark"){
+                    cell.mapSettingControl.selectedSegmentIndex = 2
+                }
+            }
+        
+            cell.mapSettingControl.addTarget(self, action: #selector(TrafficMapSettingsViewController.changeMapStylePref(_:)), for: .valueChanged)
+        
+            return cell
+        
+        } else if indexPath.row < 6 {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! SettingsCell
             
             // Configure Cell
-            cell.settingLabel.text = menu_options[indexPath.row]
+            cell.settingLabel.text = menu_options[indexPath.row-1]
             
-            switch(menu_options[indexPath.row]){
+            switch(menu_options[indexPath.row-1]){
                 
             case menu_options[0]:
                 let alertsPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.alerts)
@@ -161,7 +182,7 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
     // MARK: Table View Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.row) {
-        case 4:
+        case 5:
             favoriteLocationAction()
         default:
             break
@@ -177,6 +198,29 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
     
     // MARK: Prefrence functions
     
+    @objc func changeMapStylePref(_ sender: UISegmentedControl){
+    
+        switch sender.selectedSegmentIndex {
+            case 0:
+                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Map Style System")
+                UserDefaults.standard.set("system", forKey: UserDefaultsKeys.mapStyle)
+                break
+            case 1:
+                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Map Style Light")
+                 UserDefaults.standard.set("light", forKey: UserDefaultsKeys.mapStyle)
+                break
+            case 2:
+                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Map Style Dark")
+                UserDefaults.standard.set("dark", forKey: UserDefaultsKeys.mapStyle)
+                break
+            default:
+                break
+        }
+            
+        my_parent!.resetMapStyle()
+
+        
+    }
 
     @objc func changeClusterPref(_ sender: UISwitch){
         let clusterPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.shouldCluster)

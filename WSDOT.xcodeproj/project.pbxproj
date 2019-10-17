@@ -67,6 +67,7 @@
 		9A6A002B210237B20005CC7F /* TollTripView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A6A002A210237B20005CC7F /* TollTripView.xib */; };
 		9A6A002D210238350005CC7F /* TollTripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6A002C210238350005CC7F /* TollTripView.swift */; };
 		9A6A0035210777EC0005CC7F /* TollTripDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6A0034210777EC0005CC7F /* TollTripDetailsViewController.swift */; };
+		9A6BCA6C2358B72900BBFD19 /* MapStyleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6BCA6B2358B72900BBFD19 /* MapStyleCell.swift */; };
 		9A6FBCC51D6B4C6500CDCE16 /* TravelerInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCC41D6B4C6500CDCE16 /* TravelerInfoViewController.swift */; };
 		9A6FBCCF1D6B520900CDCE16 /* RestAreaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FBCCE1D6B520900CDCE16 /* RestAreaItem.swift */; };
 		9A6FBCD21D6B541F00CDCE16 /* restareas.json in Resources */ = {isa = PBXBuildFile; fileRef = 9A6FBCD11D6B541F00CDCE16 /* restareas.json */; };
@@ -307,6 +308,7 @@
 		9A6A002A210237B20005CC7F /* TollTripView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TollTripView.xib; sourceTree = "<group>"; };
 		9A6A002C210238350005CC7F /* TollTripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TollTripView.swift; sourceTree = "<group>"; };
 		9A6A0034210777EC0005CC7F /* TollTripDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TollTripDetailsViewController.swift; sourceTree = "<group>"; };
+		9A6BCA6B2358B72900BBFD19 /* MapStyleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapStyleCell.swift; sourceTree = "<group>"; };
 		9A6FBCC41D6B4C6500CDCE16 /* TravelerInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelerInfoViewController.swift; sourceTree = "<group>"; };
 		9A6FBCCE1D6B520900CDCE16 /* RestAreaItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAreaItem.swift; sourceTree = "<group>"; };
 		9A6FBCD11D6B541F00CDCE16 /* restareas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = restareas.json; sourceTree = "<group>"; };
@@ -769,6 +771,7 @@
 				9A0892A81E3A903800434AED /* MyRouteCell.swift */,
 				9A9808C11F1FAAAE0034DA05 /* TravelChartImageCell.swift */,
 				9AE6B77F209CF9B1001DE80F /* SwitchCell.swift */,
+				9A6BCA6B2358B72900BBFD19 /* MapStyleCell.swift */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -2050,6 +2053,7 @@
 				9A9808C41F1FF1C70034DA05 /* BestTimesToTravelRoutesViewController.swift in Sources */,
 				9A81A57C1D4BB41B0049913A /* LatLonUtils.swift in Sources */,
 				9A8486F61D81DD4B0026F1CF /* TwitterAccountSelectionViewController.swift in Sources */,
+				9A6BCA6C2358B72900BBFD19 /* MapStyleCell.swift in Sources */,
 				9AE486441D495ACB007A92E3 /* FerriesTerminalItem.swift in Sources */,
 				9AEF4D801D74E1F7003ECA34 /* BloggerStore.swift in Sources */,
 				9A0616C21D651B1300126520 /* InfoViewController.swift in Sources */,
@@ -2359,7 +2363,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5.15.0.1;
+				CURRENT_PROJECT_VERSION = 5.15.0.2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 9544S8BX77;
 				INFOPLIST_FILE = wsdot/Info.plist;
@@ -2384,7 +2388,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5.15.0.1;
+				CURRENT_PROJECT_VERSION = 5.15.0.2;
 				DEVELOPMENT_TEAM = 9544S8BX77;
 				INFOPLIST_FILE = wsdot/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

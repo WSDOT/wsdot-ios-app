@@ -36,6 +36,8 @@ class UserDefaultsKeys {
     
     static let shouldCluster = "shouldClusterCameraIcons"
     
+    static let mapStyle = "mapStylePref"
+    
     // EasyTipView Keys
     static let hasSeenClusterTipView = "hasSeenClusterTipView"
     static let hasSeenTravelerInfoTipView = "hasSeenTravelerInfoTipView"
