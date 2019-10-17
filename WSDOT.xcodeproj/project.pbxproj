@@ -154,6 +154,8 @@
 		9AC5E86E202A2DB700C9BB02 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC5E86D202A2DB700C9BB02 /* EventViewController.swift */; };
 		9ACAB9531F66ED64002683B7 /* TravelerInformation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9ACAB9521F66ED64002683B7 /* TravelerInformation.storyboard */; };
 		9ACDCA3F216405B5004972C5 /* TerminalSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACDCA3E216405B5004972C5 /* TerminalSelectionViewController.swift */; };
+		9AD0A0DC2358ED1700952AB4 /* VesselWatchSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD0A0DB2358ED1700952AB4 /* VesselWatchSettingsViewController.swift */; };
+		9AD0A0DE2359051600952AB4 /* MapThemeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD0A0DD2359051600952AB4 /* MapThemeUtils.swift */; };
 		9AD32DFD1D23172C000AEC28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32DFC1D23172C000AEC28 /* AppDelegate.swift */; };
 		9AD32E021D23172C000AEC28 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E001D23172C000AEC28 /* Main.storyboard */; };
 		9AD32E041D23172C000AEC28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32E031D23172C000AEC28 /* Assets.xcassets */; };
@@ -418,6 +420,8 @@
 		9AC5E86D202A2DB700C9BB02 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		9ACAB9521F66ED64002683B7 /* TravelerInformation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TravelerInformation.storyboard; sourceTree = "<group>"; };
 		9ACDCA3E216405B5004972C5 /* TerminalSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalSelectionViewController.swift; sourceTree = "<group>"; };
+		9AD0A0DB2358ED1700952AB4 /* VesselWatchSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VesselWatchSettingsViewController.swift; sourceTree = "<group>"; };
+		9AD0A0DD2359051600952AB4 /* MapThemeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapThemeUtils.swift; sourceTree = "<group>"; };
 		9AD32DF91D23172C000AEC28 /* WSDOT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WSDOT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD32DFC1D23172C000AEC28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9AD32E011D23172C000AEC28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -549,6 +553,7 @@
 			children = (
 				9A0616791D62285A00126520 /* VesselWatchViewController.swift */,
 				9A0616B81D63867A00126520 /* VesselDetailsViewController.swift */,
+				9AD0A0DB2358ED1700952AB4 /* VesselWatchSettingsViewController.swift */,
 			);
 			name = VesselWatch;
 			sourceTree = "<group>";
@@ -560,6 +565,7 @@
 				9A4BBAAF2125C53500DE6F1B /* SimpleMapViewController.swift */,
 				9A06167E1D62602500126520 /* MapMarkerDelegate.swift */,
 				9A7BC0AB1D9DBAB400EF760C /* CameraClusterItem.swift */,
+				9AD0A0DD2359051600952AB4 /* MapThemeUtils.swift */,
 				9A7BC0E11DA434F700EF760C /* WSDOTClusterRenderer.swift */,
 			);
 			name = Map;
@@ -2048,6 +2054,7 @@
 				9A398D76209A71B600BD84FF /* NotificationsStore.swift in Sources */,
 				9A2F4A681D528A5100911AF5 /* FerryRealmStore.swift in Sources */,
 				9A1F5FA51D47DCB900DA5F99 /* ApiKeys.swift in Sources */,
+				9AD0A0DC2358ED1700952AB4 /* VesselWatchSettingsViewController.swift in Sources */,
 				9A6FBCDA1D6B6DF700CDCE16 /* HighwayAlertItem.swift in Sources */,
 				9A09158F23450A5200E9D11E /* UIViewControllerExtensions.swift in Sources */,
 				9A9808C41F1FF1C70034DA05 /* BestTimesToTravelRoutesViewController.swift in Sources */,
@@ -2083,6 +2090,7 @@
 				9A2BA5CF1F20FF2300B2092F /* BestTimesToTravelStore.swift in Sources */,
 				9A7BC0D11DA3F31B00EF760C /* GMUSimpleClusterAlgorithm.m in Sources */,
 				9AE4863E1D49594D007A92E3 /* FerriesTerminalMap.swift in Sources */,
+				9AD0A0DE2359051600952AB4 /* MapThemeUtils.swift in Sources */,
 				9A87A7122236CC60005277C6 /* AlertControllerExtension.swift in Sources */,
 				9AEF4D7E1D74DFDB003ECA34 /* BlogItem.swift in Sources */,
 				9A7BC0D51DA3F31B00EF760C /* GMUDefaultClusterIconGenerator.m in Sources */,
@@ -2363,7 +2371,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5.15.1.0;
+				CURRENT_PROJECT_VERSION = 5.15.1.3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 9544S8BX77;
 				INFOPLIST_FILE = wsdot/Info.plist;
@@ -2388,7 +2396,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5.15.1.0;
+				CURRENT_PROJECT_VERSION = 5.15.1.3;
 				DEVELOPMENT_TEAM = 9544S8BX77;
 				INFOPLIST_FILE = wsdot/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
