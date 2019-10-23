@@ -35,43 +35,32 @@ class TravelTimesViewController: RefreshViewController, UITableViewDelegate, UIT
     
     var searchController: UISearchController!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Travel Times"
+    
+        //extendedLayoutIncludesOpaqueBars = true
         
         // init search Controlller
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
-        searchController.view.tintColor = ThemeManager.currentTheme().darkColor
-        searchController.searchBar.sizeToFit()
-        
-        if #available(iOS 13, *) {
-            searchController.searchBar.backgroundColor = UIColor.tertiarySystemBackground
-            searchController.searchBar.barTintColor = UIColor.tertiarySystemBackground
-            searchController.searchBar.searchTextField.borderStyle = .none
-            searchController.searchBar.searchTextField.backgroundColor = UIColor.secondarySystemBackground
-            searchController.searchBar.searchTextField.layer.cornerRadius = 10
-            searchController.searchBar.searchTextField.clipsToBounds = true
-            
-            view.backgroundColor = UIColor.systemBackground
-            searchController.view.backgroundColor = UIColor.systemBackground
-            
-        }
-        
+     
         tableView.tableHeaderView = searchController.searchBar
-    
+        
         definesPresentationContext = true
         
         // refresh controller
         refreshControl.addTarget(self, action: #selector(TravelTimesViewController.refreshAction(_:)), for: .valueChanged)
+        
         if #available(iOS 13, *) {
-            refreshControl.backgroundColor = UIColor.tertiarySystemBackground
+            refreshControl.backgroundColor = .systemGroupedBackground
+            tableView.backgroundView = refreshControl
+            extendedLayoutIncludesOpaqueBars = false
+        } else {
+            tableView.addSubview(refreshControl)
         }
-        
-        tableView.addSubview(refreshControl)
-        
+
         showOverlay(self.view)
         
         self.travelTimeGroups = TravelTimesStore.getAllTravelTimeGroups()
@@ -140,6 +129,8 @@ class TravelTimesViewController: RefreshViewController, UITableViewDelegate, UIT
             route.removeFromSuperview()
         }
         cell.dynamicRouteViews.removeAll()
+        
+    
         
         cell.routeLabel.text = travelTimeGroup.title
 
