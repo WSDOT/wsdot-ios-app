@@ -479,7 +479,11 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 } else if (route.averageTime < route.currentTime){
                     routeView.valueLabel.textColor = UIColor.red
                 } else {
-                    routeView.valueLabel.textColor = UIColor.darkText
+                    if #available(iOS 13, *) {
+                        routeView.valueLabel.textColor = UIColor.label
+                    } else {
+                        routeView.valueLabel.textColor = UIColor.darkText
+                    }
                 }
             
                 travelTimeCell.contentView.addSubview(routeView)
