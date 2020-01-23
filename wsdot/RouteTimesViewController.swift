@@ -216,7 +216,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         cell.spacesStack.isHidden = true
         cell.spacesDisclaimer.isHidden = true
         cell.avaliableSpacesBar.isHidden = true
-        cell.updated.isHidden = true
+        cell.vesselAtDockLabel.isHidden = true
 
         if let sailingSpacesValue = sailingSpaces {
         
@@ -230,15 +230,13 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                         cell.spacesStack.isHidden = false
                         cell.spacesDisclaimer.isHidden = false
                         cell.avaliableSpacesBar.isHidden = false
-                        cell.updated.isHidden = false
                 
-                        cell.sailingSpaces.text = String(spaceItem.remainingSpaces) + " Drive-up Spaces"
+                        cell.sailingSpaces.text = String(spaceItem.remainingSpaces) + " drive-up spaces"
                         cell.avaliableSpacesBar.progress = spaceItem.percentAvaliable
                     
                         cell.avaliableSpacesBar.transform = UIProgressView().transform
                         cell.avaliableSpacesBar.transform = cell.avaliableSpacesBar.transform.scaledBy(x: 1, y: 3)
                 
-                        cell.updated.text = "Drive-up spaces updated " + TimeUtils.timeAgoSinceDate(date: updatedAt, numericDates: true)
                     }
                 }
             }
@@ -254,15 +252,17 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
             if let departure = vesselValue.nextDeparture {
                 if departure == displayedTimes[indexPath.row].departingTime {
 
+                    cell.vesselAtDockLabel.isHidden = !vesselValue.atDock
+
                     if let leftDock = vesselValue.leftDock {
-                        cell.actualDepartureLabel.text = "Actual departure \(TimeUtils.getTimeOfDay(leftDock))"
+                        cell.actualDepartureLabel.text = "\(TimeUtils.getTimeOfDay(leftDock))"
                         cell.actualDepartureLabel.isHidden = false
                         cell.deptAndETAStack.isHidden = false
                         
                     }
 
                     if let eta = vesselValue.eta {
-                        cell.etaLabel.text = "ETA \(TimeUtils.getTimeOfDay(eta))"
+                        cell.etaLabel.text = "\(TimeUtils.getTimeOfDay(eta))"
                         cell.etaLabel.isHidden = false
                         cell.deptAndETAStack.isHidden = false
                         
@@ -306,9 +306,11 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
             } else {
                 cell.arrivingTimeBox.backgroundColor = Colors.wsdotPrimary
             }
+            cell.arrivingTimeLabel.isHidden = false
 
         } else {
             cell.arrivingTime.text = ""
+            cell.arrivingTimeLabel.isHidden = true
             cell.arrivingTimeBox.backgroundColor = UIColor.clear
             cell.arrivingTime.accessibilityLabel = ""
         }
@@ -317,10 +319,11 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         if (displayedTimes[indexPath.row].departingTime.compare(NSDate() as Date) != .orderedDescending) {
             cell.departingTimeBox.backgroundColor = UIColor.gray
             cell.annotations.textColor = UIColor.gray
-            cell.actualDepartureLabel.textColor = UIColor.gray
         } else {
+            cell.annotations.textColor = UIColor.black
             cell.departingTimeBox.backgroundColor = Colors.wsdotPrimary
             if #available(iOS 13, *) {
+            cell.annotations.textColor = UIColor.label
                 cell.actualDepartureLabel.textColor = UIColor.label
             }
             
@@ -345,7 +348,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         
         if (cell.sailingSpaces) != nil {
             cell.accessibilityLabel = cell.accessibilityLabel! + cell.sailingSpaces.text! + " " + cell.spacesDisclaimer.text! + ". "
-            cell.accessibilityLabel = cell.accessibilityLabel! + cell.updated.text!
         }
         cell.isAccessibilityElement = true
        

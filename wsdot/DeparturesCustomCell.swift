@@ -26,17 +26,23 @@ class DeparturesCustomCell: UITableViewCell {
     
     @IBOutlet weak var departingTimeBox: UIView!
     @IBOutlet weak var departingTime: UILabel!
+    @IBOutlet weak var departingTimeLabel: UILabel!
     
     @IBOutlet weak var arrivingTimeBox: UIView!
     @IBOutlet weak var arrivingTime: UILabel!
+    @IBOutlet weak var arrivingTimeLabel: UILabel!
+    
+    
     @IBOutlet weak var sailingSpaces: UILabel!
     @IBOutlet weak var actualDepartureLabel: UILabel!
+    
+    
+    @IBOutlet weak var vesselAtDockLabel: INDLinkLabel!
     
     @IBOutlet weak var annotations: INDLinkLabel!
     @IBOutlet weak var avaliableSpacesBar: UIProgressView!
     @IBOutlet weak var spacesDisclaimer: UILabel!
     
-    @IBOutlet weak var updated: UILabel!
     
     @IBOutlet weak var deptAndETAStack: UIStackView!
     @IBOutlet weak var annotationsStack: UIStackView!
