@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         application.registerForRemoteNotifications()
         
-        GADMobileAds.configure(withApplicationID: ApiKeys.getAdId())
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
         
         // EasyTipView Setup
         var preferences = EasyTipView.Preferences()
@@ -73,6 +73,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         TollRateSignsStore.flushOldData()
         TollRateTableStore.flushOldData()
         
+        
+        NSSetUncaughtExceptionHandler { exception in
+           print(exception)
+           print(exception.callStackSymbols)
+        }
         return true
     }
 
