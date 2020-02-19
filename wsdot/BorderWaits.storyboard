@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XWA-KH-dWa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XWA-KH-dWa">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,7 +25,7 @@
             </objects>
             <point key="canvasLocation" x="-316" y="403"/>
         </scene>
-        <!--Border Waits-->
+        <!--Northbound Border Waits-->
         <scene sceneID="aQV-gM-c7M">
             <objects>
                 <viewController storyboardIdentifier="BorderWaitsViewController" hidesBottomBarWhenPushed="YES" id="NTb-hm-SC4" customClass="BorderWaitsViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
@@ -45,7 +45,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="106" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="y0T-hn-zi6">
-                                <rect key="frame" x="0.0" y="91" width="375" height="526"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="573"/>
                                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="borderwaitcell" rowHeight="106" id="TI4-tk-8mV" customClass="BorderWaitCell" customModule="WSDOT" customModuleProvider="target">
@@ -154,14 +154,20 @@
                             <constraint firstItem="XwU-Gs-jjE" firstAttribute="bottom" secondItem="yIN-7r-GLL" secondAttribute="bottom" id="5E0-7E-fD3"/>
                             <constraint firstItem="1ek-XP-VjM" firstAttribute="top" secondItem="yIN-7r-GLL" secondAttribute="top" constant="8" id="F3x-MV-Hy4"/>
                             <constraint firstItem="y0T-hn-zi6" firstAttribute="leading" secondItem="yIN-7r-GLL" secondAttribute="leading" id="GyA-ok-Xdf"/>
+                            <constraint firstItem="y0T-hn-zi6" firstAttribute="top" secondItem="yIN-7r-GLL" secondAttribute="top" id="QAx-cH-yBM"/>
                             <constraint firstItem="XwU-Gs-jjE" firstAttribute="centerX" secondItem="yIN-7r-GLL" secondAttribute="centerX" id="TUv-ym-dra"/>
                             <constraint firstItem="XwU-Gs-jjE" firstAttribute="top" secondItem="y0T-hn-zi6" secondAttribute="bottom" id="Yfw-4p-eVS"/>
                             <constraint firstItem="yIN-7r-GLL" firstAttribute="trailing" secondItem="1ek-XP-VjM" secondAttribute="trailing" constant="16" id="gJf-qu-id0"/>
                             <constraint firstItem="1ek-XP-VjM" firstAttribute="leading" secondItem="yIN-7r-GLL" secondAttribute="leading" constant="16" id="tZc-wZ-IRE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="yIN-7r-GLL"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="2G0-JE-Jq1"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Border Waits" id="S94-Iu-sqd"/>
+                    <navigationItem key="navigationItem" title="Northbound Border Waits" id="S94-Iu-sqd"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="bannerView" destination="XwU-Gs-jjE" id="A5W-NN-k88"/>

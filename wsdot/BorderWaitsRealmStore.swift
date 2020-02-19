@@ -134,17 +134,21 @@ class BorderWaitStore {
         
         for (_,subJson):(String, JSON) in json["waittimes"]["items"] {
             
-            let wait = BorderWaitItem()
-            wait.id = subJson["id"].intValue
-            wait.waitTime = subJson["wait"].intValue
-            wait.name = subJson["name"].stringValue
-            wait.route = subJson["route"].intValue
-            wait.direction = subJson["direction"].stringValue
-            wait.updated = subJson["updated"].stringValue
-            wait.lane = subJson["lane"].stringValue
-            wait.delete = false
+            // only add northbound until we can get more accurate southbound
+            if (subJson["direction"].stringValue.lowercased() == "northbound") {
             
-            waits.append(wait)
+                let wait = BorderWaitItem()
+                wait.id = subJson["id"].intValue
+                wait.waitTime = subJson["wait"].intValue
+                wait.name = subJson["name"].stringValue
+                wait.route = subJson["route"].intValue
+                wait.direction = subJson["direction"].stringValue
+                wait.updated = subJson["updated"].stringValue
+                wait.lane = subJson["lane"].stringValue
+                wait.delete = false
+            
+                waits.append(wait)
+            }
         }
         
         return waits

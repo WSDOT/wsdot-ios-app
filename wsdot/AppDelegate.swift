@@ -72,6 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         NotificationsStore.flushOldData()
         TollRateSignsStore.flushOldData()
         TollRateTableStore.flushOldData()
+        BorderWaitStore.flushOldData()
         
         
         NSSetUncaughtExceptionHandler { exception in

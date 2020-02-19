@@ -45,8 +45,9 @@ class BorderWaitsViewController: RefreshViewController, UITableViewDelegate, UIT
         
         showOverlay(self.view)
         
+        // remove southbound wait times until we can get more accurate times.
         self.northboundWaits = BorderWaitStore.getNorthboundWaits()
-        self.southboundWaits = BorderWaitStore.getSouthboundWaits()
+        //self.southboundWaits = BorderWaitStore.getSouthboundWaits()
         self.tableView.reloadData()
         
         refresh(false)
