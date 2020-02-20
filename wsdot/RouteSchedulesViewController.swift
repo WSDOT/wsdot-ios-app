@@ -23,8 +23,6 @@ import RealmSwift
 import GoogleMobileAds
 import SafariServices
 
-import NotificationBannerSwift
-
 class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate {
     
     let cellIdentifier = "FerriesRouteSchedulesCell"
@@ -105,7 +103,7 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
                         if let selfValue = self{
                             selfValue.hideOverlayView()
                             selfValue.refreshControl.endRefreshing()
-                            AlertMessages.getConnectionAlert(backupURL: WsdotURLS.ferries)
+                            AlertMessages.getConnectionAlert(backupURL: WsdotURLS.ferries, message: WSDOTErrorStrings.ferriesSchedule)
                         }
                     }
                 }

@@ -97,7 +97,7 @@ class BorderWaitsViewController: RefreshViewController, UITableViewDelegate, UIT
                         if let selfValue = self{
                             selfValue.hideOverlayView()
                             selfValue.refreshControl.endRefreshing()
-                            AlertMessages.getConnectionAlert(backupURL: WsdotURLS.borderWaits)
+                            AlertMessages.getConnectionAlert(backupURL: WsdotURLS.borderWaits, message: WSDOTErrorStrings.borderWaits)
                         }
                     }
                 }

@@ -72,7 +72,7 @@ class ExpressLanesViewController: RefreshViewController, UITableViewDelegate, UI
                         if let selfValue = self{
                             selfValue.refreshControl.endRefreshing()
                             selfValue.hideOverlayView()
-                            AlertMessages.getConnectionAlert(backupURL: WsdotURLS.homepage)
+                            AlertMessages.getConnectionAlert(backupURL: WsdotURLS.homepage, message: WSDOTErrorStrings.expressLanes)
                         }
                     }
                 }

@@ -69,7 +69,7 @@ class BloggerViewController: RefreshViewController, UITableViewDataSource, UITab
                         if let selfValue = self{
                             selfValue.hideOverlayView()
                             selfValue.refreshControl.endRefreshing()
-                            AlertMessages.getConnectionAlert(backupURL: nil)
+                            AlertMessages.getConnectionAlert(backupURL: nil, message: WSDOTErrorStrings.posts)
                             
                         }
                     }

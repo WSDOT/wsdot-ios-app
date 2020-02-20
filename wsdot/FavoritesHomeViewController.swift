@@ -297,9 +297,7 @@ extension FavoritesHomeViewController {
                     serviceGroup.leave()
                 }else{
                     serviceGroup.leave()
-                    DispatchQueue.main.async {
-                        AlertMessages.getConnectionAlert(backupURL: nil)
-                    }
+                    // no error message since cameras don't need to be refreshed to show in favorites
                 }
             })
         }
@@ -314,7 +312,7 @@ extension FavoritesHomeViewController {
                 } else {
                     serviceGroup.leave()
                     DispatchQueue.main.async {
-                        AlertMessages.getConnectionAlert(backupURL: nil)
+                        AlertMessages.getConnectionAlert(backupURL: nil, message: WSDOTErrorStrings.favorites)
                     }
                 }
             })
@@ -328,7 +326,9 @@ extension FavoritesHomeViewController {
                 serviceGroup.leave()
             } else {
                 serviceGroup.leave()
-                AlertMessages.getConnectionAlert(backupURL: nil)
+                DispatchQueue.main.async {
+                    AlertMessages.getConnectionAlert(backupURL: nil, message: WSDOTErrorStrings.favorites)
+                }
             }
         })
     }
@@ -342,7 +342,7 @@ extension FavoritesHomeViewController {
                 }else{
                     serviceGroup.leave()
                     DispatchQueue.main.async {
-                        AlertMessages.getConnectionAlert(backupURL: nil)
+                        AlertMessages.getConnectionAlert(backupURL: nil, message: WSDOTErrorStrings.favorites)
                     }
                 }
             })
@@ -358,7 +358,7 @@ extension FavoritesHomeViewController {
                 } else {
                     serviceGroup.leave()
                     DispatchQueue.main.async {
-                        AlertMessages.getConnectionAlert(backupURL: nil)
+                        AlertMessages.getConnectionAlert(backupURL: nil, message: WSDOTErrorStrings.favorites)
                     }
                 }
             })
@@ -374,7 +374,7 @@ extension FavoritesHomeViewController {
                 } else {
                     serviceGroup.leave()
                     DispatchQueue.main.async {
-                        AlertMessages.getConnectionAlert(backupURL: nil)
+                        AlertMessages.getConnectionAlert(backupURL: nil, message: WSDOTErrorStrings.favorites)
                     }
                 }
             })

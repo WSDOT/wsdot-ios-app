@@ -76,7 +76,7 @@ class AmtrakCascadesScheduleDetailsViewController: RefreshViewController, UITabB
                         if let selfValue = self{
                             selfValue.refreshControl.endRefreshing()
                             selfValue.hideOverlayView()
-                            AlertMessages.getConnectionAlert(backupURL: WsdotURLS.amtrak)
+                            AlertMessages.getConnectionAlert(backupURL: WsdotURLS.amtrak, message: WSDOTErrorStrings.amtrak)
                             
                         }
                     }

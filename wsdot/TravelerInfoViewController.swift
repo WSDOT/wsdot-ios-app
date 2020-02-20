@@ -84,11 +84,6 @@ class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITable
                             }
                         }
                     }
-                } else {
-                     DispatchQueue.main.async {
-                        AlertMessages.getConnectionAlert(backupURL: nil)
-                        
-                    }
                 }
             })
         }

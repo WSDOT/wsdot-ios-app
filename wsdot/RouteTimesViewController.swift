@@ -140,7 +140,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                                 selfValue.activityIndicator.stopAnimating()
                                 if (selfValue.showConnectionAlert){
                                     selfValue.showConnectionAlert = false
-                                    AlertMessages.getConnectionAlert(backupURL: nil)
+                                    AlertMessages.getConnectionAlert(backupURL: nil, message: WSDOTErrorStrings.ferrySailings)
                                 }
                             }
                         }

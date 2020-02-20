@@ -21,17 +21,17 @@ import NotificationBannerSwift
 
 struct AlertMessages {
 
-    static func getConnectionAlert(backupURL: String?) {
+    static func getConnectionAlert(backupURL: String?, message: String? = nil) {
         NotificationBannerQueue.default.removeAll()
         if let url = backupURL {
-            let banner = NotificationBanner(title: "We're having trouble connecting", subtitle: "Tap here for similar information on our website", style: .warning)
+            let banner = StatusBarNotificationBanner(title: message ?? "We're having trouble connecting", style: .warning)
             banner.onTap = {
                 UIApplication.shared.openURL(NSURL(string: url)! as URL)
             }
-            banner.haptic = .light
+            banner.haptic = .none
             banner.show()
         } else {
-            let banner = NotificationBanner(title: "We're having trouble connecting", subtitle: nil, style: .warning)
+            let banner = StatusBarNotificationBanner(title: message ?? "We're having trouble connecting", style: .warning)
             banner.haptic = .none
             banner.show()
         }
@@ -235,6 +235,38 @@ struct UIHelpers {
             }
         }
     }
+
+}
+
+struct WSDOTErrorStrings {
+    
+    static let tollRates = "can't download toll rates"
+    static let travelTimes = "can't download travel times"
+    static let expressLanes  = "can't download express lane status"
+    static let posts = "can't download posts"
+    static let videos = "can't download videos"
+    static let passCameras = "can't download pass cameras"
+    static let passReport = "can't download pass report"
+    static let passReports = "can't download pass reports"
+    static let highwayAlerts = "can't download highway alerts"
+    static let highwayAlert = "can't download highway alert"
+    static let amtrak = "can't download train schedules"
+    static let topics = "can't download topics"
+    static let vessels = "can't download vessel information"
+    static let ferriesSchedule = "can't download ferry schedule"
+    static let ferryDepartures = "can't download ferry departures"
+    static let ferrySailings = "can't download ferry sailings"
+    static let ferryCameras = "can't download terminal cameras"
+    static let ferryAlerts = "can't download ferry alerts"
+    static let cameras = "can't download cameras"
+    static let borderWaits = "can't download border waits"
+
+    static let favorites = "can't update favorites"
+    static let favoriteTravelTimes = "can't update travel times"
+    static let favoriteFerries = "can't update ferry schedules"
+    static let favoritePassReports = "can't update pass reports"
+    static let favoriteTollRates = "can't update toll rates"
+    static let favoriteBorderWaits = "can't update border waits"
 
 }
 

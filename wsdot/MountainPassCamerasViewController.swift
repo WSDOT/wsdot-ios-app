@@ -94,7 +94,7 @@ class MountainPassCamerasViewController: RefreshViewController, UITableViewDataS
                         if let selfValue = self{
                             selfValue.refreshControl.endRefreshing()
                             selfValue.hideOverlayView()
-                            AlertMessages.getConnectionAlert(backupURL: WsdotURLS.passes)
+                            AlertMessages.getConnectionAlert(backupURL: WsdotURLS.passes, message: WSDOTErrorStrings.passCameras)
                         }
                     }
                 }

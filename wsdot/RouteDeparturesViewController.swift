@@ -185,7 +185,7 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
                 }
 
             } else {
-                AlertMessages.getConnectionAlert(backupURL: WsdotURLS.ferries)
+                AlertMessages.getConnectionAlert(backupURL: WsdotURLS.ferries, message: "can't download departures")
             }
         })
     }

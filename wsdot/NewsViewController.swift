@@ -70,7 +70,7 @@ class NewsViewController: RefreshViewController, UITableViewDelegate, UITableVie
                         if let selfValue = self{
                             selfValue.refreshControl.endRefreshing()
                             selfValue.hideOverlayView()
-                            AlertMessages.getConnectionAlert(backupURL: "https")
+                            AlertMessages.getConnectionAlert(backupURL: "https", message: WSDOTErrorStrings.posts)
                             
                         }
                     }

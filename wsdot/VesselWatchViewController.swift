@@ -131,7 +131,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
                     DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
                             selfValue.serviceGroup.leave()
-                            AlertMessages.getConnectionAlert(backupURL: WsdotURLS.vesselWatch)
+                            AlertMessages.getConnectionAlert(backupURL: WsdotURLS.vesselWatch, message: WSDOTErrorStrings.cameras)
                         }
                     }
                 }
@@ -193,7 +193,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
                             if updateWithGroup{
                                 selfValue.serviceGroup.leave()
                             }
-                            AlertMessages.getConnectionAlert(backupURL: WsdotURLS.vesselWatch)
+                            AlertMessages.getConnectionAlert(backupURL: WsdotURLS.vesselWatch, message: WSDOTErrorStrings.vessels)
                         }
                     }
                 }

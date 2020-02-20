@@ -93,7 +93,7 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
 
                         if let selfValue = self{
                             selfValue.hideOverlayView()
-                            AlertMessages.getConnectionAlert(backupURL: nil)
+                            AlertMessages.getConnectionAlert(backupURL: nil, message: WSDOTErrorStrings.highwayAlert)
                         }
                     }
                 }

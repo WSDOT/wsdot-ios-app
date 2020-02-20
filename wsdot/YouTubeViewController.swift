@@ -72,7 +72,7 @@ class YouTubeViewController: RefreshViewController, UITableViewDelegate, UITable
                         if let selfValue = self{
                             selfValue.refreshControl.endRefreshing()
                             selfValue.hideOverlayView()
-                            AlertMessages.getConnectionAlert(backupURL: nil)
+                            AlertMessages.getConnectionAlert(backupURL: nil, message: WSDOTErrorStrings.videos)
                         }
                     }
                 }

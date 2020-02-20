@@ -71,7 +71,7 @@ class FacebookViewController: RefreshViewController, UITableViewDataSource, UITa
                         if let selfValue = self{
                             selfValue.refreshControl.endRefreshing()
                             selfValue.hideOverlayView()
-                            AlertMessages.getConnectionAlert(backupURL: nil)
+                            AlertMessages.getConnectionAlert(backupURL: nil, message: WSDOTErrorStrings.posts)
                             
                         }
                     }
