@@ -79,7 +79,6 @@ class ExpressLanesViewController: RefreshViewController, UITableViewDelegate, UI
             })
         }
     }
-    
 
     // MARK: Table View Data Source Methods
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
