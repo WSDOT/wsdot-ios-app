@@ -1,5 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '9.0'
+platform :ios, '10.0'
 use_frameworks!
 
 target 'WSDOT' do
@@ -10,12 +10,12 @@ target 'WSDOT' do
     pod 'Fabric', '~> 1.9.0'
     pod 'Crashlytics', '~> 3.12.0'
     pod 'GoogleMaps', '~> 2.6.0'
-    pod 'RealmSwift', '~> 3.18.0'
-    pod 'Alamofire', '~> 4.8.0'
+    pod 'RealmSwift', '~> 4.3.2'
+    pod 'Alamofire', '~> 5.0.0'
     pod 'SwiftyJSON', '~> 4.2.0'
     pod 'SDWebImage', '~> 4.3.3'
-    pod 'EasyTipView', '~> 2.0.1'
-    pod 'NotificationBannerSwift', '2.0.1'
+    pod 'EasyTipView', '~> 2.0.4'
+    pod 'NotificationBannerSwift', '3.0.2'
 end
 
 target 'WSDOTTests' do
@@ -26,18 +26,18 @@ target 'WSDOTTests' do
     pod 'Fabric', '~> 1.9.0'
     pod 'Crashlytics', '~> 3.12.0'
     pod 'GoogleMaps', '~> 2.6.0'
-    pod 'RealmSwift', '~> 3.18.0'
-    pod 'Alamofire', '~> 4.8.0'
+    pod 'RealmSwift', '~> 4.3.2'
+    pod 'Alamofire', '~> 5.0.0'
     pod 'SwiftyJSON', '~> 4.2.0'
     pod 'SDWebImage', '~> 4.3.3'
-    pod 'EasyTipView', '~> 2.0.1'
-    pod 'NotificationBannerSwift', '2.0.1'
+    pod 'EasyTipView', '~> 2.0.4'
+    pod 'NotificationBannerSwift', '3.0.2'
 end
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
-      config.build_settings['SWIFT_VERSION'] = '4.2'
+      config.build_settings['SWIFT_VERSION'] = '5.0'
     end
   end
 end

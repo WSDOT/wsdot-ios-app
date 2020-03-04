@@ -188,17 +188,17 @@ class TravelTimesViewController: RefreshViewController, UITableViewDelegate, UIT
             
             cell.contentView.addSubview(routeView)
             
-            let leadingSpaceConstraintForRouteView = NSLayoutConstraint(item: routeView.contentView, attribute: .leading, relatedBy: .equal, toItem: cell.routeLabel, attribute: .leading, multiplier: 1, constant: 0);
+            let leadingSpaceConstraintForRouteView = NSLayoutConstraint(item: routeView.contentView as Any, attribute: .leading, relatedBy: .equal, toItem: cell.routeLabel, attribute: .leading, multiplier: 1, constant: 0);
             cell.contentView.addConstraint(leadingSpaceConstraintForRouteView)
             
-            let trailingSpaceConstraintForRouteView = NSLayoutConstraint(item: routeView.contentView, attribute: .trailing, relatedBy: .equal, toItem: cell.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8);
+            let trailingSpaceConstraintForRouteView = NSLayoutConstraint(item: routeView.contentView as Any, attribute: .trailing, relatedBy: .equal, toItem: cell.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8);
             cell.contentView.addConstraint(trailingSpaceConstraintForRouteView)
             
-            let topSpaceConstraintForRouteView = NSLayoutConstraint(item: routeView.contentView, attribute: .top, relatedBy: .equal, toItem: (lastRouteView == nil ? cell.routeLabel : lastRouteView!.updatedLabel), attribute: .bottom, multiplier: 1, constant: 8);
+            let topSpaceConstraintForRouteView = NSLayoutConstraint(item: routeView.contentView as Any, attribute: .top, relatedBy: .equal, toItem: (lastRouteView == nil ? cell.routeLabel : lastRouteView!.updatedLabel), attribute: .bottom, multiplier: 1, constant: 8);
             cell.contentView.addConstraint(topSpaceConstraintForRouteView)
             
             if travelTimeGroup.routes.index(of: route) == travelTimeGroup.routes.index(of: travelTimeGroup.routes.last!) {
-                let bottomSpaceConstraint = NSLayoutConstraint(item: routeView.updatedLabel, attribute: .bottom, relatedBy: .equal, toItem: cell.contentView, attribute: .bottom, multiplier: 1, constant: -16)
+                let bottomSpaceConstraint = NSLayoutConstraint(item: routeView.updatedLabel as Any, attribute: .bottom, relatedBy: .equal, toItem: cell.contentView, attribute: .bottom, multiplier: 1, constant: -16)
                 cell.contentView.addConstraint(bottomSpaceConstraint)
                 routeView.line.isHidden = true
             }

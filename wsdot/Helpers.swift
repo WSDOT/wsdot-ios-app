@@ -26,7 +26,7 @@ struct AlertMessages {
         if let url = backupURL {
             let banner = StatusBarNotificationBanner(title: message ?? "We're having trouble connecting", style: .warning)
             banner.onTap = {
-                UIApplication.shared.openURL(NSURL(string: url)! as URL)
+                UIApplication.shared.open(NSURL(string: url)! as URL)
             }
             banner.haptic = .none
             banner.show()
@@ -63,7 +63,7 @@ struct AlertMessages {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let settingsAction = UIAlertAction(title: "Open Settings", style: .default) { (alertAction) in
             if let appSettings = URL(string: UIApplication.openSettingsURLString) {
-                UIApplication.shared.openURL(appSettings)
+                UIApplication.shared.open(appSettings)
             }
         }
         alert.addAction(settingsAction)

@@ -89,7 +89,7 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate,
             mail.setSubject("WSDOT iOS v\(version) Feedback")
             present(mail, animated: true, completion: nil)
         } else {
-            UIApplication.shared.openURL(URL(string: "mailto:")!)
+            UIApplication.shared.open(URL(string: "mailto:")!)
         }
     }
     
@@ -103,7 +103,7 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate,
             mail.setSubject("Ferries Feedback")
             present(mail, animated: true, completion: nil)
         } else {
-            UIApplication.shared.openURL(URL(string: "mailto:")!)
+            UIApplication.shared.open(URL(string: "mailto:")!)
         }
     
     }
@@ -123,7 +123,7 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate,
             mail.setMessageBody("<b>Issue Description:<b><br><br> <b>Steps to Reproduce Issue (if applicable):</b><br><br>", isHTML: true)
             present(mail, animated: true, completion: nil)
         } else {
-            UIApplication.shared.openURL(URL(string: "mailto:")!)
+            UIApplication.shared.open(URL(string: "mailto:")!)
         }
     }
     

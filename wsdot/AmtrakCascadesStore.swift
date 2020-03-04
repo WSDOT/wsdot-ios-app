@@ -31,10 +31,10 @@ class AmtrakCascadesStore {
         let URL = "https://www.wsdot.wa.gov/traffic/api/amtrak/Schedulerest.svc/GetScheduleAsJson?AccessCode=" + ApiKeys.getWSDOTKey() + "&StatusDate="
             + TimeUtils.formatTime(date, format: "MM/dd/yyyy") + "&TrainNumber=-1&FromLocation=" + originId + "&ToLocation=" + destId
         
-        Alamofire.request(URL).validate().responseJSON { response in
+        AF.request(URL).validate().responseJSON { response in
             switch response.result {
             case .success:
-                if let value = response.result.value {
+                if let value = response.data {
                     let json = JSON(value)
                     let serviceArrays = parseServiceItemsJSON(json)
                     let servicePairs = getServiceStopPairs(serviceArrays)

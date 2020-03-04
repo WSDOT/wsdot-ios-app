@@ -27,18 +27,18 @@ class BestTimesToTravelStore {
     typealias FetchBestTimesToTravelAvailablityCompletion = (_ data: Bool, _ error: Error?) -> ()
     typealias FetchBestTimesToTravelCompletion = (_ data: BestTimesToTravelItem?, _ error: Error?) -> ()
    
-    static var sessionManager: SessionManager?
+    static var session: Session?
    
     static func isBestTimesToTravelAvailable(_ completion: @escaping FetchBestTimesToTravelAvailablityCompletion) {
 
         let configuration = URLSessionConfiguration.default
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
-        sessionManager = Alamofire.SessionManager(configuration: configuration)
+        session = Session(configuration: configuration)
 
-        sessionManager!.request("https://data.wsdot.wa.gov/mobile/travelCharts.js").validate().responseJSON { response in
+        session!.request("https://data.wsdot.wa.gov/mobile/travelCharts.js").validate().responseJSON { response in
             switch response.result {
             case .success:
-                if let value = response.result.value {
+                if let value = response.data {
                     let json = JSON(value)
                     completion(json["available"].boolValue, nil)
                 }
@@ -53,12 +53,12 @@ class BestTimesToTravelStore {
         
         let configuration = URLSessionConfiguration.default
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
-        sessionManager = Alamofire.SessionManager(configuration: configuration)
+        session = Session(configuration: configuration)
 
-        sessionManager!.request("https://data.wsdot.wa.gov/mobile/travelCharts.js").validate().responseJSON { response in
+        session!.request("https://data.wsdot.wa.gov/mobile/travelCharts.js").validate().responseJSON { response in
             switch response.result {
             case .success:
-                if let value = response.result.value {
+                if let value = response.data {
                     let json = JSON(value)
                     let bestTimes = parseBestTimesJSON(json)
                     completion(bestTimes, nil)

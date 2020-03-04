@@ -79,10 +79,10 @@ class CamerasStore {
          
         if ((delta > CachesStore.updateTime) || force){
             
-            Alamofire.request("https://data.wsdot.wa.gov/mobile/Cameras.js").validate().responseJSON { response in
+            AF.request("https://data.wsdot.wa.gov/mobile/Cameras.js").validate().responseJSON { response in
                 switch response.result {
                 case .success:
-                    if let value = response.result.value {
+                    if let value = response.data {
                         DispatchQueue.global().async{
                             let json = JSON(value)
                             self.saveCameras(json)

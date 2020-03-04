@@ -57,7 +57,7 @@ class CameraPageViewController: UIPageViewController, UIPageViewControllerDataSo
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
-        let currentIndex = pages.index(of: viewController as! CameraViewController)!
+        let currentIndex = pages.firstIndex(of: viewController as! CameraViewController)!
         
         if (pages.count == 1 || currentIndex - 1 < 0) {
             return nil
@@ -69,7 +69,7 @@ class CameraPageViewController: UIPageViewController, UIPageViewControllerDataSo
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
-        let currentIndex = pages.index(of: viewController as! CameraViewController)!
+        let currentIndex = pages.firstIndex(of: viewController as! CameraViewController)!
         
         if (pages.count == 1 || currentIndex + 1 >= pages.count) {
             return nil

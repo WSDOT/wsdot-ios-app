@@ -114,7 +114,7 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
             return nil
         }
         
-        let currentIndex = pages.index(of: viewController as! AlertContentViewController)!
+        let currentIndex = pages.firstIndex(of: viewController as! AlertContentViewController)!
         let previousIndex = abs((currentIndex - 1) % pages.count)
         return pages[previousIndex]
     }
@@ -125,7 +125,7 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
             return nil
         }
         
-        let currentIndex = pages.index(of: viewController as! AlertContentViewController)!
+        let currentIndex = pages.firstIndex(of: viewController as! AlertContentViewController)!
         let nextIndex = abs((currentIndex + 1) % pages.count)
         return pages[nextIndex]
     }

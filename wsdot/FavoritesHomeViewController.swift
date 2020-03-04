@@ -488,21 +488,17 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             
                 travelTimeCell.contentView.addSubview(routeView)
             
-                let leadingSpaceConstraintForRouteView = NSLayoutConstraint(item: routeView.contentView, attribute: .leading, relatedBy: .equal, toItem: travelTimeCell.routeLabel, attribute: .leading, multiplier: 1, constant: 0);
-                travelTimeCell.contentView.addConstraint(leadingSpaceConstraintForRouteView)
-            
-                let trailingSpaceConstraintForRouteView = NSLayoutConstraint(item: routeView.contentView, attribute: .trailing, relatedBy: .equal, toItem: travelTimeCell.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8);
-                travelTimeCell.contentView.addConstraint(trailingSpaceConstraintForRouteView)
-            
-                let topSpaceConstraintForRouteView = NSLayoutConstraint(item: routeView.contentView, attribute: .top, relatedBy: .equal, toItem: (lastRouteView == nil ? travelTimeCell.routeLabel : lastRouteView!.updatedLabel), attribute: .bottom, multiplier: 1, constant: 8);
-                travelTimeCell.contentView.addConstraint(topSpaceConstraintForRouteView)
-            
+                routeView.contentView.leadingAnchor.constraint(equalTo: travelTimeCell.routeLabel.leadingAnchor).isActive = true
+                routeView.contentView.trailingAnchor.constraint(equalTo: travelTimeCell.routeLabel.trailingAnchor, constant: 8).isActive = true
+                routeView.contentView.topAnchor.constraint(equalTo: (lastRouteView == nil ? travelTimeCell.routeLabel.bottomAnchor : lastRouteView!.updatedLabel.bottomAnchor), constant: (lastRouteView == nil ? 0 : 8)).isActive = true
+
                 if travelTimeGroup.routes.index(of: route) == travelTimeGroup.routes.index(of: travelTimeGroup.routes.last!) {
-                    let bottomSpaceConstraint = NSLayoutConstraint(item: routeView.updatedLabel, attribute: .bottom, relatedBy: .equal, toItem: travelTimeCell.contentView, attribute: .bottom, multiplier: 1, constant: -16)
-                    travelTimeCell.contentView.addConstraint(bottomSpaceConstraint)
+                       
+                    routeView.updatedLabel.bottomAnchor.constraint(equalTo: travelTimeCell.contentView.bottomAnchor, constant: -16).isActive = true
+ 
                     routeView.line.isHidden = true
                 }
-            
+
                 travelTimeCell.dynamicRouteViews.append(routeView)
                 lastRouteView = routeView
             
@@ -602,19 +598,13 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 }
             
                 tollRateCell.contentView.addSubview(tripView)
-   
-                let leadingSpaceConstraintForRouteView = NSLayoutConstraint(item: tripView.contentView, attribute: .leading, relatedBy: .equal, toItem: tollRateCell.routeLabel, attribute: .leading, multiplier: 1, constant: 0);
-                tollRateCell.contentView.addConstraint(leadingSpaceConstraintForRouteView)
-            
-                let trailingSpaceConstraintForRouteView = NSLayoutConstraint(item: tripView.contentView, attribute: .trailing, relatedBy: .equal, toItem: tollRateCell.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8);
-                tollRateCell.contentView.addConstraint(trailingSpaceConstraintForRouteView)
- 
-                let topSpaceConstraintForRouteView = NSLayoutConstraint(item: tripView.contentView, attribute: .top, relatedBy: .equal, toItem: (lastTripView == nil ? tollRateCell.routeLabel : lastTripView!.bottomLabel), attribute: .bottom, multiplier: 1, constant: (lastTripView == nil ? 0 : 8));
-                tollRateCell.contentView.addConstraint(topSpaceConstraintForRouteView)
-            
-                if tollSign.trips.index(of: trip) == tollSign.trips.index(of: tollSign.trips.last!) {
-                    let bottomSpaceConstraint = NSLayoutConstraint(item: tripView.bottomLabel, attribute: .bottom, relatedBy: .equal, toItem: tollRateCell.contentView, attribute: .bottom, multiplier: 1, constant: -16)
-                    tollRateCell.contentView.addConstraint(bottomSpaceConstraint)
+                  
+                tripView.contentView.leadingAnchor.constraint(equalTo: tollRateCell.routeLabel.leadingAnchor).isActive = true
+                tripView.contentView.trailingAnchor.constraint(equalTo: tollRateCell.routeLabel.trailingAnchor, constant: 8).isActive = true
+                tripView.contentView.topAnchor.constraint(equalTo: (lastTripView == nil ? tollRateCell.routeLabel.bottomAnchor : lastTripView!.bottomLabel.bottomAnchor), constant: (lastTripView == nil ? 0 : 8)).isActive = true
+                 if tollSign.trips.index(of: trip) == tollSign.trips.index(of: tollSign.trips.last!) {
+                           
+                    tripView.bottomLabel.bottomAnchor.constraint(equalTo: tollRateCell.contentView.bottomAnchor, constant: -16).isActive = true
                     tripView.line.isHidden = true
                 }
             

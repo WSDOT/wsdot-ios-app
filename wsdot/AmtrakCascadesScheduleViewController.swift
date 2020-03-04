@@ -124,7 +124,7 @@ class AmtrakCascadesScheduleViewController: UITableViewController, CLLocationMan
         
         }
         
-        let index = originTableData.index(of: closest.station.name)
+        let index = originTableData.firstIndex(of: closest.station.name)
         
         originCell.selection.text = originTableData[index!]
         originIndex = index!
@@ -153,18 +153,18 @@ class AmtrakCascadesScheduleViewController: UITableViewController, CLLocationMan
             case 0: // day selection
                 destinationViewController.titleText = "Departure Day"
                 destinationViewController.menu_options = dayTableData
-                destinationViewController.selectedIndex = dayTableData.index(of: dayCell.selection.text!)!
+                destinationViewController.selectedIndex = dayTableData.firstIndex(of: dayCell.selection.text!)!
                 break
             case 1: // Origin selection
             
                 destinationViewController.titleText = "Origin"
                 destinationViewController.menu_options = originTableData
-                destinationViewController.selectedIndex = originTableData.index(of: originCell.selection.text!)!
+                destinationViewController.selectedIndex = originTableData.firstIndex(of: originCell.selection.text!)!
                 break
             case 2: // Destination selection
                 destinationViewController.titleText = "Destination"
                 destinationViewController.menu_options = destinationTableData
-                destinationViewController.selectedIndex = destinationTableData.index(of: destinationCell.selection.text!)!
+                destinationViewController.selectedIndex = destinationTableData.firstIndex(of: destinationCell.selection.text!)!
                 break
             default: break
             }
@@ -183,7 +183,7 @@ class AmtrakCascadesScheduleViewController: UITableViewController, CLLocationMan
             destinationViewController.destId = AmtrakCascadesStore.stationIdsMap[destinationTableData[destinationIndex]]!
         
             if destinationViewController.destId == "N/A" {
-                destinationViewController.title = "Departing " + originTableData[originTableData.index(of: originCell.selection.text!)!]
+                destinationViewController.title = "Departing " + originTableData[originTableData.firstIndex(of: originCell.selection.text!)!]
             } else {
                 destinationViewController.title = originTableData[originIndex] + " to " + destinationTableData[destinationIndex]
             }

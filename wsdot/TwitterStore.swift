@@ -34,10 +34,10 @@ class TwitterStore {
             url = url + screenNameValue
         }
         
-        Alamofire.request(url).validate().responseJSON { response in
+        AF.request(url).validate().responseJSON { response in
             switch response.result {
             case .success:
-                if let value = response.result.value {
+                if let value = response.data {
                     let json = JSON(value)
                     let videoItems = parsePostsJSON(json)
                     completion(videoItems, nil)

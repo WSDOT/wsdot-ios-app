@@ -31,8 +31,8 @@ class EventStore {
     private static let bannerTextKey = "event_banner_text"
     private static let themeIdKey = "event_theme_id"
    
-    static var pushSessionManager: SessionManager?
-    static var eventSessionManager: SessionManager?
+    static var pushSession: Session?
+    static var eventSession: Session?
 
     // Checks server for version of notifcation topics.
     // If the topics list has been updated, saves the new tipview message
@@ -41,12 +41,12 @@ class EventStore {
         
         let configuration = URLSessionConfiguration.default
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
-        pushSessionManager = Alamofire.SessionManager(configuration: configuration)
+        pushSession = Session(configuration: configuration)
 
-        pushSessionManager!.request("https://data.wsdot.wa.gov/mobile/NotificationTopicsVersion.js").validate().responseJSON { response in
+        pushSession!.request("https://data.wsdot.wa.gov/mobile/NotificationTopicsVersion.js").validate().responseJSON { response in
             switch response.result {
             case .success:
-                if let value = response.result.value {
+                if let value = response.data {
                     let json = JSON(value)
                     
                     let prevVersion = UserDefaults.standard.integer(forKey: UserDefaultsKeys.pushNotificationTopicVersion)
@@ -67,12 +67,12 @@ class EventStore {
         
         let configuration = URLSessionConfiguration.default
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
-        eventSessionManager = Alamofire.SessionManager(configuration: configuration)
+        eventSession = Session(configuration: configuration)
 
-        eventSessionManager!.request("https://data.wsdot.wa.gov/mobile/EventStatus.js").validate().responseJSON { response in
+        eventSession!.request("https://data.wsdot.wa.gov/mobile/EventStatus.js").validate().responseJSON { response in
             switch response.result {
             case .success:
-                if let value = response.result.value {
+                if let value = response.data {
                     let json = JSON(value)
                     saveEventJSON(json)
                 }
