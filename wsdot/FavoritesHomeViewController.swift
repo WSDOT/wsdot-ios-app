@@ -583,10 +583,8 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 
                 if tollSign.stateRoute == 405 {
                     tripView.topLabel.text = "to \(trip.endLocationName)"
-                    tripView.topLabel.font = tripView.topLabel.font.withSize(17)
                 } else {
                     tripView.topLabel.text = "Carpools and motorcycles free"
-                    tripView.topLabel.font = tripView.topLabel.font.withSize(14)
                 }
             
                 tripView.bottomLabel.text = TimeUtils.timeAgoSinceDate(date: trip.updatedAt, numericDates: true)
