@@ -1,9 +1,9 @@
 PODS:
   - Alamofire (5.0.5)
-  - Crashlytics (3.12.0):
-    - Fabric (~> 1.9.0)
+  - Crashlytics (3.14.0):
+    - Fabric (~> 1.10.2)
   - EasyTipView (2.0.4)
-  - Fabric (1.9.0)
+  - Fabric (1.10.2)
   - Firebase/AdMob (6.21.0):
     - Firebase/CoreOnly
     - Google-Mobile-Ads-SDK (~> 7.50)
@@ -147,9 +147,9 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 5.0.0)
-  - Crashlytics (~> 3.12.0)
+  - Crashlytics (~> 3.14.0)
   - EasyTipView (~> 2.0.4)
-  - Fabric (~> 1.9.0)
+  - Fabric (~> 1.10.2)
   - Firebase/AdMob
   - Firebase/Core
   - Firebase/Messaging
@@ -199,9 +199,9 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: df2f8f826963b08b9a870791ad48e07a10090b2e
-  Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
+  Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
   EasyTipView: 4f8beae0a82db2ca4a9b5fd658785fc5f61d296b
-  Fabric: f988e33c97f08930a413e08123064d2e5f68d655
+  Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   Firebase: f378c80340dd41c0ad0914af740c021eb282a04b
   FirebaseABTesting: 821a3a3e4a145987e80fee3657c4de1cb9adf693
   FirebaseAnalytics: a1a0b3327ceb5cd5b4bacffdb293f6c909aa087d
@@ -233,6 +233,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 795cdafaa91976cac0416278dfc53236c6ea85b8
+PODFILE CHECKSUM: a4fb891ee4fcdb171f2a076eaee70a131dee6c05
 
 COCOAPODS: 1.9.1
