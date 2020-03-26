@@ -249,9 +249,6 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
             let zoom = VesselWatchStore.getRouteZoom(scheduleId: routeId)
             
             embeddedMapViewController.goToLocation(location: location, zoom: zoom)
-
-            // don't save vessel watch locations
-            embeddedMapViewController.disableSaveLastLocation()
   
         }
         
