@@ -314,7 +314,10 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
                 }
             }
             
-            if (alert.startTime.timeIntervalSince1970 < Date().timeIntervalSince1970 && !alertEnded) {
+            if (alert.startTime.timeIntervalSince1970 < Date().timeIntervalSince1970
+                && !alertEnded
+                && alert.startLatitude != 0
+                && alert.endLongitude != 0) {
                 
                 let alertLocation = CLLocationCoordinate2D(latitude: alert.startLatitude, longitude: alert.startLongitude)
                 let marker = GMSMarker(position: alertLocation)
