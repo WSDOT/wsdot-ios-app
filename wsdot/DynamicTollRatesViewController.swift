@@ -247,10 +247,8 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
             
             if tollSign.stateRoute == 405 {
                 tripView.topLabel.text = "to \(trip.endLocationName)"
-                tripView.topLabel.font = tripView.topLabel.font.withSize(17)
             } else {
                 tripView.topLabel.text = "Carpools and motorcycles free"
-                tripView.topLabel.font = tripView.topLabel.font.withSize(14)
             }
                 
             tripView.bottomLabel.text = TimeUtils.timeAgoSinceDate(date: trip.updatedAt, numericDates: true)
@@ -258,7 +256,7 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
             if (trip.message == ""){
                 tripView.valueLabel.text = "$" + String(format: "%.2f", locale: Locale.current, arguments: [trip.toll])
             } else {
-                tripView.valueLabel.adjustsFontSizeToFitWidth = true
+                //tripView.valueLabel.adjustsFontSizeToFitWidth = true
                 tripView.valueLabel.allowsDefaultTighteningForTruncation = true
                 tripView.valueLabel.text = trip.message
             }
@@ -266,23 +264,11 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
             cell.contentView.addSubview(tripView)
    
             tripView.contentView.leadingAnchor.constraint(equalTo: cell.routeLabel.leadingAnchor).isActive = true
-            //let leadingSpaceConstraintForRouteView = NSLayoutConstraint(item: tripView.contentView, attribute: .leading, relatedBy: .equal, toItem: cell.routeLabel, attribute: .leading, multiplier: 1, constant: 0);
-            //cell.contentView.addConstraint(leadingSpaceConstraintForRouteView)
-            
             tripView.contentView.trailingAnchor.constraint(equalTo: cell.routeLabel.trailingAnchor, constant: 8).isActive = true
-        //    let trailingSpaceConstraintForRouteView = NSLayoutConstraint(item: tripView.contentView, attribute: .trailing, relatedBy: .equal, toItem: cell.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8);
-        //    cell.contentView.addConstraint(trailingSpaceConstraintForRouteView)
- 
             tripView.contentView.topAnchor.constraint(equalTo: (lastTripView == nil ? cell.routeLabel.bottomAnchor : lastTripView!.bottomLabel.bottomAnchor), constant: (lastTripView == nil ? 0 : 8)).isActive = true
-           // let topSpaceConstraintForRouteView = NSLayoutConstraint(item: tripView.contentView, attribute: .top, relatedBy: .equal, toItem: (lastTripView == nil ? cell.routeLabel : lastTripView!.bottomLabel), attribute: .bottom, multiplier: 1, constant: (lastTripView == nil ? 0 : 8));
-          //  cell.contentView.addConstraint(topSpaceConstraintForRouteView)
-              
             
             if tollSign.trips.index(of: trip) == tollSign.trips.index(of: tollSign.trips.last!) {
-            
                 tripView.bottomLabel.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor, constant: -16).isActive = true
-               // let bottomSpaceConstraint = NSLayoutConstraint(item: tripView.bottomLabel, attribute: .bottom, relatedBy: .equal, toItem: cell.contentView, attribute: .bottom, multiplier: 1, constant: -16)
-              //  cell.contentView.addConstraint(bottomSpaceConstraint)
                 tripView.line.isHidden = true
             }
             

@@ -73,9 +73,9 @@ class MountainPassReportViewController: UIViewController, GADBannerViewDelegate 
         
         elevationLabel.text = String(withPassItem.elevationInFeet) + " ft"
         conditionsLabel.text = withPassItem.roadCondition
-        restrictionOneTitleLabel.text = "Restrictions " + withPassItem.restrictionOneTravelDirection
+        restrictionOneTitleLabel.text = "Restrictions " + withPassItem.restrictionOneTravelDirection + ":"
         restrictionOneLabel.text = withPassItem.restrictionOneText
-        restrictionTwoTitleLabel.text = "Restrictions " + withPassItem.restrictionTwoTravelDirection
+        restrictionTwoTitleLabel.text = "Restrictions " + withPassItem.restrictionTwoTravelDirection + ":"
         restrictionTwoLabel.text = withPassItem.restrictionTwoText
     
     }
