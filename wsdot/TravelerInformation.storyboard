@@ -31,7 +31,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qhy-V3-UzG">
-                                                    <rect key="frame" x="23" y="11" width="297" height="24"/>
+                                                    <rect key="frame" x="15" y="11" width="305" height="24"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -52,7 +52,7 @@
                                                 <constraint firstItem="qhy-V3-UzG" firstAttribute="top" secondItem="MAF-Sr-dd1" secondAttribute="topMargin" id="KNB-VB-n4w"/>
                                                 <constraint firstItem="Eks-nF-ubs" firstAttribute="trailing" secondItem="MAF-Sr-dd1" secondAttribute="trailingMargin" id="acM-NG-PC9"/>
                                                 <constraint firstItem="Eks-nF-ubs" firstAttribute="top" secondItem="MAF-Sr-dd1" secondAttribute="topMargin" id="hYb-fK-Nh9"/>
-                                                <constraint firstItem="qhy-V3-UzG" firstAttribute="leading" secondItem="MAF-Sr-dd1" secondAttribute="leadingMargin" constant="8" id="s8B-sE-aWl"/>
+                                                <constraint firstItem="qhy-V3-UzG" firstAttribute="leading" secondItem="MAF-Sr-dd1" secondAttribute="leadingMargin" id="s8B-sE-aWl"/>
                                                 <constraint firstItem="Eks-nF-ubs" firstAttribute="trailing" secondItem="MAF-Sr-dd1" secondAttribute="trailingMargin" id="vz2-Yr-nK7"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -479,16 +479,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6ST-qf-VRd">
-                                                    <rect key="frame" x="8" y="8" width="333" height="45"/>
+                                                    <rect key="frame" x="15" y="8" width="326" height="45"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cSh-8O-NsQ" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="333" height="21"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="326" height="21"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4W7-W7-Lqc">
-                                                            <rect key="frame" x="0.0" y="29" width="333" height="16"/>
+                                                            <rect key="frame" x="0.0" y="29" width="326" height="16"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                             <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -501,7 +501,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="6ST-qf-VRd" secondAttribute="trailing" constant="8" id="WP9-hz-0go"/>
                                                 <constraint firstAttribute="bottom" secondItem="6ST-qf-VRd" secondAttribute="bottom" constant="8" id="gZH-LV-QaL"/>
                                                 <constraint firstItem="6ST-qf-VRd" firstAttribute="top" secondItem="elo-mp-Chi" secondAttribute="top" constant="8" id="gx6-Tk-biw"/>
-                                                <constraint firstItem="6ST-qf-VRd" firstAttribute="leading" secondItem="elo-mp-Chi" secondAttribute="leading" constant="8" id="pkx-wL-Q2h"/>
+                                                <constraint firstItem="6ST-qf-VRd" firstAttribute="leading" secondItem="elo-mp-Chi" secondAttribute="leadingMargin" id="pkx-wL-Q2h"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
