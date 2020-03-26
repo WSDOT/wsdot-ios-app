@@ -554,6 +554,15 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         return true
     }
     
+    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
+        print("camera idle")
+        if let mapView = embeddedMapViewController.view as? GMSMapView {
+            UserDefaults.standard.set(mapView.camera.target.latitude, forKey: UserDefaultsKeys.mapLat)
+            UserDefaults.standard.set(mapView.camera.target.longitude, forKey: UserDefaultsKeys.mapLon)
+            UserDefaults.standard.set(mapView.camera.zoom, forKey: UserDefaultsKeys.mapZoom)
+        }
+    }
+    
     func mapViewDidStartTileRendering(_ mapView: GMSMapView) {
         serviceGroup.enter()
     }

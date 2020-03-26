@@ -36,8 +36,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
     weak var markerDelegate: MapMarkerDelegate? = nil
     weak var mapDelegate: GMSMapViewDelegate? = nil
     
-    // MapViewVC will save and attempt to load the last viewed location by default.
-    fileprivate var saveLastLocation: Bool = true
     
     var locationManager = CLLocationManager()
     
@@ -108,23 +106,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        
-        if (saveLastLocation) {
-            if let mapView = view as? GMSMapView{
-                UserDefaults.standard.set(mapView.camera.target.latitude, forKey: UserDefaultsKeys.mapLat)
-                UserDefaults.standard.set(mapView.camera.target.longitude, forKey: UserDefaultsKeys.mapLon)
-                UserDefaults.standard.set(mapView.camera.zoom, forKey: UserDefaultsKeys.mapZoom)
-            }
-        }
-        
-        super.viewWillDisappear(animated)
-    }
-    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         locationManager.stopUpdatingLocation()
     }
+
     
     func goToUsersLocation() {
         if let mapView = view as? GMSMapView{
@@ -149,10 +135,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
         }
     }
     
-    func disableSaveLastLocation() {
-        self.saveLastLocation = false
-    }
-    
+
     // CLLocationManagerDelegate methods
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if let mapView = view as? GMSMapView{
