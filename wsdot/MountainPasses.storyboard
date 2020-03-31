@@ -406,7 +406,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w96-JB-p0E">
-                                        <rect key="frame" x="28" y="126.5" width="42" height="20.5"/>
+                                        <rect key="frame" x="28" y="126.5" width="319" height="20.5"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -474,7 +474,7 @@
                                     <constraint firstItem="Cf1-Us-R75" firstAttribute="trailing" secondItem="QZo-EJ-MLo" secondAttribute="trailing" id="7fF-aL-DnX"/>
                                     <constraint firstItem="EvI-WD-fdq" firstAttribute="top" secondItem="dWd-C4-yg0" secondAttribute="bottom" constant="8" id="B2B-Jk-muS"/>
                                     <constraint firstItem="5in-0o-jzE" firstAttribute="leading" secondItem="xOo-Ts-RtT" secondAttribute="leading" constant="28" id="BOV-4X-Wi1"/>
-                                    <constraint firstAttribute="trailing" secondItem="w96-JB-p0E" secondAttribute="trailing" constant="28" id="GRE-Lj-2N9"/>
+                                    <constraint firstItem="w96-JB-p0E" firstAttribute="trailing" secondItem="Cf1-Us-R75" secondAttribute="trailing" id="ETP-qO-q7l"/>
                                     <constraint firstAttribute="bottom" secondItem="EvI-WD-fdq" secondAttribute="bottom" constant="8" id="IIU-c7-e0R"/>
                                     <constraint firstItem="KOU-os-Mdi" firstAttribute="leading" secondItem="xOo-Ts-RtT" secondAttribute="leading" constant="28" id="JWx-Lw-G8z"/>
                                     <constraint firstItem="QZo-EJ-MLo" firstAttribute="trailing" secondItem="F0I-n0-you" secondAttribute="trailing" id="K3W-aA-IuD"/>
@@ -491,6 +491,7 @@
                                     <constraint firstItem="ZD3-0M-jAg" firstAttribute="leading" secondItem="vY9-Yu-gcu" secondAttribute="leading" id="dPT-LU-Nl3"/>
                                     <constraint firstItem="JIu-b8-wvb" firstAttribute="trailing" secondItem="Dnq-P1-Iuu" secondAttribute="trailing" id="dcy-ja-OZV"/>
                                     <constraint firstItem="vY9-Yu-gcu" firstAttribute="trailing" secondItem="Cf1-Us-R75" secondAttribute="trailing" id="eLp-oU-v5Q"/>
+                                    <constraint firstAttribute="trailing" secondItem="EvI-WD-fdq" secondAttribute="trailing" constant="28" id="fs9-N3-jAQ"/>
                                     <constraint firstItem="Dnq-P1-Iuu" firstAttribute="leading" secondItem="JIu-b8-wvb" secondAttribute="leading" id="ftF-aG-DKo"/>
                                     <constraint firstItem="KOU-os-Mdi" firstAttribute="trailing" secondItem="ZD3-0M-jAg" secondAttribute="trailing" id="g92-tj-dZl"/>
                                     <constraint firstItem="ZD3-0M-jAg" firstAttribute="top" secondItem="KOU-os-Mdi" secondAttribute="bottom" constant="8" symbolic="YES" id="ho0-py-dm3"/>
