@@ -62,7 +62,7 @@ class MountainPassStore {
          
         if ((delta > CachesStore.updateTime) || force){
             
-            AF.request("https://data.wsdot.wa.gov/mobile/MountainPassConditionsTEST.js").validate().responseJSON { response in
+            AF.request("https://data.wsdot.wa.gov/mobile/MountainPassConditions.js").validate().responseJSON { response in
                 switch response.result {
                 case .success:
                     if let value = response.data {

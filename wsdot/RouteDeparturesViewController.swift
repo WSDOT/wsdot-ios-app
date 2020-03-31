@@ -156,7 +156,7 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
                     self.title = routeItemValue.routeDescription
 
                     if (routeItemValue.terminalPairs.count == 2) {
-                        self.sailingButton.setTitle("Leave \(routeItemValue.terminalPairs[0].aTerminalName)", for: UIControl.State())
+                        self.sailingButton.setTitle("Departing \(routeItemValue.terminalPairs[0].aTerminalName)", for: UIControl.State())
                     } else {
                         self.sailingButton.setTitle("\(routeItemValue.terminalPairs[0].aTerminalName) to \(routeItemValue.terminalPairs[0].bTterminalName)", for: UIControl.State())
                     }
@@ -203,7 +203,7 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
         routeTimesVC.changeTerminal(terminal)
         
         if (self.routeItem!.terminalPairs.count == 2){
-            sailingButton.setTitle("Leave \(terminal.aTerminalName)", for: UIControl.State())
+            sailingButton.setTitle("Departing \(terminal.aTerminalName)", for: UIControl.State())
         } else {
             sailingButton.setTitle("\(terminal.aTerminalName) to \(terminal.bTterminalName)", for: UIControl.State())
         }
@@ -251,7 +251,7 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
             destinationViewController.my_parent = self
             
             if (self.routeItem!.terminalPairs.count == 2) {
-                destinationViewController.menu_options = self.routeItem!.terminalPairs.map { return "Leave \($0.aTerminalName)" }
+                destinationViewController.menu_options = self.routeItem!.terminalPairs.map { return "Departing \($0.aTerminalName)" }
             } else {
                 destinationViewController.menu_options = self.routeItem!.terminalPairs.map { return "\($0.aTerminalName) to \($0.bTterminalName)" }
             }
