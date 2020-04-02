@@ -54,9 +54,11 @@ class HighwayAlertsStore {
                 delta = deltaValue
             }
          
-            if ((delta > CachesStore.alertsCacheTime) || force){
+            if ((delta > CachesStore.alertsCacheTime) || force) {
             
-                AF.request("https://data.wsdot.wa.gov/mobile/HighwayAlerts.js").validate().responseJSON { response in
+                let request = NetworkUtils.getNoCacheJSONRequest(forUrl: "https://data.wsdot.wa.gov/mobile/HighwayAlerts.js")
+                
+                AF.request(request).validate().responseJSON { response in
                     switch response.result {
                     case .success:
                         if let value = response.data {

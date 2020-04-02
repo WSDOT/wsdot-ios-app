@@ -88,7 +88,6 @@ class FerryRealmStore {
             }
         
             if ((delta > CachesStore.updateTime) || force){
-            
                 AF.request("https://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js").validate().responseJSON { response in
                     switch response.result {
                     case .success:
