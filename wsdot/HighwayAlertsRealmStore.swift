@@ -56,7 +56,7 @@ class HighwayAlertsStore {
          
             if ((delta > CachesStore.alertsCacheTime) || force) {
             
-                let request = NetworkUtils.getNoCacheJSONRequest(forUrl: "https://data.wsdot.wa.gov/mobile/HighwayAlerts.js")
+                let request = NetworkUtils.getJSONRequestNoLocalCache(forUrl: "https://data.wsdot.wa.gov/mobile/HighwayAlerts.js")
                 
                 AF.request(request).validate().responseJSON { response in
                     switch response.result {

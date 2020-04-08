@@ -66,7 +66,7 @@ class BorderWaitStore {
          
         if ((delta > CachesStore.updateTime) || force){
             
-            let request = NetworkUtils.getNoCacheJSONRequest(forUrl: "https://data.wsdot.wa.gov/mobile/BorderCrossings.js")
+            let request = NetworkUtils.getJSONRequestNoLocalCache(forUrl: "https://data.wsdot.wa.gov/mobile/BorderCrossings.js")
         
             AF.request(request).validate().responseJSON { response in
                 switch response.result {

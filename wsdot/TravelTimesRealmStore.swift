@@ -93,7 +93,7 @@ class TravelTimesStore{
         if ((delta > CachesStore.updateTime) || force) {
            
             let request = NetworkUtils
-                .getNoCacheJSONRequest(forUrl: "https://data.wsdot.wa.gov/mobile/TravelTimesv2.js")
+                .getJSONRequestNoLocalCache(forUrl: "https://data.wsdot.wa.gov/mobile/TravelTimesv2.js")
             
             AF.request(request).validate().responseJSON { response in
                 switch response.result {
