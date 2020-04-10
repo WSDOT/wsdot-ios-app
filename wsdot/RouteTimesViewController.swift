@@ -36,7 +36,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     var sailingsByDate: List<FerryScheduleDateItem>?
     
     var currentDay = 0
-    var updatedAt = Date()
     
     var displayedSailing: FerrySailingsItem?
     var displayedTimes = List<FerryDepartureTimeItem>()
@@ -60,8 +59,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setDisplayedSailing(0)   
-        
         self.tableView.isHidden = true
         
         // refresh controller
@@ -79,7 +76,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         
         timer = Timer.scheduledTimer(timeInterval: CachesStore.spacesUpdateTime, target: self, selector: #selector(RouteTimesViewController.spacesTimerTask), userInfo: nil, repeats: true)
     
-        refresh(scrollToCurrentSailing: true)
+        setDisplayedSailing(0)
 
     }
     
@@ -120,13 +117,17 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                     if let validData = data {
                         DispatchQueue.main.async { [weak self] in
                             if let selfValue = self {
+                                
+                               // selfValue.tableView.beginUpdates()
                                 selfValue.sailingSpaces = validData
-                                selfValue.updatedAt = Date()
                                 selfValue.tableView.reloadData()
-                                selfValue.tableView.layoutIfNeeded()
+                                selfValue.tableView.beginUpdates()
+                                selfValue.tableView.endUpdates()
+                       
                                 selfValue.refreshControl.endRefreshing()
                                 selfValue.refreshControl.isHidden = true
                                 selfValue.activityIndicator.stopAnimating()
+                    
                                 if (scrollToCurrentSailing){
                                     selfValue.scrollToNextSailing(selfValue.displayedTimes)
                                 }
@@ -155,9 +156,10 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                         DispatchQueue.main.async { [weak self] in
                             if let selfValue = self {
                                 selfValue.vessel = vessel
-                                selfValue.tableView.invalidateIntrinsicContentSize()
                                 selfValue.tableView.reloadData()
-                            
+                                selfValue.tableView.beginUpdates()
+                                selfValue.tableView.endUpdates()
+                                
                             }
                         }
                     }
@@ -180,7 +182,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         self.refreshControl.beginRefreshing()
         self.currentSailing = terminal
         self.setDisplayedSailing(currentDay)
-        self.tableView.invalidateIntrinsicContentSize()
         self.tableView.reloadData()
     }
     
@@ -223,9 +224,9 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         cell.vesselAtDockStack.isHidden = true
         
         if let sailingSpacesValue = sailingSpaces {
-        
+            
             for spaceItem: SailingSpacesItem in sailingSpacesValue {
-
+                    
                 if displayedTimes[indexPath.row].departingTime == spaceItem.date {
                 
                     // Only add sailing spaces for future sailings
@@ -238,9 +239,10 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                         cell.sailingSpaces.text = String(spaceItem.remainingSpaces) + " drive-up spaces"
                         cell.avaliableSpacesBar.progress = spaceItem.percentAvaliable
                     
+                        
                         cell.avaliableSpacesBar.transform = UIProgressView().transform
-                        cell.avaliableSpacesBar.transform = cell.avaliableSpacesBar.transform.scaledBy(x: 1, y: 3)
-                
+                        cell.avaliableSpacesBar.transform = cell.avaliableSpacesBar.transform.scaledBy(x: 1, y: 4)
+                        
                     }
                 }
             }
@@ -358,7 +360,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         // Round only the right corners
         cell.departingTimeBox.roundCorners(corners: UIRectCorner(arrayLiteral: [.bottomRight, .topRight]), radius: 5)
         cell.arrivingTimeBox.roundCorners(corners: UIRectCorner(arrayLiteral: [.bottomLeft, .topLeft]), radius: 5)
-      
+        
         return cell
     }
     
@@ -387,6 +389,8 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                 displayedTimes.append(time)
             }
         }
+        
+        refresh(scrollToCurrentSailing: false)
     }
     
     // Scrolls table view to the next departure. Compares departing times with

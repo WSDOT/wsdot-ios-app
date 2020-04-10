@@ -124,13 +124,13 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
                     // Set sailings for RouteTimesVC
                     self.routeTimesVC.currentSailing = routeItemValue.terminalPairs[0]
                     self.routeTimesVC.sailingsByDate = routeItemValue.scheduleDates
-                    self.routeTimesVC.setDisplayedSailing(0)
-                    self.routeTimesVC.refresh(scrollToCurrentSailing: true)
-  
+                   
                     if let firstSailingDateValue = routeItemValue.scheduleDates.first {
                         self.routeTimesVC.dateData = TimeUtils.nextNDayDates(n: routeItemValue.scheduleDates.count, firstSailingDateValue.date)
-                        self.dayButton.setTitle(TimeUtils.getDayOfWeekString(self.routeTimesVC.dateData[self.routeTimesVC.currentDay]), for: UIControl.State())
+                    self.dayButton.setTitle(TimeUtils.getDayOfWeekString(self.routeTimesVC.dateData[self.routeTimesVC.currentDay]), for: UIControl.State())
                     }
+                    
+                    self.routeTimesVC.setDisplayedSailing(0)
                     
                     // set terminal for CamerasVC
                     self.routeCamerasVC.departingTerminalId = self.getDepartingId()
