@@ -47,7 +47,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     var showConnectionAlert = true
     let refreshControl = UIRefreshControl()
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var departuresHeader: UIView!
     
@@ -58,8 +57,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.tableView.isHidden = true
         
         // refresh controller
         refreshControl.addTarget(self, action: #selector(RouteTimesViewController.refreshAction(_:)), for: .valueChanged)
@@ -70,7 +67,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
             refreshControl.attributedTitle = NSAttributedString.init(string: "loading sailing spaces")
         }
         
-        activityIndicator.startAnimating()
         
         tableView.addSubview(refreshControl)
         
@@ -117,20 +113,19 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                     if let validData = data {
                         DispatchQueue.main.async { [weak self] in
                             if let selfValue = self {
-                                
-                               // selfValue.tableView.beginUpdates()
+                                selfValue.tableView.isHidden = true
                                 selfValue.sailingSpaces = validData
                                 selfValue.tableView.reloadData()
-                                selfValue.tableView.beginUpdates()
-                                selfValue.tableView.endUpdates()
                        
                                 selfValue.refreshControl.endRefreshing()
                                 selfValue.refreshControl.isHidden = true
-                                selfValue.activityIndicator.stopAnimating()
                     
                                 if (scrollToCurrentSailing){
-                                    selfValue.scrollToNextSailing(selfValue.displayedTimes)
+                                    selfValue.scrollToLastDeparture(selfValue.displayedTimes)
+                                } else {
+                                    selfValue.tableView.isHidden = false
                                 }
+                                
                             }
                         }
                     } else {
@@ -138,7 +133,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                             if let selfValue = self{
                                 selfValue.refreshControl.endRefreshing()
                                 selfValue.refreshControl.isHidden = true
-                                selfValue.activityIndicator.stopAnimating()
                                 if (selfValue.showConnectionAlert){
                                     selfValue.showConnectionAlert = false
                                     AlertMessages.getConnectionAlert(backupURL: nil, message: WSDOTErrorStrings.ferrySailings)
@@ -175,7 +169,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         currentDay = index
         setDisplayedSailing(currentDay)
         self.tableView.reloadData()
-        self.scrollToNextSailing(self.displayedTimes)
+        self.scrollToLastDeparture(self.displayedTimes)
     }
     
     func changeTerminal(_ terminal: FerryTerminalPairItem?) {
@@ -390,31 +384,34 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
             }
         }
         
-        refresh(scrollToCurrentSailing: false)
+        refresh(scrollToCurrentSailing: true)
     }
     
-    // Scrolls table view to the next departure. Compares departing times with
+    // Scrolls table view to the last departure. Compares departing times with
     // current time to find it.
-    // uses a quick sleep timer to ensure the cells have had time to get their size
-    // so we scroll to the correct location.
-    fileprivate func scrollToNextSailing(_ sailings: List<FerryDepartureTimeItem>) {
-        let index = getNextSailingIndex(sailings)
-        DispatchQueue.global(qos: .background).async {
-            usleep(50000)
-            DispatchQueue.main.async {
-                if self.tableView.numberOfRows(inSection: 0) > index {
-                    let indexPath = IndexPath(row: index, section: 0)
-                    self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
-                    self.tableView.isHidden = false
+    fileprivate func scrollToLastDeparture(_ sailings: List<FerryDepartureTimeItem>) {
+        let index = getLastDepartureIndex(sailings)
+        if (index != 0) {
+            DispatchQueue.global(qos: .background).async {
+                DispatchQueue.main.async {
+                    if self.tableView.numberOfRows(inSection: 0) > index {
+                        let indexPath = IndexPath(row: index, section: 0)
+                        self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+                        self.tableView.isHidden = false
+                    }
                 }
             }
         }
     }
     
-    fileprivate func getNextSailingIndex(_ sailings: List<FerryDepartureTimeItem>) -> Int {
+    fileprivate func getLastDepartureIndex(_ sailings: List<FerryDepartureTimeItem>) -> Int {
         for time in sailings {
             if (time.departingTime.compare(Date()) == .orderedDescending) {
-                return sailings.index(of: time) ?? 0
+                var index = sailings.index(of: time) ?? 0
+                if (index != 0) {
+                    index = index - 1
+                }
+                return index
             }
         }
         return 0
