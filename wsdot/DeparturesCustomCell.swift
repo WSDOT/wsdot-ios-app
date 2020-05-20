@@ -37,8 +37,8 @@ class DeparturesCustomCell: UITableViewCell {
     @IBOutlet weak var actualDepartureLabel: UILabel!
     
     
-    @IBOutlet weak var vesselAtDockStack: UIStackView!
-    @IBOutlet weak var vesselAtDockLabel: INDLinkLabel!
+    @IBOutlet weak var vesselStatusStack: UIStackView!
+    @IBOutlet weak var vesselStatusLabel: INDLinkLabel!
     
     @IBOutlet weak var annotations: INDLinkLabel!
     @IBOutlet weak var avaliableSpacesBar: UIProgressView!
