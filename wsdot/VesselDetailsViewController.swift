@@ -36,6 +36,7 @@ class VesselDetailsViewController: UIViewController{
     @IBOutlet weak var etaLabel: UILabel!
     @IBOutlet weak var headinglabel: UILabel!
     @IBOutlet weak var speedLabel: UILabel!
+    @IBOutlet weak var updatedLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +73,12 @@ class VesselDetailsViewController: UIViewController{
         
         headinglabel.text = vesselItem?.headText
 
+        if let updated = vesselItem?.updateTime {
+              updatedLabel.text = TimeUtils.timeAgoSinceDate(date: updated, numericDates: true)
+        } else {
+            updatedLabel.text = ""
+        }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

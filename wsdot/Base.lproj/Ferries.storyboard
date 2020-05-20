@@ -213,6 +213,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJ9-bi-ltf">
+                                <rect key="frame" x="16" y="281" width="343" height="16"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -223,6 +229,7 @@
                             <constraint firstItem="Aty-gM-biH" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="vF1-P0-AnM" secondAttribute="trailing" constant="256" id="5x1-JN-Rb3"/>
                             <constraint firstItem="Aty-gM-biH" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="8dm-LC-m2X" secondAttribute="trailing" constant="272" id="8DV-NG-tHe"/>
                             <constraint firstItem="8dm-LC-m2X" firstAttribute="leading" secondItem="Wp5-FL-ePU" secondAttribute="trailing" constant="8" id="Dkp-cG-01p"/>
+                            <constraint firstItem="PJ9-bi-ltf" firstAttribute="top" secondItem="JFP-Cc-gLb" secondAttribute="bottom" constant="8" id="FCu-xG-8ou"/>
                             <constraint firstItem="Aty-gM-biH" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="2bu-G3-ZbF" secondAttribute="trailing" constant="236" id="Gcj-03-QE0"/>
                             <constraint firstItem="JFP-Cc-gLb" firstAttribute="leading" secondItem="Aty-gM-biH" secondAttribute="leading" constant="16" id="H4y-qd-dom"/>
                             <constraint firstItem="2bu-G3-ZbF" firstAttribute="leading" secondItem="2nH-9D-eWB" secondAttribute="trailing" constant="8" id="Jhv-WG-31p"/>
@@ -233,6 +240,7 @@
                             <constraint firstItem="Mnk-UM-lCL" firstAttribute="top" secondItem="1DI-1K-3eF" secondAttribute="bottom" constant="24" id="OCy-hM-KwL"/>
                             <constraint firstItem="Aty-gM-biH" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="y2L-NS-yha" secondAttribute="trailing" constant="166" id="QgJ-mc-8iB"/>
                             <constraint firstItem="y2L-NS-yha" firstAttribute="top" secondItem="WdK-H4-aCx" secondAttribute="bottom" constant="7" id="ScO-lC-cpt"/>
+                            <constraint firstItem="PJ9-bi-ltf" firstAttribute="leading" secondItem="Aty-gM-biH" secondAttribute="leading" constant="16" id="SwF-kI-Z9a"/>
                             <constraint firstItem="2nH-9D-eWB" firstAttribute="leading" secondItem="Aty-gM-biH" secondAttribute="leading" constant="16" id="U1T-Na-uaW"/>
                             <constraint firstItem="brr-NJ-efv" firstAttribute="top" secondItem="Mnk-UM-lCL" secondAttribute="bottom" constant="7" id="W6P-kb-b0s"/>
                             <constraint firstItem="brr-NJ-efv" firstAttribute="leading" secondItem="MNj-6i-Ib9" secondAttribute="trailing" constant="8" id="XuV-1a-5gg"/>
@@ -246,6 +254,7 @@
                             <constraint firstItem="2bu-G3-ZbF" firstAttribute="top" secondItem="8dm-LC-m2X" secondAttribute="bottom" constant="20" id="f8n-Bq-ffp"/>
                             <constraint firstItem="vF1-P0-AnM" firstAttribute="leading" secondItem="Js7-c8-OGR" secondAttribute="trailing" constant="7.5" id="i3k-3T-LgT"/>
                             <constraint firstItem="WdK-H4-aCx" firstAttribute="leading" secondItem="lg4-oU-yR8" secondAttribute="trailing" constant="8" id="lz0-cq-yrY"/>
+                            <constraint firstItem="Aty-gM-biH" firstAttribute="trailing" secondItem="PJ9-bi-ltf" secondAttribute="trailing" constant="16" id="n0q-pk-ORn"/>
                             <constraint firstItem="Wp5-FL-ePU" firstAttribute="leading" secondItem="Aty-gM-biH" secondAttribute="leading" constant="16" id="p3D-xl-DB0"/>
                             <constraint firstItem="JFP-Cc-gLb" firstAttribute="top" secondItem="2nH-9D-eWB" secondAttribute="bottom" constant="7" id="pvF-Qg-TqB"/>
                             <constraint firstItem="MNj-6i-Ib9" firstAttribute="top" secondItem="Mnk-UM-lCL" secondAttribute="bottom" constant="7" id="qV6-Ox-pjq"/>
@@ -275,11 +284,12 @@
                         <outlet property="routeLabel" destination="vF1-P0-AnM" id="b6h-w0-ug9"/>
                         <outlet property="schedDepartLabel" destination="3ZB-LV-gvZ" id="5gc-Bg-eQL"/>
                         <outlet property="speedLabel" destination="NzD-0D-aVL" id="Hrk-GF-0hp"/>
+                        <outlet property="updatedLabel" destination="PJ9-bi-ltf" id="oDC-B7-OIY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QMI-t7-mi9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2167" y="1577"/>
+            <point key="canvasLocation" x="2165.5999999999999" y="1576.4617691154424"/>
         </scene>
         <!--Vessel Watch Settings View Controller-->
         <scene sceneID="RL5-s4-Mzu">
