@@ -53,8 +53,8 @@ class YouTubeStore {
             post.title = postJson["snippet"]["title"].stringValue
             post.link = "https://www.youtube.com/watch?v=" + postJson["snippet"]["resourceId"]["videoId"].stringValue
             post.thumbnailLink = postJson["snippet"]["thumbnails"]["default"]["url"].stringValue
-            post.published = TimeUtils.postPubDateToNSDate(postJson["snippet"]["publishedAt"].stringValue, formatStr: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", isUTC: true)
-            
+            post.published = TimeUtils.postPubDateToNSDate(postJson["snippet"]["publishedAt"].stringValue, formatStr: "yyyy-MM-dd'T'HH:mm:ss'Z'", isUTC: true)
+     
             videoItems.append(post)
         }
         return videoItems
