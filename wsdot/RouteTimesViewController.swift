@@ -215,7 +215,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         cell.spacesDisclaimer.isHidden = true
         cell.avaliableSpacesBar.isHidden = true
         
-        cell.vesselAtDockStack.isHidden = true
+        cell.vesselStatusStack.isHidden = true
         
         if let sailingSpacesValue = sailingSpaces {
             
@@ -252,8 +252,17 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
             if let departure = vesselValue.nextDeparture {
                 if departure == displayedTimes[indexPath.row].departingTime {
 
-                    cell.vesselAtDockStack.isHidden = !vesselValue.atDock
+                    cell.vesselStatusStack.isHidden = false
 
+                    if (vesselValue.vesselName != ""){
+                        cell.vesselStatusLabel.text =
+                            "\(vesselValue.vesselName.uppercased()) VESSEL "
+                    }
+                    
+                    if (vesselValue.atDock) {
+                        cell.vesselStatusLabel.text! += "AT DOCK"
+                    }
+                    
                     if let leftDock = vesselValue.leftDock {
                         cell.actualDepartureLabel.text = "\(TimeUtils.getTimeOfDay(leftDock))"
                         cell.actualDepartureLabel.isHidden = false

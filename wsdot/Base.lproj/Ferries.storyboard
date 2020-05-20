@@ -1056,8 +1056,8 @@
                                             <outlet property="sailingSpaces" destination="c8a-t8-XzA" id="QI6-Jq-HId"/>
                                             <outlet property="spacesDisclaimer" destination="VbF-Ne-s0u" id="HAs-Ht-tXe"/>
                                             <outlet property="spacesStack" destination="atT-h3-AQx" id="Olr-pX-b51"/>
-                                            <outlet property="vesselAtDockLabel" destination="x0v-xZ-TPo" id="QCI-Kx-edV"/>
-                                            <outlet property="vesselAtDockStack" destination="lM4-DN-hXR" id="Ytj-rM-spI"/>
+                                            <outlet property="vesselStatusLabel" destination="x0v-xZ-TPo" id="QCI-Kx-edV"/>
+                                            <outlet property="vesselStatusStack" destination="lM4-DN-hXR" id="Ytj-rM-spI"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
