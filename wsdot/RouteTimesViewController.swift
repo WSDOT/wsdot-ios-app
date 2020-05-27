@@ -49,6 +49,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var departuresHeader: UIView!
+    @IBOutlet weak var loadingView: UIView!
     
     deinit {
         displayedSailing = nil
@@ -113,7 +114,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                     if let validData = data {
                         DispatchQueue.main.async { [weak self] in
                             if let selfValue = self {
-                                selfValue.tableView.isHidden = true
                                 selfValue.sailingSpaces = validData
                                 selfValue.tableView.reloadData()
                        
@@ -121,9 +121,10 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                                 selfValue.refreshControl.isHidden = true
                     
                                 if (scrollToCurrentSailing){
+                                    // calls loadingView.isHidden
                                     selfValue.scrollToLastDeparture(selfValue.displayedTimes)
                                 } else {
-                                    selfValue.tableView.isHidden = false
+                                    selfValue.loadingView.isHidden = true
                                 }
                                 
                             }
@@ -137,6 +138,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                                     selfValue.showConnectionAlert = false
                                     AlertMessages.getConnectionAlert(backupURL: nil, message: WSDOTErrorStrings.ferrySailings)
                                 }
+                                selfValue.loadingView.isHidden = true
                             }
                         }
                     }
@@ -406,7 +408,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                     if self.tableView.numberOfRows(inSection: 0) > index {
                         let indexPath = IndexPath(row: index, section: 0)
                         self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
-                        self.tableView.isHidden = false
+                        self.loadingView.isHidden = true
                     }
                 }
             }

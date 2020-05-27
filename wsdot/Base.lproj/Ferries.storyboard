@@ -1066,16 +1066,34 @@
                                     <outlet property="delegate" destination="Whq-2K-wR1" id="1vz-Zl-Mmy"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OJT-Bs-W2U">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="477"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="JFG-jk-IyN">
+                                        <rect key="frame" x="177.5" y="228.5" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="JFG-jk-IyN" firstAttribute="centerY" secondItem="OJT-Bs-W2U" secondAttribute="centerY" id="33Q-nf-AIt"/>
+                                    <constraint firstItem="JFG-jk-IyN" firstAttribute="centerX" secondItem="OJT-Bs-W2U" secondAttribute="centerX" id="5ZA-9R-IBW"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <constraints>
                             <constraint firstItem="ea4-dX-pgd" firstAttribute="leading" secondItem="z2y-8B-H2y" secondAttribute="leading" identifier="departure times table leading" id="6C5-hs-dh9"/>
                             <constraint firstItem="ea4-dX-pgd" firstAttribute="top" secondItem="z2y-8B-H2y" secondAttribute="top" id="9zw-q7-q2t"/>
+                            <constraint firstItem="z2y-8B-H2y" firstAttribute="trailing" secondItem="OJT-Bs-W2U" secondAttribute="trailing" id="F2E-pn-EyQ"/>
                             <constraint firstItem="ea4-dX-pgd" firstAttribute="trailing" secondItem="z2y-8B-H2y" secondAttribute="trailing" identifier="departures table trailing" id="NsJ-nX-4cW"/>
+                            <constraint firstItem="OJT-Bs-W2U" firstAttribute="top" secondItem="z2y-8B-H2y" secondAttribute="top" id="PLh-aM-DyQ"/>
                             <constraint firstItem="ea4-dX-pgd" firstAttribute="bottom" secondItem="z2y-8B-H2y" secondAttribute="bottom" identifier="departure times tabel bottom" id="Q7T-bJ-nUK"/>
+                            <constraint firstItem="OJT-Bs-W2U" firstAttribute="leading" secondItem="z2y-8B-H2y" secondAttribute="leading" id="ZA9-0z-KmQ"/>
+                            <constraint firstItem="z2y-8B-H2y" firstAttribute="bottom" secondItem="OJT-Bs-W2U" secondAttribute="bottom" id="wUo-as-CWW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="z2y-8B-H2y"/>
                     </view>
                     <connections>
+                        <outlet property="loadingView" destination="OJT-Bs-W2U" id="z8C-bj-Yjg"/>
                         <outlet property="tableView" destination="ea4-dX-pgd" id="d2t-oj-YXQ"/>
                     </connections>
                 </viewController>
