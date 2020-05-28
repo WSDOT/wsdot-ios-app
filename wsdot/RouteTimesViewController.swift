@@ -47,9 +47,9 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     var showConnectionAlert = true
     let refreshControl = UIRefreshControl()
     
+    @IBOutlet weak var initActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var departuresHeader: UIView!
-    @IBOutlet weak var loadingView: UIView!
     
     deinit {
         displayedSailing = nil
@@ -68,8 +68,11 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
             refreshControl.attributedTitle = NSAttributedString.init(string: "loading sailing spaces")
         }
         
-        
         tableView.addSubview(refreshControl)
+        
+        tableView.isHidden = true
+        initActivityIndicator.startAnimating()
+        initActivityIndicator.isHidden = false
         
         timer = Timer.scheduledTimer(timeInterval: CachesStore.spacesUpdateTime, target: self, selector: #selector(RouteTimesViewController.spacesTimerTask), userInfo: nil, repeats: true)
     
@@ -124,7 +127,9 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                                     // calls loadingView.isHidden
                                     selfValue.scrollToLastDeparture(selfValue.displayedTimes)
                                 } else {
-                                    selfValue.loadingView.isHidden = true
+                                    selfValue.tableView.isHidden = false
+                                    selfValue.initActivityIndicator.stopAnimating()
+                                    selfValue.initActivityIndicator.isHidden = true
                                 }
                                 
                             }
@@ -138,7 +143,9 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                                     selfValue.showConnectionAlert = false
                                     AlertMessages.getConnectionAlert(backupURL: nil, message: WSDOTErrorStrings.ferrySailings)
                                 }
-                                selfValue.loadingView.isHidden = true
+                                selfValue.tableView.isHidden = false
+                                selfValue.initActivityIndicator.stopAnimating()
+                                selfValue.initActivityIndicator.isHidden = true
                             }
                         }
                     }
@@ -408,7 +415,9 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                     if self.tableView.numberOfRows(inSection: 0) > index {
                         let indexPath = IndexPath(row: index, section: 0)
                         self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
-                        self.loadingView.isHidden = true
+                        self.tableView.isHidden = false
+                        self.initActivityIndicator.stopAnimating()
+                        self.initActivityIndicator.isHidden = true
                     }
                 }
             }
