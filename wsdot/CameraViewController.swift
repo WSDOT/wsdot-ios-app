@@ -21,9 +21,11 @@
 import UIKit
 import GoogleMobileAds
 
-class CameraViewController: UIViewController, GADBannerViewDelegate {
+class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDelegate, GMSMapViewDelegate {
     
     @IBOutlet weak var cameraImage: UIImageView!
+      fileprivate let cameraMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: 0, longitude: 0))
+    
     @IBOutlet weak var favoriteBarButton: UIBarButtonItem!
     
     @IBOutlet weak var bannerView: DFPBannerView!
@@ -33,6 +35,8 @@ class CameraViewController: UIViewController, GADBannerViewDelegate {
     
     @IBOutlet weak var cameraImageViewHeight: NSLayoutConstraint!
     
+    weak fileprivate var embeddedMapViewController: SimpleMapViewController!
+    
     var cameraItem: CameraItem = CameraItem()
     var adTarget: String = "other"
     var adsEnabled = true
@@ -40,6 +44,8 @@ class CameraViewController: UIViewController, GADBannerViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = cameraItem.title;
+        
+        embeddedMapViewController.view.isHidden = true
         
         let placeholder: UIImage? = UIImage(named: "imagePlaceholder")
         
@@ -106,6 +112,22 @@ class CameraViewController: UIViewController, GADBannerViewDelegate {
         
         favoriteBarButton.tintColor = Colors.yellow
         
+        // Set up map marker
+        cameraMarker.position = CLLocationCoordinate2D(latitude: self.cameraItem.latitude, longitude: self.cameraItem.longitude)
+        cameraMarker.icon = UIImage(named: "icMapCamera")
+        
+        if let mapView = embeddedMapViewController.view as? GMSMapView {
+            
+            mapView.moveCamera(GMSCameraUpdate.setTarget(
+                CLLocationCoordinate2D(
+                    latitude: cameraItem.latitude,
+                    longitude: cameraItem.longitude),
+                zoom: 14))
+        
+        }
+        
+        self.embeddedMapViewController.view.isHidden = false
+        
         // Ad Banner
         if (adsEnabled) {
             bannerView.adUnitID = ApiKeys.getAdId()
@@ -128,6 +150,24 @@ class CameraViewController: UIViewController, GADBannerViewDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         MyAnalytics.screenView(screenName: "CameraImage")
+    }
+    
+    // MARK: Naviagtion
+    // Get refrence to child VC
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? SimpleMapViewController, segue.identifier == "EmbedMapSegue" {
+            vc.markerDelegate = self
+            vc.mapDelegate = self
+            self.embeddedMapViewController = vc
+        }
+    }
+    
+    func mapReady() {
+        if let mapView = embeddedMapViewController.view as? GMSMapView{
+            cameraMarker.map = mapView
+            mapView.settings.setAllGesturesEnabled(false)
+            mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: self.cameraItem.latitude, longitude: self.cameraItem.longitude), zoom: 14))
+        }
     }
     
     @IBAction func updateFavorite(_ sender: UIBarButtonItem) {
