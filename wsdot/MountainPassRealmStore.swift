@@ -95,9 +95,10 @@ class MountainPassStore {
         
         let realm = try! Realm()
         
-        let oldFavoritePasses = self.findFavoritePasses()
-        let newPasses = List<MountainPassItem>()
-        
+    //    let oldFavoritePasses = self.findFavoritePasses()
+      //  let newPasses = List<MountainPassItem>()
+      
+        /*
         for pass in passes {
             for oldPass in oldFavoritePasses {
                 if (oldPass.id == pass.id){
@@ -106,17 +107,45 @@ class MountainPassStore {
             }
             newPasses.append(pass)
         }
+ */
         
         let oldPasses = realm.objects(MountainPassItem.self)
-        
+   
         do {
             try realm.write{
-                for pass in oldPasses{
+                for pass in oldPasses {
                     pass.delete = true
                 }
-                realm.add(newPasses, update: .all)
+            
+               // let passItems = MountainPasses()
+                
+                //realm.add(newPasses, update: .all)
+                for pass in passes {
+                  //  passItems.passes.append(pass)
+                    realm.create(MountainPassItem.self,
+                                 value:["id": pass.id,
+                                        "name": pass.name,
+                                        "weatherCondition": pass.weatherCondition,
+                                        "elevationInFeet": pass.elevationInFeet,
+                                        "temperatureInFahrenhiet": pass.temperatureInFahrenheit,
+                                        "travelAdvisoryActive": pass.travelAdvisoryActive,
+                                        "latitude": pass.latitude,
+                                        "longitude": pass.longitude,
+                                        "roadCondition": pass.roadCondition,
+                                        "dateUpdated": pass.dateUpdated,
+                                        "restrictionOneText": pass.restrictionOneText,
+                                        "restrictionOneTravelDirection": pass.restrictionOneTravelDirection,
+                                        "restrictionTwoText": pass.restrictionTwoText,
+                                        "restrictionTwoTravelDirection": pass.restrictionTwoTravelDirection,
+                                        "cameraIds": pass.cameraIds,
+                                        "forecast": pass.forecast,
+                                        "delete": pass.delete],
+                                 update: .modified)
+                }
+                
+              // realm.add(passItems, update: .modified)
             }
-        }catch {
+        } catch {
             print("MountainPassStore.savePasses: Realm write error")
         }
     }

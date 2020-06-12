@@ -10,6 +10,15 @@
 		02215F3A2167D87500051301 /* SegmentedControlWithBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02215F392167D87400051301 /* SegmentedControlWithBadge.swift */; };
 		0242912C2434E98800A55735 /* NetworkUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242912B2434E98800A55735 /* NetworkUtils.swift */; };
 		0263A86721FBD73E0090A954 /* MyRouteSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0263A86621FBD73E0090A954 /* MyRouteSetupViewController.swift */; };
+		029CB8B62493E80C009E0422 /* RowItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029CB8B52493E80C009E0422 /* RowItem.swift */; };
+		029CB8BC2494110E009E0422 /* BindableResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029CB8BB2494110E009E0422 /* BindableResults.swift */; };
+		02D287F22491333500208BE1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D287F12491333500208BE1 /* HomeView.swift */; };
+		02D287F42491335100208BE1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D287F32491335100208BE1 /* SceneDelegate.swift */; };
+		02D287F62491380400208BE1 /* HomeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D287F52491380400208BE1 /* HomeButton.swift */; };
+		02D287F82491710D00208BE1 /* HomeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D287F72491710D00208BE1 /* HomeItem.swift */; };
+		02D287FA2491725300208BE1 /* homeData.json in Resources */ = {isa = PBXBuildFile; fileRef = 02D287F92491725300208BE1 /* homeData.json */; };
+		02D287FC2491737600208BE1 /* HomeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D287FB2491737600208BE1 /* HomeData.swift */; };
+		02D287FE2491788F00208BE1 /* MountainPassesRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D287FD2491788F00208BE1 /* MountainPassesRow.swift */; };
 		9A0360481DECBC6100B88466 /* PassCameraIDItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0360471DECBC6100B88466 /* PassCameraIDItem.swift */; };
 		9A06167A1D62285A00126520 /* VesselWatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616791D62285A00126520 /* VesselWatchViewController.swift */; };
 		9A06167C1D622AE800126520 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A06167B1D622AE800126520 /* MapViewController.swift */; };
@@ -250,6 +259,15 @@
 		02215F392167D87400051301 /* SegmentedControlWithBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlWithBadge.swift; sourceTree = "<group>"; };
 		0242912B2434E98800A55735 /* NetworkUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtils.swift; sourceTree = "<group>"; };
 		0263A86621FBD73E0090A954 /* MyRouteSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRouteSetupViewController.swift; sourceTree = "<group>"; };
+		029CB8B52493E80C009E0422 /* RowItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowItem.swift; sourceTree = "<group>"; };
+		029CB8BB2494110E009E0422 /* BindableResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindableResults.swift; sourceTree = "<group>"; };
+		02D287F12491333500208BE1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		02D287F32491335100208BE1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		02D287F52491380400208BE1 /* HomeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeButton.swift; sourceTree = "<group>"; };
+		02D287F72491710D00208BE1 /* HomeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeItem.swift; sourceTree = "<group>"; };
+		02D287F92491725300208BE1 /* homeData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = homeData.json; sourceTree = "<group>"; };
+		02D287FB2491737600208BE1 /* HomeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeData.swift; sourceTree = "<group>"; };
+		02D287FD2491788F00208BE1 /* MountainPassesRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MountainPassesRow.swift; sourceTree = "<group>"; };
 		08B5584F4B8FFF1035CFBE34 /* Pods_WSDOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WSDOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F733049676C72FA80F317B5 /* Pods-WSDOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.debug.xcconfig"; sourceTree = "<group>"; };
 		65D6D46116E71C14DDDD1497 /* Pods-WSDOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.release.xcconfig"; sourceTree = "<group>"; };
@@ -537,6 +555,22 @@
 				9A5DA5A12203A0AC0060A51D /* AutomaticRoute */,
 			);
 			name = NewMyRoute;
+			sourceTree = "<group>";
+		};
+		02D287F02491330F00208BE1 /* NewHome */ = {
+			isa = PBXGroup;
+			children = (
+				02D287F12491333500208BE1 /* HomeView.swift */,
+				02D287F92491725300208BE1 /* homeData.json */,
+				02D287FB2491737600208BE1 /* HomeData.swift */,
+				029CB8BB2494110E009E0422 /* BindableResults.swift */,
+				02D287F72491710D00208BE1 /* HomeItem.swift */,
+				029CB8B52493E80C009E0422 /* RowItem.swift */,
+				02D287F32491335100208BE1 /* SceneDelegate.swift */,
+				02D287F52491380400208BE1 /* HomeButton.swift */,
+				02D287FD2491788F00208BE1 /* MountainPassesRow.swift */,
+			);
+			name = NewHome;
 			sourceTree = "<group>";
 		};
 		05415963BC8B255F34C899F4 /* Pods */ = {
@@ -1330,6 +1364,7 @@
 		9AD32DFB1D23172C000AEC28 /* wsdot */ = {
 			isa = PBXGroup;
 			children = (
+				02D287F02491330F00208BE1 /* NewHome */,
 				9A8FE186209A6605005CF3EB /* Notifications */,
 				9A7BC07B1D9DB99A00EF760C /* Google-Maps-iOS-Utils */,
 				9A93E0D71E708921004AB867 /* MyRoute */,
@@ -1788,6 +1823,7 @@
 				9A8E2E92233D27D200E6E202 /* map_dark_style.json in Resources */,
 				9A6FBD1C1D6DF8F700CDCE16 /* BorderWaits.storyboard in Resources */,
 				9A0616C81D6601BD00126520 /* TollRates.storyboard in Resources */,
+				02D287FA2491725300208BE1 /* homeData.json in Resources */,
 				9A6FBCD61D6B5EBB00CDCE16 /* RestArea.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1824,7 +1860,7 @@
 				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -1842,7 +1878,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NotificationBannerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -1924,7 +1960,7 @@
 				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -1942,7 +1978,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NotificationBannerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -2013,6 +2049,7 @@
 				9A3E9F0F22663B7D003066F4 /* TollRateTableStore.swift in Sources */,
 				9ADEAE4D1D270CC800BA7DD4 /* Helpers.swift in Sources */,
 				9AEF4D9A1D772F9C003ECA34 /* NewsItem.swift in Sources */,
+				02D287F42491335100208BE1 /* SceneDelegate.swift in Sources */,
 				9A46C3B82034F5C1000F03C5 /* TravelTimeItemGroup.swift in Sources */,
 				9A0616E61D67838F00126520 /* TrafficMapGoToViewController.swift in Sources */,
 				9A6FBD311D6E3E9100CDCE16 /* MountainPassesViewController.swift in Sources */,
@@ -2029,6 +2066,7 @@
 				9A0616811D6265FB00126520 /* UserDefaultsKeys.swift in Sources */,
 				9AEF4D9C1D772FA5003ECA34 /* NewsStore.swift in Sources */,
 				9A6FBD0B1D6CBC3A00CDCE16 /* TravelTimeItem.swift in Sources */,
+				02D287FE2491788F00208BE1 /* MountainPassesRow.swift in Sources */,
 				9A9808C01F1FA2AF0034DA05 /* TravelChartItem.swift in Sources */,
 				9A1F5FA71D47E27200DA5F99 /* SailingSpacesItem.swift in Sources */,
 				9A52F1EB22089F400008038B /* MyRouteAlertsViewController.swift in Sources */,
@@ -2044,6 +2082,7 @@
 				9A6FBD331D6E3EA200CDCE16 /* MountianPassItem.swift in Sources */,
 				9A0616CA1D66021B00126520 /* TollRatesViewController.swift in Sources */,
 				9A7BC0D01DA3F31B00EF760C /* GMUNonHierarchicalDistanceBasedAlgorithm.m in Sources */,
+				02D287F62491380400208BE1 /* HomeButton.swift in Sources */,
 				9AEF4D881D75FED8003ECA34 /* FacebookItem.swift in Sources */,
 				9AEF4D831D75CF42003ECA34 /* BloggerViewController.swift in Sources */,
 				9AD32DFD1D23172C000AEC28 /* AppDelegate.swift in Sources */,
@@ -2051,6 +2090,7 @@
 				9AEEDDB31D70C0B70032F5EC /* AlertContentViewController.swift in Sources */,
 				9A2F4A6E1D539C1600911AF5 /* CacheItem.swift in Sources */,
 				9A1F5F9F1D47C2E800DA5F99 /* DeparturesCustomCell.swift in Sources */,
+				02D287FC2491737600208BE1 /* HomeData.swift in Sources */,
 				9AEF4D971D760B72003ECA34 /* FlickrCollectionCell.swift in Sources */,
 				9A6FBCEC1D6C953D00CDCE16 /* CalloutViewController.swift in Sources */,
 				9AEEDDAC1D6F89D90032F5EC /* MountainPassWeatherViewController.swift in Sources */,
@@ -2100,6 +2140,7 @@
 				9AD0A0DE2359051600952AB4 /* MapThemeUtils.swift in Sources */,
 				9A87A7122236CC60005277C6 /* AlertControllerExtension.swift in Sources */,
 				9AEF4D7E1D74DFDB003ECA34 /* BlogItem.swift in Sources */,
+				029CB8B62493E80C009E0422 /* RowItem.swift in Sources */,
 				9A7BC0D51DA3F31B00EF760C /* GMUDefaultClusterIconGenerator.m in Sources */,
 				9A6FBCF11D6C9B9A00CDCE16 /* FavoriteLocationRealmStore.swift in Sources */,
 				9A6FBCE11D6B96EE00CDCE16 /* HighwayAlertViewController.swift in Sources */,
@@ -2146,6 +2187,7 @@
 				9A946BBA2163B742006E5885 /* IconButton.swift in Sources */,
 				9A9808BD1F1FA1780034DA05 /* BestTimesToTravelDetailsViewController.swift in Sources */,
 				9AB549031D78758400927F13 /* AmtrakCascadesStore.swift in Sources */,
+				02D287F22491333500208BE1 /* HomeView.swift in Sources */,
 				9AEF4DA01D773256003ECA34 /* NewsCell.swift in Sources */,
 				9AEF4DB31D774BC8003ECA34 /* TwitterCell.swift in Sources */,
 				9A2C27271D67A1E400F05D88 /* SettingsCell.swift in Sources */,
@@ -2170,6 +2212,7 @@
 				9A6A0035210777EC0005CC7F /* TollTripDetailsViewController.swift in Sources */,
 				9AEF4D8A1D75FEE1003ECA34 /* FacebookStore.swift in Sources */,
 				9AFA0A851E300A56000D0C70 /* MyRouteLocationItem.swift in Sources */,
+				029CB8BC2494110E009E0422 /* BindableResults.swift in Sources */,
 				9AEF4DB11D77435B003ECA34 /* TwitterStore.swift in Sources */,
 				9A0616B71D63674500126520 /* VesselWatchStore.swift in Sources */,
 				9AE6B77B209BA40E001DE80F /* NotificationTopicItem.swift in Sources */,
@@ -2180,6 +2223,7 @@
 				9A6FBD1F1D6DF91300CDCE16 /* BorderWaitItem.swift in Sources */,
 				9AE6B779209B9DF5001DE80F /* NotificationTopicsViewController.swift in Sources */,
 				9A6FBD391D6E4A4700CDCE16 /* ForcastItem.swift in Sources */,
+				02D287F82491710D00208BE1 /* HomeItem.swift in Sources */,
 				9A8486F41D81B2510026F1CF /* AmtrakCascadesSelectionViewController.swift in Sources */,
 				9AFDEA761E410626008DD51E /* MyRouteFavoritesCell.swift in Sources */,
 				9A0360481DECBC6100B88466 /* PassCameraIDItem.swift in Sources */,

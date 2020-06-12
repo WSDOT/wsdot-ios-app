@@ -18,9 +18,10 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
 
+import Foundation
 import RealmSwift
 
-class MountainPassItem: Object {
+class MountainPassItem: Object, Identifiable {
 
     @objc dynamic var id: Int = 0
     @objc dynamic var name: String = ""
@@ -46,3 +47,15 @@ class MountainPassItem: Object {
         return "id"
     }
 }
+
+/*
+final class MountainPasses: Object {
+    @objc dynamic var id: Int = 0
+
+    let passes = List<MountainPassItem>()
+
+    override class func primaryKey() -> String? {
+        "id"
+    }
+}
+ */
