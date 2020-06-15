@@ -11,9 +11,10 @@ import SwiftUI
 @available(iOS 13.0.0, *)
 struct RowItem: View {
     
-    var title: String
-    var details: String
+    var title: String = ""
+    var details: String = ""
     var loading: Bool = false
+    var height: CGFloat = 100
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -24,13 +25,15 @@ struct RowItem: View {
                 Text(title)
                     .lineLimit(nil)
                     .fixedSize(horizontal: false, vertical: true)
+                    .foregroundColor(.white)
                 Text(details)
                     .font(.caption).lineLimit(nil)
+                    .foregroundColor(.white)
             }
         }
         .padding()
-        .frame(width: 180, height: 100, alignment: .topLeading)
-        .background(Color.green)
+        .frame(width: 180, height: height, alignment: .topLeading)
+        .background(Color(Colors.wsdotPrimary))
         .cornerRadius(10)
         .padding(.leading, 15)
         .padding(.top, 10)

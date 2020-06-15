@@ -10,15 +10,15 @@
 		02215F3A2167D87500051301 /* SegmentedControlWithBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02215F392167D87400051301 /* SegmentedControlWithBadge.swift */; };
 		0242912C2434E98800A55735 /* NetworkUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242912B2434E98800A55735 /* NetworkUtils.swift */; };
 		02451BE52497C5C30050F9D5 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02451BE42497C5C30050F9D5 /* ActivityIndicator.swift */; };
+		02451BE72497C7A50050F9D5 /* FerriesRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02451BE62497C7A50050F9D5 /* FerriesRow.swift */; };
+		02451BE92497CC780050F9D5 /* TrafficRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02451BE82497CC780050F9D5 /* TrafficRow.swift */; };
+		02451BEB2497CDF40050F9D5 /* HomeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02451BEA2497CDF40050F9D5 /* HomeItem.swift */; };
 		0263A86721FBD73E0090A954 /* MyRouteSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0263A86621FBD73E0090A954 /* MyRouteSetupViewController.swift */; };
 		029CB8B62493E80C009E0422 /* RowItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029CB8B52493E80C009E0422 /* RowItem.swift */; };
 		029CB8BC2494110E009E0422 /* BindableResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029CB8BB2494110E009E0422 /* BindableResults.swift */; };
 		02D287F22491333500208BE1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D287F12491333500208BE1 /* HomeView.swift */; };
 		02D287F42491335100208BE1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D287F32491335100208BE1 /* SceneDelegate.swift */; };
 		02D287F62491380400208BE1 /* HomeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D287F52491380400208BE1 /* HomeButton.swift */; };
-		02D287F82491710D00208BE1 /* HomeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D287F72491710D00208BE1 /* HomeItem.swift */; };
-		02D287FA2491725300208BE1 /* homeData.json in Resources */ = {isa = PBXBuildFile; fileRef = 02D287F92491725300208BE1 /* homeData.json */; };
-		02D287FC2491737600208BE1 /* HomeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D287FB2491737600208BE1 /* HomeData.swift */; };
 		02D287FE2491788F00208BE1 /* MountainPassesRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D287FD2491788F00208BE1 /* MountainPassesRow.swift */; };
 		9A0360481DECBC6100B88466 /* PassCameraIDItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0360471DECBC6100B88466 /* PassCameraIDItem.swift */; };
 		9A06167A1D62285A00126520 /* VesselWatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616791D62285A00126520 /* VesselWatchViewController.swift */; };
@@ -260,15 +260,15 @@
 		02215F392167D87400051301 /* SegmentedControlWithBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlWithBadge.swift; sourceTree = "<group>"; };
 		0242912B2434E98800A55735 /* NetworkUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtils.swift; sourceTree = "<group>"; };
 		02451BE42497C5C30050F9D5 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		02451BE62497C7A50050F9D5 /* FerriesRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FerriesRow.swift; sourceTree = "<group>"; };
+		02451BE82497CC780050F9D5 /* TrafficRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficRow.swift; sourceTree = "<group>"; };
+		02451BEA2497CDF40050F9D5 /* HomeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeItem.swift; sourceTree = "<group>"; };
 		0263A86621FBD73E0090A954 /* MyRouteSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRouteSetupViewController.swift; sourceTree = "<group>"; };
 		029CB8B52493E80C009E0422 /* RowItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowItem.swift; sourceTree = "<group>"; };
 		029CB8BB2494110E009E0422 /* BindableResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindableResults.swift; sourceTree = "<group>"; };
 		02D287F12491333500208BE1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		02D287F32491335100208BE1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		02D287F52491380400208BE1 /* HomeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeButton.swift; sourceTree = "<group>"; };
-		02D287F72491710D00208BE1 /* HomeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeItem.swift; sourceTree = "<group>"; };
-		02D287F92491725300208BE1 /* homeData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = homeData.json; sourceTree = "<group>"; };
-		02D287FB2491737600208BE1 /* HomeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeData.swift; sourceTree = "<group>"; };
 		02D287FD2491788F00208BE1 /* MountainPassesRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MountainPassesRow.swift; sourceTree = "<group>"; };
 		08B5584F4B8FFF1035CFBE34 /* Pods_WSDOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WSDOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F733049676C72FA80F317B5 /* Pods-WSDOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.debug.xcconfig"; sourceTree = "<group>"; };
@@ -563,15 +563,15 @@
 			isa = PBXGroup;
 			children = (
 				02D287F12491333500208BE1 /* HomeView.swift */,
-				02D287F92491725300208BE1 /* homeData.json */,
-				02D287FB2491737600208BE1 /* HomeData.swift */,
 				029CB8BB2494110E009E0422 /* BindableResults.swift */,
-				02D287F72491710D00208BE1 /* HomeItem.swift */,
 				029CB8B52493E80C009E0422 /* RowItem.swift */,
+				02451BEA2497CDF40050F9D5 /* HomeItem.swift */,
 				02451BE42497C5C30050F9D5 /* ActivityIndicator.swift */,
 				02D287F32491335100208BE1 /* SceneDelegate.swift */,
 				02D287F52491380400208BE1 /* HomeButton.swift */,
 				02D287FD2491788F00208BE1 /* MountainPassesRow.swift */,
+				02451BE62497C7A50050F9D5 /* FerriesRow.swift */,
+				02451BE82497CC780050F9D5 /* TrafficRow.swift */,
 			);
 			name = NewHome;
 			sourceTree = "<group>";
@@ -1826,7 +1826,6 @@
 				9A8E2E92233D27D200E6E202 /* map_dark_style.json in Resources */,
 				9A6FBD1C1D6DF8F700CDCE16 /* BorderWaits.storyboard in Resources */,
 				9A0616C81D6601BD00126520 /* TollRates.storyboard in Resources */,
-				02D287FA2491725300208BE1 /* homeData.json in Resources */,
 				9A6FBCD61D6B5EBB00CDCE16 /* RestArea.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2093,7 +2092,6 @@
 				9AEEDDB31D70C0B70032F5EC /* AlertContentViewController.swift in Sources */,
 				9A2F4A6E1D539C1600911AF5 /* CacheItem.swift in Sources */,
 				9A1F5F9F1D47C2E800DA5F99 /* DeparturesCustomCell.swift in Sources */,
-				02D287FC2491737600208BE1 /* HomeData.swift in Sources */,
 				9AEF4D971D760B72003ECA34 /* FlickrCollectionCell.swift in Sources */,
 				9A6FBCEC1D6C953D00CDCE16 /* CalloutViewController.swift in Sources */,
 				9AEEDDAC1D6F89D90032F5EC /* MountainPassWeatherViewController.swift in Sources */,
@@ -2191,6 +2189,7 @@
 				9A946BBA2163B742006E5885 /* IconButton.swift in Sources */,
 				9A9808BD1F1FA1780034DA05 /* BestTimesToTravelDetailsViewController.swift in Sources */,
 				9AB549031D78758400927F13 /* AmtrakCascadesStore.swift in Sources */,
+				02451BE92497CC780050F9D5 /* TrafficRow.swift in Sources */,
 				02D287F22491333500208BE1 /* HomeView.swift in Sources */,
 				9AEF4DA01D773256003ECA34 /* NewsCell.swift in Sources */,
 				9AEF4DB31D774BC8003ECA34 /* TwitterCell.swift in Sources */,
@@ -2227,13 +2226,14 @@
 				9A6FBD1F1D6DF91300CDCE16 /* BorderWaitItem.swift in Sources */,
 				9AE6B779209B9DF5001DE80F /* NotificationTopicsViewController.swift in Sources */,
 				9A6FBD391D6E4A4700CDCE16 /* ForcastItem.swift in Sources */,
-				02D287F82491710D00208BE1 /* HomeItem.swift in Sources */,
+				02451BE72497C7A50050F9D5 /* FerriesRow.swift in Sources */,
 				9A8486F41D81B2510026F1CF /* AmtrakCascadesSelectionViewController.swift in Sources */,
 				9AFDEA761E410626008DD51E /* MyRouteFavoritesCell.swift in Sources */,
 				9A0360481DECBC6100B88466 /* PassCameraIDItem.swift in Sources */,
 				9AEF4D9E1D773040003ECA34 /* NewsViewController.swift in Sources */,
 				9AF474B020E3E9BC00E7740C /* RouteView.swift in Sources */,
 				9A0719351D4274B8007BB4C5 /* LinkCell.swift in Sources */,
+				02451BEB2497CDF40050F9D5 /* HomeItem.swift in Sources */,
 				9A0616D71D664D2300126520 /* FourColTableViewCell.swift in Sources */,
 				9A7BC0AC1D9DBAB400EF760C /* CameraClusterItem.swift in Sources */,
 				0263A86721FBD73E0090A954 /* MyRouteSetupViewController.swift in Sources */,

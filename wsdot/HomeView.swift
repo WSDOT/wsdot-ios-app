@@ -15,10 +15,6 @@ struct HomeView: View {
 
     @ObservedObject var items: BindableResults<MountainPassItem>
     
-    var homeItems: [HomeItem] {
-        homeData
-    }
-    
     var body: some View {
         
         return NavigationView {
@@ -29,8 +25,13 @@ struct HomeView: View {
                 }
             }
             */
-            MountainPassesRow(categoryName: "Mountain Passes", passes: items)
-           
-        }.navigationBarTitle(Text("WSDOT"))
+            
+            VStack {
+                TrafficRow(categoryName: "Traffic & Travel")
+                FerriesRow(categoryName: "Ferries")
+                MountainPassesRow(categoryName: "Mountain Passes", passes: items)
+                Spacer()
+            }.navigationBarTitle(Text("WSDOT"))
+        }
     }
 }

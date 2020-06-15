@@ -18,7 +18,6 @@ struct HomeButton: View {
         VStack(alignment: .center, spacing: 0) {
             image
             Text(rowName)
-                .font(.title)
         }.padding()
     }
 }
