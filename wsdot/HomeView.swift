@@ -20,7 +20,8 @@ struct HomeView: View {
     }
     
     var body: some View {
-        NavigationView {
+        
+        return NavigationView {
             /*
             List {
                 ForEach(homeItems) { item in
@@ -28,7 +29,7 @@ struct HomeView: View {
                 }
             }
             */
-            MountainPassesRow(categoryName: "Mountain Passes", items: items)
+            MountainPassesRow(categoryName: "Mountain Passes", passes: items)
            
         }.navigationBarTitle(Text("WSDOT"))
     }

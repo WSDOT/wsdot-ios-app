@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		02215F3A2167D87500051301 /* SegmentedControlWithBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02215F392167D87400051301 /* SegmentedControlWithBadge.swift */; };
 		0242912C2434E98800A55735 /* NetworkUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242912B2434E98800A55735 /* NetworkUtils.swift */; };
+		02451BE52497C5C30050F9D5 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02451BE42497C5C30050F9D5 /* ActivityIndicator.swift */; };
 		0263A86721FBD73E0090A954 /* MyRouteSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0263A86621FBD73E0090A954 /* MyRouteSetupViewController.swift */; };
 		029CB8B62493E80C009E0422 /* RowItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029CB8B52493E80C009E0422 /* RowItem.swift */; };
 		029CB8BC2494110E009E0422 /* BindableResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029CB8BB2494110E009E0422 /* BindableResults.swift */; };
@@ -258,6 +259,7 @@
 /* Begin PBXFileReference section */
 		02215F392167D87400051301 /* SegmentedControlWithBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlWithBadge.swift; sourceTree = "<group>"; };
 		0242912B2434E98800A55735 /* NetworkUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtils.swift; sourceTree = "<group>"; };
+		02451BE42497C5C30050F9D5 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		0263A86621FBD73E0090A954 /* MyRouteSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRouteSetupViewController.swift; sourceTree = "<group>"; };
 		029CB8B52493E80C009E0422 /* RowItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowItem.swift; sourceTree = "<group>"; };
 		029CB8BB2494110E009E0422 /* BindableResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindableResults.swift; sourceTree = "<group>"; };
@@ -566,6 +568,7 @@
 				029CB8BB2494110E009E0422 /* BindableResults.swift */,
 				02D287F72491710D00208BE1 /* HomeItem.swift */,
 				029CB8B52493E80C009E0422 /* RowItem.swift */,
+				02451BE42497C5C30050F9D5 /* ActivityIndicator.swift */,
 				02D287F32491335100208BE1 /* SceneDelegate.swift */,
 				02D287F52491380400208BE1 /* HomeButton.swift */,
 				02D287FD2491788F00208BE1 /* MountainPassesRow.swift */,
@@ -2160,6 +2163,7 @@
 				9A0616D21D660DC500126520 /* DynamicTollRatesViewController.swift in Sources */,
 				9A52F1ED22089F520008038B /* MyRouteCamerasViewController.swift in Sources */,
 				9AE9557F2265404000C41B84 /* TollRateTableItem.swift in Sources */,
+				02451BE52497C5C30050F9D5 /* ActivityIndicator.swift in Sources */,
 				9AB549051D78899600927F13 /* AmtrakCascadesScheduleDetailsViewController.swift in Sources */,
 				9A8DD9F81D946B6200CE0B76 /* HomeSplitViewController.swift in Sources */,
 				9A0CA8371D466045009C67B7 /* TimeUtils.swift in Sources */,

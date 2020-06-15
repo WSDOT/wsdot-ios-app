@@ -13,15 +13,20 @@ struct RowItem: View {
     
     var title: String
     var details: String
+    var loading: Bool = false
     
     var body: some View {
         VStack(alignment: .leading) {
             
-            Text(title)
-                .lineLimit(nil)
-                .fixedSize(horizontal: false, vertical: true)
-            Text(details)
-                .font(.caption).lineLimit(nil)
+            if loading {
+                ActivityIndicator(isAnimating: .constant(true), style: .large)
+            } else {
+                Text(title)
+                    .lineLimit(nil)
+                    .fixedSize(horizontal: false, vertical: true)
+                Text(details)
+                    .font(.caption).lineLimit(nil)
+            }
         }
         .padding()
         .frame(width: 180, height: 100, alignment: .topLeading)
@@ -30,7 +35,7 @@ struct RowItem: View {
         .padding(.leading, 15)
         .padding(.top, 10)
         .padding(.bottom, 10)
-    .shadow(radius: 5)
+        .shadow(radius: 5)
         
         
   

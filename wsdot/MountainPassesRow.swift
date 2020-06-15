@@ -14,10 +14,10 @@ struct MountainPassesRow: View {
     
     var categoryName: String
     
-    var items: BindableResults<MountainPassItem>
+    @ObservedObject var passes: BindableResults<MountainPassItem>
 
     var body: some View {
-   
+        
         return VStack(alignment: .leading) {
             
             Text(self.categoryName)
@@ -27,21 +27,26 @@ struct MountainPassesRow: View {
 
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 0) {
-       
-                    ForEach(items.results, id: \.id) { content in
+                    
+                    if passes.results.count == 0 {
+                        RowItem(title: "", details: "", loading: true)
+                    }
+                  
+                    ForEach(passes.results, id: \.id) { pass in
+                        
                      //   NavigationLink(
                      //       destination: LandmarkDetail(
                      //           landmark: landmark
                      //       )
                      //   ) {
                         RowItem(
-                            title: content.name,
-                            details: content.roadCondition)
+                            title: pass.name,
+                            details: pass.weatherCondition)
                         //}
+                        
                     }
                 }
             }
-            //.frame(height: 185)
         }
     }
 }
