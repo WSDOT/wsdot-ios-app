@@ -18,24 +18,11 @@ struct TrafficRow: View {
         
         return VStack(alignment: .leading) {
             
+            Text(self.categoryName)
+                .font(.headline)
+                .padding(.leading, 15)
+                .padding(.top, 15)
             
-            HStack(alignment: .center, spacing: 0) {
-                Text(self.categoryName)
-                    .font(.headline)
-                    
-            
-                Spacer()
-                
-                Button(action: {
-                    
-                }) {
-                    Text("My Routes")
-                }.accentColor(Color(Colors.wsdotPrimary))
-
-            }
-            .padding(.leading, 15)
-            .padding(.top, 15)
-
             VStack(alignment: .center, spacing: 0) {
       
                     //   NavigationLink(
@@ -67,6 +54,18 @@ struct TrafficRow: View {
                         image: Image("icHomeAmtrakCascades")
                     )
                 }
+                
+                HStack() {
+                    HomeItem(
+                        title: "My Routes",
+                        image: Image("icHomeMyRoutes")
+                    )
+                    HomeItem(
+                        title: "Favorites",
+                        image: Image("icHomeFavorites")
+                    )
+                }
+                
             }
         }
     }

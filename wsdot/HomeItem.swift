@@ -15,7 +15,7 @@ struct HomeItem: View {
     var image: Image = Image("icHomeTraffic")
     
     var body: some View {
-        HStack(alignment: .top) {
+        HStack(alignment: .center) {
             
             VStack(alignment: .center) {
                 image
@@ -27,10 +27,6 @@ struct HomeItem: View {
                 .padding(.bottom, 8)
             
             Text(title)
-                .lineLimit(nil)
-                .fixedSize(horizontal: false, vertical: true)
-            //    .foregroundColor(.white)
-                .padding(.top, 15)
                 .padding(.trailing, 15)
             
         
