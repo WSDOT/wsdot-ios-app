@@ -12,19 +12,33 @@ import SwiftUI
 struct HomeItem: View {
     
     var title: String
+    var image: Image = Image("icHomeTraffic")
     
     var body: some View {
-        VStack(alignment: .leading) {
+        HStack(alignment: .top) {
+            
+            VStack(alignment: .center) {
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                }.frame(minWidth: 70, maxWidth: 70, minHeight: 0, maxHeight: .infinity, alignment: .center)
+                .padding(.leading, 8)
+                .padding(.top, 8)
+                .padding(.bottom, 8)
             
             Text(title)
                 .lineLimit(nil)
                 .fixedSize(horizontal: false, vertical: true)
-                .foregroundColor(.white)
+            //    .foregroundColor(.white)
+                .padding(.top, 15)
+                .padding(.trailing, 15)
+            
+        
             
         }
-        .padding()
+        //.padding()
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 80, maxHeight: 80, alignment: .topLeading)
-        .background(Color(Colors.wsdotPrimary))
+            .background(Color(UIColor.tertiarySystemBackground))
         .cornerRadius(10)
         .padding(.leading, 15)
         .padding(.top, 10)

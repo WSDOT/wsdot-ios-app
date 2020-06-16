@@ -13,25 +13,36 @@ import Foundation
 @available(iOS 13.0.0, *)
 struct HomeView: View {
 
-    @ObservedObject var items: BindableResults<MountainPassItem>
+    @ObservedObject var passes: BindableResults<MountainPassItem>
+    @ObservedObject var ferrySchedules: BindableResults<FerryScheduleItem>
     
     var body: some View {
         
+        
         return NavigationView {
-            /*
-            List {
-                ForEach(homeItems) { item in
-                    HomeButton(rowName: item.name, image: item.image)
-                }
-            }
-            */
-            
-            VStack {
+
+            ScrollView {
                 TrafficRow(categoryName: "Traffic & Travel")
-                FerriesRow(categoryName: "Ferries")
-                MountainPassesRow(categoryName: "Mountain Passes", passes: items)
+                    .padding(.trailing, 15)
+                FerriesRow(categoryName: "Ferries", ferrySchedules: ferrySchedules)
+                MountainPassesRow(categoryName: "Mountain Passes", passes: passes)
                 Spacer()
-            }.navigationBarTitle(Text("WSDOT"))
+            }
+            .navigationBarTitle(Text("WSDOT"), displayMode: .inline)
+            .navigationBarItems(
+                leading: Button(action: {
+                            print("notification button pressed...")
+                        }) {
+                            Image("icNotification")
+                        },
+                trailing: Button(action: {
+                            print("info button pressed...")
+                        }) {
+                            Image("icInfo")
+                        }
+            )
+                .background(Color(UIColor.secondarySystemBackground))
+            .edgesIgnoringSafeArea(.bottom)
         }
     }
 }

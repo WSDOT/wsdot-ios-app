@@ -25,11 +25,13 @@ struct MountainPassesRow: View {
                 .padding(.leading, 15)
                 .padding(.top, 5)
 
-            ScrollView(.horizontal, showsIndicators: false) {
+            ScrollView(.horizontal, showsIndicators: true) {
                 HStack(alignment: .top, spacing: 0) {
                     
                     if passes.results.count == 0 {
-                        RowItem(title: "", details: "", loading: true)
+                        RowItem(title: "", details: "", loading: true) {
+                                                   print("")
+                                               }
                     }
                   
                     ForEach(passes.results, id: \.id) { pass in
@@ -41,10 +43,12 @@ struct MountainPassesRow: View {
                      //   ) {
                         RowItem(
                             title: pass.name,
-                            details: pass.roadCondition)
+                            details: pass.roadCondition,
+                            isFavorite: pass.selected) {
+                                MountainPassStore.updateFavorite(pass, newValue: !pass.selected)}
                         //}
                         
-                    }
+                    }.animation(.default)
                 }
             }
         }

@@ -22,27 +22,44 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
+        UINavigationBar.appearance().backgroundColor = Colors.wsdotPrimary
+        UINavigationBar.appearance().tintColor = .white
+        UINavigationBar.appearance().barTintColor = Colors.wsdotPrimary
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        
+        
         let realm = try! Realm()
         let passItems = realm.objects(MountainPassItem.self)
+            .sorted(byKeyPath: "id", ascending: true)
+            .sorted(byKeyPath: "selected", ascending: false)
         
-     //   var passItems = realm.object(ofType: MountainPasses.self, forPrimaryKey: 0)
-     //   if passItems == nil {
-     //       passItems = try! realm.write { realm.create(MountainPasses.self, value: []) }
-     //   }
+        let schedules = realm.objects(FerryScheduleItem.self)
+            .sorted(byKeyPath: "routeDescription", ascending: true)
+            .sorted(byKeyPath: "selected", ascending: false)
+        
     
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             window.rootViewController = UIHostingController(
-                rootView: HomeView(items: BindableResults<MountainPassItem>(results: passItems))
+                rootView: HomeView(
+                    passes: BindableResults<MountainPassItem>(results: passItems),
+                ferrySchedules: BindableResults<FerryScheduleItem>(results: schedules))
             )
             self.window = window
             window.makeKeyAndVisible()
         }
         
         MountainPassStore.updatePasses(true, completion: { error in
-                if (error != nil) {
-                    AlertMessages.getConnectionAlert(backupURL:WsdotURLS.passes, message: WSDOTErrorStrings.passReports)
-                }
+            if (error != nil) {
+                print("error fetching passes")
+            }
+        })
+        
+        FerryRealmStore.updateRouteSchedules(true, completion: { error in
+            if (error != nil) {
+                print("error fetching ferry schedules")
+            }
         })
         
     }

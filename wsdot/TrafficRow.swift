@@ -18,14 +18,25 @@ struct TrafficRow: View {
         
         return VStack(alignment: .leading) {
             
-            Text(self.categoryName)
-                .font(.headline)
-                .padding(.leading, 15)
-                .padding(.top, 5)
+            
+            HStack(alignment: .center, spacing: 0) {
+                Text(self.categoryName)
+                    .font(.headline)
+                    
+            
+                Spacer()
+                
+                Button(action: {
+                    
+                }) {
+                    Text("My Routes")
+                }.accentColor(Color(Colors.wsdotPrimary))
 
-  
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .top, spacing: 0) {
+            }
+            .padding(.leading, 15)
+            .padding(.top, 15)
+
+            VStack(alignment: .center, spacing: 0) {
       
                     //   NavigationLink(
                     //       destination: LandmarkDetail(
@@ -34,11 +45,27 @@ struct TrafficRow: View {
                     //   ) {
                
                     //}
+                HStack() {
+                    HomeItem(
+                        title: "Traffic Map",
+                        image: Image("icHomeTraffic")
+                    )
+                        
+                    HomeItem(
+                        title: "Border Waits",
+                        image: Image("icHomeBorderWaits")
+                    )
+                }
                   
-                    HomeItem(title: "Map")
-                    HomeItem(title: "Toll Rates")
-                    HomeItem(title: "Border Waits")
-                    HomeItem(title: "Amtrak Cascades")
+                HStack() {
+                    HomeItem(
+                        title: "Toll Rates",
+                        image: Image("icHomeTollRates")
+                    )
+                    HomeItem(
+                        title: "Amtrak Cascades",
+                        image: Image("icHomeAmtrakCascades")
+                    )
                 }
             }
         }
