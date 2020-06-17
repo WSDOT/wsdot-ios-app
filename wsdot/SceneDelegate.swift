@@ -38,13 +38,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             .sorted(byKeyPath: "routeDescription", ascending: true)
             .sorted(byKeyPath: "selected", ascending: false)
         
+        let alerts = realm.objects(HighwayAlertItem.self)
     
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             window.rootViewController = UIHostingController(
                 rootView: HomeView(
                     passes: BindableResults<MountainPassItem>(results: passItems),
-                ferrySchedules: BindableResults<FerryScheduleItem>(results: schedules))
+                ferrySchedules: BindableResults<FerryScheduleItem>(results: schedules),
+                alerts: BindableResults<HighwayAlertItem>(results: alerts))
             )
             self.window = window
             window.makeKeyAndVisible()

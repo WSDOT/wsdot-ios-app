@@ -46,15 +46,33 @@ struct FerriesRow: View {
                     
                 }) {
                     Text("Vessel Watch")
-                }.padding(.trailing, 15).accentColor(Color(Colors.wsdotPrimary))
+                }
+                .padding(.trailing, 8)
+                .padding(.leading, 8)
+                .padding(.top, 4)
+                .padding(.bottom, 4)
+                .accentColor(Color(Colors.wsdotPrimary))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 15)
+                        .stroke(Color(Colors.wsdotPrimary), lineWidth: 1)
+                )
                 
                 Button(action: {
                    
                 }) {
                     Text("Buy Tickets")
-                }.padding(.trailing, 15).accentColor(Color(Colors.wsdotPrimary))
+                }
+                .padding(.trailing, 8)
+                .padding(.leading, 8)
+                .padding(.top, 4)
+                .padding(.bottom, 4)
+                .accentColor(Color(Colors.wsdotPrimary))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 15)
+                        .stroke(Color(Colors.wsdotPrimary), lineWidth: 1)
+                )
                 
-            }
+            }.padding(.trailing, 15)
             
             
             ScrollView(.horizontal, showsIndicators: true) {

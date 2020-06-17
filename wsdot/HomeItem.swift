@@ -12,34 +12,35 @@ import SwiftUI
 struct HomeItem: View {
     
     var title: String
-    var image: Image = Image("icHomeTraffic")
+    var image: Image = Image("icFerry")
     
     var body: some View {
         HStack(alignment: .center) {
             
             VStack(alignment: .center) {
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                }.frame(minWidth: 70, maxWidth: 70, minHeight: 0, maxHeight: .infinity, alignment: .center)
-                .padding(.leading, 8)
-                .padding(.top, 8)
-                .padding(.bottom, 8)
+                
+                RoundIcon(image: image)
+                
+            }
+            .padding(.leading, 8)
+            .padding(.top, 8)
+            .padding(.bottom, 8)
             
             Text(title)
                 .padding(.trailing, 15)
+                .font(.headline)
             
         
             
         }
         //.padding()
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 80, maxHeight: 80, alignment: .topLeading)
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 48, maxHeight: 48, alignment: .topLeading)
             .background(Color(UIColor.tertiarySystemBackground))
-        .cornerRadius(10)
+        .cornerRadius(5 )
         .padding(.leading, 15)
         .padding(.top, 10)
         .padding(.bottom, 10)
-        .shadow(radius: 5)
+        .shadow(radius: 2)
         
         
   
@@ -49,6 +50,6 @@ struct HomeItem: View {
 @available(iOS 13.0.0, *)
 struct HomeItem_Previews: PreviewProvider {
     static var previews: some View {
-        HomeItem(title: "title")
+        HomeItem(title: "this is a test of a very long title")
     }
 }

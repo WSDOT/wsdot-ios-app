@@ -16,6 +16,8 @@
 		0263A86721FBD73E0090A954 /* MyRouteSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0263A86621FBD73E0090A954 /* MyRouteSetupViewController.swift */; };
 		029CB8B62493E80C009E0422 /* RowItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029CB8B52493E80C009E0422 /* RowItem.swift */; };
 		029CB8BC2494110E009E0422 /* BindableResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029CB8BB2494110E009E0422 /* BindableResults.swift */; };
+		029E12D1249A6B2800EEC737 /* RoundIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029E12D0249A6B2800EEC737 /* RoundIcon.swift */; };
+		02C9EBCF24995CD900929143 /* HighestImpactAlertsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C9EBCE24995CD900929143 /* HighestImpactAlertsRow.swift */; };
 		02D287F22491333500208BE1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D287F12491333500208BE1 /* HomeView.swift */; };
 		02D287F42491335100208BE1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D287F32491335100208BE1 /* SceneDelegate.swift */; };
 		02D287F62491380400208BE1 /* HomeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D287F52491380400208BE1 /* HomeButton.swift */; };
@@ -266,6 +268,8 @@
 		0263A86621FBD73E0090A954 /* MyRouteSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRouteSetupViewController.swift; sourceTree = "<group>"; };
 		029CB8B52493E80C009E0422 /* RowItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowItem.swift; sourceTree = "<group>"; };
 		029CB8BB2494110E009E0422 /* BindableResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindableResults.swift; sourceTree = "<group>"; };
+		029E12D0249A6B2800EEC737 /* RoundIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundIcon.swift; sourceTree = "<group>"; };
+		02C9EBCE24995CD900929143 /* HighestImpactAlertsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighestImpactAlertsRow.swift; sourceTree = "<group>"; };
 		02D287F12491333500208BE1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		02D287F32491335100208BE1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		02D287F52491380400208BE1 /* HomeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeButton.swift; sourceTree = "<group>"; };
@@ -566,12 +570,14 @@
 				029CB8BB2494110E009E0422 /* BindableResults.swift */,
 				029CB8B52493E80C009E0422 /* RowItem.swift */,
 				02451BEA2497CDF40050F9D5 /* HomeItem.swift */,
+				029E12D0249A6B2800EEC737 /* RoundIcon.swift */,
 				02451BE42497C5C30050F9D5 /* ActivityIndicator.swift */,
 				02D287F32491335100208BE1 /* SceneDelegate.swift */,
 				02D287F52491380400208BE1 /* HomeButton.swift */,
 				02D287FD2491788F00208BE1 /* MountainPassesRow.swift */,
 				02451BE62497C7A50050F9D5 /* FerriesRow.swift */,
 				02451BE82497CC780050F9D5 /* TrafficRow.swift */,
+				02C9EBCE24995CD900929143 /* HighestImpactAlertsRow.swift */,
 			);
 			name = NewHome;
 			sourceTree = "<group>";
@@ -2161,8 +2167,10 @@
 				9A0616D21D660DC500126520 /* DynamicTollRatesViewController.swift in Sources */,
 				9A52F1ED22089F520008038B /* MyRouteCamerasViewController.swift in Sources */,
 				9AE9557F2265404000C41B84 /* TollRateTableItem.swift in Sources */,
+				02C9EBCF24995CD900929143 /* HighestImpactAlertsRow.swift in Sources */,
 				02451BE52497C5C30050F9D5 /* ActivityIndicator.swift in Sources */,
 				9AB549051D78899600927F13 /* AmtrakCascadesScheduleDetailsViewController.swift in Sources */,
+				029E12D1249A6B2800EEC737 /* RoundIcon.swift in Sources */,
 				9A8DD9F81D946B6200CE0B76 /* HomeSplitViewController.swift in Sources */,
 				9A0CA8371D466045009C67B7 /* TimeUtils.swift in Sources */,
 				9A39E8D520D43E7A00ED694D /* TollRateSignItem.swift in Sources */,

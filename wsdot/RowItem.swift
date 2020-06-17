@@ -34,12 +34,10 @@ struct RowItem: View {
             } else {
             
                 HStack(alignment: .top) {
+                    
                     VStack(alignment: .leading) {
-            
-        
                         Text(title).lineLimit(nil)
                     }
-              
                     .padding(.leading, 5)
                     .padding(.bottom, 5)
                     .padding(.top, 5)
@@ -70,6 +68,7 @@ struct RowItem: View {
                 }
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .background(Color(Colors.wsdotPrimary))
+                
             }
         }
         .background(Color(UIColor.tertiarySystemBackground))
@@ -78,7 +77,7 @@ struct RowItem: View {
         .padding(.leading, 15)
         .padding(.top, 10)
         .padding(.bottom, 10)
-        .shadow(radius: 5)
+        .shadow(radius: 2)
         .transition(.move(edge: .leading)) // adds animation
   
     }

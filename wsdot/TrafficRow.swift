@@ -35,34 +35,34 @@ struct TrafficRow: View {
                 HStack() {
                     HomeItem(
                         title: "Traffic Map",
-                        image: Image("icHomeTraffic")
+                        image: Image("icMap")
                     )
                         
                     HomeItem(
                         title: "Border Waits",
-                        image: Image("icHomeBorderWaits")
+                        image: Image("icBorderWaits")
                     )
                 }
                   
                 HStack() {
                     HomeItem(
                         title: "Toll Rates",
-                        image: Image("icHomeTollRates")
+                        image: Image("icTollRates")
                     )
                     HomeItem(
                         title: "Amtrak Cascades",
-                        image: Image("icHomeAmtrakCascades")
+                        image: Image("icTrain")
                     )
                 }
                 
                 HStack() {
                     HomeItem(
                         title: "My Routes",
-                        image: Image("icHomeMyRoutes")
+                        image: Image("icRoute")
                     )
                     HomeItem(
                         title: "Favorites",
-                        image: Image("icHomeFavorites")
+                        image: Image("icFillHeart")
                     )
                 }
                 

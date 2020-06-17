@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "fill_fav_32.png",
+      "filename" : "baseline_favorite_border_black_36pt_1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "fill_fav_64.png",
+      "filename" : "baseline_favorite_border_black_36pt_2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "fill_fav_96.png",
+      "filename" : "baseline_favorite_border_black_36pt_3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

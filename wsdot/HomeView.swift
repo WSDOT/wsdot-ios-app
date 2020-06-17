@@ -15,6 +15,7 @@ struct HomeView: View {
 
     @ObservedObject var passes: BindableResults<MountainPassItem>
     @ObservedObject var ferrySchedules: BindableResults<FerryScheduleItem>
+    @ObservedObject var alerts: BindableResults<HighwayAlertItem>
     
     var body: some View {
         
@@ -26,6 +27,7 @@ struct HomeView: View {
                     .padding(.trailing, 15)
                 FerriesRow(categoryName: "Ferries", ferrySchedules: ferrySchedules)
                 MountainPassesRow(categoryName: "Mountain Passes", passes: passes)
+              //  HighestImpactAlertsRow(categoryName: "High Impact Alerts", alerts: alerts)
                 Spacer()
             }
             .navigationBarTitle(Text("WSDOT"), displayMode: .inline)
@@ -41,7 +43,7 @@ struct HomeView: View {
                             Image("icInfo")
                         }
             )
-                .background(Color(UIColor.secondarySystemBackground))
+            .background(Color(UIColor.secondarySystemBackground))
             .edgesIgnoringSafeArea(.bottom)
         }
     }

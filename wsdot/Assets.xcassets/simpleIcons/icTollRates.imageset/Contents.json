@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "empty_fav_32.png",
+      "filename" : "baseline_toll_black_36pt_1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "empyt_fav_64.png",
+      "filename" : "baseline_toll_black_36pt_2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "empty_fav_96.png",
+      "filename" : "baseline_toll_black_36pt_3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
