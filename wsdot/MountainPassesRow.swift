@@ -44,7 +44,8 @@ struct MountainPassesRow: View {
                         RowItem(
                             title: pass.name,
                             details: pass.roadCondition,
-                            isFavorite: pass.selected) {
+                            isFavorite: pass.selected,
+                            height: 100) {
                                 MountainPassStore.updateFavorite(pass, newValue: !pass.selected)}
                         //}
                         

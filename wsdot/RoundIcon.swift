@@ -12,20 +12,22 @@ import SwiftUI
 struct RoundIcon: View {
     
     var image: Image
+    var imageColor: Color = Color.white
+    var bgColor: Color = Color(Colors.wsdotPrimary)
     
     var body: some View {
         
         ZStack(alignment: .center) {
         
             Circle()
-                .fill(Color(Colors.wsdotPrimary))
+                .fill(bgColor)
                 .frame(width: 32, height: 32)
             //.shadow(radius: 5)
             
             image
                 .resizable().renderingMode(.template)
                 .frame(width: 22, height: 22)
-                .foregroundColor(Color.white)
+                .foregroundColor(imageColor)
             
         }
     }

@@ -16,7 +16,6 @@ struct HighestImpactAlertsRow: View {
     @ObservedObject var alerts: BindableResults<HighwayAlertItem>
     
     private func getAlertText(numAlerts: Int) -> String {
-        
         if numAlerts == 1 {
             return "\(numAlerts) Alert"
         } else if numAlerts > 1 {
@@ -24,7 +23,6 @@ struct HighestImpactAlertsRow: View {
         } else {
             return ""
         }
-        
     }
     
     var body: some View {
@@ -39,14 +37,57 @@ struct HighestImpactAlertsRow: View {
                 .padding(.top, 5)
             
             ScrollView(.horizontal, showsIndicators: true) {
-                HStack(alignment: .top, spacing: 0) {
+                VStack(alignment: .leading, spacing: 0) {
                                          
                     ForEach(alerts.results, id: \.alertId) { alert in
                 
-                        Text(alert.headlineDesc)
+                        HStack() {
+                            
+                            
+                            VStack(alignment: .leading) {
+            
+                                RoundIcon(
+                                    image: Image("icMap"),
+                                    bgColor: Color.clear
+                                )
+                                
+                                Spacer()
+                                //Text(alert.eventCategory)
+                                //    .lineLimit(1)
+                                //    .font(.caption)
+                                //    .foregroundColor(.white)
+                                //    .padding(4)
+                                                 
+                            }
+                            .frame(minWidth: 0, maxWidth: 24, minHeight: 0, maxHeight: .infinity)
+                            .background(Color(Colors.wsdotPrimary))
+                                
+                            Spacer()
+                            
+                            Text(alert.headlineDesc)
+                                .font(.caption)
+                                .padding(.leading, 5)
+                                .padding(.trailing, 5)
+                                .padding(.top, 5)
+                        
+              
+                            
+                        }
+                            
+                        .background(Color(UIColor.tertiarySystemBackground))
+                        .frame(width: 150, height: 100, alignment: .topLeading)
+                        .cornerRadius(4)
+                        .padding(.leading, 15)
+                        .padding(.top, 10)
+                        .padding(.bottom, 10)
+                        .shadow(radius: 2)
+                        .transition(.move(edge: .leading))
                 
                     }.animation(.default)
+                    
+                    
                 }
+          
             }
                 
             }

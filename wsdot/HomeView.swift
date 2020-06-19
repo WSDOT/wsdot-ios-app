@@ -27,7 +27,7 @@ struct HomeView: View {
                     .padding(.trailing, 15)
                 FerriesRow(categoryName: "Ferries", ferrySchedules: ferrySchedules)
                 MountainPassesRow(categoryName: "Mountain Passes", passes: passes)
-              //  HighestImpactAlertsRow(categoryName: "High Impact Alerts", alerts: alerts)
+                HighestImpactAlertsRow(categoryName: "High Impact Alerts", alerts: alerts)
                 Spacer()
             }
             .navigationBarTitle(Text("WSDOT"), displayMode: .inline)

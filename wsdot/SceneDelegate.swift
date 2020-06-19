@@ -64,5 +64,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
         })
         
+        HighwayAlertsStore.updateAlerts(true, completion: { error in
+            if (error != nil) {
+                print("error fetching alerts")
+            }
+        })
+        
     }
 }

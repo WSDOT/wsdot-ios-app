@@ -15,7 +15,7 @@ struct RowItem: View {
     var details: String = ""
     var isFavorite: Bool = false
     var loading: Bool = false
-    var height: CGFloat = 120
+    var height: CGFloat = 125
     var actionFavorite: () -> Void
     
     var body: some View {
@@ -39,7 +39,6 @@ struct RowItem: View {
                         Text(title).lineLimit(nil)
                     }
                     .padding(.leading, 5)
-                    .padding(.bottom, 5)
                     .padding(.top, 5)
             
                     Spacer()
