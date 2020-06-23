@@ -14,10 +14,13 @@
 		02451BE92497CC780050F9D5 /* TrafficRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02451BE82497CC780050F9D5 /* TrafficRow.swift */; };
 		02451BEB2497CDF40050F9D5 /* HomeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02451BEA2497CDF40050F9D5 /* HomeItem.swift */; };
 		0263A86721FBD73E0090A954 /* MyRouteSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0263A86621FBD73E0090A954 /* MyRouteSetupViewController.swift */; };
+		026C7A7324A15E630065163C /* HighwayAlertMapDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026C7A7224A15E630065163C /* HighwayAlertMapDetails.swift */; };
 		029CB8B62493E80C009E0422 /* RowItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029CB8B52493E80C009E0422 /* RowItem.swift */; };
 		029CB8BC2494110E009E0422 /* BindableResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029CB8BB2494110E009E0422 /* BindableResults.swift */; };
 		029E12D1249A6B2800EEC737 /* RoundIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029E12D0249A6B2800EEC737 /* RoundIcon.swift */; };
 		02C9EBCF24995CD900929143 /* HighestImpactAlertsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C9EBCE24995CD900929143 /* HighestImpactAlertsRow.swift */; };
+		02CFFC1B24A11EDC00C071AA /* HighestImpactAlertsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CFFC1A24A11EDC00C071AA /* HighestImpactAlertsItem.swift */; };
+		02CFFC1D24A12F5000C071AA /* GoogleMapsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CFFC1C24A12F5000C071AA /* GoogleMapsView.swift */; };
 		02D287F22491333500208BE1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D287F12491333500208BE1 /* HomeView.swift */; };
 		02D287F42491335100208BE1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D287F32491335100208BE1 /* SceneDelegate.swift */; };
 		02D287F62491380400208BE1 /* HomeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D287F52491380400208BE1 /* HomeButton.swift */; };
@@ -266,10 +269,13 @@
 		02451BE82497CC780050F9D5 /* TrafficRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficRow.swift; sourceTree = "<group>"; };
 		02451BEA2497CDF40050F9D5 /* HomeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeItem.swift; sourceTree = "<group>"; };
 		0263A86621FBD73E0090A954 /* MyRouteSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRouteSetupViewController.swift; sourceTree = "<group>"; };
+		026C7A7224A15E630065163C /* HighwayAlertMapDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighwayAlertMapDetails.swift; sourceTree = "<group>"; };
 		029CB8B52493E80C009E0422 /* RowItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowItem.swift; sourceTree = "<group>"; };
 		029CB8BB2494110E009E0422 /* BindableResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindableResults.swift; sourceTree = "<group>"; };
 		029E12D0249A6B2800EEC737 /* RoundIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundIcon.swift; sourceTree = "<group>"; };
 		02C9EBCE24995CD900929143 /* HighestImpactAlertsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighestImpactAlertsRow.swift; sourceTree = "<group>"; };
+		02CFFC1A24A11EDC00C071AA /* HighestImpactAlertsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighestImpactAlertsItem.swift; sourceTree = "<group>"; };
+		02CFFC1C24A12F5000C071AA /* GoogleMapsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsView.swift; sourceTree = "<group>"; };
 		02D287F12491333500208BE1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		02D287F32491335100208BE1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		02D287F52491380400208BE1 /* HomeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeButton.swift; sourceTree = "<group>"; };
@@ -563,6 +569,16 @@
 			name = NewMyRoute;
 			sourceTree = "<group>";
 		};
+		026C7A7124A15E480065163C /* HighwayAlerts */ = {
+			isa = PBXGroup;
+			children = (
+				02CFFC1A24A11EDC00C071AA /* HighestImpactAlertsItem.swift */,
+				02C9EBCE24995CD900929143 /* HighestImpactAlertsRow.swift */,
+				026C7A7224A15E630065163C /* HighwayAlertMapDetails.swift */,
+			);
+			name = HighwayAlerts;
+			sourceTree = "<group>";
+		};
 		02D287F02491330F00208BE1 /* NewHome */ = {
 			isa = PBXGroup;
 			children = (
@@ -571,13 +587,14 @@
 				029CB8B52493E80C009E0422 /* RowItem.swift */,
 				02451BEA2497CDF40050F9D5 /* HomeItem.swift */,
 				029E12D0249A6B2800EEC737 /* RoundIcon.swift */,
+				02CFFC1C24A12F5000C071AA /* GoogleMapsView.swift */,
 				02451BE42497C5C30050F9D5 /* ActivityIndicator.swift */,
 				02D287F32491335100208BE1 /* SceneDelegate.swift */,
 				02D287F52491380400208BE1 /* HomeButton.swift */,
 				02D287FD2491788F00208BE1 /* MountainPassesRow.swift */,
 				02451BE62497C7A50050F9D5 /* FerriesRow.swift */,
 				02451BE82497CC780050F9D5 /* TrafficRow.swift */,
-				02C9EBCE24995CD900929143 /* HighestImpactAlertsRow.swift */,
+				026C7A7124A15E480065163C /* HighwayAlerts */,
 			);
 			name = NewHome;
 			sourceTree = "<group>";
@@ -2152,6 +2169,7 @@
 				9A6FBCF11D6C9B9A00CDCE16 /* FavoriteLocationRealmStore.swift in Sources */,
 				9A6FBCE11D6B96EE00CDCE16 /* HighwayAlertViewController.swift in Sources */,
 				9AEF4D8E1D7602FE003ECA34 /* FacebookCell.swift in Sources */,
+				02CFFC1B24A11EDC00C071AA /* HighestImpactAlertsItem.swift in Sources */,
 				9A9808C21F1FAAAE0034DA05 /* TravelChartImageCell.swift in Sources */,
 				9AEEDDA81D6F7FDF0032F5EC /* MountainPassReportViewController.swift in Sources */,
 				9AEF4DBE1D778ECF003ECA34 /* AmtrakCascadesScheduleViewController.swift in Sources */,
@@ -2174,6 +2192,7 @@
 				9A8DD9F81D946B6200CE0B76 /* HomeSplitViewController.swift in Sources */,
 				9A0CA8371D466045009C67B7 /* TimeUtils.swift in Sources */,
 				9A39E8D520D43E7A00ED694D /* TollRateSignItem.swift in Sources */,
+				026C7A7324A15E630065163C /* HighwayAlertMapDetails.swift in Sources */,
 				9AEF4DAA1D7739E6003ECA34 /* YouTubeCell.swift in Sources */,
 				9AB2D9BA22CD486100C9DB12 /* UIViewExtensions.swift in Sources */,
 				9A1F5FA31D47DBB700DA5F99 /* SailingSpacesStore.swift in Sources */,
@@ -2208,6 +2227,7 @@
 				9AFA0A831E3009CC000D0C70 /* MyRouteItem.swift in Sources */,
 				9AEF4DAF1D774353003ECA34 /* TwitterItems.swift in Sources */,
 				9A6FBD091D6CBB0000CDCE16 /* TravelTimesViewController.swift in Sources */,
+				02CFFC1D24A12F5000C071AA /* GoogleMapsView.swift in Sources */,
 				9A6FBD291D6DFFCE00CDCE16 /* BorderWaitCell.swift in Sources */,
 				9A81A5781D4AC5710049913A /* RouteTimesViewController.swift in Sources */,
 				9AC5E86A2028B36800C9BB02 /* EventStore.swift in Sources */,

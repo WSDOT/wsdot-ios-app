@@ -38,7 +38,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             .sorted(byKeyPath: "routeDescription", ascending: true)
             .sorted(byKeyPath: "selected", ascending: false)
         
-        let alerts = realm.objects(HighwayAlertItem.self)
+        let alerts = realm.objects(HighwayAlertItem.self).filter("priority == \"Highest\"").filter("delete == false").sorted(byKeyPath: "lastUpdatedTime", ascending: false)
     
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)

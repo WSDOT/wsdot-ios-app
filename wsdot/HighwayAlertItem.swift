@@ -19,8 +19,8 @@
 //
 import RealmSwift
 
-class HighwayAlertItem: Object {
-
+class HighwayAlertItem: Object, Identifiable {
+  
     @objc dynamic var alertId: Int = 0
     @objc dynamic var priority: String = ""
     @objc dynamic var region: String = ""
