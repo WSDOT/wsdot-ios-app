@@ -19,8 +19,9 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
-class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate {
     
     let cellIdentifier = "TravelerInfoCell"
     
@@ -32,6 +33,7 @@ class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var bannerView: DFPBannerView!
     
     var menu_options: [String] = []
     
@@ -48,6 +50,16 @@ class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITable
         checkForTravelCharts()
         
         tableView.rowHeight = UITableView.automaticDimension
+        
+        
+        // Ad Banner
+        bannerView.adUnitID = ApiKeys.getAdId()
+        bannerView.rootViewController = self
+        let request = DFPRequest()
+        request.customTargeting = ["wsdotapp":"traffic"]
+        
+        bannerView.load(request)
+        bannerView.delegate = self
         
     }
     

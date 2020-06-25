@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="mIB-If-tar">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="mIB-If-tar">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="98" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="l06-xD-ZI4">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="597"/>
                                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TravelTimeCell" rowHeight="98" id="xyN-W7-KWg" customClass="GroupRouteCell" customModule="WSDOT" customModuleProvider="target">
@@ -68,16 +68,27 @@
                                     <outlet property="delegate" destination="lLl-Mn-R6F" id="huy-Ux-cxn"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2vc-1f-UHI" customClass="DFPBannerView">
+                                <rect key="frame" x="27.5" y="597" width="320" height="50"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="0Pi-GS-dEZ"/>
+                                    <constraint firstAttribute="height" constant="50" id="hZk-aH-bud"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="l06-xD-ZI4" firstAttribute="bottom" secondItem="RjE-E0-Fad" secondAttribute="bottom" id="7SW-wJ-EIJ"/>
                             <constraint firstAttribute="trailing" secondItem="l06-xD-ZI4" secondAttribute="trailing" id="GYe-Ia-bmD"/>
                             <constraint firstItem="l06-xD-ZI4" firstAttribute="leading" secondItem="RjE-E0-Fad" secondAttribute="leading" id="ODT-Eo-VFc"/>
+                            <constraint firstItem="2vc-1f-UHI" firstAttribute="centerX" secondItem="RjE-E0-Fad" secondAttribute="centerX" id="VRq-JD-KfG"/>
+                            <constraint firstItem="2vc-1f-UHI" firstAttribute="top" secondItem="l06-xD-ZI4" secondAttribute="bottom" id="h0d-Np-hr6"/>
                             <constraint firstItem="l06-xD-ZI4" firstAttribute="top" secondItem="RjE-E0-Fad" secondAttribute="top" id="r7w-tp-djx"/>
+                            <constraint firstItem="KOA-34-1Br" firstAttribute="top" secondItem="2vc-1f-UHI" secondAttribute="bottom" id="xut-0a-uTz"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bannerView" destination="2vc-1f-UHI" id="oQs-TR-CjI"/>
                         <outlet property="tableView" destination="l06-xD-ZI4" id="FZC-Fq-MWI"/>
                     </connections>
                 </viewController>
@@ -191,8 +202,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cAW-V7-PKD" customClass="DFPBannerView">
+                                <rect key="frame" x="27.5" y="617" width="320" height="50"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="E0B-t3-FbB"/>
+                                    <constraint firstAttribute="height" constant="50" id="qOt-qK-Nsd"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="42" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="F8X-gj-Snv">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
                                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TravelerInfoCell" rowHeight="42" id="L4Y-QU-cSj">
@@ -217,16 +236,19 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="cAW-V7-PKD" firstAttribute="top" secondItem="F8X-gj-Snv" secondAttribute="bottom" id="AEC-A7-pGB"/>
                             <constraint firstItem="F8X-gj-Snv" firstAttribute="leading" secondItem="zoU-w1-TO5" secondAttribute="leading" id="AIw-rh-g1L"/>
                             <constraint firstItem="F8X-gj-Snv" firstAttribute="top" secondItem="3xQ-uL-ehQ" secondAttribute="bottom" id="IYC-ft-jxg"/>
                             <constraint firstItem="MFA-5I-3mK" firstAttribute="centerY" secondItem="zoU-w1-TO5" secondAttribute="centerY" id="btL-aL-iLJ"/>
                             <constraint firstItem="MFA-5I-3mK" firstAttribute="centerX" secondItem="zoU-w1-TO5" secondAttribute="centerX" id="fYu-q0-yJW"/>
-                            <constraint firstItem="F8X-gj-Snv" firstAttribute="bottom" secondItem="DvU-Ly-4N2" secondAttribute="top" id="q00-KN-UBN"/>
+                            <constraint firstItem="DvU-Ly-4N2" firstAttribute="top" secondItem="cAW-V7-PKD" secondAttribute="bottom" id="owp-Lv-5GD"/>
+                            <constraint firstItem="cAW-V7-PKD" firstAttribute="centerX" secondItem="zoU-w1-TO5" secondAttribute="centerX" id="v6Q-ND-45U"/>
                             <constraint firstAttribute="trailing" secondItem="F8X-gj-Snv" secondAttribute="trailing" id="zYz-7E-M94"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="MFA-5I-3mK" id="y93-zq-JDy"/>
+                        <outlet property="bannerView" destination="cAW-V7-PKD" id="bXt-md-r4u"/>
                         <outlet property="tableView" destination="F8X-gj-Snv" id="FHH-US-ATI"/>
                         <segue destination="iJO-Ih-eIN" kind="show" identifier="ExpressLanesViewController" id="bTu-s0-5V5"/>
                         <segue destination="lLl-Mn-R6F" kind="show" identifier="TravelTimesViewController" id="UKT-si-N84"/>
@@ -237,7 +259,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wqh-4q-J5A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2937" y="-64"/>
+            <point key="canvasLocation" x="2936.8000000000002" y="-64.31784107946028"/>
         </scene>
         <!--Best Times To Travel Routes View Controller-->
         <scene sceneID="TvH-Es-Hbj">

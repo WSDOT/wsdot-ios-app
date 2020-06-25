@@ -13,14 +13,14 @@
             <objects>
                 <viewController id="fa2-BD-KKh" customClass="VesselWatchViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2hI-3V-jEb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="521"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="ACs-iT-ykb">
-                                <rect key="frame" x="169" y="293" width="37" height="37"/>
+                                <rect key="frame" x="169" y="242" width="37" height="37"/>
                             </activityIndicatorView>
                             <toolbar clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCg-ql-Rvd">
-                                <rect key="frame" x="0.0" y="579" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="477" width="375" height="44"/>
                                 <items>
                                     <barButtonItem image="icMyLocation" id="MU2-vD-N2s">
                                         <userDefinedRuntimeAttributes>
@@ -49,7 +49,7 @@
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </toolbar>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IF4-Y9-eAy">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="579"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="477"/>
                                 <connections>
                                     <segue destination="Tbg-l4-csa" kind="embed" identifier="EmbedMapSegue" id="dXg-Ar-maZ"/>
                                 </connections>
@@ -91,7 +91,7 @@
             <objects>
                 <viewController id="Tbg-l4-csa" customClass="MapViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eqr-tr-HAs">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="579"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="477"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="WuE-qO-qnk"/>
@@ -114,7 +114,7 @@
             <objects>
                 <viewController id="0hD-sb-OuA" customClass="VesselDetailsViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fj6-lz-uGO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="501"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Route:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Js7-c8-OGR">
@@ -296,7 +296,7 @@
             <objects>
                 <viewController id="ujp-Ps-Ns9" customClass="VesselWatchSettingsViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UHt-tQ-5K4">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="501"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mcx-mX-cje">
@@ -312,7 +312,7 @@
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SXu-2y-99e">
-                                <rect key="frame" x="0.0" y="56" width="375" height="591"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="445"/>
                                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MapStyleCell" rowHeight="98" id="Sh4-jj-RSN" customClass="MapStyleCell" customModule="WSDOT" customModuleProvider="target">
@@ -401,6 +401,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4J1-wt-95H" customClass="DFPBannerView">
+                                <rect key="frame" x="27.5" y="573" width="320" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="HC7-YO-P8x"/>
+                                    <constraint firstAttribute="height" constant="32" id="VTE-vO-m5i"/>
+                                    <constraint firstAttribute="width" constant="320" id="Zm3-Rp-17V"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="VTE-vO-m5i"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="HC7-YO-P8x"/>
+                                        <exclude reference="VTE-vO-m5i"/>
+                                        <exclude reference="Zm3-Rp-17V"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <mask key="constraints">
+                                        <exclude reference="HC7-YO-P8x"/>
+                                        <exclude reference="VTE-vO-m5i"/>
+                                        <exclude reference="Zm3-Rp-17V"/>
+                                    </mask>
+                                </variation>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ILB-yi-ol7">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
                                 <subviews>
@@ -515,50 +542,20 @@
                                     <outlet property="delegate" destination="MKy-qV-91S" id="C10-O1-KiV"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4J1-wt-95H" customClass="DFPBannerView">
-                                <rect key="frame" x="27" y="573" width="320" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="HC7-YO-P8x"/>
-                                    <constraint firstAttribute="width" constant="320" id="Zm3-Rp-17V"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="tPM-m3-Trq"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="tPM-m3-Trq"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=compact">
-                                    <mask key="constraints">
-                                        <exclude reference="HC7-YO-P8x"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="tPM-m3-Trq"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=regular">
-                                    <mask key="constraints">
-                                        <exclude reference="HC7-YO-P8x"/>
-                                        <include reference="tPM-m3-Trq"/>
-                                    </mask>
-                                </variation>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="cNN-Kj-jyx" firstAttribute="bottom" secondItem="4J1-wt-95H" secondAttribute="bottom" id="CEg-VY-d8O"/>
+                            <constraint firstItem="4J1-wt-95H" firstAttribute="bottom" secondItem="cNN-Kj-jyx" secondAttribute="bottom" id="CEg-VY-d8O"/>
                             <constraint firstItem="ILB-yi-ol7" firstAttribute="leading" secondItem="cNN-Kj-jyx" secondAttribute="leading" id="FNA-C4-HGl"/>
                             <constraint firstItem="4J1-wt-95H" firstAttribute="top" secondItem="L6U-gD-ZYb" secondAttribute="bottom" id="GFF-F1-Ysa"/>
                             <constraint firstItem="ILB-yi-ol7" firstAttribute="top" secondItem="cNN-Kj-jyx" secondAttribute="top" id="IVS-7I-Q5S"/>
                             <constraint firstItem="Re3-Zp-cfw" firstAttribute="width" secondItem="cNN-Kj-jyx" secondAttribute="width" multiplier="0.45" id="L6V-77-9cE"/>
                             <constraint firstItem="L6U-gD-ZYb" firstAttribute="trailing" secondItem="cNN-Kj-jyx" secondAttribute="trailing" id="LII-2K-AIA"/>
                             <constraint firstItem="L6U-gD-ZYb" firstAttribute="top" secondItem="ILB-yi-ol7" secondAttribute="bottom" id="Uu9-c4-Fzc"/>
-                            <constraint firstItem="cNN-Kj-jyx" firstAttribute="trailing" secondItem="4J1-wt-95H" secondAttribute="trailing" constant="28" id="aLh-MO-zGS"/>
                             <constraint firstItem="ILB-yi-ol7" firstAttribute="trailing" secondItem="cNN-Kj-jyx" secondAttribute="trailing" id="ba3-4l-e3q"/>
-                            <constraint firstItem="4J1-wt-95H" firstAttribute="leading" secondItem="cNN-Kj-jyx" secondAttribute="leading" constant="27" id="iFI-sG-Qf6"/>
                             <constraint firstItem="4Ho-eY-MFt" firstAttribute="width" secondItem="cNN-Kj-jyx" secondAttribute="width" multiplier="0.45" id="ixM-on-YNT"/>
                             <constraint firstItem="L6U-gD-ZYb" firstAttribute="leading" secondItem="cNN-Kj-jyx" secondAttribute="leading" id="mVF-VQ-Qgz"/>
+                            <constraint firstItem="4J1-wt-95H" firstAttribute="centerX" secondItem="csc-Rn-WV1" secondAttribute="centerX" id="o1X-0w-qnk"/>
                             <constraint firstItem="L6U-gD-ZYb" firstAttribute="trailing" secondItem="cNN-Kj-jyx" secondAttribute="trailing" id="s4T-td-XNQ"/>
                             <constraint firstItem="L6U-gD-ZYb" firstAttribute="leading" secondItem="cNN-Kj-jyx" secondAttribute="leading" id="znY-PD-zul"/>
                         </constraints>
@@ -687,24 +684,16 @@
                                 <rect key="frame" x="27.5" y="572" width="320" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="WbO-6G-Iov"/>
-                                    <constraint firstAttribute="height" constant="32" id="aTV-d5-MOE"/>
                                     <constraint firstAttribute="width" constant="320" id="g2z-AV-ZKt"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="aTV-d5-MOE"/>
-                                    </mask>
-                                </variation>
                                 <variation key="heightClass=compact">
                                     <mask key="constraints">
                                         <exclude reference="WbO-6G-Iov"/>
-                                        <include reference="aTV-d5-MOE"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <mask key="constraints">
                                         <exclude reference="WbO-6G-Iov"/>
-                                        <include reference="aTV-d5-MOE"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -1280,7 +1269,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="dnP-hq-0C1"/>
+        <segue reference="ssa-Wn-Ar8"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="icAlertTab" width="32" height="32"/>
