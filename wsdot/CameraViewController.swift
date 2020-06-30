@@ -50,9 +50,9 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
         let placeholder: UIImage? = UIImage(named: "imagePlaceholder")
         
         // set the image views frame to the size of the placeholder image
-        let ratio = placeholder!.size.width / placeholder!.size.height
-        let newHeight = cameraImage.frame.width / ratio
-        cameraImageViewHeight.constant = newHeight
+       // let ratio = placeholder!.size.width / placeholder!.size.height
+       // let newHeight = cameraImage.frame.width / ratio
+       // cameraImageViewHeight.constant = newHeight
         view.layoutIfNeeded()
         
         // Add timestamp to help prevent caching
@@ -64,9 +64,9 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
                 self.cameraImage.image = UIImage(named: "cameraOffline")
             } else {
                 // set the image views frame to the size of the downloaded image
-                let ratio = image!.size.width / image!.size.height
-                let newHeight = self.cameraImage.frame.width / ratio
-                self.cameraImageViewHeight.constant = newHeight
+                //let ratio = image!.size.width / image!.size.height
+                //let newHeight = self.cameraImage.frame.width / ratio
+                //self.cameraImageViewHeight.constant = newHeight
                 self.view.layoutIfNeeded()
             }
         })
