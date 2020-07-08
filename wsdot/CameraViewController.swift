@@ -24,7 +24,7 @@ import GoogleMobileAds
 class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDelegate, GMSMapViewDelegate {
     
     @IBOutlet weak var cameraImage: UIImageView!
-      fileprivate let cameraMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: 0, longitude: 0))
+    fileprivate let cameraMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: 0, longitude: 0))
     
     @IBOutlet weak var favoriteBarButton: UIBarButtonItem!
     
@@ -116,16 +116,6 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
         cameraMarker.position = CLLocationCoordinate2D(latitude: self.cameraItem.latitude, longitude: self.cameraItem.longitude)
         cameraMarker.icon = UIImage(named: "icMapCamera")
         
-        if let mapView = embeddedMapViewController.view as? GMSMapView {
-            
-            mapView.moveCamera(GMSCameraUpdate.setTarget(
-                CLLocationCoordinate2D(
-                    latitude: cameraItem.latitude,
-                    longitude: cameraItem.longitude),
-                zoom: 14))
-        
-        }
-        
         self.embeddedMapViewController.view.isHidden = false
         
         // Ad Banner
@@ -147,10 +137,27 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
         bannerView.accessibilityLabel = "advertisement banner."
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        // This is incase the camera is in a pager view
+        // and needs to add the marker again because it
+        // isn't properly added when the pager sets up the
+        // side page views.
+        if let mapView = embeddedMapViewController.view as? GMSMapView{
+            cameraMarker.map = mapView
+            mapView.settings.setAllGesturesEnabled(false)
+            mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: self.cameraItem.latitude, longitude: self.cameraItem.longitude), zoom: 14))
+            
+        }
+        
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         MyAnalytics.screenView(screenName: "CameraImage")
+        
     }
+    
     
     // MARK: Naviagtion
     // Get refrence to child VC
@@ -163,11 +170,13 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
     }
     
     func mapReady() {
+        
         if let mapView = embeddedMapViewController.view as? GMSMapView{
             cameraMarker.map = mapView
             mapView.settings.setAllGesturesEnabled(false)
             mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: self.cameraItem.latitude, longitude: self.cameraItem.longitude), zoom: 14))
         }
+    
     }
     
     @IBAction func updateFavorite(_ sender: UIBarButtonItem) {

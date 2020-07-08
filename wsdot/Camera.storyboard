@@ -56,6 +56,7 @@
                                         </connections>
                                     </containerView>
                                 </subviews>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="wXT-S6-vpH" firstAttribute="leading" secondItem="eO5-dP-Dgs" secondAttribute="leading" constant="16" id="0Kl-eN-3q7"/>
                                     <constraint firstAttribute="trailing" secondItem="pBa-Is-Nj4" secondAttribute="trailing" id="1ZS-lm-6mS"/>

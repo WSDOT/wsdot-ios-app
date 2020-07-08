@@ -49,6 +49,10 @@ class CameraPageViewController: UIPageViewController, UIPageViewControllerDataSo
             pages.append(page)
         }
     
+        if #available(iOS 13.0, *) {
+            self.view.backgroundColor = UIColor.secondarySystemBackground
+        } 
+        
         setViewControllers([pages[selectedCameraIndex]], direction: UIPageViewController.NavigationDirection.forward, animated: false, completion: nil)
   
     }
