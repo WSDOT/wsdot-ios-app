@@ -1059,22 +1059,16 @@
                                     <outlet property="delegate" destination="Whq-2K-wR1" id="1vz-Zl-Mmy"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Wvd-Hp-67x">
-                                <rect key="frame" x="169" y="220" width="37" height="37"/>
-                            </activityIndicatorView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="ea4-dX-pgd" firstAttribute="leading" secondItem="z2y-8B-H2y" secondAttribute="leading" identifier="departure times table leading" id="6C5-hs-dh9"/>
                             <constraint firstItem="ea4-dX-pgd" firstAttribute="top" secondItem="z2y-8B-H2y" secondAttribute="top" id="9zw-q7-q2t"/>
-                            <constraint firstItem="Wvd-Hp-67x" firstAttribute="centerY" secondItem="OXS-G6-73x" secondAttribute="centerY" id="HQf-hP-Blv"/>
                             <constraint firstItem="ea4-dX-pgd" firstAttribute="trailing" secondItem="z2y-8B-H2y" secondAttribute="trailing" identifier="departures table trailing" id="NsJ-nX-4cW"/>
                             <constraint firstItem="ea4-dX-pgd" firstAttribute="bottom" secondItem="z2y-8B-H2y" secondAttribute="bottom" identifier="departure times tabel bottom" id="Q7T-bJ-nUK"/>
-                            <constraint firstItem="Wvd-Hp-67x" firstAttribute="centerX" secondItem="OXS-G6-73x" secondAttribute="centerX" id="ocu-pG-Vfd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="z2y-8B-H2y"/>
                     </view>
                     <connections>
-                        <outlet property="initActivityIndicator" destination="Wvd-Hp-67x" id="dJw-Jx-Q2Y"/>
                         <outlet property="tableView" destination="ea4-dX-pgd" id="d2t-oj-YXQ"/>
                     </connections>
                 </viewController>

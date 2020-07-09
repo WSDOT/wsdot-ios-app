@@ -26,6 +26,8 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     let departuresSailingSpacesCellIdentifier = "RouteDeparturesSailingSpaces"
     let departureCellIdentifier = "RouteDeparture"
     
+    let updateAnimationDuration = 0.5
+    
     var routeId = -1
     
     var sailingSpaces : [SailingSpacesItem]?
@@ -47,9 +49,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     var showConnectionAlert = true
     let refreshControl = UIRefreshControl()
     
-    @IBOutlet weak var initActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var departuresHeader: UIView!
     
     deinit {
         displayedSailing = nil
@@ -69,10 +69,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         }
         
         tableView.addSubview(refreshControl)
-        
-        tableView.isHidden = true
-        initActivityIndicator.startAnimating()
-        initActivityIndicator.isHidden = false
         
         timer = Timer.scheduledTimer(timeInterval: CachesStore.spacesUpdateTime, target: self, selector: #selector(RouteTimesViewController.spacesTimerTask), userInfo: nil, repeats: true)
     
@@ -118,18 +114,14 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                         DispatchQueue.main.async { [weak self] in
                             if let selfValue = self {
                                 selfValue.sailingSpaces = validData
-                                selfValue.tableView.reloadData()
-                       
+                                //selfValue.tableView.reloadData()
+                                UIView.transition(with: selfValue.tableView, duration: selfValue.updateAnimationDuration, options: .transitionCrossDissolve, animations: {selfValue.tableView.reloadData()}, completion: nil)
+
                                 selfValue.refreshControl.endRefreshing()
                                 selfValue.refreshControl.isHidden = true
                     
                                 if (scrollToCurrentSailing){
-                                    // calls loadingView.isHidden
                                     selfValue.scrollToLastDeparture(selfValue.displayedTimes)
-                                } else {
-                                    selfValue.tableView.isHidden = false
-                                    selfValue.initActivityIndicator.stopAnimating()
-                                    selfValue.initActivityIndicator.isHidden = true
                                 }
                                 
                             }
@@ -143,9 +135,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                                     selfValue.showConnectionAlert = false
                                     AlertMessages.getConnectionAlert(backupURL: nil, message: WSDOTErrorStrings.ferrySailings)
                                 }
-                                selfValue.tableView.isHidden = false
-                                selfValue.initActivityIndicator.stopAnimating()
-                                selfValue.initActivityIndicator.isHidden = true
+                             
                             }
                         }
                     }
@@ -159,9 +149,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                         DispatchQueue.main.async { [weak self] in
                             if let selfValue = self {
                                 selfValue.vessel = vessel
-                                selfValue.tableView.reloadData()
-                                selfValue.tableView.beginUpdates()
-                                selfValue.tableView.endUpdates()
+                                UIView.transition(with: selfValue.tableView, duration: selfValue.updateAnimationDuration, options: .transitionCrossDissolve, animations: {selfValue.tableView.reloadData()}, completion: nil)
                                 
                             }
                         }
@@ -177,7 +165,8 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
     func changeDay(_ index: Int) {
         currentDay = index
         setDisplayedSailing(currentDay)
-        self.tableView.reloadData()
+        UIView.transition(with: tableView, duration: updateAnimationDuration, options: .transitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
+
         self.scrollToLastDeparture(self.displayedTimes)
     }
     
@@ -185,7 +174,8 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         self.refreshControl.beginRefreshing()
         self.currentSailing = terminal
         self.setDisplayedSailing(currentDay)
-        self.tableView.reloadData()
+        UIView.transition(with: tableView, duration: updateAnimationDuration, options: .transitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
+
     }
     
     // MARK: -
@@ -208,7 +198,7 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
 
     // reload data on rotations to ensure cells display correctly
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        self.tableView.reloadData()
+     
         super.viewWillTransition(to: size, with: coordinator)
         coordinator.animate(alongsideTransition: nil, completion: {
             _ in
@@ -415,9 +405,6 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
                     if self.tableView.numberOfRows(inSection: 0) > index {
                         let indexPath = IndexPath(row: index, section: 0)
                         self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
-                        self.tableView.isHidden = false
-                        self.initActivityIndicator.stopAnimating()
-                        self.initActivityIndicator.isHidden = true
                     }
                 }
             }
@@ -436,5 +423,4 @@ class RouteTimesViewController: UIViewController, UITableViewDataSource, UITable
         }
         return 0
     }
- 
 }
