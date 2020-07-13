@@ -33,8 +33,7 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
     @IBOutlet weak var directionLabel: UILabel!
     @IBOutlet weak var milepostLabel: UILabel!
     
-    @IBOutlet weak var cameraImageViewHeight: NSLayoutConstraint!
-    
+    @IBOutlet weak var cameraImageHeightConstraint: NSLayoutConstraint!
     weak fileprivate var embeddedMapViewController: SimpleMapViewController!
     
     var cameraItem: CameraItem = CameraItem()
@@ -45,37 +44,12 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
         super.viewDidLoad()
         self.navigationItem.title = cameraItem.title;
         
-        embeddedMapViewController.view.isHidden = true
-        
-        let placeholder: UIImage? = UIImage(named: "imagePlaceholder")
-        
-        // set the image views frame to the size of the placeholder image
-       // let ratio = placeholder!.size.width / placeholder!.size.height
-       // let newHeight = cameraImage.frame.width / ratio
-       // cameraImageViewHeight.constant = newHeight
-        view.layoutIfNeeded()
-        
-        // Add timestamp to help prevent caching
-        let urlString = cameraItem.url + "?" + String(Int(Date().timeIntervalSince1970 / 60))
-        
-        cameraImage.sd_setImage(with: URL(string: urlString), placeholderImage: placeholder, options: .refreshCached, completed: { image, error, cacheType, imageURL in
-            
-            if (error != nil) {
-                self.cameraImage.image = UIImage(named: "cameraOffline")
-            } else {
-                // set the image views frame to the size of the downloaded image
-                //let ratio = image!.size.width / image!.size.height
-                //let newHeight = self.cameraImage.frame.width / ratio
-                //self.cameraImageViewHeight.constant = newHeight
-                self.view.layoutIfNeeded()
-            }
-        })
-        
+        embeddedMapViewController.view.isHidden = false
         
         if (cameraItem.selected) {
             favoriteBarButton.image = UIImage(named: "icStarSmallFilled")
             favoriteBarButton.accessibilityLabel = "remove from favorites"
-        }else {
+        } else {
             favoriteBarButton.image = UIImage(named: "icStarSmall")
             favoriteBarButton.accessibilityLabel = "add to favorites"
         }
@@ -150,14 +124,36 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
             
         }
         
+        let placeholder: UIImage? = UIImage(named: "imagePlaceholder")
+                    
+        // Add timestamp to help prevent caching
+        let urlString = cameraItem.url + "?" + String(Int(Date().timeIntervalSince1970 / 60))
+        
+           
+        cameraImage.sd_setImage(with: URL(string: urlString), placeholderImage: placeholder, options: .refreshCached, completed: { image, error, cacheType, imageURL in
+                        
+                let superViewWidth = self.view.frame.size.width - 16
+                 
+                if (error != nil) {
+                    self.cameraImage.image = UIImage(named: "cameraOffline")
+                } else {
+      
+                    let ratio = image!.size.width / image!.size.height
+                    let newHeight = superViewWidth / ratio
+                            
+                    print(newHeight)
+                            
+                    self.cameraImageHeightConstraint.constant = newHeight
+                      
+                }
+            }
+        )
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         MyAnalytics.screenView(screenName: "CameraImage")
-        
     }
-    
     
     // MARK: Naviagtion
     // Get refrence to child VC
