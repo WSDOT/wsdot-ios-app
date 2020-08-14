@@ -17,6 +17,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
+
 import UIKit
 import GoogleMobileAds
 import RealmSwift
@@ -36,15 +37,15 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
     @IBOutlet weak var timesContainerView: UIView!
     @IBOutlet weak var camerasContainerView: UIView!
     @IBOutlet weak var vesselWatchContainerView: UIView!
-    
+
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     var routeTimesVC: RouteTimesViewController!
     var routeCamerasVC: RouteCamerasViewController!
-    
+
     @IBOutlet weak var sailingButton: IconButton!
     @IBOutlet weak var dayButton: IconButton!
-    
+
     @IBOutlet weak var bannerView: GADBannerView!
     
     var routeItem: FerryScheduleItem?
@@ -53,9 +54,28 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
     var selectedTerminal = 0
     
     var overlayView = UIView()
-    
+
     let favoriteBarButton = UIBarButtonItem()
     let alertBarButton = UIBarButtonItem()
+    
+    internal func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("wsdot debug: adViewDidReceiveAd")
+        if let responseInfo = bannerView.responseInfo {
+          print("wsdot debug: \(responseInfo)")
+            print("wsdot debug: \(String(describing: responseInfo.adNetworkClassName))")
+            print("wsdot debug: \(String(describing: responseInfo.responseIdentifier))")
+        }
+    }
+
+    func adView(_ bannerView: GADBannerView,
+        didFailToReceiveAdWithError error: GADRequestError) {
+        print("wsdot debug: didFailToReceiveAdWithError: \(error.localizedDescription)")
+        // GADBannerView has the responseInfo property but this demonstrates accessing
+        // response info from a returned NSError.
+        if let responseInfo = error.userInfo[GADErrorUserInfoKeyResponseInfo] as? GADResponseInfo {
+          print("wsdot debug: \(responseInfo)")
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,18 +111,26 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
         loadSailings()
         
         // Ad Banner
+        print("wsdot debug: setting up ad banner")
+        print("wsdot debug: \(routeId)")
+        let ferryRouteTarget = WSDOTAdTargets.ferryTargets[routeId]
+        print("wsdot debug: \(ferryRouteTarget ?? "ferries")")
+        
         bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.rootViewController = self
         let request = DFPRequest()
-        request.customTargeting = ["wsdotapp":"ferries"]
+            
+        request.customTargeting = [
+            "wsdotapp":"ferries",
+            "wsdotferries":ferryRouteTarget ?? "ferries-home"
+        ]
+
         bannerView.load(request)
         bannerView.delegate = self
-    }
     
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        bannerView.isAccessibilityElement = true
-        bannerView.accessibilityLabel = "advertisement banner."
+    
     }
+
     
     @IBAction func sailingsButtonTap(_ sender: IconButton) {
         performSegue(withIdentifier: segueTerminalSelectionViewController, sender: self)

@@ -62,7 +62,10 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
         bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.rootViewController = self
         let request = DFPRequest()
-        request.customTargeting = ["wsdotapp":"ferries"]
+        request.customTargeting = [
+            "wsdotapp":"ferries",
+            "wsdotferries":"ferries-home"
+        ]
         
         bannerView.load(request)
         bannerView.delegate = self
