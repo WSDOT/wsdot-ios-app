@@ -306,17 +306,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         
         for alert in HighwayAlertsStore.getAllAlerts(){
             
-            var alertEnded = false
-            
-            if let alertEndTimeValue = alert.endTime{
-                if alertEndTimeValue.timeIntervalSince1970 < Date().timeIntervalSince1970{
-                    alertEnded = true
-                }
-            }
-            
-            if (alert.startTime.timeIntervalSince1970 < Date().timeIntervalSince1970
-                && !alertEnded
-                && alert.startLatitude != 0
+            if (alert.startLatitude != 0
                 && alert.startLongitude != 0) {
                 
                 let alertLocation = CLLocationCoordinate2D(latitude: alert.startLatitude, longitude: alert.startLongitude)
