@@ -116,12 +116,22 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
         descLinkLabel.attributedText = attrStr
 
         updateTimeLabel.text = TimeUtils.timeAgoSinceDate(date: alertItem.lastUpdatedTime, numericDates: false)
+
+        // if location is 0,0 set coordinates in center of WA so we can
+        // show the whole state
+        let lat = self.alertItem.startLatitude.isEqual(to: 0.0) ? 47.7511 : self.alertItem.startLatitude
+        let long = self.alertItem.startLongitude.isEqual(to: 0.0) ? -120.7401 : self.alertItem.startLongitude
         
-        alertMarker.position = CLLocationCoordinate2D(latitude: self.alertItem.startLatitude, longitude: self.alertItem.startLongitude)
+        let zoom = (self.alertItem.startLatitude.isEqual(to: 0.0) && self.alertItem.startLongitude.isEqual(to: 0.0)) ? 6 : 14
+        
+        alertMarker.position = CLLocationCoordinate2D(
+            latitude: lat,
+            longitude: long)
+        
         alertMarker.icon = UIHelpers.getAlertIcon(forAlert: self.alertItem)
         
         if let mapView = embeddedMapViewController.view as? GMSMapView{
-            mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: self.alertItem.startLatitude, longitude: self.alertItem.startLongitude), zoom: 14))
+            mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: lat, longitude: long), zoom: Float(zoom)))
         }
 
         self.embeddedMapViewController.view.isHidden = false
@@ -129,15 +139,31 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
         if #available(iOS 13, *){
             descLinkLabel.textColor = UIColor.label
         }
-
     }
-
     
     func mapReady() {
-        if let mapView = embeddedMapViewController.view as? GMSMapView{
-            alertMarker.map = mapView
-            mapView.settings.setAllGesturesEnabled(false)
-            mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: self.alertItem.startLatitude, longitude: self.alertItem.startLongitude), zoom: 14))
+        
+        if (self.alertItem.startLatitude.isEqual(to: 0.0)
+            && self.alertItem.startLongitude.isEqual(to: 0.0)) {
+        
+            if let mapView = embeddedMapViewController.view as? GMSMapView{
+                print("here 1")
+                
+                alertMarker.map = mapView
+                mapView.settings.setAllGesturesEnabled(false)
+                mapView.moveCamera(GMSCameraUpdate.setTarget(
+                    CLLocationCoordinate2D(latitude: 47.7511,longitude: -120.7401),
+                    zoom: 6))
+                
+            }
+            
+        } else {
+            if let mapView = embeddedMapViewController.view as? GMSMapView{
+                print("here 2")
+                alertMarker.map = mapView
+                mapView.settings.setAllGesturesEnabled(false)
+                mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: self.alertItem.startLatitude, longitude: self.alertItem.startLongitude), zoom: 14))
+            }
         }
     }
     
