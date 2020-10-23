@@ -37,6 +37,10 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This allows WSDOT to display your current location on maps and suggest train stations or ferry terminals near you.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
