@@ -37,10 +37,6 @@ class MountainPassTabBarViewController: UITabBarController{
             self.tabBar.items?[1].isEnabled = false
         }
         
-        if (passItem.cameraIds.count == 0){
-            self.tabBar.items?[2].isEnabled = false
-        }
-        
         refreshBarButton = createRefreshButton()
         
         favoriteBarButton.action = #selector(MountainPassTabBarViewController.updateFavorite(_:))

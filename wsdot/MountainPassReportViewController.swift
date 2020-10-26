@@ -48,7 +48,7 @@ class MountainPassReportViewController: RefreshViewController, UITableViewDataSo
         updatePassReportView(withPassItem: passItem)
         
         // refresh controller
-        refreshControl.addTarget(self, action: #selector(MountainPassCamerasViewController.refreshAction(_:)), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(refreshAction(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
         
         self.tableView.contentOffset = CGPoint(x: 0, y: -self.refreshControl.frame.size.height)

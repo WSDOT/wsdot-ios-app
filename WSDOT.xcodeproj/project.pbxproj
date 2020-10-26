@@ -184,7 +184,6 @@
 		9AEEDDA41D6F3D810032F5EC /* MountainPassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEDDA31D6F3D810032F5EC /* MountainPassCell.swift */; };
 		9AEEDDA61D6F3EC50032F5EC /* WeatherUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEDDA51D6F3EC50032F5EC /* WeatherUtils.swift */; };
 		9AEEDDA81D6F7FDF0032F5EC /* MountainPassReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEDDA71D6F7FDF0032F5EC /* MountainPassReportViewController.swift */; };
-		9AEEDDAA1D6F893B0032F5EC /* MountainPassCamerasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEDDA91D6F893B0032F5EC /* MountainPassCamerasViewController.swift */; };
 		9AEEDDAC1D6F89D90032F5EC /* MountainPassWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEDDAB1D6F89D90032F5EC /* MountainPassWeatherViewController.swift */; };
 		9AEEDDAE1D708D8B0032F5EC /* ForecastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEDDAD1D708D8B0032F5EC /* ForecastCell.swift */; };
 		9AEEDDB11D70B8A20032F5EC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9AEEDDB01D70B8A20032F5EC /* GoogleService-Info.plist */; };
@@ -460,7 +459,6 @@
 		9AEEDDA31D6F3D810032F5EC /* MountainPassCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MountainPassCell.swift; sourceTree = "<group>"; };
 		9AEEDDA51D6F3EC50032F5EC /* WeatherUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherUtils.swift; sourceTree = "<group>"; };
 		9AEEDDA71D6F7FDF0032F5EC /* MountainPassReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MountainPassReportViewController.swift; sourceTree = "<group>"; };
-		9AEEDDA91D6F893B0032F5EC /* MountainPassCamerasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MountainPassCamerasViewController.swift; sourceTree = "<group>"; };
 		9AEEDDAB1D6F89D90032F5EC /* MountainPassWeatherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MountainPassWeatherViewController.swift; sourceTree = "<group>"; };
 		9AEEDDAD1D708D8B0032F5EC /* ForecastCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastCell.swift; sourceTree = "<group>"; };
 		9AEEDDB01D70B8A20032F5EC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -1045,7 +1043,6 @@
 				9A6FBD301D6E3E9100CDCE16 /* MountainPassesViewController.swift */,
 				9A6FBD361D6E413A00CDCE16 /* MountainPassTabBarViewController.swift */,
 				9AEEDDA71D6F7FDF0032F5EC /* MountainPassReportViewController.swift */,
-				9AEEDDA91D6F893B0032F5EC /* MountainPassCamerasViewController.swift */,
 				9AEEDDAB1D6F89D90032F5EC /* MountainPassWeatherViewController.swift */,
 			);
 			name = Controllers;
@@ -2117,7 +2114,6 @@
 				9A6FBD0D1D6CBC4E00CDCE16 /* TravelTimesRealmStore.swift in Sources */,
 				9A4BBAB02125C53500DE6F1B /* SimpleMapViewController.swift in Sources */,
 				9A06167F1D62602500126520 /* MapMarkerDelegate.swift in Sources */,
-				9AEEDDAA1D6F893B0032F5EC /* MountainPassCamerasViewController.swift in Sources */,
 				9AC5E86E202A2DB700C9BB02 /* EventViewController.swift in Sources */,
 				9AEF4DA81D773921003ECA34 /* YouTubeViewController.swift in Sources */,
 				9AEF4DA31D773630003ECA34 /* YouTubeItem.swift in Sources */,
