@@ -26,7 +26,6 @@ class MountainPassTabBarViewController: UITabBarController{
     var passItem = MountainPassItem()
     
     let favoriteBarButton = UIBarButtonItem()
-    var refreshBarButton = UIBarButtonItem()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,12 +35,6 @@ class MountainPassTabBarViewController: UITabBarController{
         if (passItem.forecast.count == 0){
             self.tabBar.items?[1].isEnabled = false
         }
-        
-        if (passItem.cameraIds.count == 0){
-            self.tabBar.items?[2].isEnabled = false
-        }
-        
-        refreshBarButton = createRefreshButton()
         
         favoriteBarButton.action = #selector(MountainPassTabBarViewController.updateFavorite(_:))
         favoriteBarButton.target = self
@@ -54,7 +47,7 @@ class MountainPassTabBarViewController: UITabBarController{
             favoriteBarButton.image = UIImage(named: "icStarSmall")
             favoriteBarButton.accessibilityLabel = "add to favorites"
         }
-        self.navigationItem.rightBarButtonItems = [favoriteBarButton, refreshBarButton]
+        self.navigationItem.rightBarButtonItems = [favoriteBarButton]
     }
     
     @objc func updateFavorite(_ sender: UIBarButtonItem) {
@@ -68,69 +61,5 @@ class MountainPassTabBarViewController: UITabBarController{
             favoriteBarButton.accessibilityLabel = "remove from favorites"
         }
     }
-    
-    func createRefreshButton() -> UIBarButtonItem {
-        let button: UIButton = UIButton(type: .system)
-        button.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30)
-        button.setTitle("", for: .normal)
-        button.setImage(UIImage(named: "icRefresh"), for: .normal)
-        button.imageView!.tintColor = ThemeManager.currentTheme().secondaryColor
-        button.addTarget(self, action: #selector(MountainPassTabBarViewController.refresh(_:)), for: .touchUpInside)
 
-        let barButton = UIBarButtonItem(customView: button)
-        barButton.accessibilityLabel = "refresh"
-        
-        return barButton
-    }
-    
-    @objc func refresh(_ sender: UIBarButtonItem){
-        
-        refreshBarButton.customView = UIHelpers.createActivityIndicator()
-        
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { [weak self] in
-            MountainPassStore.updatePasses(true, completion: { error in
-                
-                if (error == nil) {
-                    // Reload tableview on UI thread
-                    DispatchQueue.main.async { [weak self] in
-                        if let selfValue = self{
-                            
-                            selfValue.refreshBarButton = selfValue.createRefreshButton()
-                            selfValue.navigationItem.rightBarButtonItems = [selfValue.favoriteBarButton, selfValue.refreshBarButton]
-                            
-                            if let passItem = (MountainPassStore.getPasses().filter{ $0.id == selfValue.passItem.id }.first) {
-                                selfValue.passItem = passItem
-                                if let reportVC = selfValue.children[0] as? MountainPassReportViewController {
-                                    reportVC.updateView(withPassItem: selfValue.passItem)
-                                }
-                                
-                                // check if the weather VC is available and update it's data.
-                                if let weatherVC = selfValue.children[1] as? MountainPassWeatherViewController {
-                                    weatherVC.passItem = selfValue.passItem
-                                    if weatherVC.tableView != nil {
-                                        weatherVC.tableView.reloadData()
-                                    }
-                                    
-                                }
-                                if let weatherVC = selfValue.children[2] as? MountainPassWeatherViewController {
-                                    weatherVC.passItem = selfValue.passItem
-                                    if weatherVC.tableView != nil {
-                                        weatherVC.tableView.reloadData()
-                                    }
-                                }
-                            }
-                        }
-                    }
-                } else {
-                    DispatchQueue.main.async { [weak self] in
-                        if let selfValue = self{
-                            selfValue.refreshBarButton = selfValue.createRefreshButton()
-                            selfValue.navigationItem.rightBarButtonItems = [selfValue.favoriteBarButton, selfValue.refreshBarButton]
-                            AlertMessages.getConnectionAlert(backupURL: WsdotURLS.passes, message: WSDOTErrorStrings.passReport)
-                        }
-                    }
-                }
-            })
-        }
-    }
 }
