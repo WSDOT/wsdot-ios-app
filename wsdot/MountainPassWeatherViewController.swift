@@ -26,6 +26,8 @@ class MountainPassWeatherViewController: UIViewController, UITableViewDelegate, 
 
     let cellIdentifier = "PassForecastCell"
 
+    let refreshControl = UIRefreshControl()
+    
     var passItem : MountainPassItem = MountainPassItem()
     
     @IBOutlet weak var tableView: UITableView!
@@ -35,10 +37,15 @@ class MountainPassWeatherViewController: UIViewController, UITableViewDelegate, 
     
         super.viewDidLoad()
         let mountainPassTabBarContoller = self.tabBarController as! MountainPassTabBarViewController
+        
         passItem = mountainPassTabBarContoller.passItem
         
         tableView.rowHeight = UITableView.automaticDimension
  
+        // refresh controller
+        refreshControl.addTarget(self, action: #selector(refreshAction(_:)), for: .valueChanged)
+        tableView.addSubview(refreshControl)
+        
         // Ad Banner
         bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.rootViewController = self
@@ -53,6 +60,43 @@ class MountainPassWeatherViewController: UIViewController, UITableViewDelegate, 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         MyAnalytics.screenView(screenName: "PassForecast")
+    }
+    
+    
+    @objc func refreshAction(_ refreshControl: UIRefreshControl) {
+        refresh(true)
+    }
+    
+    func refresh(_ force: Bool) {
+        
+        // refresh weather report
+        DispatchQueue.global().async { [weak self] in
+            MountainPassStore.updatePasses(true, completion: { error in
+                if (error == nil) {
+                    // Reload tableview on UI thread
+                    DispatchQueue.main.async { [weak self] in
+                        if let selfValue = self{
+                            
+                            if let passItem = (MountainPassStore.getPasses().filter{ $0.id == selfValue.passItem.id }.first) {
+                                selfValue.passItem = passItem
+                                if selfValue.tableView != nil {
+                                    selfValue.tableView.reloadData()
+                                }
+                            }
+                            selfValue.refreshControl.endRefreshing()
+                        }
+                      
+                    }
+                } else {
+                    DispatchQueue.main.async { [weak self] in
+                        if let selfValue = self{
+                            selfValue.refreshControl.endRefreshing()
+                            AlertMessages.getConnectionAlert(backupURL: WsdotURLS.passes, message: WSDOTErrorStrings.passReport)
+                        }
+                    }
+                }
+            })
+        }
     }
     
     // MARK: Table View Data source methods

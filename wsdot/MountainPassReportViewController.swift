@@ -95,11 +95,9 @@ class MountainPassReportViewController: RefreshViewController, UITableViewDataSo
  
         passReportView.restrictionOneTitleLabel.text = "Restrictions " + passItem.restrictionOneTravelDirection + ":"
 
-        
         passReportView.restrictionOneLabel.text = passItem.restrictionOneText
       
         passReportView.restrictionTwoTitleLabel.text = "Restrictions " + passItem.restrictionTwoTravelDirection + ":"
-
         
         passReportView.restrictionTwoLabel.text = passItem.restrictionTwoText
         
@@ -110,6 +108,8 @@ class MountainPassReportViewController: RefreshViewController, UITableViewDataSo
     }
     
     func refresh(_ force: Bool) {
+        
+        // refresh cameras
         DispatchQueue.global().async {[weak self] in
             CamerasStore.updateCameras(force, completion: { error in
                 if (error == nil){
@@ -138,6 +138,36 @@ class MountainPassReportViewController: RefreshViewController, UITableViewDataSo
                 }
             })
         }
+        
+        // refresh report
+        DispatchQueue.global().async { [weak self] in
+            MountainPassStore.updatePasses(true, completion: { error in
+                if (error == nil) {
+                    // Reload tableview on UI thread
+                    DispatchQueue.main.async { [weak self] in
+                        if let selfValue = self{
+                            
+                            if let passItem = (MountainPassStore.getPasses().filter{ $0.id == selfValue.passItem.id }.first) {
+                                    selfValue.passItem = passItem
+                                    selfValue.updatePassReportView(withPassItem: selfValue.passItem)
+                    
+                            }
+                            selfValue.refreshControl.endRefreshing()
+                        }
+                      
+                    }
+                } else {
+                    DispatchQueue.main.async { [weak self] in
+                        if let selfValue = self{
+                            selfValue.refreshControl.endRefreshing()
+                            AlertMessages.getConnectionAlert(backupURL: WsdotURLS.passes, message: WSDOTErrorStrings.passReport)
+                        }
+                    }
+                }
+            })
+        }
+        
+        
     }
     
 
