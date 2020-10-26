@@ -205,7 +205,6 @@
                     <connections>
                         <outlet property="bannerView" destination="DuD-89-gkM" id="aWY-ho-VjE"/>
                         <outlet property="tableView" destination="MDU-wE-7uH" id="WX8-ZW-8tQ"/>
-                        <segue destination="ykC-sg-R9h" kind="show" identifier="CamerasViewController" id="7EX-qr-LCg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q4Y-HQ-D3j" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -215,10 +214,12 @@
         <!--Camera-->
         <scene sceneID="STD-hy-eZO">
             <objects>
-                <viewControllerPlaceholder storyboardName="Camera" id="ykC-sg-R9h" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Camera" id="ykC-sg-R9h" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="tP9-eD-xFL"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JQz-fm-a4j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2852" y="123"/>
+            <point key="canvasLocation" x="2857" y="-555"/>
         </scene>
         <!--Forecast-->
         <scene sceneID="Iwt-em-5d3">
@@ -389,6 +390,7 @@
                     <connections>
                         <outlet property="bannerView" destination="oEb-VE-tcl" id="XSL-qg-XUh"/>
                         <outlet property="tableView" destination="Ujz-vl-dcq" id="vBY-YL-wAa"/>
+                        <segue destination="ykC-sg-R9h" kind="show" identifier="CamerasViewController" id="hl2-cg-Mzt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e7n-dV-Chb" userLabel="First Responder" sceneMemberID="firstResponder"/>
