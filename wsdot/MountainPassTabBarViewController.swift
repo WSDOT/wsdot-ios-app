@@ -101,7 +101,7 @@ class MountainPassTabBarViewController: UITabBarController{
                             if let passItem = (MountainPassStore.getPasses().filter{ $0.id == selfValue.passItem.id }.first) {
                                 selfValue.passItem = passItem
                                 if let reportVC = selfValue.children[0] as? MountainPassReportViewController {
-                                    reportVC.updateView(withPassItem: selfValue.passItem)
+                                    reportVC.updatePassReportView(withPassItem: selfValue.passItem)
                                 }
                                 
                                 // check if the weather VC is available and update it's data.
