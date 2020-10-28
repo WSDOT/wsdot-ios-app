@@ -191,9 +191,9 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: df2f8f826963b08b9a870791ad48e07a10090b2e
-  Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
+  Crashlytics: 9220f5bc89e7a618df411b4f639389dbfb0e03d2
   EasyTipView: 4f8beae0a82db2ca4a9b5fd658785fc5f61d296b
-  Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
+  Fabric: ea977e3cd9c20425516d3dafd3bf8c941c51223f
   Firebase: 47176280bfba198e531f909cfb1612dad216cb96
   FirebaseABTesting: 8a9d8df3acc2b43f4a22014ddf9f601bca6af699
   FirebaseAnalytics: 3c2fee6a922023ccfda7af87e4e641bad1fc11ba
@@ -225,4 +225,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 876baf4a9a89138f08e2a49137d4dbececc18b06
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.10.0

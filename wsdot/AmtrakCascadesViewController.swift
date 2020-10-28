@@ -63,7 +63,10 @@ class AmtrakCascadesViewController: UIViewController, UITableViewDelegate, UITab
         case 0:
             MyAnalytics.screenView(screenName: "BuyTickets")
             MyAnalytics.event(category: "Amtrak", action: "open_url", label: "buy_tickets")
-            let svc = SFSafariViewController(url: URL(string: self.amtrakUrlString)!, entersReaderIfAvailable: false)
+   
+            let config = SFSafariViewController.Configuration()
+            config.entersReaderIfAvailable = true
+            let svc = SFSafariViewController(url: URL(string: self.amtrakUrlString)!, configuration: config)
             
             if #available(iOS 10.0, *) {
                 svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor

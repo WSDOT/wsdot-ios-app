@@ -151,7 +151,11 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
     @IBAction func infoLinkAction(_ sender: UIButton) {
         if stateRoute == "405" {
             MyAnalytics.event(category: "Tolling", action: "open_link", label: "tolling_405")
-            let svc = SFSafariViewController(url: URL(string: "https://www.wsdot.wa.gov/Tolling/405/rates.htm")!, entersReaderIfAvailable: true)
+     
+            let config = SFSafariViewController.Configuration()
+            config.entersReaderIfAvailable = true
+            let svc = SFSafariViewController(url: URL(string: "https://www.wsdot.wa.gov/Tolling/405/rates.htm")!, configuration: config)
+            
             if #available(iOS 10.0, *) {
                 svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor
                 svc.preferredBarTintColor = ThemeManager.currentTheme().mainColor
@@ -161,7 +165,11 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
             self.present(svc, animated: true, completion: nil)
         } else if stateRoute == "167" {
             MyAnalytics.event(category: "Tolling", action: "open_link", label: "tolling_hot_lanes")
-            let svc = SFSafariViewController(url: URL(string: "https://www.wsdot.wa.gov/Tolling/SR167HotLanes/HOTtollrates.htm")!, entersReaderIfAvailable: true)
+            
+            let config = SFSafariViewController.Configuration()
+            config.entersReaderIfAvailable = true
+            let svc = SFSafariViewController(url: URL(string: "https://www.wsdot.wa.gov/Tolling/SR167HotLanes/HOTtollrates.htm")!, configuration: config)
+            
             if #available(iOS 10.0, *) {
                 svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor
                 svc.preferredBarTintColor = ThemeManager.currentTheme().mainColor

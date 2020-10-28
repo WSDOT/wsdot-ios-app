@@ -121,7 +121,11 @@ class FacebookViewController: RefreshViewController, UITableViewDataSource, UITa
     // MARK: Table View Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let svc = SFSafariViewController(url: URL(string: self.facebookBaseUrlString + posts[indexPath.row].id)!, entersReaderIfAvailable: true)
+        
+        let config = SFSafariViewController.Configuration()
+        config.entersReaderIfAvailable = true
+        let svc = SFSafariViewController(url: URL(string: self.facebookBaseUrlString + posts[indexPath.row].id)!, configuration: config)
+        
         if #available(iOS 10.0, *) {
             svc.preferredControlTintColor = UIColor.white
             svc.preferredBarTintColor = Colors.wsdotPrimary
@@ -138,7 +142,11 @@ class FacebookViewController: RefreshViewController, UITableViewDataSource, UITa
     }
     
     func linkLabel(_ label: INDLinkLabel, didTapLinkWithURL URL: Foundation.URL) {
-        let svc = SFSafariViewController(url: URL, entersReaderIfAvailable: true)
+        
+        let config = SFSafariViewController.Configuration()
+        config.entersReaderIfAvailable = true
+        let svc = SFSafariViewController(url: URL, configuration: config)
+        
         if #available(iOS 10.0, *) {
             svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor
             svc.preferredBarTintColor = ThemeManager.currentTheme().mainColor

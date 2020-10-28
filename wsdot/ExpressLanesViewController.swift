@@ -128,7 +128,10 @@ class ExpressLanesViewController: RefreshViewController, UITableViewDelegate, UI
             
             MyAnalytics.event(category: "Travel Information", action: "open_link", label: "express_lanes_schedule")
             
-            let svc = SFSafariViewController(url: URL(string: self.expressLanesUrlString)!, entersReaderIfAvailable: true)
+            let config = SFSafariViewController.Configuration()
+            config.entersReaderIfAvailable = true
+            let svc = SFSafariViewController(url: URL(string: self.expressLanesUrlString)!, configuration: config)
+            
             if #available(iOS 10.0, *) {
                 svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor
                 svc.preferredBarTintColor = ThemeManager.currentTheme().mainColor

@@ -37,7 +37,10 @@ class TollRatesViewController: UIViewController{
         
         MyAnalytics.event(category: "Tolling", action: "open_link", label: "tolling_good_to_go")
         
-        let svc = SFSafariViewController(url: URL(string: self.goodToGoUrlString)!, entersReaderIfAvailable: true)
+        let config = SFSafariViewController.Configuration()
+        config.entersReaderIfAvailable = true
+        let svc = SFSafariViewController(url: URL(string: self.goodToGoUrlString)!, configuration: config)
+        
         if #available(iOS 10.0, *) {
             svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor
             svc.preferredBarTintColor = ThemeManager.currentTheme().mainColor

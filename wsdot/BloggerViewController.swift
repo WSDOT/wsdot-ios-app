@@ -107,7 +107,11 @@ class BloggerViewController: RefreshViewController, UITableViewDataSource, UITab
     // MARK: Table View Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let svc = SFSafariViewController(url: URL(string: posts[indexPath.row].link)!, entersReaderIfAvailable: true)
+        
+        let config = SFSafariViewController.Configuration()
+        config.entersReaderIfAvailable = true
+        let svc = SFSafariViewController(url: URL(string: posts[indexPath.row].link)!, configuration: config)
+        
         if #available(iOS 10.0, *) {
             svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor
             svc.preferredBarTintColor = ThemeManager.currentTheme().mainColor

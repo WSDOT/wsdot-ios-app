@@ -129,7 +129,10 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
         
         MyAnalytics.event(category: "Ferries", action: "open_link", label: "buy_tickets_ferries")
         
-        let svc = SFSafariViewController(url: URL(string: self.ticketsUrlString)!, entersReaderIfAvailable: false)
+        let config = SFSafariViewController.Configuration()
+        config.entersReaderIfAvailable = true
+        let svc = SFSafariViewController(url: URL(string: self.ticketsUrlString)!, configuration: config)
+        
         if #available(iOS 10.0, *) {
             svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor
             svc.preferredBarTintColor = ThemeManager.currentTheme().mainColor
@@ -144,7 +147,10 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
         
         MyAnalytics.event(category: "Ferries", action: "open_link", label: "vehicle_reservations")
         
-        let svc = SFSafariViewController(url: URL(string: self.reservationsUrlString)!, entersReaderIfAvailable: false)
+        let config = SFSafariViewController.Configuration()
+        config.entersReaderIfAvailable = true
+        let svc = SFSafariViewController(url: URL(string: self.reservationsUrlString)!, configuration: config)
+        
         if #available(iOS 10.0, *) {
             svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor
             svc.preferredBarTintColor = ThemeManager.currentTheme().mainColor

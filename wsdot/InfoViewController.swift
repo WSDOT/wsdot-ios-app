@@ -65,8 +65,11 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate,
     @IBAction func openJobsSite(_ sender: UIButton) {
         
         MyAnalytics.event(category: "About", action: "open_link", label: "jobs")
+   
+        let config = SFSafariViewController.Configuration()
+        config.entersReaderIfAvailable = true
+        let svc = SFSafariViewController(url: URL(string: self.jobsUrlString)!, configuration: config)
         
-        let svc = SFSafariViewController(url: URL(string: self.jobsUrlString)!, entersReaderIfAvailable: true)
         if #available(iOS 10.0, *) {
             svc.preferredControlTintColor = UIColor.white
             svc.preferredBarTintColor = ThemeManager.currentTheme().mainColor
@@ -133,7 +136,12 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate,
         guard let scheme = URL.scheme else { return true }
         if scheme != "http" && scheme != "https" { return true }
         
-        let svc = SFSafariViewController(url: URL, entersReaderIfAvailable: true)
+        
+        
+        let config = SFSafariViewController.Configuration()
+        config.entersReaderIfAvailable = true
+        let svc = SFSafariViewController(url: URL, configuration: config)
+        
         if #available(iOS 10.0, *) {
             svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor
             svc.preferredBarTintColor = ThemeManager.currentTheme().mainColor
