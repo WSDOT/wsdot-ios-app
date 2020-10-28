@@ -54,6 +54,8 @@ class MountainPassReportViewController: RefreshViewController, UITableViewDataSo
         self.tableView.contentOffset = CGPoint(x: 0, y: -self.refreshControl.frame.size.height)
         refresh(false)
         
+        showOverlay(self.view)
+        
         // Ad Banner
         bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.rootViewController = self
@@ -122,17 +124,17 @@ class MountainPassReportViewController: RefreshViewController, UITableViewDataSo
                             }
                             selfValue.cameras = CamerasStore.getCamerasByID(ids)
                             selfValue.tableView.reloadData()
+                            selfValue.hideOverlayView()
                             selfValue.refreshControl.endRefreshing()
-                       
                                                         
                         }
                     }
                 }else{
                     DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
-                            selfValue.refreshControl.endRefreshing()
                             AlertMessages.getConnectionAlert(backupURL: WsdotURLS.passes, message: WSDOTErrorStrings.passCameras)
-                            
+                            selfValue.hideOverlayView()
+                            selfValue.refreshControl.endRefreshing()
                         }
                     }
                 }
@@ -152,17 +154,13 @@ class MountainPassReportViewController: RefreshViewController, UITableViewDataSo
                                     selfValue.updatePassReportView(withPassItem: selfValue.passItem)
                     
                             }
-                            selfValue.refreshControl.endRefreshing()
+                         
                         }
                       
                     }
                 } else {
-                    DispatchQueue.main.async { [weak self] in
-                        if let selfValue = self{
-                            selfValue.refreshControl.endRefreshing()
-                            AlertMessages.getConnectionAlert(backupURL: WsdotURLS.passes, message: WSDOTErrorStrings.passReport)
-                        }
-                    }
+                    AlertMessages.getConnectionAlert(backupURL: WsdotURLS.passes, message: WSDOTErrorStrings.passReport)
+                    
                 }
             })
         }
