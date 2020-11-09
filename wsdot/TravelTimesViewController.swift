@@ -40,8 +40,6 @@ class TravelTimesViewController: RefreshViewController, UITableViewDelegate, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Travel Times"
-    
-        //extendedLayoutIncludesOpaqueBars = true
         
         // init search Controlller
         searchController = UISearchController(searchResultsController: nil)

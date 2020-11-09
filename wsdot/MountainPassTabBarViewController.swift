@@ -32,6 +32,12 @@ class MountainPassTabBarViewController: UITabBarController{
         
         title = passItem.name
         
+        if (passItem.cameraIds.count == 0){
+            self.tabBar.items?[0].title = "Report"
+        } else {
+            self.tabBar.items?[0].title = "Report & Cameras"
+        }
+        
         if (passItem.forecast.count == 0){
             self.tabBar.items?[1].isEnabled = false
         }
