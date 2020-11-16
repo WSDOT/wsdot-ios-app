@@ -130,7 +130,6 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
         MyAnalytics.event(category: "Ferries", action: "open_link", label: "buy_tickets_ferries")
         
         let config = SFSafariViewController.Configuration()
-        config.entersReaderIfAvailable = true
         let svc = SFSafariViewController(url: URL(string: self.ticketsUrlString)!, configuration: config)
         
         if #available(iOS 10.0, *) {
@@ -148,7 +147,6 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
         MyAnalytics.event(category: "Ferries", action: "open_link", label: "vehicle_reservations")
         
         let config = SFSafariViewController.Configuration()
-        config.entersReaderIfAvailable = true
         let svc = SFSafariViewController(url: URL(string: self.reservationsUrlString)!, configuration: config)
         
         if #available(iOS 10.0, *) {
