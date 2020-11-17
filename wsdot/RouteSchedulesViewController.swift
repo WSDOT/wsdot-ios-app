@@ -36,7 +36,7 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
     
     let ticketsUrlString = "https://wave2go.wsdot.com/Webstore/Content.aspx?Kind=LandingPage&CG=21&C=10"
     
-    let reservationsUrlString = "https://secureapps.wsdot.wa.gov/Ferries/Reservations/Vehicle/default.aspx"
+    let reservationsUrlString = "https://secureapps.wsdot.wa.gov/ferries/reservations/vehicle/Mobile/MobileDefault.aspx"
     
     let refreshControl = UIRefreshControl()
     
@@ -130,6 +130,7 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
         MyAnalytics.event(category: "Ferries", action: "open_link", label: "buy_tickets_ferries")
         
         let config = SFSafariViewController.Configuration()
+        
         let svc = SFSafariViewController(url: URL(string: self.ticketsUrlString)!, configuration: config)
         
         if #available(iOS 10.0, *) {
