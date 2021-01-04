@@ -2,6 +2,7 @@
 //
 
 import Foundation
+import GoogleMobileAds
 
 extension UIViewController {
 
@@ -12,6 +13,19 @@ extension UIViewController {
     
     func removeEmptyCells(_ tableView: UITableView) {
         tableView.tableFooterView = UIView()
+    }
+    
+    func getFullWidthAdaptiveAdSize() -> GADAdSize {
+      // Here safe area is taken into account, hence the view frame is used after the
+      // view has been laid out.
+      let frame = { () -> CGRect in
+        if #available(iOS 11.0, *) {
+          return view.frame.inset(by: view.safeAreaInsets)
+        } else {
+          return view.frame
+        }
+      }()
+      return GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(frame.size.width)
     }
 
 }

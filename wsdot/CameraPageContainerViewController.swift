@@ -40,6 +40,7 @@ class CameraPageContainerViewController: UIViewController, GADBannerViewDelegate
         super.viewDidLoad()
         
         bannerView.adUnitID = ApiKeys.getAdId()
+        bannerView.adSize = getFullWidthAdaptiveAdSize()
         bannerView.rootViewController = self
         let request = DFPRequest()
         request.customTargeting = ["wsdotapp":adTarget]

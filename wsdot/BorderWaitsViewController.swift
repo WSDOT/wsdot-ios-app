@@ -54,8 +54,10 @@ class BorderWaitsViewController: RefreshViewController, UITableViewDelegate, UIT
         tableView.rowHeight = UITableView.automaticDimension
         
         // Ad Banner
+        
         bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.rootViewController = self
+        bannerView.adSize = getFullWidthAdaptiveAdSize()
         let request = DFPRequest()
         request.customTargeting = ["wsdotapp":"border"]
         

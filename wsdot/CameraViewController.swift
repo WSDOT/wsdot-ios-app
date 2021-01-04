@@ -96,6 +96,7 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
         if (adsEnabled) {
             bannerView.adUnitID = ApiKeys.getAdId()
             bannerView.rootViewController = self
+            bannerView.adSize = getFullWidthAdaptiveAdSize()
             let request = DFPRequest()
             request.customTargeting = ["wsdotapp":adTarget]
         

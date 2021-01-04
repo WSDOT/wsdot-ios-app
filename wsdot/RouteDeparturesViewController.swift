@@ -111,11 +111,8 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
         loadSailings()
         
         // Ad Banner
-        print("wsdot debug: setting up ad banner")
-        print("wsdot debug: \(routeId)")
         let ferryRouteTarget = WSDOTAdTargets.ferryTargets[routeId]
-        print("wsdot debug: \(ferryRouteTarget ?? "ferries")")
-        
+        bannerView.adSize = getFullWidthAdaptiveAdSize()
         bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.rootViewController = self
         let request = DFPRequest()

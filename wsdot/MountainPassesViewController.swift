@@ -53,6 +53,7 @@ class MountainPassesViewController: RefreshViewController, UITableViewDelegate, 
         
         // Ad Banner
         bannerView.adUnitID = ApiKeys.getAdId()
+        bannerView.adSize = getFullWidthAdaptiveAdSize()
         bannerView.rootViewController = self
         let request = DFPRequest()
         request.customTargeting = ["wsdotapp":"passes"]
