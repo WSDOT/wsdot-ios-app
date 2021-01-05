@@ -25,7 +25,7 @@ class MyAnalytics {
     
     // Sets screen name for current VC
     static func screenView(screenName: String){
-        Analytics.setScreenName(screenName, screenClass: nil)
+        Analytics.logEvent(AnalyticsEventScreenView, parameters: [AnalyticsParameterScreenName: screenName])
     }
     
     static func event(category: String, action: String, label: String){

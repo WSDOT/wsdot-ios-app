@@ -74,7 +74,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         TollRateTableStore.flushOldData()
         BorderWaitStore.flushOldData()
         
-        
         NSSetUncaughtExceptionHandler { exception in
            print(exception)
            print(exception.callStackSymbols)
@@ -93,7 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     // MARK: Push Notifications
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
 
         // ensure topic subs are always in sync with what we have stored on the client.
         for topic in NotificationsStore.getTopics() {
@@ -123,7 +122,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         print("didReceiveRemoteNotification w/ completionHandler.")
 
         Messaging.messaging().appDidReceiveMessage(userInfo)
-
             if let alertType = userInfo["type"] as? String {
                 if alertType == "ferry_alert" {
                     MyAnalytics.event(category: "Notification", action: "Message Opened" , label: "Ferry Alert")

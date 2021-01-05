@@ -44,7 +44,7 @@ class TravelTimesViewController: RefreshViewController, UITableViewDelegate, UIT
         // init search Controlller
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
+        //searchController.dimsBackgroundDuringPresentation = false
      
         tableView.tableHeaderView = searchController.searchBar
         

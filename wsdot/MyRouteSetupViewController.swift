@@ -81,7 +81,7 @@ class MyRouteSetupViewController: UIViewController {
                 searchBar.placeholder = "Search for a place"
                 
                 searchController?.hidesNavigationBarDuringPresentation = false
-                searchController?.dimsBackgroundDuringPresentation = true
+                //searchController?.dimsBackgroundDuringPresentation = true
                 
                 definesPresentationContext = true
                 
