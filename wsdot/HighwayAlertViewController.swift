@@ -24,7 +24,6 @@ import SafariServices
 
 class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, MapMarkerDelegate, GMSMapViewDelegate {
 
-
     var alertId = 0
     var alertItem = HighwayAlertItem()
     fileprivate let alertMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: 0, longitude: 0))
@@ -33,9 +32,11 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
     @IBOutlet weak var updateTimeLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     
+    var hasAlert: Bool = true
     var fromPush: Bool = false
     var pushLat: Double = 0.0
     var pushLong: Double = 0.0
+    var pushMessage: String = ""
     
     weak fileprivate var embeddedMapViewController: SimpleMapViewController!
     
@@ -45,7 +46,12 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
         embeddedMapViewController.view.isHidden = true
         
         descLinkLabel.delegate = self
-        loadAlert()
+        
+        if (hasAlert) {
+            loadAlert()
+        } else {
+            descLinkLabel.text = pushMessage
+        }
         
         if (fromPush){
             UserDefaults.standard.set(pushLat, forKey: UserDefaultsKeys.mapLat)

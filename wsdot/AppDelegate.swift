@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    
+        
         let theme = Theme(rawValue: EventStore.getActiveEventThemeId()) ?? .defaultTheme
         ThemeManager.applyTheme(theme: theme)
         migrateRealm()
@@ -137,9 +137,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                             launchTrafficAlertDetailsScreen(alertId: alertId, latitude: lat, longitude: long)
                         }
                     }
+                } else if alertType == "bridge_alert" {
+                    MyAnalytics.event(category: "Notification", action: "Message Opened" , label: "Bridge Alert")
+                    
+                    if let title = userInfo["title"] as? String, let message = userInfo["message"] as? String, let latString = userInfo["lat"] as? String, let longString = userInfo["long"] as? String    {
+                        if let lat = Double(latString), let long = Double(longString) {
+                            launchTrafficAlertDetailsScreenWithNoAlert(title: title, description: message, latitude: lat, longitude: long)
+                        }
+                    }
                 }
             }
         completionHandler(UIBackgroundFetchResult.newData)
+    }
+    
+    
+    func launchTrafficAlertDetailsScreenWithNoAlert(
+        title: String, description: String, latitude: Double, longitude: Double) {
+        
+        let trafficMapStoryboard: UIStoryboard = UIStoryboard(name: "TrafficMap", bundle: nil)
+        
+        // Set up nav and vc stack
+        let trafficMapNav = trafficMapStoryboard.instantiateViewController(withIdentifier: "TrafficMapNav") as! UINavigationController
+        let trafficMap = trafficMapStoryboard.instantiateViewController(withIdentifier: "TrafficMapViewController") as! TrafficMapViewController
+        
+        let HighwayAlertStoryboard: UIStoryboard = UIStoryboard(name: "HighwayAlert", bundle: nil)
+        
+        let highwayAlertDetails = HighwayAlertStoryboard.instantiateViewController(withIdentifier: "HighwayAlertViewController") as! HighwayAlertViewController
+  
+        highwayAlertDetails.fromPush = true
+        highwayAlertDetails.hasAlert = false
+        highwayAlertDetails.pushLat = latitude
+        highwayAlertDetails.pushLong = longitude
+        highwayAlertDetails.title = title
+        highwayAlertDetails.pushMessage = description
+        
+        // assign vc stack to new nav controller
+        trafficMapNav.setViewControllers([trafficMap, highwayAlertDetails], animated: false)
+
+        setNavController(newNavigationController: trafficMapNav)
     }
     
     func launchTrafficAlertDetailsScreen(alertId: Int, latitude: Double, longitude: Double){
