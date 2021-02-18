@@ -20,6 +20,7 @@
 
 import UIKit
 import EasyTipView
+import Firebase
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -55,6 +56,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         // Set Title
         title = "WSDOT"
+        
+        
         
         removeEmptyCells(tableView)
         
