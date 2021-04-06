@@ -73,6 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         TollRateSignsStore.flushOldData()
         TollRateTableStore.flushOldData()
         BorderWaitStore.flushOldData()
+        BridgeAlertsStore.flushOldData()
         
         NSSetUncaughtExceptionHandler { exception in
            print(exception)
@@ -89,6 +90,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         NotificationsStore.flushOldData()
         TollRateSignsStore.flushOldData()
         TollRateTableStore.flushOldData()
+        BorderWaitStore.flushOldData()
+        BridgeAlertsStore.flushOldData()
     }
     
     // MARK: Push Notifications
@@ -139,18 +142,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     }
                 } else if alertType == "bridge_alert" {
                     MyAnalytics.event(category: "Notification", action: "Message Opened" , label: "Bridge Alert")
-                    
-                    if let title = userInfo["title"] as? String, let message = userInfo["message"] as? String, let latString = userInfo["lat"] as? String, let longString = userInfo["long"] as? String    {
-                        if let lat = Double(latString), let long = Double(longString) {
-                            launchTrafficAlertDetailsScreenWithNoAlert(title: title, description: message, latitude: lat, longitude: long)
-                        }
-                    }
+                    launchBridgeAlertsScreen()
                 }
             }
         completionHandler(UIBackgroundFetchResult.newData)
     }
     
-    
+    // unused - old method from before bridge alerts had their own section
     func launchTrafficAlertDetailsScreenWithNoAlert(
         title: String, description: String, latitude: Double, longitude: Double) {
         
@@ -224,6 +222,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         setNavController(newNavigationController: ferriesNav)
 
     }
+
+    func launchBridgeAlertsScreen(){
+        let trafficMapStoryboard: UIStoryboard = UIStoryboard(name: "TrafficMap", bundle: nil)
+        
+        // Set up nav and vc stack
+        let trafficMapNav = trafficMapStoryboard.instantiateViewController(withIdentifier: "TrafficMapNav") as! UINavigationController
+        let trafficMap = trafficMapStoryboard.instantiateViewController(withIdentifier: "TrafficMapViewController") as! TrafficMapViewController
+        
+        let BridgeAlertsStoryboard: UIStoryboard = UIStoryboard(name: "BridgeAlerts", bundle: nil)
+        
+        let BridgeAlertsVC = BridgeAlertsStoryboard.instantiateViewController(withIdentifier: "BridgeAlertsViewController") as! BridgeAlertsViewController
+        
+        // assign vc stack to new nav controller
+        trafficMapNav.setViewControllers([trafficMap, BridgeAlertsVC], animated: false)
+
+        setNavController(newNavigationController: trafficMapNav)
+    }
     
     func setNavController(newNavigationController: UINavigationController){
         // get the main split view, check how VCs are currently displayed
@@ -250,7 +265,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // MARK: Realm
     func migrateRealm(){
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
-            schemaVersion: 9,
+            schemaVersion: 10,
             
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
@@ -344,6 +359,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                         newObject!["staticTollRatesLastUpdate"] = Date(timeIntervalSince1970: 0)
                     }
                 }
+                
+                /*
+                    BridgeAlertItem added and cache item for bridge alert date
+                 */
+                if (oldSchemaVersion < 10) {
+                    migration.enumerateObjects(ofType: CacheItem.className()) { oldObject, newObject in
+                        newObject!["bridgeAlertsLastUpdate"] = Date(timeIntervalSince1970: 0)
+                    }
+                }
+                
         })
     }
 }

@@ -31,6 +31,7 @@ enum CachedData {
     case notifications
     case tollRates
     case staticTollRates
+    case bridgeAlerts
 }
 
 class CachesStore {
@@ -46,6 +47,9 @@ class CachesStore {
 
     static let alertsUpdateTime: TimeInterval = 60 // once a minute
     static let alertsCacheTime: Int = 60 // once a minute
+    
+    static let bridgeUpdateTime: TimeInterval = 60 // once a minute
+    static let bridgeCacheTime: Int = 60 // once a minute
     
     static func initCacheItem(){
         do {
@@ -87,6 +91,8 @@ class CachesStore {
             return cacheItem!.tollRatesLastUpdate as Date
         case .staticTollRates:
             return cacheItem!.staticTollRatesLastUpdate as Date
+        case .bridgeAlerts:
+            return cacheItem!.bridgeAlertsLastUpdate as Date
         }
     }
 
@@ -121,6 +127,8 @@ class CachesStore {
                     cacheItem?.tollRatesLastUpdate = updated
                 case .staticTollRates:
                     cacheItem?.staticTollRatesLastUpdate = updated
+                case .bridgeAlerts:
+                    cacheItem?.bridgeAlertsLastUpdate = updated
                 }
             }
         } catch {
