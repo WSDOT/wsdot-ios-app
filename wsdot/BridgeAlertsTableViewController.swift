@@ -14,6 +14,7 @@ class BridgeAlertsViewController: RefreshViewController, UITableViewDelegate, UI
     var overlayView = UIView()
     let refreshControl = UIRefreshControl()
     
+    @IBOutlet weak var noAlertsLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     var bridgeAlerts = [BridgeAlertItem]()
@@ -59,6 +60,15 @@ class BridgeAlertsViewController: RefreshViewController, UITableViewDelegate, UI
                             selfValue.hideOverlayView()
                             selfValue.refreshControl.endRefreshing()
                             UIAccessibility.post(notification: UIAccessibility.Notification.layoutChanged, argument: selfValue.tableView)
+                            
+                            if (selfValue.bridgeAlerts.count == 0){
+                               // selfValue.tableView.isHidden = true
+                                selfValue.noAlertsLabel.isHidden = false
+                            } else {
+                               // selfValue.tableView.isHidden = false
+                                selfValue.noAlertsLabel.isHidden = true
+                            }
+                            
                         }
                     }
                 } else {

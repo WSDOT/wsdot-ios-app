@@ -72,17 +72,28 @@
                                     <outlet property="delegate" destination="Y9z-Xp-CAV" id="GB1-df-VXW"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Alerts Reported" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b34-vF-lpR">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4zu-qE-DHs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="4zu-qE-DHs" firstAttribute="bottom" secondItem="b34-vF-lpR" secondAttribute="bottom" id="3K4-0o-rsT"/>
                             <constraint firstItem="CzU-oK-Ri8" firstAttribute="leading" secondItem="4zu-qE-DHs" secondAttribute="leading" id="3xx-BE-iVp"/>
+                            <constraint firstItem="b34-vF-lpR" firstAttribute="top" secondItem="4zu-qE-DHs" secondAttribute="top" id="YQg-oa-al0"/>
                             <constraint firstItem="CzU-oK-Ri8" firstAttribute="bottom" secondItem="4zu-qE-DHs" secondAttribute="bottom" id="ZZu-uT-vuD"/>
                             <constraint firstItem="4zu-qE-DHs" firstAttribute="trailing" secondItem="CzU-oK-Ri8" secondAttribute="trailing" id="eKt-Ld-c3q"/>
                             <constraint firstItem="CzU-oK-Ri8" firstAttribute="top" secondItem="4zu-qE-DHs" secondAttribute="top" id="ee9-su-tRf"/>
+                            <constraint firstItem="4zu-qE-DHs" firstAttribute="trailing" secondItem="b34-vF-lpR" secondAttribute="trailing" id="iSr-Mk-YzX"/>
+                            <constraint firstItem="b34-vF-lpR" firstAttribute="leading" secondItem="4zu-qE-DHs" secondAttribute="leading" id="yEG-LL-0VP"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="noAlertsLabel" destination="b34-vF-lpR" id="WgG-06-B5a"/>
                         <outlet property="tableView" destination="CzU-oK-Ri8" id="MSa-x1-WOV"/>
                     </connections>
                 </viewController>
