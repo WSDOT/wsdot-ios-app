@@ -7,11 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		021C26B7261640C60087256A /* BridgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C26B6261640C60087256A /* BridgeCell.swift */; };
 		02215F3A2167D87500051301 /* SegmentedControlWithBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02215F392167D87400051301 /* SegmentedControlWithBadge.swift */; };
 		0242912C2434E98800A55735 /* NetworkUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242912B2434E98800A55735 /* NetworkUtils.swift */; };
 		0263A86721FBD73E0090A954 /* MyRouteSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0263A86621FBD73E0090A954 /* MyRouteSetupViewController.swift */; };
 		02782A47254379E9008CF650 /* PassReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02782A46254379E9008CF650 /* PassReportView.xib */; };
 		02782A4C25437A5D008CF650 /* PassReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02782A4B25437A5D008CF650 /* PassReportView.swift */; };
+		02D7F1E32614CCA000BD81CC /* BridgeAlerts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02D7F1E22614CCA000BD81CC /* BridgeAlerts.storyboard */; };
+		02D7F1ED2614CCE000BD81CC /* BridgeAlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D7F1EC2614CCE000BD81CC /* BridgeAlertItem.swift */; };
+		02D7F1F22614CCED00BD81CC /* BridgeAlertsRealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D7F1F12614CCED00BD81CC /* BridgeAlertsRealmStore.swift */; };
+		02D7F1F72614D7DE00BD81CC /* BridgeAlertsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D7F1F62614D7DE00BD81CC /* BridgeAlertsTableViewController.swift */; };
 		9A0360481DECBC6100B88466 /* PassCameraIDItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0360471DECBC6100B88466 /* PassCameraIDItem.swift */; };
 		9A06167A1D62285A00126520 /* VesselWatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616791D62285A00126520 /* VesselWatchViewController.swift */; };
 		9A06167C1D622AE800126520 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A06167B1D622AE800126520 /* MapViewController.swift */; };
@@ -248,11 +253,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		021C26B6261640C60087256A /* BridgeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeCell.swift; sourceTree = "<group>"; };
 		02215F392167D87400051301 /* SegmentedControlWithBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlWithBadge.swift; sourceTree = "<group>"; };
 		0242912B2434E98800A55735 /* NetworkUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtils.swift; sourceTree = "<group>"; };
 		0263A86621FBD73E0090A954 /* MyRouteSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRouteSetupViewController.swift; sourceTree = "<group>"; };
 		02782A46254379E9008CF650 /* PassReportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PassReportView.xib; sourceTree = "<group>"; };
 		02782A4B25437A5D008CF650 /* PassReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassReportView.swift; sourceTree = "<group>"; };
+		02D7F1E22614CCA000BD81CC /* BridgeAlerts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BridgeAlerts.storyboard; sourceTree = "<group>"; };
+		02D7F1EC2614CCE000BD81CC /* BridgeAlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeAlertItem.swift; sourceTree = "<group>"; };
+		02D7F1F12614CCED00BD81CC /* BridgeAlertsRealmStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeAlertsRealmStore.swift; sourceTree = "<group>"; };
+		02D7F1F62614D7DE00BD81CC /* BridgeAlertsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeAlertsTableViewController.swift; sourceTree = "<group>"; };
 		08B5584F4B8FFF1035CFBE34 /* Pods_WSDOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WSDOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F733049676C72FA80F317B5 /* Pods-WSDOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.debug.xcconfig"; sourceTree = "<group>"; };
 		65D6D46116E71C14DDDD1497 /* Pods-WSDOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.release.xcconfig"; sourceTree = "<group>"; };
@@ -541,6 +551,41 @@
 			name = NewMyRoute;
 			sourceTree = "<group>";
 		};
+		02D7F1DE2614CB5000BD81CC /* BridgeAlerts */ = {
+			isa = PBXGroup;
+			children = (
+				02D7F1E12614CBCB00BD81CC /* Views */,
+				02D7F1E02614CBC300BD81CC /* Models */,
+				02D7F1DF2614CB6C00BD81CC /* Controllers */,
+			);
+			name = BridgeAlerts;
+			sourceTree = "<group>";
+		};
+		02D7F1DF2614CB6C00BD81CC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				02D7F1F62614D7DE00BD81CC /* BridgeAlertsTableViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		02D7F1E02614CBC300BD81CC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				02D7F1EC2614CCE000BD81CC /* BridgeAlertItem.swift */,
+				02D7F1F12614CCED00BD81CC /* BridgeAlertsRealmStore.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		02D7F1E12614CBCB00BD81CC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				02D7F1E22614CCA000BD81CC /* BridgeAlerts.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		05415963BC8B255F34C899F4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -766,6 +811,7 @@
 				9A6FBD0E1D6CC43C00CDCE16 /* GroupRouteCell.swift */,
 				9A6FBD281D6DFFCE00CDCE16 /* BorderWaitCell.swift */,
 				9AEEDDA31D6F3D810032F5EC /* MountainPassCell.swift */,
+				021C26B6261640C60087256A /* BridgeCell.swift */,
 				9AEEDDAD1D708D8B0032F5EC /* ForecastCell.swift */,
 				9AEEDDB61D70F1FD0032F5EC /* IconCell.swift */,
 				9AEF4D841D75DC47003ECA34 /* BloggerCell.swift */,
@@ -817,6 +863,7 @@
 		9A6FBCC31D6B4C2500CDCE16 /* TravelerInformation */ = {
 			isa = PBXGroup;
 			children = (
+				02D7F1DE2614CB5000BD81CC /* BridgeAlerts */,
 				9ACAB9541F66EFAA002683B7 /* HappeningNow */,
 				9A9808C51F1FF2070034DA05 /* BestTimesToTravel */,
 				9AEF4D9D1D773040003ECA34 /* NewsViewController.swift */,
@@ -1793,6 +1840,7 @@
 				9A0616C81D6601BD00126520 /* TollRates.storyboard in Resources */,
 				9A6FBCD61D6B5EBB00CDCE16 /* RestArea.storyboard in Resources */,
 				02782A47254379E9008CF650 /* PassReportView.xib in Resources */,
+				02D7F1E32614CCA000BD81CC /* BridgeAlerts.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2060,6 +2108,7 @@
 				9A6FBCD41D6B54E300CDCE16 /* RestAreaStore.swift in Sources */,
 				9A52F1EF22089F660008038B /* AlertTableDataDelegate.swift in Sources */,
 				9AA5F4BD2200CBB600E1D4CA /* LocationSearchViewController.swift in Sources */,
+				02D7F1F72614D7DE00BD81CC /* BridgeAlertsTableViewController.swift in Sources */,
 				9AFEECE11D3925400078A781 /* CachesStore.swift in Sources */,
 				9A2F4A5D1D52747900911AF5 /* FerryScheduleRealmDataModel.swift in Sources */,
 				0242912C2434E98800A55735 /* NetworkUtils.swift in Sources */,
@@ -2118,6 +2167,7 @@
 				9A7BC0CF1DA3F31B00EF760C /* GMUGridBasedClusterAlgorithm.m in Sources */,
 				9A0719331D42732A007BB4C5 /* INDLinkLabel.swift in Sources */,
 				9AE6D0BE22CBDE81009A70E8 /* WsdotURLS.swift in Sources */,
+				02D7F1ED2614CCE000BD81CC /* BridgeAlertItem.swift in Sources */,
 				9A6FBD371D6E413A00CDCE16 /* MountainPassTabBarViewController.swift in Sources */,
 				9AE6B77E209CF965001DE80F /* PassableSwitch.swift in Sources */,
 				9A6A0029210105070005CC7F /* TollRatesTabBarViewController.swift in Sources */,
@@ -2150,6 +2200,7 @@
 				9AEF4DBE1D778ECF003ECA34 /* AmtrakCascadesScheduleViewController.swift in Sources */,
 				9A6FBD0D1D6CBC4E00CDCE16 /* TravelTimesRealmStore.swift in Sources */,
 				9A4BBAB02125C53500DE6F1B /* SimpleMapViewController.swift in Sources */,
+				021C26B7261640C60087256A /* BridgeCell.swift in Sources */,
 				9A06167F1D62602500126520 /* MapMarkerDelegate.swift in Sources */,
 				9AC5E86E202A2DB700C9BB02 /* EventViewController.swift in Sources */,
 				9AEF4DA81D773921003ECA34 /* YouTubeViewController.swift in Sources */,
@@ -2184,6 +2235,7 @@
 				02215F3A2167D87500051301 /* SegmentedControlWithBadge.swift in Sources */,
 				9AE6B780209CF9B1001DE80F /* SwitchCell.swift in Sources */,
 				9A946BBA2163B742006E5885 /* IconButton.swift in Sources */,
+				02D7F1F22614CCED00BD81CC /* BridgeAlertsRealmStore.swift in Sources */,
 				9A9808BD1F1FA1780034DA05 /* BestTimesToTravelDetailsViewController.swift in Sources */,
 				9AB549031D78758400927F13 /* AmtrakCascadesStore.swift in Sources */,
 				9AEF4DA01D773256003ECA34 /* NewsCell.swift in Sources */,

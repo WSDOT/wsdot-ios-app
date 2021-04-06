@@ -30,6 +30,7 @@ class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITable
     let SegueBestTimesToTravelRoutesViewController = "BestTimesToTravelRoutesViewController"
     let SegueNewsViewController = "NewsViewController"
     let SegueHappeningNowViewController = "HappeningNowTabViewController"
+    let SegueBridgeAlertsViewController = "BridgeAlertsViewController"
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -43,7 +44,7 @@ class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITable
         super.viewDidLoad()
         // Set Title
         title = "Traveler Information"
-        menu_options = ["Happening Now", "Travel Times", "Express Lanes", "News Releases"]
+        menu_options = ["Happening Now", "Travel Times", "Express Lanes", "News Releases", "Bridge Alerts"]
         
         setStandardTableLayout(tableView)
         
@@ -173,7 +174,11 @@ class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITable
             performSegue(withIdentifier: SegueNewsViewController, sender: self)
             tableView.deselectRow(at: indexPath, animated: true)
             break
-        case 4: // Travel Charts
+        case 4:
+            performSegue(withIdentifier: SegueBridgeAlertsViewController, sender: self)
+            tableView.deselectRow(at: indexPath, animated: true)
+            break
+        case 5: // Travel Charts
             performSegue(withIdentifier: SegueBestTimesToTravelRoutesViewController, sender: self)
             tableView.deselectRow(at: indexPath, animated: true)
         default:
