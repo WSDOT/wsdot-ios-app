@@ -56,11 +56,9 @@ class BridgeAlertsStore {
                 AF.request(request).validate().responseJSON { response in
                     switch response.result {
                     case .success:
-                        print("success")
                         if let value = response.data {
                             DispatchQueue.global().async {
                                 let json = JSON(value)
-                                print(json)
                                 self.saveBridgeAlerts(json)
                                 CachesStore.updateTime(CachedData.bridgeAlerts, updated: Date())
                                 completion(nil)
