@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		021C26B7261640C60087256A /* BridgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C26B6261640C60087256A /* BridgeCell.swift */; };
 		02215F3A2167D87500051301 /* SegmentedControlWithBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02215F392167D87400051301 /* SegmentedControlWithBadge.swift */; };
+		0222F7D5263741C2003D3E93 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 0222F7D4263741C2003D3E93 /* LICENSE.md */; };
 		0242912C2434E98800A55735 /* NetworkUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242912B2434E98800A55735 /* NetworkUtils.swift */; };
 		0263A86721FBD73E0090A954 /* MyRouteSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0263A86621FBD73E0090A954 /* MyRouteSetupViewController.swift */; };
 		02782A47254379E9008CF650 /* PassReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02782A46254379E9008CF650 /* PassReportView.xib */; };
@@ -255,6 +256,8 @@
 /* Begin PBXFileReference section */
 		021C26B6261640C60087256A /* BridgeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeCell.swift; sourceTree = "<group>"; };
 		02215F392167D87400051301 /* SegmentedControlWithBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlWithBadge.swift; sourceTree = "<group>"; };
+		0222F7D3263741B7003D3E93 /* bridge_alert_sound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = bridge_alert_sound.caf; path = ringtones/bridge_alert_sound.caf; sourceTree = "<group>"; };
+		0222F7D4263741C2003D3E93 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = LICENSE.md; path = ringtones/LICENSE.md; sourceTree = "<group>"; };
 		0242912B2434E98800A55735 /* NetworkUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtils.swift; sourceTree = "<group>"; };
 		0263A86621FBD73E0090A954 /* MyRouteSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRouteSetupViewController.swift; sourceTree = "<group>"; };
 		02782A46254379E9008CF650 /* PassReportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PassReportView.xib; sourceTree = "<group>"; };
@@ -542,6 +545,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0222F7C2263740EC003D3E93 /* ringtones */ = {
+			isa = PBXGroup;
+			children = (
+				0222F7D3263741B7003D3E93 /* bridge_alert_sound.caf */,
+				0222F7D4263741C2003D3E93 /* LICENSE.md */,
+			);
+			name = ringtones;
+			sourceTree = "<group>";
+		};
 		0263A86521FBD5D10090A954 /* NewMyRoute */ = {
 			isa = PBXGroup;
 			children = (
@@ -1380,6 +1392,7 @@
 		9AD32DFB1D23172C000AEC28 /* wsdot */ = {
 			isa = PBXGroup;
 			children = (
+				0222F7C2263740EC003D3E93 /* ringtones */,
 				9A8FE186209A6605005CF3EB /* Notifications */,
 				9A7BC07B1D9DB99A00EF760C /* Google-Maps-iOS-Utils */,
 				9A93E0D71E708921004AB867 /* MyRoute */,
@@ -1839,6 +1852,7 @@
 				9A6FBD1C1D6DF8F700CDCE16 /* BorderWaits.storyboard in Resources */,
 				9A0616C81D6601BD00126520 /* TollRates.storyboard in Resources */,
 				9A6FBCD61D6B5EBB00CDCE16 /* RestArea.storyboard in Resources */,
+				0222F7D5263741C2003D3E93 /* LICENSE.md in Resources */,
 				02782A47254379E9008CF650 /* PassReportView.xib in Resources */,
 				02D7F1E32614CCA000BD81CC /* BridgeAlerts.storyboard in Resources */,
 			);
