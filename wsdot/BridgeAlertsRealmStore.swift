@@ -91,9 +91,14 @@ class BridgeAlertsStore {
             alert.descText = alertJson["EventText"].stringValue
             alert.latitude = alertJson["BridgeLocation"]["Latitude"].doubleValue
             alert.longitude = alertJson["BridgeLocation"]["Longitude"].doubleValue
-         
-            if let timeJsonStringValue = alertJson["openingTime"].string {
-                alert.openingTime = TimeUtils.parseJSONDateToNSDate(timeJsonStringValue)
+            
+            if let timeJsonStringValue = alertJson["OpeningTime"].string {
+                do {
+                    alert.openingTime =
+                        try TimeUtils.formatTimeStamp(timeJsonStringValue, dateFormat: "yyyy-MM-dd'T'HH:mm:ss") //ex. 2021-04-06T22:00:00
+                } catch {
+                    print("error formatting date")
+                }
             }
 
             alert.localCacheDate = Date()

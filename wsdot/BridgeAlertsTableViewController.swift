@@ -24,6 +24,7 @@ class BridgeAlertsViewController: RefreshViewController, UITableViewDelegate, UI
         
         title = "Bridge Alerts"
         
+        noAlertsLabel.isHidden = true
         tableView.rowHeight = UITableView.automaticDimension
         
         // refresh controller
@@ -35,7 +36,7 @@ class BridgeAlertsViewController: RefreshViewController, UITableViewDelegate, UI
         self.bridgeAlerts = BridgeAlertsStore.getAllBridgeAlerts()
         self.tableView.reloadData()
         
-        self.refresh(false)
+        self.refresh(true)
         
     }
     
@@ -62,10 +63,8 @@ class BridgeAlertsViewController: RefreshViewController, UITableViewDelegate, UI
                             UIAccessibility.post(notification: UIAccessibility.Notification.layoutChanged, argument: selfValue.tableView)
                             
                             if (selfValue.bridgeAlerts.count == 0){
-                               // selfValue.tableView.isHidden = true
                                 selfValue.noAlertsLabel.isHidden = false
                             } else {
-                               // selfValue.tableView.isHidden = false
                                 selfValue.noAlertsLabel.isHidden = true
                             }
                             
@@ -106,7 +105,14 @@ class BridgeAlertsViewController: RefreshViewController, UITableViewDelegate, UI
         cell.title.text = bridgeAlerts[indexPath.row].bridge
         cell.content.text = bridgeAlerts[indexPath.row].descText
         let updated = TimeUtils.timeAgoSinceDate(date: self.bridgeAlerts[indexPath.row].localCacheDate, numericDates: false)
-        cell.updated.text = updated
+        
+        if let openingTime = bridgeAlerts[indexPath.row].openingTime {
+            cell.subContent.text = "Opening Time: " + TimeUtils.formatTime(openingTime, format: "MMMM dd, YYYY h:mm a")
+        } else {
+            cell.subContent.text = ""
+        }
+        
+        cell.updated.text = "Last Updated: " + updated
         return cell
     }
 
