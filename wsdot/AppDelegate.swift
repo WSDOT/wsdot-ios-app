@@ -45,6 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         application.registerForRemoteNotifications()
         
         GADMobileAds.sharedInstance().start(completionHandler: nil)
+        //GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = [ "9c3a9dd6ec9e8078003e5d4f8c885944" ]
         
         // EasyTipView Setup
         var preferences = EasyTipView.Preferences()
