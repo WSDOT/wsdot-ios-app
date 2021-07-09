@@ -29,7 +29,7 @@ class ExpressLanesViewController: RefreshViewController, UITableViewDelegate, UI
     @IBOutlet weak var tableView: UITableView!
     var expressLanes = [ExpressLaneItem]()
 
-    let expressLanesUrlString = "https://www.wsdot.wa.gov/Northwest/King/ExpressLanes"
+    let expressLanesUrlString = "https://wsdot.wa.gov/travel/operations-services/express-lanes/home"
     let refreshControl = UIRefreshControl()
     var overlayView = UIView()
     

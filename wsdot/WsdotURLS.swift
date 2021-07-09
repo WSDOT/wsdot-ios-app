@@ -8,7 +8,7 @@
 
 struct WsdotURLS {
 
-    static let homepage = "https://wsdot.wa/gov"
+    static let homepage = "https://wsdot.wa.gov"
     static let trafficCameras = "https://www.wsdot.com/traffic/Cameras/default.aspx"
     static let trafficAlerts = "https://www.wsdot.com/traffic/trafficalerts/default.aspx"
     static let ferries = "https://www.wsdot.wa.gov/ferries/schedule/Default.aspx"
