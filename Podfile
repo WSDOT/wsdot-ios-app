@@ -3,11 +3,11 @@ platform :ios, '12.0'
 use_frameworks!
 
 target 'WSDOT' do
-    pod 'Firebase/Core'
-    pod 'Firebase/AdMob'
+    pod 'Google-Mobile-Ads-SDK'
+    pod 'Firebase/Analytics'
     pod 'Firebase/Messaging'
     pod 'Firebase/Performance'
-    pod 'FirebaseCrashlytics'
+    pod 'Firebase/Crashlytics'
     pod 'GoogleMaps', '~> 3.7.0'
     pod 'RealmSwift', '~> 4.3.2'
     pod 'Alamofire', '~> 5.0.0'
@@ -18,11 +18,11 @@ target 'WSDOT' do
 end
 
 target 'WSDOTTests' do
-    pod 'Firebase/Core'
-    pod 'Firebase/AdMob'
+    pod 'Google-Mobile-Ads-SDK'
+    pod 'Firebase/Analytics'
     pod 'Firebase/Messaging'
     pod 'Firebase/Performance'
-    pod 'FirebaseCrashlytics'
+    pod 'Firebase/Crashlytics'
     pod 'GoogleMaps', '~> 3.7.0'
     pod 'RealmSwift', '~> 4.3.2'
     pod 'Alamofire', '~> 5.0.0'
