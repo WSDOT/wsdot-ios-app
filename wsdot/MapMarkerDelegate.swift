@@ -18,7 +18,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
 
-protocol MapMarkerDelegate: class {
+protocol MapMarkerDelegate: AnyObject {
     // Called by MapViewController when map is ready. 
     // All classes that use MapViewContoller must implement this method
     func mapReady()
