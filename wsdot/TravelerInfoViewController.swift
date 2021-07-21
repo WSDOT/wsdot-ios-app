@@ -34,7 +34,7 @@ class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var bannerView: DFPBannerView!
+    @IBOutlet weak var bannerView: GAMBannerView!
     
     var menu_options: [String] = []
     
@@ -57,7 +57,7 @@ class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITable
         bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.adSize = getFullWidthAdaptiveAdSize()
         bannerView.rootViewController = self
-        let request = DFPRequest()
+        let request = GAMRequest()
         request.customTargeting = ["wsdotapp":"traffic"]
         
         bannerView.load(request)

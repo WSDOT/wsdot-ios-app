@@ -69,7 +69,7 @@
                                     <outlet property="delegate" destination="lLl-Mn-R6F" id="huy-Ux-cxn"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2vc-1f-UHI" customClass="DFPBannerView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2vc-1f-UHI" customClass="GAMBannerView">
                                 <rect key="frame" x="27.5" y="597" width="320" height="50"/>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                 <constraints>
@@ -203,7 +203,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cAW-V7-PKD" customClass="DFPBannerView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cAW-V7-PKD" customClass="GAMBannerView">
                                 <rect key="frame" x="27.5" y="617" width="320" height="50"/>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                 <constraints>

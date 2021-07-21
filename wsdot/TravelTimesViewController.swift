@@ -31,7 +31,7 @@ class TravelTimesViewController: RefreshViewController, UITableViewDelegate, UIT
     var filtered = [TravelTimeItemGroup]()
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var bannerView: DFPBannerView!
+    @IBOutlet weak var bannerView: GAMBannerView!
     
     let refreshControl = UIRefreshControl()
     
@@ -73,7 +73,7 @@ class TravelTimesViewController: RefreshViewController, UITableViewDelegate, UIT
         bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.adSize = getFullWidthAdaptiveAdSize()
         bannerView.rootViewController = self
-        let request = DFPRequest()
+        let request = GAMRequest()
         request.customTargeting = ["wsdotapp":"traffic"]
         
         bannerView.load(request)

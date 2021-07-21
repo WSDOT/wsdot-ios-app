@@ -62,7 +62,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     @IBOutlet weak var travelInformationButton: UIBarButtonItem!
     @IBOutlet weak var cameraBarButton: UIBarButtonItem!
     
-    @IBOutlet weak var bannerView: GADBannerView!
+    @IBOutlet weak var bannerView: GAMBannerView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     weak fileprivate var embeddedMapViewController: MapViewController!
@@ -96,7 +96,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.adSize = getFullWidthAdaptiveAdSize()
         bannerView.rootViewController = self
-        let request = DFPRequest()
+        let request = GAMRequest()
         request.customTargeting = ["wsdotapp":"traffic"]
         
         bannerView.load(request)
@@ -104,7 +104,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         
     }
     
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+    func adViewDidReceiveAd(_ bannerView: GAMBannerView) {
         bannerView.isAccessibilityElement = true
         bannerView.accessibilityLabel = "advertisement banner."
     }

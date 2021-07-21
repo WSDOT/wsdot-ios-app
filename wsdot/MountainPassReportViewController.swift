@@ -34,7 +34,7 @@ class MountainPassReportViewController: RefreshViewController, UITableViewDataSo
     
     let passReportView = PassReportView()
     
-    @IBOutlet weak var bannerView: DFPBannerView!
+    @IBOutlet weak var bannerView: GAMBannerView!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -60,7 +60,7 @@ class MountainPassReportViewController: RefreshViewController, UITableViewDataSo
         bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.adSize = getFullWidthAdaptiveAdSize()
         bannerView.rootViewController = self
-        let request = DFPRequest()
+        let request = GAMRequest()
         request.customTargeting = ["wsdotapp":"passes"]
         
         bannerView.load(request)

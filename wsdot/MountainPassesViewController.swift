@@ -29,7 +29,7 @@ class MountainPassesViewController: RefreshViewController, UITableViewDelegate, 
     
     var passItems = [MountainPassItem]()
 
-    @IBOutlet weak var bannerView: DFPBannerView!
+    @IBOutlet weak var bannerView: GAMBannerView!
     
     let refreshControl = UIRefreshControl()
     
@@ -55,7 +55,7 @@ class MountainPassesViewController: RefreshViewController, UITableViewDelegate, 
         bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.adSize = getFullWidthAdaptiveAdSize()
         bannerView.rootViewController = self
-        let request = DFPRequest()
+        let request = GAMRequest()
         request.customTargeting = ["wsdotapp":"passes"]
         bannerView.load(request)
         bannerView.delegate = self

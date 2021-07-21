@@ -23,7 +23,7 @@
                                     <segue destination="aop-1r-YKR" kind="embed" identifier="EmbedSegue" id="ETC-lm-4TE"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dBe-mO-7VM" customClass="DFPBannerView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dBe-mO-7VM" customClass="GAMBannerView">
                                 <rect key="frame" x="27.5" y="617" width="320" height="50"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>

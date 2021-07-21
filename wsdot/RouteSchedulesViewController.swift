@@ -41,7 +41,7 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
     let refreshControl = UIRefreshControl()
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var bannerView: DFPBannerView!
+    @IBOutlet weak var bannerView: GAMBannerView!
     
     @IBOutlet weak var ticketsButton: UIButton!
     @IBOutlet weak var reservationsButton: UIButton!
@@ -62,7 +62,7 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
         bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.adSize = getFullWidthAdaptiveAdSize()
         bannerView.rootViewController = self
-        let request = DFPRequest()
+        let request = GAMRequest()
         request.customTargeting = [
             "wsdotapp":"ferries",
             "wsdotferries":"ferries-home"

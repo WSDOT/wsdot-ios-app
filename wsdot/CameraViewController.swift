@@ -28,7 +28,7 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
     
     @IBOutlet weak var favoriteBarButton: UIBarButtonItem!
     
-    @IBOutlet weak var bannerView: DFPBannerView!
+    @IBOutlet weak var bannerView: GAMBannerView!
     
     @IBOutlet weak var directionLabel: UILabel!
     @IBOutlet weak var milepostLabel: UILabel!
@@ -97,7 +97,7 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
             bannerView.adUnitID = ApiKeys.getAdId()
             bannerView.rootViewController = self
             bannerView.adSize = getFullWidthAdaptiveAdSize()
-            let request = DFPRequest()
+            let request = GAMRequest()
             request.customTargeting = ["wsdotapp":adTarget]
         
             bannerView.load(request)
