@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cpo-cK-EUg" customClass="DFPBannerView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cpo-cK-EUg" customClass="GAMBannerView">
                                 <rect key="frame" x="27.5" y="617" width="320" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="GNz-aI-Uhg"/>

@@ -46,7 +46,7 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
     @IBOutlet weak var sailingButton: IconButton!
     @IBOutlet weak var dayButton: IconButton!
 
-    @IBOutlet weak var bannerView: GADBannerView!
+    @IBOutlet weak var bannerView: GAMBannerView!
     
     var routeItem: FerryScheduleItem?
     var routeId = 0
@@ -58,7 +58,7 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
     let favoriteBarButton = UIBarButtonItem()
     let alertBarButton = UIBarButtonItem()
     
-    internal func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+    internal func adViewDidReceiveAd(_ bannerView: GAMBannerView) {
         print("wsdot debug: adViewDidReceiveAd")
         if let responseInfo = bannerView.responseInfo {
           print("wsdot debug: \(responseInfo)")
@@ -67,6 +67,7 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
         }
     }
 
+    /*
     func adView(_ bannerView: GADBannerView,
         didFailToReceiveAdWithError error: GADRequestError) {
         print("wsdot debug: didFailToReceiveAdWithError: \(error.localizedDescription)")
@@ -76,6 +77,7 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
           print("wsdot debug: \(responseInfo)")
         }
     }
+ */
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,7 +117,7 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
         bannerView.adSize = getFullWidthAdaptiveAdSize()
         bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.rootViewController = self
-        let request = DFPRequest()
+        let request = GAMRequest()
             
         request.customTargeting = [
             "wsdotapp":"ferries",

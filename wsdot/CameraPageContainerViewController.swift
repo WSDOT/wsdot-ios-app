@@ -25,7 +25,7 @@ import EasyTipView
 // Container for the CameraPageVV so we can display an ad banner below it
 class CameraPageContainerViewController: UIViewController, GADBannerViewDelegate {
 
-    @IBOutlet weak var bannerView: DFPBannerView!
+    @IBOutlet weak var bannerView: GAMBannerView!
     var adTarget: String = "traffic"
     
     @IBOutlet weak var rightTipViewAnchor: UIView!
@@ -42,7 +42,7 @@ class CameraPageContainerViewController: UIViewController, GADBannerViewDelegate
         bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.adSize = getFullWidthAdaptiveAdSize()
         bannerView.rootViewController = self
-        let request = DFPRequest()
+        let request = GAMRequest()
         request.customTargeting = ["wsdotapp":adTarget]
         
         bannerView.load(request)

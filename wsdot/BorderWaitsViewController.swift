@@ -25,7 +25,7 @@ class BorderWaitsViewController: RefreshViewController, UITableViewDelegate, UIT
     
     let cellIdentifier = "borderwaitcell"
     
-    @IBOutlet weak var bannerView: DFPBannerView!
+    @IBOutlet weak var bannerView: GAMBannerView!
     @IBOutlet weak var segmentedControlView: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     var displayedWaits = [BorderWaitItem]()
@@ -58,7 +58,7 @@ class BorderWaitsViewController: RefreshViewController, UITableViewDelegate, UIT
         bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.rootViewController = self
         bannerView.adSize = getFullWidthAdaptiveAdSize()
-        let request = DFPRequest()
+        let request = GAMRequest()
         request.customTargeting = ["wsdotapp":"border"]
         
         bannerView.load(request)

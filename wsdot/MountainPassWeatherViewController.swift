@@ -31,7 +31,7 @@ class MountainPassWeatherViewController: UIViewController, UITableViewDelegate, 
     var passItem : MountainPassItem = MountainPassItem()
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var bannerView: DFPBannerView!
+    @IBOutlet weak var bannerView: GAMBannerView!
     
     override func viewDidLoad() {
     
@@ -50,7 +50,7 @@ class MountainPassWeatherViewController: UIViewController, UITableViewDelegate, 
         bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.adSize = getFullWidthAdaptiveAdSize()
         bannerView.rootViewController = self
-        let request = DFPRequest()
+        let request = GAMRequest()
         request.customTargeting = ["wsdotapp":"passes"]
         
         bannerView.load(request)
