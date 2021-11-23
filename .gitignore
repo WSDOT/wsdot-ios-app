@@ -50,3 +50,6 @@ Pods/
 screenshots
 
 .DS_Store
+
+## Plist
+wsdot/*.plist
