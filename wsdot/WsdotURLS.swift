@@ -15,7 +15,7 @@ struct WsdotURLS {
     static let vesselWatch = "https://www.wsdot.com/ferries/vesselwatch/"
     static let passes = "https://www.wsdot.wa.gov/traffic/passes/"
     static let borderWaits = "https://www.wsdot.com/traffic/border/default.aspx"
-    static let tolling = "https://www.wsdot.wa.gov/Tolling/TollRates.htm"
+    static let tolling = "https://wsdot.wa.gov/travel/roads-bridges/toll-roads-bridges-tunnels"
     static let amtrak = "https://www.amtrakcascades.com/"
     static let travelTimes = "https://www.wsdot.com/traffic/traveltimes/"
 
