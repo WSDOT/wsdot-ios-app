@@ -48,8 +48,7 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate,
         
         aboutText.text = "The Washington State Department of Transportation provides and supports safe, reliable and cost-effective transportation options to improve livable communities and economic vitality for people and businesses.\n\n"
             + "The WSDOT mobile app was created to make it easier for you to know the latest about Washington's transportation system. \n\n"
-            + "Questions, comments or suggestions about this app can be e-mailed to the WSDOT Communications Office at webfeedback@wsdot.wa.gov. \n\n"
-            + "To report HOV, HOT lane or ferry line violators please call 1-877-764-4376."
+            + "Questions, comments or suggestions about this app can be e-mailed to the WSDOT Communications Office at webfeedback@wsdot.wa.gov. \n"
     
         aboutText.isEditable = false
         appVersionLabel.text = "App version: " + version
