@@ -168,7 +168,7 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
             
             let config = SFSafariViewController.Configuration()
             config.entersReaderIfAvailable = true
-            let svc = SFSafariViewController(url: URL(string: "https://www.wsdot.wa.gov/Tolling/SR167HotLanes/HOTtollrates.htm")!, configuration: config)
+            let svc = SFSafariViewController(url: URL(string: "https://wsdot.wa.gov/travel/roads-bridges/toll-roads-bridges-tunnels/sr-167-high-occupancy-toll-hot-lanes")!, configuration: config)
             
             if #available(iOS 10.0, *) {
                 svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor
