@@ -27,7 +27,7 @@ class AmtrakCascadesViewController: UIViewController, UITableViewDelegate, UITab
     let segueAmtrakSchedulesViewController = "AmtrakCascadesScheduleViewController"
 
     let menu_options = ["Buy Tickets on Amtrak.com", "Check Schedules and Status"]
-    let amtrakUrlString = "https://m.amtrak.com"
+    let amtrakUrlString = "https://www.amtrakcascades.com/buy-tickets"
 
     @IBOutlet weak var tableView: UITableView!
     
