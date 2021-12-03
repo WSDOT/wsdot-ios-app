@@ -37,6 +37,14 @@ enum Theme: Int {
         case .defaultTheme:
             
             if #available(iOS 13, *) {
+                
+                // Update Navigation Bar for iOS 15
+                let appearance = UINavigationBarAppearance()
+                appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+                appearance.backgroundColor = Colors.wsdotPrimary
+                UINavigationBar.appearance().standardAppearance = appearance
+                UINavigationBar.appearance().scrollEdgeAppearance = appearance
+                
                 return UIColor.init { (trait) -> UIColor in
                     return trait.userInterfaceStyle == .dark ? Colors.wsdotPrimaryDark : Colors.wsdotPrimary
                 }
