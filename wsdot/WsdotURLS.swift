@@ -9,14 +9,14 @@
 struct WsdotURLS {
 
     static let homepage = "https://wsdot.wa.gov"
-    static let trafficCameras = "https://www.wsdot.com/traffic/Cameras/default.aspx"
-    static let trafficAlerts = "https://www.wsdot.com/traffic/trafficalerts/default.aspx"
-    static let ferries = "https://www.wsdot.wa.gov/ferries/schedule/Default.aspx"
-    static let vesselWatch = "https://www.wsdot.com/ferries/vesselwatch/"
-    static let passes = "https://www.wsdot.wa.gov/traffic/passes/"
-    static let borderWaits = "https://www.wsdot.com/traffic/border/default.aspx"
+    static let trafficCameras = "https://wsdot.com/travel/real-time/cameras"
+    static let trafficAlerts = "https://wsdot.com/travel/real-time/alerts"
+    static let ferries = "https://wsdot.com/ferries/schedule/"
+    static let vesselWatch = "https://wsdot.com/ferries/vesselwatch/"
+    static let passes = "https://wsdot.com/travel/real-time/mountainpasses"
+    static let borderWaits = "https://wsdot.com/travel/real-time/border-crossings"
     static let tolling = "https://wsdot.wa.gov/travel/roads-bridges/toll-roads-bridges-tunnels"
     static let amtrak = "https://www.amtrakcascades.com/"
-    static let travelTimes = "https://www.wsdot.com/traffic/traveltimes/"
+    static let travelTimes = "https://wsdot.com/travel/real-time/travel-times"
 
 }
