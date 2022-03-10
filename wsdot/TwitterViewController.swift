@@ -187,7 +187,7 @@ class TwitterViewController: RefreshViewController, UITableViewDelegate, UITable
         tableView.deselectRow(at: indexPath, animated: true)
 
         let config = SFSafariViewController.Configuration()
-        config.entersReaderIfAvailable = true
+        config.entersReaderIfAvailable = false
         let svc = SFSafariViewController(url: URL(string: tweets[indexPath.row].link)!, configuration: config)
         
         if #available(iOS 10.0, *) {
@@ -222,7 +222,7 @@ class TwitterViewController: RefreshViewController, UITableViewDelegate, UITable
         DispatchQueue.main.async {
             
             let config = SFSafariViewController.Configuration()
-            config.entersReaderIfAvailable = true
+            config.entersReaderIfAvailable = false
             let svc = SFSafariViewController(url: URL, configuration: config)
             
             if #available(iOS 10.0, *) {

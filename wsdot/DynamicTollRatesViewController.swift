@@ -153,7 +153,7 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
             MyAnalytics.event(category: "Tolling", action: "open_link", label: "tolling_405")
      
             let config = SFSafariViewController.Configuration()
-            config.entersReaderIfAvailable = true
+            config.entersReaderIfAvailable = false
             let svc = SFSafariViewController(url: URL(string: "https://www.wsdot.wa.gov/Tolling/405/rates.htm")!, configuration: config)
             
             if #available(iOS 10.0, *) {
@@ -167,7 +167,7 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
             MyAnalytics.event(category: "Tolling", action: "open_link", label: "tolling_hot_lanes")
             
             let config = SFSafariViewController.Configuration()
-            config.entersReaderIfAvailable = true
+            config.entersReaderIfAvailable = false
             let svc = SFSafariViewController(url: URL(string: "https://wsdot.wa.gov/travel/roads-bridges/toll-roads-bridges-tunnels/sr-167-high-occupancy-toll-hot-lanes")!, configuration: config)
             
             if #available(iOS 10.0, *) {

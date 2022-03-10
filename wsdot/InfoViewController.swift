@@ -66,7 +66,7 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate,
         MyAnalytics.event(category: "About", action: "open_link", label: "jobs")
    
         let config = SFSafariViewController.Configuration()
-        config.entersReaderIfAvailable = true
+        config.entersReaderIfAvailable = false
         let svc = SFSafariViewController(url: URL(string: self.jobsUrlString)!, configuration: config)
         
         if #available(iOS 10.0, *) {
@@ -138,7 +138,7 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate,
         
         
         let config = SFSafariViewController.Configuration()
-        config.entersReaderIfAvailable = true
+        config.entersReaderIfAvailable = false
         let svc = SFSafariViewController(url: URL, configuration: config)
         
         if #available(iOS 10.0, *) {

@@ -177,7 +177,7 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
     func linkLabel(_ label: INDLinkLabel, didTapLinkWithURL URL: Foundation.URL) {
 
         let config = SFSafariViewController.Configuration()
-        config.entersReaderIfAvailable = true
+        config.entersReaderIfAvailable = false
         let svc = SFSafariViewController(url: URL, configuration: config)
         
         if #available(iOS 10.0, *) {
