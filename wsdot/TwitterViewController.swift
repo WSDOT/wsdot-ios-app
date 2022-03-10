@@ -148,8 +148,8 @@ class TwitterViewController: RefreshViewController, UITableViewDelegate, UITable
         
         let tweet = tweets[indexPath.row]
         
-        let htmlStyleString = "<style>body{font-family: \(cell.contentLabel.font.familyName); font-size: 17.0px;}</style> "
-        
+        let htmlStyleString = "<style>body{font-family: '\(cell.contentLabel.font.familyName)';font-size:\(cell.contentLabel.font.pointSize)px}</style> "
+
         let htmlString = htmlStyleString + tweet.text
         
         let attrStr = try! NSMutableAttributedString(
