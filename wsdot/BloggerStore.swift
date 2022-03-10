@@ -52,6 +52,8 @@ class BloggerStore {
             
             post.title = postJson["title"]["$t"].stringValue
             post.content = postJson["content"]["$t"].stringValue
+                .replacingOccurrences(of: "</p><p>", with: ": ", options: .regularExpression, range: nil)
+                .replacingOccurrences(of: "</h2><h3>", with: " ", options: .regularExpression, range: nil)
                 .replacingOccurrences(of: "<i>(.*)</i><br /><br />", with: "", options: .regularExpression, range: nil)
                 .replacingOccurrences(of: "<em>(.*)</em><br /><br />", with: "", options: .regularExpression, range: nil)
                 .replacingOccurrences(of: "<table(.*?)>.*?</table>", with: "", options: .regularExpression, range: nil)
