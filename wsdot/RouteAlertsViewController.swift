@@ -125,7 +125,7 @@ class RouteAlertsViewController: UIViewController, UITableViewDataSource, UITabl
         
         var alertPubDate: Date? = nil
         
-        if let alertPubDateValue = try? TimeUtils.formatTimeStamp(alertItems[indexPath.row].publishDate, dateFormat: "yyyy-MM-dd HH:mm aa") {
+        if let alertPubDateValue = try? TimeUtils.formatTimeStamp(alertItems[indexPath.row].publishDate, dateFormat: "yyyy-MM-dd hh:mm a") {
             alertPubDate = alertPubDateValue
         } else {
             alertPubDate = TimeUtils.parseJSONDateToNSDate(alertItems[indexPath.row].publishDate)
