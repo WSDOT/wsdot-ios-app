@@ -103,7 +103,7 @@ class NotificationTopicsViewController: RefreshViewController, UITableViewDelega
     
     func getCategoriesMap(topicItemsMap: [String:[NotificationTopicItem]]) -> [Int: String]{
         
-        let categories = Array(topicItemsMap.keys)
+        let categories = Array(topicItemsMap.keys).sorted()
         var topicCategoriesMap = [Int: String]()
         
         var i = 0
