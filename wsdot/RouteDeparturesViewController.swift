@@ -136,8 +136,22 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
     }
     
     @IBAction func dayButtonTap(_ sender: Any) {
-        performSegue(withIdentifier: segueDepartureDaySelectionViewController, sender: self)
+//        performSegue(withIdentifier: segueDepartureDaySelectionViewController, sender: self)
+        
+        // Ferry Schedule Calendar Message
+        let alert = UIAlertController(title: "Ferry Schedule Calendar", message: "Many of the sailings continue to operate on reduced or alternate schedules. In order to provide up-to-date information, the mobile app ferry schedule calendar is now limited to daily schedules.\n\nTo view a future sailing time for your route please visit the schedule page online.", preferredStyle: .alert);
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil));
+        let action: UIAlertAction = UIAlertAction(title: "Ferry Website", style: .default, handler: {
+           (action) in
+              UIApplication.shared.open(URL(string: "https://wsdot.com/ferries/schedule/")!, options: [:], completionHandler: nil)
+         })
+        alert.addAction(action)
+        alert.view.tintColor = Colors.tintColor
+        self.present(alert, animated: true, completion: nil)
+        
     }
+
     
     func loadSailings() {
     
