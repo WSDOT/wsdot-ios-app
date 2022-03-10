@@ -114,12 +114,24 @@ class RouteAlertsViewController: UIViewController, UITableViewDataSource, UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! LinkCell
         
-        let htmlStyleString = "<style>body{font-family: '\(cell.linkLabel.font.familyName)'; font-size:\(cell.linkLabel.font.pointSize)px;}</style>"
+        let htmlStyleLight =
+        "<style>*{font-family:'-apple-system';font-size:\(cell.linkLabel.font.pointSize)px;color:black}h1{font-weight:bold}a{color: #007a5d}a strong{color: #007a5d}li{margin:10px 0}li:last-child{margin-bottom:25px}</style>"
         
-        let htmlString = htmlStyleString + alertItems[indexPath.row].alertFullText
+        let htmlStyleDark =
+        "<style>*{font-family:'-apple-system';font-size:\(cell.linkLabel.font.pointSize)px;color:white}h1{font-weight:bold}a{color: #007a5d}a strong{color: #007a5d}li{margin:10px 0}li:last-child{margin-bottom:25px}</style>"
         
-        let attrStr = try! NSMutableAttributedString(
-            data: htmlString.data(using: String.Encoding.unicode, allowLossyConversion: false)!,
+        let AlertDescription = "<h1>" + alertItems[indexPath.row].alertFullTitle + "</h1>"
+        let AlertFullText = alertItems[indexPath.row].alertFullText.replacingOccurrences(of: "</a><br></li>\n<li>", with: "</a></li>\n<li>", options: .regularExpression, range: nil)
+        let htmlStringLight = htmlStyleLight + AlertDescription + AlertFullText
+        let htmlStringDark = htmlStyleDark + AlertDescription + AlertFullText
+
+        let attrStrLight = try! NSMutableAttributedString(
+            data: htmlStringLight.data(using: String.Encoding.unicode, allowLossyConversion: false)!,
+            options: [ NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html],
+            documentAttributes: nil)
+        
+        let attrStrDark = try! NSMutableAttributedString(
+            data: htmlStringDark.data(using: String.Encoding.unicode, allowLossyConversion: false)!,
             options: [ NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html],
             documentAttributes: nil)
         
@@ -136,16 +148,28 @@ class RouteAlertsViewController: UIViewController, UITableViewDataSource, UITabl
         } else {
             cell.updateTime.text = "unavailable"
         }
-
-        cell.linkLabel.attributedText = attrStr
-        cell.linkLabel.delegate = self
         
-        if #available(iOS 13, *) {
-            cell.linkLabel.textColor = UIColor.label
+        if self.traitCollection.userInterfaceStyle == .light {
+            cell.linkLabel.attributedText = attrStrLight
+            cell.linkLabel.linkHighlightColor = UIColor.lightGray
+            cell.linkLabel.delegate = self
+        }
+        
+        if self.traitCollection.userInterfaceStyle == .dark {
+            cell.linkLabel.attributedText = attrStrDark
+            cell.linkLabel.linkHighlightColor = UIColor.lightGray
+            cell.linkLabel.delegate = self
         }
         
         return cell
+
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+            super.traitCollectionDidChange(previousTraitCollection)
+
+        fetchAlerts()
+        }
 
     // MARK: INDLinkLabelDelegate
     func linkLabel(_ label: INDLinkLabel, didLongPressLinkWithURL URL: Foundation.URL) {
