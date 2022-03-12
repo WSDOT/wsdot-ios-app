@@ -76,7 +76,12 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
         self.routes = FerryRealmStore.findAllSchedules()
         self.tableView.reloadData()
         
-        self.refresh(false)
+        self.refresh(true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.refresh(true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
