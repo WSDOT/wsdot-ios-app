@@ -69,9 +69,12 @@ class RouteAlertsViewController: UIViewController, UITableViewDataSource, UITabl
                     DispatchQueue.main.async { [weak self] in
                         if let selfValue = self {
                             
+                            let dateFormatter = DateFormatter()
+                            dateFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
+                            
                             if let routeItem = FerryRealmStore.findSchedule(withId: selfValue.routeId) {
                                 selfValue.title = "\(routeItem.routeDescription) Alerts"
-                                selfValue.alertItems = routeItem.routeAlerts.sorted(by: {$0.publishDate > $1.publishDate})
+                                selfValue.alertItems = routeItem.routeAlerts.sorted(by: {( dateFormatter.date(from: $0.publishDate) ?? NSDate() as Date ) > dateFormatter.date(from: $1.publishDate) ?? NSDate() as Date})
                                 selfValue.tableView.reloadData()
                             }
                             
