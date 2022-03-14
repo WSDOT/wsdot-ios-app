@@ -89,7 +89,7 @@ class VesselDetailsViewController: UIViewController{
     @IBAction func linkAction(_ sender: UIBarButtonItem) {
         
         let config = SFSafariViewController.Configuration()
-        config.entersReaderIfAvailable = true
+        config.entersReaderIfAvailable = false
         let svc = SFSafariViewController(url: URL(string: vesselBaseUrlString + String((vesselItem?.vesselID)!))!, configuration: config)
         
         if #available(iOS 10.0, *) {

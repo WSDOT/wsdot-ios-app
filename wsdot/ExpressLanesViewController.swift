@@ -129,7 +129,7 @@ class ExpressLanesViewController: RefreshViewController, UITableViewDelegate, UI
             MyAnalytics.event(category: "Travel Information", action: "open_link", label: "express_lanes_schedule")
             
             let config = SFSafariViewController.Configuration()
-            config.entersReaderIfAvailable = true
+            config.entersReaderIfAvailable = false
             let svc = SFSafariViewController(url: URL(string: self.expressLanesUrlString)!, configuration: config)
             
             if #available(iOS 10.0, *) {

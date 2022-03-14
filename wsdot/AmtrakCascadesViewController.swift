@@ -65,7 +65,7 @@ class AmtrakCascadesViewController: UIViewController, UITableViewDelegate, UITab
             MyAnalytics.event(category: "Amtrak", action: "open_url", label: "buy_tickets")
    
             let config = SFSafariViewController.Configuration()
-            config.entersReaderIfAvailable = true
+            config.entersReaderIfAvailable = false
             let svc = SFSafariViewController(url: URL(string: self.amtrakUrlString)!, configuration: config)
             
             if #available(iOS 10.0, *) {

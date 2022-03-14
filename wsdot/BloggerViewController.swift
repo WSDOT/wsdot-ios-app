@@ -109,7 +109,7 @@ class BloggerViewController: RefreshViewController, UITableViewDataSource, UITab
         tableView.deselectRow(at: indexPath, animated: true)
         
         let config = SFSafariViewController.Configuration()
-        config.entersReaderIfAvailable = true
+        config.entersReaderIfAvailable = false
         let svc = SFSafariViewController(url: URL(string: posts[indexPath.row].link)!, configuration: config)
         
         if #available(iOS 10.0, *) {

@@ -148,8 +148,8 @@ class TwitterViewController: RefreshViewController, UITableViewDelegate, UITable
         
         let tweet = tweets[indexPath.row]
         
-        let htmlStyleString = "<style>body{font-family: \(cell.contentLabel.font.familyName); font-size: 17.0px;}</style> "
-        
+        let htmlStyleString = "<style>body{font-family: '\(cell.contentLabel.font.familyName)';font-size:\(cell.contentLabel.font.pointSize)px}</style> "
+
         let htmlString = htmlStyleString + tweet.text
         
         let attrStr = try! NSMutableAttributedString(
@@ -187,7 +187,7 @@ class TwitterViewController: RefreshViewController, UITableViewDelegate, UITable
         tableView.deselectRow(at: indexPath, animated: true)
 
         let config = SFSafariViewController.Configuration()
-        config.entersReaderIfAvailable = true
+        config.entersReaderIfAvailable = false
         let svc = SFSafariViewController(url: URL(string: tweets[indexPath.row].link)!, configuration: config)
         
         if #available(iOS 10.0, *) {
@@ -222,7 +222,7 @@ class TwitterViewController: RefreshViewController, UITableViewDelegate, UITable
         DispatchQueue.main.async {
             
             let config = SFSafariViewController.Configuration()
-            config.entersReaderIfAvailable = true
+            config.entersReaderIfAvailable = false
             let svc = SFSafariViewController(url: URL, configuration: config)
             
             if #available(iOS 10.0, *) {

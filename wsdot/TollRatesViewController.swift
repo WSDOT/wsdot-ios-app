@@ -38,7 +38,7 @@ class TollRatesViewController: UIViewController{
         MyAnalytics.event(category: "Tolling", action: "open_link", label: "tolling_good_to_go")
         
         let config = SFSafariViewController.Configuration()
-        config.entersReaderIfAvailable = true
+        config.entersReaderIfAvailable = false
         let svc = SFSafariViewController(url: URL(string: self.goodToGoUrlString)!, configuration: config)
         
         if #available(iOS 10.0, *) {

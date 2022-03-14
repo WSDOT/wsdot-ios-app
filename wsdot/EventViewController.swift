@@ -46,7 +46,7 @@ class EventViewController: UIViewController, UITextViewDelegate {
         if scheme != "http" && scheme != "https" { return true }
     
         let config = SFSafariViewController.Configuration()
-        config.entersReaderIfAvailable = true
+        config.entersReaderIfAvailable = false
         let svc = SFSafariViewController(url: URL, configuration: config)
         
         if #available(iOS 10.0, *) {
