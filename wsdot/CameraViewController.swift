@@ -30,10 +30,14 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
     
     @IBOutlet weak var bannerView: GAMBannerView!
     
+    @IBOutlet weak var cameraTitleLabel: UILabel!
     @IBOutlet weak var directionLabel: UILabel!
     @IBOutlet weak var milepostLabel: UILabel!
     
-    @IBOutlet weak var cameraImageHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var cameraIconStack: UIStackView!
+    @IBOutlet weak var cameraIconImage: UIImageView!
+    @IBOutlet weak var cameraIconLabel: UILabel!
+    
     weak fileprivate var embeddedMapViewController: SimpleMapViewController!
     
     var cameraItem: CameraItem = CameraItem()
@@ -42,7 +46,17 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = cameraItem.title;
+        self.navigationItem.title = cameraItem.roadName
+
+        cameraIconLabel.text = "Camera"
+        cameraIconImage.image = UIImage(named: "icMapCamera")
+        
+        self.cameraIconStack.backgroundColor = UIColor(red: 0/255, green: 123/255, blue: 95/255, alpha: 0.2)
+        self.cameraIconStack.layer.borderColor = UIColor(red: 0/255, green: 123/255, blue: 95/255, alpha: 1.0).cgColor
+        self.cameraIconStack.layer.borderWidth = 1
+        self.cameraIconStack.layer.cornerRadius = 4.0
+        
+        cameraTitleLabel.text = cameraItem.title
         
         embeddedMapViewController.view.isHidden = false
         
@@ -91,6 +105,7 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
         cameraMarker.icon = UIImage(named: "icMapCamera")
         
         self.embeddedMapViewController.view.isHidden = false
+        self.embeddedMapViewController.view.layer.borderWidth = 0.5
         
         // Ad Banner
         if (adsEnabled) {
@@ -132,19 +147,12 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
         
            
         cameraImage.sd_setImage(with: URL(string: urlString), placeholderImage: placeholder, options: .refreshCached, completed: { image, error, cacheType, imageURL in
-                        
-                let superViewWidth = self.view.frame.size.width - 16
-                 
+                                         
                 if (error != nil) {
                     self.cameraImage.image = UIImage(named: "cameraOffline")
                 } else {
       
-                    let ratio = image!.size.width / image!.size.height
-                    let newHeight = superViewWidth / ratio
-                            
-                    print(newHeight)
-                            
-                    self.cameraImageHeightConstraint.constant = newHeight
+                    self.cameraImage.widthAnchor.constraint(equalTo: self.cameraImage.heightAnchor, multiplier: (self.cameraImage.image?.size.width)! / (self.cameraImage.image?.size.height)!).isActive = true
                       
                 }
             }
