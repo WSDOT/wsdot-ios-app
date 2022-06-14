@@ -31,6 +31,9 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
     @IBOutlet weak var descLinkLabel: INDLinkLabel!
     @IBOutlet weak var updateTimeLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var categoryStack: UIStackView!
+    @IBOutlet weak var categoryImage: UIImageView!
+    @IBOutlet weak var categoryLabel: UILabel!
     
     var hasAlert: Bool = true
     var fromPush: Bool = false
@@ -108,11 +111,21 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
     }
 
     func displayAlert() {
-        title = alertItem.eventCategory
+        title = "Alert"
         
+        categoryImage.image = UIHelpers.getAlertIcon(forAlert: self.alertItem)
+        categoryLabel.text = alertItem.eventCategory
+        
+        self.categoryStack.backgroundColor = UIColor(red: 255/255, green: 193/255, blue: 7/255, alpha: 0.3)
+        self.categoryStack.layer.borderColor = UIColor(red: 255/255, green: 193/255, blue: 7/255, alpha: 1.0).cgColor
+        self.categoryStack.layer.borderWidth = 1
+        self.categoryStack.layer.cornerRadius = 4.0
+
         let htmlStyleString = "<style>body{font-family: '\(descLinkLabel.font.familyName)'; font-size:\(descLinkLabel.font.pointSize)px;}</style>"
         
-        let htmlString = htmlStyleString + alertItem.headlineDesc
+        let description = "<br><br><b>Description: </b>" + alertItem.headlineDesc
+
+        let htmlString = htmlStyleString + description
         
         let attrStr = try! NSMutableAttributedString(
             data: htmlString.data(using: String.Encoding.unicode, allowLossyConversion: false)!,
@@ -141,6 +154,7 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
         }
 
         self.embeddedMapViewController.view.isHidden = false
+        self.embeddedMapViewController.view.layer.borderWidth = 0.5
 
         if #available(iOS 13, *){
             descLinkLabel.textColor = UIColor.label
