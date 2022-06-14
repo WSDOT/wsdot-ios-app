@@ -32,7 +32,6 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
     
     @IBOutlet weak var cameraTitleLabel: UILabel!
     @IBOutlet weak var directionLabel: UILabel!
-    @IBOutlet weak var milepostLabel: UILabel!
     
     @IBOutlet weak var cameraIconStack: UIStackView!
     @IBOutlet weak var cameraIconImage: UIImageView!
@@ -90,13 +89,6 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
                 break
         }
         
-        
-        if (cameraItem.milepost == -1) {
-            milepostLabel.isHidden = true
-        } else {
-            milepostLabel.isHidden = false
-            milepostLabel.text = "near milepost \(cameraItem.milepost)"
-        }
         
         favoriteBarButton.tintColor = Colors.yellow
         
