@@ -53,10 +53,58 @@ enum Theme: Int {
             return Colors.wsdotPrimary
        
         case .orangeTheme:
+            
+            if #available(iOS 13, *) {
+                
+                // Update Navigation Bar for iOS 15
+                let appearance = UINavigationBarAppearance()
+                appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+                appearance.backgroundColor = Colors.wsdotOrange
+                UINavigationBar.appearance().standardAppearance = appearance
+                UINavigationBar.appearance().scrollEdgeAppearance = appearance
+                
+                return UIColor.init { (trait) -> UIColor in
+                    return trait.userInterfaceStyle == .dark ? Colors.wsdotDarkOrange : Colors.wsdotOrange
+                }
+            }
+            
+            
             return Colors.wsdotOrange
+            
         case .blueTheme:
+            
+            if #available(iOS 13, *) {
+                
+                // Update Navigation Bar for iOS 15
+                let appearance = UINavigationBarAppearance()
+                appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+                appearance.backgroundColor = Colors.wsdotBlue
+                UINavigationBar.appearance().standardAppearance = appearance
+                UINavigationBar.appearance().scrollEdgeAppearance = appearance
+                
+                return UIColor.init { (trait) -> UIColor in
+                    return trait.userInterfaceStyle == .dark ? Colors.wsdotBlue : Colors.wsdotBlue
+                }
+            }
+            
             return Colors.wsdotBlue
+            
         case .customTheme:
+            
+            if #available(iOS 13, *) {
+                
+                // Update Navigation Bar for iOS 15
+                let appearance = UINavigationBarAppearance()
+                appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+                appearance.backgroundColor = Colors.customColor
+                UINavigationBar.appearance().standardAppearance = appearance
+                UINavigationBar.appearance().scrollEdgeAppearance = appearance
+                
+                return UIColor.init { (trait) -> UIColor in
+                    return trait.userInterfaceStyle == .dark ? Colors.customColor : Colors.customColor
+                }
+            }
+            
             return Colors.customColor
         }
     }
