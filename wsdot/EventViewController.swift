@@ -32,7 +32,9 @@ class EventViewController: UIViewController, UITextViewDelegate {
             detailsTextView.sizeToFit()
             detailsTextView.isEditable = false
             detailsTextView.delegate = self
-        
+            detailsTextView.textContainerInset = UIEdgeInsets(top: 25, left: 0, bottom: 0, right: 0)
+
+
             let htmlStyleLight =
             "<style>*{font-family:'-apple-system';font-size:17px;color:black}h1{font-weight:bold}a{color: #007a5d}a strong{color: #007a5d}li{margin:10px 0}li:last-child{margin-bottom:25px}</style>"
             
