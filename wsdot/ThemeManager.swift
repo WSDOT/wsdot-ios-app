@@ -171,6 +171,17 @@ enum Theme: Int {
         }
     }
     
+    var linkColor: UIColor {
+        switch self {
+        case .defaultTheme:
+            return Colors.wsdotPrimary
+        case .orangeTheme:
+            return Colors.wsdotDarkOrange
+        case .emergencyTheme:
+            return Colors.wsdotPrimary
+        }
+    }
+    
     var bannerTextColor: UIColor {
         switch self {
         case .defaultTheme:
