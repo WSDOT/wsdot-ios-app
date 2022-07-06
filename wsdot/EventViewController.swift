@@ -72,6 +72,21 @@ class EventViewController: UIViewController, UITextViewDelegate {
         super.viewDidAppear(animated)
         MyAnalytics.screenView(screenName: "Event")
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        if #available(iOS 13.0, *) {
+            if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+                if traitCollection.userInterfaceStyle == .dark {
+                    detailsTextView.textColor = UIColor.white
+                }
+                else {
+                    detailsTextView.textColor = UIColor.black
+                }
+            }
+        }
+    }
  
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
     
