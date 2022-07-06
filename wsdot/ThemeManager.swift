@@ -18,6 +18,7 @@ struct Colors {
     
     static let wsdotBlue = UIColor.init(red: 0.0/255.0, green: 123.0/255.0, blue: 154.0/255.0, alpha: 1)
     
+    
     static let customColor = UIColor.init(red: 0.0/255.0, green: 63.0/255.0, blue: 135.0/255.0, alpha: 1)
     
     static let tintColor = UIColor.init(red: 0.0/255.0, green: 174.0/255.0, blue: 65.0/255.0, alpha: 1)
@@ -25,12 +26,43 @@ struct Colors {
     static let lightGreen = UIColor.init(red: 204.0/255.0, green: 239.0/255.0, blue: 184.0/255.0, alpha: 1)
     static let lightGrey = UIColor.init(red: 242.0/255.0, green: 242.0/255.0, blue: 242.0/255.0, alpha: 1)
     static let paleGrey = UIColor.init(red: 209.0/255.0, green: 213.0/255.0, blue: 219.0/255.0, alpha: 1)
+        
+    // Utility Colors
+    static let wsdotGray100 = UIColor.init(red: 29.0/255.0, green: 37.0/255.0, blue: 45.0/255.0, alpha: 1)
+    static let wsdotGray80 = UIColor.init(red: 74.0/255.0, green: 81.0/255.0, blue: 87.0/255.0, alpha: 1)
+    static let wsdotGray60 = UIColor.init(red: 119.0/255.0, green: 124.0/255.0, blue: 129.0/255.0, alpha: 1)
+    static let wsdotGray40 = UIColor.init(red: 165.0/255.0, green: 168.0/255.0, blue: 171.0/255.0, alpha: 1)
+    static let wsdotGray20 = UIColor.init(red: 210.0/255.0, green: 211.0/255.0, blue: 213.0/255.0, alpha: 1)
+    static let wsdotGray10 = UIColor.init(red: 232.0/255.0, green: 233.0/255.0, blue: 234.0/255.0, alpha: 1)
+    static let wsdotGray5 = UIColor.init(red: 244.0/255.0, green: 244.0/255.0, blue: 255.0/255.0, alpha: 1)
+    static let wsdotWhite = UIColor.init(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1)
+    static let wsdotGreen = UIColor.init(red: 40.0/255.0, green: 167.0/255.0, blue: 69.0/255.0, alpha: 1)
+    static let wsdotRed = UIColor.init(red: 220.0/255.0, green: 53.0/255.0, blue: 69.0/255.0, alpha: 1)
+    static let wsdotYellow = UIColor.init(red: 255.0/255.0, green: 193.0/255.0, blue: 7.0/255.0, alpha: 1)
+    static let wsdotPurple = UIColor.init(red: 89.0/255.0, green: 49.0/255.0, blue: 95.0/255.0, alpha: 1)
     
+    // Brand-Primary
+    static let wsdotPrimaryBrand100 = UIColor.init(red: 0.0/255.0, green: 123.0/255.0, blue: 95.0/255.0, alpha: 1)
+    static let wsdotPrimaryBrand80 = UIColor.init(red: 51.0/255.0, green: 149.0/255.0, blue: 127.0/255.0, alpha: 1)
+    static let wsdotPrimaryBrand60 = UIColor.init(red: 102.0/255.0, green: 176.0/255.0, blue: 159.0/255.0, alpha: 1)
+    static let wsdotPrimaryBrand40 = UIColor.init(red: 153.0/255.0, green: 202.0/255.0, blue: 191.0/255.0, alpha: 1)
+    
+    // Brand-Secondary
+    static let wsdotLightAccent100 = UIColor.init(red: 151.0/255.0, green: 215.0/255.0, blue: 0.0/255.0, alpha: 1)
+    static let wsdotLightAccentSoftened = UIColor.init(red: 173.0/255.0, green: 200.0/255.0, blue: 109.0/255.0, alpha: 1)
+    static let wsdotDarkAccent100  = UIColor.init(red: 0.0/255.0, green: 81.0/255.0, blue: 81.0/255.0, alpha: 1)
+
+    // Sub-Brand
+    static let wsdotPMS519100  = UIColor.init(red: 89.0/255.0, green: 49.0/255.0, blue: 95.0/255.0, alpha: 1)
+    static let wsdotPMS1585100  = UIColor.init(red: 255.0/255.0, green: 106.0/255.0, blue: 19.0/255.0, alpha: 1)
+    static let wsdotPMS3125100  = UIColor.init(red: 0.0/255.0, green: 174.0/255.0, blue: 199.0/255.0, alpha: 1)
+    static let wsdotPMS314100  = UIColor.init(red: 0.0/255.0, green: 127.0/255.0, blue: 163.0/255.0, alpha: 1)
+
 }
 
 enum Theme: Int {
 
-    case defaultTheme = 0, orangeTheme = 1, blueTheme = 2, customTheme = 3
+    case defaultTheme = 0, orangeTheme = 1, emergencyTheme = 2
 
     var mainColor: UIColor {
         switch self {
@@ -53,11 +85,43 @@ enum Theme: Int {
             return Colors.wsdotPrimary
        
         case .orangeTheme:
+            
+            if #available(iOS 13, *) {
+                
+                // Update Navigation Bar for iOS 15
+                let appearance = UINavigationBarAppearance()
+                appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+                appearance.backgroundColor = Colors.wsdotOrange
+                UINavigationBar.appearance().standardAppearance = appearance
+                UINavigationBar.appearance().scrollEdgeAppearance = appearance
+                
+                return UIColor.init { (trait) -> UIColor in
+                    return trait.userInterfaceStyle == .dark ? Colors.wsdotDarkOrange : Colors.wsdotOrange
+                }
+            }
+            
+            
             return Colors.wsdotOrange
-        case .blueTheme:
-            return Colors.wsdotBlue
-        case .customTheme:
-            return Colors.customColor
+            
+     
+            
+        case .emergencyTheme:
+            
+            if #available(iOS 13, *) {
+                
+                // Update Navigation Bar for iOS 15
+                let appearance = UINavigationBarAppearance()
+                appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+                appearance.backgroundColor = Colors.wsdotPrimary
+                UINavigationBar.appearance().standardAppearance = appearance
+                UINavigationBar.appearance().scrollEdgeAppearance = appearance
+                
+                return UIColor.init { (trait) -> UIColor in
+                    return trait.userInterfaceStyle == .dark ? Colors.wsdotPrimaryDark : Colors.wsdotPrimary
+                }
+            }
+        
+            return Colors.wsdotPrimary
         }
     }
 
@@ -68,9 +132,7 @@ enum Theme: Int {
             return .default
         case .orangeTheme:
             return .default
-        case .blueTheme:
-            return .default
-        case .customTheme:
+        case .emergencyTheme:
             return .default
         }
     }
@@ -81,9 +143,7 @@ enum Theme: Int {
             return Colors.wsdotPrimary
         case .orangeTheme:
             return Colors.wsdotDarkOrange
-        case .blueTheme:
-            return Colors.wsdotPrimary
-        case .customTheme:
+        case .emergencyTheme:
             return Colors.wsdotPrimary
         }
     }
@@ -95,9 +155,7 @@ enum Theme: Int {
             return UIColor.white
         case .orangeTheme:
             return UIColor.white
-        case .blueTheme:
-            return UIColor.white
-        case .customTheme:
+        case .emergencyTheme:
             return UIColor.white
         }
     }
@@ -108,12 +166,34 @@ enum Theme: Int {
             return UIColor.white
         case .orangeTheme:
             return UIColor.white
-        case .blueTheme:
-            return UIColor.white
-        case .customTheme:
+        case .emergencyTheme:
             return UIColor.white
         }
     }
+    
+    var linkColor: UIColor {
+        switch self {
+        case .defaultTheme:
+            return Colors.wsdotPrimary
+        case .orangeTheme:
+            return Colors.wsdotDarkOrange
+        case .emergencyTheme:
+            return Colors.wsdotPrimary
+        }
+    }
+    
+    var bannerTextColor: UIColor {
+        switch self {
+        case .defaultTheme:
+            return Colors.wsdotPrimary
+        case .orangeTheme:
+            return Colors.wsdotDarkOrange
+        case .emergencyTheme:
+            return Colors.wsdotRed
+        }
+    }
+    
+    
 }
 
 // Enum declaration
