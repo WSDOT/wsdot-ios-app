@@ -32,7 +32,38 @@ class EventViewController: UIViewController, UITextViewDelegate {
             detailsTextView.sizeToFit()
             detailsTextView.isEditable = false
             detailsTextView.delegate = self
-            detailsTextView.text = eventItem!.details
+        
+            let htmlStyleLight =
+            "<style>*{font-family:'-apple-system';font-size:17px;color:black}h1{font-weight:bold}a{color: #007a5d}a strong{color: #007a5d}li{margin:10px 0}li:last-child{margin-bottom:25px}</style>"
+            
+            let htmlStyleDark =
+            "<style>*{font-family:'-apple-system';font-size:17px;color:white}h1{font-weight:bold}a{color: #007a5d}a strong{color: #007a5d}li{margin:10px 0}li:last-child{margin-bottom:25px}</style>"
+            
+            let htmlStringLight = htmlStyleLight + eventItem!.details
+            let htmlStringDark = htmlStyleDark + eventItem!.details
+            
+            let attrStrLight = try! NSMutableAttributedString(
+                data: htmlStringLight.data(using: String.Encoding.unicode, allowLossyConversion: false)!,
+                options: [ NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html],
+                documentAttributes: nil)
+        
+            let attrStrDark = try! NSMutableAttributedString(
+                data: htmlStringDark.data(using: String.Encoding.unicode, allowLossyConversion: false)!,
+                options: [ NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html],
+                documentAttributes: nil)
+                  
+            if self.traitCollection.userInterfaceStyle == .light {
+                detailsTextView.attributedText = attrStrLight
+                detailsTextView.linkTextAttributes = [NSAttributedString.Key.foregroundColor : ThemeManager.currentTheme().mainColor, NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue]
+                detailsTextView.delegate = self
+            }
+            
+            if self.traitCollection.userInterfaceStyle == .dark {
+                detailsTextView.attributedText = attrStrDark
+                detailsTextView.linkTextAttributes = [NSAttributedString.Key.foregroundColor : ThemeManager.currentTheme().mainColor, NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue]
+                detailsTextView.delegate = self
+            }
+            
         }
     }
     override func viewDidAppear(_ animated: Bool) {
