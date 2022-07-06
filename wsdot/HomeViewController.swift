@@ -125,14 +125,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             // Create banner label with text from the eventItem. Set frame to fill banner view with room for the accessory icon
             let label = UILabel(frame: eventBannerView.frame)
             label.frame.origin = CGPoint(x: 8, y: 0)
-            label.frame.size = CGSize(width: eventBannerView.frame.width - iconView.frame.width - 8, height: eventBannerView.frame.height)
+            label.frame.size = CGSize(width: eventBannerView.frame.width - iconView.frame.width - 30, height: eventBannerView.frame.height)
             label.textAlignment = .center
-            label.textColor = ThemeManager.currentTheme().darkColor
-            label.font = UIFont(name: label.font.fontName, size: 14)
+            label.textColor = ThemeManager.currentTheme().bannerTextColor
+            label.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.regular)
+
             label.text = eventItem.bannerText
             
             // position the iconView on the right side of the event banner
-            iconView.frame.origin = CGPoint(x: label.frame.width, y: (eventBannerView.frame.height - iconView.frame.height) / 2)
+            iconView.frame.origin = CGPoint(x: label.frame.width + 16, y: (eventBannerView.frame.height - iconView.frame.height) / 2)
             
             // Add subviews to the event banner
             eventBannerView.addSubview(label)
