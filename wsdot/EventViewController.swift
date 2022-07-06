@@ -56,13 +56,13 @@ class EventViewController: UIViewController, UITextViewDelegate {
                   
             if self.traitCollection.userInterfaceStyle == .light {
                 detailsTextView.attributedText = attrStrLight
-                detailsTextView.linkTextAttributes = [NSAttributedString.Key.foregroundColor : ThemeManager.currentTheme().mainColor, NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue]
+                detailsTextView.linkTextAttributes = [NSAttributedString.Key.foregroundColor : ThemeManager.currentTheme().linkColor, NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue]
                 detailsTextView.delegate = self
             }
             
             if self.traitCollection.userInterfaceStyle == .dark {
                 detailsTextView.attributedText = attrStrDark
-                detailsTextView.linkTextAttributes = [NSAttributedString.Key.foregroundColor : ThemeManager.currentTheme().mainColor, NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue]
+                detailsTextView.linkTextAttributes = [NSAttributedString.Key.foregroundColor : ThemeManager.currentTheme().linkColor, NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue]
                 detailsTextView.delegate = self
             }
             
