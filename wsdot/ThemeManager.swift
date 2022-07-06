@@ -30,7 +30,7 @@ struct Colors {
 
 enum Theme: Int {
 
-    case defaultTheme = 0, orangeTheme = 1, blueTheme = 2, customTheme = 3
+    case defaultTheme = 0, orangeTheme = 1, emergencyTheme = 2
 
     var mainColor: UIColor {
         switch self {
@@ -71,41 +71,25 @@ enum Theme: Int {
             
             return Colors.wsdotOrange
             
-        case .blueTheme:
+     
+            
+        case .emergencyTheme:
             
             if #available(iOS 13, *) {
                 
                 // Update Navigation Bar for iOS 15
                 let appearance = UINavigationBarAppearance()
                 appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-                appearance.backgroundColor = Colors.wsdotBlue
+                appearance.backgroundColor = Colors.wsdotPrimary
                 UINavigationBar.appearance().standardAppearance = appearance
                 UINavigationBar.appearance().scrollEdgeAppearance = appearance
                 
                 return UIColor.init { (trait) -> UIColor in
-                    return trait.userInterfaceStyle == .dark ? Colors.wsdotBlue : Colors.wsdotBlue
+                    return trait.userInterfaceStyle == .dark ? Colors.wsdotPrimaryDark : Colors.wsdotPrimary
                 }
             }
-            
-            return Colors.wsdotBlue
-            
-        case .customTheme:
-            
-            if #available(iOS 13, *) {
-                
-                // Update Navigation Bar for iOS 15
-                let appearance = UINavigationBarAppearance()
-                appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-                appearance.backgroundColor = Colors.customColor
-                UINavigationBar.appearance().standardAppearance = appearance
-                UINavigationBar.appearance().scrollEdgeAppearance = appearance
-                
-                return UIColor.init { (trait) -> UIColor in
-                    return trait.userInterfaceStyle == .dark ? Colors.customColor : Colors.customColor
-                }
-            }
-            
-            return Colors.customColor
+        
+            return Colors.wsdotPrimary
         }
     }
 
@@ -116,9 +100,7 @@ enum Theme: Int {
             return .default
         case .orangeTheme:
             return .default
-        case .blueTheme:
-            return .default
-        case .customTheme:
+        case .emergencyTheme:
             return .default
         }
     }
@@ -129,9 +111,7 @@ enum Theme: Int {
             return Colors.wsdotPrimary
         case .orangeTheme:
             return Colors.wsdotDarkOrange
-        case .blueTheme:
-            return Colors.wsdotPrimary
-        case .customTheme:
+        case .emergencyTheme:
             return Colors.wsdotPrimary
         }
     }
@@ -143,9 +123,7 @@ enum Theme: Int {
             return UIColor.white
         case .orangeTheme:
             return UIColor.white
-        case .blueTheme:
-            return UIColor.white
-        case .customTheme:
+        case .emergencyTheme:
             return UIColor.white
         }
     }
@@ -156,12 +134,23 @@ enum Theme: Int {
             return UIColor.white
         case .orangeTheme:
             return UIColor.white
-        case .blueTheme:
-            return UIColor.white
-        case .customTheme:
+        case .emergencyTheme:
             return UIColor.white
         }
     }
+    
+    var bannerTextColor: UIColor {
+        switch self {
+        case .defaultTheme:
+            return Colors.wsdotPrimary
+        case .orangeTheme:
+            return Colors.wsdotDarkOrange
+        case .emergencyTheme:
+            return Colors.wsdotRed
+        }
+    }
+    
+    
 }
 
 // Enum declaration
