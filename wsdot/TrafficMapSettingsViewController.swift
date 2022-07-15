@@ -28,6 +28,8 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
     var my_parent: TrafficMapViewController? = nil
     
     var menu_options: [String] = []
+    var menu_icon_names: [String] = []
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +39,8 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                         "Show JBLM",
                         "Cluster Camera Markers",
                         "Favorite Current Map Location"]
+        
+        menu_icon_names = ["","icMapAlertHigh","icMapRestArea","icMapJBLM","icMapCamera","icFavoriteDefault", "trafficMapKey"]
 
         self.view.backgroundColor = ThemeManager.currentTheme().mainColor
     }
@@ -95,6 +99,10 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
             
             // Configure Cell
             cell.settingLabel.text = menu_options[indexPath.row-1]
+
+            if menu_icon_names.indices.contains(indexPath.row) {
+                cell.iconView.image = UIImage(named: menu_icon_names[indexPath.row])
+            }
             
             switch(menu_options[indexPath.row-1]){
                 
@@ -108,12 +116,14 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                     }
                 }
                 
+//                cell.iconView.image = UIImage(named: "alerts")
                 cell.settingSwitch.addTarget(self, action: #selector(TrafficMapSettingsViewController.changeAlertsPref(_:)), for: .valueChanged)
                 cell.settingSwitch.isHidden = false
                 cell.selectionStyle = .none
                 cell.favoriteImageView.isHidden = true
                 cell.infoButton.isHidden = true
                 break
+                
             case menu_options[1]:
                 let restAreaPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.restAreas)
                 if let restAreaVisible = restAreaPref {
@@ -130,6 +140,7 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                 cell.favoriteImageView.isHidden = true
                 cell.infoButton.isHidden = true
                 break
+                
             case menu_options[2]:
                 let jblmPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.jblmCallout)
                 if let jblmVisible = jblmPref {
@@ -145,6 +156,7 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                 cell.favoriteImageView.isHidden = true
                 cell.infoButton.isHidden = true
                 break
+                
             case menu_options[3]:
                 let clusterPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.shouldCluster)
                 if let clusterVisible = clusterPref {
@@ -154,6 +166,7 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                         cell.settingSwitch.isOn = false
                     }
                 }
+
                 cell.settingSwitch.addTarget(self, action: #selector(TrafficMapSettingsViewController.changeClusterPref(_:)), for: .valueChanged)
                 cell.settingSwitch.isHidden = false
                 cell.selectionStyle = .none
@@ -161,6 +174,7 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                 cell.infoButton.isHidden = false
                 cell.infoButton.addTarget(self, action: #selector(TrafficMapSettingsViewController.clusterInfoAlert(_:)), for: .touchUpInside)
                 break
+                
             case menu_options[4]:
                 cell.selectionStyle = .blue
                 cell.settingSwitch.isHidden = true
@@ -175,6 +189,9 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
             cell.CameraImage.image = UIImage(named: "trafficMapKey")
             cell.sizeToFit()
             return cell
+            
+//            return UITableViewCell()
+
         }
         
     }

@@ -26,4 +26,6 @@ class SettingsCell: UITableViewCell {
     @IBOutlet weak var settingSwitch: UISwitch!
     @IBOutlet weak var infoButton: UIButton!
     @IBOutlet weak var favoriteImageView: UIImageView!
+    @IBOutlet weak var iconView: UIImageView!
+
 }
