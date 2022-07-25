@@ -62,8 +62,7 @@ struct Colors {
 
 enum Theme: Int {
 
-    case defaultTheme = 0, orangeTheme = 1, emergencyTheme = 2
-
+    case defaultTheme = 0, orangeTheme = 1, blueTheme = 2, customTheme = 3, emergencyTheme = 4
     var mainColor: UIColor {
         switch self {
         case .defaultTheme:
@@ -103,7 +102,43 @@ enum Theme: Int {
             
             return Colors.wsdotOrange
             
-     
+            
+        case .blueTheme:
+
+            if #available(iOS 13, *) {
+
+                // Update Navigation Bar for iOS 15
+                let appearance = UINavigationBarAppearance()
+                appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+                appearance.backgroundColor = Colors.wsdotBlue
+                UINavigationBar.appearance().standardAppearance = appearance
+                UINavigationBar.appearance().scrollEdgeAppearance = appearance
+
+                return UIColor.init { (trait) -> UIColor in
+                    return trait.userInterfaceStyle == .dark ? Colors.wsdotBlue : Colors.wsdotBlue
+                }
+            }
+
+            return Colors.wsdotBlue
+
+        case .customTheme:
+
+            if #available(iOS 13, *) {
+
+                // Update Navigation Bar for iOS 15
+                let appearance = UINavigationBarAppearance()
+                appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+                appearance.backgroundColor = Colors.customColor
+                UINavigationBar.appearance().standardAppearance = appearance
+                UINavigationBar.appearance().scrollEdgeAppearance = appearance
+
+                return UIColor.init { (trait) -> UIColor in
+                    return trait.userInterfaceStyle == .dark ? Colors.customColor : Colors.customColor
+                }
+            }
+            
+            return Colors.customColor
+        
             
         case .emergencyTheme:
             
@@ -132,6 +167,10 @@ enum Theme: Int {
             return .default
         case .orangeTheme:
             return .default
+        case .blueTheme:
+            return .default
+        case .customTheme:
+            return .default
         case .emergencyTheme:
             return .default
         }
@@ -143,6 +182,10 @@ enum Theme: Int {
             return Colors.wsdotPrimary
         case .orangeTheme:
             return Colors.wsdotDarkOrange
+        case .blueTheme:
+            return Colors.wsdotBlue
+        case .customTheme:
+            return Colors.wsdotPrimary
         case .emergencyTheme:
             return Colors.wsdotPrimary
         }
@@ -155,6 +198,10 @@ enum Theme: Int {
             return UIColor.white
         case .orangeTheme:
             return UIColor.white
+        case .blueTheme:
+            return UIColor.white
+        case .customTheme:
+            return UIColor.white
         case .emergencyTheme:
             return UIColor.white
         }
@@ -165,6 +212,10 @@ enum Theme: Int {
         case .defaultTheme:
             return UIColor.white
         case .orangeTheme:
+            return UIColor.white
+        case .blueTheme:
+            return UIColor.white
+        case .customTheme:
             return UIColor.white
         case .emergencyTheme:
             return UIColor.white
@@ -177,6 +228,10 @@ enum Theme: Int {
             return Colors.wsdotPrimary
         case .orangeTheme:
             return Colors.wsdotDarkOrange
+        case .blueTheme:
+            return Colors.wsdotBlue
+        case .customTheme:
+            return Colors.wsdotPrimary
         case .emergencyTheme:
             return Colors.wsdotPrimary
         }
@@ -188,6 +243,10 @@ enum Theme: Int {
             return Colors.wsdotPrimary
         case .orangeTheme:
             return Colors.wsdotDarkOrange
+        case .blueTheme:
+            return Colors.wsdotBlue
+        case .customTheme:
+            return Colors.wsdotPrimary
         case .emergencyTheme:
             return Colors.wsdotRed
         }
