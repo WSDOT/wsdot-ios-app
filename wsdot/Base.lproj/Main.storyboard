@@ -97,7 +97,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" text="text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NZF-wX-Wg5">
-                                        <rect key="frame" x="20" y="0.0" width="374" height="692"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
                                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                         <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -114,7 +114,7 @@
                                     <constraint firstItem="NZF-wX-Wg5" firstAttribute="centerY" secondItem="XaJ-bc-JAs" secondAttribute="centerY" id="Nq3-d3-2dw"/>
                                     <constraint firstAttribute="trailing" secondItem="NZF-wX-Wg5" secondAttribute="trailing" constant="20" id="SKl-YA-BYB"/>
                                     <constraint firstItem="NZF-wX-Wg5" firstAttribute="top" secondItem="XaJ-bc-JAs" secondAttribute="top" id="aaJ-nz-o6A"/>
-                                    <constraint firstItem="NZF-wX-Wg5" firstAttribute="leading" secondItem="XaJ-bc-JAs" secondAttribute="leading" constant="20" id="lSr-Yc-nw0"/>
+                                    <constraint firstItem="NZF-wX-Wg5" firstAttribute="leading" secondItem="XaJ-bc-JAs" secondAttribute="leading" id="lSr-Yc-nw0"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -175,7 +175,7 @@
                                         <rect key="frame" x="0.0" y="44.666666030883789" width="414" height="45.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Txp-Y1-6FM" id="6yl-Cf-Ytz">
-                                            <rect key="frame" x="0.0" y="0.0" width="385.33333333333331" height="45.333332061767578"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383.66666666666669" height="45.333332061767578"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zeP-w1-gRs">
