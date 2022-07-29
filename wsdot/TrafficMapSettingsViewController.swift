@@ -40,7 +40,7 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                         "Cluster Camera Markers",
                         "Favorite Current Map Location"]
         
-        menu_icon_names = ["","icMapAlertHigh","icMapRestArea","icMapJBLM","icMapCamera","icFavoriteDefault", "trafficMapKey"]
+        menu_icon_names = ["","icMapAlertHigh","icMapRestArea","icMapJBLM","icMapCamera","icHomeFavorites", "trafficMapKey"]
 
         self.view.backgroundColor = ThemeManager.currentTheme().mainColor
     }
