@@ -63,7 +63,6 @@
                                         </connections>
                                     </containerView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="S7V-AE-1FV" secondAttribute="trailing" constant="8" id="6Ep-FN-Ne5"/>
                                     <constraint firstItem="Qw1-zL-uDh" firstAttribute="top" secondItem="aZ2-Jg-90C" secondAttribute="bottom" constant="20" id="T84-9I-05X"/>
@@ -82,7 +81,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Qw1-zL-uDh" firstAttribute="leading" secondItem="e8o-VD-oDy" secondAttribute="leading" constant="8" id="24h-qs-e3D"/>
                             <constraint firstItem="h9h-xv-0c6" firstAttribute="bottom" secondItem="0Cs-0a-pDK" secondAttribute="top" id="J5k-VX-s3F"/>
@@ -127,8 +126,8 @@
         <designable name="W0M-cN-Fir"/>
     </designables>
     <resources>
-        <systemColor name="tertiarySystemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
