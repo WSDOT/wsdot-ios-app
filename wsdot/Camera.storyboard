@@ -31,7 +31,7 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="565"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6sp-fh-RMs">
-                                        <rect key="frame" x="8" y="20" width="359" height="617"/>
+                                        <rect key="frame" x="8" y="20" width="359" height="591"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="woS-Xy-2wH">
                                                 <rect key="frame" x="0.0" y="0.0" width="359" height="50"/>
@@ -71,17 +71,8 @@
                                                     <constraint firstAttribute="height" constant="300" id="i75-5X-YH7"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXT-S6-vpH">
-                                                <rect key="frame" x="0.0" y="391" width="359" height="18"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="18" id="ulv-Fv-6k5"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gqA-aV-1XZ">
-                                                <rect key="frame" x="0.0" y="417" width="359" height="200"/>
+                                                <rect key="frame" x="0.0" y="391" width="359" height="200"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="200" id="ove-eO-gQu"/>
                                                 </constraints>
@@ -126,7 +117,6 @@
                         <outlet property="cameraIconStack" destination="kZ5-FI-8JQ" id="Fw7-BL-1wN"/>
                         <outlet property="cameraImage" destination="QkN-Ta-Oks" id="gzz-0Y-hlf"/>
                         <outlet property="cameraTitleLabel" destination="qbX-aK-BsK" id="hUA-ob-WHd"/>
-                        <outlet property="directionLabel" destination="wXT-S6-vpH" id="U7R-bI-uK2"/>
                         <outlet property="favoriteBarButton" destination="6Xy-be-mAQ" id="iLr-P3-c2m"/>
                     </connections>
                 </viewController>

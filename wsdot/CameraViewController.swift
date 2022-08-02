@@ -31,7 +31,6 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
     @IBOutlet weak var bannerView: GAMBannerView!
     
     @IBOutlet weak var cameraTitleLabel: UILabel!
-    @IBOutlet weak var directionLabel: UILabel!
     
     @IBOutlet weak var cameraIconStack: UIStackView!
     @IBOutlet weak var cameraIconImage: UIImageView!
@@ -66,29 +65,6 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
             favoriteBarButton.image = UIImage(named: "icStarSmall")
             favoriteBarButton.accessibilityLabel = "add to favorites"
         }
-        
-
-        switch (cameraItem.direction) {
-            case "N":
-                directionLabel.text = "This camera faces north"
-                break
-            case "S":
-                directionLabel.text = "This camera faces south"
-                break
-            case "E":
-                directionLabel.text = "This camera faces east"
-                break
-            case "W":
-                directionLabel.text = "This camera faces west"
-                break
-            case "B":
-                directionLabel.text = "This camera could be pointing in a number of directions for operational reasons."
-                break
-            default:
-                directionLabel.isHidden = true
-                break
-        }
-        
         
         favoriteBarButton.tintColor = Colors.yellow
         
