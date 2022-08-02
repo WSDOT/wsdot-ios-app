@@ -137,9 +137,7 @@ struct UIHelpers {
     
         let closedIconImage = UIImage(named: "icMapClosed")
     
-        if forAlert.headlineDesc.lowercased().contains("construction")
-                    || forAlert.eventCategory.lowercased().contains("maintenance")
-                    || forAlert.eventCategory.lowercased().contains("construction"){
+        if forAlert.eventCategory.contains("Maintenance") || forAlert.eventCategory.contains("maintenance") || forAlert.eventCategory.contains("Construction") || forAlert.eventCategory.contains("construction")  {
             switch forAlert.priority {
                 case "Lowest":
                     return constructionLowIconImage
@@ -155,9 +153,9 @@ struct UIHelpers {
                     return constructionModerateIconImage
             }
 
-        } else if forAlert.headlineDesc.lowercased().contains("road closure") || forAlert.eventCategory.lowercased().contains("closure") {
+        } else if forAlert.eventCategory.contains("Closure") || forAlert.eventCategory.contains("closure") {
             return closedIconImage
-        } else if forAlert.eventCategory.lowercased().contains("road report") {
+        } else if forAlert.eventCategory.contains("Road Report") || forAlert.eventCategory.contains("road report") {
             return roadReportIconImage
         } else {
             switch forAlert.priority {
