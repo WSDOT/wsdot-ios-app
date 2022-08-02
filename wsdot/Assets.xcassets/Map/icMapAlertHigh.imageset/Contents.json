@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "alert_high.png",
+      "filename" : "alert_high@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "alert_high@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "alert_high@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

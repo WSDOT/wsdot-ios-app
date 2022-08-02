@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "construction_high.png",
+      "filename" : "construction_high@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "construction_high@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "construction_high@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
