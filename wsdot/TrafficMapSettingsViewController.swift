@@ -34,11 +34,11 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        menu_options = ["Show Highway Alerts",
-                        "Show Rest Areas",
-                        "Show JBLM",
-                        "Cluster Camera Markers",
-                        "Favorite Current Map Location"]
+        menu_options = ["WSDOT Alerts",
+                        "Rest Areas",
+                        "JBLM",
+                        "Cluster Cameras",
+                        "Favorite Location"]
         
         menu_icon_names = ["","alert_high_icon","restarea_icon","icMapJBLM","camera_icon","icHomeFavorites", "trafficMapKey"]
 
