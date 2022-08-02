@@ -462,7 +462,7 @@
                                                     <rect key="frame" x="300" y="6.5" width="51" height="31"/>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D9p-uc-0TU">
-                                                    <rect key="frame" x="64" y="9" width="42" height="21"/>
+                                                    <rect key="frame" x="64" y="11" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -479,19 +479,19 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hz3-wG-ETH">
-                                                    <rect key="frame" x="114" y="12" width="21" height="21"/>
+                                                    <rect key="frame" x="120" y="9" width="21" height="21"/>
                                                     <color key="tintColor" red="0.0" green="0.47843137250000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="s7j-DD-Rr7" firstAttribute="top" secondItem="orx-hg-QW8" secondAttribute="topMargin" constant="-2" id="BRV-Sa-mLr"/>
-                                                <constraint firstItem="D9p-uc-0TU" firstAttribute="centerY" secondItem="owa-9R-fe1" secondAttribute="centerY" constant="-2.5" id="RN7-69-etW"/>
+                                                <constraint firstItem="D9p-uc-0TU" firstAttribute="centerY" secondItem="owa-9R-fe1" secondAttribute="centerY" constant="-0.5" id="RN7-69-etW"/>
                                                 <constraint firstItem="D9p-uc-0TU" firstAttribute="leading" secondItem="orx-hg-QW8" secondAttribute="leadingMargin" constant="48" id="XXC-Xn-dSw"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="owa-9R-fe1" secondAttribute="trailing" constant="10" id="dWQ-Lv-cUw"/>
-                                                <constraint firstItem="D9p-uc-0TU" firstAttribute="centerY" secondItem="orx-hg-QW8" secondAttribute="centerY" constant="-2.25" id="lkv-sg-SUs"/>
-                                                <constraint firstItem="Hz3-wG-ETH" firstAttribute="leading" secondItem="D9p-uc-0TU" secondAttribute="trailing" constant="8" symbolic="YES" id="ssT-Bl-eOZ"/>
+                                                <constraint firstItem="D9p-uc-0TU" firstAttribute="centerY" secondItem="orx-hg-QW8" secondAttribute="centerY" constant="-0.25" id="lkv-sg-SUs"/>
+                                                <constraint firstItem="Hz3-wG-ETH" firstAttribute="leading" secondItem="D9p-uc-0TU" secondAttribute="trailing" constant="14" id="ssT-Bl-eOZ"/>
                                                 <constraint firstItem="s7j-DD-Rr7" firstAttribute="trailing" secondItem="owa-9R-fe1" secondAttribute="trailing" constant="-13" id="vOb-qw-p6n"/>
-                                                <constraint firstItem="Hz3-wG-ETH" firstAttribute="top" secondItem="s7j-DD-Rr7" secondAttribute="top" constant="3" id="wAq-FW-w0n"/>
+                                                <constraint firstItem="Hz3-wG-ETH" firstAttribute="top" secondItem="s7j-DD-Rr7" secondAttribute="top" id="wAq-FW-w0n"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
