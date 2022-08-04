@@ -19,6 +19,7 @@
 		02D7F1F22614CCED00BD81CC /* BridgeAlertsRealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D7F1F12614CCED00BD81CC /* BridgeAlertsRealmStore.swift */; };
 		02D7F1F72614D7DE00BD81CC /* BridgeAlertsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D7F1F62614D7DE00BD81CC /* BridgeAlertsTableViewController.swift */; };
 		76763D7C27CFD4E700BBB1DB /* DateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76763D7B27CFD4E700BBB1DB /* DateButton.swift */; };
+		76D632A1289C5F2D00534F11 /* googlemapstyle.json in Resources */ = {isa = PBXBuildFile; fileRef = 76D632A0289C5F2D00534F11 /* googlemapstyle.json */; };
 		9A0360481DECBC6100B88466 /* PassCameraIDItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0360471DECBC6100B88466 /* PassCameraIDItem.swift */; };
 		9A06167A1D62285A00126520 /* VesselWatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0616791D62285A00126520 /* VesselWatchViewController.swift */; };
 		9A06167C1D622AE800126520 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A06167B1D622AE800126520 /* MapViewController.swift */; };
@@ -272,6 +273,7 @@
 		65D6D46116E71C14DDDD1497 /* Pods-WSDOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.release.xcconfig"; sourceTree = "<group>"; };
 		690E6882E64B87BDA185B4DC /* Pods_WSDOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WSDOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76763D7B27CFD4E700BBB1DB /* DateButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateButton.swift; sourceTree = "<group>"; };
+		76D632A0289C5F2D00534F11 /* googlemapstyle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = googlemapstyle.json; sourceTree = "<group>"; };
 		9A0360471DECBC6100B88466 /* PassCameraIDItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassCameraIDItem.swift; sourceTree = "<group>"; };
 		9A0616791D62285A00126520 /* VesselWatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VesselWatchViewController.swift; sourceTree = "<group>"; };
 		9A06167B1D622AE800126520 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -961,6 +963,7 @@
 		9A6FBCD01D6B53F800CDCE16 /* StaticJSONData */ = {
 			isa = PBXGroup;
 			children = (
+				76D632A0289C5F2D00534F11 /* googlemapstyle.json */,
 				9A6FBCD11D6B541F00CDCE16 /* restareas.json */,
 				9A8E2E91233D27D200E6E202 /* map_dark_style.json */,
 			);
@@ -1838,6 +1841,7 @@
 				9AEEDDB11D70B8A20032F5EC /* GoogleService-Info.plist in Resources */,
 				9AD32E071D23172C000AEC28 /* LaunchScreen.storyboard in Resources */,
 				9A9309B32051D7FF002D014C /* CameraPager.storyboard in Resources */,
+				76D632A1289C5F2D00534F11 /* googlemapstyle.json in Resources */,
 				9A398D74209A6F6A00BD84FF /* Notifications.storyboard in Resources */,
 				9AFA0A771E280C22000D0C70 /* Favorites.storyboard in Resources */,
 				9AD32E281D2421E4000AEC28 /* Ferries.storyboard in Resources */,
