@@ -316,19 +316,37 @@
                                                     <action selector="openJobsSite:" destination="505-eM-iAh" eventType="touchUpInside" id="9sG-P4-nuM"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="CbN-V2-bFU">
-                                                <rect key="frame" x="8" y="102.33333333333334" width="199" height="34"/>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="CbN-V2-bFU">
+                                                <rect key="frame" x="8" y="102" width="220" height="34"/>
                                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="34" id="93P-xK-Rm4"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="SkY-xd-LUJ"/>
+                                                    <constraint firstAttribute="height" constant="34" id="VXe-yb-Y98"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="tintColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                                 <state key="normal" title="Send Feedback">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="composeFeedbackMessage:" destination="505-eM-iAh" eventType="touchUpInside" id="rk4-UR-LkF"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="s5R-wN-KJE">
+                                                <rect key="frame" x="238" y="102" width="152" height="34"/>
+                                                <color key="backgroundColor" red="0.0" green="0.47843137254901957" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="EGT-u5-4CJ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="tintColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                                <state key="normal" title="Ferries Feedback">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="composeFerriesFeedbackMessage:" destination="505-eM-iAh" eventType="touchUpInside" id="cS2-r6-yb7"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="PaA-kr-ztN">
@@ -346,21 +364,6 @@
                                                     <action selector="composeBugReport:" destination="505-eM-iAh" eventType="touchUpInside" id="JFy-R1-6Gy"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="s5R-wN-KJE">
-                                                <rect key="frame" x="230" y="102.33333333333334" width="160" height="34"/>
-                                                <color key="backgroundColor" red="0.0" green="0.47843137254901957" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="160" id="EGT-u5-4CJ"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="tintColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="Ferries Feedback">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="composeFerriesFeedbackMessage:" destination="505-eM-iAh" eventType="touchUpInside" id="cS2-r6-yb7"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ez-tx-eY2">
                                                 <rect key="frame" x="8" y="185" width="382" height="34.666666666666657"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
@@ -371,7 +374,6 @@
                                                 <rect key="frame" x="8" y="210" width="382" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="ENc-Ix-CCZ"/>
-                                                    <constraint firstAttribute="width" constant="382" id="wZT-NH-xF8"/>
                                                 </constraints>
                                                 <color key="textColor" systemColor="labelColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -384,25 +386,26 @@
                                             <constraint firstItem="PaA-kr-ztN" firstAttribute="trailing" secondItem="Z9U-Cp-7mr" secondAttribute="trailing" id="5D5-yo-3Nb"/>
                                             <constraint firstItem="Z9U-Cp-7mr" firstAttribute="top" secondItem="4Ch-pR-zUh" secondAttribute="bottom" constant="8" symbolic="YES" id="8ha-uK-ml1"/>
                                             <constraint firstAttribute="bottom" secondItem="1ez-tx-eY2" secondAttribute="bottom" constant="15.333333333333343" id="Akg-Bq-RUI"/>
-                                            <constraint firstItem="s5R-wN-KJE" firstAttribute="leading" secondItem="CbN-V2-bFU" secondAttribute="trailing" constant="23" id="DWX-27-tpV"/>
+                                            <constraint firstItem="s5R-wN-KJE" firstAttribute="leading" secondItem="CbN-V2-bFU" secondAttribute="trailing" constant="10" id="DUI-XC-rCN"/>
                                             <constraint firstItem="cgb-XS-6eT" firstAttribute="leading" secondItem="zbu-A6-Bmg" secondAttribute="leading" constant="8" id="FEg-eO-Xvt"/>
                                             <constraint firstItem="4Ch-pR-zUh" firstAttribute="top" secondItem="zbu-A6-Bmg" secondAttribute="top" constant="8" id="IJP-m4-u8N"/>
-                                            <constraint firstItem="CbN-V2-bFU" firstAttribute="baseline" secondItem="s5R-wN-KJE" secondAttribute="firstBaseline" id="J2d-Fh-QI7"/>
                                             <constraint firstAttribute="trailing" secondItem="4Ch-pR-zUh" secondAttribute="trailing" constant="8" id="O4x-3d-1ov"/>
-                                            <constraint firstItem="CbN-V2-bFU" firstAttribute="leading" secondItem="PaA-kr-ztN" secondAttribute="leading" id="PSv-BS-KEB"/>
+                                            <constraint firstItem="CbN-V2-bFU" firstAttribute="baseline" secondItem="s5R-wN-KJE" secondAttribute="baseline" id="ONX-Jm-wMs"/>
                                             <constraint firstItem="1ez-tx-eY2" firstAttribute="top" secondItem="PaA-kr-ztN" secondAttribute="bottom" constant="0.66666666666665719" id="RN6-Au-krx"/>
                                             <constraint firstItem="cgb-XS-6eT" firstAttribute="width" secondItem="1ez-tx-eY2" secondAttribute="width" multiplier="0.926702" constant="28" id="RzE-q5-UDH"/>
+                                            <constraint firstItem="CbN-V2-bFU" firstAttribute="top" secondItem="Z9U-Cp-7mr" secondAttribute="bottom" constant="15.666666666666671" id="TKc-Rr-7MW"/>
                                             <constraint firstItem="4Ch-pR-zUh" firstAttribute="leading" secondItem="zbu-A6-Bmg" secondAttribute="leadingMargin" id="TdH-rL-bbx"/>
-                                            <constraint firstItem="CbN-V2-bFU" firstAttribute="top" secondItem="Z9U-Cp-7mr" secondAttribute="bottom" constant="16" id="aMu-NC-yKd"/>
-                                            <constraint firstItem="CbN-V2-bFU" firstAttribute="top" secondItem="s5R-wN-KJE" secondAttribute="top" id="cO4-Dv-crW"/>
+                                            <constraint firstItem="CbN-V2-bFU" firstAttribute="top" secondItem="s5R-wN-KJE" secondAttribute="top" id="WZg-Ao-pE6"/>
                                             <constraint firstItem="PaA-kr-ztN" firstAttribute="trailing" secondItem="1ez-tx-eY2" secondAttribute="trailing" id="ffM-Rb-xYo"/>
-                                            <constraint firstItem="PaA-kr-ztN" firstAttribute="top" secondItem="CbN-V2-bFU" secondAttribute="bottom" constant="14" id="lul-fu-U7e"/>
+                                            <constraint firstItem="PaA-kr-ztN" firstAttribute="top" secondItem="CbN-V2-bFU" secondAttribute="bottom" constant="14.333333333333343" id="kPi-9f-Ldr"/>
+                                            <constraint firstItem="CbN-V2-bFU" firstAttribute="firstBaseline" secondItem="s5R-wN-KJE" secondAttribute="firstBaseline" id="laM-8Y-ACq"/>
                                             <constraint firstItem="cgb-XS-6eT" firstAttribute="height" secondItem="1ez-tx-eY2" secondAttribute="height" multiplier="1.25581" constant="-3.6666666666666679" id="mW0-5k-6Jt"/>
                                             <constraint firstAttribute="trailing" secondItem="1ez-tx-eY2" secondAttribute="trailing" constant="8" id="odP-na-ygr"/>
                                             <constraint firstItem="s5R-wN-KJE" firstAttribute="trailing" secondItem="PaA-kr-ztN" secondAttribute="trailing" id="qnl-1u-5LA"/>
                                             <constraint firstItem="Z9U-Cp-7mr" firstAttribute="leading" secondItem="4Ch-pR-zUh" secondAttribute="leading" id="r9m-Gf-R0v"/>
                                             <constraint firstItem="1ez-tx-eY2" firstAttribute="leading" secondItem="zbu-A6-Bmg" secondAttribute="leading" constant="8" id="sLR-eK-yWS"/>
                                             <constraint firstItem="PaA-kr-ztN" firstAttribute="leading" secondItem="1ez-tx-eY2" secondAttribute="leading" id="tkD-MF-NgH"/>
+                                            <constraint firstItem="CbN-V2-bFU" firstAttribute="leading" secondItem="PaA-kr-ztN" secondAttribute="leading" id="tlI-yd-6aE"/>
                                             <constraint firstItem="cgb-XS-6eT" firstAttribute="top" secondItem="1ez-tx-eY2" secondAttribute="bottom" constant="-9.6666666666666572" id="yXl-MD-t74"/>
                                         </constraints>
                                     </view>
