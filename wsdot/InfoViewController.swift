@@ -26,7 +26,8 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate,
    
     @IBOutlet weak var appVersionLabel: UILabel!
     @IBOutlet weak var aboutText: UITextView!
-    
+    @IBOutlet weak var privacyPolicyText: UITextView!
+
     @IBOutlet weak var feedbackButton: UIButton!
     @IBOutlet weak var ferriesFeedbackButton: UIButton!
     @IBOutlet weak var bugReportButton: UIButton!
@@ -41,17 +42,28 @@ class InfoViewController: UIViewController, MFMailComposeViewControllerDelegate,
     
         let bundle = Bundle.main.infoDictionary!["CFBundleShortVersionString"]
         version = bundle as! String
-    
         aboutText.sizeToFit()
         aboutText.tintColor = ThemeManager.currentTheme().mainColor
         aboutText.delegate = self
         
-        aboutText.text = "The Washington State Department of Transportation provides and supports safe, reliable and cost-effective transportation options to improve livable communities and economic vitality for people and businesses.\n\n"
-            + "The WSDOT mobile app was created to make it easier for you to know the latest about Washington's transportation system. \n\n"
-            + "Questions, comments or suggestions about this app can be e-mailed to the WSDOT Communications Office at webfeedback@wsdot.wa.gov. \n"
+        aboutText.text = "This app is provided to you by the Washington State Department of Transportation. Please use this to know before you go and never ever use this app while driving. Safe Travels!\n\nDISCLAIMER: WSDOT provides this information on an AS-IS basis and specifically disclaims all warranties of any kind, express or implied, arising out of or relating to the information provided in this app. To the maximum extent permitted by applicable law, WSDOT shall not be liable to you for any actual, consequential, incidental, indirect, or other damages related to your use of this information. It is your responsibility to observe conditions on the road and adjust your plans and driving accordingly."
     
         aboutText.isEditable = false
         appVersionLabel.text = "App version: " + version
+        
+        let attributedString = NSMutableAttributedString(string: "Privacy Policy")
+        let url = URL(string: "https://wsdot.wa.gov/about/policies/web-privacy-notice")!
+
+        attributedString.setAttributes([.link: url], range: NSMakeRange(0, attributedString.string.count))
+
+        privacyPolicyText.attributedText = attributedString
+        privacyPolicyText.isUserInteractionEnabled = true
+        privacyPolicyText.isEditable = false
+        privacyPolicyText.textAlignment = .center
+        privacyPolicyText.linkTextAttributes = [
+            .foregroundColor: Colors.wsdotPrimary,
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
         
         styleButtons()
     }
