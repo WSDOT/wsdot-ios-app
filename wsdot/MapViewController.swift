@@ -88,6 +88,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
         mapView.isTrafficEnabled = true
         mapView.settings.compassButton = true
         
+        do {
+          if let styleURL = Bundle.main.url(forResource: "googlemapstyle", withExtension: "json") {
+            mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
+          } else {
+            NSLog("Unable to find style.json")
+          }
+        } catch {
+          NSLog("One or more of the map styles failed to load. \(error)")
+        }
+
+        
+        
         mapView.delegate = mapDelegate
         
         // Set up the cluster manager with the supplied icon generator and

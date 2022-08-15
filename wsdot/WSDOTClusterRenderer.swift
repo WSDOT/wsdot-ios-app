@@ -29,7 +29,7 @@ class WSDOTClusterRenderer: GMUDefaultClusterRenderer {
 
         // Set defualt value for camera display if there is none
         if (UserDefaults.standard.string(forKey: UserDefaultsKeys.shouldCluster) == nil){
-            UserDefaults.standard.set("off", forKey: UserDefaultsKeys.shouldCluster)
+            UserDefaults.standard.set("on", forKey: UserDefaultsKeys.shouldCluster)
         }
     
         let shouldCluster = UserDefaults.standard.string(forKey: UserDefaultsKeys.shouldCluster)

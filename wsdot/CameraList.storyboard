@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JaG-DP-Zcz">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JaG-DP-Zcz">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,18 +17,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="121" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="A3g-i8-Sfa">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CamerasCell" rowHeight="121" id="KbZ-Bc-FeV" customClass="CameraImageCustomCell" customModule="WSDOT" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="121"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="121"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KbZ-Bc-FeV" id="GhZ-px-31c">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="120.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="350.5" height="121"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jrC-e3-GGF">
-                                                    <rect key="frame" x="15" y="11" width="319" height="99"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jrC-e3-GGF">
+                                                    <rect key="frame" x="16" y="11" width="326.5" height="99"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="jrC-e3-GGF" secondAttribute="height" multiplier="1:1" id="lhi-0d-f1i"/>
+                                                    </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -52,6 +52,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="lsD-PV-LSd"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="A3g-i8-Sfa" firstAttribute="bottom" secondItem="lsD-PV-LSd" secondAttribute="bottom" id="Cut-GC-OMJ"/>
@@ -59,18 +60,15 @@
                             <constraint firstItem="A3g-i8-Sfa" firstAttribute="top" secondItem="lsD-PV-LSd" secondAttribute="top" id="u32-n1-EJ3"/>
                             <constraint firstItem="lsD-PV-LSd" firstAttribute="trailing" secondItem="A3g-i8-Sfa" secondAttribute="trailing" id="vYT-u0-kje"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="lsD-PV-LSd"/>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="A3g-i8-Sfa" id="JA3-hy-QSs"/>
-                        <segue destination="RQH-KK-zwq" kind="show" identifier="CamerasViewController" id="L1S-BZ-Wb4">
-                            <nil key="action"/>
-                        </segue>
+                        <segue destination="RQH-KK-zwq" kind="show" identifier="CamerasViewController" id="L1S-BZ-Wb4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wbx-1f-16a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-758" y="1128"/>
+            <point key="canvasLocation" x="-759.20000000000005" y="1127.5862068965519"/>
         </scene>
         <!--Camera-->
         <scene sceneID="Smc-75-zLl">
