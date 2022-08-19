@@ -115,7 +115,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             // create the event banner view
             eventBannerView = UIView(frame: .zero)
-            eventBannerView.frame.size = CGSize(width: self.view.frame.width, height: 36)
+            eventBannerView.frame.size = CGSize(width: self.view.frame.width, height: 45)
             eventBannerView.frame.origin = CGPoint(x: 0, y: 0)
             eventBannerView.backgroundColor = Colors.lightGrey
             
@@ -129,7 +129,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             label.textAlignment = .center
             label.textColor = ThemeManager.currentTheme().bannerTextColor
             label.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.regular)
-
+            label.numberOfLines = 2
             label.text = eventItem.bannerText
             
             // position the iconView on the right side of the event banner
