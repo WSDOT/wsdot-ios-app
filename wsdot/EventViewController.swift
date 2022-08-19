@@ -40,8 +40,11 @@ class EventViewController: UIViewController, UITextViewDelegate {
             let htmlStyleDark =
             "<style>*{font-family:'-apple-system';font-size:17px;color:white}h1{font-weight:bold}a{color: #007a5d}a strong{color: #007a5d}li{margin:10px 0}li:last-child{margin-bottom:25px}</style>"
             
-            let htmlStringLight = htmlStyleLight + eventItem!.details
-            let htmlStringDark = htmlStyleDark + eventItem!.details
+            let EventTitle = "<h1>" + eventItem!.bannerText + "</h1>"
+            let EventDetails = eventItem!.details
+            
+            let htmlStringLight = htmlStyleLight + EventTitle + EventDetails
+            let htmlStringDark = htmlStyleDark + EventTitle + EventDetails
             
             let attrStrLight = try! NSMutableAttributedString(
                 data: htmlStringLight.data(using: String.Encoding.unicode, allowLossyConversion: false)!,
