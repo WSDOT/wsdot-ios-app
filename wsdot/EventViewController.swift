@@ -23,9 +23,13 @@ import SafariServices
 class EventViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var detailsTextView: UITextView!
-    
+    @IBOutlet weak var scrollView: UIScrollView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.scrollView.delegate = self
+
         let eventItem = EventStore.getActiveEvent()
         if (eventItem != nil){
             self.title = eventItem!.title
@@ -74,6 +78,12 @@ class EventViewController: UIViewController, UITextViewDelegate {
         super.viewDidAppear(animated)
         MyAnalytics.screenView(screenName: "Event")
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollView.contentOffset.x = 0.0
+
+    }
+    
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)

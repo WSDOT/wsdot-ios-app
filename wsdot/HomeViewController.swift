@@ -159,6 +159,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @objc func eventBannerTap(_ sender:UITapGestureRecognizer) {
         selectedIndex = -1
         performSegue(withIdentifier: SegueEventViewController, sender: self)
+        
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
+            EventStore.fetchAndSaveEventItem()
+        }
+                
+        if((EventStore.getActiveEvent()?.endDate) == nil) {
+            tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
+            eventBannerView.isHidden = true
+
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -266,6 +276,16 @@ extension HomeViewController: EasyTipViewDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         MyAnalytics.screenView(screenName: "Home")
+        
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
+            EventStore.fetchAndSaveEventItem()
+        }
+                
+        if((EventStore.getActiveEvent()?.endDate) == nil) {
+            tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
+            eventBannerView.isHidden = true
+
+        }
         
         if (UserDefaults.standard.integer(forKey: UserDefaultsKeys.pushNotificationTopicVersion) > 0) {
         

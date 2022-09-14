@@ -93,10 +93,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XaJ-bc-JAs">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XaJ-bc-JAs">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" text="text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NZF-wX-Wg5">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NZF-wX-Wg5">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
                                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                         <color key="textColor" systemColor="labelColor"/>
@@ -133,6 +133,7 @@
                     <navigationItem key="navigationItem" id="ZCa-MT-0pM"/>
                     <connections>
                         <outlet property="detailsTextView" destination="NZF-wX-Wg5" id="zIT-gV-jVE"/>
+                        <outlet property="scrollView" destination="XaJ-bc-JAs" id="8zZ-SU-D28"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n6I-FS-3qR" userLabel="First Responder" sceneMemberID="firstResponder"/>
