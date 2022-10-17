@@ -55,7 +55,7 @@ class RestAreaViewController: UIViewController, MapMarkerDelegate, GMSMapViewDel
             amenities.append("• " + amenity + "<br>")
         }
         
-        let htmlStyleString = "<style>body{font-family: '\(locationLabel.font.familyName)'; font-size:\(locationLabel.font.pointSize)px;}</style>"
+        let htmlStyleString = "<style>body{font-family: '-apple-system'; font-size:\(locationLabel.font.pointSize)px;}</style>"
         
         let content = "<b>" + restAreaItem!.location + " " + restAreaItem!.direction + "</b><br><br>" + "<b>Location: </b>" + restAreaItem!.description + "<br><br>" + "<b>Amenities</b><br>" + amenities
 

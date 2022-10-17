@@ -40,7 +40,7 @@ class TollTripDetailsViewController: UIViewController, MapMarkerDelegate, GMSMap
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let htmlStyleString = "<style>body{font-family: '\(infoLinkLabel.font.familyName)'; font-size:\(infoLinkLabel.font.pointSize)px;}</style>"
+        let htmlStyleString = "<style>body{font-family: '-apple-system'; font-size:\(infoLinkLabel.font.pointSize)px;}</style>"
         
         let htmlString = htmlStyleString + "Travel as far as " + text
         

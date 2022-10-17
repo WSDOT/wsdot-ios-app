@@ -103,7 +103,7 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! LinkCell
         
-        let htmlStyleString = "<style>body{font-family: '\(cell.linkLabel.font.familyName)'; font-size:\(cell.linkLabel.font.pointSize)px;}</style>"
+        let htmlStyleString = "<style>body{font-family: '-apple-system'; font-size:\(cell.linkLabel.font.pointSize)px;}</style>"
         var htmlString = ""
         
         switch indexPath.section{
