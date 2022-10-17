@@ -107,8 +107,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     private func displayEventBannerIfNeeded(){
         
         guard let eventItem = EventStore.getActiveEvent() else { return }
+        
+        let theme = Theme(rawValue: EventStore.getActiveEventThemeId()) ?? .defaultTheme
+        ThemeManager.applyTheme(theme: theme)
        
-        if eventItem.themeId == ThemeManager.currentTheme().rawValue {
 
             // clear any old event banner (Probably from screen rotation)
             eventBannerView.removeFromSuperview()
@@ -153,7 +155,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             // reset tableview scroll position
             tableView.setContentOffset(CGPoint(x: 0, y: -tableView.contentInset.top), animated:false)
 
-        }
     }
     
     @objc func eventBannerTap(_ sender:UITapGestureRecognizer) {
