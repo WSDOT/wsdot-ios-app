@@ -24,6 +24,8 @@ import Foundation
 
 class EventStore {
 
+    typealias EventCompletion = (_ error: Error?) -> ()
+    
     private static let startDateKey = "event_start_date"
     private static let endDateKey = "event_end_date"
     private static let titleKey = "event_title"
@@ -63,7 +65,8 @@ class EventStore {
         }
     }
 
-    static func fetchAndSaveEventItem() {
+
+    static func fetchAndSaveEventItem(validJSONCheck: Bool, completion: @escaping EventCompletion) {
         
         let configuration = URLSessionConfiguration.default
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
@@ -75,12 +78,22 @@ class EventStore {
                 if let value = response.data {
                     let json = JSON(value)
                     saveEventJSON(json)
+                    completion(nil)
+                    
                 }
             case .failure(let error):
                 print(error)
+                completion(error)
+                if(validJSONCheck) {
+                    if (error.isResponseSerializationError == true)
+                    {
+                        saveEventJSON(JSON(rawValue: error) ?? "")
+                    }
+                    }
+                }
             }
         }
-    }
+
 
     static func eventActive() -> Bool {
     

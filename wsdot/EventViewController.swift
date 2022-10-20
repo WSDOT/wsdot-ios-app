@@ -19,6 +19,7 @@
 //
 import UIKit
 import SafariServices
+import Alamofire
 
 class EventViewController: UIViewController, UITextViewDelegate {
 
@@ -29,51 +30,56 @@ class EventViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         
         self.scrollView.delegate = self
-
         let eventItem = EventStore.getActiveEvent()
-        if (eventItem != nil){
-            self.title = eventItem!.title
-            detailsTextView.sizeToFit()
-            detailsTextView.isEditable = false
-            detailsTextView.delegate = self
-            detailsTextView.textContainerInset = UIEdgeInsets(top: 25, left: 15, bottom: 25, right: 15)
+        var EventTitle: String
+        var EventDetails: String
 
-            let htmlStyleLight =
-            "<style>*{font-family:'-apple-system';font-size:17px;color:black}h1{font-weight:bold}a{color: #007a5d}a strong{color: #007a5d}li{margin:10px 0}li:last-child{margin-bottom:25px}</style>"
-            
-            let htmlStyleDark =
-            "<style>*{font-family:'-apple-system';font-size:17px;color:white}h1{font-weight:bold}a{color: #007a5d}a strong{color: #007a5d}li{margin:10px 0}li:last-child{margin-bottom:25px}</style>"
-            
-            let EventTitle = "<h1>" + eventItem!.bannerText + "</h1>"
-            let EventDetails = eventItem!.details
-            
-            let htmlStringLight = htmlStyleLight + EventTitle + EventDetails
-            let htmlStringDark = htmlStyleDark + EventTitle + EventDetails
-            
-            let attrStrLight = try! NSMutableAttributedString(
-                data: htmlStringLight.data(using: String.Encoding.unicode, allowLossyConversion: false)!,
-                options: [ NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html],
-                documentAttributes: nil)
+        detailsTextView.sizeToFit()
+        detailsTextView.isEditable = false
+        detailsTextView.delegate = self
+        detailsTextView.textContainerInset = UIEdgeInsets(top: 25, left: 15, bottom: 25, right: 15)
         
-            let attrStrDark = try! NSMutableAttributedString(
-                data: htmlStringDark.data(using: String.Encoding.unicode, allowLossyConversion: false)!,
-                options: [ NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html],
-                documentAttributes: nil)
-                  
-            if self.traitCollection.userInterfaceStyle == .light {
-                detailsTextView.attributedText = attrStrLight
-                detailsTextView.linkTextAttributes = [NSAttributedString.Key.foregroundColor : ThemeManager.currentTheme().linkColor, NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue]
-                detailsTextView.delegate = self
-            }
-            
-            if self.traitCollection.userInterfaceStyle == .dark {
-                detailsTextView.attributedText = attrStrDark
-                detailsTextView.linkTextAttributes = [NSAttributedString.Key.foregroundColor : ThemeManager.currentTheme().linkColor, NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue]
-                detailsTextView.delegate = self
-            }
+        // Display Event Message
+        if ((eventItem != nil) && (isConnectedToInternet())) {
+            self.title = eventItem!.title
+            EventTitle = "<h1>" + eventItem!.bannerText + "</h1>"
+            EventDetails = eventItem!.details
+            displayEvent(EventTitle: EventTitle, EventDetails: EventDetails)
             
         }
+        
+        // No Internet Connection Message
+        else if (!isConnectedToInternet()) {
+            self.title = eventItem!.title
+            EventTitle = ""
+            EventDetails = "Oops, looks like we’re having trouble getting this alert. You might consider checking your internet connection or try again shortly."
+            displayEvent(EventTitle: EventTitle, EventDetails: EventDetails)
+            AlertMessages.getConnectionAlert(backupURL: WsdotURLS.homepage, message: WSDOTErrorStrings.eventStatusAlert)
+            
+        }
+        
+        // Expired Alert Message
+        else {
+            EventTitle = ""
+            EventDetails = "Alert Expired"
+            displayEvent(EventTitle: EventTitle, EventDetails: EventDetails)
+        }
+        
+        // Check for valid JSON response
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
+            EventStore.fetchAndSaveEventItem(validJSONCheck: true, completion: { error in
+                if ((error?.asAFError?.isResponseSerializationError) == true) {
+                    self.detailsTextView.isHidden = true
+                    AlertMessages.getConnectionAlert(backupURL: WsdotURLS.homepage, message: WSDOTErrorStrings.eventStatusAlert)
+                }
+            })
+        }
     }
+    
+    func isConnectedToInternet() -> Bool {
+        return NetworkReachabilityManager()?.isReachable ?? false
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         MyAnalytics.screenView(screenName: "Event")
@@ -118,4 +124,38 @@ class EventViewController: UIViewController, UITextViewDelegate {
         self.present(svc, animated: true, completion: nil)
         return false
     }
+    
+    func displayEvent(EventTitle: String, EventDetails: String) {
+        let htmlStyleLight =
+        "<style>*{font-family:'-apple-system';font-size:17px;color:black}h1{font-weight:bold}a{color: #007a5d}a strong{color: #007a5d}li{margin:10px 0}li:last-child{margin-bottom:25px}</style>"
+        
+        let htmlStyleDark =
+        "<style>*{font-family:'-apple-system';font-size:17px;color:white}h1{font-weight:bold}a{color: #007a5d}a strong{color: #007a5d}li{margin:10px 0}li:last-child{margin-bottom:25px}</style>"
+        
+        let htmlStringLight = htmlStyleLight + EventTitle + EventDetails
+        let htmlStringDark = htmlStyleDark + EventTitle + EventDetails
+        
+        let attrStrLight = try! NSMutableAttributedString(
+            data: htmlStringLight.data(using: String.Encoding.unicode, allowLossyConversion: false)!,
+            options: [ NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html],
+            documentAttributes: nil)
+    
+        let attrStrDark = try! NSMutableAttributedString(
+            data: htmlStringDark.data(using: String.Encoding.unicode, allowLossyConversion: false)!,
+            options: [ NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html],
+            documentAttributes: nil)
+              
+        if self.traitCollection.userInterfaceStyle == .light {
+            detailsTextView.attributedText = attrStrLight
+            detailsTextView.linkTextAttributes = [NSAttributedString.Key.foregroundColor : ThemeManager.currentTheme().linkColor, NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue]
+            detailsTextView.delegate = self
+        }
+        
+        if self.traitCollection.userInterfaceStyle == .dark {
+            detailsTextView.attributedText = attrStrDark
+            detailsTextView.linkTextAttributes = [NSAttributedString.Key.foregroundColor : ThemeManager.currentTheme().linkColor, NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue]
+            detailsTextView.delegate = self
+        }
+    }
+    
 }

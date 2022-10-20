@@ -258,6 +258,7 @@ struct WSDOTErrorStrings {
     static let ferryAlerts = "can't download ferry alerts"
     static let cameras = "can't download cameras"
     static let borderWaits = "can't download border waits"
+    static let eventStatusAlert = "can't download alert"
 
     static let favorites = "can't update favorites"
     static let favoriteTravelTimes = "can't update travel times"

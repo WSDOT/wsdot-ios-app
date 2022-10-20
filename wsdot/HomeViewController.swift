@@ -120,18 +120,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     private func checkForExpiredEvent() {
         DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
-            EventStore.fetchAndSaveEventItem()
-        }
-        
-        if (!EventStore.eventActive()) {
-            UIView.animate(withDuration: 0.3, animations: {
-                self.tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
-                self.eventBannerView.isHidden = true
-                
-            })
-            
-        }
-        
+            EventStore.fetchAndSaveEventItem(validJSONCheck: false, completion: { _ in
+
+                    if (!EventStore.eventActive()) {
+                        UIView.animate(withDuration: 0.3, animations: {
+                            self.tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
+                            self.eventBannerView.isHidden = true
+                        })
+                    }
+                }
+            )}
     }
     
     
