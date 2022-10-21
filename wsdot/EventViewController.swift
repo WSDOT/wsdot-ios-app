@@ -68,7 +68,7 @@ class EventViewController: UIViewController, UITextViewDelegate {
         // Check for valid JSON response
         DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
             EventStore.fetchAndSaveEventItem(validJSONCheck: true, completion: { error in
-                if ((error?.asAFError?.isResponseSerializationError) == true) {
+                if ((error?.asAFError?.isResponseSerializationError == true) || (error?.asAFError?.responseCode == 404)) {
                     self.detailsTextView.isHidden = true
                     AlertMessages.getConnectionAlert(backupURL: WsdotURLS.homepage, message: WSDOTErrorStrings.eventStatusAlert)
                 }

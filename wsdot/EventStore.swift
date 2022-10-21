@@ -81,7 +81,7 @@ class EventStore {
                 print(error)
                 completion(error)
                 if(validJSONCheck) {
-                    if (error.isResponseSerializationError == true)
+                    if ((error.isResponseSerializationError) == true || (error.responseCode == 404))
                     {
                         saveEventJSON(JSON(rawValue: error) ?? "")
                     }
