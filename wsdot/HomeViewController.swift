@@ -103,19 +103,24 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         displayEventBannerIfNeeded(animateBanner: false)
     }
     
-    private func checkForEmergencyAlerts() {
-        
-        // Check for emergency alerts when view loads
-        perform(#selector(fetchEmergencyAlert), with: nil, afterDelay: 1)
-        
-        // Set timer to check for emergency alerts (for iPad splitViewController)
-        timer = Timer.scheduledTimer(timeInterval: CachesStore.alertsUpdateTime, target: self, selector: #selector(fetchEmergencyAlert), userInfo: nil, repeats: true)
-        
-    }
-    
     @objc func fetchEmergencyAlert() {
         checkForExpiredEvent()
         displayEventBannerIfNeeded(animateBanner: true)
+    }
+    
+    private func checkForEmergencyAlerts() {
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
+            EventStore.fetchAndSaveEventItem(validJSONCheck: false, completion: { error in
+                if (error == nil) {
+                    self.fetchEmergencyAlert()
+                }
+                else {
+                    self.perform(#selector(self.fetchEmergencyAlert), with: nil, afterDelay: 0.5)
+                }
+                
+                self.timer = Timer.scheduledTimer(timeInterval: CachesStore.alertsUpdateTime, target: self, selector: #selector(self.fetchEmergencyAlert), userInfo: nil, repeats: true)
+            }
+            )}
     }
     
     private func checkForExpiredEvent() {
