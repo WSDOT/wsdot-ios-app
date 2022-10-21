@@ -67,12 +67,8 @@ class EventStore {
 
 
     static func fetchAndSaveEventItem(validJSONCheck: Bool, completion: @escaping EventCompletion) {
-        
-        let configuration = URLSessionConfiguration.default
-        configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
-        eventSession = Session(configuration: configuration)
 
-        eventSession!.request("https://data.wsdot.wa.gov/mobile/EventStatus.js").validate().responseJSON { response in
+        AF.request("https://data.wsdot.wa.gov/mobile/EventStatus.js").validate().responseJSON { response in
             switch response.result {
             case .success:
                 if let value = response.data {
