@@ -121,7 +121,7 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
         self.categoryStack.layer.borderWidth = 1
         self.categoryStack.layer.cornerRadius = 4.0
 
-        let htmlStyleString = "<style>body{font-family: '\(descLinkLabel.font.familyName)'; font-size:\(descLinkLabel.font.pointSize)px;}</style>"
+        let htmlStyleString = "<style>body{font-family: '-apple-system'; font-size:\(descLinkLabel.font.pointSize)px;}</style>"
         
         let description = "<br><br><b>Description: </b>" + alertItem.headlineDesc
 

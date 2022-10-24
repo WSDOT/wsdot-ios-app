@@ -24,6 +24,8 @@ import Foundation
 
 class EventStore {
 
+    typealias EventCompletion = (_ error: Error?) -> ()
+    
     private static let startDateKey = "event_start_date"
     private static let endDateKey = "event_end_date"
     private static let titleKey = "event_title"
@@ -63,24 +65,31 @@ class EventStore {
         }
     }
 
-    static func fetchAndSaveEventItem() {
-        
-        let configuration = URLSessionConfiguration.default
-        configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
-        eventSession = Session(configuration: configuration)
 
-        eventSession!.request("https://data.wsdot.wa.gov/mobile/EventStatus.js").validate().responseJSON { response in
+    static func fetchAndSaveEventItem(validJSONCheck: Bool, completion: @escaping EventCompletion) {
+
+        AF.request("https://data.wsdot.wa.gov/mobile/EventStatus.js").validate().responseJSON { response in
             switch response.result {
             case .success:
                 if let value = response.data {
                     let json = JSON(value)
                     saveEventJSON(json)
+                    completion(nil)
+                    
                 }
             case .failure(let error):
                 print(error)
+                completion(error)
+                if(validJSONCheck) {
+                    if ((error.isResponseSerializationError) == true || (error.responseCode == 404))
+                    {
+                        saveEventJSON(JSON(rawValue: error) ?? "")
+                    }
+                    }
+                }
             }
         }
-    }
+
 
     static func eventActive() -> Bool {
     

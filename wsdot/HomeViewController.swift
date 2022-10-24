@@ -43,9 +43,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var menu_icon_names: [String] = []
     
     var eventBannerView = UIView()
-    
+    fileprivate var timer: Timer?
+
     var tipView = EasyTipView(text: "")
-    
+
+    var animateBanner: Bool = false
+
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var notificationBarButton: UIBarButtonItem!
     
@@ -75,11 +78,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             navController.viewControllers[0].navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
             navController.viewControllers[0].navigationItem.leftItemsSupplementBackButton = true
         }
-        
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
-            EventStore.fetchAndSaveEventItem()
-        }
-        
+
+        checkForEmergencyAlerts()
+
         // check for new topics otherwise hide notifications for devices running iOS < 10
         if #available(iOS 10.0, *) {
             DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
@@ -93,22 +94,60 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        displayEventBannerIfNeeded()
+        checkForExpiredEvent()
+        displayEventBannerIfNeeded(animateBanner: false)
     }
   
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        displayEventBannerIfNeeded()
+        displayEventBannerIfNeeded(animateBanner: false)
     }
+    
+    @objc func fetchEmergencyAlert() {
+        checkForExpiredEvent()
+        displayEventBannerIfNeeded(animateBanner: true)
+    }
+    
+    private func checkForEmergencyAlerts() {
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
+            EventStore.fetchAndSaveEventItem(validJSONCheck: false, completion: { error in
+                if (error == nil) {
+                    self.fetchEmergencyAlert()
+                }
+                else {
+                    self.perform(#selector(self.fetchEmergencyAlert), with: nil, afterDelay: 0.5)
+                }
+                
+                self.timer = Timer.scheduledTimer(timeInterval: CachesStore.alertsUpdateTime, target: self, selector: #selector(self.fetchEmergencyAlert), userInfo: nil, repeats: true)
+            }
+            )}
+    }
+    
+    private func checkForExpiredEvent() {
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
+            EventStore.fetchAndSaveEventItem(validJSONCheck: false, completion: { _ in
+
+                    if (!EventStore.eventActive()) {
+                        UIView.animate(withDuration: 0.3, animations: {
+                            self.tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
+                            self.eventBannerView.isHidden = true
+                        })
+                    }
+                }
+            )}
+    }
+    
     
     /**
      *  Checks if there is an active event and creates an event banner if so.
      */
-    private func displayEventBannerIfNeeded(){
+    private func displayEventBannerIfNeeded(animateBanner : Bool){
         
         guard let eventItem = EventStore.getActiveEvent() else { return }
+        
+        let theme = Theme(rawValue: EventStore.getActiveEventThemeId()) ?? .defaultTheme
+        ThemeManager.applyTheme(theme: theme)
        
-        if eventItem.themeId == ThemeManager.currentTheme().rawValue {
 
             // clear any old event banner (Probably from screen rotation)
             eventBannerView.removeFromSuperview()
@@ -145,6 +184,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             // add the event banner to the main view
             self.view!.addSubview(eventBannerView)
+            
+            // Boolean value to animate event banner on ViewDidLoad
+            if (animateBanner) {
+                UIView.transition(with: self.view, duration: 0.5, options: [.transitionCrossDissolve], animations: {
+                    
+                    // Adjust the tableviw's content inset to make room for the event banner
+                    self.tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
+                    self.tableView.contentInset = UIEdgeInsets.init(top: self.tableView.contentInset.top + self.eventBannerView.frame.height, left: self.tableView.contentInset.left, bottom: self.tableView.contentInset.bottom, right: self.tableView.contentInset.right)
+                })
+                
+            }
 
             // Adjust the tableviw's content inset to make room for the event banner
             tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
@@ -153,27 +203,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             // reset tableview scroll position
             tableView.setContentOffset(CGPoint(x: 0, y: -tableView.contentInset.top), animated:false)
 
-        }
     }
     
     @objc func eventBannerTap(_ sender:UITapGestureRecognizer) {
         selectedIndex = -1
+        checkForExpiredEvent()
         performSegue(withIdentifier: SegueEventViewController, sender: self)
-        
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
-            EventStore.fetchAndSaveEventItem()
-        }
-                
-        if((EventStore.getActiveEvent()?.endDate) == nil) {
-            tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
-            eventBannerView.isHidden = true
-
-        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         eventBannerView.removeFromSuperview()
         tipView.dismiss()
+        timer?.invalidate()
+
     }
 
     @IBAction func infoBarButtonPressed(_ sender: UIBarButtonItem) {
@@ -211,6 +253,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Perform Segue if the view controller isn't already displayed.
         // If it is, pop the naviagtion stack to return to the first view.
+        
         if (selectedIndex == indexPath.row && self.splitViewController!.viewControllers.count > 1) {
             let navController = self.splitViewController?.viewControllers[1] as! UINavigationController
             navController.popToRootViewController(animated: true)
@@ -276,17 +319,6 @@ extension HomeViewController: EasyTipViewDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         MyAnalytics.screenView(screenName: "Home")
-        
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
-            EventStore.fetchAndSaveEventItem()
-        }
-                
-        if((EventStore.getActiveEvent()?.endDate) == nil) {
-            tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
-            eventBannerView.isHidden = true
-
-        }
-        
         if (UserDefaults.standard.integer(forKey: UserDefaultsKeys.pushNotificationTopicVersion) > 0) {
         
             if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasSeenNotificationsTipView) && !UIAccessibility.isVoiceOverRunning){

@@ -98,7 +98,7 @@ class FacebookViewController: RefreshViewController, UITableViewDataSource, UITa
         
         let post = posts[indexPath.row]
         
-        let htmlStyleString = "<style>body{font-family: '\(cell.contentLabel.font.familyName)'; font-size:\(cell.contentLabel.font.pointSize)px;}</style>"
+        let htmlStyleString = "<style>body{font-family: '-apple-system'; font-size:\(cell.contentLabel.font.pointSize)px;}</style>"
         
         let htmlString = htmlStyleString + post.message
         

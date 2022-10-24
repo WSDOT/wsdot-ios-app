@@ -486,7 +486,7 @@ extension MyRouteReportViewController:  UITableViewDataSource, UITableViewDelega
             break
         }
         
-        let htmlStyleString = "<style>body{font-family: '\(cell.linkLabel.font.familyName)'; font-size:\(cell.linkLabel.font.pointSize)px;}</style>"
+        let htmlStyleString = "<style>body{font-family: '-apple-system'; font-size:\(cell.linkLabel.font.pointSize)px;}</style>"
         var htmlString = ""
     
         cell.updateTime.text = TimeUtils.timeAgoSinceDate(date: alert.lastUpdatedTime, numericDates: false)
