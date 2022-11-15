@@ -91,7 +91,7 @@ class AmtrakCascadesScheduleViewController: UITableViewController, CLLocationMan
         switch indexPath.section {
         case 1:
             if AmtrakCascadesStore.stationIdsMap[originTableData[originIndex]]! == AmtrakCascadesStore.stationIdsMap[destinationTableData[destinationIndex]]! {
-                destinationIndex = 0
+//                destinationIndex = 0
             }
             performSegue(withIdentifier: segueAmtrakCascadesScheduleDetailsViewController, sender: self)
             tableView.deselectRow(at: indexPath, animated: true)
