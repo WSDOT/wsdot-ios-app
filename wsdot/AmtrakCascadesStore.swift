@@ -206,7 +206,7 @@ class AmtrakCascadesStore {
         dest.append("Albany, OR")
         dest.append("Eugene, OR")
         dest.sort()
-        dest.insert("All", at: 0)
+//        dest.insert("All", at: 0)
         return dest
     }
     
