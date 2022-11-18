@@ -84,7 +84,7 @@ class TollRateSignsStore {
          
         if ((delta > CachesStore.updateTime) || force) {
             
-            let request = NetworkUtils.getJSONRequestNoLocalCache(forUrl: "https://wsdot.com/traffic/api/api/tolling?accesscode=" + ApiKeys.getWSDOTKey())
+            let request = NetworkUtils.getJSONRequestNoLocalCache(forUrl: "https://wsdot.wa.gov/traffic/api/TollRates/TollRatesREST.svc/GetTollRatesAsJson?AccessCode=" + ApiKeys.getWSDOTKey())
             
             AF.request(request).validate().responseJSON { response in
                 switch response.result {
