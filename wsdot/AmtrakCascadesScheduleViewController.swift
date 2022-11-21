@@ -91,7 +91,9 @@ class AmtrakCascadesScheduleViewController: UITableViewController, CLLocationMan
         switch indexPath.section {
         case 1:
             if AmtrakCascadesStore.stationIdsMap[originTableData[originIndex]]! == AmtrakCascadesStore.stationIdsMap[destinationTableData[destinationIndex]]! {
-//                destinationIndex = 0
+                let alert = UIAlertController(title: "Select a different station", message: "Select different origin and destination stations.", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
             performSegue(withIdentifier: segueAmtrakCascadesScheduleDetailsViewController, sender: self)
             tableView.deselectRow(at: indexPath, animated: true)
