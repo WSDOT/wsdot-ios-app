@@ -151,7 +151,7 @@ PODS:
     - SDWebImage/Core (= 5.5.2)
   - SDWebImage/Core (5.5.2)
   - SnapKit (5.0.1)
-  - SwiftyJSON (4.2.0)
+  - SwiftyJSON (5.0.1)
 
 DEPENDENCIES:
   - Alamofire (~> 5.0.0)
@@ -165,7 +165,7 @@ DEPENDENCIES:
   - NotificationBannerSwift (= 3.0.2)
   - RealmSwift (~> 4.3.2)
   - SDWebImage (~> 5.5.2)
-  - SwiftyJSON (~> 4.2.0)
+  - SwiftyJSON (~> 5.0.1)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -224,8 +224,8 @@ SPEC CHECKSUMS:
   RealmSwift: 9a360fc7bae04fc2e308a34fbd899d5faa2d6b22
   SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
-  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
-PODFILE CHECKSUM: 7253bf8180e83e32418ff37c554eea4f548af7b3
+PODFILE CHECKSUM: fa025863f52ed9d43f87a292fe052a9a5afd7b59
 
 COCOAPODS: 1.11.2
