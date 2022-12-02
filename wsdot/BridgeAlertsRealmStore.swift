@@ -23,7 +23,7 @@ import RealmSwift
 import Alamofire
 import SwiftyJSON
 
-class BridgeAlertsStore {
+class BridgeAlertsStore: Decodable {
 
     typealias UpdateBridgeAlertsCompletion = (_ error: Error?) -> ()
     
@@ -53,7 +53,7 @@ class BridgeAlertsStore {
             
                 let request = NetworkUtils.getJSONRequestNoLocalCache(forUrl: "https://data.wsdot.wa.gov/mobile/BridgeOpenings.js")
                 
-                AF.request(request).validate().responseJSON { response in
+                AF.request(request).validate().responseDecodable(of: BridgeAlertsStore.self) { response in
                     switch response.result {
                     case .success:
                         if let value = response.data {

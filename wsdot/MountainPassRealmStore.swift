@@ -23,7 +23,7 @@ import Alamofire
 import SwiftyJSON
 import Foundation
 
-class MountainPassStore {
+class MountainPassStore: Decodable {
 
    typealias UpdatePassesCompletion = (_ error: Error?) -> ()
     
@@ -67,7 +67,7 @@ class MountainPassStore {
             
             AF.request(request)
                 .validate()
-                .responseJSON { response in
+                .responseDecodable(of: MountainPassStore.self) { response in
                 switch response.result {
                 case .success:
                     if let value = response.data {

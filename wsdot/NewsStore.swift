@@ -22,13 +22,13 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class NewsStore {
+class NewsStore: Decodable {
 
     typealias FetchNewsCompletion = (_ data: [NewsItem]?, _ error: Error?) -> ()
     
     static func getNews(_ completion: @escaping FetchNewsCompletion) {
         
-        AF.request("https://data.wsdot.wa.gov/mobile/News.js").validate().responseJSON { response in
+        AF.request("https://data.wsdot.wa.gov/mobile/News.js").validate().responseDecodable(of: NewsStore.self) { response in
             switch response.result {
             case .success:
                 if let value = response.data {

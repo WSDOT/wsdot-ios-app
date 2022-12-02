@@ -22,13 +22,13 @@ import Foundation
 import SwiftyJSON
 import Alamofire
 
-class ExpressLanesStore {
+class ExpressLanesStore: Decodable {
 
     typealias FetchExpressLanesCompletion = (_ data: [ExpressLaneItem]?, _ error: Error?) -> ()
     
     static func getExpressLanes(_ completion: @escaping FetchExpressLanesCompletion) {
         
-        AF.request("https://data.wsdot.wa.gov/mobile/ExpressLanes.js").validate().responseJSON { response in
+        AF.request("https://data.wsdot.wa.gov/mobile/ExpressLanes.js").validate().responseDecodable(of: ExpressLanesStore.self) { response in
             switch response.result {
             case .success:
                 if let value = response.data {

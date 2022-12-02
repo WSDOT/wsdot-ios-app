@@ -25,7 +25,7 @@ import RealmSwift
  Collects new ferry schedule information from
  the schedule API at: https://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js
  */
-class FerryRealmStore {
+class FerryRealmStore: Decodable {
     
     typealias UpdateRoutesCompletion = (_ error: Error?) -> ()
     
@@ -88,7 +88,7 @@ class FerryRealmStore {
             }
         
             if ((delta > CachesStore.updateTime) || force){
-                AF.request("https://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js").validate().responseJSON { response in
+                AF.request("https://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js").validate().responseDecodable(of: FerryRealmStore.self) { response in
                     switch response.result {
                     case .success:
                         if let value = response.data {

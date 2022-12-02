@@ -25,14 +25,14 @@ import SwiftyJSON
 /*
  *  Gets Vessel Watch data from JSON API.
  */
-class VesselWatchStore {
+class VesselWatchStore: Decodable {
 
     typealias FetchVesselCompletion = (_ data: VesselItem?, _ error: Error?) -> ()
     typealias FetchVesselsCompletion = (_ data: [VesselItem]?, _ error: Error?) -> ()
     
     static func getVessels(_ completion: @escaping FetchVesselsCompletion) {
         
-        AF.request("https://www.wsdot.wa.gov/ferries/api/vessels/rest/vessellocations?apiaccesscode=" + ApiKeys.getWSDOTKey()).validate().responseJSON { response in
+        AF.request("https://www.wsdot.wa.gov/ferries/api/vessels/rest/vessellocations?apiaccesscode=" + ApiKeys.getWSDOTKey()).validate().responseDecodable(of: VesselWatchStore.self) { response in
             switch response.result {
             case .success:
                 if let value = response.data {
@@ -49,7 +49,7 @@ class VesselWatchStore {
     
     static func getVesselForTerminalCombo(_ departingTerminalID: Int, arrivingTerminalID: Int, completion: @escaping FetchVesselCompletion) {
     
-        AF.request("https://www.wsdot.wa.gov/ferries/api/vessels/rest/vessellocations?apiaccesscode=" + ApiKeys.getWSDOTKey()).validate().responseJSON { response in
+        AF.request("https://www.wsdot.wa.gov/ferries/api/vessels/rest/vessellocations?apiaccesscode=" + ApiKeys.getWSDOTKey()).validate().responseDecodable(of: VesselWatchStore.self) { response in
             switch response.result {
             case .success:
                 if let value = response.data {

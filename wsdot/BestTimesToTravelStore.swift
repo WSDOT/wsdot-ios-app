@@ -22,7 +22,7 @@ import Alamofire
 import SwiftyJSON
 import Foundation
 
-class BestTimesToTravelStore {
+class BestTimesToTravelStore: Decodable {
 
     typealias FetchBestTimesToTravelAvailablityCompletion = (_ data: Bool, _ error: Error?) -> ()
     typealias FetchBestTimesToTravelCompletion = (_ data: BestTimesToTravelItem?, _ error: Error?) -> ()
@@ -35,7 +35,7 @@ class BestTimesToTravelStore {
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
         session = Session(configuration: configuration)
 
-        session!.request("https://data.wsdot.wa.gov/mobile/travelCharts.js").validate().responseJSON { response in
+        session!.request("https://data.wsdot.wa.gov/mobile/travelCharts.js").validate().responseDecodable(of: BestTimesToTravelStore.self) { response in
             switch response.result {
             case .success:
                 if let value = response.data {
@@ -55,7 +55,7 @@ class BestTimesToTravelStore {
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
         session = Session(configuration: configuration)
 
-        session!.request("https://data.wsdot.wa.gov/mobile/travelCharts.js").validate().responseJSON { response in
+        session!.request("https://data.wsdot.wa.gov/mobile/travelCharts.js").validate().responseDecodable(of: BestTimesToTravelStore.self) { response in
             switch response.result {
             case .success:
                 if let value = response.data {

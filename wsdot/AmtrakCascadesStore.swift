@@ -22,7 +22,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class AmtrakCascadesStore {
+class AmtrakCascadesStore: Decodable {
     
     typealias FetchAmtrakSchedulesCompletion = (_ data: [[(AmtrakCascadesServiceStopItem,AmtrakCascadesServiceStopItem?)]]?, _ error: Error?) -> ()
     
@@ -31,7 +31,7 @@ class AmtrakCascadesStore {
         let URL = "https://www.wsdot.wa.gov/traffic/api/amtrak/Schedulerest.svc/GetScheduleAsJson?AccessCode=" + ApiKeys.getWSDOTKey() + "&StatusDate="
             + TimeUtils.formatTime(date, format: "MM/dd/yyyy") + "&TrainNumber=-1&FromLocation=" + originId + "&ToLocation=" + destId
         
-        AF.request(URL).validate().responseJSON { response in
+        AF.request(URL).validate().responseDecodable(of: AmtrakCascadesStore.self) { response in
             switch response.result {
             case .success:
                 if let value = response.data {

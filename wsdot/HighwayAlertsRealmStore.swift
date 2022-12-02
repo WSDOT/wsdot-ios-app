@@ -23,7 +23,7 @@ import RealmSwift
 import Alamofire
 import SwiftyJSON
 
-class HighwayAlertsStore {
+class HighwayAlertsStore: Decodable {
 
     typealias UpdateHighwayAlertsCompletion = (_ error: Error?) -> ()
     
@@ -70,7 +70,7 @@ class HighwayAlertsStore {
             
                 let request = NetworkUtils.getJSONRequestNoLocalCache(forUrl: "https://data.wsdot.wa.gov/mobile/HighwayAlerts.js")
                 
-                AF.request(request).validate().responseJSON { response in
+                AF.request(request).validate().responseDecodable(of: HighwayAlertsStore.self) { response in
                     switch response.result {
                     case .success:
                         if let value = response.data {

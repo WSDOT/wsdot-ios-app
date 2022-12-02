@@ -21,13 +21,13 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class YouTubeStore {
+class YouTubeStore: Decodable {
 
     typealias FetchVideosCompletion = (_ data: [YouTubeItem]?, _ error: Error?) -> ()
     
     static func getVideos(_ completion: @escaping FetchVideosCompletion) {
         
-        AF.request("https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=UUmWr7UYgRp4v_HvRfEgquXg&key=" + ApiKeys.getGoogleAPIKey()).validate().responseJSON { response in
+        AF.request("https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=UUmWr7UYgRp4v_HvRfEgquXg&key=" + ApiKeys.getGoogleAPIKey()).validate().responseDecodable(of: YouTubeStore.self) { response in
             switch response.result {
             case .success:
                 if let value = response.data {

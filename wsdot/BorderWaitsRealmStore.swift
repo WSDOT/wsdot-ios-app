@@ -23,7 +23,7 @@ import RealmSwift
 import Alamofire
 import SwiftyJSON
 
-class BorderWaitStore {
+class BorderWaitStore: Decodable {
 
     typealias getBorderWaitsCompletion = (_ error: Error?) -> ()
 
@@ -68,7 +68,7 @@ class BorderWaitStore {
             
             let request = NetworkUtils.getJSONRequestNoLocalCache(forUrl: "https://data.wsdot.wa.gov/mobile/BorderCrossings.js")
         
-            AF.request(request).validate().responseJSON { response in
+            AF.request(request).validate().responseDecodable(of: BorderWaitStore.self) { response in
                 switch response.result {
                 case .success:
                     if let value = response.data {
