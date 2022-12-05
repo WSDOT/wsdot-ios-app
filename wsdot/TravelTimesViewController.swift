@@ -197,6 +197,16 @@ class TravelTimesViewController: RefreshViewController, UITableViewDelegate, UIT
            
             }
             
+            if (route.currentTime == -1) {
+                routeView.valueLabel.text = "N/A"
+                routeView.subtitleLabel.text = "Not Available"
+                if #available(iOS 13.0, *) {
+                    routeView.valueLabel.textColor = UIColor.label
+                } else {
+                    routeView.valueLabel.textColor = UIColor.darkText
+                }
+            }
+            
             cell.contentView.addSubview(routeView)
             
             let leadingSpaceConstraintForRouteView = NSLayoutConstraint(item: routeView.contentView as Any, attribute: .leading, relatedBy: .equal, toItem: cell.routeLabel, attribute: .leading, multiplier: 1, constant: 0);
