@@ -22,7 +22,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class TwitterStore {
+class TwitterStore: Decodable {
 
     typealias FetchTweetsCompletion = (_ data: [TwitterItem]?, _ error: Error?) -> ()
     
@@ -34,7 +34,7 @@ class TwitterStore {
             url = url + screenNameValue
         }
         
-        AF.request(url).validate().responseJSON { response in
+        AF.request(url).validate().responseDecodable(of: TwitterStore.self) { response in
             switch response.result {
             case .success:
                 if let value = response.data {

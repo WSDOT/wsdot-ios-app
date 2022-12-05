@@ -23,7 +23,7 @@ import Alamofire
 import SwiftyJSON
 import RealmSwift
 
-class TollRateTableStore {
+class TollRateTableStore: Decodable {
 
     typealias getTollRateTablesCompletion  = (_ error: Error?) -> ()
 
@@ -51,7 +51,7 @@ class TollRateTableStore {
         
         if ((delta > CachesStore.updateTime) || force) {
             
-            AF.request("https://data.wsdot.wa.gov/mobile/StaticTollRates.js").validate().responseJSON { response in
+            AF.request("https://data.wsdot.wa.gov/mobile/StaticTollRates.js").validate().responseDecodable(of: TollRateTableStore.self) { response in
                 switch response.result {
                 case .success:
                 

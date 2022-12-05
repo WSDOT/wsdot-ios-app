@@ -21,7 +21,7 @@ import Alamofire
 import SwiftyJSON
 import RealmSwift
 
-class CamerasStore {
+class CamerasStore: Decodable {
     
     typealias UpdateCamerasCompletion = (_ error: Error?) -> ()
     
@@ -79,7 +79,7 @@ class CamerasStore {
          
         if ((delta > CachesStore.updateTime) || force){
             
-            AF.request("https://data.wsdot.wa.gov/mobile/Cameras.js").validate().responseJSON { response in
+            AF.request("https://data.wsdot.wa.gov/mobile/Cameras.js").validate().responseDecodable(of: CamerasStore.self) { response in
                 switch response.result {
                 case .success:
                     if let value = response.data {

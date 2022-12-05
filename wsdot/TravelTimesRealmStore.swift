@@ -22,7 +22,7 @@ import SwiftyJSON
 import RealmSwift
 import Alamofire
 
-class TravelTimesStore{
+class TravelTimesStore: Decodable {
     
     typealias getTravelTimesCompletion = (_ error: Error?) -> ()
     
@@ -95,7 +95,7 @@ class TravelTimesStore{
             let request = NetworkUtils
                 .getJSONRequestNoLocalCache(forUrl: "https://data.wsdot.wa.gov/mobile/TravelTimesv2.js")
             
-            AF.request(request).validate().responseJSON { response in
+            AF.request(request).validate().responseDecodable(of: TravelTimesStore.self) { response in
                 switch response.result {
                 case .success:
                     if let value = response.data {

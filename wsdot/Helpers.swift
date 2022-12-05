@@ -132,9 +132,7 @@ struct UIHelpers {
         let constructionHighestIconImage = UIImage(named: "icMapConstructionHighest")
         let constructionModerateIconImage = UIImage(named: "icMapConstructionModerate")
         let constructionLowIconImage = UIImage(named: "icMapConstructionLow")
-        
-        let roadReportIconImage = UIImage(named: "icMapRoadReport")
-    
+            
         let closedIconImage = UIImage(named: "icMapClosed")
     
         if forAlert.eventCategory.contains("Maintenance") || forAlert.eventCategory.contains("maintenance") || forAlert.eventCategory.contains("Construction") || forAlert.eventCategory.contains("construction")  {
@@ -155,8 +153,6 @@ struct UIHelpers {
 
         } else if forAlert.eventCategory.contains("Closure") || forAlert.eventCategory.contains("closure") {
             return closedIconImage
-        } else if forAlert.eventCategory.contains("Road Report") || forAlert.eventCategory.contains("road report") {
-            return roadReportIconImage
         } else {
             switch forAlert.priority {
                 case "Lowest":

@@ -23,7 +23,7 @@ import Alamofire
 import SwiftyJSON
 import RealmSwift
 
-class TollRateSignsStore {
+class TollRateSignsStore: Decodable {
 
     typealias getTollRateSignsCompletion  = (_ error: Error?) -> ()
 
@@ -86,7 +86,7 @@ class TollRateSignsStore {
             
             let request = NetworkUtils.getJSONRequestNoLocalCache(forUrl: "https://wsdot.wa.gov/traffic/api/TollRates/TollRatesREST.svc/GetTollRatesAsJson?AccessCode=" + ApiKeys.getWSDOTKey())
             
-            AF.request(request).validate().responseJSON { response in
+            AF.request(request).validate().responseDecodable(of: TollRateSignsStore.self) { response in
                 switch response.result {
                 case .success:
                     if let value = response.data {

@@ -25,7 +25,7 @@ import SwiftyJSON
 /*
  * Gets sailing space information from JSON API
  */
-class SailingSpacesStore {
+class SailingSpacesStore: Decodable {
 
     typealias FetchSailingSpaceCompletion = (_ data: [SailingSpacesItem]?, _ error: Error?) -> ()
     
@@ -34,7 +34,7 @@ class SailingSpacesStore {
         
         let request = NetworkUtils.getJSONRequestNoLocalCache(forUrl: "http://www.wsdot.wa.gov/ferries/api/terminals/rest/terminalsailingspace/" + String(departingId) + "?apiaccesscode=" + ApiKeys.getWSDOTKey())
         
-        AF.request(request).validate().responseJSON { response in
+        AF.request(request).validate().responseDecodable(of: SailingSpacesStore.self) { response in
             switch response.result {
             case .success:
                 if let value = response.data {

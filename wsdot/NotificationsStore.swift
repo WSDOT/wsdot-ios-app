@@ -24,7 +24,7 @@ import SwiftyJSON
 import Foundation
 import Firebase
 
-class NotificationsStore {
+class NotificationsStore: Decodable {
 
     typealias UpdateTopicsCompletion = (_ error: Error?) -> ()
 
@@ -81,7 +81,7 @@ class NotificationsStore {
         
         if ((delta > CachesStore.updateTime) || force || true){
      
-            AF.request("https://data.wsdot.wa.gov/mobile/NotificationTopics.js").validate().responseJSON { response in
+            AF.request("https://data.wsdot.wa.gov/mobile/NotificationTopics.js").validate().responseDecodable(of: NotificationsStore.self) { response in
             
                 switch response.result {
                 case .success:

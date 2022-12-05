@@ -21,13 +21,13 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class BloggerStore {
+class BloggerStore: Decodable {
 
     typealias FetchBlogPostsCompletion = (_ data: [BlogItem]?, _ error: Error?) -> ()
     
     static func getBlogPosts(_ completion: @escaping FetchBlogPostsCompletion) {
         
-        AF.request("https://wsdotblog.blogspot.com/feeds/posts/default?alt=json&max-results=10").validate().responseJSON { response in
+        AF.request("https://wsdotblog.blogspot.com/feeds/posts/default?alt=json&max-results=10").validate().responseDecodable(of: BloggerStore.self) { response in
             switch response.result {
             case .success:
                 if let value = response.data {
