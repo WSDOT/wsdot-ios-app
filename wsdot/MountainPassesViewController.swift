@@ -62,6 +62,11 @@ class MountainPassesViewController: RefreshViewController, UITableViewDelegate, 
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        refresh(true)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         MyAnalytics.screenView(screenName: "PassReports")

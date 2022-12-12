@@ -53,6 +53,8 @@ class CachesStore {
     static let bridgeUpdateTime: TimeInterval = 60 // once a minute
     static let bridgeCacheTime: Int = 60 // once a minute
     
+    static let mountainPassCacheTime: Int = 300 // once every 5 minutes
+    
     static func initCacheItem(){
         do {
             let realm = try Realm()
