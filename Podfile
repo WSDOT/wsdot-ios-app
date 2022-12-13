@@ -13,7 +13,7 @@ target 'WSDOT' do
     pod 'Alamofire', '~> 5.6.4'
     pod 'SwiftyJSON', '~> 5.0.1'
     pod 'SDWebImage', '~> 5.14.2'
-    pod 'EasyTipView', '~> 2.0.4'
+    pod 'EasyTipView', '~> 2.1.0'
     pod 'NotificationBannerSwift', '3.1.0'
 end
 
@@ -28,7 +28,7 @@ target 'WSDOTTests' do
     pod 'Alamofire', '~> 5.6.4'
     pod 'SwiftyJSON', '~> 5.0.1'
     pod 'SDWebImage', '~> 5.14.2'
-    pod 'EasyTipView', '~> 2.0.4'
+    pod 'EasyTipView', '~> 2.1.0'
     pod 'NotificationBannerSwift', '3.1.0'
 end
 

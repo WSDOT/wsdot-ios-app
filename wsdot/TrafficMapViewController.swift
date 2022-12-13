@@ -644,6 +644,10 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
 
 extension TrafficMapViewController: EasyTipViewDelegate {
     
+    public func easyTipViewDidTap(_ tipView: EasyTipView) {
+        print("\(tipView) did tap!")
+    }
+    
     public func easyTipViewDidDismiss(_ tipView: EasyTipView) {
          UserDefaults.standard.set(true, forKey: UserDefaultsKeys.hasSeenTravelerInfoTipView)
     }
