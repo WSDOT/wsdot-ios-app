@@ -38,12 +38,14 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     let SegueCamerasViewController = "CamerasViewController"
     let SegueRestAreaViewController = "RestAreaViewController"
     let SegueHighwayAlertViewController = "HighwayAlertViewController"
+    let SegueMountainPassViewController = "MountainPassViewController"
     let SegueCalloutViewController = "CalloutViewController"
     
     fileprivate var alertMarkers = Set<GMSMarker>()
     fileprivate var cameraMarkers = Set<CameraClusterItem>()
     fileprivate var restAreaMarkers = Set<GMSMarker>()
-    
+    fileprivate var mountainPassMarkers = Set<GMSMarker>()
+
     fileprivate let JBLMMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: 47.103033, longitude: -122.584394))
     
     // Mark: Map Icons
@@ -55,6 +57,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     fileprivate let cameraBarButtonImage = UIImage(named: "icCamera")
     fileprivate let cameraHighlightBarButtonImage = UIImage(named: "icCameraHighlight")
     
+    fileprivate let mountainPassIconImage = UIImage(named: "icMountainPass")
 
     
     var tipView = EasyTipView(text: "")
@@ -69,7 +72,12 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+
+        // Set defualt value for camera display if there is none
+        if (UserDefaults.standard.string(forKey: UserDefaultsKeys.mountainPasses) == nil){
+            UserDefaults.standard.set("on", forKey: UserDefaultsKeys.mountainPasses)
+        }
+        
         // Set defualt value for camera display if there is none
         if (UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras) == nil){
             UserDefaults.standard.set("on", forKey: UserDefaultsKeys.cameras)
@@ -87,6 +95,9 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         self.drawCameras()
         self.loadAlertMarkers()
         self.drawAlerts()
+        self.loadMountainPassesMarkers()
+        self.drawMountainPasses()
+
         
         embeddedMapViewController.clusterManager.setDelegate(self, mapDelegate: self)
         
@@ -454,6 +465,67 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         }
     }
     
+    // MARK: Rest area marker logic
+    func removeMountainPasses(){
+        for mountainpasses in mountainPassMarkers{
+            mountainpasses.map = nil
+        }
+    }
+    
+    func fetchMountainPasses(force: Bool, group: DispatchGroup) {
+        serviceGroup.enter()
+        DispatchQueue.global().async {[weak self] in
+            MountainPassStore.updatePasses(force, completion: { error in
+                if (error == nil){
+                    DispatchQueue.main.async {[weak self] in
+                        if let selfValue = self{
+                            selfValue.serviceGroup.leave()
+                            selfValue.loadMountainPassesMarkers()
+                            selfValue.drawMountainPasses()
+                        }
+                    }
+                }else{
+                    DispatchQueue.main.async { [weak self] in
+                        if let selfValue = self{
+                            selfValue.serviceGroup.leave()
+                        }
+                    }
+                }
+            })
+        }
+    }
+
+    func loadMountainPassesMarkers(){
+        removeMountainPasses()
+        mountainPassMarkers.removeAll()
+        for mountainpass in MountainPassStore.getPasses(){
+            let mountainpassLocation = CLLocationCoordinate2D(latitude: mountainpass.latitude, longitude: mountainpass.longitude)
+            let marker = GMSMarker(position: mountainpassLocation)
+            marker.snippet = "mountainpass"
+            marker.icon = mountainPassIconImage
+            marker.userData = mountainpass
+            mountainPassMarkers.insert(marker)
+        }
+    }
+
+    func drawMountainPasses(){
+        if let mapView = embeddedMapViewController.view as? GMSMapView{
+            let mountainPassesPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.mountainPasses)
+            if let mountainPassesPrefValue = mountainPassesPref{
+                if (mountainPassesPrefValue == "on") {
+                    for mountainPassesMarker in mountainPassMarkers{
+                        mountainPassesMarker.map = mapView
+                    }
+                }
+            } else {
+                UserDefaults.standard.set("on", forKey: UserDefaultsKeys.mountainPasses)
+                for mountainPassesMarker in mountainPassMarkers{
+                    mountainPassesMarker.map = mapView
+                }
+            }
+        }
+    }
+
     // MARK: favorite location
     func saveCurrentLocation(){
         
@@ -499,8 +571,9 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         drawJBLM()
         fetchCameras(force: false, group: serviceGroup)
         fetchAlerts(force: false, group: serviceGroup)
+        fetchMountainPasses(force: false, group: serviceGroup)
         fetchRestAreas(group: serviceGroup)
-        
+
         serviceGroup.notify(queue: DispatchQueue.main) {
             self.activityIndicatorView.stopAnimating()
             self.activityIndicatorView.isHidden = true
@@ -544,6 +617,11 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         if marker.snippet == "jblm" {
             performSegue(withIdentifier: SegueCalloutViewController, sender: marker)
         }
+        
+        if marker.snippet == "mountainpass" {
+            performSegue(withIdentifier: SegueMountainPassViewController, sender: marker)
+        }
+
         
         return true
     }
@@ -639,6 +717,14 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
             destinationViewController.calloutURL = calloutURL
             destinationViewController.title = "JBLM"
         }
+        
+        
+        if segue.identifier == SegueMountainPassViewController {
+            let passItem = ((sender as! GMSMarker).userData as! MountainPassItem)
+            let destinationViewController = segue.destination as! MountainPassTabBarViewController
+            destinationViewController.passItem = passItem
+        }
+        
     }
 }
 

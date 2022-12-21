@@ -27,7 +27,9 @@ class MountainPassesViewController: RefreshViewController, UITableViewDelegate, 
     let cellIdentifier = "PassCell"
     let segueMountainPassDetailsViewController = "MountainPassDetailsViewController"
     
+    var passItem: MountainPassItem?
     var passItems = [MountainPassItem]()
+    fileprivate let mountainPassMarkers = GMSMarker(position: CLLocationCoordinate2D(latitude: 0, longitude: 0))
 
     @IBOutlet weak var bannerView: GAMBannerView!
     
