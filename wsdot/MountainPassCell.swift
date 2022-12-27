@@ -25,4 +25,7 @@ class MountainPassCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var updatedLabel: UILabel!
     @IBOutlet weak var forecastLabel: UILabel!
+    @IBOutlet weak var restrictionsOneLabel: UILabel!
+    @IBOutlet weak var restrictionsTwoLabel: UILabel!
+
 }
