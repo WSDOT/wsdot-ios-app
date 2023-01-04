@@ -51,7 +51,7 @@ class WeatherUtils {
         let shortForecast = WeatherUtils.getForecastBriefDescription(forecast)
         
         for weatherTriple in weather {
-            if (weatherTriple.2.filter({(item: String) -> Bool in return shortForecast.lowercased().hasPrefix(item.lowercased())}).count > 0){
+            if (weatherTriple.2.filter({(item: String) -> Bool in return shortForecast.lowercased().contains(item.lowercased())}).count > 0){
                 return isNight(title) ? weatherTriple.1 : weatherTriple.0
             }
         }

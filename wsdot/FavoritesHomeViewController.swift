@@ -123,7 +123,7 @@ class FavoritesHomeViewController: RefreshViewController {
     
     /**
      * Method name: getTitle
-     * Description: Returns a title for a section in the favorites list. 
+     * Description: Returns a title for a section in the favorites list.
      *              Required since sections can be changed. Uses sectionToTypeMap/
      * Parameters: forSection: The section to get a title for.
      */
@@ -545,7 +545,8 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             let passItem = mountainPasses[indexPath.row]
             
             passCell.nameLabel.text = passItem.name
-            
+            passCell.forecastLabel.text = ""
+
             if (passItem.forecast.count > 0){
                 passCell.forecastLabel.text = WeatherUtils.getForecastBriefDescription(passItem.forecast[0].forecastText)
                 passCell.weatherImage.image = UIImage(named: WeatherUtils.getIconName(passItem.forecast[0].forecastText, title: passItem.forecast[0].day))
@@ -554,7 +555,12 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 passCell.weatherImage.image = nil
             }
             
-            passCell.updatedLabel.text = TimeUtils.timeAgoSinceDate(date: passItem.dateUpdated, numericDates: false)
+            if (passItem.weatherCondition != ""){
+                passCell.forecastLabel.text = passItem.weatherCondition
+                passCell.weatherImage.image = UIImage(named: WeatherUtils.getIconName(passItem.weatherCondition, title: ""))
+
+            }
+            
             
             return passCell
             

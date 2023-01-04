@@ -147,6 +147,7 @@ class MountainPassesViewController: RefreshViewController, UITableViewDelegate, 
         
         if (passItem.weatherCondition != ""){
             cell.forecastLabel.text = passItem.weatherCondition
+            cell.weatherImage.image = UIImage(named: WeatherUtils.getIconName(passItem.weatherCondition, title: ""))
         }
         
         // Travel Restrictions
