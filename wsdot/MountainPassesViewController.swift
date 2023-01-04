@@ -133,13 +133,7 @@ class MountainPassesViewController: RefreshViewController, UITableViewDelegate, 
         let passItem = passItems[indexPath.row]
         
         cell.nameLabel.text = passItem.name
-        
         cell.forecastLabel.text = ""
-
-        
-        if (passItem.weatherCondition != ""){
-            cell.forecastLabel.text = passItem.weatherCondition
-        }
         
         if (passItem.forecast.count > 0){
             if (cell.forecastLabel.text == "") {
@@ -149,6 +143,10 @@ class MountainPassesViewController: RefreshViewController, UITableViewDelegate, 
         } else {
             cell.forecastLabel.text = ""
             cell.weatherImage.image = nil
+        }
+        
+        if (passItem.weatherCondition != ""){
+            cell.forecastLabel.text = passItem.weatherCondition
         }
         
         // Travel Restrictions
