@@ -30,7 +30,7 @@ class MountainPassTabBarViewController: UITabBarController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = passItem.name
+        title = "Mountain Passes"
         
         if (passItem.cameraIds.count == 0){
             self.tabBar.items?[0].title = "Report"

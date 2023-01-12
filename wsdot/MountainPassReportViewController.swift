@@ -41,6 +41,15 @@ class MountainPassReportViewController: RefreshViewController, UITableViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        passReportView.mountainPassIconLabel.text = "Mountain Pass Report"
+        passReportView.mountainPassIconImage.image = UIImage(named: "mountainpass_icon")
+        
+        passReportView.mountainPassIconStack.backgroundColor = UIColor(red: 28/255, green: 120/255, blue: 205/255, alpha: 0.2)
+        passReportView.mountainPassIconStack.layer.borderColor = UIColor(red: 28/255, green: 120/255, blue: 205/255, alpha: 1.0).cgColor
+        passReportView.mountainPassIconStack.layer.borderWidth = 1
+        passReportView.mountainPassIconStack.layer.cornerRadius = 4.0
+        
         let mountainPassTabBarContoller = self.tabBarController as! MountainPassTabBarViewController
         
         passItem = mountainPassTabBarContoller.passItem
@@ -76,39 +85,105 @@ class MountainPassReportViewController: RefreshViewController, UITableViewDataSo
     func updatePassReportView(withPassItem: MountainPassItem) {
         passItem = withPassItem
         
-        passReportView.timestampLabel.text = "Updated " + TimeUtils.formatTime(passItem.dateUpdated, format: "MMMM dd, YYYY h:mm a")
+        passReportView.mountainPassTitle.text = passItem.name
+
+        // Elevation
+        passReportView.elevationLabel.attributedText = elevationLabel(label: "Elevation: ", passItem: String(passItem.elevationInFeet), elevation: " ft")
  
+        // Travel Restrictions
+        passReportView.restrictionOneLabel.attributedText = restrictionLabel(label: "Travel ", direction: passItem.restrictionOneTravelDirection, passItem: passItem.restrictionOneText)
+
+        passReportView.restrictionTwoLabel.attributedText = restrictionLabel(label: "Travel ", direction: passItem.restrictionTwoTravelDirection, passItem: passItem.restrictionTwoText)
+        
+        // Conditions
+        if (passItem.roadCondition != ""){
+            passReportView.conditionsLabel.attributedText = conditionsLabel(label: "Conditions: ", passItem: passItem.roadCondition)
+        }
+        else {
+            passReportView.conditionsLabel.attributedText = conditionsLabel(label: "Conditions: ", passItem: "N/A")
+        }
+        
+        // Weather
         if (passItem.weatherCondition != ""){
-            passReportView.weatherDetailsLabel.text = passItem.weatherCondition
-        } else if (passItem.forecast.count > 0){
-            passReportView.weatherDetailsLabel.text = passItem.forecast[0].forecastText
+            passReportView.weatherDetailsLabel.attributedText = weatherLabel(label: "Weather: ", passItem: passItem.weatherCondition)
+        }
+        else if (passItem.forecast.count > 0){
+            passReportView.weatherDetailsLabel.attributedText = weatherLabel(label: "Weather: ", passItem: passItem.forecast[0].forecastText)
         } else {
-            passReportView.weatherDetailsLabel.text = "N/A"
+            passReportView.weatherDetailsLabel.attributedText = weatherLabel(label: "Weather: ", passItem: "N/A")
         }
     
+        // Temperature
         if let temp = passItem.temperatureInFahrenheit.value{
-            passReportView.temperatureLabel.text = String(temp) + "°F"
+            passReportView.temperatureLabel.attributedText = temperatureLabel(label: "Temperature: ", passItem: String(temp), fahrenheit: "°F")
         } else {
-            passReportView.temperatureLabel.text = "N/A"
+            passReportView.temperatureLabel.attributedText = temperatureLabel(label: "Temperature: ", passItem: "N/A", fahrenheit: "")
         }
-
-        passReportView.elevationLabel.text = String(passItem.elevationInFeet) + " ft"
-
-        passReportView.conditionsLabel.text = passItem.roadCondition
- 
-        passReportView.restrictionOneTitleLabel.text = "Restrictions " + passItem.restrictionOneTravelDirection + ":"
-
-        passReportView.restrictionOneLabel.text = passItem.restrictionOneText
-      
-        passReportView.restrictionTwoTitleLabel.text = "Restrictions " + passItem.restrictionTwoTravelDirection + ":"
         
-        passReportView.restrictionTwoLabel.text = passItem.restrictionTwoText
-        
+        // Time Stamp
+        passReportView.timestampLabel.text = "Last updated: " + TimeUtils.formatTime(passItem.dateUpdated, format: "MMMM dd, YYYY h:mm a")
     }
     
     @objc func refreshAction(_ refreshControl: UIRefreshControl) {
         refresh(true)
     }
+    
+    func elevationLabel(label: String, passItem: String, elevation: String) ->  NSAttributedString {
+        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.bold)]
+        let ContentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.regular)]
+        let label = NSMutableAttributedString(string: label, attributes: titleAttributes)
+        let content = NSMutableAttributedString(string: passItem, attributes: ContentAttributes)
+        let elevation = NSMutableAttributedString(string: elevation, attributes: ContentAttributes)
+        label.append(content)
+        label.append(elevation)
+        return label
+    }
+    
+    func conditionsLabel(label: String, passItem: String) ->  NSAttributedString {
+        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.bold)]
+        let ContentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.regular)]
+        let label = NSMutableAttributedString(string: label, attributes: titleAttributes)
+        let content = NSMutableAttributedString(string: passItem, attributes: ContentAttributes)
+        label.append(content)
+        return label
+    }
+    
+    func restrictionLabel(label: String, direction: String, passItem: String) ->  NSAttributedString {
+        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.bold)]
+        let ContentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.regular)]
+        let label = NSMutableAttributedString(string: label, attributes: titleAttributes)
+        let direction = NSMutableAttributedString(string: direction, attributes: titleAttributes)
+        let colon = NSMutableAttributedString(string: ": ", attributes: titleAttributes)
+        let content = NSMutableAttributedString(string: passItem, attributes: ContentAttributes)
+        label.append(direction)
+        label.append(colon)
+        label.append(content)
+        return label
+    }
+    
+    func weatherLabel(label: String, passItem: String) ->  NSAttributedString {
+        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.bold)]
+        let ContentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.regular)]
+        let label = NSMutableAttributedString(string: label, attributes: titleAttributes)
+        let passItem = NSMutableAttributedString(string: passItem, attributes: ContentAttributes)
+        label.append(passItem)
+        return label
+    }
+    
+    func temperatureLabel(label: String, passItem: String, fahrenheit: String) ->  NSAttributedString {
+        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.bold)]
+        let ContentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.regular)]
+        let label = NSMutableAttributedString(string: label, attributes: titleAttributes)
+        let content = NSMutableAttributedString(string: passItem, attributes: ContentAttributes)
+        let elevation = NSMutableAttributedString(string: fahrenheit, attributes: ContentAttributes)
+        label.append(content)
+        label.append(elevation)
+        return label
+    }
+    
+    
+
+    
     
     func refresh(_ force: Bool) {
         
