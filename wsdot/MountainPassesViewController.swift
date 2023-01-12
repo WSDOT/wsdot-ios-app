@@ -135,9 +135,14 @@ class MountainPassesViewController: RefreshViewController, UITableViewDelegate, 
         cell.nameLabel.text = passItem.name
         cell.forecastLabel.text = ""
         
-        if (passItem.forecast.count > 0){
+        if (passItem.weatherCondition != ""){
+            cell.forecastLabel.text = passItem.weatherCondition.replacingOccurrences(of: ".", with: "")
+            cell.weatherImage.image = UIImage(named: WeatherUtils.getIconName(passItem.weatherCondition, title: ""))
+        }
+        
+        else if (passItem.forecast.count > 0){
             if (cell.forecastLabel.text == "") {
-//                cell.forecastLabel.text = WeatherUtils.getForecastBriefDescription(passItem.forecast[0].forecastText)
+                cell.forecastLabel.text = WeatherUtils.getForecastBriefDescription(passItem.forecast[0].forecastText)
             }
             cell.weatherImage.image = UIImage(named: WeatherUtils.getIconName(passItem.forecast[0].forecastText, title: passItem.forecast[0].day))
         } else {
@@ -145,30 +150,9 @@ class MountainPassesViewController: RefreshViewController, UITableViewDelegate, 
             cell.weatherImage.image = nil
         }
         
-        if (passItem.weatherCondition != ""){
-            cell.forecastLabel.text = passItem.weatherCondition
-            cell.weatherImage.image = UIImage(named: WeatherUtils.getIconName(passItem.weatherCondition, title: ""))
-        }
-        
         // Travel Restrictions
-        if (passItem.restrictionOneText == "Closed for the season" && passItem.restrictionTwoText == "Closed for the season"){
-            cell.restrictionsOneLabel.text = "Closed for the season"
-            cell.restrictionsTwoLabel.text = ""
-        }
-        else if (passItem.restrictionOneText != "No restrictions" && passItem.restrictionTwoText != "No restrictions"){
-            cell.restrictionsOneLabel.attributedText = restrictionLabel(label: "", direction: passItem.restrictionOneTravelDirection, passItem: passItem.restrictionOneText)
-            cell.restrictionsTwoLabel.attributedText = restrictionLabel(label: "", direction: passItem.restrictionTwoTravelDirection, passItem: passItem.restrictionTwoText)
-            
-        } else {
-            cell.restrictionsOneLabel.text = ""
-            cell.restrictionsTwoLabel.text = ""
-        }
-        
-        if passItem.dateUpdated as Date == Date.init(timeIntervalSince1970: 0){
-            cell.updatedLabel.text = "Not Available"
-        }else {
-            cell.updatedLabel.text = "Last Updated: " + TimeUtils.timeAgoSinceDate(date: passItem.dateUpdated, numericDates: true)
-        }
+        cell.restrictionsOneLabel.attributedText = restrictionLabel(label: "Travel ", direction: passItem.restrictionOneTravelDirection, passItem: passItem.restrictionOneText)
+        cell.restrictionsTwoLabel.attributedText = restrictionLabel(label: "Travel ", direction: passItem.restrictionTwoTravelDirection, passItem: passItem.restrictionTwoText)
      
         return cell
     }
