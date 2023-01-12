@@ -26,7 +26,7 @@ class MountainPassItem: Object {
     @objc dynamic var name: String = ""
     @objc dynamic var weatherCondition: String = ""
     @objc dynamic var elevationInFeet: Int = 0
-    let temperatureInFahrenheit = RealmOptional<Int>()
+    let temperatureInFahrenheit = RealmProperty<Int?>()
     @objc dynamic var travelAdvisoryActive: Bool = false
     @objc dynamic var latitude: Double = 0.0
     @objc dynamic var longitude: Double = 0.0
