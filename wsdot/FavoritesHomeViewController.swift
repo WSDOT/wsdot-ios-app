@@ -545,6 +545,8 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             let passItem = mountainPasses[indexPath.row]
             
             passCell.nameLabel.text = passItem.name
+            passCell.nameLabel.font = UIFont(descriptor: UIFont.preferredFont(forTextStyle: .title3).fontDescriptor.withSymbolicTraits(.traitBold)!, size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
+
             passCell.forecastLabel.text = ""
 
             if (passItem.forecast.count > 0){
