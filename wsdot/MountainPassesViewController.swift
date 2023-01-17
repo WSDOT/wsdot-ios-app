@@ -102,12 +102,12 @@ class MountainPassesViewController: RefreshViewController, UITableViewDelegate, 
     }
     
     func restrictionLabel(label: String, direction: String, passItem: String) ->  NSAttributedString {
-        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.bold)]
-        let ContentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.regular)]
+        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .headline)]
+        let contentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .body)]
         let label = NSMutableAttributedString(string: label, attributes: titleAttributes)
         let direction = NSMutableAttributedString(string: direction, attributes: titleAttributes)
         let colon = NSMutableAttributedString(string: ": ", attributes: titleAttributes)
-        let content = NSMutableAttributedString(string: passItem, attributes: ContentAttributes)
+        let content = NSMutableAttributedString(string: passItem, attributes: contentAttributes)
         label.append(direction)
         label.append(colon)
         label.append(content)
@@ -133,6 +133,9 @@ class MountainPassesViewController: RefreshViewController, UITableViewDelegate, 
         let passItem = passItems[indexPath.row]
         
         cell.nameLabel.text = passItem.name
+        cell.nameLabel.font = UIFont(descriptor: UIFont.preferredFont(forTextStyle: .title3).fontDescriptor.withSymbolicTraits(.traitBold)!, size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
+
+        
         cell.forecastLabel.text = ""
         
         if (passItem.weatherCondition != ""){
