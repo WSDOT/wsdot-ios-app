@@ -51,6 +51,9 @@ class FavoritesHomeViewController: RefreshViewController {
     var myRoutes = [MyRouteItem]()
     var tollRates = [TollRateSignItem]()
     var borderWaits = [BorderWaitItem]()
+    
+    let mountainPassViewController = MountainPassesViewController()
+    
 
     @IBOutlet weak var emptyFavoritesView: UIView!
     @IBOutlet weak var tableView: UITableView!
@@ -548,20 +551,25 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             passCell.nameLabel.font = UIFont(descriptor: UIFont.preferredFont(forTextStyle: .title3).fontDescriptor.withSymbolicTraits(.traitBold)!, size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
 
             passCell.forecastLabel.text = ""
-
-            if (passItem.forecast.count > 0){
-                passCell.forecastLabel.text = WeatherUtils.getForecastBriefDescription(passItem.forecast[0].forecastText)
+            
+            if (passItem.weatherCondition != ""){
+                passCell.forecastLabel.text = passItem.weatherCondition.replacingOccurrences(of: ".", with: "")
+                passCell.weatherImage.image = UIImage(named: WeatherUtils.getIconName(passItem.weatherCondition, title: ""))
+            }
+            
+            else if (passItem.forecast.count > 0){
+                if (passCell.forecastLabel.text == "") {
+                    passCell.forecastLabel.text = WeatherUtils.getForecastBriefDescription(passItem.forecast[0].forecastText)
+                }
                 passCell.weatherImage.image = UIImage(named: WeatherUtils.getIconName(passItem.forecast[0].forecastText, title: passItem.forecast[0].day))
             } else {
                 passCell.forecastLabel.text = ""
                 passCell.weatherImage.image = nil
             }
             
-            if (passItem.weatherCondition != ""){
-                passCell.forecastLabel.text = passItem.weatherCondition
-                passCell.weatherImage.image = UIImage(named: WeatherUtils.getIconName(passItem.weatherCondition, title: ""))
-
-            }
+            // Travel Restrictions
+            passCell.restrictionsOneLabel.attributedText = mountainPassViewController.restrictionLabel(label: "Travel ", direction: passItem.restrictionOneTravelDirection, passItem: passItem.restrictionOneText)
+            passCell.restrictionsTwoLabel.attributedText = mountainPassViewController.restrictionLabel(label: "Travel ", direction: passItem.restrictionTwoTravelDirection, passItem: passItem.restrictionTwoText)
             
             
             return passCell
