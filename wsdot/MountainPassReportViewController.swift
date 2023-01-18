@@ -85,8 +85,9 @@ class MountainPassReportViewController: RefreshViewController, UITableViewDataSo
     func updatePassReportView(withPassItem: MountainPassItem) {
         passItem = withPassItem
         
-        passReportView.mountainPassTitle.text = passItem.name
-
+        passReportView.mountainPassTitle.text = passItem.name        
+        passReportView.mountainPassTitle.font = UIFont(descriptor: UIFont.preferredFont(forTextStyle: .title2).fontDescriptor.withSymbolicTraits(.traitBold)!, size: UIFont.preferredFont(forTextStyle: .title2).pointSize)
+        
         // Elevation
         passReportView.elevationLabel.attributedText = elevationLabel(label: "Elevation: ", passItem: String(passItem.elevationInFeet), elevation: " ft")
  
@@ -129,8 +130,8 @@ class MountainPassReportViewController: RefreshViewController, UITableViewDataSo
     }
     
     func elevationLabel(label: String, passItem: String, elevation: String) ->  NSAttributedString {
-        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.bold)]
-        let ContentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.regular)]
+        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .headline)]
+        let ContentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .body)]
         let label = NSMutableAttributedString(string: label, attributes: titleAttributes)
         let content = NSMutableAttributedString(string: passItem, attributes: ContentAttributes)
         let elevation = NSMutableAttributedString(string: elevation, attributes: ContentAttributes)
@@ -140,8 +141,8 @@ class MountainPassReportViewController: RefreshViewController, UITableViewDataSo
     }
     
     func conditionsLabel(label: String, passItem: String) ->  NSAttributedString {
-        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.bold)]
-        let ContentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.regular)]
+        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .headline)]
+        let ContentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .body)]
         let label = NSMutableAttributedString(string: label, attributes: titleAttributes)
         let content = NSMutableAttributedString(string: passItem, attributes: ContentAttributes)
         label.append(content)
@@ -149,8 +150,8 @@ class MountainPassReportViewController: RefreshViewController, UITableViewDataSo
     }
     
     func restrictionLabel(label: String, direction: String, passItem: String) ->  NSAttributedString {
-        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.bold)]
-        let ContentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.regular)]
+        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .headline)]
+        let ContentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .body)]
         let label = NSMutableAttributedString(string: label, attributes: titleAttributes)
         let direction = NSMutableAttributedString(string: direction, attributes: titleAttributes)
         let colon = NSMutableAttributedString(string: ": ", attributes: titleAttributes)
@@ -162,8 +163,8 @@ class MountainPassReportViewController: RefreshViewController, UITableViewDataSo
     }
     
     func weatherLabel(label: String, passItem: String) ->  NSAttributedString {
-        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.bold)]
-        let ContentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.regular)]
+        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .headline)]
+        let ContentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .body)]
         let label = NSMutableAttributedString(string: label, attributes: titleAttributes)
         let passItem = NSMutableAttributedString(string: passItem, attributes: ContentAttributes)
         label.append(passItem)
@@ -171,8 +172,8 @@ class MountainPassReportViewController: RefreshViewController, UITableViewDataSo
     }
     
     func temperatureLabel(label: String, passItem: String, fahrenheit: String) ->  NSAttributedString {
-        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.bold)]
-        let ContentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.regular)]
+        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .headline)]
+        let ContentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .body)]
         let label = NSMutableAttributedString(string: label, attributes: titleAttributes)
         let content = NSMutableAttributedString(string: passItem, attributes: ContentAttributes)
         let elevation = NSMutableAttributedString(string: fahrenheit, attributes: ContentAttributes)
@@ -315,3 +316,4 @@ class MountainPassReportViewController: RefreshViewController, UITableViewDataSo
     
 
 }
+

@@ -31,8 +31,8 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="766"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" axis="vertical" distribution="equalSpacing" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3RN-9p-v4M">
-                    <rect key="frame" x="20" y="68" width="374" height="690"/>
+                <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" axis="vertical" distribution="equalSpacing" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="3RN-9p-v4M">
+                    <rect key="frame" x="20" y="68" width="374" height="331.5"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oze-qu-UX1">
                             <rect key="frame" x="0.0" y="0.0" width="359" height="44"/>
@@ -65,64 +65,57 @@
                                 <constraint firstItem="oDd-IT-pTG" firstAttribute="top" secondItem="Oze-qu-UX1" secondAttribute="top" id="Qsa-Pm-sqw"/>
                             </constraints>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P8a-fe-mLL">
-                            <rect key="frame" x="0.0" y="64" width="45" height="26.5"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P8a-fe-mLL">
+                            <rect key="frame" x="0.0" y="59" width="41" height="26.5"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Travel 1" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="quN-gi-1ra" userLabel="restriction one label">
-                            <rect key="frame" x="0.0" y="110.5" width="57.5" height="20.5"/>
+                            <rect key="frame" x="0.0" y="100.5" width="57.5" height="20.5"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Travel 2" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPZ-MH-VVv" userLabel="restriction two label">
-                            <rect key="frame" x="0.0" y="151" width="60" height="20.5"/>
+                            <rect key="frame" x="0.0" y="136" width="60" height="20.5"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Conditions" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dlc-5K-WjE" userLabel="conditions label">
-                            <rect key="frame" x="0.0" y="191.5" width="82" height="20.5"/>
+                            <rect key="frame" x="0.0" y="171.5" width="82" height="20.5"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Io-sX-v9C" userLabel="weather">
-                            <rect key="frame" x="0.0" y="232" width="64.5" height="20.5"/>
+                            <rect key="frame" x="0.0" y="207" width="64.5" height="20.5"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mV2-53-m1n" userLabel="temperature label">
-                            <rect key="frame" x="0.0" y="272.5" width="97" height="20.5"/>
+                            <rect key="frame" x="0.0" y="242.5" width="97" height="20.5"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Elevation" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ErB-y2-BDy" userLabel="elevation">
-                            <rect key="frame" x="0.0" y="313" width="69" height="20.5"/>
+                            <rect key="frame" x="0.0" y="278" width="69" height="20.5"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" text="Last Updated" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9kz-51-hxO" userLabel="timestamp label">
-                            <rect key="frame" x="0.0" y="353.5" width="92.5" height="336.5"/>
+                            <rect key="frame" x="0.0" y="313.5" width="92.5" height="18"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                             <color key="textColor" systemColor="secondaryLabelColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="5Io-sX-v9C" firstAttribute="top" secondItem="dlc-5K-WjE" secondAttribute="bottom" constant="20" id="2xb-Ed-M8u"/>
-                        <constraint firstItem="mV2-53-m1n" firstAttribute="top" secondItem="5Io-sX-v9C" secondAttribute="bottom" constant="20" id="5lv-oM-5KX"/>
-                        <constraint firstItem="quN-gi-1ra" firstAttribute="top" secondItem="P8a-fe-mLL" secondAttribute="bottom" constant="20" id="LQM-hf-KOj"/>
-                        <constraint firstItem="cPZ-MH-VVv" firstAttribute="top" secondItem="quN-gi-1ra" secondAttribute="bottom" constant="20" id="RGw-OE-jWk"/>
-                        <constraint firstItem="dlc-5K-WjE" firstAttribute="top" secondItem="cPZ-MH-VVv" secondAttribute="bottom" constant="20" id="ZkC-Gf-8eX"/>
-                        <constraint firstItem="P8a-fe-mLL" firstAttribute="top" secondItem="ymr-x4-WsP" secondAttribute="bottom" constant="30" id="ZqW-FU-DSN"/>
-                        <constraint firstItem="ErB-y2-BDy" firstAttribute="top" secondItem="mV2-53-m1n" secondAttribute="bottom" constant="20" id="nfS-ll-fwP"/>
-                        <constraint firstItem="9kz-51-hxO" firstAttribute="top" secondItem="ErB-y2-BDy" secondAttribute="bottom" constant="20" id="o6h-1x-5Eb"/>
+                        <constraint firstItem="P8a-fe-mLL" firstAttribute="top" secondItem="ymr-x4-WsP" secondAttribute="bottom" constant="25" id="ZqW-FU-DSN"/>
                     </constraints>
                 </stackView>
             </subviews>
@@ -131,8 +124,9 @@
             <constraints>
                 <constraint firstItem="3RN-9p-v4M" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="2QG-vX-zQb"/>
                 <constraint firstItem="3RN-9p-v4M" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="7vc-mc-gVn"/>
-                <constraint firstItem="3RN-9p-v4M" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" constant="-8" id="JN3-7d-KWA"/>
+                <constraint firstItem="3RN-9p-v4M" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="vUN-kp-3ea" secondAttribute="bottom" constant="-20" id="JN3-7d-KWA"/>
                 <constraint firstItem="3RN-9p-v4M" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" constant="-20" id="Jix-R4-gBh"/>
+                <constraint firstItem="3RN-9p-v4M" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="xBB-nD-jpV"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
