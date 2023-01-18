@@ -217,7 +217,7 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
     // MARK: Table View Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.row) {
-        case 5:
+        case 6:
             favoriteLocationAction()
         default:
             break
