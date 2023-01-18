@@ -249,10 +249,6 @@ class MountainPassReportViewController: RefreshViewController, UITableViewDataSo
     // MARK: -
     // MARK: Table View Data source methods
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return passReportView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
-    }
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return passReportView
     }
