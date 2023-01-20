@@ -26,12 +26,15 @@ class RestAreaViewController: UIViewController, MapMarkerDelegate, GMSMapViewDel
     var restAreaItem: RestAreaItem?
     fileprivate let restAreaMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: 0, longitude: 0))
     
-    @IBOutlet weak var locationLabel: INDLinkLabel!
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var restAreaStack: UIStackView!
     @IBOutlet weak var restAreaImage: UIImageView!
     @IBOutlet weak var restAreaLabel: UILabel!
+    @IBOutlet weak var restAreaName: UILabel!
+    @IBOutlet weak var restAreaLocation: UILabel!
+    @IBOutlet weak var restAreaAmenities: UILabel!
+
 
     weak fileprivate var embeddedMapViewController: SimpleMapViewController!
 
@@ -52,22 +55,16 @@ class RestAreaViewController: UIViewController, MapMarkerDelegate, GMSMapViewDel
         var amenities: String = ""
         
         for amenity in restAreaItem!.amenities {
-            amenities.append("• " + amenity + "<br>")
+            amenities.append(amenity + ", ")
         }
         
-        let htmlStyleString = "<style>body{font-family: '-apple-system'; font-size:\(locationLabel.font.pointSize)px;}</style>"
-        
-        let content = "<b>" + restAreaItem!.location + " " + restAreaItem!.direction + "</b><br><br>" + "<b>Location: </b>" + restAreaItem!.description + "<br><br>" + "<b>Amenities</b><br>" + amenities
+        restAreaName.text = restAreaItem!.location + " " + restAreaItem!.direction
+        restAreaName.font = UIFont(descriptor: UIFont.preferredFont(forTextStyle: .title2).fontDescriptor.withSymbolicTraits(.traitBold)!, size: UIFont.preferredFont(forTextStyle: .title2).pointSize)
 
-        let htmlString = htmlStyleString + content
+        restAreaLocation.attributedText = locationLabel(label: "Location: ", description: restAreaItem!.description)
         
-        let attrStr = try! NSMutableAttributedString(
-            data: htmlString.data(using: String.Encoding.unicode, allowLossyConversion: false)!,
-            options: [ NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html],
-            documentAttributes: nil)
-        
-        locationLabel.attributedText = attrStr
-        
+        restAreaAmenities.attributedText = amenitiesLabel(label: "Amenities: ", amenities: String(amenities.dropLast(2)))
+                
         restAreaMarker.position = CLLocationCoordinate2D(latitude: restAreaItem!.latitude, longitude: restAreaItem!.longitude)
         
         scrollView.contentMode = .scaleAspectFit
@@ -87,10 +84,30 @@ class RestAreaViewController: UIViewController, MapMarkerDelegate, GMSMapViewDel
 
         
         if #available(iOS 13, *){
-            locationLabel.textColor = UIColor.label
+            restAreaName.textColor = UIColor.label
+            restAreaLocation.textColor = UIColor.label
+            restAreaAmenities.textColor = UIColor.label
 
         }
         
+    }
+    
+    func locationLabel(label: String, description: String) ->  NSAttributedString {
+        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .headline)]
+        let contentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .body)]
+        let label = NSMutableAttributedString(string: label, attributes: titleAttributes)
+        let description = NSMutableAttributedString(string: description, attributes: contentAttributes)
+        label.append(description)
+        return label
+    }
+    
+    func amenitiesLabel(label: String, amenities: String) ->  NSAttributedString {
+        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .headline)]
+        let contentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .body)]
+        let label = NSMutableAttributedString(string: label, attributes: titleAttributes)
+        let amenities = NSMutableAttributedString(string: amenities, attributes: contentAttributes)
+        label.append(amenities)
+        return label
     }
 
     override func viewDidAppear(_ animated: Bool) {
