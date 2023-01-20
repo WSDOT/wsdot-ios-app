@@ -23,7 +23,6 @@ import UIKit
 class MountainPassCell: UITableViewCell {
     @IBOutlet weak var weatherImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var forecastLabel: UILabel!
     @IBOutlet weak var restrictionsOneLabel: UILabel!
     @IBOutlet weak var restrictionsTwoLabel: UILabel!
 

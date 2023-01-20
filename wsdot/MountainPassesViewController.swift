@@ -136,20 +136,14 @@ class MountainPassesViewController: RefreshViewController, UITableViewDelegate, 
         cell.nameLabel.font = UIFont(descriptor: UIFont.preferredFont(forTextStyle: .title3).fontDescriptor.withSymbolicTraits(.traitBold)!, size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
 
         
-        cell.forecastLabel.text = ""
         
         if (passItem.weatherCondition != ""){
-            cell.forecastLabel.text = passItem.weatherCondition.replacingOccurrences(of: ".", with: "")
             cell.weatherImage.image = UIImage(named: WeatherUtils.getIconName(passItem.weatherCondition, title: ""))
         }
         
         else if (passItem.forecast.count > 0){
-            if (cell.forecastLabel.text == "") {
-                cell.forecastLabel.text = WeatherUtils.getForecastBriefDescription(passItem.forecast[0].forecastText)
-            }
             cell.weatherImage.image = UIImage(named: WeatherUtils.getIconName(passItem.forecast[0].forecastText, title: passItem.forecast[0].day))
         } else {
-            cell.forecastLabel.text = ""
             cell.weatherImage.image = nil
         }
         
