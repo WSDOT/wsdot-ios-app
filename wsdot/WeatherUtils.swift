@@ -40,7 +40,7 @@ class WeatherUtils {
     static fileprivate let lightRain = ("icLightRain", "icLightRain", ["light rain", "showers", "scattered rain"])
     static fileprivate let rain = ("icRain", "icRain", ["rain", "heavy rain", "raining"])
     static fileprivate let snow = ("icSnow", "icSnow", ["snow", "snowing", "light snow", "heavy snow"])
-    static fileprivate let fog = ("icFog", "icFog", ["fog"])
+    static fileprivate let fog = ("icFog", "icFogNight", ["fog"])
     static fileprivate let hail = ("icHail", "icHail", ["ice pellets", "light ice pellets", "heavy ice pellets", "hail"])
     static fileprivate let thunderStorm = ("icThunderStorm", "icThunderStorm", ["thunderstorm", "thunderstorms"])
     
