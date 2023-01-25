@@ -33,6 +33,7 @@ class RestAreaViewController: UIViewController, MapMarkerDelegate, GMSMapViewDel
     @IBOutlet weak var restAreaLabel: UILabel!
     @IBOutlet weak var restAreaName: UILabel!
     @IBOutlet weak var restAreaLocation: UILabel!
+    @IBOutlet weak var restAreaDirection: UILabel!
     @IBOutlet weak var restAreaAmenities: UILabel!
 
 
@@ -58,10 +59,12 @@ class RestAreaViewController: UIViewController, MapMarkerDelegate, GMSMapViewDel
             amenities.append(amenity + ", ")
         }
         
-        restAreaName.text = restAreaItem!.location + " " + restAreaItem!.direction
+        restAreaName.text = restAreaItem!.location
         restAreaName.font = UIFont(descriptor: UIFont.preferredFont(forTextStyle: .title2).fontDescriptor.withSymbolicTraits(.traitBold)!, size: UIFont.preferredFont(forTextStyle: .title2).pointSize)
 
         restAreaLocation.attributedText = locationLabel(label: "Location: ", description: restAreaItem!.description)
+        
+        restAreaDirection.attributedText = locationLabel(label: "Direction: ", description: restAreaItem!.direction)
         
         restAreaAmenities.attributedText = amenitiesLabel(label: "Amenities: ", amenities: String(amenities.dropLast(2)))
                 
@@ -86,6 +89,7 @@ class RestAreaViewController: UIViewController, MapMarkerDelegate, GMSMapViewDel
         if #available(iOS 13, *){
             restAreaName.textColor = UIColor.label
             restAreaLocation.textColor = UIColor.label
+            restAreaDirection.textColor = UIColor.label
             restAreaAmenities.textColor = UIColor.label
 
         }
@@ -93,6 +97,15 @@ class RestAreaViewController: UIViewController, MapMarkerDelegate, GMSMapViewDel
     }
     
     func locationLabel(label: String, description: String) ->  NSAttributedString {
+        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .headline)]
+        let contentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .body)]
+        let label = NSMutableAttributedString(string: label, attributes: titleAttributes)
+        let description = NSMutableAttributedString(string: description, attributes: contentAttributes)
+        label.append(description)
+        return label
+    }
+    
+    func directionLabel(label: String, description: String) ->  NSAttributedString {
         let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .headline)]
         let contentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .body)]
         let label = NSMutableAttributedString(string: label, attributes: titleAttributes)
