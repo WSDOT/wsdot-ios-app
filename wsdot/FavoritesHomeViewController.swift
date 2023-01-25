@@ -550,17 +550,20 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             passCell.nameLabel.text = passItem.name
             passCell.nameLabel.font = UIFont(descriptor: UIFont.preferredFont(forTextStyle: .title3).fontDescriptor.withSymbolicTraits(.traitBold)!, size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
             
+            // Weather Icon
             if (passItem.weatherCondition != ""){
-                passCell.weatherImage.image = UIImage(named: WeatherUtils.getIconName(passItem.weatherCondition, title: ""))
+                passCell.weatherImage.image = UIImage(named: WeatherUtils.getDailyWeatherIconName(passItem.weatherCondition))
             }
             
             else if (passItem.forecast.count > 0){
-                passCell.weatherImage.image = UIImage(named: WeatherUtils.getIconName(passItem.forecast[0].forecastText, title: passItem.forecast[0].day))
-            } else {
+                passCell.weatherImage.image = UIImage(named: WeatherUtils.getDailyWeatherIconName(passItem.forecast[0].forecastText))
+            }
+            
+            else {
                 passCell.weatherImage.image = nil
             }
             
-            // Travel Restrictions
+            // Travel Restrictions Text
             passCell.restrictionsOneLabel.attributedText = mountainPassViewController.restrictionLabel(label: "Travel ", direction: passItem.restrictionOneTravelDirection, passItem: passItem.restrictionOneText)
             passCell.restrictionsTwoLabel.attributedText = mountainPassViewController.restrictionLabel(label: "Travel ", direction: passItem.restrictionTwoTravelDirection, passItem: passItem.restrictionTwoText)
             

@@ -134,20 +134,21 @@ class MountainPassesViewController: RefreshViewController, UITableViewDelegate, 
         
         cell.nameLabel.text = passItem.name
         cell.nameLabel.font = UIFont(descriptor: UIFont.preferredFont(forTextStyle: .title3).fontDescriptor.withSymbolicTraits(.traitBold)!, size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
-
         
-        
+        // Weather Icon
         if (passItem.weatherCondition != ""){
-            cell.weatherImage.image = UIImage(named: WeatherUtils.getIconName(passItem.weatherCondition, title: ""))
+            cell.weatherImage.image = UIImage(named: WeatherUtils.getDailyWeatherIconName(passItem.weatherCondition))
         }
         
         else if (passItem.forecast.count > 0){
-            cell.weatherImage.image = UIImage(named: WeatherUtils.getIconName(passItem.forecast[0].forecastText, title: passItem.forecast[0].day))
-        } else {
+            cell.weatherImage.image = UIImage(named: WeatherUtils.getDailyWeatherIconName(passItem.forecast[0].forecastText))
+        }
+        
+        else {
             cell.weatherImage.image = nil
         }
         
-        // Travel Restrictions
+        // Travel Restrictions Text
         cell.restrictionsOneLabel.attributedText = restrictionLabel(label: "Travel ", direction: passItem.restrictionOneTravelDirection, passItem: passItem.restrictionOneText)
         cell.restrictionsTwoLabel.attributedText = restrictionLabel(label: "Travel ", direction: passItem.restrictionTwoTravelDirection, passItem: passItem.restrictionTwoText)
      
