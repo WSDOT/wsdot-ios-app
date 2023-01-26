@@ -81,6 +81,7 @@ class MountainPassesViewController: RefreshViewController, UITableViewDelegate, 
                     // Reload tableview on UI thread
                     DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
+                            MountainPassStore.flushOldData()
                             selfValue.passItems = MountainPassStore.getPasses()
                             selfValue.tableView.reloadData()
                             selfValue.refreshControl.endRefreshing()

@@ -225,7 +225,7 @@ class MountainPassReportViewController: RefreshViewController, UITableViewDataSo
                     // Reload tableview on UI thread
                     DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
-                            
+                            MountainPassStore.flushOldData()
                             if let passItem = (MountainPassStore.getPasses().filter{ $0.id == selfValue.passItem.id }.first) {
                                     selfValue.passItem = passItem
                                     selfValue.updatePassReportView(withPassItem: selfValue.passItem)

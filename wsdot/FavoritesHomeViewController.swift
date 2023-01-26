@@ -265,7 +265,9 @@ extension FavoritesHomeViewController {
             }else {
                 self.emptyFavoritesView.isHidden = true
             }
-          
+            
+            MountainPassStore.flushOldData()
+
             self.tableView.reloadData()
             self.hideOverlayView()
             self.refreshControl.endRefreshing()
