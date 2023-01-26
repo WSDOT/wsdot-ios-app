@@ -219,7 +219,7 @@ extension FavoritesHomeViewController {
             emptyFavoritesView.isHidden = true
         }
 
-        loadSelectedContent(force: false)
+        loadSelectedContent(force: true)
     }
 
     /**
