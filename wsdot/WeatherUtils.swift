@@ -40,18 +40,28 @@ class WeatherUtils {
     static fileprivate let lightRain = ("icLightRain", "icLightRain", ["light rain", "showers", "scattered rain"])
     static fileprivate let rain = ("icRain", "icRain", ["rain", "heavy rain", "raining"])
     static fileprivate let snow = ("icSnow", "icSnow", ["snow", "snowing", "light snow", "heavy snow"])
-    static fileprivate let fog = ("icFog", "icFog", ["fog"])
+    static fileprivate let fog = ("icFog", "icFogNight", ["fog"])
     static fileprivate let hail = ("icHail", "icHail", ["ice pellets", "light ice pellets", "heavy ice pellets", "hail"])
     static fileprivate let thunderStorm = ("icThunderStorm", "icThunderStorm", ["thunderstorm", "thunderstorms"])
     
     static fileprivate let weather = [clear, fewClouds, partlyCloudy, cloudy, mostlyCloudy, overcast, sleet, lightRain, rain, snow, fog, hail, thunderStorm]
     
-    static func getIconName(_ forecast: String, title: String) -> String {
+    static func getDailyWeatherIconName(_ forecast: String) -> String {
         
         let shortForecast = WeatherUtils.getForecastBriefDescription(forecast)
-        
         for weatherTriple in weather {
-            if (weatherTriple.2.filter({(item: String) -> Bool in return shortForecast.lowercased().hasPrefix(item.lowercased())}).count > 0){
+            if (weatherTriple.2.filter({(item: String) -> Bool in return shortForecast.lowercased().contains(item.lowercased())}).count > 0){
+                return weatherTriple.0
+            }
+        }
+        return ""
+    }
+    
+    static func getForecastIconName(_ forecast: String, title: String) -> String {
+        
+        let shortForecast = WeatherUtils.getForecastBriefDescription(forecast)
+        for weatherTriple in weather {
+            if (weatherTriple.2.filter({(item: String) -> Bool in return shortForecast.lowercased().contains(item.lowercased())}).count > 0){
                 return isNight(title) ? weatherTriple.1 : weatherTriple.0
             }
         }
@@ -59,6 +69,7 @@ class WeatherUtils {
     }
     
     static func isNight(_ title: String) -> Bool {
+        
         do {
             let internalExpression: NSRegularExpression = try NSRegularExpression(pattern: "night|tonight", options: .caseInsensitive)
             let matches = internalExpression.matches(in: title, options: NSRegularExpression.MatchingOptions.withoutAnchoringBounds, range:NSMakeRange(0, title.count))
@@ -71,4 +82,5 @@ class WeatherUtils {
             return false
         }
     }
+    
 }

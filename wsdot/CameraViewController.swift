@@ -55,7 +55,8 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
         self.cameraIconStack.layer.cornerRadius = 4.0
         
         cameraTitleLabel.text = cameraItem.title
-        
+        cameraTitleLabel.font = UIFont.preferredFont(forTextStyle: .headline)
+
         embeddedMapViewController.view.isHidden = false
         
         if (cameraItem.selected) {

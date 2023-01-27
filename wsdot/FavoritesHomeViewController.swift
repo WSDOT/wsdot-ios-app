@@ -51,6 +51,9 @@ class FavoritesHomeViewController: RefreshViewController {
     var myRoutes = [MyRouteItem]()
     var tollRates = [TollRateSignItem]()
     var borderWaits = [BorderWaitItem]()
+    
+    let mountainPassViewController = MountainPassesViewController()
+    
 
     @IBOutlet weak var emptyFavoritesView: UIView!
     @IBOutlet weak var tableView: UITableView!
@@ -123,7 +126,7 @@ class FavoritesHomeViewController: RefreshViewController {
     
     /**
      * Method name: getTitle
-     * Description: Returns a title for a section in the favorites list. 
+     * Description: Returns a title for a section in the favorites list.
      *              Required since sections can be changed. Uses sectionToTypeMap/
      * Parameters: forSection: The section to get a title for.
      */
@@ -216,7 +219,7 @@ extension FavoritesHomeViewController {
             emptyFavoritesView.isHidden = true
         }
 
-        loadSelectedContent(force: false)
+        loadSelectedContent(force: true)
     }
 
     /**
@@ -262,7 +265,9 @@ extension FavoritesHomeViewController {
             }else {
                 self.emptyFavoritesView.isHidden = true
             }
-          
+            
+            MountainPassStore.flushOldData()
+
             self.tableView.reloadData()
             self.hideOverlayView()
             self.refreshControl.endRefreshing()
@@ -545,16 +550,25 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             let passItem = mountainPasses[indexPath.row]
             
             passCell.nameLabel.text = passItem.name
+            passCell.nameLabel.font = UIFont(descriptor: UIFont.preferredFont(forTextStyle: .title3).fontDescriptor.withSymbolicTraits(.traitBold)!, size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
             
-            if (passItem.forecast.count > 0){
-                passCell.forecastLabel.text = WeatherUtils.getForecastBriefDescription(passItem.forecast[0].forecastText)
-                passCell.weatherImage.image = UIImage(named: WeatherUtils.getIconName(passItem.forecast[0].forecastText, title: passItem.forecast[0].day))
-            } else {
-                passCell.forecastLabel.text = ""
+            // Weather Icon
+            if (passItem.weatherCondition != ""){
+                passCell.weatherImage.image = UIImage(named: WeatherUtils.getDailyWeatherIconName(passItem.weatherCondition))
+            }
+            
+            else if (passItem.forecast.count > 0){
+                passCell.weatherImage.image = UIImage(named: WeatherUtils.getDailyWeatherIconName(passItem.forecast[0].forecastText))
+            }
+            
+            else {
                 passCell.weatherImage.image = nil
             }
             
-            passCell.updatedLabel.text = TimeUtils.timeAgoSinceDate(date: passItem.dateUpdated, numericDates: false)
+            // Travel Restrictions Text
+            passCell.restrictionsOneLabel.attributedText = mountainPassViewController.restrictionLabel(label: "Travel ", direction: passItem.restrictionOneTravelDirection, passItem: passItem.restrictionOneText)
+            passCell.restrictionsTwoLabel.attributedText = mountainPassViewController.restrictionLabel(label: "Travel ", direction: passItem.restrictionTwoTravelDirection, passItem: passItem.restrictionTwoText)
+            
             
             return passCell
             

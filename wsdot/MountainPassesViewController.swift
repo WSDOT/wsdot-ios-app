@@ -27,7 +27,9 @@ class MountainPassesViewController: RefreshViewController, UITableViewDelegate, 
     let cellIdentifier = "PassCell"
     let segueMountainPassDetailsViewController = "MountainPassDetailsViewController"
     
+    var passItem: MountainPassItem?
     var passItems = [MountainPassItem]()
+    fileprivate let mountainPassMarkers = GMSMarker(position: CLLocationCoordinate2D(latitude: 0, longitude: 0))
 
     @IBOutlet weak var bannerView: GAMBannerView!
     
@@ -62,6 +64,11 @@ class MountainPassesViewController: RefreshViewController, UITableViewDelegate, 
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        refresh(true)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         MyAnalytics.screenView(screenName: "PassReports")
@@ -74,6 +81,7 @@ class MountainPassesViewController: RefreshViewController, UITableViewDelegate, 
                     // Reload tableview on UI thread
                     DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
+                            MountainPassStore.flushOldData()
                             selfValue.passItems = MountainPassStore.getPasses()
                             selfValue.tableView.reloadData()
                             selfValue.refreshControl.endRefreshing()
@@ -92,6 +100,19 @@ class MountainPassesViewController: RefreshViewController, UITableViewDelegate, 
                 }
             })
         }
+    }
+    
+    func restrictionLabel(label: String, direction: String, passItem: String) ->  NSAttributedString {
+        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .headline)]
+        let contentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .body)]
+        let label = NSMutableAttributedString(string: label, attributes: titleAttributes)
+        let direction = NSMutableAttributedString(string: direction, attributes: titleAttributes)
+        let colon = NSMutableAttributedString(string: ": ", attributes: titleAttributes)
+        let content = NSMutableAttributedString(string: passItem, attributes: contentAttributes)
+        label.append(direction)
+        label.append(colon)
+        label.append(content)
+        return label
     }
     
     @objc func refreshAction(_ sender: UIRefreshControl) {
@@ -113,28 +134,24 @@ class MountainPassesViewController: RefreshViewController, UITableViewDelegate, 
         let passItem = passItems[indexPath.row]
         
         cell.nameLabel.text = passItem.name
+        cell.nameLabel.font = UIFont(descriptor: UIFont.preferredFont(forTextStyle: .title3).fontDescriptor.withSymbolicTraits(.traitBold)!, size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
         
-        cell.forecastLabel.text = ""
-        
+        // Weather Icon
         if (passItem.weatherCondition != ""){
-            cell.forecastLabel.text = passItem.weatherCondition
+            cell.weatherImage.image = UIImage(named: WeatherUtils.getDailyWeatherIconName(passItem.weatherCondition))
         }
         
-        if (passItem.forecast.count > 0){
-            if (cell.forecastLabel.text == "") {
-                cell.forecastLabel.text = WeatherUtils.getForecastBriefDescription(passItem.forecast[0].forecastText)
-            }
-            cell.weatherImage.image = UIImage(named: WeatherUtils.getIconName(passItem.forecast[0].forecastText, title: passItem.forecast[0].day))
-        } else {
-            cell.forecastLabel.text = ""
+        else if (passItem.forecast.count > 0){
+            cell.weatherImage.image = UIImage(named: WeatherUtils.getDailyWeatherIconName(passItem.forecast[0].forecastText))
+        }
+        
+        else {
             cell.weatherImage.image = nil
         }
         
-        if passItem.dateUpdated as Date == Date.init(timeIntervalSince1970: 0){
-            cell.updatedLabel.text = "Not Available"
-        }else {
-            cell.updatedLabel.text = TimeUtils.timeAgoSinceDate(date: passItem.dateUpdated, numericDates: true)
-        }
+        // Travel Restrictions Text
+        cell.restrictionsOneLabel.attributedText = restrictionLabel(label: "Travel ", direction: passItem.restrictionOneTravelDirection, passItem: passItem.restrictionOneText)
+        cell.restrictionsTwoLabel.attributedText = restrictionLabel(label: "Travel ", direction: passItem.restrictionTwoTravelDirection, passItem: passItem.restrictionTwoText)
      
         return cell
     }

@@ -8,12 +8,12 @@ target 'WSDOT' do
     pod 'Firebase/Messaging'
     pod 'Firebase/Performance'
     pod 'Firebase/Crashlytics'
-    pod 'GoogleMaps', '~> 3.7.0'
-    pod 'RealmSwift', '~> 4.3.2'
+    pod 'GoogleMaps', '~> 6.0.1'
+    pod 'RealmSwift', '~> 10.33.0'
     pod 'Alamofire', '~> 5.6.4'
     pod 'SwiftyJSON', '~> 5.0.1'
     pod 'SDWebImage', '~> 5.14.2'
-    pod 'EasyTipView', '~> 2.0.4'
+    pod 'EasyTipView', '~> 2.1.0'
     pod 'NotificationBannerSwift', '3.1.0'
 end
 
@@ -23,12 +23,12 @@ target 'WSDOTTests' do
     pod 'Firebase/Messaging'
     pod 'Firebase/Performance'
     pod 'Firebase/Crashlytics'
-    pod 'GoogleMaps', '~> 3.7.0'
-    pod 'RealmSwift', '~> 4.3.2'
+    pod 'GoogleMaps', '~> 6.0.1'
+    pod 'RealmSwift', '~> 10.33.0'
     pod 'Alamofire', '~> 5.6.4'
     pod 'SwiftyJSON', '~> 5.0.1'
     pod 'SDWebImage', '~> 5.14.2'
-    pod 'EasyTipView', '~> 2.0.4'
+    pod 'EasyTipView', '~> 2.1.0'
     pod 'NotificationBannerSwift', '3.1.0'
 end
 

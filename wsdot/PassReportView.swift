@@ -10,26 +10,27 @@ import UIKit
 
 class PassReportView: UIView {
     
+    @IBOutlet weak var mountainPassTitle: UILabel!
+    
+    @IBOutlet weak var mountainPassTitleLabel: UILabel!
+    
+    @IBOutlet weak var mountainPassIconStack: UIStackView!
+    @IBOutlet weak var mountainPassIconImage: UIImageView!
+    @IBOutlet weak var mountainPassIconLabel: UILabel!
+    
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var timestampLabel: UILabel!
-    @IBOutlet weak var restrictionOneTitleLabel: UILabel!
     
     @IBOutlet weak var restrictionOneLabel: UILabel!
-    @IBOutlet weak var restrictionTwoTitleLabel: UILabel!
     
     @IBOutlet weak var restrictionTwoLabel: UILabel!
     
-    
-    @IBOutlet weak var conditionsTitleLabel: UILabel!
     @IBOutlet weak var conditionsLabel: UILabel!
     
-    @IBOutlet weak var weatherTitleLabel: UILabel!
     @IBOutlet weak var weatherDetailsLabel: UILabel!
     
-    @IBOutlet weak var temperatureTitleLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     
-    @IBOutlet weak var elevationTitleLabel: UILabel!
     @IBOutlet weak var elevationLabel: UILabel!
     
     override init(frame: CGRect) {

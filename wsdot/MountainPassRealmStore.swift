@@ -53,14 +53,14 @@ class MountainPassStore: Decodable {
     }
     
     static func updatePasses(_ force: Bool, completion: @escaping UpdatePassesCompletion) {
-        var delta = CachesStore.updateTime
+        var delta = CachesStore.mountainPassCacheTime
         let deltaUpdated = (Calendar.current as NSCalendar).components(.second, from: CachesStore.getUpdatedTime(CachedData.mountainPasses), to: Date(), options: []).second
         
         if let deltaValue = deltaUpdated {
              delta = deltaValue
         }
          
-        if ((delta > CachesStore.updateTime) || force){
+        if ((delta > CachesStore.mountainPassCacheTime) || force){
             
             let request = NetworkUtils
                 .getJSONRequestNoLocalCache(forUrl: "https://data.wsdot.wa.gov/mobile/MountainPassConditions.js")

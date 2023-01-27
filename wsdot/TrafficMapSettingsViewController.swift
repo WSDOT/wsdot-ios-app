@@ -35,12 +35,13 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
         super.viewDidLoad()
         
         menu_options = ["WSDOT Alerts",
+                        "Mountain Passes",
                         "Rest Areas",
                         "JBLM",
                         "Cluster Cameras",
                         "Favorite Location"]
         
-        menu_icon_names = ["","alert_high_icon","restarea_icon","icMapJBLM","camera_icon","icHomeFavorites", "trafficMapKey"]
+        menu_icon_names = ["","alert_high_icon","icMountainPass","restarea_icon","icMapJBLM","camera_icon","icHomeFavorites", "trafficMapKey"]
 
         self.view.backgroundColor = ThemeManager.currentTheme().mainColor
     }
@@ -93,7 +94,7 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
         
             return cell
         
-        } else if indexPath.row < 6 {
+        } else if indexPath.row < 7 {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! SettingsCell
             
@@ -123,8 +124,25 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                 cell.favoriteImageView.isHidden = true
                 cell.infoButton.isHidden = true
                 break
-                
+            
             case menu_options[1]:
+                let mountainPassPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.mountainPasses)
+                if let mountainPassVisible = mountainPassPref {
+                    if (mountainPassVisible == "on") {
+                        cell.settingSwitch.isOn = true
+                    } else {
+                        cell.settingSwitch.isOn = false
+                    }
+                }
+                
+                cell.settingSwitch.addTarget(self, action: #selector(TrafficMapSettingsViewController.changeMountainPassPref(_:)), for: .valueChanged)
+                cell.settingSwitch.isHidden = false
+                cell.selectionStyle = .none
+                cell.favoriteImageView.isHidden = true
+                cell.infoButton.isHidden = true
+                break
+                
+            case menu_options[2]:
                 let restAreaPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.restAreas)
                 if let restAreaVisible = restAreaPref {
                     if (restAreaVisible == "on") {
@@ -141,7 +159,7 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                 cell.infoButton.isHidden = true
                 break
                 
-            case menu_options[2]:
+            case menu_options[3]:
                 let jblmPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.jblmCallout)
                 if let jblmVisible = jblmPref {
                     if (jblmVisible == "on") {
@@ -157,7 +175,7 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                 cell.infoButton.isHidden = true
                 break
                 
-            case menu_options[3]:
+            case menu_options[4]:
                 let clusterPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.shouldCluster)
                 if let clusterVisible = clusterPref {
                     if (clusterVisible == "on") {
@@ -175,7 +193,7 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                 cell.infoButton.addTarget(self, action: #selector(TrafficMapSettingsViewController.clusterInfoAlert(_:)), for: .touchUpInside)
                 break
                 
-            case menu_options[4]:
+            case menu_options[5]:
                 cell.selectionStyle = .blue
                 cell.settingSwitch.isHidden = true
                 cell.favoriteImageView.isHidden = false
@@ -199,7 +217,7 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
     // MARK: Table View Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.row) {
-        case 5:
+        case 6:
             favoriteLocationAction()
         default:
             break
@@ -267,6 +285,22 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
             }
         }
     }
+    
+    @objc func changeMountainPassPref(_ sender: UISwitch){
+        let mountainPassesPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.mountainPasses)
+        if let mountainPassesVisible = mountainPassesPref {
+            if (mountainPassesVisible == "on") {
+                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Hide Mountain Passes")
+                UserDefaults.standard.set("off", forKey: UserDefaultsKeys.mountainPasses)
+                my_parent!.removeMountainPasses()
+            } else {
+                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Show Mountain Passes")
+                UserDefaults.standard.set("on", forKey: UserDefaultsKeys.mountainPasses)
+                my_parent!.drawMountainPasses()
+            }
+        }
+    }
+    
     
     @objc func changeRestAreaPref(_ sender: UISwitch){
         let restAreaPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.restAreas)
