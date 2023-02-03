@@ -21,10 +21,10 @@ import UIKit
 
 class WeatherUtils {
     
-    // Returns the first sentance from input String
-    static func getForecastBriefDescription(_ fullForecast: String) -> String {
+    // Returns forecast input String
+    static func getForecastBriefDescription(_ fullForecast: String, index: Int) -> String {
         if (fullForecast != ""){
-            return fullForecast.split(separator: ".").map(String.init)[0]
+            return fullForecast.split(separator: ".").map(String.init)[index]
         } else {
             return ""
         }
@@ -46,9 +46,9 @@ class WeatherUtils {
     
     static fileprivate let weather = [clear, fewClouds, partlyCloudy, cloudy, mostlyCloudy, overcast, sleet, lightRain, rain, snow, fog, hail, thunderStorm]
     
-    static func getDailyWeatherIconName(_ forecast: String) -> String {
+    static func getDailyWeatherIconName(_ forecast: String, index: Int) -> String {
         
-        let shortForecast = WeatherUtils.getForecastBriefDescription(forecast)
+        let shortForecast = WeatherUtils.getForecastBriefDescription(forecast, index: index)
         for weatherTriple in weather {
             if (weatherTriple.2.filter({(item: String) -> Bool in return shortForecast.lowercased().contains(item.lowercased())}).count > 0){
                 return weatherTriple.0
@@ -57,9 +57,8 @@ class WeatherUtils {
         return ""
     }
     
-    static func getForecastIconName(_ forecast: String, title: String) -> String {
-        
-        let shortForecast = WeatherUtils.getForecastBriefDescription(forecast)
+    static func getForecastIconName(_ forecast: String, title: String, index: Int) -> String {
+        let shortForecast = WeatherUtils.getForecastBriefDescription(forecast, index: index)
         for weatherTriple in weather {
             if (weatherTriple.2.filter({(item: String) -> Bool in return shortForecast.lowercased().contains(item.lowercased())}).count > 0){
                 return isNight(title) ? weatherTriple.1 : weatherTriple.0

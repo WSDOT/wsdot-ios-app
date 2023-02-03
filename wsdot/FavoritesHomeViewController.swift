@@ -554,11 +554,22 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             
             // Weather Icon
             if (passItem.weatherCondition != ""){
-                passCell.weatherImage.image = UIImage(named: WeatherUtils.getDailyWeatherIconName(passItem.weatherCondition))
+                passCell.weatherImage.image = UIImage(named: WeatherUtils.getDailyWeatherIconName(passItem.weatherCondition, index: 0))
             }
             
             else if (passItem.forecast.count > 0){
-                passCell.weatherImage.image = UIImage(named: WeatherUtils.getDailyWeatherIconName(passItem.forecast[0].forecastText))
+
+                // Check first sentence in forecast for icon match
+                if ((UIImage(named: WeatherUtils.getDailyWeatherIconName(passItem.forecast[0].forecastText, index: 0))) != nil) {
+                    passCell.weatherImage.image = UIImage(named: WeatherUtils.getDailyWeatherIconName(passItem.forecast[0].forecastText, index: 0))
+
+                }
+                
+                // Check second sentence in forecast for icon match
+                else {
+                    passCell.weatherImage.image = UIImage(named: WeatherUtils.getDailyWeatherIconName(passItem.forecast[0].forecastText, index: 1))
+                }
+                
             }
             
             else {
