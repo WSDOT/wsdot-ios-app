@@ -138,11 +138,22 @@ class MountainPassesViewController: RefreshViewController, UITableViewDelegate, 
         
         // Weather Icon
         if (passItem.weatherCondition != ""){
-            cell.weatherImage.image = UIImage(named: WeatherUtils.getDailyWeatherIconName(passItem.weatherCondition))
+            cell.weatherImage.image = UIImage(named: WeatherUtils.getDailyWeatherIconName(passItem.weatherCondition, index: 0))
         }
         
         else if (passItem.forecast.count > 0){
-            cell.weatherImage.image = UIImage(named: WeatherUtils.getDailyWeatherIconName(passItem.forecast[0].forecastText))
+
+            // Check first sentence in forecast for icon match
+            if ((UIImage(named: WeatherUtils.getDailyWeatherIconName(passItem.forecast[0].forecastText, index: 0))) != nil) {
+                cell.weatherImage.image = UIImage(named: WeatherUtils.getDailyWeatherIconName(passItem.forecast[0].forecastText, index: 0))
+
+            }
+            
+            // Check second sentence in forecast for icon match
+            else {
+                cell.weatherImage.image = UIImage(named: WeatherUtils.getDailyWeatherIconName(passItem.forecast[0].forecastText, index: 1))
+            }
+            
         }
         
         else {
