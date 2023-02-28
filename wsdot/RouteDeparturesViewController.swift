@@ -93,7 +93,7 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
         
         dayButton.setTitleColor(UIColor.lightText, for: .highlighted)
         dayButton.layer.cornerRadius = 6.0
-        dayButton.contentHorizontalAlignment = .center
+        dayButton.contentHorizontalAlignment = .left
         dayButton.titleLabel?.minimumScaleFactor = 0.5
         dayButton.titleLabel?.adjustsFontSizeToFitWidth = true
         
@@ -152,16 +152,9 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
                     self.routeTimesVC.currentSailing = routeItemValue.terminalPairs[0]
                     self.routeTimesVC.sailingsByDate = routeItemValue.scheduleDates
                    
-                    let dateFormater = DateFormatter()
-                    dateFormater.dateFormat = "EEE, MMM dd"
-                    let currentDate = dateFormater.string(from: Date())
-                    
                     if let firstSailingDateValue = routeItemValue.scheduleDates.first {
                         self.routeTimesVC.dateData = TimeUtils.nextNDayDates(n: routeItemValue.scheduleDates.count, firstSailingDateValue.date)
-                    self.dayButton.setTitle(currentDate, for: UIControl.State())
-                    
-//                    self.dayButton.setTitle(TimeUtils.getDayOfWeekString(self.routeTimesVC.dateData[self.routeTimesVC.currentDay]), for: UIControl.State())
-
+                    self.dayButton.setTitle(TimeUtils.getDayOfWeekString(self.routeTimesVC.dateData[self.routeTimesVC.currentDay]), for: UIControl.State())
                     }
                     
                     self.routeTimesVC.setDisplayedSailing(0)

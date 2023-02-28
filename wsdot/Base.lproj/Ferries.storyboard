@@ -716,14 +716,15 @@
                                     <segue destination="fa2-BD-KKh" kind="embed" identifier="vesselWatchSegue" id="ssa-Wn-Ar8"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4au-rT-O5d" customClass="DateButton" customModule="WSDOT" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4au-rT-O5d" customClass="IconButton" customModule="WSDOT" customModuleProvider="target">
                                 <rect key="frame" x="254.5" y="49" width="112.5" height="36"/>
                                 <color key="backgroundColor" red="0.0" green="0.49803921569999998" blue="0.63921568630000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" hint="double tap to select sailing day"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="MLX-CM-JwN"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" image="icDownArrow"/>
                                 <connections>
                                     <action selector="dayButtonTap:" destination="zsX-Zv-QLD" eventType="touchUpInside" id="Em6-SV-crf"/>
                                 </connections>
