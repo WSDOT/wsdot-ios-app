@@ -36,6 +36,8 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
     @IBOutlet weak var cameraIconImage: UIImageView!
     @IBOutlet weak var cameraIconLabel: UILabel!
     
+    fileprivate weak var timer: Timer?
+    
     weak fileprivate var embeddedMapViewController: SimpleMapViewController!
     
     var cameraItem: CameraItem = CameraItem()
@@ -89,11 +91,18 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
         } else {
             bannerView.isHidden = true
         }
+        
+        timer = Timer.scheduledTimer(timeInterval: TimeInterval(CachesStore.cameraRefreshTime), target: self, selector: #selector(CameraViewController.updateCamera(_:)), userInfo: nil, repeats: true)
+        
     }
     
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         bannerView.isAccessibilityElement = true
         bannerView.accessibilityLabel = "advertisement banner."
+    }
+    
+    @objc func updateCamera(_ sender: Timer){
+        self.viewWillAppear(true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -131,6 +140,14 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         MyAnalytics.screenView(screenName: "CameraImage")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if self.isBeingDismissed || self.isMovingFromParent {
+            if timer != nil {
+                self.timer?.invalidate()
+            }
+        }
     }
     
     // MARK: Naviagtion
