@@ -31,7 +31,9 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
     @IBOutlet weak var bannerView: GAMBannerView!
     
     @IBOutlet weak var cameraTitleLabel: UILabel!
-    
+    @IBOutlet weak var cameraDirectionLabel: UILabel!
+    @IBOutlet weak var cameraRefreshLabel: UILabel!
+
     @IBOutlet weak var cameraIconStack: UIStackView!
     @IBOutlet weak var cameraIconImage: UIImageView!
     @IBOutlet weak var cameraIconLabel: UILabel!
@@ -55,9 +57,6 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
         self.cameraIconStack.layer.borderColor = UIColor(red: 0/255, green: 123/255, blue: 95/255, alpha: 1.0).cgColor
         self.cameraIconStack.layer.borderWidth = 1
         self.cameraIconStack.layer.cornerRadius = 4.0
-        
-        cameraTitleLabel.text = cameraItem.title
-        cameraTitleLabel.font = UIFont.preferredFont(forTextStyle: .headline)
 
         embeddedMapViewController.view.isHidden = false
         
@@ -70,7 +69,12 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
         }
         
         favoriteBarButton.tintColor = Colors.yellow
+        cameraTitleLabel.attributedText = titleLabel(description: cameraItem.title)
+
+        cameraDirectionLabel.attributedText = directionLabel(label: "Camera Direction: ", description: getDirection(direction: cameraItem.direction))
         
+        cameraRefreshLabel.attributedText = refreshRateLabel(label: "Refresh Rate: ", description: "Approximately every 5 minutes.")
+
         // Set up map marker
         cameraMarker.position = CLLocationCoordinate2D(latitude: self.cameraItem.latitude, longitude: self.cameraItem.longitude)
         cameraMarker.icon = UIImage(named: "icMapCamera")
@@ -181,4 +185,71 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
             favoriteBarButton.accessibilityLabel = "remove from favorites"
         }
     }
+    
+    func titleLabel(description: String) ->  NSAttributedString {
+        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .title3).pointSize, weight: .bold)]
+        let description = NSMutableAttributedString(string: description, attributes: titleAttributes)
+        return description
+    }
+    
+    func directionLabel(label: String, description: String) ->  NSAttributedString {
+        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize, weight: .bold)]
+        let contentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize, weight: .regular)]
+        let label = NSMutableAttributedString(string: label, attributes: titleAttributes)
+        let description = NSMutableAttributedString(string: description, attributes: contentAttributes)
+        label.append(description)
+        return label
+    }
+    
+    func refreshRateLabel(label: String, description: String) ->  NSAttributedString {
+        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize, weight: .bold)]
+        let contentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize, weight: .regular)]
+        let label = NSMutableAttributedString(string: label, attributes: titleAttributes)
+        let description = NSMutableAttributedString(string: description, attributes: contentAttributes)
+        label.append(description)
+        return label
+    }
+    
+    
+    // Changes direction names
+     func getDirection(direction: String) -> String {
+    
+        var direction = cameraItem.direction
+    
+        if direction == "B" {
+            direction = "This camera moves to point in more than one direction."
+        }
+        
+        if direction == "N" {
+            direction = "North"
+        }
+
+        if direction == "E" {
+            direction = "East"
+        }
+        
+        if direction == "S" {
+            direction = "South"
+        }
+         
+         if direction == "W" {
+             direction = "West"
+         }
+        
+        return direction
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+      super.traitCollectionDidChange(previousTraitCollection)
+      if previousTraitCollection?.preferredContentSizeCategory != traitCollection.preferredContentSizeCategory {
+          
+          cameraTitleLabel.attributedText = titleLabel(description: cameraItem.title)
+         
+          cameraDirectionLabel.attributedText = directionLabel(label: "Camera Direction: ", description: getDirection(direction: cameraItem.direction))
+          
+          cameraRefreshLabel.attributedText = refreshRateLabel(label: "Refresh Rate: ", description: "Approximately every 5 minutes.")
+
+      }
+    }
+    
 }
