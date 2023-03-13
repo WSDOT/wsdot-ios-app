@@ -76,7 +76,7 @@ class RestAreaViewController: UIViewController, MapMarkerDelegate, GMSMapViewDel
             restAreaMarker.map = mapView
             restAreaMarker.icon = UIImage(named: "icMapRestArea")
 
-            mapView.settings.setAllGesturesEnabled(false)
+            mapView.settings.setAllGesturesEnabled(true)
             if let restArea = restAreaItem {
                 mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: restArea.latitude, longitude: restArea.longitude), zoom: 14))
                 embeddedMapViewController.view.isHidden = false
@@ -131,7 +131,7 @@ class RestAreaViewController: UIViewController, MapMarkerDelegate, GMSMapViewDel
     func mapReady() {
         if let mapView = embeddedMapViewController.view as? GMSMapView{
             restAreaMarker.map = mapView
-            mapView.settings.setAllGesturesEnabled(false)
+            mapView.settings.setAllGesturesEnabled(true)
             if let restArea = restAreaItem {
                 mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: restArea.latitude, longitude: restArea.longitude), zoom: 14))
                 embeddedMapViewController.view.isHidden = false
