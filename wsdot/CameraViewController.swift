@@ -117,7 +117,7 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
         // side page views.
         if let mapView = embeddedMapViewController.view as? GMSMapView{
             cameraMarker.map = mapView
-            mapView.settings.setAllGesturesEnabled(false)
+            mapView.settings.setAllGesturesEnabled(true)
             mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: self.cameraItem.latitude, longitude: self.cameraItem.longitude), zoom: 14))
             
         }
@@ -168,7 +168,7 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
         
         if let mapView = embeddedMapViewController.view as? GMSMapView{
             cameraMarker.map = mapView
-            mapView.settings.setAllGesturesEnabled(false)
+            mapView.settings.setAllGesturesEnabled(true)
             mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: self.cameraItem.latitude, longitude: self.cameraItem.longitude), zoom: 14))
         }
     
