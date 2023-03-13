@@ -170,7 +170,7 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
                 print("here 1")
                 
                 alertMarker.map = mapView
-                mapView.settings.setAllGesturesEnabled(false)
+                mapView.settings.setAllGesturesEnabled(true)
                 mapView.moveCamera(GMSCameraUpdate.setTarget(
                     CLLocationCoordinate2D(latitude: 47.7511,longitude: -120.7401),
                     zoom: 6))
@@ -181,7 +181,7 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
             if let mapView = embeddedMapViewController.view as? GMSMapView{
                 print("here 2")
                 alertMarker.map = mapView
-                mapView.settings.setAllGesturesEnabled(false)
+                mapView.settings.setAllGesturesEnabled(true)
                 mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: self.alertItem.startLatitude, longitude: self.alertItem.startLongitude), zoom: 14))
             }
         }
