@@ -193,8 +193,8 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
     }
     
     func directionLabel(label: String, description: String) ->  NSAttributedString {
-        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize, weight: .bold)]
-        let contentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize, weight: .regular)]
+        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .callout).pointSize - 0.1, weight: .bold)]
+        let contentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .callout).pointSize - 0.1, weight: .regular)]
         let label = NSMutableAttributedString(string: label, attributes: titleAttributes)
         let description = NSMutableAttributedString(string: description, attributes: contentAttributes)
         label.append(description)
@@ -202,8 +202,8 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
     }
     
     func refreshRateLabel(label: String, description: String) ->  NSAttributedString {
-        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize, weight: .bold)]
-        let contentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize, weight: .regular)]
+        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .callout).pointSize - 0.1, weight: .bold)]
+        let contentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .callout).pointSize - 0.1, weight: .regular)]
         let label = NSMutableAttributedString(string: label, attributes: titleAttributes)
         let description = NSMutableAttributedString(string: description, attributes: contentAttributes)
         label.append(description)
