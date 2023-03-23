@@ -41,7 +41,7 @@ class CachesStore {
     
     static let updateTime: Int = 900 // once every 15 minutes
 
-    static let cameraUpdateTime: Int = 604800 // once a week
+    static let cameraUpdateTime: Int = 300 // once every 5 minutes
     static let cameraRefreshTime: Int = 300 // once every 5 minutes
 
     static let vesselUpdateTime: TimeInterval = 30 // once every 30 seconds
