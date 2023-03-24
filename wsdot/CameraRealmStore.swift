@@ -70,14 +70,14 @@ class CamerasStore: Decodable {
     }
     
     static func updateCameras(_ force: Bool, completion: @escaping UpdateCamerasCompletion) {
-        var delta = CachesStore.updateTime
+        var delta = CachesStore.cameraUpdateTime
         let deltaUpdated = (Calendar.current as NSCalendar).components(.second, from: CachesStore.getUpdatedTime(CachedData.cameras), to: Date(), options: []).second
         
         if let deltaValue = deltaUpdated {
             delta = deltaValue
         }
          
-        if ((delta > CachesStore.updateTime) || force){
+        if ((delta > CachesStore.cameraUpdateTime) || force){
             
             AF.request("https://data.wsdot.wa.gov/mobile/Cameras.js").validate().responseDecodable(of: CamerasStore.self) { response in
                 switch response.result {

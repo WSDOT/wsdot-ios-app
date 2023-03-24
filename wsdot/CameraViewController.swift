@@ -71,7 +71,12 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
         favoriteBarButton.tintColor = Colors.yellow
         cameraTitleLabel.attributedText = titleLabel(description: cameraItem.title)
 
-        cameraDirectionLabel.attributedText = directionLabel(label: "Camera Direction: ", description: getDirection(direction: cameraItem.direction))
+        if (cameraItem.direction != "") {
+            cameraDirectionLabel.attributedText = directionLabel(label: "Camera Direction: ", description: getDirection(direction: cameraItem.direction))
+        }
+        else {
+            cameraDirectionLabel.isHidden = true
+        }
         
         cameraRefreshLabel.attributedText = refreshRateLabel(label: "Refresh Rate: ", description: "Approximately every 5 minutes.")
 
