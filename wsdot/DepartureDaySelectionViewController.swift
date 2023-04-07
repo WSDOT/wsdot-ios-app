@@ -23,6 +23,23 @@ class DepartureDaySelectionViewController: UIViewController, UITableViewDelegate
         self.dismiss(animated: true, completion: {()->Void in});
     }
     
+    @IBAction func infoButton(_ sender: Any) {
+           
+           // Ferry Schedule Calendar Message
+           let alert = UIAlertController(title: "Ferry Schedule Calendar", message: "Future ferry schedules are provided for planning purposes and can change daily. Please monitor ferry alerts to stay notified of changes to your route. For additional trip planning information, visit the Washington State Ferries website.", preferredStyle: .alert);
+
+           alert.addAction(UIAlertAction(title: "Close", style: .default, handler: nil));
+           let action: UIAlertAction = UIAlertAction(title: "Ferry Website", style: .default, handler: {
+              (action) in
+                 UIApplication.shared.open(URL(string: "https://wsdot.wa.gov/travel/washington-state-ferries")!, options: [:], completionHandler: nil)
+            })
+           alert.addAction(action)
+           alert.view.tintColor = Colors.tintColor
+           self.present(alert, animated: true, completion: nil)
+       }
+
+    
+    
     override func viewDidLoad() {
         df.dateFormat = "MM/dd"
         self.view.backgroundColor = ThemeManager.currentTheme().mainColor
