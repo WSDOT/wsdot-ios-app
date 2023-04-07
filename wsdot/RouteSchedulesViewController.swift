@@ -47,6 +47,8 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
     @IBOutlet weak var reservationsButton: UIButton!
     @IBOutlet weak var vesselWatchButton: UIButton!
     
+    fileprivate weak var timer: Timer?
+    
     override func viewDidLoad() {
     
         super.viewDidLoad()
@@ -77,7 +79,14 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
         self.tableView.reloadData()
         
         self.refresh(true)
+        
+        timer = Timer.scheduledTimer(timeInterval: TimeInterval(CachesStore.ferryUpdateTime), target: self, selector: #selector(RouteSchedulesViewController.updateFerrySchedules(_:)), userInfo: nil, repeats: true)
     }
+    
+    @objc func updateFerrySchedules(_ sender: Timer){
+        self.refresh(true)
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -231,4 +240,13 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
         reservationsButton.clipsToBounds = true
         reservationsButton.titleLabel?.lineBreakMode = .byWordWrapping
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if self.isBeingDismissed || self.isMovingFromParent {
+            if timer != nil {
+                self.timer?.invalidate()
+            }
+        }
+    }
+    
 }
