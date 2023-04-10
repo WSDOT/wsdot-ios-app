@@ -37,6 +37,7 @@ post_install do |installer|
     target.build_configurations.each do |config|
       config.build_settings['SWIFT_VERSION'] = '5.0'
       config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
+      config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
     end
   end
 end
