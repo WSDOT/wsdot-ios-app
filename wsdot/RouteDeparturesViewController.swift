@@ -62,7 +62,7 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
         print("wsdot debug: adViewDidReceiveAd")
         if let responseInfo = bannerView.responseInfo {
           print("wsdot debug: \(responseInfo)")
-            print("wsdot debug: \(String(describing: responseInfo.adNetworkClassName))")
+            print("wsdot debug: \(String(describing: responseInfo.loadedAdNetworkResponseInfo))")
             print("wsdot debug: \(String(describing: responseInfo.responseIdentifier))")
         }
     }
