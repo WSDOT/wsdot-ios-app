@@ -87,7 +87,7 @@ class FerryRealmStore: Decodable {
                 delta = deltaValue
             }
         
-            if ((delta > CachesStore.updateTime) || force){
+            if ((delta > CachesStore.ferryUpdateTime) || force){
                 AF.request("https://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js").validate().responseDecodable(of: FerryRealmStore.self) { response in
                     switch response.result {
                     case .success:
