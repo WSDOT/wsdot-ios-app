@@ -78,7 +78,7 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
         self.routes = FerryRealmStore.findAllSchedules()
         self.tableView.reloadData()
         
-        self.refresh(true)
+        self.refresh(false)
         
         timer = Timer.scheduledTimer(timeInterval: TimeInterval(CachesStore.ferryUpdateTime), target: self, selector: #selector(RouteSchedulesViewController.updateFerrySchedules(_:)), userInfo: nil, repeats: true)
     }
