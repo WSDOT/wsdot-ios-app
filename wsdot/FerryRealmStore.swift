@@ -87,7 +87,7 @@ class FerryRealmStore: Decodable {
                 delta = deltaValue
             }
         
-            if ((delta > CachesStore.updateTime) || force){
+            if ((delta > CachesStore.ferryUpdateTime) || force){
                 AF.request("https://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js").validate().responseDecodable(of: FerryRealmStore.self) { response in
                     switch response.result {
                     case .success:
@@ -265,23 +265,28 @@ class FerryRealmStore: Decodable {
         let sailings = List<FerrySailingsItem>()
         for(_, sailingJSON):(String, JSON) in json {
             let sailing = FerrySailingsItem()
-            
-            sailing.arrivingTerminalId = sailingJSON["ArrivingTerminalID"].intValue
-            sailing.arrivingTerminalName = sailingJSON["ArrivingTerminalName"].stringValue
-            sailing.departingTerminalId = sailingJSON["DepartingTerminalID"].intValue
-            sailing.departingTerminalName = sailingJSON["DepartingTerminalName"].stringValue
-            
-            for time in parseDepartureTimesJSON(sailingJSON["Times"]){
-                sailing.times.append(time)
+
+            if (!sailingJSON["Times"].isEmpty) {
+                sailing.arrivingTerminalId = sailingJSON["ArrivingTerminalID"].intValue
+                sailing.arrivingTerminalName = sailingJSON["ArrivingTerminalName"].stringValue
+                sailing.departingTerminalId = sailingJSON["DepartingTerminalID"].intValue
+                sailing.departingTerminalName = sailingJSON["DepartingTerminalName"].stringValue
+                
+                for time in parseDepartureTimesJSON(sailingJSON["Times"]){
+                    sailing.times.append(time)
+                }
+                
+                for(_, annotationJSON):(String, JSON) in sailingJSON["Annotations"]{
+                    let annotation = Annotation()
+                    annotation.message = annotationJSON.stringValue
+                    sailing.annotations.append(annotation)
+                }
+                
+                sailings.append(sailing)
+            } else {
+//                print("Missing Ferry Times: " + sailingJSON["ArrivingTerminalName"].stringValue + " - " + sailingJSON["DepartingTerminalName"].stringValue)
+
             }
-            
-            for(_, annotationJSON):(String, JSON) in sailingJSON["Annotations"]{
-                let annotation = Annotation()
-                annotation.message = annotationJSON.stringValue
-                sailing.annotations.append(annotation)
-            }
-            
-            sailings.append(sailing)
         }
         return sailings
     }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qIk-ps-OzW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qIk-ps-OzW">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,14 +14,14 @@
             <objects>
                 <viewController id="fa2-BD-KKh" customClass="VesselWatchViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2hI-3V-jEb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="521"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="501"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="ACs-iT-ykb">
-                                <rect key="frame" x="169" y="242" width="37" height="37"/>
+                                <rect key="frame" x="169" y="232" width="37" height="37"/>
                             </activityIndicatorView>
                             <toolbar clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCg-ql-Rvd">
-                                <rect key="frame" x="0.0" y="477" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="457" width="375" height="44"/>
                                 <items>
                                     <barButtonItem image="icMyLocation" id="MU2-vD-N2s">
                                         <userDefinedRuntimeAttributes>
@@ -50,7 +50,7 @@
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </toolbar>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IF4-Y9-eAy">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="477"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="437"/>
                                 <connections>
                                     <segue destination="Tbg-l4-csa" kind="embed" identifier="EmbedMapSegue" id="dXg-Ar-maZ"/>
                                 </connections>
@@ -92,7 +92,7 @@
             <objects>
                 <viewController id="Tbg-l4-csa" customClass="MapViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eqr-tr-HAs">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="477"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="457"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="WuE-qO-qnk"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -115,7 +115,7 @@
             <objects>
                 <viewController id="0hD-sb-OuA" customClass="VesselDetailsViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fj6-lz-uGO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="501"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="481"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Route:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Js7-c8-OGR">
@@ -297,7 +297,7 @@
             <objects>
                 <viewController id="ujp-Ps-Ns9" customClass="VesselWatchSettingsViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UHt-tQ-5K4">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="501"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="481"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mcx-mX-cje">
@@ -313,7 +313,7 @@
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SXu-2y-99e">
-                                <rect key="frame" x="0.0" y="56" width="375" height="445"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="425"/>
                                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MapStyleCell" rowHeight="98" id="Sh4-jj-RSN" customClass="MapStyleCell" customModule="WSDOT" customModuleProvider="target">
@@ -383,7 +383,7 @@
                 <navigationController storyboardIdentifier="FerriesNav" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qIk-ps-OzW" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="5VD-Wr-CEI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -399,11 +399,11 @@
             <objects>
                 <viewController storyboardIdentifier="RouteSchedulesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MKy-qV-91S" customClass="RouteSchedulesViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="csc-Rn-WV1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4J1-wt-95H" customClass="GAMBannerView">
-                                <rect key="frame" x="27.5" y="573" width="320" height="50"/>
+                                <rect key="frame" x="27.5" y="553" width="320" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="HC7-YO-P8x"/>
                                     <constraint firstAttribute="height" constant="32" id="VTE-vO-m5i"/>
@@ -488,7 +488,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="L6U-gD-ZYb">
-                                <rect key="frame" x="0.0" y="112" width="375" height="461"/>
+                                <rect key="frame" x="0.0" y="112" width="375" height="441"/>
                                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FerriesRouteSchedulesCell" id="i4t-qs-pAP" customClass="RoutesCustomCell" customModule="WSDOT" customModuleProvider="target">
@@ -584,11 +584,11 @@
             <objects>
                 <viewController storyboardIdentifier="RouteAlertsViewController" id="7rf-f5-hN4" customClass="RouteAlertsViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="I5c-gP-h5w">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VJP-3Q-OpG">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RouteAlerts" id="6sV-50-wR4" customClass="LinkCell" customModule="WSDOT" customModuleProvider="target">
@@ -643,7 +643,7 @@
                                 </connections>
                             </tableView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="SyC-ag-ddK">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="color" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
@@ -674,15 +674,15 @@
             <objects>
                 <viewController storyboardIdentifier="RouteDeparturesViewController" hidesBottomBarWhenPushed="YES" id="zsX-Zv-QLD" customClass="RouteDeparturesViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dNL-ZE-gHM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s3p-vV-1U1">
-                                <rect key="frame" x="0.0" y="566" width="375" height="57"/>
+                                <rect key="frame" x="0.0" y="546" width="375" height="57"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="92X-rn-RaJ" customClass="GAMBannerView">
-                                <rect key="frame" x="27.5" y="572" width="320" height="50"/>
+                                <rect key="frame" x="27.5" y="552" width="320" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="WbO-6G-Iov"/>
                                     <constraint firstAttribute="width" constant="320" id="g2z-AV-ZKt"/>
@@ -699,31 +699,32 @@
                                 </variation>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jQQ-2t-Te6" userLabel="Times Container View">
-                                <rect key="frame" x="0.0" y="93" width="375" height="477"/>
+                                <rect key="frame" x="0.0" y="93" width="375" height="457"/>
                                 <connections>
                                     <segue destination="Whq-2K-wR1" kind="embed" identifier="timesViewSegue" id="ioK-qy-EUX"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7in-bp-hzl">
-                                <rect key="frame" x="0.0" y="93" width="375" height="477"/>
+                                <rect key="frame" x="0.0" y="93" width="375" height="457"/>
                                 <connections>
                                     <segue destination="9oz-GA-S3r" kind="embed" identifier="camerasViewSegue" id="6lF-hc-Nk1"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kSn-7K-XNe" userLabel="Vessel Watch Container View">
-                                <rect key="frame" x="0.0" y="49" width="375" height="521"/>
+                                <rect key="frame" x="0.0" y="49" width="375" height="501"/>
                                 <connections>
                                     <segue destination="fa2-BD-KKh" kind="embed" identifier="vesselWatchSegue" id="ssa-Wn-Ar8"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4au-rT-O5d" customClass="DateButton" customModule="WSDOT" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4au-rT-O5d" customClass="IconButton" customModule="WSDOT" customModuleProvider="target">
                                 <rect key="frame" x="254.5" y="49" width="112.5" height="36"/>
                                 <color key="backgroundColor" red="0.0" green="0.49803921569999998" blue="0.63921568630000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" hint="double tap to select sailing day"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="MLX-CM-JwN"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" image="icDownArrow"/>
                                 <connections>
                                     <action selector="dayButtonTap:" destination="zsX-Zv-QLD" eventType="touchUpInside" id="Em6-SV-crf"/>
                                 </connections>
@@ -815,11 +816,11 @@
             <objects>
                 <viewController id="Whq-2K-wR1" customClass="RouteTimesViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OXS-G6-73x">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="477"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="457"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ea4-dX-pgd">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="477"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="437"/>
                                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RouteDeparturesSailingSpaces" id="sOY-xD-adj" customClass="DeparturesCustomCell" customModule="WSDOT" customModuleProvider="target">
@@ -1093,6 +1094,16 @@
                                                 <action selector="cancelAction:" destination="gt2-Sv-UWX" id="bKx-4h-QhE"/>
                                             </connections>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" id="qDE-TN-X6a">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" id="41S-F9-0VT">
+                                                <rect key="frame" x="309" y="11" width="50" height="34"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                <connections>
+                                                    <action selector="infoButton:" destination="gt2-Sv-UWX" eventType="touchUpInside" id="r76-GD-KPq"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -1137,11 +1148,11 @@
             <objects>
                 <viewController id="9oz-GA-S3r" customClass="RouteCamerasViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cNj-D7-o38">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="477"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="457"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="261" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EyA-JM-ZYf">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="477"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="437"/>
                                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TerminalCameras" rowHeight="261" id="YaX-Bs-itt" customClass="CameraImageCustomCell" customModule="WSDOT" customModuleProvider="target">
