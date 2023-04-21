@@ -61,7 +61,7 @@ class BridgeAlertsStore: Decodable {
     
     static func updateBridgeAlerts(_ force: Bool, completion: @escaping UpdateBridgeAlertsCompletion) {
         DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
-            var delta = CachesStore.updateTime
+            var delta = CachesStore.bridgeCacheTime
             let deltaUpdated = (Calendar.current as NSCalendar).components(.second, from: CachesStore.getUpdatedTime(CachedData.bridgeAlerts), to: Date(), options: []).second
         
             if let deltaValue = deltaUpdated {
