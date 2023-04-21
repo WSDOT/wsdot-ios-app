@@ -36,6 +36,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     let SegueMountainPassesViewController = "MountainPassesViewController"
     let SegueAmtrakCascadesViewController = "AmtrakCascadesViewController"
     let segueMyRouteViewController = "MyRouteViewController"
+    let SegueBridgeAlertsViewController = "BridgeAlertsViewController"
     
     let SegueEventViewController = "EventViewController"
     
@@ -64,8 +65,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         removeEmptyCells(tableView)
         
-        menu_options = ["Traffic Map", "Ferries", "Mountain Passes", "Toll Rates", "Border Waits", "Amtrak Cascades", "My Routes", "Favorites"]
-        menu_icon_names = ["icHomeTraffic","icHomeFerries","icHomePasses","icHomeTollRates","icHomeBorderWaits","icHomeAmtrakCascades", "icHomeMyRoutes", "icHomeFavorites"]
+        menu_options = ["Traffic Map", "Ferries", "Mountain Passes", "Bridge Alerts", "Toll Rates", "Border Waits", "Amtrak Cascades", "My Routes","Favorites"]
+        menu_icon_names = ["icHomeTraffic","icHomeFerries","icHomePasses","icBridgeAlerts","icHomeTollRates","icHomeBorderWaits","icHomeAmtrakCascades", "icHomeMyRoutes", "icHomeFavorites"]
 
         let image : UIImage = UIImage(named: "wsdot_banner.png")!
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
@@ -272,18 +273,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 performSegue(withIdentifier: SegueMountainPassesViewController, sender: self)
                 break
             case 3:
+                performSegue(withIdentifier: SegueBridgeAlertsViewController, sender: self)
+            case 4:
                 performSegue(withIdentifier: SegueTollRatesViewController, sender: self)
                 break
-            case 4:
+            case 5:
                 performSegue(withIdentifier: SegueBorderWaitsViewController, sender: self)
                 break
-            case 5:
+            case 6:
                 performSegue(withIdentifier: SegueAmtrakCascadesViewController, sender: self)
                 break
-            case 6:
-                performSegue(withIdentifier: segueMyRouteViewController, sender: self)
-                break
             case 7:
+                performSegue(withIdentifier: segueMyRouteViewController, sender: self)
+                break 
+            case 8:
                 performSegue(withIdentifier: SegueFavoritesViewController, sender: self)
             default:
                 break

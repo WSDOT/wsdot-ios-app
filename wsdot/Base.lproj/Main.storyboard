@@ -148,7 +148,15 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Woy-Zb-Oyl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="800" y="1185"/>
+            <point key="canvasLocation" x="638" y="1185"/>
+        </scene>
+        <!--BridgeAlerts-->
+        <scene sceneID="kbc-zu-dZw">
+            <objects>
+                <viewControllerPlaceholder storyboardName="BridgeAlerts" id="wDC-qm-1tl" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4nL-o9-d3o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="821" y="1185"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="515-et-fK2">
@@ -258,6 +266,7 @@
                         <segue destination="nqe-tc-muW" kind="showDetail" identifier="MyRouteViewController" id="03P-z7-5GX"/>
                         <segue destination="NKl-R2-BiL" kind="showDetail" identifier="AmtrakCascadesViewController" id="klt-53-Bmj"/>
                         <segue destination="zqY-uR-LD3" kind="showDetail" identifier="EventViewController" id="7SE-Sd-Joi"/>
+                        <segue destination="wDC-qm-1tl" kind="showDetail" identifier="BridgeAlertsViewController" id="DcY-4v-V7d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KTF-7j-ojf" userLabel="First Responder" sceneMemberID="firstResponder"/>
