@@ -78,9 +78,9 @@ class BridgeAlertsTableViewController: RefreshViewController, UITableViewDelegat
                                 selfValue.topicItemsMap["1st Avenue South Bridge"] = [BridgeAlertItem()]
                             }
 
-                            if (selfValue.topicItemsMap["Hood Canal"] == nil)
+                            if (selfValue.topicItemsMap["Hood Canal Bridge"] == nil)
                             {
-                                selfValue.topicItemsMap["Hood Canal"] = [BridgeAlertItem()]
+                                selfValue.topicItemsMap["Hood Canal Bridge"] = [BridgeAlertItem()]
                             }
 
                             if (selfValue.topicItemsMap["Interstate Bridge"] == nil)

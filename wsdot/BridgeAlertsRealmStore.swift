@@ -127,6 +127,11 @@ class BridgeAlertsStore: Decodable {
 
             alert.localCacheDate = Date()
             
+            // Update "Hood Canal" bridge name to display "Hood Canal Bridge"
+                       if (alert.bridge == "Hood Canal") {
+                           alert.bridge = "Hood Canal Bridge"
+                       }
+            
             newAlerts.append(alert)
         }
         
