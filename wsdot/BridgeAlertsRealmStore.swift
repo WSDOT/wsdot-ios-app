@@ -106,11 +106,16 @@ class BridgeAlertsStore: Decodable {
             let alert = BridgeAlertItem()
 
             alert.alertId = alertJson["BridgeOpeningId"].intValue
+            alert.descText = alertJson["EventText"].stringValue
+            alert.status = alertJson["Status"].stringValue
+            alert.duration = alertJson["Duration"].stringValue
             alert.bridge = alertJson["BridgeLocation"]["Description"].stringValue
             alert.descText = alertJson["EventText"].stringValue
             alert.latitude = alertJson["BridgeLocation"]["Latitude"].doubleValue
             alert.longitude = alertJson["BridgeLocation"]["Longitude"].doubleValue
-            
+            alert.milepost = alertJson["BridgeLocation"]["MilePost"].doubleValue
+            alert.direction = alertJson["BridgeLocation"]["Direction"].stringValue
+            alert.roadName = alertJson["BridgeLocation"]["RoadName"].stringValue
             if let timeJsonStringValue = alertJson["OpeningTime"].string {
                 do {
                     alert.openingTime =
