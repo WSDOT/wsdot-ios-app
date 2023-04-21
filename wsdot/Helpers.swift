@@ -226,7 +226,7 @@ struct WSDOTErrorStrings {
     static let cameras = "can't download cameras"
     static let borderWaits = "can't download border waits"
     static let eventStatusAlert = "can't download alert"
-
+    static let bridgeAlerts = "can't download bridge alerts"
     static let favorites = "can't update favorites"
     static let favoriteTravelTimes = "can't update travel times"
     static let favoriteFerries = "can't update ferry schedules"

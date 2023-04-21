@@ -67,7 +67,7 @@ class BridgeAlertsViewController: RefreshViewController, UITableViewDelegate, UI
                         if let selfValue = self{
                             selfValue.hideOverlayView()
                             selfValue.refreshControl.endRefreshing()
-                            AlertMessages.getConnectionAlert(backupURL: WsdotURLS.ferries, message: WSDOTErrorStrings.ferriesSchedule)
+                            AlertMessages.getConnectionAlert(backupURL: WsdotURLS.bridges, message: WSDOTErrorStrings.bridgeAlerts)
                         }
                     }
                 }
