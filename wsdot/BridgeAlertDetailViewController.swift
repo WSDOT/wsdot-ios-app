@@ -173,7 +173,7 @@ class BridgeAlertDetailViewController: RefreshViewController, INDLinkLabelDelega
                 print("here 1")
                 
                 alertMarker.map = mapView
-                mapView.settings.setAllGesturesEnabled(false)
+                mapView.settings.setAllGesturesEnabled(true)
                 mapView.moveCamera(GMSCameraUpdate.setTarget(
                     CLLocationCoordinate2D(latitude: 47.7511,longitude: -120.7401),
                     zoom: 6))
@@ -184,7 +184,7 @@ class BridgeAlertDetailViewController: RefreshViewController, INDLinkLabelDelega
             if let mapView = embeddedMapViewController.view as? GMSMapView{
                 print("here 2")
                 alertMarker.map = mapView
-                mapView.settings.setAllGesturesEnabled(false)
+                mapView.settings.setAllGesturesEnabled(true)
                 mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: self.bridgeAlertItem.latitude, longitude: self.bridgeAlertItem.longitude), zoom: 14))
             }
         }
