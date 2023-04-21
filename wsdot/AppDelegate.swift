@@ -224,18 +224,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         setNavController(newNavigationController: ferriesNav)
 
     }
-
-    func launchBridgeAlertsScreen(){
-        let trafficMapStoryboard: UIStoryboard = UIStoryboard(name: "TrafficMap", bundle: nil)
-        
-        // Set up nav and vc stack
-        let trafficMapNav = trafficMapStoryboard.instantiateViewController(withIdentifier: "TrafficMapNav") as! UINavigationController
-        let trafficMap = trafficMapStoryboard.instantiateViewController(withIdentifier: "TrafficMapViewController") as! TrafficMapViewController
-        
+    
+    func launchBridgeAlertsViewControllerScreen(){
         let BridgeAlertsStoryboard: UIStoryboard = UIStoryboard(name: "BridgeAlerts", bundle: nil)
-        
-        let BridgeAlertsVC = BridgeAlertsStoryboard.instantiateViewController(withIdentifier: "BridgeAlertsViewController") as! BridgeAlertsViewController
-        
+
+        // Set up nav and vc stack
+        let BridgesNav = BridgeAlertsStoryboard.instantiateViewController(withIdentifier: "BridgesNav") as! UINavigationController
+        let BridgeAlertsVC = BridgeAlertsStoryboard.instantiateViewController(withIdentifier: "BridgeAlertsViewController") as! BridgeAlertsTableViewController        
         // assign vc stack to new nav controller
         trafficMapNav.setViewControllers([trafficMap, BridgeAlertsVC], animated: false)
 

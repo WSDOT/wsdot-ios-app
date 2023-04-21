@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Bridge Alerts View Controller-->
+        <!--Bridge Alerts Table View Controller-->
         <scene sceneID="f8e-8P-7lA">
             <objects>
-                <viewController storyboardIdentifier="BridgeAlertsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y9z-Xp-CAV" customClass="BridgeAlertsViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BridgeAlertsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y9z-Xp-CAV" customClass="BridgeAlertsTableViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="saf-cx-Mzj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -93,6 +93,7 @@
                     <navigationItem key="navigationItem" id="PTd-Zi-gTu"/>
                     <connections>
                         <outlet property="tableView" destination="CzU-oK-Ri8" id="MSa-x1-WOV"/>
+                        <segue destination="ZYM-Ev-GgT" kind="show" identifier="BridgeAlertDetailViewController" id="vkG-bp-MHS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TI5-xq-Zyv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -117,10 +118,132 @@
             </objects>
             <point key="canvasLocation" x="-62.318840579710148" y="-606.02678571428567"/>
         </scene>
+        <!--Bridge Alert Detail View Controller-->
+        <scene sceneID="Esv-qp-kTg">
+            <objects>
+                <viewController storyboardIdentifier="BridgeAlertDetailViewController" hidesBottomBarWhenPushed="YES" id="ZYM-Ev-GgT" customClass="BridgeAlertDetailViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="utG-w6-PYN"/>
+                        <viewControllerLayoutGuide type="bottom" id="x64-73-QKS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rmG-it-m8Z">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FSp-Rq-oj2">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="djJ-CS-K49">
+                                        <rect key="frame" x="8" y="20" width="110" height="66"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mIW-r1-kWA">
+                                                <rect key="frame" x="0.0" y="8" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="6Ap-cH-hQe"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KyJ-WL-SQr">
+                                                <rect key="frame" x="50" y="8" width="50" height="50"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="0.0" bottom="8" trailing="10"/>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TUp-dV-iAm" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="40" width="398" height="0.0"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EAR-Q0-DS7">
+                                        <rect key="frame" x="8" y="56" width="398" height="0.0"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                        <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rfj-Ie-EaY">
+                                        <rect key="frame" x="8" y="76" width="398" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="f4b-q7-97r"/>
+                                        </constraints>
+                                        <connections>
+                                            <segue destination="Tio-pz-urg" kind="embed" identifier="EmbedMapSegue" id="q1f-Mx-ogS"/>
+                                        </connections>
+                                    </containerView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="TUp-dV-iAm" firstAttribute="trailing" secondItem="FSp-Rq-oj2" secondAttribute="trailingMargin" id="1uM-o5-1ar"/>
+                                    <constraint firstItem="Rfj-Ie-EaY" firstAttribute="leading" secondItem="FSp-Rq-oj2" secondAttribute="leading" constant="8" id="2CK-lg-ysd"/>
+                                    <constraint firstItem="djJ-CS-K49" firstAttribute="top" secondItem="FSp-Rq-oj2" secondAttribute="top" constant="20" id="6tm-ht-ety"/>
+                                    <constraint firstItem="djJ-CS-K49" firstAttribute="top" secondItem="TUp-dV-iAm" secondAttribute="top" constant="-20" id="7rc-UI-y0j"/>
+                                    <constraint firstItem="TUp-dV-iAm" firstAttribute="trailing" secondItem="EAR-Q0-DS7" secondAttribute="trailing" id="DVA-LA-LRV"/>
+                                    <constraint firstItem="EAR-Q0-DS7" firstAttribute="top" secondItem="TUp-dV-iAm" secondAttribute="bottom" constant="16" id="Kt6-AM-xnX"/>
+                                    <constraint firstItem="TUp-dV-iAm" firstAttribute="leading" secondItem="FSp-Rq-oj2" secondAttribute="leadingMargin" id="Ok8-nS-ReV"/>
+                                    <constraint firstItem="djJ-CS-K49" firstAttribute="leading" secondItem="FSp-Rq-oj2" secondAttribute="leading" constant="8" id="T9O-6g-WEw"/>
+                                    <constraint firstItem="TUp-dV-iAm" firstAttribute="centerX" secondItem="FSp-Rq-oj2" secondAttribute="centerX" id="U1e-ZE-hXe"/>
+                                    <constraint firstItem="Rfj-Ie-EaY" firstAttribute="top" secondItem="EAR-Q0-DS7" secondAttribute="bottom" constant="20" id="azm-tR-fDO"/>
+                                    <constraint firstItem="TUp-dV-iAm" firstAttribute="leading" secondItem="EAR-Q0-DS7" secondAttribute="leading" id="dfW-li-hSb"/>
+                                    <constraint firstAttribute="bottom" secondItem="Rfj-Ie-EaY" secondAttribute="bottom" constant="20" id="p5f-Mc-99e"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="djJ-CS-K49" secondAttribute="trailing" constant="8" id="wij-kv-Pke"/>
+                                    <constraint firstAttribute="trailing" secondItem="Rfj-Ie-EaY" secondAttribute="trailing" constant="8" id="ygB-GD-THb"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="2sW-x1-lpJ"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="FSp-Rq-oj2" firstAttribute="bottom" secondItem="x64-73-QKS" secondAttribute="top" id="0Fi-4T-A5K"/>
+                            <constraint firstAttribute="trailing" secondItem="FSp-Rq-oj2" secondAttribute="trailing" id="58F-Hy-ubI"/>
+                            <constraint firstItem="FSp-Rq-oj2" firstAttribute="top" secondItem="utG-w6-PYN" secondAttribute="bottom" id="Mh4-c4-SbP"/>
+                            <constraint firstItem="Rfj-Ie-EaY" firstAttribute="leading" secondItem="rmG-it-m8Z" secondAttribute="leading" constant="8" id="Ytn-Y6-cus"/>
+                            <constraint firstItem="FSp-Rq-oj2" firstAttribute="leading" secondItem="rmG-it-m8Z" secondAttribute="leading" id="dzD-O8-kzU"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="wgY-TV-OBw"/>
+                    <connections>
+                        <outlet property="categoryImage" destination="mIW-r1-kWA" id="Z8y-O8-Cgr"/>
+                        <outlet property="categoryLabel" destination="KyJ-WL-SQr" id="n54-HW-Zyw"/>
+                        <outlet property="categoryStack" destination="djJ-CS-K49" id="aax-Ak-PlU"/>
+                        <outlet property="descLinkLabel" destination="TUp-dV-iAm" id="aQl-US-LoT"/>
+                        <outlet property="scrollView" destination="FSp-Rq-oj2" id="ZrB-Jw-7CY"/>
+                        <outlet property="updateTimeLabel" destination="EAR-Q0-DS7" id="7Ke-d2-S2H"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z5M-dT-2rv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1754" y="-606"/>
+        </scene>
+        <!--Simple Map View Controller-->
+        <scene sceneID="Pf9-v4-hDD">
+            <objects>
+                <viewController id="Tio-pz-urg" customClass="SimpleMapViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pzr-tU-Wfx"/>
+                        <viewControllerLayoutGuide type="bottom" id="Oux-we-pCd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dml-vk-AaF">
+                        <rect key="frame" x="0.0" y="0.0" width="398" height="200"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="h8E-z4-a2G"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LlC-uW-uYe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2564" y="-606"/>
+        </scene>
     </scenes>
+    <designables>
+        <designable name="TUp-dV-iAm"/>
+    </designables>
     <resources>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

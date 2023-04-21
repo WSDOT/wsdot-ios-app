@@ -19,6 +19,7 @@
 		02D7F1F22614CCED00BD81CC /* BridgeAlertsRealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D7F1F12614CCED00BD81CC /* BridgeAlertsRealmStore.swift */; };
 		02D7F1F72614D7DE00BD81CC /* BridgeAlertsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D7F1F62614D7DE00BD81CC /* BridgeAlertsTableViewController.swift */; };
 		558F4FE82BC9F06000EC6CAD /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 558F4FE72BC9F06000EC6CAD /* PrivacyInfo.xcprivacy */; };
+		55A080A928C91A60004219EE /* BridgeAlertDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A080A828C91A60004219EE /* BridgeAlertDetailViewController.swift */; };
 		76763D7C27CFD4E700BBB1DB /* DateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76763D7B27CFD4E700BBB1DB /* DateButton.swift */; };
 		76D632A1289C5F2D00534F11 /* googlemapstyle.json in Resources */ = {isa = PBXBuildFile; fileRef = 76D632A0289C5F2D00534F11 /* googlemapstyle.json */; };
 		9A0360481DECBC6100B88466 /* PassCameraIDItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0360471DECBC6100B88466 /* PassCameraIDItem.swift */; };
@@ -272,6 +273,7 @@
 		08B5584F4B8FFF1035CFBE34 /* Pods_WSDOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WSDOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F733049676C72FA80F317B5 /* Pods-WSDOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.debug.xcconfig"; sourceTree = "<group>"; };
 		558F4FE72BC9F06000EC6CAD /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		55A080A828C91A60004219EE /* BridgeAlertDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeAlertDetailViewController.swift; sourceTree = "<group>"; };
 		65D6D46116E71C14DDDD1497 /* Pods-WSDOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.release.xcconfig"; sourceTree = "<group>"; };
 		690E6882E64B87BDA185B4DC /* Pods_WSDOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WSDOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76763D7B27CFD4E700BBB1DB /* DateButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateButton.swift; sourceTree = "<group>"; };
@@ -583,6 +585,7 @@
 			isa = PBXGroup;
 			children = (
 				02D7F1F62614D7DE00BD81CC /* BridgeAlertsTableViewController.swift */,
+				55A080A828C91A60004219EE /* BridgeAlertDetailViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -2239,6 +2242,7 @@
 				9A6FBCE11D6B96EE00CDCE16 /* HighwayAlertViewController.swift in Sources */,
 				9AEF4D8E1D7602FE003ECA34 /* FacebookCell.swift in Sources */,
 				9A9808C21F1FAAAE0034DA05 /* TravelChartImageCell.swift in Sources */,
+				55A080A928C91A60004219EE /* BridgeAlertDetailViewController.swift in Sources */,
 				9AEEDDA81D6F7FDF0032F5EC /* MountainPassReportViewController.swift in Sources */,
 				9AEF4DBE1D778ECF003ECA34 /* AmtrakCascadesScheduleViewController.swift in Sources */,
 				9A6FBD0D1D6CBC4E00CDCE16 /* TravelTimesRealmStore.swift in Sources */,
