@@ -151,15 +151,31 @@ class BridgeAlertsViewController: RefreshViewController, UITableViewDelegate, UI
         }
         cell.updated.text = "Last Updated: " + updated
         
+        // Check for valid alert ID
         if ((topicItem.alertId) != 0) {
             cell.title.text = topicItem.bridge
             cell.content.text = topicItem.descText
-            return cell
+            cell.isUserInteractionEnabled = true
+            cell.accessoryType = .disclosureIndicator
+
+            // Deactivate cell for scheduled alerts
+            if (topicItem.status == "Scheduled") {
+            cell.isUserInteractionEnabled = false
+            cell.accessoryType = .none
+
+            }
             
+            return cell
+        
+        
+        // Display No Alerts Reported message
         } else {
             cell.title.text = ""
             cell.content.text = "No Alerts Reported"
             cell.subContent.text = ""
+            cell.isUserInteractionEnabled = false
+            cell.accessoryType = .none
+
             return cell
             
         }
