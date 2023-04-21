@@ -33,11 +33,30 @@ class BridgeAlertsStore: Decodable {
         return alertItem
     }
     
-    static func getAllBridgeAlerts() -> [BridgeAlertItem]{
+    static func getAllBridgeAlerts() -> [String : [BridgeAlertItem]] {
         let realm = try! Realm()
         let alertItems = realm.objects(BridgeAlertItem.self).filter("delete == false")
-        return Array(alertItems)
+        return sortTopicsByCategory(topics:Array(alertItems))
+
     }
+    
+    fileprivate static func sortTopicsByCategory(topics: [BridgeAlertItem]) -> [String : [BridgeAlertItem]]{
+    
+        var topicCategoriesMap = [String: [BridgeAlertItem]]()
+        
+        let sortedTopics = topics.sorted(by: {$0.bridge < $1.bridge })
+        
+        for topic in sortedTopics {
+            if topicCategoriesMap[topic.bridge] != nil {
+                topicCategoriesMap[topic.bridge]!.append(topic)
+            } else {
+                topicCategoriesMap[topic.bridge] = [topic]
+            }
+        }
+        
+        return topicCategoriesMap
+    }
+
 
     
     static func updateBridgeAlerts(_ force: Bool, completion: @escaping UpdateBridgeAlertsCompletion) {
@@ -106,7 +125,7 @@ class BridgeAlertsStore: Decodable {
             newAlerts.append(alert)
         }
         
-        let oldAlerts = getAllBridgeAlerts()
+        let oldAlerts = realm.objects(BridgeAlertItem.self)
         
         do {
             try realm.write{

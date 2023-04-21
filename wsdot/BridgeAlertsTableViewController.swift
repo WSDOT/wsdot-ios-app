@@ -15,8 +15,10 @@ class BridgeAlertsViewController: RefreshViewController, UITableViewDelegate, UI
     let refreshControl = UIRefreshControl()
     
     @IBOutlet weak var tableView: UITableView!
-    
-    var bridgeAlerts = [BridgeAlertItem]()
+        
+    var topicItemsMap = [String: [BridgeAlertItem]]()
+    var topicCategoriesMap = [Int: String]()
+
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,10 +32,8 @@ class BridgeAlertsViewController: RefreshViewController, UITableViewDelegate, UI
         tableView.addSubview(refreshControl)
         
         showOverlay(self.view)
-        
-        self.bridgeAlerts = BridgeAlertsStore.getAllBridgeAlerts()
+
         self.tableView.reloadData()
-        
         self.refresh(true)
         
     }
@@ -54,7 +54,27 @@ class BridgeAlertsViewController: RefreshViewController, UITableViewDelegate, UI
                     // Reload tableview on UI thread
                     DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
-                            selfValue.bridgeAlerts = BridgeAlertsStore.getAllBridgeAlerts()
+                            
+                            BridgeAlertsStore.flushOldData()
+                            selfValue.topicItemsMap = BridgeAlertsStore.getAllBridgeAlerts()
+                            
+                            if (selfValue.topicItemsMap["1st Avenue South Bridge"] == nil)
+                            {
+                                selfValue.topicItemsMap["1st Avenue South Bridge"] = [BridgeAlertItem()]
+                            }
+                            
+                            if (selfValue.topicItemsMap["Hood Canal"] == nil)
+                            {
+                                selfValue.topicItemsMap["Hood Canal"] = [BridgeAlertItem()]
+                            }
+                            
+                            if (selfValue.topicItemsMap["Interstate Bridge"] == nil)
+                            {
+                                selfValue.topicItemsMap["Interstate Bridge"] = [BridgeAlertItem()]
+                            }
+                            
+                            print(selfValue.topicItemsMap)
+                            selfValue.topicCategoriesMap = selfValue.getCategoriesMap(topicItemsMap: selfValue.topicItemsMap)
                             selfValue.tableView.reloadData()
                             selfValue.hideOverlayView()
                             selfValue.refreshControl.endRefreshing()
@@ -79,34 +99,71 @@ class BridgeAlertsViewController: RefreshViewController, UITableViewDelegate, UI
         refresh(true)
     }
     
+    func getCategoriesMap(topicItemsMap: [String:[BridgeAlertItem]]) -> [Int: String]{
+        
+        let categories = Array(topicItemsMap.keys).sorted()
+        var topicCategoriesMap = [Int: String]()
+        
+        var i = 0
+        for category in categories {
+            topicCategoriesMap[i] = category
+            i += 1
+        }
+        return topicCategoriesMap
+    }
+    
     
     // MARK: Table View Methods
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(bridgeAlerts.count)
-        return bridgeAlerts.count
+    
+    // MARK: Table View Data Source Methods
+    func numberOfSections(in tableView: UITableView) -> Int {
+        
+        return topicCategoriesMap.keys.count
     }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        return topicCategoriesMap[section]
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return topicItemsMap[topicCategoriesMap[section]!]!.count
+    }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! BridgeCell
-
-        cell.title.text = bridgeAlerts[indexPath.row].bridge
-        cell.content.text = bridgeAlerts[indexPath.row].descText
-        let updated = TimeUtils.timeAgoSinceDate(date: self.bridgeAlerts[indexPath.row].localCacheDate, numericDates: false)
+        let topicItem = topicItemsMap[topicCategoriesMap[indexPath.section]!]![indexPath.row]
+        let updated = TimeUtils.timeAgoSinceDate(date: topicItem.localCacheDate, numericDates: false)
         
-        if let openingTime = bridgeAlerts[indexPath.row].openingTime {
+        if let openingTime = topicItem.openingTime {
             cell.subContent.text = "Opening Time: " + TimeUtils.formatTime(openingTime, format: "MMMM dd, YYYY h:mm a")
+            
         } else {
             cell.subContent.text = ""
+            
+        }
+        cell.updated.text = "Last Updated: " + updated
+        
+        if ((topicItem.alertId) != 0) {
+            cell.title.text = topicItem.bridge
+            cell.content.text = topicItem.descText
+            return cell
+            
+        } else {
+            cell.title.text = ""
+            cell.content.text = "No Alerts Reported"
+            cell.subContent.text = ""
+            return cell
+            
         }
         
-        cell.updated.text = "Last Updated: " + updated
-        return cell
     }
-
+    
 }
-

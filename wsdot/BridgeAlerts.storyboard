@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BridgeCell" rowHeight="145" id="ZAt-JD-xZM" customClass="BridgeCell" customModule="WSDOT" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BridgeCell" rowHeight="145" id="ZAt-JD-xZM" customClass="BridgeCell" customModule="WSDOT" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="145"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZAt-JD-xZM" id="dsP-o2-eK6">
@@ -102,7 +102,6 @@
         <!--Navigation Controller-->
         <scene sceneID="dP0-qk-1Ow">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fWc-1l-fqi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="srJ-Gc-8SK" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kRD-Ph-YbI">
@@ -114,6 +113,7 @@
                         <segue destination="Y9z-Xp-CAV" kind="relationship" relationship="rootViewController" id="8qY-3F-Bfw"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fWc-1l-fqi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-62.318840579710148" y="-606.02678571428567"/>
         </scene>
