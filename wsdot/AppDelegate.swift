@@ -144,9 +144,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     }
                 } else if alertType == "bridge_alert" {
                     MyAnalytics.event(category: "Notification", action: "Message Opened" , label: "Bridge Alert")
-                    launchBridgeAlertsScreen()
+                if let alertIdString = userInfo["alert_id"] as? String {
+                    if let alertId = Int(alertIdString) {
+                        launchBridgeAlertsViewControllerScreen(alertId: alertId)
+                    }
                 }
             }
+        }
         completionHandler(UIBackgroundFetchResult.newData)
     }
     
@@ -225,16 +229,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     }
     
-    func launchBridgeAlertsViewControllerScreen(){
-        let BridgeAlertsStoryboard: UIStoryboard = UIStoryboard(name: "BridgeAlerts", bundle: nil)
+    func launchBridgeAlertsViewControllerScreen(alertId: Int){
+        let bridgeAlertsStoryboard: UIStoryboard = UIStoryboard(name: "BridgeAlerts", bundle: nil)
 
         // Set up nav and vc stack
-        let BridgesNav = BridgeAlertsStoryboard.instantiateViewController(withIdentifier: "BridgesNav") as! UINavigationController
-        let BridgeAlertsVC = BridgeAlertsStoryboard.instantiateViewController(withIdentifier: "BridgeAlertsViewController") as! BridgeAlertsTableViewController        
-        // assign vc stack to new nav controller
-        trafficMapNav.setViewControllers([trafficMap, BridgeAlertsVC], animated: false)
+        let bridgesNav = bridgeAlertsStoryboard.instantiateViewController(withIdentifier: "BridgesNav") as! UINavigationController
+        let bridgeAlertsVC = bridgeAlertsStoryboard.instantiateViewController(withIdentifier: "BridgeAlertsViewController") as! BridgeAlertsTableViewController
+        
+        let bridgeAlertDetails = bridgeAlertsStoryboard.instantiateViewController(withIdentifier: "BridgeAlertDetailViewController") as! BridgeAlertDetailViewController
 
-        setNavController(newNavigationController: trafficMapNav)
+        // Set up nav and vc stack
+        bridgeAlertDetails.alertId = alertId
+        bridgeAlertDetails.fromPush = true
+        
+        // assign vc stack to new nav controller
+        bridgesNav.setViewControllers([bridgeAlertsVC, bridgeAlertDetails], animated: false)
+
+        setNavController(newNavigationController: bridgesNav)
+
     }
     
     func setNavController(newNavigationController: UINavigationController){

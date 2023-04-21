@@ -103,7 +103,7 @@
         <!--Navigation Controller-->
         <scene sceneID="dP0-qk-1Ow">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="srJ-Gc-8SK" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="BridgesNav" automaticallyAdjustsScrollViewInsets="NO" id="srJ-Gc-8SK" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kRD-Ph-YbI">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
