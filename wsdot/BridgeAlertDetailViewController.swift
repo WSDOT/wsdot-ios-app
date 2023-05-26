@@ -25,7 +25,6 @@ import SafariServices
 class BridgeAlertDetailViewController: RefreshViewController, INDLinkLabelDelegate, MapMarkerDelegate, GMSMapViewDelegate {
 
     var alertId = 0
-    var alertItem = HighwayAlertItem()
     var bridgeAlertItem = BridgeAlertItem()
 
     fileprivate let alertMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: 0, longitude: 0))
@@ -116,7 +115,7 @@ class BridgeAlertDetailViewController: RefreshViewController, INDLinkLabelDelega
         
         title = "Bridge Alert"
         
-        categoryImage.image = UIHelpers.getAlertIcon(forAlert: self.alertItem)
+        categoryImage.image = UIHelpers.getBridgeAlertIcon(forAlert: self.bridgeAlertItem)
 //        categoryImage.image = UIImage(named: "icBridgeAlerts")
 
         categoryLabel.text = bridgeAlertItem.eventCategory
@@ -150,8 +149,10 @@ class BridgeAlertDetailViewController: RefreshViewController, INDLinkLabelDelega
             latitude: lat,
             longitude: long)
         
-        alertMarker.icon = UIHelpers.getAlertIcon(forAlert: self.alertItem)
+        alertMarker.icon = UIHelpers.getBridgeAlertIcon(forAlert: self.bridgeAlertItem)
         
+        categoryImage.image = UIHelpers.getBridgeAlertIcon(forAlert: self.bridgeAlertItem)
+
         if let mapView = embeddedMapViewController.view as? GMSMapView{
             mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: lat, longitude: long), zoom: Float(zoom)))
         }

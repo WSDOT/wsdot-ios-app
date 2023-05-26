@@ -142,6 +142,33 @@ struct UIHelpers {
             }
     }
     
+    static func getBridgeAlertIcon(forAlert: BridgeAlertItem) -> UIImage? {
+    
+        let alertHighIconImage = UIImage(named: "icMapAlertHigh")
+        let alertHighestIconImage = UIImage(named: "icMapAlertHighest")
+        let alertModerateIconImage = UIImage(named: "icMapAlertModerate")
+        let alertLowIconImage = UIImage(named: "icMapAlertLow")
+        let closedIconImage = UIImage(named: "icMapClosed")
+
+            switch forAlert.priority {
+                case "Lowest":
+                    return alertLowIconImage
+                case "Low":
+                    return alertLowIconImage
+                case "Moderate":
+                    return alertModerateIconImage
+                case "High":
+                    return alertHighIconImage
+                case "Highest":
+                    return alertHighestIconImage
+                case "Closed":
+                    return closedIconImage
+                default:
+                    return alertModerateIconImage
+            }
+
+        }
+    
 
     static func getAlertLabel() -> UILabel {
         let label = UILabel(frame: CGRect(x: 10, y: -10, width: 20, height: 20))
