@@ -18,6 +18,7 @@ class BridgeAlertItem: Object {
     @objc dynamic var milepost: Double = 0.0
     @objc dynamic var direction: String = ""
     @objc dynamic var roadName: String = ""
+    @objc dynamic var eventCategory: String = ""
     @objc dynamic var openingTime: Date? = nil
     @objc dynamic var localCacheDate = Date()
     @objc dynamic var delete = false
