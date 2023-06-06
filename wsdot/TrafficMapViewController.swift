@@ -70,8 +70,14 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     weak fileprivate var embeddedMapViewController: MapViewController!
     
+    fileprivate var timer: Timer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: UIApplication.willEnterForegroundNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
 
         // Set defualt value for camera display if there is none
         if (UserDefaults.standard.string(forKey: UserDefaultsKeys.mountainPasses) == nil){
@@ -113,6 +119,33 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         bannerView.load(request)
         bannerView.delegate = self
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        fetchAlerts(force: true, group: serviceGroup)
+        self.timer = Timer.scheduledTimer(timeInterval: CachesStore.alertsUpdateTime, target: self, selector: #selector(self.alertsTimerTask), userInfo: nil, repeats: true)
+    }
+    
+    @objc func applicationDidBecomeActive(notification: NSNotification) {
+        fetchAlerts(force: true, group: serviceGroup)
+        self.timer = Timer.scheduledTimer(timeInterval: CachesStore.alertsUpdateTime, target: self, selector: #selector(self.alertsTimerTask), userInfo: nil, repeats: true)
+    }
+    
+    @objc func applicationDidEnterBackground(notification: NSNotification) {
+        timer?.invalidate()
+    }
+    
+    @objc func alertsTimerTask(_ timer:Timer) {
+        self.activityIndicatorView.isHidden = false
+        self.activityIndicatorView.startAnimating()
+        let serviceGroup = DispatchGroup()
+        
+        fetchAlerts(force: true, group: serviceGroup)
+        
+        serviceGroup.notify(queue: DispatchQueue.main) {
+            self.activityIndicatorView.stopAnimating()
+            self.activityIndicatorView.isHidden = true
+        }
     }
     
     func adViewDidReceiveAd(_ bannerView: GAMBannerView) {
@@ -741,6 +774,7 @@ extension TrafficMapViewController: EasyTipViewDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tipView.dismiss()
+        timer?.invalidate()
     }
 
     override func viewDidAppear(_ animated: Bool) {
