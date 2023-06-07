@@ -127,8 +127,9 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         self.timer = Timer.scheduledTimer(timeInterval: CachesStore.alertsUpdateTime, target: self, selector: #selector(self.alertsTimerTask), userInfo: nil, repeats: true)
     }
     
+    // check traffic alert data cache & set timer
     @objc func applicationDidBecomeActive(notification: NSNotification) {
-        fetchAlerts(force: true, group: serviceGroup)
+        fetchAlerts(force: false, group: serviceGroup)
         self.timer = Timer.scheduledTimer(timeInterval: CachesStore.alertsUpdateTime, target: self, selector: #selector(self.alertsTimerTask), userInfo: nil, repeats: true)
     }
     
