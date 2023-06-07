@@ -74,10 +74,6 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: UIApplication.willEnterForegroundNotification, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
 
         // Set defualt value for camera display if there is none
         if (UserDefaults.standard.string(forKey: UserDefaultsKeys.mountainPasses) == nil){
@@ -121,20 +117,28 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         
     }
     
+    // add notification observers & set timer
     override func viewWillAppear(_ animated: Bool) {
-        fetchAlerts(force: true, group: serviceGroup)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: UIApplication.willEnterForegroundNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+
         self.timer = Timer.scheduledTimer(timeInterval: CachesStore.alertsUpdateTime, target: self, selector: #selector(self.alertsTimerTask), userInfo: nil, repeats: true)
     }
     
+    // check traffic alert data cache & set timer
     @objc func applicationDidBecomeActive(notification: NSNotification) {
-        fetchAlerts(force: true, group: serviceGroup)
+        fetchAlerts(force: false, group: serviceGroup)
         self.timer = Timer.scheduledTimer(timeInterval: CachesStore.alertsUpdateTime, target: self, selector: #selector(self.alertsTimerTask), userInfo: nil, repeats: true)
     }
     
+    // invalidated timer
     @objc func applicationDidEnterBackground(notification: NSNotification) {
         timer?.invalidate()
     }
     
+    // timer to force refresh traffic alerts
     @objc func alertsTimerTask(_ timer:Timer) {
         self.activityIndicatorView.isHidden = false
         self.activityIndicatorView.startAnimating()
@@ -771,10 +775,12 @@ extension TrafficMapViewController: EasyTipViewDelegate {
          UserDefaults.standard.set(true, forKey: UserDefaultsKeys.hasSeenTravelerInfoTipView)
     }
     
+    // invalidate timer and remove observers
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tipView.dismiss()
         timer?.invalidate()
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func viewDidAppear(_ animated: Bool) {
