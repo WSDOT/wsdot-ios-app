@@ -772,10 +772,12 @@ extension TrafficMapViewController: EasyTipViewDelegate {
          UserDefaults.standard.set(true, forKey: UserDefaultsKeys.hasSeenTravelerInfoTipView)
     }
     
+    // invalidate timer and remove observers
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tipView.dismiss()
         timer?.invalidate()
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func viewDidAppear(_ animated: Bool) {
