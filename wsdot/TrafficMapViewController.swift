@@ -133,10 +133,12 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         self.timer = Timer.scheduledTimer(timeInterval: CachesStore.alertsUpdateTime, target: self, selector: #selector(self.alertsTimerTask), userInfo: nil, repeats: true)
     }
     
+    // invalidated timer
     @objc func applicationDidEnterBackground(notification: NSNotification) {
         timer?.invalidate()
     }
     
+    // timer to force refresh traffic alerts
     @objc func alertsTimerTask(_ timer:Timer) {
         self.activityIndicatorView.isHidden = false
         self.activityIndicatorView.startAnimating()
