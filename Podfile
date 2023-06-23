@@ -14,7 +14,7 @@ target 'WSDOT' do
     pod 'SwiftyJSON', '~> 5.0.1'
     pod 'SDWebImage', '~> 5.16.0'
     pod 'EasyTipView', '~> 2.1.0'
-    pod 'NotificationBannerSwift', '3.1.0'
+    pod 'NotificationBannerSwift', '3.2.0'
 end
 
 target 'WSDOTTests' do
@@ -29,7 +29,7 @@ target 'WSDOTTests' do
     pod 'SwiftyJSON', '~> 5.0.1'
     pod 'SDWebImage', '~> 5.16.0'
     pod 'EasyTipView', '~> 2.1.0'
-    pod 'NotificationBannerSwift', '3.1.0'
+    pod 'NotificationBannerSwift', '3.2.0'
 end
 
 post_install do |installer|
