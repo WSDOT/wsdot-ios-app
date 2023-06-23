@@ -12,7 +12,7 @@ target 'WSDOT' do
     pod 'RealmSwift', '~> 10.40.2'
     pod 'Alamofire', '~> 5.7.1'
     pod 'SwiftyJSON', '~> 5.0.1'
-    pod 'SDWebImage', '~> 5.14.2'
+    pod 'SDWebImage', '~> 5.16.0'
     pod 'EasyTipView', '~> 2.1.0'
     pod 'NotificationBannerSwift', '3.1.0'
 end
@@ -27,7 +27,7 @@ target 'WSDOTTests' do
     pod 'RealmSwift', '~> 10.40.2'
     pod 'Alamofire', '~> 5.7.1'
     pod 'SwiftyJSON', '~> 5.0.1'
-    pod 'SDWebImage', '~> 5.14.2'
+    pod 'SDWebImage', '~> 5.16.0'
     pod 'EasyTipView', '~> 2.1.0'
     pod 'NotificationBannerSwift', '3.1.0'
 end

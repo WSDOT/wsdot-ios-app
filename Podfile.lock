@@ -161,9 +161,9 @@ PODS:
   - Realm/Headers (10.40.2)
   - RealmSwift (10.40.2):
     - Realm (= 10.40.2)
-  - SDWebImage (5.14.3):
-    - SDWebImage/Core (= 5.14.3)
-  - SDWebImage/Core (5.14.3)
+  - SDWebImage (5.16.0):
+    - SDWebImage/Core (= 5.16.0)
+  - SDWebImage/Core (5.16.0)
   - SnapKit (5.0.1)
   - SwiftyJSON (5.0.1)
 
@@ -178,7 +178,7 @@ DEPENDENCIES:
   - GoogleMaps (~> 3.7.0)
   - NotificationBannerSwift (= 3.1.0)
   - RealmSwift (~> 10.40.2)
-  - SDWebImage (~> 5.14.2)
+  - SDWebImage (~> 5.16.0)
   - SwiftyJSON (~> 5.0.1)
 
 SPEC REPOS:
@@ -242,10 +242,10 @@ SPEC CHECKSUMS:
   PromisesSwift: cf9eb58666a43bbe007302226e510b16c1e10959
   Realm: 731e86d9388287b18e36b0beb2493fc4845ce8a2
   RealmSwift: c2a1059ba52e1e08467b1253b1d4ab354ef3177b
-  SDWebImage: 9c36e66c8ce4620b41a7407698dda44211a96764
+  SDWebImage: 2aea163b50bfcb569a2726b6a754c54a4506fcf6
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
-PODFILE CHECKSUM: 93d7b933b5aaa3e0e79288e5b03f98567a80db99
+PODFILE CHECKSUM: ae528e8bded329d0e7fb4d08827a11fd0864d207
 
 COCOAPODS: 1.12.1
