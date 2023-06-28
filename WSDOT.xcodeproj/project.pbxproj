@@ -884,7 +884,6 @@
 		9A6FBCC31D6B4C2500CDCE16 /* TravelerInformation */ = {
 			isa = PBXGroup;
 			children = (
-				02D7F1DE2614CB5000BD81CC /* BridgeAlerts */,
 				9ACAB9541F66EFAA002683B7 /* HappeningNow */,
 				9A9808C51F1FF2070034DA05 /* BestTimesToTravel */,
 				9AEF4D9D1D773040003ECA34 /* NewsViewController.swift */,
@@ -1418,6 +1417,7 @@
 				9A06167D1D622B8D00126520 /* Map */,
 				9A6FBD2A1D6E3E5800CDCE16 /* MountainPasses */,
 				9A6FBCC61D6B517400CDCE16 /* RestAreas */,
+				02D7F1DE2614CB5000BD81CC /* BridgeAlerts */,
 				9A0616DD1D676F5500126520 /* TrafficMap */,
 				9A0616C31D66018100126520 /* TollRates */,
 				9A6FBD101D6CEE0400CDCE16 /* TravelTimeDetails */,
