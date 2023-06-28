@@ -29,6 +29,7 @@ class BridgeAlertsTableViewController: RefreshViewController, UITableViewDelegat
     let refreshControl = UIRefreshControl()
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
 
     var topicItemsMap = [String: [BridgeAlertItem]]()
     var topicCategoriesMap = [Int: String]()
@@ -50,6 +51,7 @@ class BridgeAlertsTableViewController: RefreshViewController, UITableViewDelegat
 
         self.tableView.reloadData()
         self.refresh(true)
+        self.activityIndicatorView.isHidden = true
 
     }
 
@@ -60,6 +62,16 @@ class BridgeAlertsTableViewController: RefreshViewController, UITableViewDelegat
 
     @objc func refreshAction(_ refreshControl: UIRefreshControl) {
         refresh(true)
+    }
+    
+    @IBAction func refreshPressed(_ sender: UIBarButtonItem) {
+        MyAnalytics.event(category: "Bridge Alerts", action: "UIAction", label: "Refresh")
+        
+        showOverlay(self.view)
+        self.refresh(true)
+        self.activityIndicatorView.isHidden = true
+
+        
     }
 
     func refresh(_ force: Bool){
