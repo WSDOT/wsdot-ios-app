@@ -185,11 +185,11 @@ class BridgeAlertsTableViewController: RefreshViewController, UITableViewDelegat
             cell.accessoryType = .disclosureIndicator
 
             // Deactivate cell for scheduled alerts
-            if (topicItem.status == "Scheduled") {
-            cell.isUserInteractionEnabled = false
-            cell.accessoryType = .none
-
-            }
+//            if (topicItem.status == "Scheduled") {
+//            cell.isUserInteractionEnabled = false
+//            cell.accessoryType = .none
+//
+//            }
 
             return cell
 
