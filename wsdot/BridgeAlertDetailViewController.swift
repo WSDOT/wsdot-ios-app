@@ -59,12 +59,6 @@ class BridgeAlertDetailViewController: RefreshViewController, INDLinkLabelDelega
             descLinkLabel.text = pushMessage
         }
         
-        if (fromPush){
-            UserDefaults.standard.set(pushLat, forKey: UserDefaultsKeys.mapLat)
-            UserDefaults.standard.set(pushLong, forKey: UserDefaultsKeys.mapLon)
-            UserDefaults.standard.set(15, forKey: UserDefaultsKeys.mapZoom)
-        }
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
