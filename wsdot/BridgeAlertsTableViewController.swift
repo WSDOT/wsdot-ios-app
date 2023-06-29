@@ -168,13 +168,12 @@ class BridgeAlertsTableViewController: RefreshViewController, UITableViewDelegat
         let topicItem = topicItemsMap[topicCategoriesMap[indexPath.section]!]![indexPath.row]
         let updated = TimeUtils.timeAgoSinceDate(date: topicItem.localCacheDate, numericDates: false)
 
-        if let openingTime = topicItem.openingTime {
-            cell.subContent.text = "Opening Time: " + TimeUtils.formatTime(openingTime, format: "MMMM dd, YYYY h:mm a")
-
-        } else {
-            cell.subContent.text = ""
-
-        }
+//        if let openingTime = topicItem.openingTime {
+//            cell.subContent.text = "Opening Time: " + TimeUtils.formatTime(openingTime, format: "MMMM dd, YYYY h:mm a")
+//
+//        }
+        
+        cell.subContent.text = ""
         cell.updated.text = "Last Updated: " + updated
 
         // Check for valid alert ID
