@@ -110,9 +110,7 @@ class BridgeAlertDetailViewController: RefreshViewController, INDLinkLabelDelega
         title = "Bridge Alert"
         
         categoryImage.image = UIHelpers.getBridgeAlertIcon(forAlert: self.bridgeAlertItem)
-//        categoryImage.image = UIImage(named: "icBridgeAlerts")
-
-        categoryLabel.text = bridgeAlertItem.eventCategory
+        categoryLabel.text = bridgeAlertItem.bridge
         
         self.categoryStack.backgroundColor = UIColor(red: 255/255, green: 193/255, blue: 7/255, alpha: 0.3)
         self.categoryStack.layer.borderColor = UIColor(red: 255/255, green: 193/255, blue: 7/255, alpha: 1.0).cgColor
