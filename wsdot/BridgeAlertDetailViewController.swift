@@ -107,7 +107,7 @@ class BridgeAlertDetailViewController: RefreshViewController, INDLinkLabelDelega
    
     func displayBridgeAlert() {
         
-        title = "Bridge Alert"
+        title = "Alert"
         
         categoryImage.image = UIHelpers.getBridgeAlertIcon(forAlert: self.bridgeAlertItem)
         categoryLabel.text = bridgeAlertItem.bridge
