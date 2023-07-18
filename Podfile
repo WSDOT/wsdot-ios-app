@@ -9,12 +9,12 @@ target 'WSDOT' do
     pod 'Firebase/Performance'
     pod 'Firebase/Crashlytics'
     pod 'GoogleMaps', '~> 3.7.0'
-    pod 'RealmSwift', '~> 10.37.0'
-    pod 'Alamofire', '~> 5.6.4'
+    pod 'RealmSwift', '~> 10.40.2'
+    pod 'Alamofire', '~> 5.7.1'
     pod 'SwiftyJSON', '~> 5.0.1'
-    pod 'SDWebImage', '~> 5.14.2'
+    pod 'SDWebImage', '~> 5.16.0'
     pod 'EasyTipView', '~> 2.1.0'
-    pod 'NotificationBannerSwift', '3.1.0'
+    pod 'NotificationBannerSwift', '3.2.0'
 end
 
 target 'WSDOTTests' do
@@ -24,12 +24,12 @@ target 'WSDOTTests' do
     pod 'Firebase/Performance'
     pod 'Firebase/Crashlytics'
     pod 'GoogleMaps', '~> 3.7.0'
-    pod 'RealmSwift', '~> 10.37.0'
-    pod 'Alamofire', '~> 5.6.4'
+    pod 'RealmSwift', '~> 10.40.2'
+    pod 'Alamofire', '~> 5.7.1'
     pod 'SwiftyJSON', '~> 5.0.1'
-    pod 'SDWebImage', '~> 5.14.2'
+    pod 'SDWebImage', '~> 5.16.0'
     pod 'EasyTipView', '~> 2.1.0'
-    pod 'NotificationBannerSwift', '3.1.0'
+    pod 'NotificationBannerSwift', '3.2.0'
 end
 
 post_install do |installer|

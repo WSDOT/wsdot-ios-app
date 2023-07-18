@@ -1,19 +1,21 @@
 # WSDOT iOS App #
 
+Version 5
+-------------
+
 Washington State Traveler information provide by The Washington State Department of Transportation.
 
 * Written in Swift 5
-* Developed with Xcode 12.5.1
+* Developed with Xcode 14.3.1
 
 Features - [View on the App Store](https://itunes.apple.com/us/app/wsdot/id387209224?mt=8)
 ----------------------------------
-* Traffic Map with highway cameras, real-time alerts and traffic conditions.
-* Ferry schedules, alerts and VesselWatch.
-* Mountain Pass condition and weather reports.
-* WSDOT Social media feeds for the latest news.
-* Toll Rates.
-* Canadian Border Waits.
-* Amtrak Cascades Schedules. 
+* Traffic Map with statewide traffic cameras and travel alerts.
+* Ferry schedules, alerts, and real-time ferry locations.
+* Mountain pass conditions and weather reports.
+* Washington State toll rates.
+* Northbound Canadian Border Waits.
+* Amtrak Cascades Train Schedules.
 
 Setup
 -----
@@ -30,10 +32,12 @@ Dependencies
 * [GoogleMaps](https://developers.google.com/maps/documentation/ios-sdk/)
 * [Google Maps iOS Utils](https://github.com/googlemaps/google-maps-ios-utils)
 * [GoogleAnalytics](https://developers.google.com/analytics/devguides/collection/ios/v3/?ver=swift)
-* [Alamofire 3.4.1](https://github.com/Alamofire/Alamofire)
+* [Alamofire](https://github.com/Alamofire/Alamofire)
 * [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
 * [RealmSwift](https://realm.io/docs/swift/latest/)
 * [SDWebImage](https://github.com/rs/SDWebImage)
+* [EasyTipView](https://github.com/teodorpatras/EasyTipView)
+* [NotificationBannerSwift](https://github.com/Daltron/NotificationBanner)
 
 Contributing
 ------------
@@ -43,7 +47,7 @@ Find a bug? Got an idea? Send us a pull request or open an issue and we'll take 
 License
 -------
 
-Copyright (c) 2016 Washington State Department of Transportation
+Copyright (c) 2023 Washington State Department of Transportation
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

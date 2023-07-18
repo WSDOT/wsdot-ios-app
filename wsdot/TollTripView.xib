@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,36 +16,36 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iby-XJ-uVo">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
+                    <rect key="frame" x="0.0" y="20" width="375" height="64"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BaH-ib-CX6">
-                            <rect key="frame" x="0.0" y="59" width="200" height="16"/>
+                            <rect key="frame" x="0.0" y="39" width="200" height="16"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="200" id="4fB-ls-seZ"/>
                             </constraints>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                            <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" systemColor="secondaryLabelColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lyP-SK-sbD">
-                            <rect key="frame" x="208" y="48.5" width="167" height="26.5"/>
+                            <rect key="frame" x="208" y="9" width="167" height="46"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zTJ-iX-9b9">
-                            <rect key="frame" x="0.0" y="83" width="375" height="1"/>
-                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <rect key="frame" x="0.0" y="63" width="375" height="1"/>
+                            <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="F2b-tR-Dlc"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZ8-ox-pff" customClass="TripMapButton" customModule="WSDOT" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="27" width="93" height="30"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZ8-ox-pff" customClass="TripMapButton" customModule="WSDOT" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="17" width="93" height="30"/>
                             <state key="normal" title="Show on map"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="twJ-Uy-vas">
-                            <rect key="frame" x="0.0" y="8" width="375" height="11"/>
+                            <rect key="frame" x="0.0" y="8" width="375" height="1"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -60,6 +61,7 @@
                         <constraint firstAttribute="bottom" secondItem="zTJ-iX-9b9" secondAttribute="bottom" id="cUW-sC-oBf"/>
                         <constraint firstItem="zTJ-iX-9b9" firstAttribute="top" secondItem="lyP-SK-sbD" secondAttribute="bottom" constant="8" id="cdh-oM-sAu"/>
                         <constraint firstItem="BaH-ib-CX6" firstAttribute="leading" secondItem="zTJ-iX-9b9" secondAttribute="leading" id="eEX-Br-gi4"/>
+                        <constraint firstItem="lyP-SK-sbD" firstAttribute="top" secondItem="twJ-Uy-vas" secondAttribute="bottom" id="fP6-32-DKd"/>
                         <constraint firstItem="twJ-Uy-vas" firstAttribute="trailing" secondItem="lyP-SK-sbD" secondAttribute="trailing" id="pdp-xK-J3W"/>
                         <constraint firstItem="lyP-SK-sbD" firstAttribute="trailing" secondItem="zTJ-iX-9b9" secondAttribute="trailing" id="sSi-fW-uKT"/>
                         <constraint firstItem="twJ-Uy-vas" firstAttribute="top" secondItem="Iby-XJ-uVo" secondAttribute="topMargin" id="tHV-Xi-y26"/>
@@ -68,6 +70,7 @@
                     </constraints>
                 </view>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="JR6-CK-NOs"/>
             <constraints>
                 <constraint firstItem="Iby-XJ-uVo" firstAttribute="trailing" secondItem="JR6-CK-NOs" secondAttribute="trailing" id="2XF-gZ-hfX"/>
                 <constraint firstItem="Iby-XJ-uVo" firstAttribute="top" secondItem="JR6-CK-NOs" secondAttribute="top" id="9eU-qx-UvZ"/>
@@ -75,7 +78,6 @@
                 <constraint firstItem="Iby-XJ-uVo" firstAttribute="leading" secondItem="JR6-CK-NOs" secondAttribute="leading" id="w31-2R-MhO"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="JR6-CK-NOs"/>
             <connections>
                 <outlet property="actionButton" destination="SZ8-ox-pff" id="1qu-FW-mis"/>
                 <outlet property="bottomLabel" destination="BaH-ib-CX6" id="JEb-8R-S5V"/>
@@ -87,4 +89,12 @@
             <point key="canvasLocation" x="20" y="-277.06146926536735"/>
         </view>
     </objects>
+    <resources>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

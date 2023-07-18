@@ -267,6 +267,8 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
                 //tripView.valueLabel.adjustsFontSizeToFitWidth = true
                 tripView.valueLabel.allowsDefaultTighteningForTruncation = true
                 tripView.valueLabel.text = trip.message
+                tripView.valueLabel.font = UIFont.preferredFont(forTextStyle: .body)
+
             }
             
             cell.contentView.addSubview(tripView)
