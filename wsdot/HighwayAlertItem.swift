@@ -36,7 +36,8 @@ class HighwayAlertItem: Object {
     @objc dynamic var startLongitude: Double = 0.0
     @objc dynamic var endLatitude: Double = 0.0
     @objc dynamic var endLongitude: Double = 0.0
-    
+    @objc dynamic var travelCenterPriorityId: Int = 0
+
     @objc dynamic var county: String? = nil
     @objc dynamic var endTime: Date? = nil
     @objc dynamic var extendedDesc: String? = nil
