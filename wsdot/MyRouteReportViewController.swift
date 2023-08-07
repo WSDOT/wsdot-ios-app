@@ -257,6 +257,7 @@ class MyRouteReportViewController: RefreshViewController {
                         tempAlert.headlineDesc = alert.headlineDesc
                         tempAlert.lastUpdatedTime = alert.lastUpdatedTime
                         tempAlert.priority = alert.priority
+                        tempAlert.travelCenterPriorityId = alert.travelCenterPriorityId
                         tempAlert.region = alert.region
                         tempAlert.startDirection = alert.startDirection
                         tempAlert.startLatitude = alert.startLatitude
