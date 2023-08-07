@@ -116,7 +116,7 @@ class HighwayAlertsStore: Decodable {
             alert.startLongitude = alertJson["StartRoadwayLocation"]["Longitude"].doubleValue
             alert.endLatitude = alertJson["EndRoadwayLocation"]["Latitude"].doubleValue
             alert.endLongitude = alertJson["EndRoadwayLocation"]["Longitude"].doubleValue
-            
+            alert.roadName = alertJson["StartRoadwayLocation"]["RoadName"].stringValue
             alert.county = alertJson["County"].string
             
             if let endTimeJsonStringValue = alertJson["EndTime"].string {

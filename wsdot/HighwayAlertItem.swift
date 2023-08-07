@@ -28,6 +28,7 @@ class HighwayAlertItem: Object {
     @objc dynamic var headlineDesc: String = ""
     @objc dynamic var eventStatus: String = ""
     @objc dynamic var startDirection: String = ""
+    @objc dynamic var roadName: String = ""
     @objc dynamic var lastUpdatedTime = Date()
 
     @objc dynamic var startTime = Date()

@@ -40,6 +40,7 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
     var pushLat: Double = 0.0
     var pushLong: Double = 0.0
     var pushMessage: String = ""
+    var location: String = ""
     
     weak fileprivate var embeddedMapViewController: SimpleMapViewController!
     
@@ -121,10 +122,13 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
         self.categoryStack.layer.borderWidth = 1
         self.categoryStack.layer.cornerRadius = 4.0
 
-        let htmlStyleString = "<style>body{font-family: '-apple-system'; font-size:\(descLinkLabel.font.pointSize)px;}</style>"
+        let htmlStyleString = "<style>*{font-family:-apple-system}h1{font: -apple-system-title2; font-weight:bold}body{font: -apple-system-body}b{font: -apple-system-headline}</style>"
         
-        let description = "<br><br><b>Description: </b>" + alertItem.headlineDesc
-
+        if (alertItem.roadName != "" && alertItem.startDirection != "") {
+            location = "<h1>" + alertItem.roadName + " " + alertItem.startDirection + "</h1>"
+        }
+        
+        let description = location + "<b>Description: </b>" + alertItem.headlineDesc
         let htmlString = htmlStyleString + description
         
         let attrStr = try! NSMutableAttributedString(
