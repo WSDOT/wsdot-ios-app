@@ -512,7 +512,18 @@ extension MyRouteReportViewController:  UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: segueHighwayAlertViewController, sender: alerts[indexPath.row])
+        switch(indexPath.section){
+        case 0:
+            performSegue(withIdentifier: segueHighwayAlertViewController, sender: trafficAlerts[indexPath.row])
+            break
+        case 1:
+            performSegue(withIdentifier: segueHighwayAlertViewController, sender: constructionAlerts[indexPath.row])
+            break
+        case 2:
+            performSegue(withIdentifier: segueHighwayAlertViewController, sender: specialEvents[indexPath.row])
+            break
+        default: break
+        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
