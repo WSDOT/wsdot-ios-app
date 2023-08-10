@@ -26,9 +26,14 @@ class MyRouteReportViewController: RefreshViewController {
 
     var alerts = [HighwayAlertItem]()
     
-    var trafficAlerts = [HighwayAlertItem]()
+    var alertTypeAlerts = [HighwayAlertItem]()
+    var bridgeAlerts = [HighwayAlertItem]()
     var constructionAlerts = [HighwayAlertItem]()
-    var specialEvents = [HighwayAlertItem]()
+    var ferryAlerts = [HighwayAlertItem]()
+    var incidentAlerts = [HighwayAlertItem]()
+    var maintenanceAlerts = [HighwayAlertItem]()
+    var policeActivityAlerts = [HighwayAlertItem]()
+    var weatherAlerts = [HighwayAlertItem]()
     
     var route: MyRouteItem?
     
@@ -198,32 +203,68 @@ class MyRouteReportViewController: RefreshViewController {
                 
             serviceGroup.notify(queue: DispatchQueue.main) {
                 
+                self.alertTypeAlerts.removeAll()
+                self.bridgeAlerts.removeAll()
                 self.constructionAlerts.removeAll()
-                self.specialEvents.removeAll()
-                self.trafficAlerts.removeAll()
-                
+                self.ferryAlerts.removeAll()
+                self.incidentAlerts.removeAll()
+                self.maintenanceAlerts.removeAll()
+                self.policeActivityAlerts.removeAll()
+                self.weatherAlerts.removeAll()
+
                 for alert in self.alerts{
-                    if alert.headlineDesc.lowercased().contains("construction") || alert.eventCategory.lowercased().contains("construction") {
+                    if alert.eventCategory.lowercased() == "bridge"{
+                        self.bridgeAlerts.append(alert)
+                    }
+                    else if alert.eventCategory.lowercased() == "construction"{
                         self.constructionAlerts.append(alert)
-                    }else if alert.eventCategory.lowercased() == "special event"{
-                        self.specialEvents.append(alert)
-                    }else {
-                        self.trafficAlerts.append(alert)
+                    }
+                    else if alert.eventCategory.lowercased() == "ferries"{
+                        self.ferryAlerts.append(alert)
+                    }
+                    else if alert.eventCategory.lowercased() == "incident"{
+                        self.incidentAlerts.append(alert)
+                    }
+                    else if alert.eventCategory.lowercased() == "maintenance"{
+                        self.maintenanceAlerts.append(alert)
+                        }
+                    else if alert.eventCategory.lowercased() == "police activity"{
+                        self.policeActivityAlerts.append(alert)
+                        }
+                    else if alert.eventCategory.lowercased() == "weather"{
+                        self.weatherAlerts.append(alert)
+                        }
+                    else {
+                        self.alertTypeAlerts.append(alert)
                     }
                 }
                 
-                self.trafficAlerts = self.trafficAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
+                self.alertTypeAlerts = self.alertTypeAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
+                self.bridgeAlerts = self.bridgeAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
                 self.constructionAlerts = self.constructionAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
-                self.specialEvents = self.specialEvents.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
-
+                self.ferryAlerts = self.ferryAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
+                self.incidentAlerts = self.incidentAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
+                self.maintenanceAlerts = self.maintenanceAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
+                self.policeActivityAlerts = self.policeActivityAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
+                self.weatherAlerts = self.weatherAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
+                
                 self.alertsTableView.rowHeight = UITableView.automaticDimension
                 self.alertsTableView.reloadData()
                 
                 self.hideOverlayView()
                 
                 self.drawAlerts()
-                
                 self.refreshControl.endRefreshing()
+
+                self.alertsContainerView.isHidden = false
+                
+                if self.alerts.count == 0 {
+                    self.alertsTableView.isHidden = true
+
+                } else {
+                    self.alertsTableView.isHidden = false
+                }
+                
             }
         }
     }
@@ -424,18 +465,29 @@ extension MyRouteReportViewController:  UITableViewDataSource, UITableViewDelega
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 8
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         switch(section){
+        
         case 0:
-            return "Traffic Incidents" + (self.title != "Alert" && (trafficAlerts.count == 0) ? " - None Reported": "")
+            if (alertTypeAlerts.count != 0) { return "Alert" } else { return nil }
         case 1:
-            return "Construction"  + (self.title != "Alert" && (constructionAlerts.count == 0) ? " - None Reported": "")
+            if (bridgeAlerts.count != 0) { return "Bridge" } else { return nil }
         case 2:
-            return "Special Events"  + (self.title != "Alert" &&  (specialEvents.count == 0) ? " - None Reported": "")
+            if (constructionAlerts.count != 0) { return "Construction" } else { return nil }
+        case 3:
+            if (ferryAlerts.count != 0) { return "Ferries" } else { return nil }
+        case 4:
+            if (incidentAlerts.count != 0) { return "Incident" } else { return nil }
+        case 5:
+            if (maintenanceAlerts.count != 0) { return "Maintenance" } else { return nil }
+        case 6:
+            if (policeActivityAlerts.count != 0) { return "Police activity" } else { return nil }
+        case 7:
+            if (weatherAlerts.count != 0) { return "Weather" } else { return nil }
         default:
             return nil
         }
@@ -444,16 +496,27 @@ extension MyRouteReportViewController:  UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch(section){
-            
+        
         case 0:
-            return trafficAlerts.count
+            return alertTypeAlerts.count
         case 1:
-            return constructionAlerts.count
+            return bridgeAlerts.count
         case 2:
-            return specialEvents.count
+            return constructionAlerts.count
+        case 3:
+            return ferryAlerts.count
+        case 4:
+            return incidentAlerts.count
+        case 5:
+            return maintenanceAlerts.count
+        case 6:
+            return policeActivityAlerts.count
+        case 7:
+            return weatherAlerts.count
         default:
             return 0
         }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -464,13 +527,27 @@ extension MyRouteReportViewController:  UITableViewDataSource, UITableViewDelega
         
         switch indexPath.section {
             case 0:
-            alert = trafficAlerts[indexPath.row]
-            break
+            alert = alertTypeAlerts[indexPath.row]
             case 1:
-            alert = constructionAlerts[indexPath.row]
+            alert = bridgeAlerts[indexPath.row]
             break
             case 2:
-            alert = specialEvents[indexPath.row]
+            alert = constructionAlerts[indexPath.row]
+            break
+            case 3:
+            alert = ferryAlerts[indexPath.row]
+            break
+            case 4:
+            alert = incidentAlerts[indexPath.row]
+            break
+            case 5:
+            alert = maintenanceAlerts[indexPath.row]
+            break
+            case 6:
+            alert = policeActivityAlerts[indexPath.row]
+            break
+            case 7:
+            alert = weatherAlerts[indexPath.row]
             break
             default:
             break
@@ -513,14 +590,29 @@ extension MyRouteReportViewController:  UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch(indexPath.section){
+        
         case 0:
-            performSegue(withIdentifier: segueHighwayAlertViewController, sender: trafficAlerts[indexPath.row])
-            break
+            performSegue(withIdentifier: segueHighwayAlertViewController, sender: alertTypeAlerts[indexPath.row])
         case 1:
-            performSegue(withIdentifier: segueHighwayAlertViewController, sender: constructionAlerts[indexPath.row])
+            performSegue(withIdentifier: segueHighwayAlertViewController, sender: bridgeAlerts[indexPath.row])
             break
         case 2:
-            performSegue(withIdentifier: segueHighwayAlertViewController, sender: specialEvents[indexPath.row])
+            performSegue(withIdentifier: segueHighwayAlertViewController, sender: constructionAlerts[indexPath.row])
+            break
+        case 3:
+            performSegue(withIdentifier: segueHighwayAlertViewController, sender: ferryAlerts[indexPath.row])
+            break
+        case 4:
+            performSegue(withIdentifier: segueHighwayAlertViewController, sender: incidentAlerts[indexPath.row])
+            break
+        case 5:
+            performSegue(withIdentifier: segueHighwayAlertViewController, sender: maintenanceAlerts[indexPath.row])
+            break
+        case 6:
+            performSegue(withIdentifier: segueHighwayAlertViewController, sender: policeActivityAlerts[indexPath.row])
+            break
+        case 7:
+            performSegue(withIdentifier: segueHighwayAlertViewController, sender: weatherAlerts[indexPath.row])
             break
         default: break
         }
