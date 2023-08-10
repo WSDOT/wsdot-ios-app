@@ -555,7 +555,7 @@ WSDOT provides traffic alert information for
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Y78-qX-EUV">
-                                <rect key="frame" x="0.0" y="48" width="375" height="575"/>
+                                <rect key="frame" x="0.0" y="48" width="375" height="555"/>
                                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="locationCell" textLabel="p9z-eV-tTN" detailTextLabel="JSn-G2-WQp" style="IBUITableViewCellStyleSubtitle" id="uJv-Tk-74x">
@@ -591,7 +591,7 @@ WSDOT provides traffic alert information for
                                 </connections>
                             </tableView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="wAu-xq-YhH">
-                                <rect key="frame" x="169" y="293" width="37" height="37"/>
+                                <rect key="frame" x="169" y="283" width="37" height="37"/>
                                 <color key="color" white="0.67000000000000004" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
                         </subviews>
@@ -627,8 +627,14 @@ WSDOT provides traffic alert information for
                         <rect key="frame" x="0.0" y="0.0" width="375" height="306"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Alerts Reported" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BLA-7T-R9j" userLabel="No Alerts Reported">
+                                <rect key="frame" x="115" y="142.5" width="145.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="AlertCell" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c0x-Hq-pv0">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="326"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="306"/>
                                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="AlertCell" rowHeight="84" id="6oL-q8-e6h" customClass="LinkCell" customModule="WSDOT" customModuleProvider="target">
@@ -677,8 +683,10 @@ WSDOT provides traffic alert information for
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="BLA-7T-R9j" firstAttribute="centerX" secondItem="HA6-KC-oyz" secondAttribute="centerX" id="25z-g9-PMb"/>
                             <constraint firstItem="c0x-Hq-pv0" firstAttribute="leading" secondItem="HA6-KC-oyz" secondAttribute="leading" id="O7P-iP-7lm"/>
                             <constraint firstAttribute="trailing" secondItem="c0x-Hq-pv0" secondAttribute="trailing" id="jl2-hy-SDc"/>
+                            <constraint firstItem="BLA-7T-R9j" firstAttribute="centerY" secondItem="HA6-KC-oyz" secondAttribute="centerY" id="szI-1S-oBB"/>
                             <constraint firstAttribute="bottom" secondItem="c0x-Hq-pv0" secondAttribute="bottom" id="tNl-tA-9iR"/>
                             <constraint firstItem="c0x-Hq-pv0" firstAttribute="top" secondItem="HA6-KC-oyz" secondAttribute="top" id="tl3-8E-XL4"/>
                         </constraints>
@@ -790,13 +798,13 @@ WSDOT provides traffic alert information for
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Travel Times Available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UX3-jI-fyQ">
-                                <rect key="frame" x="91" y="152.5" width="193.5" height="21"/>
+                                <rect key="frame" x="91" y="142.5" width="193.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="98" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fPL-WH-yCN">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="326"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="306"/>
                                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TravelTimeCell" rowHeight="98" id="kHa-fc-T5L" customClass="GroupRouteCell" customModule="WSDOT" customModuleProvider="target">
