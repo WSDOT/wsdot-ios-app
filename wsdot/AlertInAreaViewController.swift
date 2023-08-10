@@ -29,9 +29,14 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
     
     var alerts = [HighwayAlertItem]()
     
-    var trafficAlerts = [HighwayAlertItem]()
+    var alertTypeAlerts = [HighwayAlertItem]()
+    var bridgeAlerts = [HighwayAlertItem]()
     var constructionAlerts = [HighwayAlertItem]()
-    var specialEvents = [HighwayAlertItem]()
+    var ferryAlerts = [HighwayAlertItem]()
+    var incidentAlerts = [HighwayAlertItem]()
+    var maintenanceAlerts = [HighwayAlertItem]()
+    var policeActivityAlerts = [HighwayAlertItem]()
+    var weatherAlerts = [HighwayAlertItem]()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -39,20 +44,50 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
         super.viewDidLoad()
         
         for alert in alerts{
-            if alert.eventCategory.lowercased() == "special event"{
-                specialEvents.append(alert)
-            } else if alert.headlineDesc.lowercased().contains("construction") || alert.eventCategory.lowercased().contains("construction") {
+            
+            if alert.eventCategory.lowercased() == "bridge"{
+                bridgeAlerts.append(alert)
+            }
+            else if alert.eventCategory.lowercased() == "construction"{
                 constructionAlerts.append(alert)
-            }else {
-                trafficAlerts.append(alert)
+            }
+            else if alert.eventCategory.lowercased() == "ferries"{
+                ferryAlerts.append(alert)
+            }
+            else if alert.eventCategory.lowercased() == "incident"{
+                incidentAlerts.append(alert)
+            }
+            else if alert.eventCategory.lowercased() == "maintenance"{
+                    maintenanceAlerts.append(alert)
+                }
+            else if alert.eventCategory.lowercased() == "police activity"{
+                    policeActivityAlerts.append(alert)
+                }
+            else if alert.eventCategory.lowercased() == "weather"{
+                    weatherAlerts.append(alert)
+                }
+            else {
+                alertTypeAlerts.append(alert)
             }
         }
 
-        trafficAlerts = trafficAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
+        alertTypeAlerts = alertTypeAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
+        bridgeAlerts = bridgeAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
         constructionAlerts = constructionAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
-        specialEvents = specialEvents.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
-
+        ferryAlerts = ferryAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
+        incidentAlerts = incidentAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
+        maintenanceAlerts = maintenanceAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
+        policeActivityAlerts = policeActivityAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
+        weatherAlerts = weatherAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
+        
         tableView.rowHeight = UITableView.automaticDimension
+        
+        if self.alerts.count == 0 {
+            self.tableView.isHidden = true
+
+        } else {
+            self.tableView.isHidden = false
+        }
         
     }
     
@@ -67,20 +102,32 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 8
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         switch(section){
+        
         case 0:
-            return "Traffic Incidents" + (self.title != "Alert" && (trafficAlerts.count == 0) ? " - None Reported": "")
+            if (alertTypeAlerts.count != 0) { return "Alert" } else { return nil }
         case 1:
-            return "Construction"  + (self.title != "Alert" && (constructionAlerts.count == 0) ? " - None Reported": "")
+            if (bridgeAlerts.count != 0) { return "Bridge" } else { return nil }
         case 2:
-            return "Special Events"  + (self.title != "Alert" &&  (specialEvents.count == 0) ? " - None Reported": "")
+            if (constructionAlerts.count != 0) { return "Construction" } else { return nil }
+        case 3:
+            if (ferryAlerts.count != 0) { return "Ferries" } else { return nil }
+        case 4:
+            if (incidentAlerts.count != 0) { return "Incident" } else { return nil }
+        case 5:
+            if (maintenanceAlerts.count != 0) { return "Maintenance" } else { return nil }
+        case 6:
+            if (policeActivityAlerts.count != 0) { return "Police activity" } else { return nil }
+        case 7:
+            if (weatherAlerts.count != 0) { return "Weather" } else { return nil }
         default:
             return nil
+            
         }
     }
     
@@ -88,13 +135,22 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch(section){
-            
         case 0:
-            return trafficAlerts.count
+            return alertTypeAlerts.count
         case 1:
-            return constructionAlerts.count
+            return bridgeAlerts.count
         case 2:
-            return specialEvents.count
+            return constructionAlerts.count
+        case 3:
+            return ferryAlerts.count
+        case 4:
+            return incidentAlerts.count
+        case 5:
+            return maintenanceAlerts.count
+        case 6:
+            return policeActivityAlerts.count
+        case 7:
+            return weatherAlerts.count
         default:
             return 0
         }
@@ -108,16 +164,36 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
         
         switch indexPath.section{
         case 0:
-            cell.updateTime.text = TimeUtils.timeAgoSinceDate(date: trafficAlerts[indexPath.row].lastUpdatedTime, numericDates: false)
-            htmlString = htmlStyleString + trafficAlerts[indexPath.row].headlineDesc
+            cell.updateTime.text = TimeUtils.timeAgoSinceDate(date: alertTypeAlerts[indexPath.row].lastUpdatedTime, numericDates: false)
+            htmlString = htmlStyleString + alertTypeAlerts[indexPath.row].headlineDesc
             break
         case 1:
+            cell.updateTime.text = TimeUtils.timeAgoSinceDate(date: bridgeAlerts[indexPath.row].lastUpdatedTime, numericDates: false)
+            htmlString = htmlStyleString + bridgeAlerts[indexPath.row].headlineDesc
+            break
+        case 2:
             cell.updateTime.text = TimeUtils.timeAgoSinceDate(date: constructionAlerts[indexPath.row].lastUpdatedTime, numericDates: false)
             htmlString = htmlStyleString + constructionAlerts[indexPath.row].headlineDesc
             break
-        case 2:
-            cell.updateTime.text = TimeUtils.timeAgoSinceDate(date: specialEvents[indexPath.row].lastUpdatedTime, numericDates: false)
-            htmlString = htmlStyleString + specialEvents[indexPath.row].headlineDesc
+        case 3:
+            cell.updateTime.text = TimeUtils.timeAgoSinceDate(date: ferryAlerts[indexPath.row].lastUpdatedTime, numericDates: false)
+            htmlString = htmlStyleString + ferryAlerts[indexPath.row].headlineDesc
+            break
+        case 4:
+            cell.updateTime.text = TimeUtils.timeAgoSinceDate(date: incidentAlerts[indexPath.row].lastUpdatedTime, numericDates: false)
+            htmlString = htmlStyleString + incidentAlerts[indexPath.row].headlineDesc
+            break
+        case 5:
+            cell.updateTime.text = TimeUtils.timeAgoSinceDate(date: maintenanceAlerts[indexPath.row].lastUpdatedTime, numericDates: false)
+            htmlString = htmlStyleString + maintenanceAlerts[indexPath.row].headlineDesc
+            break
+        case 6:
+            cell.updateTime.text = TimeUtils.timeAgoSinceDate(date: policeActivityAlerts[indexPath.row].lastUpdatedTime, numericDates: false)
+            htmlString = htmlStyleString + policeActivityAlerts[indexPath.row].headlineDesc
+            break
+        case 7:
+            cell.updateTime.text = TimeUtils.timeAgoSinceDate(date: weatherAlerts[indexPath.row].lastUpdatedTime, numericDates: false)
+            htmlString = htmlStyleString + weatherAlerts[indexPath.row].headlineDesc
             break
         default:
             break
@@ -143,13 +219,28 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
         
         switch(indexPath.section){
         case 0:
-            performSegue(withIdentifier: SegueHighwayAlertViewController, sender: trafficAlerts[indexPath.row])
+            performSegue(withIdentifier: SegueHighwayAlertViewController, sender: alertTypeAlerts[indexPath.row])
             break
         case 1:
-            performSegue(withIdentifier: SegueHighwayAlertViewController, sender: constructionAlerts[indexPath.row])
+            performSegue(withIdentifier: SegueHighwayAlertViewController, sender: bridgeAlerts[indexPath.row])
             break
         case 2:
-            performSegue(withIdentifier: SegueHighwayAlertViewController, sender: specialEvents[indexPath.row])
+            performSegue(withIdentifier: SegueHighwayAlertViewController, sender: constructionAlerts[indexPath.row])
+            break
+        case 3:
+            performSegue(withIdentifier: SegueHighwayAlertViewController, sender: ferryAlerts[indexPath.row])
+            break
+        case 4:
+            performSegue(withIdentifier: SegueHighwayAlertViewController, sender: incidentAlerts[indexPath.row])
+            break
+        case 5:
+            performSegue(withIdentifier: SegueHighwayAlertViewController, sender: maintenanceAlerts[indexPath.row])
+            break
+        case 6:
+            performSegue(withIdentifier: SegueHighwayAlertViewController, sender: policeActivityAlerts[indexPath.row])
+            break
+        case 7:
+            performSegue(withIdentifier: SegueHighwayAlertViewController, sender: weatherAlerts[indexPath.row])
             break
         default: break
         }
