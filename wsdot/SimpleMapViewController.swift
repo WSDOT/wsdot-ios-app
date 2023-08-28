@@ -46,17 +46,6 @@ class SimpleMapViewController: UIViewController {
         MapThemeUtils.setMapStyle(mapView, traitCollection)
         
         mapView.isTrafficEnabled = true
-        
-        do {
-          if let styleURL = Bundle.main.url(forResource: "googlemapstyle", withExtension: "json") {
-            mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
-          } else {
-            NSLog("Unable to find style.json")
-          }
-        } catch {
-          NSLog("One or more of the map styles failed to load. \(error)")
-        }
-        
         mapView.delegate = mapDelegate
         
         view = mapView
