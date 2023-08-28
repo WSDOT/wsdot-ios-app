@@ -54,4 +54,12 @@ class SimpleMapViewController: UIViewController {
             parent.mapReady()
         }
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if let mapView = view as? GMSMapView{
+            MapThemeUtils.setMapStyle(mapView, traitCollection)
+        }
+    }
+    
 }
