@@ -63,24 +63,8 @@ class MyRouteReportViewController: RefreshViewController {
         mapView.isMyLocationEnabled = true
         mapView.isTrafficEnabled = true
         
-        
-        // Set Dark mode if needed
-        if #available(iOS 13, *){
-        
-            if traitCollection.userInterfaceStyle == .dark {
-                do {
-                    if let styleURL = Bundle.main.url(forResource: "map_dark_style", withExtension: "json") {
-                        mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
-                    } else {
-                        NSLog("Unable to find style.json")
-                    }
-                } catch {
-                    NSLog("One or more of the map styles failed to load. \(error)")
-                }
-            }
-        }
-        
-        
+        MapThemeUtils.setMapStyle(mapView, traitCollection)
+
         alertsContainerView.isHidden = false
         camerasContainerView.isHidden = true
         travelTimesContainerView.isHidden = true
@@ -92,6 +76,11 @@ class MyRouteReportViewController: RefreshViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         MyAnalytics.screenView(screenName: "MyRouteAlerts")
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+            MapThemeUtils.setMapStyle(mapView, traitCollection)
     }
     
     @IBAction func segmentSelected(_ sender: UISegmentedControl) {
