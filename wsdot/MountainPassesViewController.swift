@@ -163,7 +163,17 @@ class MountainPassesViewController: RefreshViewController, UITableViewDelegate, 
         // Travel Restrictions Text
         cell.restrictionsOneLabel.attributedText = restrictionLabel(label: "Travel ", direction: passItem.restrictionOneTravelDirection, passItem: passItem.restrictionOneText)
         cell.restrictionsTwoLabel.attributedText = restrictionLabel(label: "Travel ", direction: passItem.restrictionTwoTravelDirection, passItem: passItem.restrictionTwoText)
-     
+        
+        // Check if advisory is active
+        if (!passItem.travelAdvisoryActive) {
+            cell.restrictionsOneLabel.isHidden = true
+            cell.restrictionsTwoLabel.isHidden = true
+        }
+        else {
+            cell.restrictionsOneLabel.isHidden = false
+            cell.restrictionsTwoLabel.isHidden = false
+
+        }
         return cell
     }
     

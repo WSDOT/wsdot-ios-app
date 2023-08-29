@@ -580,6 +580,15 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             passCell.restrictionsOneLabel.attributedText = mountainPassViewController.restrictionLabel(label: "Travel ", direction: passItem.restrictionOneTravelDirection, passItem: passItem.restrictionOneText)
             passCell.restrictionsTwoLabel.attributedText = mountainPassViewController.restrictionLabel(label: "Travel ", direction: passItem.restrictionTwoTravelDirection, passItem: passItem.restrictionTwoText)
             
+            // Check if advisory is active
+            if (!passItem.travelAdvisoryActive) {
+                passCell.restrictionsOneLabel.isHidden = true
+                passCell.restrictionsTwoLabel.isHidden = true
+            }
+            else {
+                passCell.restrictionsOneLabel.isHidden = false
+                passCell.restrictionsTwoLabel.isHidden = false
+            }
             
             return passCell
             
