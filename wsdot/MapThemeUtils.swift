@@ -18,14 +18,11 @@ class MapThemeUtils {
                     if traitCollection.userInterfaceStyle == .dark {
                         setDarkStyle(mapView: mapView)
                     } else {
-                        mapView.mapStyle = GMSMapStyle()
+                        setLightStyle(mapView: mapView)
                     }
-                } else {
-                    mapView.mapStyle = GMSMapStyle()
                 }
-            
             } else if (mapStyle == "light"){
-                mapView.mapStyle = GMSMapStyle()
+                setLightStyle(mapView: mapView)
             } else if (mapStyle == "dark"){
                 setDarkStyle(mapView: mapView)
             }
@@ -41,6 +38,18 @@ class MapThemeUtils {
             }
         } catch {
             NSLog("One or more of the map styles failed to load. \(error)")
+        }
+    }
+    
+    fileprivate static func setLightStyle(mapView: GMSMapView) {
+        do {
+          if let styleURL = Bundle.main.url(forResource: "googlemapstyle", withExtension: "json") {
+            mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
+          } else {
+            NSLog("Unable to find style.json")
+          }
+        } catch {
+          NSLog("One or more of the map styles failed to load. \(error)")
         }
     }
     

@@ -96,6 +96,17 @@ class MountainPassReportViewController: RefreshViewController, UITableViewDataSo
 
         passReportView.restrictionTwoLabel.attributedText = restrictionLabel(label: "Travel ", direction: passItem.restrictionTwoTravelDirection, passItem: passItem.restrictionTwoText)
         
+        // Check if advisory is active
+        if (!passItem.travelAdvisoryActive) {
+            passReportView.restrictionOneLabel.isHidden = true
+            passReportView.restrictionTwoLabel.isHidden = true
+        }
+        else {
+            passReportView.restrictionOneLabel.isHidden = false
+            passReportView.restrictionTwoLabel.isHidden = false
+
+        }
+        
         // Conditions
         if (passItem.roadCondition != ""){
             passReportView.conditionsLabel.attributedText = conditionsLabel(label: "Conditions: ", passItem: passItem.roadCondition)

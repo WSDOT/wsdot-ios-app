@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="nDf-oA-pQo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="nDf-oA-pQo">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,7 +14,7 @@
                 <navigationController id="nDf-oA-pQo" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="m5R-yG-p6k">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -34,18 +34,18 @@
                         <viewControllerLayoutGuide type="bottom" id="Clb-oo-Pce"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="LcF-fh-lNu">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="579"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rgb-sw-bak">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="529"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="509"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PassCell" id="3Zs-a5-iA9" customClass="MountainPassCell" customModule="WSDOT" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="375" height="131.5"/>
+                                        <rect key="frame" x="0.0" y="50" width="375" height="123.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Zs-a5-iA9" id="lM8-qV-p9v">
-                                            <rect key="frame" x="0.0" y="0.0" width="348.5" height="131.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="348.5" height="123.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="DF2-87-RMZ">
@@ -98,7 +98,7 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="DF2-87-RMZ" secondAttribute="bottom" constant="8" id="LEK-Ed-dQy"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="DF2-87-RMZ" secondAttribute="bottom" id="LEK-Ed-dQy"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="DF2-87-RMZ" secondAttribute="trailing" constant="-1" id="UxY-3I-TGT"/>
                                                 <constraint firstItem="DF2-87-RMZ" firstAttribute="leading" secondItem="lM8-qV-p9v" secondAttribute="leading" constant="16" id="gh8-Dm-qys"/>
                                                 <constraint firstItem="DF2-87-RMZ" firstAttribute="top" secondItem="lM8-qV-p9v" secondAttribute="topMargin" id="iHX-HF-HSl"/>
@@ -119,7 +119,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HgY-NQ-EyS" customClass="GAMBannerView">
-                                <rect key="frame" x="27.5" y="529" width="320" height="50"/>
+                                <rect key="frame" x="27.5" y="509" width="320" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="ED1-Xj-dH6"/>
@@ -169,11 +169,11 @@
                         <viewControllerLayoutGuide type="bottom" id="SqF-cO-B8h"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Dm9-oT-c6R">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="O4e-aB-1Km">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="516"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="496"/>
                                 <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PassForecastCell" rowHeight="70" id="8ao-LY-vIM" customClass="ForecastCell" customModule="WSDOT" customModuleProvider="target">
@@ -231,7 +231,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PMA-P8-yIH" customClass="GAMBannerView">
-                                <rect key="frame" x="27.5" y="516" width="320" height="50"/>
+                                <rect key="frame" x="27.5" y="496" width="320" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="7l7-S4-nJl"/>
@@ -268,11 +268,11 @@
                         <viewControllerLayoutGuide type="bottom" id="x1p-go-mW5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="E5x-cY-hvB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oEb-VE-tcl" customClass="GAMBannerView">
-                                <rect key="frame" x="27.5" y="516" width="320" height="50"/>
+                                <rect key="frame" x="27.5" y="496" width="320" height="50"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Esa-Zs-W7b"/>
@@ -280,7 +280,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="500" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Ujz-vl-dcq">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="508"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="488"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PassCamerasCell" rowHeight="294" id="5F1-9P-cqm" customClass="CameraImageCustomCell" customModule="WSDOT" customModuleProvider="target">
