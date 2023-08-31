@@ -79,6 +79,11 @@ class FavoritesHomeViewController: RefreshViewController {
         super.viewDidAppear(animated)
         MyAnalytics.screenView(screenName: "Favorites")
     }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        loadSelectedContent(force: true)
+    }
 
     @IBAction func favoritesSettingButtonPressed(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: segueFavoritesSettingsViewController, sender: self)
