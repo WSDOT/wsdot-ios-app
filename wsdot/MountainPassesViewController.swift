@@ -74,6 +74,11 @@ class MountainPassesViewController: RefreshViewController, UITableViewDelegate, 
         MyAnalytics.screenView(screenName: "PassReports")
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        refresh(true)
+    }
+    
     func refresh(_ force: Bool){
       DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { [weak self] in
             MountainPassStore.updatePasses(force, completion: { error in
