@@ -66,7 +66,7 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
                 DispatchQueue.main.async {[weak self] in
                     if let selfValue = self{
                         selfValue.pages.removeAll()
-                        selfValue.alertItems = HighwayAlertsStore.getHighwayAlertsTickerItems()
+                        selfValue.alertItems = HighwayAlertsStore.getHighestPriorityAlerts()
                         selfValue.setUpContent(false)
                     }
                 }
