@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (5.7.1)
+  - Alamofire (5.8.0)
   - EasyTipView (2.1.0)
   - Firebase/Analytics (10.16.0):
     - Firebase/Core
@@ -168,7 +168,7 @@ PODS:
   - SwiftyJSON (5.0.1)
 
 DEPENDENCIES:
-  - Alamofire (~> 5.7.1)
+  - Alamofire (~> 5.8.0)
   - EasyTipView (~> 2.1.0)
   - Firebase/Analytics
   - Firebase/Crashlytics
@@ -215,7 +215,7 @@ SPEC REPOS:
     - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
+  Alamofire: 0e92e751b3e9e66d7982db43919d01f313b8eb91
   EasyTipView: a92b6edc377b81c5ac18e9fd35d5ee78e9409488
   Firebase: 25899099b77d255a636e3579c3d9dce10ec150d5
   FirebaseABTesting: 03f0a8b88cf618350527f2c6a2234e29b9c65064
@@ -246,6 +246,6 @@ SPEC CHECKSUMS:
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
-PODFILE CHECKSUM: 3a76db6ccc8cf5ac3a95ee28be49d8916e32f014
+PODFILE CHECKSUM: e51f97830dbf6a2346d21acafbbf22387c75e1ec
 
 COCOAPODS: 1.13.0
