@@ -34,6 +34,7 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
     @IBOutlet weak var categoryStack: UIStackView!
     @IBOutlet weak var categoryImage: UIImageView!
     @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var categoryStackTopConstraint: NSLayoutConstraint!
     
     var hasAlert: Bool = true
     var fromPush: Bool = false
@@ -93,6 +94,7 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
                                 selfValue.title = "Unavailable"
                                 selfValue.descLinkLabel.text = "Sorry, This incident has expired."
                                 selfValue.updateTimeLabel.text = "Unavailable"
+                                selfValue.categoryStackTopConstraint.constant = 0
                             
                             }
                             selfValue.hideOverlayView()

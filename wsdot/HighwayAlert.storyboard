@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Rpi-fL-xpe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Rpi-fL-xpe">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -93,6 +93,7 @@
                         <outlet property="categoryImage" destination="kzn-ft-3FC" id="Y4b-LI-nQn"/>
                         <outlet property="categoryLabel" destination="p5m-Vf-bMZ" id="ODB-Ci-PhS"/>
                         <outlet property="categoryStack" destination="S7V-AE-1FV" id="LMt-AS-UVC"/>
+                        <outlet property="categoryStackTopConstraint" destination="YfG-tl-iot" id="2VK-JI-do6"/>
                         <outlet property="descLinkLabel" destination="W0M-cN-Fir" id="phd-sj-UDK"/>
                         <outlet property="scrollView" destination="h9h-xv-0c6" id="xwx-0O-CMz"/>
                         <outlet property="updateTimeLabel" destination="aZ2-Jg-90C" id="ACX-go-7GR"/>
