@@ -107,6 +107,7 @@ class HighwayAlertsStore: Decodable {
             alert.travelCenterPriorityId = alertJson["TravelCenterPriorityId"].intValue
             alert.region = alertJson["Region"].stringValue
             alert.eventCategory = alertJson["EventCategory"].stringValue
+            alert.eventCategoryTypeDescription = alertJson["EventCategoryTypeDescription"].stringValue
             alert.headlineDesc = alertJson["HeadlineDescription"].stringValue
             alert.eventStatus = alertJson["EventStatus"].stringValue
             alert.startDirection = alertJson["StartRoadwayLocation"]["Direction"].stringValue

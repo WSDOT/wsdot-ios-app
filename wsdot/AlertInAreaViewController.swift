@@ -45,25 +45,25 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
         
         for alert in alerts{
             
-            if alert.eventCategory.lowercased() == "bridge"{
+            if alert.eventCategoryTypeDescription.lowercased() == "bridge"{
                 bridgeAlerts.append(alert)
             }
-            else if alert.eventCategory.lowercased() == "construction"{
+            else if alert.eventCategoryTypeDescription.lowercased() == "construction"{
                 constructionAlerts.append(alert)
             }
-            else if alert.eventCategory.lowercased() == "ferries"{
+            else if alert.eventCategoryTypeDescription.lowercased() == "ferries"{
                 ferryAlerts.append(alert)
             }
-            else if alert.eventCategory.lowercased() == "incident"{
+            else if alert.eventCategoryTypeDescription.lowercased() == "incident"{
                 incidentAlerts.append(alert)
             }
-            else if alert.eventCategory.lowercased() == "maintenance"{
+            else if alert.eventCategoryTypeDescription.lowercased() == "maintenance"{
                     maintenanceAlerts.append(alert)
                 }
-            else if alert.eventCategory.lowercased() == "police activity"{
+            else if alert.eventCategoryTypeDescription.lowercased() == "police activity"{
                     policeActivityAlerts.append(alert)
                 }
-            else if alert.eventCategory.lowercased() == "weather"{
+            else if alert.eventCategoryTypeDescription.lowercased() == "weather"{
                     weatherAlerts.append(alert)
                 }
             else {

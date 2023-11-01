@@ -117,7 +117,7 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
         title = "Alert"
         
         categoryImage.image = UIHelpers.getAlertIcon(forAlert: self.alertItem)
-        categoryLabel.text = alertItem.eventCategory
+        categoryLabel.text = alertItem.eventCategoryTypeDescription
         
         if #available(iOS 14.0, *) {
             self.categoryStack.backgroundColor = UIColor(red: 255/255, green: 193/255, blue: 7/255, alpha: 0.3)

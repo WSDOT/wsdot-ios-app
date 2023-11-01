@@ -213,25 +213,25 @@ class MyRouteReportViewController: RefreshViewController {
                 self.weatherAlerts.removeAll()
 
                 for alert in self.alerts{
-                    if alert.eventCategory.lowercased() == "bridge"{
+                    if alert.eventCategoryTypeDescription.lowercased() == "bridge"{
                         self.bridgeAlerts.append(alert)
                     }
-                    else if alert.eventCategory.lowercased() == "construction"{
+                    else if alert.eventCategoryTypeDescription.lowercased() == "construction"{
                         self.constructionAlerts.append(alert)
                     }
-                    else if alert.eventCategory.lowercased() == "ferries"{
+                    else if alert.eventCategoryTypeDescription.lowercased() == "ferries"{
                         self.ferryAlerts.append(alert)
                     }
-                    else if alert.eventCategory.lowercased() == "incident"{
+                    else if alert.eventCategoryTypeDescription.lowercased() == "incident"{
                         self.incidentAlerts.append(alert)
                     }
-                    else if alert.eventCategory.lowercased() == "maintenance"{
+                    else if alert.eventCategoryTypeDescription.lowercased() == "maintenance"{
                         self.maintenanceAlerts.append(alert)
                         }
-                    else if alert.eventCategory.lowercased() == "police activity"{
+                    else if alert.eventCategoryTypeDescription.lowercased() == "police activity"{
                         self.policeActivityAlerts.append(alert)
                         }
-                    else if alert.eventCategory.lowercased() == "weather"{
+                    else if alert.eventCategoryTypeDescription.lowercased() == "weather"{
                         self.weatherAlerts.append(alert)
                         }
                     else {
@@ -292,7 +292,7 @@ class MyRouteReportViewController: RefreshViewController {
                         tempAlert.endLatitude = alert.endLatitude
                         tempAlert.endLongitude = alert.endLongitude
                         tempAlert.endTime = alert.endTime
-                        tempAlert.eventCategory = alert.eventCategory
+                        tempAlert.eventCategoryTypeDescription = alert.eventCategoryTypeDescription
                         tempAlert.eventStatus = alert.eventStatus
                         tempAlert.extendedDesc = alert.extendedDesc
                         tempAlert.headlineDesc = alert.headlineDesc

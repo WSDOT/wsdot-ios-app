@@ -25,6 +25,7 @@ class HighwayAlertItem: Object {
     @objc dynamic var priority: String = ""
     @objc dynamic var region: String = ""
     @objc dynamic var eventCategory: String = ""
+    @objc dynamic var eventCategoryTypeDescription: String = ""
     @objc dynamic var headlineDesc: String = ""
     @objc dynamic var eventStatus: String = ""
     @objc dynamic var startDirection: String = ""
