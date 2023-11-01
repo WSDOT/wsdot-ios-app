@@ -210,13 +210,13 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
     }
     
     func titleLabel(description: String) ->  NSAttributedString {
-        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .title3).pointSize, weight: .bold)]
+        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .title3).pointSize, weight: .semibold)]
         let description = NSMutableAttributedString(string: description, attributes: titleAttributes)
         return description
     }
     
     func directionLabel(label: String, description: String) ->  NSAttributedString {
-        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .callout).pointSize - 0.1, weight: .bold)]
+        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .callout).pointSize - 0.1, weight: .semibold)]
         let contentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .callout).pointSize - 0.1, weight: .regular)]
         let label = NSMutableAttributedString(string: label, attributes: titleAttributes)
         let description = NSMutableAttributedString(string: description, attributes: contentAttributes)
@@ -225,7 +225,7 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
     }
     
     func refreshRateLabel(label: String, description: String) ->  NSAttributedString {
-        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .callout).pointSize - 0.1, weight: .bold)]
+        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .callout).pointSize - 0.1, weight: .semibold)]
         let contentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .callout).pointSize - 0.1, weight: .regular)]
         let label = NSMutableAttributedString(string: label, attributes: titleAttributes)
         let description = NSMutableAttributedString(string: description, attributes: contentAttributes)
