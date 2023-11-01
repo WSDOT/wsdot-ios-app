@@ -119,10 +119,26 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
         categoryImage.image = UIHelpers.getAlertIcon(forAlert: self.alertItem)
         categoryLabel.text = alertItem.eventCategory
         
-        self.categoryStack.backgroundColor = UIColor(red: 255/255, green: 193/255, blue: 7/255, alpha: 0.3)
-        self.categoryStack.layer.borderColor = UIColor(red: 255/255, green: 193/255, blue: 7/255, alpha: 1.0).cgColor
-        self.categoryStack.layer.borderWidth = 1
-        self.categoryStack.layer.cornerRadius = 4.0
+        if #available(iOS 14.0, *) {
+            self.categoryStack.backgroundColor = UIColor(red: 255/255, green: 193/255, blue: 7/255, alpha: 0.3)
+            self.categoryStack.layer.borderColor = UIColor(red: 255/255, green: 193/255, blue: 7/255, alpha: 1.0).cgColor
+            self.categoryStack.layer.borderWidth = 1
+            self.categoryStack.layer.cornerRadius = 4.0
+        } else {
+            let subView = UIView()
+            subView.backgroundColor = UIColor(red: 255/255, green: 193/255, blue: 7/255, alpha: 0.3)
+            subView.layer.borderColor = UIColor(red: 255/255, green: 193/255, blue: 7/255, alpha: 1.0).cgColor
+            subView.layer.borderWidth = 1
+            subView.layer.cornerRadius = 4.0
+            subView.translatesAutoresizingMaskIntoConstraints = false
+            categoryStack.insertSubview(subView, at: 0)
+            subView.topAnchor.constraint(equalTo: categoryStack.topAnchor).isActive = true
+            subView.bottomAnchor.constraint(equalTo: categoryStack.bottomAnchor).isActive = true
+            subView.leftAnchor.constraint(equalTo: categoryStack.leftAnchor).isActive = true
+            subView.rightAnchor.constraint(equalTo: categoryStack.rightAnchor).isActive = true
+            
+        }
+
 
         let htmlStyleString = "<style>*{font-family:-apple-system}h1{font: -apple-system-title2; font-weight:bold}body{font: -apple-system-body}b{font: -apple-system-headline}</style>"
         

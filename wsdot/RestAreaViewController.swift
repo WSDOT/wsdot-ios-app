@@ -48,10 +48,26 @@ class RestAreaViewController: UIViewController, MapMarkerDelegate, GMSMapViewDel
 
         embeddedMapViewController.view.isHidden = true
         
+        if #available(iOS 14.0, *) {
         self.restAreaStack.backgroundColor = UIColor(red: 0/255, green: 174/255, blue: 199/255, alpha: 0.2)
         self.restAreaStack.layer.borderColor = UIColor(red: 0/255, green: 174/255, blue: 199/255, alpha: 1.0).cgColor
         self.restAreaStack.layer.borderWidth = 1
         self.restAreaStack.layer.cornerRadius = 4.0
+        } else {
+            let subView = UIView()
+            subView.backgroundColor = UIColor(red: 0/255, green: 174/255, blue: 199/255, alpha: 0.2)
+            subView.layer.borderColor = UIColor(red: 0/255, green: 174/255, blue: 199/255, alpha: 1.0).cgColor
+            subView.layer.borderWidth = 1
+            subView.layer.cornerRadius = 4.0
+            subView.translatesAutoresizingMaskIntoConstraints = false
+            restAreaStack.insertSubview(subView, at: 0)
+            subView.topAnchor.constraint(equalTo: restAreaStack.topAnchor).isActive = true
+            subView.bottomAnchor.constraint(equalTo: restAreaStack.bottomAnchor).isActive = true
+            subView.leftAnchor.constraint(equalTo: restAreaStack.leftAnchor).isActive = true
+            subView.rightAnchor.constraint(equalTo: restAreaStack.rightAnchor).isActive = true
+            
+        }
+        
         
         var amenities: String = ""
         

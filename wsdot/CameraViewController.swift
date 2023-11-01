@@ -53,10 +53,28 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
         cameraIconLabel.text = "Camera"
         cameraIconImage.image = UIImage(named: "icMapCamera")
         
+        if #available(iOS 14.0, *) {
         self.cameraIconStack.backgroundColor = UIColor(red: 0/255, green: 123/255, blue: 95/255, alpha: 0.2)
         self.cameraIconStack.layer.borderColor = UIColor(red: 0/255, green: 123/255, blue: 95/255, alpha: 1.0).cgColor
         self.cameraIconStack.layer.borderWidth = 1
         self.cameraIconStack.layer.cornerRadius = 4.0
+        } else {
+            let subView = UIView()
+            subView.backgroundColor = UIColor(red: 0/255, green: 123/255, blue: 95/255, alpha: 0.2)
+            subView.layer.borderColor = UIColor(red: 0/255, green: 123/255, blue: 95/255, alpha: 1.0).cgColor
+            subView.layer.borderWidth = 1
+            subView.layer.cornerRadius = 4.0
+            subView.translatesAutoresizingMaskIntoConstraints = false
+            
+            cameraIconStack.insertSubview(subView, at: 0)
+
+            subView.topAnchor.constraint(equalTo: cameraIconStack.topAnchor).isActive = true
+            subView.bottomAnchor.constraint(equalTo: cameraIconStack.bottomAnchor).isActive = true
+            subView.leftAnchor.constraint(equalTo: cameraIconStack.leftAnchor).isActive = true
+            subView.rightAnchor.constraint(equalTo: cameraIconStack.rightAnchor).isActive = true
+            
+        }
+        
 
         embeddedMapViewController.view.isHidden = false
         
