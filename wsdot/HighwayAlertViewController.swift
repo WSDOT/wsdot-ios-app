@@ -242,4 +242,15 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
         self.present(svc, animated: true, completion: nil)
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+      super.traitCollectionDidChange(previousTraitCollection)
+      if previousTraitCollection?.preferredContentSizeCategory != traitCollection.preferredContentSizeCategory {
+          
+          if #available(iOS 14.0, *) {
+              displayAlert()
+              updateTimeLabel.adjustsFontForContentSizeCategory = true
+          }
+      }
+    }
+    
 }
