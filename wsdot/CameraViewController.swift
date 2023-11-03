@@ -210,7 +210,7 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
     }
     
     func titleLabel(description: String) ->  NSAttributedString {
-        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .title3).pointSize, weight: .bold)]
+        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .title2).pointSize, weight: .bold)]
         let description = NSMutableAttributedString(string: description, attributes: titleAttributes)
         return description
     }
