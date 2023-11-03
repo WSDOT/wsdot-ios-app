@@ -123,52 +123,23 @@ struct UIHelpers {
     
     static func getAlertIcon(forAlert: HighwayAlertItem) -> UIImage? {
     
-        let alertHighIconImage = UIImage(named: "icMapAlertHigh")
-        let alertHighestIconImage = UIImage(named: "icMapAlertHighest")
-        let alertModerateIconImage = UIImage(named: "icMapAlertModerate")
         let alertLowIconImage = UIImage(named: "icMapAlertLow")
-    
-        let constructionHighIconImage = UIImage(named: "icMapConstructionHigh")
-        let constructionHighestIconImage = UIImage(named: "icMapConstructionHighest")
-        let constructionModerateIconImage = UIImage(named: "icMapConstructionModerate")
-        let constructionLowIconImage = UIImage(named: "icMapConstructionLow")
-            
+        let alertModerateIconImage = UIImage(named: "icMapAlertModerate")
+        let alertHighIconImage = UIImage(named: "icMapAlertHigh")
         let closedIconImage = UIImage(named: "icMapClosed")
-    
-        if forAlert.eventCategory.contains("Maintenance") || forAlert.eventCategory.contains("maintenance") || forAlert.eventCategory.contains("Construction") || forAlert.eventCategory.contains("construction")  {
-            switch forAlert.priority {
-                case "Lowest":
-                    return constructionLowIconImage
-                case "Low":
-                    return constructionLowIconImage
-                case "Moderate":
-                    return constructionModerateIconImage
-                case "High":
-                    return constructionHighIconImage
-                case "Highest":
-                    return constructionHighestIconImage
-                default:
-                    return constructionModerateIconImage
+        
+        switch forAlert.travelCenterPriorityId {
+            case 4:
+                return alertLowIconImage
+            case 3:
+                return alertModerateIconImage
+            case 2:
+                return alertHighIconImage
+            case 1:
+                return closedIconImage
+            default:
+                return alertLowIconImage
             }
-
-        } else if forAlert.eventCategory.contains("Closure") || forAlert.eventCategory.contains("closure") {
-            return closedIconImage
-        } else {
-            switch forAlert.priority {
-                case "Lowest":
-                    return alertLowIconImage
-                case "Low":
-                    return alertLowIconImage
-                case "Moderate":
-                    return alertModerateIconImage
-                case "High":
-                    return alertHighIconImage
-                case "Highest":
-                    return alertHighestIconImage
-                default:
-                    return alertModerateIconImage
-            }
-        }
     }
     
 

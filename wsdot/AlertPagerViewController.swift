@@ -138,4 +138,15 @@ class AlertPagerViewController: UIPageViewController, UIPageViewControllerDataSo
         return 0
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+      super.traitCollectionDidChange(previousTraitCollection)
+      if previousTraitCollection?.preferredContentSizeCategory != traitCollection.preferredContentSizeCategory {
+          
+          if #available(iOS 14.0, *) {
+              fetchAlerts(true)
+          }
+
+      }
+    }
+    
 }

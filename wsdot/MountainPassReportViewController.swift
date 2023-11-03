@@ -45,10 +45,25 @@ class MountainPassReportViewController: RefreshViewController, UITableViewDataSo
         passReportView.mountainPassIconLabel.text = "Mountain Pass Report"
         passReportView.mountainPassIconImage.image = UIImage(named: "mountainpass_icon")
         
+        if #available(iOS 14.0, *) {
         passReportView.mountainPassIconStack.backgroundColor = UIColor(red: 28/255, green: 120/255, blue: 205/255, alpha: 0.2)
         passReportView.mountainPassIconStack.layer.borderColor = UIColor(red: 28/255, green: 120/255, blue: 205/255, alpha: 1.0).cgColor
         passReportView.mountainPassIconStack.layer.borderWidth = 1
         passReportView.mountainPassIconStack.layer.cornerRadius = 4.0
+        } else {
+            let subView = UIView()
+            subView.backgroundColor = UIColor(red: 28/255, green: 120/255, blue: 205/255, alpha: 0.2)
+            subView.layer.borderColor = UIColor(red: 28/255, green: 120/255, blue: 205/255, alpha: 1.0).cgColor
+            subView.layer.borderWidth = 1
+            subView.layer.cornerRadius = 4.0
+            subView.translatesAutoresizingMaskIntoConstraints = false
+            passReportView.mountainPassIconStack.insertSubview(subView, at: 0)
+            subView.topAnchor.constraint(equalTo: passReportView.mountainPassIconStack.topAnchor).isActive = true
+            subView.bottomAnchor.constraint(equalTo: passReportView.mountainPassIconStack.bottomAnchor).isActive = true
+            subView.leftAnchor.constraint(equalTo: passReportView.mountainPassIconStack.leftAnchor).isActive = true
+            subView.rightAnchor.constraint(equalTo: passReportView.mountainPassIconStack.rightAnchor).isActive = true
+            
+        }
         
         let mountainPassTabBarContoller = self.tabBarController as! MountainPassTabBarViewController
         

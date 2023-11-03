@@ -34,12 +34,14 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
     @IBOutlet weak var categoryStack: UIStackView!
     @IBOutlet weak var categoryImage: UIImageView!
     @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var categoryStackTopConstraint: NSLayoutConstraint!
     
     var hasAlert: Bool = true
     var fromPush: Bool = false
     var pushLat: Double = 0.0
     var pushLong: Double = 0.0
     var pushMessage: String = ""
+    var location: String = ""
     
     weak fileprivate var embeddedMapViewController: SimpleMapViewController!
     
@@ -92,6 +94,7 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
                                 selfValue.title = "Unavailable"
                                 selfValue.descLinkLabel.text = "Sorry, This incident has expired."
                                 selfValue.updateTimeLabel.text = "Unavailable"
+                                selfValue.categoryStackTopConstraint.constant = 0
                             
                             }
                             selfValue.hideOverlayView()
@@ -114,17 +117,36 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
         title = "Alert"
         
         categoryImage.image = UIHelpers.getAlertIcon(forAlert: self.alertItem)
-        categoryLabel.text = alertItem.eventCategory
+        categoryLabel.text = alertItem.eventCategoryTypeDescription
         
-        self.categoryStack.backgroundColor = UIColor(red: 255/255, green: 193/255, blue: 7/255, alpha: 0.3)
-        self.categoryStack.layer.borderColor = UIColor(red: 255/255, green: 193/255, blue: 7/255, alpha: 1.0).cgColor
-        self.categoryStack.layer.borderWidth = 1
-        self.categoryStack.layer.cornerRadius = 4.0
+        if #available(iOS 14.0, *) {
+            self.categoryStack.backgroundColor = UIColor(red: 255/255, green: 193/255, blue: 7/255, alpha: 0.3)
+            self.categoryStack.layer.borderColor = UIColor(red: 255/255, green: 193/255, blue: 7/255, alpha: 1.0).cgColor
+            self.categoryStack.layer.borderWidth = 1
+            self.categoryStack.layer.cornerRadius = 4.0
+        } else {
+            let subView = UIView()
+            subView.backgroundColor = UIColor(red: 255/255, green: 193/255, blue: 7/255, alpha: 0.3)
+            subView.layer.borderColor = UIColor(red: 255/255, green: 193/255, blue: 7/255, alpha: 1.0).cgColor
+            subView.layer.borderWidth = 1
+            subView.layer.cornerRadius = 4.0
+            subView.translatesAutoresizingMaskIntoConstraints = false
+            categoryStack.insertSubview(subView, at: 0)
+            subView.topAnchor.constraint(equalTo: categoryStack.topAnchor).isActive = true
+            subView.bottomAnchor.constraint(equalTo: categoryStack.bottomAnchor).isActive = true
+            subView.leftAnchor.constraint(equalTo: categoryStack.leftAnchor).isActive = true
+            subView.rightAnchor.constraint(equalTo: categoryStack.rightAnchor).isActive = true
+            
+        }
 
-        let htmlStyleString = "<style>body{font-family: '-apple-system'; font-size:\(descLinkLabel.font.pointSize)px;}</style>"
+
+        let htmlStyleString = "<style>*{font-family:-apple-system}h1{font: -apple-system-title2; font-weight:bold}body{font: -apple-system-body}b{font: -apple-system-headline}</style>"
         
-        let description = "<br><br><b>Description: </b>" + alertItem.headlineDesc
-
+        if (alertItem.roadName != "" && alertItem.startDirection != "") {
+            location = "<h1>" + alertItem.roadName + " " + alertItem.startDirection + "</h1>"
+        }
+        
+        let description = location + "<b>Description: </b>" + alertItem.headlineDesc
         let htmlString = htmlStyleString + description
         
         let attrStr = try! NSMutableAttributedString(
@@ -218,6 +240,17 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
             svc.view.tintColor = ThemeManager.currentTheme().mainColor
         }
         self.present(svc, animated: true, completion: nil)
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+      super.traitCollectionDidChange(previousTraitCollection)
+      if previousTraitCollection?.preferredContentSizeCategory != traitCollection.preferredContentSizeCategory {
+          
+          if #available(iOS 14.0, *) {
+              displayAlert()
+              updateTimeLabel.adjustsFontForContentSizeCategory = true
+          }
+      }
     }
     
 }

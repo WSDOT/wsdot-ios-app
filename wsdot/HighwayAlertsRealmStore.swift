@@ -104,8 +104,10 @@ class HighwayAlertsStore: Decodable {
             
             alert.alertId = alertJson["AlertID"].intValue
             alert.priority = alertJson["Priority"].stringValue
+            alert.travelCenterPriorityId = alertJson["TravelCenterPriorityId"].intValue
             alert.region = alertJson["Region"].stringValue
             alert.eventCategory = alertJson["EventCategory"].stringValue
+            alert.eventCategoryTypeDescription = alertJson["EventCategoryTypeDescription"].stringValue
             alert.headlineDesc = alertJson["HeadlineDescription"].stringValue
             alert.eventStatus = alertJson["EventStatus"].stringValue
             alert.startDirection = alertJson["StartRoadwayLocation"]["Direction"].stringValue
@@ -115,7 +117,7 @@ class HighwayAlertsStore: Decodable {
             alert.startLongitude = alertJson["StartRoadwayLocation"]["Longitude"].doubleValue
             alert.endLatitude = alertJson["EndRoadwayLocation"]["Latitude"].doubleValue
             alert.endLongitude = alertJson["EndRoadwayLocation"]["Longitude"].doubleValue
-            
+            alert.roadName = alertJson["StartRoadwayLocation"]["RoadName"].stringValue
             alert.county = alertJson["County"].string
             
             if let endTimeJsonStringValue = alertJson["EndTime"].string {

@@ -267,7 +267,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // MARK: Realm
     func migrateRealm(){
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
-            schemaVersion: 10,
+            schemaVersion: 11,
             
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
@@ -369,6 +369,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     migration.enumerateObjects(ofType: CacheItem.className()) { oldObject, newObject in
                         newObject!["bridgeAlertsLastUpdate"] = Date(timeIntervalSince1970: 0)
                     }
+                }
+                
+                /*
+                    Adds WSDOT traffic map data from https://wsdot.com/travel/real-time/service/api/Alerts
+                    Clears cache times to force refresh
+                */
+                if (oldSchemaVersion < 11) {
+                    migration.enumerateObjects(ofType: HighwayAlertItem.className()) { oldObject, newObject in
+                        newObject!["roadName"] = ""
+                        newObject!["eventCategoryTypeDescription"] = ""
+                        newObject!["travelCenterPriorityId"] = 0                        
+                    }
+                    migration.deleteData(forType: CacheItem.className())
                 }
                 
         })

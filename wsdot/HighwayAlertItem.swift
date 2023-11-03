@@ -25,9 +25,11 @@ class HighwayAlertItem: Object {
     @objc dynamic var priority: String = ""
     @objc dynamic var region: String = ""
     @objc dynamic var eventCategory: String = ""
+    @objc dynamic var eventCategoryTypeDescription: String = ""
     @objc dynamic var headlineDesc: String = ""
     @objc dynamic var eventStatus: String = ""
     @objc dynamic var startDirection: String = ""
+    @objc dynamic var roadName: String = ""
     @objc dynamic var lastUpdatedTime = Date()
 
     @objc dynamic var startTime = Date()
@@ -36,7 +38,8 @@ class HighwayAlertItem: Object {
     @objc dynamic var startLongitude: Double = 0.0
     @objc dynamic var endLatitude: Double = 0.0
     @objc dynamic var endLongitude: Double = 0.0
-    
+    @objc dynamic var travelCenterPriorityId: Int = 0
+
     @objc dynamic var county: String? = nil
     @objc dynamic var endTime: Date? = nil
     @objc dynamic var extendedDesc: String? = nil
