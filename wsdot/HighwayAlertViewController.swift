@@ -140,7 +140,7 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
         }
 
 
-        let htmlStyleString = "<style>*{font-family:-apple-system}h1{font: -apple-system-title3; font-weight:600}body{font: -apple-system-body}b{font: -apple-system-body;font-weight:600}</style>"
+        let htmlStyleString = "<style>*{font-family:-apple-system}h1{font: -apple-system-title2; font-weight:bold}body{font: -apple-system-body}b{font: -apple-system-headline}</style>"
         
         if (alertItem.roadName != "" && alertItem.startDirection != "") {
             location = "<h1>" + alertItem.roadName + " " + alertItem.startDirection + "</h1>"
