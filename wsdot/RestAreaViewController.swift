@@ -76,7 +76,7 @@ class RestAreaViewController: UIViewController, MapMarkerDelegate, GMSMapViewDel
         }
         
         restAreaName.text = restAreaItem!.location
-        restAreaName.font = UIFont(descriptor: UIFont.preferredFont(forTextStyle: .title3).fontDescriptor.withSymbolicTraits(.traitBold)!, size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
+        restAreaName.font = UIFont(descriptor: UIFont.preferredFont(forTextStyle: .title2).fontDescriptor.withSymbolicTraits(.traitBold)!, size: UIFont.preferredFont(forTextStyle: .title2).pointSize)
 
         restAreaLocation.attributedText = locationLabel(label: "Location: ", description: restAreaItem!.description)
         
