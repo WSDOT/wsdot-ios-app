@@ -101,7 +101,7 @@ class MountainPassReportViewController: RefreshViewController, UITableViewDataSo
         passItem = withPassItem
         
         passReportView.mountainPassTitle.text = passItem.name        
-        passReportView.mountainPassTitle.font = UIFont(descriptor: UIFont.preferredFont(forTextStyle: .title3).fontDescriptor.withSymbolicTraits(.traitBold)!, size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
+        passReportView.mountainPassTitle.font = UIFont(descriptor: UIFont.preferredFont(forTextStyle: .title2).fontDescriptor.withSymbolicTraits(.traitBold)!, size: UIFont.preferredFont(forTextStyle: .title2).pointSize)
         
         // Elevation
         passReportView.elevationLabel.attributedText = elevationLabel(label: "Elevation: ", passItem: String(passItem.elevationInFeet), elevation: " ft")
