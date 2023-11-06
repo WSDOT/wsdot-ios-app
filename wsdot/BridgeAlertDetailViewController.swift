@@ -41,6 +41,8 @@ class BridgeAlertDetailViewController: RefreshViewController, INDLinkLabelDelega
     var pushLat: Double = 0.0
     var pushLong: Double = 0.0
     var pushMessage: String = ""
+    var location: String = ""
+
     
     weak fileprivate var embeddedMapViewController: SimpleMapViewController!
     
@@ -117,9 +119,15 @@ class BridgeAlertDetailViewController: RefreshViewController, INDLinkLabelDelega
         self.categoryStack.layer.borderWidth = 1
         self.categoryStack.layer.cornerRadius = 4.0
 
-        let htmlStyleString = "<style>body{font-family: '-apple-system'; font-size:\(descLinkLabel.font.pointSize)px;}</style>"
+        let htmlStyleString = "<style>*{font-family:-apple-system}h1{font: -apple-system-title2; font-weight:bold}body{font: -apple-system-body}b{font: -apple-system-headline}</style>"
         
-        let htmlString = htmlStyleString + "<br><br><b>Description: </b>" + bridgeAlertItem.descText
+        if (bridgeAlertItem.roadName != "" && bridgeAlertItem.direction != "") {
+            location = "<h1>" + bridgeAlertItem.roadName + " " + bridgeAlertItem.direction + "</h1>"
+        }
+
+        
+        let description = location + "<b>Description: </b>" + bridgeAlertItem.descText
+        let htmlString = htmlStyleString + description
         
         let attrStr = try! NSMutableAttributedString(
             data: htmlString.data(using: String.Encoding.unicode, allowLossyConversion: false)!,
