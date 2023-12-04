@@ -19,7 +19,7 @@ Features - [View on the App Store](https://itunes.apple.com/us/app/wsdot/id38720
 
 Setup
 -----
-This project uses [CocoaPods](https://cocoapods.org/) for dependency management.
+This project uses [CocoaPods](https://cocoapods.org/) (v1.14.3) for dependency management.
 
 * Run `pod install` in the project directory to set up the workspace.
 * Open the `WSDOT.xcworkspace` project in Xcode to get the CocoaPods workspace. 
