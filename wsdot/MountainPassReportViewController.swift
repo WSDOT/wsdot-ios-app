@@ -134,9 +134,7 @@ class MountainPassReportViewController: RefreshViewController, UITableViewDataSo
         if (passItem.weatherCondition != ""){
             passReportView.weatherDetailsLabel.attributedText = weatherLabel(label: "Weather: ", passItem: passItem.weatherCondition)
         }
-        else if (passItem.forecast.count > 0){
-            passReportView.weatherDetailsLabel.attributedText = weatherLabel(label: "Weather: ", passItem: passItem.forecast[0].forecastText)
-        } else {
+        else {
             passReportView.weatherDetailsLabel.attributedText = weatherLabel(label: "Weather: ", passItem: "N/A")
         }
     
