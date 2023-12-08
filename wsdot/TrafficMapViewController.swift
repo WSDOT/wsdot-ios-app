@@ -45,8 +45,6 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     fileprivate var cameraMarkers = Set<CameraClusterItem>()
     fileprivate var restAreaMarkers = Set<GMSMarker>()
     fileprivate var mountainPassMarkers = Set<GMSMarker>()
-
-    fileprivate let JBLMMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: 47.103033, longitude: -122.584394))
     
     // Mark: Map Icons
     fileprivate let restAreaIconImage = UIImage(named: "icMapRestArea")
@@ -88,10 +86,6 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         if (UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras) == "on"){
             cameraBarButton.image = cameraHighlightBarButtonImage
         }
-        
-        JBLMMarker.icon = UIImage(named: "icMapJBLM")
-        JBLMMarker.snippet = "jblm"
-        JBLMMarker.userData = "https://images.wsdot.wa.gov/traffic/flowmaps/jblm.png"
         
         self.loadCameraMarkers()
         self.drawCameras()
@@ -498,25 +492,6 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         }
     }
     
-    // MARK: JBLM Marker logic
-    func removeJBLM(){
-        JBLMMarker.map = nil
-    }
-    
-    func drawJBLM(){
-        if let mapView = embeddedMapViewController.view as? GMSMapView{
-            let jblmPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.jblmCallout)
-            if let jblmPrefValue = jblmPref{
-                if (jblmPrefValue == "on") {
-                    JBLMMarker.map = mapView
-                }
-            }else{
-                UserDefaults.standard.set("on", forKey: UserDefaultsKeys.jblmCallout)
-                JBLMMarker.map = mapView
-            }
-        }
-    }
-    
     // MARK: Rest area marker logic
     func removeMountainPasses(){
         for mountainpasses in mountainPassMarkers{
@@ -620,7 +595,6 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         
         let serviceGroup = DispatchGroup();
         
-        drawJBLM()
         fetchCameras(force: false, group: serviceGroup)
         fetchAlerts(force: false, group: serviceGroup)
         fetchMountainPasses(force: false, group: serviceGroup)
@@ -664,10 +638,6 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         
         if marker.snippet == "restarea" {
             performSegue(withIdentifier: SegueRestAreaViewController, sender: marker)
-        }
-        
-        if marker.snippet == "jblm" {
-            performSegue(withIdentifier: SegueCalloutViewController, sender: marker)
         }
         
         if marker.snippet == "mountainpass" {
@@ -762,14 +732,6 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
             let destinationViewController = segue.destination as! RestAreaViewController
             destinationViewController.restAreaItem = restAreaItem
         }
-        
-        if segue.identifier == SegueCalloutViewController {
-            let calloutURL = ((sender as! GMSMarker).userData as! String)
-            let destinationViewController = segue.destination as! CalloutViewController
-            destinationViewController.calloutURL = calloutURL
-            destinationViewController.title = "JBLM"
-        }
-        
         
         if segue.identifier == SegueMountainPassViewController {
             let passItem = ((sender as! GMSMarker).userData as! MountainPassItem)

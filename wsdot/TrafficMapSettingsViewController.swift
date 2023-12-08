@@ -38,11 +38,10 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                         "WSDOT Alerts",
                         "Mountain Passes",
                         "Rest Areas",
-                        "JBLM",
                         "Cluster Cameras",
                         "Favorite Location"]
         
-        menu_icon_names = ["","icHomeTraffic", "alert_high_icon","icMountainPass","restarea_icon","icMapJBLM","camera_icon","icHomeFavorites", "trafficMapKey"]
+        menu_icon_names = ["","icHomeTraffic", "alert_high_icon","icMountainPass","restarea_icon","camera_icon","icHomeFavorites", "trafficMapKey"]
 
         self.view.backgroundColor = ThemeManager.currentTheme().mainColor
     }
@@ -95,7 +94,7 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
         
             return cell
         
-        } else if indexPath.row < 8 {
+        } else if indexPath.row < 7 {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! SettingsCell
             
@@ -176,22 +175,6 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                 break
                 
             case menu_options[4]:
-                let jblmPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.jblmCallout)
-                if let jblmVisible = jblmPref {
-                    if (jblmVisible == "on") {
-                        cell.settingSwitch.isOn = true
-                    } else {
-                        cell.settingSwitch.isOn = false
-                    }
-                }
-                cell.settingSwitch.addTarget(self, action: #selector(TrafficMapSettingsViewController.changeJBLMPref(_:)), for: .valueChanged)
-                cell.settingSwitch.isHidden = false
-                cell.selectionStyle = .none
-                cell.favoriteImageView.isHidden = true
-                cell.infoButton.isHidden = true
-                break
-                
-            case menu_options[5]:
                 let clusterPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.shouldCluster)
                 if let clusterVisible = clusterPref {
                     if (clusterVisible == "on") {
@@ -209,7 +192,7 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                 cell.infoButton.addTarget(self, action: #selector(TrafficMapSettingsViewController.clusterInfoAlert(_:)), for: .touchUpInside)
                 break
                 
-            case menu_options[6]:
+            case menu_options[5]:
                 cell.selectionStyle = .blue
                 cell.settingSwitch.isHidden = true
                 cell.favoriteImageView.isHidden = false
@@ -233,7 +216,7 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
     // MARK: Table View Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.row) {
-        case 7:
+        case 6:
             favoriteLocationAction()
         default:
             break
@@ -346,21 +329,6 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                 MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Show Rest Areas")
                 UserDefaults.standard.set("on", forKey: UserDefaultsKeys.restAreas)
                 my_parent!.drawRestArea()
-            }
-        }
-    }
-    
-    @objc func changeJBLMPref(_ sender: UISwitch){
-        let jblmPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.jblmCallout)
-        if let jblmVisible = jblmPref {
-            if (jblmVisible == "on") {
-                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Hide JBLM")
-                UserDefaults.standard.set("off", forKey: UserDefaultsKeys.jblmCallout)
-                my_parent!.removeJBLM()
-            } else {
-                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Show JBLM")
-                UserDefaults.standard.set("on", forKey: UserDefaultsKeys.jblmCallout)
-                my_parent!.drawJBLM()
             }
         }
     }

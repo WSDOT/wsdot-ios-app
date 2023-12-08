@@ -24,7 +24,6 @@ class UserDefaultsKeys {
     static let cameras = "CameraMarkerPref"
     static let alerts = "AlertsMarkerPref"
     static let restAreas = "RestAreaMarkerPref"
-    static let jblmCallout = "JBLMMarkerPref"
     static let mountainPasses = "MountainPassMarkerPref"
     static let trafficLayer = "TrafficLayerMarkerPref"
 
