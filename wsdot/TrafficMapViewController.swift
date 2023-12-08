@@ -74,13 +74,13 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Set defualt value for camera display if there is none
+        
+        // Set default value for mountain passes if there is none
         if (UserDefaults.standard.string(forKey: UserDefaultsKeys.mountainPasses) == nil){
             UserDefaults.standard.set("on", forKey: UserDefaultsKeys.mountainPasses)
         }
         
-        // Set defualt value for camera display if there is none
+        // Set default value for camera display if there is none
         if (UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras) == nil){
             UserDefaults.standard.set("on", forKey: UserDefaultsKeys.cameras)
         }
@@ -418,6 +418,21 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
             }
         }
         return alerts
+    }
+    
+    func trafficLayer() {
+        if let mapView = embeddedMapViewController.view as? GMSMapView{
+            let trafficLayerPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.trafficLayer)
+            if let trafficLayerVisible = trafficLayerPref {
+                if (trafficLayerVisible == "on") {
+                    UserDefaults.standard.set("on", forKey: UserDefaultsKeys.trafficLayer)
+                    mapView.isTrafficEnabled = true
+                } else {
+                    UserDefaults.standard.set("off", forKey: UserDefaultsKeys.trafficLayer)
+                    mapView.isTrafficEnabled = false
+                }
+            }
+        }
     }
     
     func convertAlertMarkersToHighwayAlertItems(markers: [GMSMarker]) -> [HighwayAlertItem] {

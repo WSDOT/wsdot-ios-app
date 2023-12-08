@@ -45,7 +45,16 @@ class SimpleMapViewController: UIViewController {
         
         MapThemeUtils.setMapStyle(mapView, traitCollection)
         
-        mapView.isTrafficEnabled = true
+        // Check for traffic layer setting
+        let trafficLayerPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.trafficLayer)
+        if let trafficLayerVisible = trafficLayerPref {
+            if (trafficLayerVisible == "on") {
+                mapView.isTrafficEnabled = true
+            } else {
+                mapView.isTrafficEnabled = false
+            }
+        }
+
         mapView.delegate = mapDelegate
         
         view = mapView

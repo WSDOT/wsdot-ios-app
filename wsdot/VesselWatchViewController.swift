@@ -62,6 +62,11 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         if (UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras) == "on"){
             cameraBarButton.image = cameraHighlightBarButtonImage
         }
+        
+//        if let mapView = embeddedMapViewController.view as? GMSMapView{
+//            mapView.isTrafficEnabled = false
+//            
+//        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

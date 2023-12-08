@@ -66,10 +66,19 @@ class MyRouteReportViewController: RefreshViewController {
         // Prepare Google mapView
         mapView.delegate = self
         mapView.isMyLocationEnabled = true
-        mapView.isTrafficEnabled = true
         
         MapThemeUtils.setMapStyle(mapView, traitCollection)
-
+       
+        // Check for traffic layer setting
+        let trafficLayerPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.trafficLayer)
+        if let trafficLayerVisible = trafficLayerPref {
+            if (trafficLayerVisible == "on") {
+                mapView.isTrafficEnabled = true
+            } else {
+                mapView.isTrafficEnabled = false
+            }
+        }
+        
         alertsContainerView.isHidden = false
         camerasContainerView.isHidden = true
         travelTimesContainerView.isHidden = true

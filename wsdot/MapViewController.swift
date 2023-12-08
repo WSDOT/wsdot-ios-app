@@ -84,8 +84,21 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
         // Set Dark mode if needed
         MapThemeUtils.setMapStyle(mapView, traitCollection)
 
+        // Set default value for traffic layer if there is none
+        if (UserDefaults.standard.string(forKey: UserDefaultsKeys.trafficLayer) == nil){
+            UserDefaults.standard.set("on", forKey: UserDefaultsKeys.trafficLayer)
+        }
         
-        mapView.isTrafficEnabled = true
+        // Check for traffic layer setting
+        let trafficLayerPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.trafficLayer)
+        if let trafficLayerVisible = trafficLayerPref {
+            if (trafficLayerVisible == "on") {
+                mapView.isTrafficEnabled = true
+            } else {
+                mapView.isTrafficEnabled = false
+            }
+        }
+        
         mapView.settings.compassButton = true
         mapView.delegate = mapDelegate
         
