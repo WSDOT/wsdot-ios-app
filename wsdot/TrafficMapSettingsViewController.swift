@@ -34,14 +34,14 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        menu_options = ["WSDOT Alerts",
+        menu_options = ["Traffic Layer",
+                        "WSDOT Alerts",
                         "Mountain Passes",
                         "Rest Areas",
-                        "JBLM",
                         "Cluster Cameras",
                         "Favorite Location"]
         
-        menu_icon_names = ["","alert_high_icon","icMountainPass","restarea_icon","icMapJBLM","camera_icon","icHomeFavorites", "trafficMapKey"]
+        menu_icon_names = ["","icHomeTraffic", "alert_high_icon","icMountainPass","restarea_icon","camera_icon","icHomeFavorites", "trafficMapKey"]
 
         self.view.backgroundColor = ThemeManager.currentTheme().mainColor
     }
@@ -108,6 +108,22 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
             switch(menu_options[indexPath.row-1]){
                 
             case menu_options[0]:
+                let trafficLayerPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.trafficLayer)
+                if let trafficLayerVisible = trafficLayerPref {
+                    if (trafficLayerVisible == "on") {
+                        cell.settingSwitch.isOn = true
+                    } else {
+                        cell.settingSwitch.isOn = false
+                    }
+                }
+                cell.settingSwitch.addTarget(self, action: #selector(TrafficMapSettingsViewController.changeTrafficLayerPref(_:)), for: .valueChanged)
+                cell.settingSwitch.isHidden = false
+                cell.selectionStyle = .none
+                cell.favoriteImageView.isHidden = true
+                cell.infoButton.isHidden = true
+                break
+                
+            case menu_options[1]:
                 let alertsPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.alerts)
                 if let alertsVisible = alertsPref {
                     if (alertsVisible == "on") {
@@ -117,7 +133,6 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                     }
                 }
                 
-//                cell.iconView.image = UIImage(named: "alerts")
                 cell.settingSwitch.addTarget(self, action: #selector(TrafficMapSettingsViewController.changeAlertsPref(_:)), for: .valueChanged)
                 cell.settingSwitch.isHidden = false
                 cell.selectionStyle = .none
@@ -125,7 +140,7 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                 cell.infoButton.isHidden = true
                 break
             
-            case menu_options[1]:
+            case menu_options[2]:
                 let mountainPassPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.mountainPasses)
                 if let mountainPassVisible = mountainPassPref {
                     if (mountainPassVisible == "on") {
@@ -142,7 +157,7 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                 cell.infoButton.isHidden = true
                 break
                 
-            case menu_options[2]:
+            case menu_options[3]:
                 let restAreaPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.restAreas)
                 if let restAreaVisible = restAreaPref {
                     if (restAreaVisible == "on") {
@@ -153,22 +168,6 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                 }
                 
                 cell.settingSwitch.addTarget(self, action: #selector(TrafficMapSettingsViewController.changeRestAreaPref(_:)), for: .valueChanged)
-                cell.settingSwitch.isHidden = false
-                cell.selectionStyle = .none
-                cell.favoriteImageView.isHidden = true
-                cell.infoButton.isHidden = true
-                break
-                
-            case menu_options[3]:
-                let jblmPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.jblmCallout)
-                if let jblmVisible = jblmPref {
-                    if (jblmVisible == "on") {
-                        cell.settingSwitch.isOn = true
-                    } else {
-                        cell.settingSwitch.isOn = false
-                    }
-                }
-                cell.settingSwitch.addTarget(self, action: #selector(TrafficMapSettingsViewController.changeJBLMPref(_:)), for: .valueChanged)
                 cell.settingSwitch.isHidden = false
                 cell.selectionStyle = .none
                 cell.favoriteImageView.isHidden = true
@@ -271,6 +270,23 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
         }
     }
     
+    @objc func changeTrafficLayerPref(_ sender: UISwitch){
+        let trafficLayerPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.trafficLayer)
+        if let trafficLayerVisible = trafficLayerPref {
+            if (trafficLayerVisible == "on") {
+                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Hide Traffic Layer")
+                UserDefaults.standard.set("off", forKey: UserDefaultsKeys.trafficLayer)
+                my_parent?.trafficLayer()
+                
+            } else {
+                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Show Traffic Layer")
+                UserDefaults.standard.set("on", forKey: UserDefaultsKeys.trafficLayer)
+                my_parent?.trafficLayer()
+
+            }
+        }
+    }
+    
     @objc func changeAlertsPref(_ sender: UISwitch){
         let alertsPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.alerts)
         if let alertsVisible = alertsPref {
@@ -313,21 +329,6 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                 MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Show Rest Areas")
                 UserDefaults.standard.set("on", forKey: UserDefaultsKeys.restAreas)
                 my_parent!.drawRestArea()
-            }
-        }
-    }
-    
-    @objc func changeJBLMPref(_ sender: UISwitch){
-        let jblmPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.jblmCallout)
-        if let jblmVisible = jblmPref {
-            if (jblmVisible == "on") {
-                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Hide JBLM")
-                UserDefaults.standard.set("off", forKey: UserDefaultsKeys.jblmCallout)
-                my_parent!.removeJBLM()
-            } else {
-                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Show JBLM")
-                UserDefaults.standard.set("on", forKey: UserDefaultsKeys.jblmCallout)
-                my_parent!.drawJBLM()
             }
         }
     }

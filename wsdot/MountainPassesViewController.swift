@@ -142,7 +142,7 @@ class MountainPassesViewController: RefreshViewController, UITableViewDelegate, 
         cell.nameLabel.font = UIFont(descriptor: UIFont.preferredFont(forTextStyle: .title3).fontDescriptor.withSymbolicTraits(.traitBold)!, size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
         
         // Weather Icon
-        if (passItem.weatherCondition != ""){
+        if (passItem.weatherCondition != "" && !passItem.weatherCondition.contains("No current information available")){
             cell.weatherImage.image = UIImage(named: WeatherUtils.getDailyWeatherIconName(passItem.weatherCondition, index: 0))
         }
         

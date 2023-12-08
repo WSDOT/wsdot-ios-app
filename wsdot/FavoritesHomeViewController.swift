@@ -558,8 +558,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             passCell.nameLabel.font = UIFont(descriptor: UIFont.preferredFont(forTextStyle: .title3).fontDescriptor.withSymbolicTraits(.traitBold)!, size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
             
             // Weather Icon
-            if (passItem.weatherCondition != ""){
-                passCell.weatherImage.image = UIImage(named: WeatherUtils.getDailyWeatherIconName(passItem.weatherCondition, index: 0))
+            if (passItem.weatherCondition != "" && !passItem.weatherCondition.contains("No current information available")){                passCell.weatherImage.image = UIImage(named: WeatherUtils.getDailyWeatherIconName(passItem.weatherCondition, index: 0))
             }
             
             else if (passItem.forecast.count > 0){
