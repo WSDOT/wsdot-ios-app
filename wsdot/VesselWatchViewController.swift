@@ -76,11 +76,6 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
             }
         }
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        self.timer?.invalidate()
-
-    }
 
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         bannerView.isAccessibilityElement = true
