@@ -35,7 +35,8 @@ class BridgeAlertDetailViewController: RefreshViewController, INDLinkLabelDelega
     @IBOutlet weak var categoryStack: UIStackView!
     @IBOutlet weak var categoryImage: UIImageView!
     @IBOutlet weak var categoryLabel: UILabel!
-    
+    @IBOutlet weak var categoryStackTopConstraint: NSLayoutConstraint!
+
     var hasAlert: Bool = true
     var fromPush: Bool = false
     var pushLat: Double = 0.0
@@ -88,7 +89,8 @@ class BridgeAlertDetailViewController: RefreshViewController, INDLinkLabelDelega
                                 selfValue.title = "Unavailable"
                                 selfValue.descLinkLabel.text = "Sorry, This incident has expired."
                                 selfValue.updateTimeLabel.text = "Unavailable"
-                            
+                                selfValue.categoryStackTopConstraint.constant = 0
+
                             }
                             selfValue.hideOverlayView()
                         }
