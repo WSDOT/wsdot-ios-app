@@ -158,11 +158,11 @@ PODS:
   - PromisesObjC (2.3.1)
   - PromisesSwift (2.3.1):
     - PromisesObjC (= 2.3.1)
-  - Realm (10.43.1):
-    - Realm/Headers (= 10.43.1)
-  - Realm/Headers (10.43.1)
-  - RealmSwift (10.43.1):
-    - Realm (= 10.43.1)
+  - Realm (10.45.2):
+    - Realm/Headers (= 10.45.2)
+  - Realm/Headers (10.45.2)
+  - RealmSwift (10.45.2):
+    - Realm (= 10.45.2)
   - SDWebImage (5.18.8):
     - SDWebImage/Core (= 5.18.8)
   - SDWebImage/Core (5.18.8)
@@ -179,7 +179,7 @@ DEPENDENCIES:
   - Google-Mobile-Ads-SDK
   - GoogleMaps (~> 3.7.0)
   - NotificationBannerSwift (= 3.2.0)
-  - RealmSwift (~> 10.43.0)
+  - RealmSwift (~> 10.45.2)
   - SDWebImage (~> 5.18.3)
   - SwiftyJSON (~> 5.0.1)
 
@@ -244,12 +244,12 @@ SPEC CHECKSUMS:
   NotificationBannerSwift: 437e135298d297fcb03f3eec4466f45cdb128d3d
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   PromisesSwift: 28dca69a9c40779916ac2d6985a0192a5cb4a265
-  Realm: d97b438de77459e443bd2c8ad5ca0f95107aee4b
-  RealmSwift: 6be3f27a7fd3f5cc8f99f4b187cc4e7150299e32
+  Realm: bc4fc31783a0b3e355edca05f167f6a49c544dc2
+  RealmSwift: 234003b5fdb187c4b439d478662636d62a1f9de0
   SDWebImage: a81bbb3ba4ea5f810f4069c68727cb118467a04a
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
-PODFILE CHECKSUM: e96bfacf9e10e0fa285a04b73abfc6442ccbe3eb
+PODFILE CHECKSUM: 9d8fe4c4cec7baa68ac059834de71649df68803e
 
 COCOAPODS: 1.14.3
