@@ -120,10 +120,10 @@ PODS:
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleMaps (3.7.0):
-    - GoogleMaps/Maps (= 3.7.0)
-  - GoogleMaps/Base (3.7.0)
-  - GoogleMaps/Maps (3.7.0):
+  - GoogleMaps (3.10.0):
+    - GoogleMaps/Maps (= 3.10.0)
+  - GoogleMaps/Base (3.10.0)
+  - GoogleMaps/Maps (3.10.0):
     - GoogleMaps/Base
   - GoogleUserMessagingPlatform (2.1.0)
   - GoogleUtilities/AppDelegateSwizzler (7.12.0):
@@ -177,7 +177,7 @@ DEPENDENCIES:
   - Firebase/Messaging
   - Firebase/Performance
   - Google-Mobile-Ads-SDK
-  - GoogleMaps (~> 3.7.0)
+  - GoogleMaps (~> 3.10.0)
   - NotificationBannerSwift (= 3.2.0)
   - RealmSwift (~> 10.45.2)
   - SDWebImage (~> 5.18.8)
@@ -236,7 +236,7 @@ SPEC CHECKSUMS:
   Google-Mobile-Ads-SDK: 8f67a72f88d057335b1ac3f501e2b68ad054116e
   GoogleAppMeasurement: 68afe759316673c6554dac35a0c7ae8f5d6cb4ed
   GoogleDataTransport: 57c22343ab29bc686febbf7cbb13bad167c2d8fe
-  GoogleMaps: 55da829c68aa931f3ae982b9e341cc2f3d89c587
+  GoogleMaps: 8c080862ff2748ece9929471b30feb56a6c5079d
   GoogleUserMessagingPlatform: dce302b8f1b84d6e945812ee7a15c3f65a102cbf
   GoogleUtilities: 0759d1a57ebb953965c2dfe0ba4c82e95ccc2e34
   MarqueeLabel: 15e524a6762552bb279cb17438b8a94990269fb9
@@ -250,6 +250,6 @@ SPEC CHECKSUMS:
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
-PODFILE CHECKSUM: 858ccd7d7a84a783f50ec7ad238c83d59ff4fd47
+PODFILE CHECKSUM: 00997cb6f2bcd79f286fd6aa3159e6fe4ee77a8b
 
 COCOAPODS: 1.14.3
