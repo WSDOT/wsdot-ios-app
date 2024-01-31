@@ -163,7 +163,7 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
         let lat = self.alertItem.startLatitude.isEqual(to: 0.0) ? 47.7511 : self.alertItem.startLatitude
         let long = self.alertItem.startLongitude.isEqual(to: 0.0) ? -120.7401 : self.alertItem.startLongitude
         
-        let zoom = (self.alertItem.startLatitude.isEqual(to: 0.0) && self.alertItem.startLongitude.isEqual(to: 0.0)) ? 6 : 14
+        let zoom = (self.alertItem.startLatitude.isEqual(to: 0.0) && self.alertItem.startLongitude.isEqual(to: 0.0)) ? 6 : 12
         
         alertMarker.position = CLLocationCoordinate2D(
             latitude: lat,
@@ -204,7 +204,7 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
                 print("here 2")
                 alertMarker.map = mapView
                 mapView.settings.setAllGesturesEnabled(true)
-                mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: self.alertItem.startLatitude, longitude: self.alertItem.startLongitude), zoom: 14))
+                mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: self.alertItem.startLatitude, longitude: self.alertItem.startLongitude), zoom: 12))
             }
         }
     }

@@ -141,7 +141,7 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
         if let mapView = embeddedMapViewController.view as? GMSMapView{
             cameraMarker.map = mapView
             mapView.settings.setAllGesturesEnabled(true)
-            mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: self.cameraItem.latitude, longitude: self.cameraItem.longitude), zoom: 14))
+            mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: self.cameraItem.latitude, longitude: self.cameraItem.longitude), zoom: 12))
             
         }
         
@@ -192,7 +192,7 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
         if let mapView = embeddedMapViewController.view as? GMSMapView{
             cameraMarker.map = mapView
             mapView.settings.setAllGesturesEnabled(true)
-            mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: self.cameraItem.latitude, longitude: self.cameraItem.longitude), zoom: 14))
+            mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: self.cameraItem.latitude, longitude: self.cameraItem.longitude), zoom: 12))
         }
     
     }
