@@ -94,7 +94,7 @@ class RestAreaViewController: UIViewController, MapMarkerDelegate, GMSMapViewDel
 
             mapView.settings.setAllGesturesEnabled(true)
             if let restArea = restAreaItem {
-                mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: restArea.latitude, longitude: restArea.longitude), zoom: 14))
+                mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: restArea.latitude, longitude: restArea.longitude), zoom: 12))
                 embeddedMapViewController.view.isHidden = false
             }
         }
@@ -149,7 +149,7 @@ class RestAreaViewController: UIViewController, MapMarkerDelegate, GMSMapViewDel
             restAreaMarker.map = mapView
             mapView.settings.setAllGesturesEnabled(true)
             if let restArea = restAreaItem {
-                mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: restArea.latitude, longitude: restArea.longitude), zoom: 14))
+                mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: restArea.latitude, longitude: restArea.longitude), zoom: 12))
                 embeddedMapViewController.view.isHidden = false
             }
         }
