@@ -61,7 +61,7 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
         if (fromPush){
             UserDefaults.standard.set(pushLat, forKey: UserDefaultsKeys.mapLat)
             UserDefaults.standard.set(pushLong, forKey: UserDefaultsKeys.mapLon)
-            UserDefaults.standard.set(15, forKey: UserDefaultsKeys.mapZoom)
+            UserDefaults.standard.set(12, forKey: UserDefaultsKeys.mapZoom)
         }
         
     }
