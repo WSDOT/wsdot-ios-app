@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="srJ-Gc-8SK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="srJ-Gc-8SK">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,6 +12,10 @@
         <scene sceneID="f8e-8P-7lA">
             <objects>
                 <viewController storyboardIdentifier="BridgeAlertsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y9z-Xp-CAV" customClass="BridgeAlertsTableViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Gf7-zn-sWR"/>
+                        <viewControllerLayoutGuide type="bottom" id="syO-OB-880"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="saf-cx-Mzj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="804"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -84,14 +87,13 @@
                                 <color key="color" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="4zu-qE-DHs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="CzU-oK-Ri8" firstAttribute="leading" secondItem="4zu-qE-DHs" secondAttribute="leading" id="3xx-BE-iVp"/>
+                            <constraint firstItem="CzU-oK-Ri8" firstAttribute="leading" secondItem="saf-cx-Mzj" secondAttribute="leading" id="3xx-BE-iVp"/>
                             <constraint firstItem="R1l-iF-vqv" firstAttribute="centerY" secondItem="saf-cx-Mzj" secondAttribute="centerY" id="IlZ-39-1VR"/>
-                            <constraint firstItem="CzU-oK-Ri8" firstAttribute="bottom" secondItem="4zu-qE-DHs" secondAttribute="bottom" id="ZZu-uT-vuD"/>
-                            <constraint firstItem="4zu-qE-DHs" firstAttribute="trailing" secondItem="CzU-oK-Ri8" secondAttribute="trailing" id="eKt-Ld-c3q"/>
-                            <constraint firstItem="CzU-oK-Ri8" firstAttribute="top" secondItem="4zu-qE-DHs" secondAttribute="top" id="ee9-su-tRf"/>
+                            <constraint firstItem="CzU-oK-Ri8" firstAttribute="bottom" secondItem="syO-OB-880" secondAttribute="top" id="ZZu-uT-vuD"/>
+                            <constraint firstAttribute="trailing" secondItem="CzU-oK-Ri8" secondAttribute="trailing" id="eKt-Ld-c3q"/>
+                            <constraint firstItem="CzU-oK-Ri8" firstAttribute="top" secondItem="Gf7-zn-sWR" secondAttribute="bottom" id="ee9-su-tRf"/>
                             <constraint firstItem="R1l-iF-vqv" firstAttribute="centerX" secondItem="saf-cx-Mzj" secondAttribute="centerX" id="xYo-3R-MCE"/>
                         </constraints>
                     </view>
@@ -207,7 +209,6 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="2sW-x1-lpJ"/>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="FSp-Rq-oj2" firstAttribute="bottom" secondItem="x64-73-QKS" secondAttribute="top" id="0Fi-4T-A5K"/>
@@ -243,7 +244,6 @@
                     <view key="view" contentMode="scaleToFill" id="dml-vk-AaF">
                         <rect key="frame" x="0.0" y="0.0" width="380" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="h8E-z4-a2G"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                 </viewController>
