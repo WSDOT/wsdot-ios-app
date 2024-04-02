@@ -42,7 +42,7 @@ class HighwayAlertsStore: Decodable {
     static func getHighwayAlertsTickerItems() -> [HighwayAlertItem]{
         let realm = try! Realm()
         let alertItems = realm.objects(HighwayAlertItem.self)
-            .filter("priority == \"Highest\" AND (startLatitude != 0.0 AND startLongitude != 0.0)")
+            .filter("priority == \"Highest\" OR eventCategoryType == \"Statewide\" OR eventCategoryType == \"Region\" OR eventCategoryType == \"County\"")
             .filter("delete == false")
             .sorted(byKeyPath: "lastUpdatedTime", ascending: false)
         return Array(alertItems)
@@ -108,6 +108,7 @@ class HighwayAlertsStore: Decodable {
             alert.region = alertJson["Region"].stringValue
             alert.eventCategory = alertJson["EventCategory"].stringValue
             alert.eventCategoryTypeDescription = alertJson["EventCategoryTypeDescription"].stringValue
+            alert.eventCategoryType = alertJson["EventCategoryType"].stringValue
             alert.headlineDesc = alertJson["HeadlineDescription"].stringValue
             alert.eventStatus = alertJson["EventStatus"].stringValue
             alert.startDirection = alertJson["StartRoadwayLocation"]["Direction"].stringValue
