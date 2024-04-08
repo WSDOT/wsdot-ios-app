@@ -267,8 +267,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // MARK: Realm
     func migrateRealm(){
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
-            schemaVersion: 11,
-            
+            schemaVersion: 12,
+
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
                     // The enumerateObjects(ofType:_:) method iterates
@@ -384,6 +384,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     migration.deleteData(forType: CacheItem.className())
                 }
                 
+                /*
+                 Adds eventCategoryType and midpoint alert data to HighwayAlertItems
+                 Clears cache times to force refresh
+                 */
+                if (oldSchemaVersion < 12) {
+                    migration.enumerateObjects(ofType: HighwayAlertItem.className()) { oldObject, newObject in
+                        newObject!["eventCategoryType"] = ""
+                        newObject!["displayLatitude"] = 0.0
+                        newObject!["displayLongitude"] = 0.0
+                    }
+                    migration.deleteData(forType: CacheItem.className())
+            }
         })
     }
 }
