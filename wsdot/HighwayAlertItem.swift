@@ -35,6 +35,8 @@ class HighwayAlertItem: Object {
 
     @objc dynamic var startTime = Date()
     
+    @objc dynamic var displayLatitude: Double = 0.0
+    @objc dynamic var displayLongitude: Double = 0.0
     @objc dynamic var startLatitude: Double = 0.0
     @objc dynamic var startLongitude: Double = 0.0
     @objc dynamic var endLatitude: Double = 0.0

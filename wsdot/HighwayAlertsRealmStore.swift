@@ -114,6 +114,9 @@ class HighwayAlertsStore: Decodable {
             alert.startDirection = alertJson["StartRoadwayLocation"]["Direction"].stringValue
             alert.lastUpdatedTime = TimeUtils.parseJSONDateToNSDate(alertJson["LastUpdatedTime"].stringValue)
             alert.startTime = TimeUtils.parseJSONDateToNSDate(alertJson["StartTime"].stringValue)
+            
+            alert.displayLatitude = alertJson["DisplayLatitude"].doubleValue
+            alert.displayLongitude = alertJson["DisplayLongitude"].doubleValue
             alert.startLatitude = alertJson["StartRoadwayLocation"]["Latitude"].doubleValue
             alert.startLongitude = alertJson["StartRoadwayLocation"]["Longitude"].doubleValue
             alert.endLatitude = alertJson["EndRoadwayLocation"]["Latitude"].doubleValue
