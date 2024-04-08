@@ -63,10 +63,10 @@ class MyRouteTravelTimesViewController: TravelTimesViewController {
                 self.travelTimeGroups.removeAll()
                 self.travelTimeGroups.append(contentsOf: nearbyTimes)
                 
-                // sort by via text
-                self.filtered = self.travelTimeGroups.sorted(by: {$0.routes[0].routeid < $1.routes[0].routeid })
-                
-                
+                let startLocation = CLLocation(latitude: self.route?.route.first?.lat ?? 0, longitude: self.route?.route.first?.long ?? 0)
+
+                // sort by startLocation
+                self.filtered = self.travelTimeGroups.sorted(by:{CLLocation(latitude: $0.routes[0].startLatitude, longitude: $0.routes[0].startLongitude).distance(from: startLocation) < CLLocation(latitude: $1.routes[0].startLatitude, longitude: $1.routes[0].startLongitude).distance(from: startLocation)}).sorted(by: {$0.routes[0].startLatitude < $1.routes[0].startLongitude })
                 
                 self.refreshControl.endRefreshing()
                 self.hideOverlayView()
