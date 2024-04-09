@@ -160,10 +160,10 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
 
         // if location is 0,0 set coordinates in center of WA so we can
         // show the whole state
-        let lat = self.alertItem.startLatitude.isEqual(to: 0.0) ? 47.7511 : self.alertItem.startLatitude
-        let long = self.alertItem.startLongitude.isEqual(to: 0.0) ? -120.7401 : self.alertItem.startLongitude
+        let lat = self.alertItem.displayLatitude.isEqual(to: 0.0) ? 47.7511 : self.alertItem.displayLatitude
+        let long = self.alertItem.displayLongitude.isEqual(to: 0.0) ? -120.7401 : self.alertItem.displayLongitude
         
-        let zoom = (self.alertItem.startLatitude.isEqual(to: 0.0) && self.alertItem.startLongitude.isEqual(to: 0.0)) ? 6 : 12
+        let zoom = (self.alertItem.displayLatitude.isEqual(to: 0.0) && self.alertItem.displayLongitude.isEqual(to: 0.0)) ? 6 : 12
         
         alertMarker.position = CLLocationCoordinate2D(
             latitude: lat,
@@ -185,8 +185,8 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
     
     func mapReady() {
         
-        if (self.alertItem.startLatitude.isEqual(to: 0.0)
-            && self.alertItem.startLongitude.isEqual(to: 0.0)) {
+        if (self.alertItem.displayLatitude.isEqual(to: 0.0)
+            && self.alertItem.displayLongitude.isEqual(to: 0.0)) {
         
             if let mapView = embeddedMapViewController.view as? GMSMapView{
                 print("here 1")
@@ -204,7 +204,7 @@ class HighwayAlertViewController: RefreshViewController, INDLinkLabelDelegate, M
                 print("here 2")
                 alertMarker.map = mapView
                 mapView.settings.setAllGesturesEnabled(true)
-                mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: self.alertItem.startLatitude, longitude: self.alertItem.startLongitude), zoom: 12))
+                mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: self.alertItem.displayLatitude, longitude: self.alertItem.displayLongitude), zoom: 12))
             }
         }
     }

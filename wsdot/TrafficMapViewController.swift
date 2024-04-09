@@ -349,10 +349,10 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         
         for alert in HighwayAlertsStore.getAllAlerts(){
             
-            if (alert.startLatitude != 0
-                && alert.startLongitude != 0) {
+            if (alert.displayLatitude != 0
+                && alert.displayLongitude != 0) {
                 
-                let alertLocation = CLLocationCoordinate2D(latitude: alert.startLatitude, longitude: alert.startLongitude)
+                let alertLocation = CLLocationCoordinate2D(latitude: alert.displayLatitude, longitude: alert.displayLongitude)
                 let marker = GMSMarker(position: alertLocation)
                 marker.snippet = "alert"
                 

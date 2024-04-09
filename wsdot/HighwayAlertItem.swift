@@ -26,6 +26,7 @@ class HighwayAlertItem: Object {
     @objc dynamic var region: String = ""
     @objc dynamic var eventCategory: String = ""
     @objc dynamic var eventCategoryTypeDescription: String = ""
+    @objc dynamic var eventCategoryType: String = ""
     @objc dynamic var headlineDesc: String = ""
     @objc dynamic var eventStatus: String = ""
     @objc dynamic var startDirection: String = ""
@@ -34,6 +35,8 @@ class HighwayAlertItem: Object {
 
     @objc dynamic var startTime = Date()
     
+    @objc dynamic var displayLatitude: Double = 0.0
+    @objc dynamic var displayLongitude: Double = 0.0
     @objc dynamic var startLatitude: Double = 0.0
     @objc dynamic var startLongitude: Double = 0.0
     @objc dynamic var endLatitude: Double = 0.0
