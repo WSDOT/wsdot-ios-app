@@ -19,7 +19,7 @@ Features - [View on the App Store](https://itunes.apple.com/us/app/wsdot/id38720
 
 Setup
 -----
-This project uses [CocoaPods](https://cocoapods.org/) (v1.14.3) for dependency management.
+This project uses [CocoaPods](https://cocoapods.org/) (v1.15.2) for dependency management.
 
 * Run `pod install` in the project directory to set up the workspace.
 * Open the `WSDOT.xcworkspace` project in Xcode to get the CocoaPods workspace. 
@@ -47,7 +47,7 @@ Find a bug? Got an idea? Send us a pull request or open an issue and we'll take 
 License
 -------
 
-Copyright (c) 2023 Washington State Department of Transportation
+Copyright (c) 2024 Washington State Department of Transportation
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
