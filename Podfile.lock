@@ -193,7 +193,7 @@ DEPENDENCIES:
   - NotificationBannerSwift (= 3.2.0)
   - RealmSwift (~> 10.49.2)
   - SDWebImage (~> 5.18.8)
-  - SwiftyJSON (~> 5.0.1)
+  - SwiftyJSON (~> 5.0.2)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -264,6 +264,6 @@ SPEC CHECKSUMS:
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftyJSON: f5b1bf1cd8dd53cd25887ac0eabcfd92301c6a5a
 
-PODFILE CHECKSUM: 4aac575d0e54689dbfa1024c26c82e86cb85b900
+PODFILE CHECKSUM: 71526fb6787b6a10f5812b17b12324a3056f6b55
 
 COCOAPODS: 1.15.2
