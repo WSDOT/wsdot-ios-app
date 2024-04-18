@@ -96,7 +96,7 @@ PODS:
     - nanopb (< 2.30911.0, >= 2.30908.0)
     - PromisesSwift (~> 2.1)
   - FirebaseSharedSwift (10.24.0)
-  - Google-Mobile-Ads-SDK (11.2.0):
+  - Google-Mobile-Ads-SDK (11.3.0):
     - GoogleUserMessagingPlatform (>= 1.1)
   - GoogleAppMeasurement (10.24.0):
     - GoogleAppMeasurement/AdIdSupport (= 10.24.0)
@@ -179,7 +179,7 @@ PODS:
     - SDWebImage/Core (= 5.18.12)
   - SDWebImage/Core (5.18.12)
   - SnapKit (5.6.0)
-  - SwiftyJSON (5.0.1)
+  - SwiftyJSON (5.0.2)
 
 DEPENDENCIES:
   - Alamofire (~> 5.8.1)
@@ -247,7 +247,7 @@ SPEC CHECKSUMS:
   FirebaseRemoteConfigInterop: 6c349a466490aeace3ce9c091c86be1730711634
   FirebaseSessions: 2651b464e241c93fd44112f995d5ab663c970487
   FirebaseSharedSwift: 76e1529c32101d80e4f1ca2fba7c39d59f0a390a
-  Google-Mobile-Ads-SDK: 5a6d005a6cb5b5e8f4c7b69ca05cdea79c181139
+  Google-Mobile-Ads-SDK: 301a16c461c331ba34ff4dab40a22ab7c147af61
   GoogleAppMeasurement: f3abf08495ef2cba7829f15318c373b8d9226491
   GoogleDataTransport: 6c09b596d841063d76d4288cc2d2f42cc36e1e2a
   GoogleMaps: 8c080862ff2748ece9929471b30feb56a6c5079d
@@ -262,7 +262,7 @@ SPEC CHECKSUMS:
   RealmSwift: 8b06ed06b5d16749ae0c4d91c0cba414a9e28189
   SDWebImage: 2d6d229046fea284d62e36bfb8ebe8287dfc5b10
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
-  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
+  SwiftyJSON: f5b1bf1cd8dd53cd25887ac0eabcfd92301c6a5a
 
 PODFILE CHECKSUM: 4f15c389997802c0ca3214ab1b292976e417183a
 
