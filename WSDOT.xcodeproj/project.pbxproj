@@ -18,6 +18,7 @@
 		02D7F1ED2614CCE000BD81CC /* BridgeAlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D7F1EC2614CCE000BD81CC /* BridgeAlertItem.swift */; };
 		02D7F1F22614CCED00BD81CC /* BridgeAlertsRealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D7F1F12614CCED00BD81CC /* BridgeAlertsRealmStore.swift */; };
 		02D7F1F72614D7DE00BD81CC /* BridgeAlertsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D7F1F62614D7DE00BD81CC /* BridgeAlertsTableViewController.swift */; };
+		558F4FE82BC9F06000EC6CAD /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 558F4FE72BC9F06000EC6CAD /* PrivacyInfo.xcprivacy */; };
 		76763D7C27CFD4E700BBB1DB /* DateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76763D7B27CFD4E700BBB1DB /* DateButton.swift */; };
 		76D632A1289C5F2D00534F11 /* googlemapstyle.json in Resources */ = {isa = PBXBuildFile; fileRef = 76D632A0289C5F2D00534F11 /* googlemapstyle.json */; };
 		9A0360481DECBC6100B88466 /* PassCameraIDItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0360471DECBC6100B88466 /* PassCameraIDItem.swift */; };
@@ -270,6 +271,7 @@
 		02D7F1F62614D7DE00BD81CC /* BridgeAlertsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeAlertsTableViewController.swift; sourceTree = "<group>"; };
 		08B5584F4B8FFF1035CFBE34 /* Pods_WSDOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WSDOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F733049676C72FA80F317B5 /* Pods-WSDOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.debug.xcconfig"; sourceTree = "<group>"; };
+		558F4FE72BC9F06000EC6CAD /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		65D6D46116E71C14DDDD1497 /* Pods-WSDOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.release.xcconfig"; sourceTree = "<group>"; };
 		690E6882E64B87BDA185B4DC /* Pods_WSDOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WSDOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76763D7B27CFD4E700BBB1DB /* DateButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateButton.swift; sourceTree = "<group>"; };
@@ -1423,6 +1425,7 @@
 				9AD32E051D23172C000AEC28 /* LaunchScreen.storyboard */,
 				9AD32DFC1D23172C000AEC28 /* AppDelegate.swift */,
 				9AD32E031D23172C000AEC28 /* Assets.xcassets */,
+				558F4FE72BC9F06000EC6CAD /* PrivacyInfo.xcprivacy */,
 				9A0D1B9E1E92992A00893B92 /* Secrets.plist */,
 				9AEEDDB01D70B8A20032F5EC /* GoogleService-Info.plist */,
 				9AD32E081D23172C000AEC28 /* Info.plist */,
@@ -1851,6 +1854,7 @@
 				9AD32E041D23172C000AEC28 /* Assets.xcassets in Resources */,
 				9A6FBCDF1D6B86AD00CDCE16 /* HighwayAlert.storyboard in Resources */,
 				9AD32E021D23172C000AEC28 /* Main.storyboard in Resources */,
+				558F4FE82BC9F06000EC6CAD /* PrivacyInfo.xcprivacy in Resources */,
 				9A6FBCD21D6B541F00CDCE16 /* restareas.json in Resources */,
 				9A6FBCEA1D6C953000CDCE16 /* Callout.storyboard in Resources */,
 				9AEF4DBA1D778AF9003ECA34 /* AmtrakCascades.storyboard in Resources */,
