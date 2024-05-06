@@ -269,6 +269,8 @@ class MyRouteReportViewController: RefreshViewController {
                         tempAlert.startDirection = alert.startDirection
                         tempAlert.startLatitude = alert.startLatitude
                         tempAlert.startLongitude = alert.startLongitude
+                        tempAlert.displayLatitude = alert.displayLatitude
+                        tempAlert.displayLongitude = alert.displayLongitude
                         tempAlert.startTime = alert.startTime
                         self.alerts.append(tempAlert)
                     }
@@ -364,7 +366,7 @@ extension MyRouteReportViewController: GMSMapViewDelegate {
     
         for alert in self.alerts {
     
-            let alertLocation = CLLocationCoordinate2D(latitude: alert.startLatitude, longitude: alert.startLongitude)
+            let alertLocation = CLLocationCoordinate2D(latitude: alert.displayLatitude, longitude: alert.displayLongitude)
             let marker = GMSMarker(position: alertLocation)
             marker.snippet = "alert"
         
