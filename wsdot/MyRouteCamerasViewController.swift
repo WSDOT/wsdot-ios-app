@@ -44,12 +44,17 @@ class MyRouteCamerasViewController: CameraClusterViewController {
                 if !self.route.foundCameras {
                     _ = MyRouteStore.getNearbyCameraIds(forRoute: self.route)
                 }
+                            
+                let startLocation = CLLocation(latitude: self.route.route.first?.lat ?? 0, longitude: self.route.route.first?.long ?? 0)
                 
                 let nearbyCameras = CamerasStore.getCamerasByID(Array(self.route.cameraIds))
                 
                 self.cameraItems.removeAll()
                 self.cameraItems.append(contentsOf: nearbyCameras)
                 
+                // Sort cameras based on distance from start location.
+                self.cameraItems = self.cameraItems.sorted(by:{CLLocation(latitude: $0.latitude, longitude: $0.longitude).distance(from: startLocation) < CLLocation(latitude: $1.latitude, longitude: $1.longitude).distance(from: startLocation)})
+                                             
                 self.tableView.reloadData()
                 
                 if self.cameraItems.count == 0 {
