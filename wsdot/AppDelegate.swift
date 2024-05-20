@@ -274,7 +274,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // MARK: Realm
     func migrateRealm(){
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
-            schemaVersion: 12,
+            schemaVersion: 13,
 
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
@@ -403,6 +403,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     }
                     migration.deleteData(forType: CacheItem.className())
             }
+                /* Adds status field to bridge alert item.
+                 Clears cache times to force refresh
+                 */
+                if (oldSchemaVersion < 13) {
+                    migration.enumerateObjects(ofType: BridgeAlertItem.className()) { oldObject, newObject in
+                        newObject!["status"] = ""
+                    }
+                    migration.deleteData(forType: CacheItem.className())
+                }
+                
         })
     }
 }

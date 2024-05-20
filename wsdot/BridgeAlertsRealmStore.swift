@@ -110,9 +110,11 @@ class BridgeAlertsStore: Decodable {
             alert.status = alertJson["Status"].stringValue
             alert.duration = alertJson["Duration"].stringValue
             alert.priority = alertJson["Priority"].stringValue
+            alert.travelCenterPriorityId = alertJson["TravelCenterPriorityId"].intValue
             alert.eventCategory = alertJson["EventCategory"].stringValue
             alert.bridge = alertJson["BridgeLocation"]["Description"].stringValue
             alert.descText = alertJson["EventText"].stringValue
+            alert.status = alertJson["Status"].stringValue
             alert.latitude = alertJson["BridgeLocation"]["Latitude"].doubleValue
             alert.longitude = alertJson["BridgeLocation"]["Longitude"].doubleValue
             alert.milepost = alertJson["BridgeLocation"]["MilePost"].doubleValue
