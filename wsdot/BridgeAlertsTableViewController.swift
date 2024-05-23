@@ -22,7 +22,7 @@ import Foundation
 import UIKit
 import SafariServices
 
-class BridgeAlertsTableViewController: RefreshViewController, UITableViewDelegate, UITableViewDataSource {
+class BridgeAlertsTableViewController: RefreshViewController, INDLinkLabelDelegate, UITableViewDelegate, UITableViewDataSource {
 
     let cellIdentifier = "BridgeCell"
     var overlayView = UIView()
@@ -167,19 +167,31 @@ class BridgeAlertsTableViewController: RefreshViewController, UITableViewDelegat
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! BridgeCell
         let topicItem = topicItemsMap[topicCategoriesMap[indexPath.section]!]![indexPath.row]
         let updated = TimeUtils.timeAgoSinceDate(date: topicItem.localCacheDate, numericDates: false)
-
 //        if let openingTime = topicItem.openingTime {
 //            cell.subContent.text = "Opening Time: " + TimeUtils.formatTime(openingTime, format: "MMMM dd, YYYY h:mm a")
 //
 //        }
         
+        cell.content.delegate = self
         cell.subContent.text = ""
         cell.updated.text = "Last Updated: " + updated
 
         // Check for valid alert ID
         if ((topicItem.alertId) != 0) {
             cell.title.text = topicItem.bridge
-            cell.content.text = topicItem.descText
+            let htmlStyleString = "<style>body{font: -apple-system-body}a{text-decoration: none}</style>"
+            let htmlString = htmlStyleString + topicItem.descText
+            let attrStr = try! NSMutableAttributedString(
+                data: htmlString.data(using: String.Encoding.unicode, allowLossyConversion: false)!,
+                options: [ NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html],
+                documentAttributes: nil)
+            
+            cell.content.attributedText = attrStr
+            
+            if #available(iOS 13.0, *) {
+                cell.content.textColor = UIColor.label
+            }
+            
             cell.isUserInteractionEnabled = true
             cell.accessoryType = .disclosureIndicator
 
@@ -268,4 +280,26 @@ class BridgeAlertsTableViewController: RefreshViewController, UITableViewDelegat
         }
     }
 
+    // MARK: INDLinkLabelDelegate
+    
+    func linkLabel(_ label: INDLinkLabel, didLongPressLinkWithURL URL: Foundation.URL) {
+        let activityController = UIActivityViewController(activityItems: [URL], applicationActivities: nil)
+        self.present(activityController, animated: true, completion: nil)
+    }
+    
+    func linkLabel(_ label: INDLinkLabel, didTapLinkWithURL URL: Foundation.URL) {
+
+        let config = SFSafariViewController.Configuration()
+        config.entersReaderIfAvailable = false
+        let svc = SFSafariViewController(url: URL, configuration: config)
+        
+        if #available(iOS 10.0, *) {
+            svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor
+            svc.preferredBarTintColor = ThemeManager.currentTheme().mainColor
+        } else {
+            svc.view.tintColor = ThemeManager.currentTheme().mainColor
+        }
+        self.present(svc, animated: true, completion: nil)
+    }
+    
 }
