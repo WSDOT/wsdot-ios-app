@@ -203,7 +203,7 @@
                                     <constraint firstItem="TUp-dV-iAm" firstAttribute="centerX" secondItem="FSp-Rq-oj2" secondAttribute="centerX" constant="3" id="U1e-ZE-hXe"/>
                                     <constraint firstItem="Rfj-Ie-EaY" firstAttribute="top" secondItem="EAR-Q0-DS7" secondAttribute="bottom" constant="20" id="azm-tR-fDO"/>
                                     <constraint firstItem="TUp-dV-iAm" firstAttribute="leading" secondItem="EAR-Q0-DS7" secondAttribute="leading" id="dfW-li-hSb"/>
-                                    <constraint firstAttribute="bottom" secondItem="Rfj-Ie-EaY" secondAttribute="bottom" constant="452" id="p5f-Mc-99e"/>
+                                    <constraint firstAttribute="bottom" secondItem="Rfj-Ie-EaY" secondAttribute="bottom" constant="20" id="p5f-Mc-99e"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="djJ-CS-K49" secondAttribute="trailing" constant="8" id="wij-kv-Pke"/>
                                     <constraint firstAttribute="trailing" secondItem="Rfj-Ie-EaY" secondAttribute="trailing" constant="14" id="ygB-GD-THb"/>
                                 </constraints>
@@ -254,6 +254,9 @@
     </scenes>
     <designables>
         <designable name="TUp-dV-iAm"/>
+        <designable name="Wcj-uV-oiw">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
     </designables>
     <resources>
         <image name="icRefresh" width="24" height="24"/>
