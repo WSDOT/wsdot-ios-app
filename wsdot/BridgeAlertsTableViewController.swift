@@ -59,6 +59,11 @@ class BridgeAlertsTableViewController: RefreshViewController, INDLinkLabelDelega
         super.viewDidAppear(animated)
         MyAnalytics.screenView(screenName: "BridgeAlerts")
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        refresh(true)
+    }
 
     @objc func refreshAction(_ refreshControl: UIRefreshControl) {
         refresh(true)
