@@ -106,6 +106,10 @@ class BridgeAlertsTableViewController: RefreshViewController, INDLinkLabelDelega
                             }
 
                             selfValue.topicCategoriesMap = selfValue.getCategoriesMap(topicItemsMap: selfValue.topicItemsMap)
+                            selfValue.topicItemsMap["1st Avenue South Bridge"]?.sort(by: {$0.lastUpdatedTime.timeIntervalSince1970 > $1.lastUpdatedTime.timeIntervalSince1970})
+                            selfValue.topicItemsMap["Hood Canal Bridge"]?.sort(by: {$0.lastUpdatedTime.timeIntervalSince1970 > $1.lastUpdatedTime.timeIntervalSince1970})
+                            selfValue.topicItemsMap["Interstate Bridge"]?.sort(by: {$0.lastUpdatedTime.timeIntervalSince1970 > $1.lastUpdatedTime.timeIntervalSince1970})
+
                             selfValue.tableView.reloadData()
                             selfValue.hideOverlayView()
                             selfValue.refreshControl.endRefreshing()
