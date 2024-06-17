@@ -30,13 +30,15 @@ class BridgeAlertDetailViewController: RefreshViewController, INDLinkLabelDelega
     fileprivate let alertMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: 0, longitude: 0))
     
     @IBOutlet weak var descLinkLabel: INDLinkLabel!
+    @IBOutlet weak var openingTimeLinkLabel: INDLinkLabel!
     @IBOutlet weak var updateTimeLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var categoryStack: UIStackView!
     @IBOutlet weak var categoryImage: UIImageView!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var categoryStackTopConstraint: NSLayoutConstraint!
-
+    @IBOutlet weak var openingTimeConstraint: NSLayoutConstraint!
+    
     var hasAlert: Bool = true
     var fromPush: Bool = false
     var pushLat: Double = 0.0
@@ -115,7 +117,8 @@ class BridgeAlertDetailViewController: RefreshViewController, INDLinkLabelDelega
         
         categoryImage.image = UIHelpers.getBridgeAlertIcon(forAlert: self.bridgeAlertItem)
         categoryLabel.text = bridgeAlertItem.bridge
-        
+        openingTimeLinkLabel.isHidden = true
+
         if #available(iOS 14.0, *) {
             self.categoryStack.backgroundColor = UIColor(red: 255/255, green: 193/255, blue: 7/255, alpha: 0.3)
             self.categoryStack.layer.borderColor = UIColor(red: 255/255, green: 193/255, blue: 7/255, alpha: 1.0).cgColor
@@ -153,8 +156,16 @@ class BridgeAlertDetailViewController: RefreshViewController, INDLinkLabelDelega
         
         descLinkLabel.attributedText = attrStr
 
-        updateTimeLabel.text = TimeUtils.timeAgoSinceDate(date: bridgeAlertItem.localCacheDate, numericDates: false)
-
+        updateTimeLabel.text = TimeUtils.timeAgoSinceDate(date: bridgeAlertItem.lastUpdatedTime, numericDates: false)
+        
+        if let openingTime = bridgeAlertItem.openingTime {
+            openingTimeLinkLabel.isHidden = false
+            openingTimeLinkLabel.text = "Opening Time: " + TimeUtils.formatTime(openingTime, format: "MMMM dd, YYYY h:mm a")
+        }
+        else {
+            openingTimeConstraint.constant = 0
+        }
+        
         // if location is 0,0 set coordinates in center of WA so we can
         // show the whole state
         let lat = self.bridgeAlertItem.latitude.isEqual(to: 0.0) ? 47.7511 : self.bridgeAlertItem.latitude

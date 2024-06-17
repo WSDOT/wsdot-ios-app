@@ -115,11 +115,13 @@ class BridgeAlertsStore: Decodable {
             alert.bridge = alertJson["BridgeLocation"]["Description"].stringValue
             alert.descText = alertJson["EventText"].stringValue
             alert.status = alertJson["Status"].stringValue
+            alert.lastUpdatedTime = TimeUtils.parseJSONDateToNSDate(alertJson["LastUpdatedTime"].stringValue)
             alert.latitude = alertJson["BridgeLocation"]["Latitude"].doubleValue
             alert.longitude = alertJson["BridgeLocation"]["Longitude"].doubleValue
             alert.milepost = alertJson["BridgeLocation"]["MilePost"].doubleValue
             alert.direction = alertJson["BridgeLocation"]["Direction"].stringValue
             alert.roadName = alertJson["BridgeLocation"]["RoadName"].stringValue
+            
             if let timeJsonStringValue = alertJson["OpeningTime"].string {
                 do {
                     alert.openingTime =
@@ -129,12 +131,12 @@ class BridgeAlertsStore: Decodable {
                 }
             }
 
-            alert.localCacheDate = Date()
             
-            // Update "Hood Canal" bridge name to display "Hood Canal Bridge"
-                       if (alert.bridge == "Hood Canal") {
-                           alert.bridge = "Hood Canal Bridge"
-                       }
+            // Format "Hood Canal" bridge alerts
+            if (alert.bridge == "Hood Canal") {
+                alert.bridge = "Hood Canal Bridge"
+                alert.lastUpdatedTime = Date()
+            }
             
             newAlerts.append(alert)
         }

@@ -22,7 +22,7 @@ class BridgeAlertItem: Object {
     @objc dynamic var travelCenterPriorityId: Int = 0
     @objc dynamic var eventCategory: String = ""
     @objc dynamic var openingTime: Date? = nil
-    @objc dynamic var localCacheDate = Date()
+    @objc dynamic var lastUpdatedTime = Date()
     @objc dynamic var delete = false
 
     override static func primaryKey() -> String? {

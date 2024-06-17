@@ -175,15 +175,10 @@ class BridgeAlertsTableViewController: RefreshViewController, INDLinkLabelDelega
 
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! BridgeCell
         let topicItem = topicItemsMap[topicCategoriesMap[indexPath.section]!]![indexPath.row]
-        let updated = TimeUtils.timeAgoSinceDate(date: topicItem.localCacheDate, numericDates: false)
-//        if let openingTime = topicItem.openingTime {
-//            cell.subContent.text = "Opening Time: " + TimeUtils.formatTime(openingTime, format: "MMMM dd, YYYY h:mm a")
-//
-//        }
+        let updated = TimeUtils.timeAgoSinceDate(date: topicItem.lastUpdatedTime, numericDates: false)
         
         cell.content.delegate = self
-        cell.subContent.text = ""
-        cell.updated.text = "Last Updated: " + updated
+        cell.updated.isHidden = false
 
         // Check for valid alert ID
         if ((topicItem.alertId) != 0) {
@@ -196,29 +191,31 @@ class BridgeAlertsTableViewController: RefreshViewController, INDLinkLabelDelega
                 documentAttributes: nil)
             
             cell.content.attributedText = attrStr
-            
+            cell.updated.text = updated
+
             if #available(iOS 13.0, *) {
                 cell.content.textColor = UIColor.label
+            }
+            
+            if let openingTime = topicItem.openingTime {
+                cell.subContent.text = "Opening Time: " + TimeUtils.formatTime(openingTime, format: "MMMM dd, YYYY h:mm a")
+                cell.subContent.isHidden = false
+            }
+            else {
+                cell.subContent.isHidden = true
             }
             
             cell.isUserInteractionEnabled = true
             cell.accessoryType = .disclosureIndicator
 
-            // Deactivate cell for scheduled alerts
-//            if (topicItem.status == "Scheduled") {
-//            cell.isUserInteractionEnabled = false
-//            cell.accessoryType = .none
-//
-//            }
-
             return cell
 
-
-        // Display No Alerts Reported message
         } else {
             cell.title.text = ""
             cell.content.text = "No Alerts Reported"
             cell.subContent.text = ""
+            cell.subContent.isHidden = false
+            cell.updated.isHidden = true
             cell.isUserInteractionEnabled = false
             cell.accessoryType = .none
 
