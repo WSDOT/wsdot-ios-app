@@ -308,4 +308,19 @@ class BridgeAlertsTableViewController: RefreshViewController, INDLinkLabelDelega
         self.present(svc, animated: true, completion: nil)
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+      super.traitCollectionDidChange(previousTraitCollection)
+      if previousTraitCollection?.preferredContentSizeCategory != traitCollection.preferredContentSizeCategory {
+          
+          if #available(iOS 14.0, *) {
+              let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! BridgeCell
+              cell.title.adjustsFontForContentSizeCategory = true
+              cell.content.adjustsFontForContentSizeCategory = true
+              cell.subContent.adjustsFontForContentSizeCategory = true
+              cell.updated.adjustsFontForContentSizeCategory = true
+
+          }
+      }
+    }
+
 }

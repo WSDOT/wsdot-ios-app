@@ -252,4 +252,17 @@ class BridgeAlertDetailViewController: RefreshViewController, INDLinkLabelDelega
         self.present(svc, animated: true, completion: nil)
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+      super.traitCollectionDidChange(previousTraitCollection)
+      if previousTraitCollection?.preferredContentSizeCategory != traitCollection.preferredContentSizeCategory {
+          
+          if #available(iOS 14.0, *) {
+              categoryLabel.adjustsFontForContentSizeCategory = true
+              descLinkLabel.adjustsFontForContentSizeCategory = true
+              openingTimeLinkLabel.adjustsFontForContentSizeCategory = true
+              updateTimeLabel.adjustsFontForContentSizeCategory = true
+          }
+      }
+    }
+    
 }
