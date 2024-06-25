@@ -135,7 +135,6 @@ class BridgeAlertsStore: Decodable {
             // Format "Hood Canal" bridge alerts
             if (alert.bridge == "Hood Canal") {
                 alert.bridge = "Hood Canal Bridge"
-                alert.lastUpdatedTime = Date()
             }
             
             newAlerts.append(alert)
