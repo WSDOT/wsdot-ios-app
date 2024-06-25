@@ -30,6 +30,8 @@ class BridgeAlertsTableViewController: RefreshViewController, INDLinkLabelDelega
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    
+    fileprivate weak var timer: Timer?
 
     var topicItemsMap = [String: [BridgeAlertItem]]()
     var topicCategoriesMap = [Int: String]()
@@ -63,8 +65,23 @@ class BridgeAlertsTableViewController: RefreshViewController, INDLinkLabelDelega
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         refresh(true)
+        timer = Timer.scheduledTimer(timeInterval: TimeInterval(CachesStore.bridgeUpdateTime), target: self, selector: #selector(BridgeAlertsTableViewController.refreshAction(_:)), userInfo: nil, repeats: true)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        
     }
+    
+    // check traffic alert data cache & set timer
+    @objc func applicationDidBecomeActive(notification: NSNotification) {
+        refresh(true)
 
+    }
+    
+    // invalidated timer
+    @objc func applicationDidEnterBackground(notification: NSNotification) {
+        timer?.invalidate()
+    }
+    
     @objc func refreshAction(_ refreshControl: UIRefreshControl) {
         refresh(true)
     }
@@ -306,6 +323,11 @@ class BridgeAlertsTableViewController: RefreshViewController, INDLinkLabelDelega
             svc.view.tintColor = ThemeManager.currentTheme().mainColor
         }
         self.present(svc, animated: true, completion: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        timer?.invalidate()
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
