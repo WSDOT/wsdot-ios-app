@@ -89,7 +89,7 @@ class BridgeAlertDetailViewController: RefreshViewController, INDLinkLabelDelega
                                 
                             } else {
                                 selfValue.title = "Unavailable"
-                                selfValue.descLinkLabel.text = "Sorry, This incident has expired."
+                                selfValue.descLinkLabel.text = "Sorry, This alert has expired."
                                 selfValue.updateTimeLabel.text = "Unavailable"
                                 selfValue.categoryStackTopConstraint.constant = 0
 
