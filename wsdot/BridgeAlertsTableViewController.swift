@@ -45,6 +45,16 @@ class BridgeAlertsTableViewController: RefreshViewController, INDLinkLabelDelega
 
         tableView.rowHeight = UITableView.automaticDimension
 
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MyAnalytics.screenView(screenName: "BridgeAlerts")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         // refresh controller
         refreshControl.addTarget(self, action: #selector(BridgeAlertsTableViewController.refreshAction(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
@@ -55,16 +65,6 @@ class BridgeAlertsTableViewController: RefreshViewController, INDLinkLabelDelega
         self.refresh(true)
         self.activityIndicatorView.isHidden = true
 
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        MyAnalytics.screenView(screenName: "BridgeAlerts")
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        refresh(true)
         timer = Timer.scheduledTimer(timeInterval: TimeInterval(CachesStore.bridgeUpdateTime), target: self, selector: #selector(BridgeAlertsTableViewController.refreshAction(_:)), userInfo: nil, repeats: true)
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: UIApplication.willEnterForegroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
