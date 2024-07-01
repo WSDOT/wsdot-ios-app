@@ -185,7 +185,7 @@ class TimeUtils {
             if (numericDates){
                 return "1 year ago"
             } else {
-                return "Last year"
+                return "1 year ago"
             }
         } else if (components.month! >= 2) {
             return "\(components.month!) months ago"
@@ -193,7 +193,7 @@ class TimeUtils {
             if (numericDates){
                 return "1 month ago"
             } else {
-                return "Last month"
+                return "1 month ago"
             }
         } else if (components.weekOfYear! >= 2) {
             return "\(components.weekOfYear!) weeks ago"
@@ -201,7 +201,7 @@ class TimeUtils {
             if (numericDates){
                 return "1 week ago"
             } else {
-                return "Last week"
+                return "1 week ago"
             }
         } else if (components.day! >= 2) {
             return "\(components.day!) days ago"
@@ -209,7 +209,7 @@ class TimeUtils {
             if (numericDates){
                 return "1 day ago"
             } else {
-                return "Yesterday"
+                return "1 day ago"
             }
         } else if (components.hour! >= 2) {
             return "\(components.hour!) hours ago"
@@ -217,7 +217,7 @@ class TimeUtils {
             if (numericDates){
                 return "1 hour ago"
             } else {
-                return "An hour ago"
+                return "1 hour ago"
             }
         } else if (components.minute! >= 2) {
             return "\(components.minute!) minutes ago"
@@ -225,7 +225,7 @@ class TimeUtils {
             if (numericDates){
                 return "1 minute ago"
             } else {
-                return "A minute ago"
+                return "1 minute ago"
             }
         } else if (components.second! >= 3) {
             return "\(components.second!) seconds ago"
