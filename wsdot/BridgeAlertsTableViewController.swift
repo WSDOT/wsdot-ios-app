@@ -71,6 +71,11 @@ class BridgeAlertsTableViewController: RefreshViewController, INDLinkLabelDelega
         
     }
     
+    override func viewWillLayoutSubviews() {
+        self.activityIndicator.center = CGPointMake(self.view.frame.size.width/2.0, self.view.frame.size.height/2.0)
+    }
+
+    
     // check traffic alert data cache & set timer
     @objc func applicationDidBecomeActive(notification: NSNotification) {
         refresh(true)
