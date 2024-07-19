@@ -176,20 +176,14 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Aq-Lg-Jz0" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="97" width="380" height="0.0"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EAR-Q0-DS7">
-                                        <rect key="frame" x="20" y="112" width="380" height="0.0"/>
+                                        <rect key="frame" x="20" y="92" width="380" height="0.0"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                         <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rfj-Ie-EaY">
-                                        <rect key="frame" x="20" y="132" width="380" height="200"/>
+                                        <rect key="frame" x="20" y="112" width="380" height="200"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="f4b-q7-97r"/>
                                         </constraints>
@@ -204,18 +198,15 @@
                                     <constraint firstItem="djJ-CS-K49" firstAttribute="top" secondItem="FSp-Rq-oj2" secondAttribute="top" constant="20" id="6tm-ht-ety"/>
                                     <constraint firstItem="djJ-CS-K49" firstAttribute="top" secondItem="TUp-dV-iAm" secondAttribute="top" constant="-62" id="7rc-UI-y0j"/>
                                     <constraint firstItem="TUp-dV-iAm" firstAttribute="trailing" secondItem="EAR-Q0-DS7" secondAttribute="trailing" id="DVA-LA-LRV"/>
-                                    <constraint firstItem="1Aq-Lg-Jz0" firstAttribute="top" secondItem="TUp-dV-iAm" secondAttribute="bottom" constant="15" id="Npt-XN-3EG"/>
                                     <constraint firstItem="TUp-dV-iAm" firstAttribute="leading" secondItem="FSp-Rq-oj2" secondAttribute="leadingMargin" constant="12" id="Ok8-nS-ReV"/>
                                     <constraint firstItem="djJ-CS-K49" firstAttribute="leading" secondItem="FSp-Rq-oj2" secondAttribute="leading" constant="20" id="T9O-6g-WEw"/>
                                     <constraint firstItem="TUp-dV-iAm" firstAttribute="centerX" secondItem="FSp-Rq-oj2" secondAttribute="centerX" constant="3" id="U1e-ZE-hXe"/>
+                                    <constraint firstItem="EAR-Q0-DS7" firstAttribute="top" secondItem="TUp-dV-iAm" secondAttribute="bottom" constant="10" id="ajV-AC-YIc"/>
                                     <constraint firstItem="Rfj-Ie-EaY" firstAttribute="top" secondItem="EAR-Q0-DS7" secondAttribute="bottom" constant="20" id="azm-tR-fDO"/>
                                     <constraint firstItem="TUp-dV-iAm" firstAttribute="leading" secondItem="EAR-Q0-DS7" secondAttribute="leading" id="dfW-li-hSb"/>
-                                    <constraint firstItem="EAR-Q0-DS7" firstAttribute="top" secondItem="1Aq-Lg-Jz0" secondAttribute="bottom" constant="15" id="hgM-IK-Eg4"/>
                                     <constraint firstAttribute="bottom" secondItem="Rfj-Ie-EaY" secondAttribute="bottom" constant="20" id="p5f-Mc-99e"/>
-                                    <constraint firstItem="1Aq-Lg-Jz0" firstAttribute="leading" secondItem="TUp-dV-iAm" secondAttribute="leading" id="pgX-Sg-fbP"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="djJ-CS-K49" secondAttribute="trailing" constant="8" id="wij-kv-Pke"/>
                                     <constraint firstAttribute="trailing" secondItem="Rfj-Ie-EaY" secondAttribute="trailing" constant="14" id="ygB-GD-THb"/>
-                                    <constraint firstItem="1Aq-Lg-Jz0" firstAttribute="trailing" secondItem="TUp-dV-iAm" secondAttribute="trailing" id="zIJ-j4-jDz"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -235,8 +226,6 @@
                         <outlet property="categoryStack" destination="djJ-CS-K49" id="aax-Ak-PlU"/>
                         <outlet property="categoryStackTopConstraint" destination="7rc-UI-y0j" id="hKb-mU-1eH"/>
                         <outlet property="descLinkLabel" destination="TUp-dV-iAm" id="aQl-US-LoT"/>
-                        <outlet property="openingTimeConstraint" destination="Npt-XN-3EG" id="BMt-5B-JMO"/>
-                        <outlet property="openingTimeLinkLabel" destination="1Aq-Lg-Jz0" id="5IZ-AU-Og4"/>
                         <outlet property="scrollView" destination="FSp-Rq-oj2" id="ZrB-Jw-7CY"/>
                         <outlet property="updateTimeLabel" destination="EAR-Q0-DS7" id="7Ke-d2-S2H"/>
                     </connections>
@@ -265,7 +254,6 @@
         </scene>
     </scenes>
     <designables>
-        <designable name="1Aq-Lg-Jz0"/>
         <designable name="TUp-dV-iAm"/>
         <designable name="Wcj-uV-oiw">
             <size key="intrinsicContentSize" width="41.5" height="20.5"/>

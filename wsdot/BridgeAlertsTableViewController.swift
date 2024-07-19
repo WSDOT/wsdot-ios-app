@@ -214,17 +214,10 @@ class BridgeAlertsTableViewController: RefreshViewController, INDLinkLabelDelega
             
             cell.content.attributedText = attrStr
             cell.updated.text = updated
+            cell.subContent.isHidden = true
 
             if #available(iOS 13.0, *) {
                 cell.content.textColor = UIColor.label
-            }
-            
-            if let openingTime = topicItem.openingTime {
-                cell.subContent.text = "Opening Time: " + TimeUtils.formatTime(openingTime, format: "MMMM dd, YYYY h:mm a")
-                cell.subContent.isHidden = false
-            }
-            else {
-                cell.subContent.isHidden = true
             }
             
             cell.isUserInteractionEnabled = true
