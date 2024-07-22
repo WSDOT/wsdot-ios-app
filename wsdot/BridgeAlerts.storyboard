@@ -183,7 +183,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rfj-Ie-EaY">
-                                        <rect key="frame" x="20" y="112" width="380" height="200"/>
+                                        <rect key="frame" x="20" y="107" width="380" height="200"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="f4b-q7-97r"/>
                                         </constraints>
@@ -202,7 +202,7 @@
                                     <constraint firstItem="djJ-CS-K49" firstAttribute="leading" secondItem="FSp-Rq-oj2" secondAttribute="leading" constant="20" id="T9O-6g-WEw"/>
                                     <constraint firstItem="TUp-dV-iAm" firstAttribute="centerX" secondItem="FSp-Rq-oj2" secondAttribute="centerX" constant="3" id="U1e-ZE-hXe"/>
                                     <constraint firstItem="EAR-Q0-DS7" firstAttribute="top" secondItem="TUp-dV-iAm" secondAttribute="bottom" constant="10" id="ajV-AC-YIc"/>
-                                    <constraint firstItem="Rfj-Ie-EaY" firstAttribute="top" secondItem="EAR-Q0-DS7" secondAttribute="bottom" constant="20" id="azm-tR-fDO"/>
+                                    <constraint firstItem="Rfj-Ie-EaY" firstAttribute="top" secondItem="EAR-Q0-DS7" secondAttribute="bottom" constant="15" id="azm-tR-fDO"/>
                                     <constraint firstItem="TUp-dV-iAm" firstAttribute="leading" secondItem="EAR-Q0-DS7" secondAttribute="leading" id="dfW-li-hSb"/>
                                     <constraint firstAttribute="bottom" secondItem="Rfj-Ie-EaY" secondAttribute="bottom" constant="20" id="p5f-Mc-99e"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="djJ-CS-K49" secondAttribute="trailing" constant="8" id="wij-kv-Pke"/>
