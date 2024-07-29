@@ -2,7 +2,7 @@
 //  BridgeAlertsTableViewController.swift
 //  WSDOT
 //
-//  Copyright (c) 2022 Washington State Department of Transportation
+//  Copyright (c) 2024 Washington State Department of Transportation
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -285,7 +285,6 @@ class BridgeAlertsTableViewController: RefreshViewController, INDLinkLabelDelega
         if (rootViewController.isCollapsed) {
             // Only one vc displayed, pop current stack and assign new vc stack
             let nav = rootViewController.viewControllers[0] as! UINavigationController
-//            nav.popToRootViewController(animated: false)
             nav.pushViewController(newNavigationController, animated: true)
 
             print("1")

@@ -2,7 +2,7 @@
 //  BridgeAlertDetailViewController.swift
 //  WSDOT
 //
-//  Copyright (c) 2022 Washington State Department of Transportation
+//  Copyright (c) 2024 Washington State Department of Transportation
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
