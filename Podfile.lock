@@ -194,7 +194,7 @@ DEPENDENCIES:
   - GoogleMaps (~> 3.10.0)
   - NotificationBannerSwift (= 3.2.0)
   - RealmSwift (~> 10.52.2)
-  - SDWebImage (~> 5.19.1)
+  - SDWebImage (~> 5.19.6)
   - SwiftyJSON (~> 5.0.2)
 
 SPEC REPOS:
@@ -266,6 +266,6 @@ SPEC CHECKSUMS:
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftyJSON: f5b1bf1cd8dd53cd25887ac0eabcfd92301c6a5a
 
-PODFILE CHECKSUM: 5a745cb6becfcfaab4c4682668bf556d87237cd3
+PODFILE CHECKSUM: 7b81f6fe7b389c0ff88d965f441e398806ec1493
 
 COCOAPODS: 1.15.2
