@@ -37,7 +37,7 @@ enum CachedData {
 class CachesStore {
     
     static let tollUpdateTime: Int = 60 // once a minute
-    static let staticTollUpdateTime: Int = 86400 // once a day
+    static let staticTollUpdateTime: Int = 3600 // once an hour
     
     static let updateTime: Int = 900 // once every 15 minutes
 
