@@ -49,7 +49,7 @@ class TollRateTableStore: Decodable {
             delta = deltaValue
         }
         
-        if ((delta > CachesStore.updateTime) || force) {
+        if ((delta > CachesStore.staticTollUpdateTime) || force) {
             
             AF.request("https://data.wsdot.wa.gov/mobile/StaticTollRates.js").validate().responseDecodable(of: TollRateTableStore.self) { response in
                 switch response.result {
