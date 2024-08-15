@@ -26,7 +26,7 @@ class TollRatesViewController: UIViewController{
 
     @IBOutlet weak var TollTabBarContainerView: UIView!
 
-    let goodToGoUrlString = "https://mygoodtogo.com/olcsc/"
+    let goodToGoUrlString = "https://mygoodtogo.com"
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
