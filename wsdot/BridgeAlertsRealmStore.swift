@@ -2,7 +2,7 @@
 //  BridgeAlertsRealmStore.swift
 //  WSDOT
 //
-//  Copyright (c) 2021 Washington State Department of Transportation
+//  Copyright (c) 2024 Washington State Department of Transportation
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -132,10 +132,10 @@ class BridgeAlertsStore: Decodable {
             }
 
             
-            // Format "Hood Canal" bridge alerts
-            if (alert.bridge == "Hood Canal") {
-                alert.bridge = "Hood Canal Bridge"
-            }
+//            // Format "Hood Canal" bridge alerts
+//            if (alert.bridge == "Hood Canal") {
+//                alert.bridge = "Hood Canal Bridge"
+//            }
             
             newAlerts.append(alert)
         }
