@@ -159,7 +159,7 @@ class BridgeAlertDetailViewController: RefreshViewController, INDLinkLabelDelega
         let lat = self.bridgeAlertItem.latitude.isEqual(to: 0.0) ? 47.7511 : self.bridgeAlertItem.latitude
         let long = self.bridgeAlertItem.longitude.isEqual(to: 0.0) ? -120.7401 : self.bridgeAlertItem.longitude
         
-        let zoom = (self.bridgeAlertItem.latitude.isEqual(to: 0.0) && self.bridgeAlertItem.latitude.isEqual(to: 0.0)) ? 6 : 14
+        let zoom = (self.bridgeAlertItem.latitude.isEqual(to: 0.0) && self.bridgeAlertItem.latitude.isEqual(to: 0.0)) ? 6 : 12
         
         alertMarker.position = CLLocationCoordinate2D(
             latitude: lat,
@@ -202,7 +202,7 @@ class BridgeAlertDetailViewController: RefreshViewController, INDLinkLabelDelega
                 print("here 2")
                 alertMarker.map = mapView
                 mapView.settings.setAllGesturesEnabled(true)
-                mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: self.bridgeAlertItem.latitude, longitude: self.bridgeAlertItem.longitude), zoom: 14))
+                mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: self.bridgeAlertItem.latitude, longitude: self.bridgeAlertItem.longitude), zoom: 12))
             }
         }
     }
