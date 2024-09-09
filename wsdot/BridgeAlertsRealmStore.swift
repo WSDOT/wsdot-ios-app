@@ -2,7 +2,7 @@
 //  BridgeAlertsRealmStore.swift
 //  WSDOT
 //
-//  Copyright (c) 2021 Washington State Department of Transportation
+//  Copyright (c) 2024 Washington State Department of Transportation
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -33,16 +33,35 @@ class BridgeAlertsStore: Decodable {
         return alertItem
     }
     
-    static func getAllBridgeAlerts() -> [BridgeAlertItem]{
+    static func getAllBridgeAlerts() -> [String : [BridgeAlertItem]] {
         let realm = try! Realm()
         let alertItems = realm.objects(BridgeAlertItem.self).filter("delete == false")
-        return Array(alertItems)
+        return sortTopicsByCategory(topics:Array(alertItems))
+
     }
+    
+    fileprivate static func sortTopicsByCategory(topics: [BridgeAlertItem]) -> [String : [BridgeAlertItem]]{
+    
+        var topicCategoriesMap = [String: [BridgeAlertItem]]()
+        
+        let sortedTopics = topics.sorted(by: {$0.bridge < $1.bridge })
+        
+        for topic in sortedTopics {
+            if topicCategoriesMap[topic.bridge] != nil {
+                topicCategoriesMap[topic.bridge]!.append(topic)
+            } else {
+                topicCategoriesMap[topic.bridge] = [topic]
+            }
+        }
+        
+        return topicCategoriesMap
+    }
+
 
     
     static func updateBridgeAlerts(_ force: Bool, completion: @escaping UpdateBridgeAlertsCompletion) {
         DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
-            var delta = CachesStore.updateTime
+            var delta = CachesStore.bridgeCacheTime
             let deltaUpdated = (Calendar.current as NSCalendar).components(.second, from: CachesStore.getUpdatedTime(CachedData.bridgeAlerts), to: Date(), options: []).second
         
             if let deltaValue = deltaUpdated {
@@ -87,10 +106,21 @@ class BridgeAlertsStore: Decodable {
             let alert = BridgeAlertItem()
 
             alert.alertId = alertJson["BridgeOpeningId"].intValue
+            alert.descText = alertJson["EventText"].stringValue
+            alert.status = alertJson["Status"].stringValue
+            alert.duration = alertJson["Duration"].stringValue
+            alert.priority = alertJson["Priority"].stringValue
+            alert.travelCenterPriorityId = alertJson["TravelCenterPriorityId"].intValue
+            alert.eventCategory = alertJson["EventCategory"].stringValue
             alert.bridge = alertJson["BridgeLocation"]["Description"].stringValue
             alert.descText = alertJson["EventText"].stringValue
+            alert.status = alertJson["Status"].stringValue
+            alert.lastUpdatedTime = TimeUtils.parseJSONDateToNSDate(alertJson["LastUpdatedTime"].stringValue)
             alert.latitude = alertJson["BridgeLocation"]["Latitude"].doubleValue
             alert.longitude = alertJson["BridgeLocation"]["Longitude"].doubleValue
+            alert.milepost = alertJson["BridgeLocation"]["MilePost"].doubleValue
+            alert.direction = alertJson["BridgeLocation"]["Direction"].stringValue
+            alert.roadName = alertJson["BridgeLocation"]["RoadName"].stringValue
             
             if let timeJsonStringValue = alertJson["OpeningTime"].string {
                 do {
@@ -101,12 +131,16 @@ class BridgeAlertsStore: Decodable {
                 }
             }
 
-            alert.localCacheDate = Date()
+            
+//            // Format "Hood Canal" bridge alerts
+//            if (alert.bridge == "Hood Canal") {
+//                alert.bridge = "Hood Canal Bridge"
+//            }
             
             newAlerts.append(alert)
         }
         
-        let oldAlerts = getAllBridgeAlerts()
+        let oldAlerts = realm.objects(BridgeAlertItem.self)
         
         do {
             try realm.write{

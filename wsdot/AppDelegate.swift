@@ -144,9 +144,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     }
                 } else if alertType == "bridge_alert" {
                     MyAnalytics.event(category: "Notification", action: "Message Opened" , label: "Bridge Alert")
-                    launchBridgeAlertsScreen()
+                if let alertIdString = userInfo["alert_id"] as? String {
+                    if let alertId = Int(alertIdString) {
+                        launchBridgeAlertsViewControllerScreen(alertId: alertId)
+                    }
                 }
             }
+        }
         completionHandler(UIBackgroundFetchResult.newData)
     }
     
@@ -224,22 +228,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         setNavController(newNavigationController: ferriesNav)
 
     }
+    
+    func launchBridgeAlertsViewControllerScreen(alertId: Int){
+        let bridgeAlertsStoryboard: UIStoryboard = UIStoryboard(name: "BridgeAlerts", bundle: nil)
 
-    func launchBridgeAlertsScreen(){
-        let trafficMapStoryboard: UIStoryboard = UIStoryboard(name: "TrafficMap", bundle: nil)
-        
         // Set up nav and vc stack
-        let trafficMapNav = trafficMapStoryboard.instantiateViewController(withIdentifier: "TrafficMapNav") as! UINavigationController
-        let trafficMap = trafficMapStoryboard.instantiateViewController(withIdentifier: "TrafficMapViewController") as! TrafficMapViewController
+        let bridgesNav = bridgeAlertsStoryboard.instantiateViewController(withIdentifier: "BridgesNav") as! UINavigationController
+        let bridgeAlertsVC = bridgeAlertsStoryboard.instantiateViewController(withIdentifier: "BridgeAlertsViewController") as! BridgeAlertsTableViewController
         
-        let BridgeAlertsStoryboard: UIStoryboard = UIStoryboard(name: "BridgeAlerts", bundle: nil)
-        
-        let BridgeAlertsVC = BridgeAlertsStoryboard.instantiateViewController(withIdentifier: "BridgeAlertsViewController") as! BridgeAlertsViewController
+        let bridgeAlertDetails = bridgeAlertsStoryboard.instantiateViewController(withIdentifier: "BridgeAlertDetailViewController") as! BridgeAlertDetailViewController
+
+        // Set up nav and vc stack
+        bridgeAlertDetails.alertId = alertId
+        bridgeAlertDetails.fromPush = true
         
         // assign vc stack to new nav controller
-        trafficMapNav.setViewControllers([trafficMap, BridgeAlertsVC], animated: false)
+        bridgesNav.setViewControllers([bridgeAlertsVC, bridgeAlertDetails], animated: false)
 
-        setNavController(newNavigationController: trafficMapNav)
+        setNavController(newNavigationController: bridgesNav)
+
     }
     
     func setNavController(newNavigationController: UINavigationController){
@@ -267,7 +274,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // MARK: Realm
     func migrateRealm(){
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
-            schemaVersion: 12,
+            schemaVersion: 13,
 
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
@@ -396,6 +403,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     }
                     migration.deleteData(forType: CacheItem.className())
             }
+                /* Adds status field to bridge alert item.
+                 Clears cache times to force refresh
+                 */
+                if (oldSchemaVersion < 13) {
+                    migration.enumerateObjects(ofType: BridgeAlertItem.className()) { oldObject, newObject in
+                        newObject!["status"] = ""
+                    }
+                    migration.deleteData(forType: CacheItem.className())
+                }
+                
         })
     }
 }

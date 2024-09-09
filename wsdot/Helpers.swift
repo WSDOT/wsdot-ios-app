@@ -140,7 +140,30 @@ struct UIHelpers {
             default:
                 return alertLowIconImage
             }
+
     }
+    
+    static func getBridgeAlertIcon(forAlert: BridgeAlertItem) -> UIImage? {
+    
+        let alertLowIconImage = UIImage(named: "icMapAlertLow")
+        let alertModerateIconImage = UIImage(named: "icMapAlertModerate")
+        let alertHighIconImage = UIImage(named: "icMapAlertHigh")
+        let closedIconImage = UIImage(named: "icMapClosed")
+        
+        switch forAlert.travelCenterPriorityId {
+            case 4:
+                return alertLowIconImage
+            case 3:
+                return alertModerateIconImage
+            case 2:
+                return alertHighIconImage
+            case 1:
+                return closedIconImage
+            default:
+                return alertLowIconImage
+            }
+
+        }
     
 
     static func getAlertLabel() -> UILabel {
@@ -226,7 +249,7 @@ struct WSDOTErrorStrings {
     static let cameras = "can't download cameras"
     static let borderWaits = "can't download border waits"
     static let eventStatusAlert = "can't download alert"
-
+    static let bridgeAlerts = "can't download bridge alerts"
     static let favorites = "can't update favorites"
     static let favoriteTravelTimes = "can't update travel times"
     static let favoriteFerries = "can't update ferry schedules"
