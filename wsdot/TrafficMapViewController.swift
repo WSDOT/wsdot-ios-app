@@ -252,9 +252,9 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
                         
                         if (available){
                             travelInfoButton.addSubview(UIHelpers.getAlertLabel())
+                            selfValue.travelInformationButton.customView = travelInfoButton
                         }
                         
-                        selfValue.travelInformationButton.customView = travelInfoButton
                     }
                 }
             })
