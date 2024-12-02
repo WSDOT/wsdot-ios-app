@@ -34,6 +34,7 @@ class FavoritesHomeViewController: RefreshViewController {
     let segueRouteAlertsViewController = "RouteAlertsViewController"
     let segueCameraViewController = "CameraViewController"
     let segueMountainPassDetailsViewController = "MountianPassDetailsViewController"
+    let segueTravelTimesViewController = "TravelTimesViewController"
 
     let textCellIdentifier = "TextCell"
     let myRouteCellIdentifier = "MyRouteFavoritesCell"
@@ -451,7 +452,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             travelTimeCell.favoriteButton.isHidden = true
             
             travelTimeCell.accessoryType = .none
-            travelTimeCell.isUserInteractionEnabled = false
+            travelTimeCell.selectionStyle = .none
 
             var lastRouteView: RouteView? = nil
         
@@ -468,20 +469,22 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             
                 routeView.titleLabel.text = "Via \(route.viaText)"
                 routeView.subtitleLabel.text = "\(route.distance) miles / \(route.averageTime) min"
-            
+                
+                if ((route.startLatitude != 0 && route.startLongitude != 0) && (route.endLatitude != 0 && route.endLongitude != 0)) {
+                    routeView.mapButton.routeIndex = indexPath.row
+                    routeView.mapButton.travelTimeIndex = travelTimeGroup.routes.index(of: route)
+                    routeView.mapButton.addTarget(self, action: #selector(travelTimeButtonAction(_:)), for: .touchUpInside)
+                    routeView.mapButton.setTitleColor(Colors.wsdotGreen, for: .normal)
+                }
+                else {
+                    routeView.mapButton.isHidden = true
+                }
+                
                 do {
                     let updated = try TimeUtils.timeAgoSinceDate(date: TimeUtils.formatTimeStamp(route.updated), numericDates: true)
                     routeView.updatedLabel.text = updated
                 } catch {
                     routeView.updatedLabel.text = "N/A"
-                }
-            
-                if (route.status == "open"){
-                    routeView.valueLabel.text = "\(route.currentTime) min"
-                    routeView.subtitleLabel.isHidden = false
-                } else {
-                    routeView.subtitleLabel.isHidden = true
-                    routeView.valueLabel.text = route.status
                 }
             
                 if (route.averageTime > route.currentTime){
@@ -496,9 +499,36 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                     }
                 }
                 
+                if (route.status.lowercased() == "open"){
+                    routeView.valueLabel.text = "\(route.currentTime) min"
+                    routeView.subtitleLabel.isHidden = false
+                } else if (route.status.lowercased() == "closed"){
+                    routeView.valueLabel.text = route.status
+                    routeView.subtitleLabel.isHidden = true
+                    routeView.mapButton.isHidden = true
+                    routeView.valueLabel.textColor = UIColor.darkText
+                    if #available(iOS 13, *) {
+                        routeView.valueLabel.textColor = UIColor.label
+                    } else {
+                        routeView.valueLabel.textColor = UIColor.darkText
+                    }
+                }
+                else {
+                    routeView.valueLabel.text = "N/A"
+                    routeView.subtitleLabel.isHidden = true
+                    routeView.mapButton.isHidden = true
+                    routeView.valueLabel.textColor = UIColor.darkText
+                    if #available(iOS 13, *) {
+                        routeView.valueLabel.textColor = UIColor.label
+                    } else {
+                        routeView.valueLabel.textColor = UIColor.darkText
+                    }
+                }
+                
                 if (route.currentTime == -1) {
                     routeView.valueLabel.text = "N/A"
                     routeView.subtitleLabel.text = "Not Available"
+                    routeView.mapButton.isHidden = true
                     if #available(iOS 13.0, *) {
                         routeView.valueLabel.textColor = UIColor.label
                     } else {
@@ -865,7 +895,14 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             break
         }
     }
-
+    
+    @objc func travelTimeButtonAction(_ sender: UIButton) {
+        // Perform Segue
+        performSegue(withIdentifier: segueTravelTimesViewController, sender: sender)
+        
+    }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == segueTrafficMapViewController {
@@ -925,6 +962,15 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 let passItem = self.mountainPasses[indexPath.row] as MountainPassItem
                 let destinationViewController = segue.destination as! MountainPassTabBarViewController
                 destinationViewController.passItem = passItem
+            }
+        }
+        
+        if segue.identifier == segueTravelTimesViewController {
+            if let button = sender as? TravelTimeMapButton {
+                let routeIndex = travelTimeGroups[button.routeIndex!]
+                let travelTimeIndex = routeIndex.routes[button.travelTimeIndex!]
+                let destinationViewController = segue.destination as! TravelTimeAlertViewController
+                destinationViewController.travelTimeId = travelTimeIndex.routeid
             }
         }
     }

@@ -32,19 +32,22 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     let SegueSettingsPopover = "TrafficMapSettingsViewController"
     let SegueTravlerInfoViewController = "TravelerInfoViewController"
     let SegueCameraClusterViewController = "CameraClusterViewController"
-    
+    let SegueMultipleTravelTimes = "AlertsInAreaViewController"
+
     
     // Marker Segues
     let SegueCamerasViewController = "CamerasViewController"
     let SegueRestAreaViewController = "RestAreaViewController"
     let SegueHighwayAlertViewController = "HighwayAlertViewController"
     let SegueMountainPassViewController = "MountainPassViewController"
+    let SegueTravelTimesController = "TravelTimesController"
     let SegueCalloutViewController = "CalloutViewController"
     
     fileprivate var alertMarkers = Set<GMSMarker>()
     fileprivate var cameraMarkers = Set<CameraClusterItem>()
     fileprivate var restAreaMarkers = Set<GMSMarker>()
     fileprivate var mountainPassMarkers = Set<GMSMarker>()
+    fileprivate var travelTimesMarkers = Set<GMSMarker>()
     
     // Mark: Map Icons
     fileprivate let restAreaIconImage = UIImage(named: "icMapRestArea")
@@ -57,6 +60,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     fileprivate let mountainPassIconImage = UIImage(named: "icMountainPass")
 
+    fileprivate let travelTimesIconImage = UIImage(named: "icTravelTime")
     
     var tipView = EasyTipView(text: "")
     
@@ -78,6 +82,11 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
             UserDefaults.standard.set("on", forKey: UserDefaultsKeys.mountainPasses)
         }
         
+        // Set default value for travel times display if there is none
+        if (UserDefaults.standard.string(forKey: UserDefaultsKeys.travelTimes) == nil){
+            UserDefaults.standard.set("on", forKey: UserDefaultsKeys.travelTimes)
+        }
+        
         // Set default value for camera display if there is none
         if (UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras) == nil){
             UserDefaults.standard.set("on", forKey: UserDefaultsKeys.cameras)
@@ -93,6 +102,8 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         self.drawAlerts()
         self.loadMountainPassesMarkers()
         self.drawMountainPasses()
+        self.loadTravelTimesMarkers()
+        self.drawTravelTimes()
 
         
         embeddedMapViewController.clusterManager.setDelegate(self, mapDelegate: self)
@@ -437,6 +448,14 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         return alerts
     }
     
+    func convertAlertMarkersToTravelTimesItems(markers: [GMSMarker]) -> [TravelTimeItem] {
+        var alerts = [TravelTimeItem]()
+        for alertMarker in markers{
+           alerts.append(alertMarker.userData as! TravelTimeItem)
+        }
+        return alerts
+    }
+    
     // MARK: Rest area marker logic
     func removeRestAreas(){
         for restarea in restAreaMarkers{
@@ -492,7 +511,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         }
     }
     
-    // MARK: Rest area marker logic
+    // MARK: Mountain Pass marker logic
     func removeMountainPasses(){
         for mountainpasses in mountainPassMarkers{
             mountainpasses.map = nil
@@ -552,6 +571,70 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
             }
         }
     }
+    
+    // MARK: Travel Time marker logic
+    func removeTravelTimes(){
+        for travelTimes in travelTimesMarkers{
+            travelTimes.map = nil
+        }
+    }
+    
+    func fetchTravelTimes(force: Bool, group: DispatchGroup) {
+        serviceGroup.enter()
+        DispatchQueue.global().async {[weak self] in
+            TravelTimesStore.updateTravelTimes(force, completion: { error in
+                if (error == nil){
+                    DispatchQueue.main.async {[weak self] in
+                        if let selfValue = self{
+                            selfValue.serviceGroup.leave()
+                            selfValue.loadTravelTimesMarkers()
+                            selfValue.drawTravelTimes()
+                        }
+                    }
+                }else{
+                    DispatchQueue.main.async { [weak self] in
+                        if let selfValue = self{
+                            selfValue.serviceGroup.leave()
+                        }
+                    }
+                }
+            })
+        }
+    }
+
+    func loadTravelTimesMarkers(){
+        removeTravelTimes()
+        travelTimesMarkers.removeAll()
+        for travelTimes in TravelTimesStore.getTravelTimes(){
+            
+            if ((travelTimes.startLatitude != 0 && travelTimes.startLongitude != 0) && (travelTimes.endLatitude != 0 && travelTimes.endLongitude != 0)) {
+                let travelTimeLocation = CLLocationCoordinate2D(latitude: travelTimes.startLatitude, longitude: travelTimes.startLongitude)
+                let marker = GMSMarker(position: travelTimeLocation)
+                marker.snippet = "traveltimes"
+                marker.icon = travelTimesIconImage
+                marker.userData = travelTimes
+                travelTimesMarkers.insert(marker)
+            }
+        }
+    }
+
+    func drawTravelTimes(){
+        if let mapView = embeddedMapViewController.view as? GMSMapView{
+            let travelTimesPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.travelTimes)
+            if let travelTimesPrefValue = travelTimesPref{
+                if (travelTimesPrefValue == "on") {
+                    for travelTimesMarker in travelTimesMarkers{
+                        travelTimesMarker.map = mapView
+                    }
+                }
+            } else {
+                UserDefaults.standard.set("on", forKey: UserDefaultsKeys.travelTimes)
+                for travelTimesMarker in travelTimesMarkers{
+                    travelTimesMarker.map = mapView
+                }
+            }
+        }
+    }
 
     // MARK: favorite location
     func saveCurrentLocation(){
@@ -598,6 +681,7 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         fetchCameras(force: false, group: serviceGroup)
         fetchAlerts(force: false, group: serviceGroup)
         fetchMountainPasses(force: false, group: serviceGroup)
+        fetchTravelTimes(force: false, group: serviceGroup)
         fetchRestAreas(group: serviceGroup)
 
         serviceGroup.notify(queue: DispatchQueue.main) {
@@ -642,6 +726,18 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         
         if marker.snippet == "mountainpass" {
             performSegue(withIdentifier: SegueMountainPassViewController, sender: marker)
+        }
+        
+        if marker.snippet == "traveltimes" {
+            
+            // Check for overlapping markers.
+            var markers = travelTimesMarkers
+            markers.remove(marker)
+            if markers.contains(where: {($0.position.latitude == marker.position.latitude) && ($0.position.latitude == marker.position.latitude)}) {
+                performSegue(withIdentifier: SegueMultipleTravelTimes, sender: marker)
+            } else {
+                performSegue(withIdentifier: SegueTravelTimesController, sender: marker)
+            }
         }
 
         
@@ -697,6 +793,26 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
             }
         }
         
+        if segue.identifier == SegueMultipleTravelTimes {
+        
+            //Check sender - could be alertsInArea button or a marker with overlap.
+            if let marker = sender as? GMSMarker {
+                // Get the overlapping markers
+                let alerts = convertAlertMarkersToTravelTimesItems(markers: travelTimesMarkers.filter({($0.position.latitude == marker.position.latitude) && ($0.position.latitude == marker.position.latitude)}))
+                let destinationViewController = segue.destination as! AlertsInAreaViewController
+                destinationViewController.travelTimes = alerts
+                destinationViewController.title = "Travel Times"
+                
+                
+            
+            } else {
+                let alerts = getAlertsOnScreen()
+                let destinationViewController = segue.destination as! AlertsInAreaViewController
+                destinationViewController.alerts = alerts
+                destinationViewController.title = "Alerts In This Area"
+            }
+        }
+        
         if segue.identifier == SegueSettingsPopover {
             let destinationViewController = segue.destination as! TrafficMapSettingsViewController
             destinationViewController.my_parent = self
@@ -737,6 +853,12 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
             let passItem = ((sender as! GMSMarker).userData as! MountainPassItem)
             let destinationViewController = segue.destination as! MountainPassTabBarViewController
             destinationViewController.passItem = passItem
+        }
+        
+        if segue.identifier == SegueTravelTimesController {
+            let travelTimeItem = ((sender as! GMSMarker).userData as! TravelTimeItem)
+            let destinationViewController = segue.destination as! TravelTimeAlertViewController
+            destinationViewController.travelTimeId = travelTimeItem.routeid
         }
         
     }

@@ -36,6 +36,18 @@ class TravelTimesStore: Decodable {
             print("TravelTimesStore.updateFavorite: Realm write error")
         }
     }
+    static func findAlert(withId: Int) -> TravelTimeItem? {
+        let realm = try! Realm()
+        let alertItem = realm.object(ofType: TravelTimeItem.self, forPrimaryKey: withId)
+        return alertItem
+    }
+    
+    static func getTravelTimes() -> [TravelTimeItem]{
+            let realm = try! Realm()
+            let travelTimeItems = realm.objects(TravelTimeItem.self)
+            return Array(travelTimeItems)
+
+    }
     
     static func getAllTravelTimeGroups() -> [TravelTimeItemGroup]{
         let realm = try! Realm()
@@ -167,6 +179,8 @@ class TravelTimesStore: Decodable {
    
             let time = TravelTimeItem()
             
+            time.title = subJson["title"].stringValue
+            
             time.routeid = subJson["travel_time_id"].intValue
             
             time.viaText = subJson["via"].stringValue.replacingOccurrences(of: "REV", with: "EXPRESS", options: .literal).replacingOccurrences(of: ",", with: ", ", options: .literal)
@@ -181,7 +195,8 @@ class TravelTimesStore: Decodable {
             time.averageTime = subJson["avg_time"].intValue
             time.status = subJson["status"].stringValue
             time.currentTime = subJson["current_time"].intValue
-        
+            time.hovCurrentTime = subJson["hovCurrentTime"].intValue
+
             time.updated = subJson["updated_at"].stringValue
         
             let timeGroupResult = travelTimes.filter { $0.title == subJson["title"].string }

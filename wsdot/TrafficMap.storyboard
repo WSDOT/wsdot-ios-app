@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IAh-cF-WhQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IAh-cF-WhQ">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -169,6 +169,7 @@
                         <segue destination="XRS-Fl-wOz" kind="show" identifier="TravelerInfoViewController" id="kq9-mm-QDJ"/>
                         <segue destination="pdT-AS-wXy" kind="show" identifier="CameraClusterViewController" id="lZR-vY-0dx"/>
                         <segue destination="6zt-Jf-XNL" kind="show" identifier="MountainPassViewController" id="EVB-fU-EFP"/>
+                        <segue destination="X6e-Vf-PH0" kind="show" identifier="TravelTimesController" id="AhK-ub-uu4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rnr-aE-lbf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -318,11 +319,12 @@
                     <connections>
                         <outlet property="tableView" destination="HnH-cr-8gd" id="vEf-af-egI"/>
                         <segue destination="tFn-Pc-wtP" kind="show" identifier="HighwayAlertViewController" id="I48-Pv-PrS"/>
+                        <segue destination="R5T-me-zUi" kind="show" identifier="TravelTimesViewController" id="cDW-S3-C2b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="74b-ma-3iY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1058" y="1195"/>
+            <point key="canvasLocation" x="-1055" y="1195"/>
         </scene>
         <!--HighwayAlert-->
         <scene sceneID="Qh4-8p-U76">
@@ -330,7 +332,7 @@
                 <viewControllerPlaceholder storyboardName="HighwayAlert" id="tFn-Pc-wtP" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gt5-YB-7xq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1059" y="1600"/>
+            <point key="canvasLocation" x="-1216" y="1695"/>
         </scene>
         <!--CameraList-->
         <scene sceneID="wql-Zu-aSm">
@@ -570,12 +572,27 @@
             </objects>
             <point key="canvasLocation" x="1152.8" y="1195.0524737631185"/>
         </scene>
+        <!--TravelTimes-->
+        <scene sceneID="G8L-xA-1GG">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TravelTimes" id="X6e-Vf-PH0" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="GLa-di-hPP"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jzu-hD-HKK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1515" y="613"/>
+        </scene>
+        <!--TravelTimes-->
+        <scene sceneID="LiQ-qF-1kx">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TravelTimes" id="R5T-me-zUi" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ici-n1-491"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ut5-QH-iiq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-886" y="1695"/>
+        </scene>
     </scenes>
-    <designables>
-        <designable name="ELJ-4a-jeX">
-            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
-        </designable>
-    </designables>
     <resources>
         <image name="icAlert" width="24" height="24"/>
         <image name="icCamera" width="32" height="32"/>

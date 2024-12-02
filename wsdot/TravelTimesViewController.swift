@@ -47,7 +47,6 @@ class TravelTimesViewController: RefreshViewController, UITableViewDelegate, UIT
         //searchController.dimsBackgroundDuringPresentation = false
      
         tableView.tableHeaderView = searchController.searchBar
-        
         definesPresentationContext = true
         
         // refresh controller
@@ -56,18 +55,13 @@ class TravelTimesViewController: RefreshViewController, UITableViewDelegate, UIT
         if #available(iOS 13, *) {
             refreshControl.backgroundColor = .systemGroupedBackground
             tableView.backgroundView = refreshControl
-            extendedLayoutIncludesOpaqueBars = false
+            extendedLayoutIncludesOpaqueBars = true
         } else {
             tableView.addSubview(refreshControl)
         }
 
         showOverlay(self.view)
-        
-        self.travelTimeGroups = TravelTimesStore.getAllTravelTimeGroups()
-        self.tableView.reloadData()
-        
-        refresh(false)
-        tableView.rowHeight = UITableView.automaticDimension
+        refresh(true)
         
         // Ad Banner
         bannerView.adUnitID = ApiKeys.getAdId()
@@ -90,6 +84,20 @@ class TravelTimesViewController: RefreshViewController, UITableViewDelegate, UIT
         refresh(true)
     }
     
+    // Make sure table has the latest data when the view displays
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.travelTimeGroups = TravelTimesStore.getAllTravelTimeGroups().sorted(by: {$0.routes[0].title < $1.routes[0].title })
+        self.tableView.reloadData()
+        tableView.rowHeight = UITableView.automaticDimension
+
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        searchController.isActive = false
+    }
+    
     func refresh(_ force: Bool){
         DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { [weak self] in
             TravelTimesStore.updateTravelTimes(force, completion: { error in
@@ -97,8 +105,8 @@ class TravelTimesViewController: RefreshViewController, UITableViewDelegate, UIT
                     // Reload tableview on UI thread
                     DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
-                            selfValue.travelTimeGroups = TravelTimesStore.getAllTravelTimeGroups()
-                            selfValue.filtered = selfValue.travelTimeGroups
+                            selfValue.travelTimeGroups = TravelTimesStore.getAllTravelTimeGroups().sorted(by: {$0.routes[0].title < $1.routes[0].title })
+                            selfValue.filtered = selfValue.travelTimeGroups.sorted(by: {$0.routes[0].title < $1.routes[0].title })
                             selfValue.tableView.reloadData()
                             selfValue.refreshControl.endRefreshing()
                             selfValue.hideOverlayView()
@@ -168,19 +176,25 @@ class TravelTimesViewController: RefreshViewController, UITableViewDelegate, UIT
             routeView.titleLabel.text = "Via \(route.viaText)"
             routeView.subtitleLabel.text = "\(route.distance) miles / \(route.averageTime) min"
             
+            if ((route.startLatitude != 0 && route.startLongitude != 0) && (route.endLatitude != 0 && route.endLongitude != 0)) {
+                routeView.mapButton.routeIndex = indexPath.row
+                routeView.mapButton.travelTimeIndex = travelTimeGroup.routes.index(of: route)
+                routeView.mapButton.addTarget(self, action: #selector(travelTimeButtonAction(_:)), for: .touchUpInside)
+                routeView.mapButton.setTitleColor(Colors.wsdotGreen, for: .normal)
+            }
+            else {
+                routeView.mapButton.isHidden = true
+            }
+            
+            if self is MyRouteTravelTimesViewController {
+                routeView.mapButton.isHidden = true
+            }
+            
             do {
                 let updated = try TimeUtils.timeAgoSinceDate(date: TimeUtils.formatTimeStamp(route.updated), numericDates: true)
                 routeView.updatedLabel.text = updated
             } catch {
                 routeView.updatedLabel.text = "N/A"
-            }
-            
-            if (route.status == "open"){
-                routeView.valueLabel.text = "\(route.currentTime) min"
-                routeView.subtitleLabel.isHidden = false
-            } else {
-                routeView.subtitleLabel.isHidden = true
-                routeView.valueLabel.text = route.status
             }
             
             if (route.averageTime > route.currentTime){
@@ -197,9 +211,36 @@ class TravelTimesViewController: RefreshViewController, UITableViewDelegate, UIT
            
             }
             
+            if (route.status.lowercased() == "open"){
+                routeView.valueLabel.text = "\(route.currentTime) min"
+                routeView.subtitleLabel.isHidden = false
+            } else if (route.status.lowercased() == "closed"){
+                routeView.valueLabel.text = route.status
+                routeView.subtitleLabel.isHidden = true
+                routeView.mapButton.isHidden = true
+                routeView.valueLabel.textColor = UIColor.darkText
+                if #available(iOS 13, *) {
+                    routeView.valueLabel.textColor = UIColor.label
+                } else {
+                    routeView.valueLabel.textColor = UIColor.darkText
+                }
+            }
+            else {
+                routeView.valueLabel.text = "N/A"
+                routeView.subtitleLabel.isHidden = true
+                routeView.mapButton.isHidden = true
+                routeView.valueLabel.textColor = UIColor.darkText
+                if #available(iOS 13, *) {
+                    routeView.valueLabel.textColor = UIColor.label
+                } else {
+                    routeView.valueLabel.textColor = UIColor.darkText
+                }
+            }
+            
             if (route.currentTime == -1) {
                 routeView.valueLabel.text = "N/A"
                 routeView.subtitleLabel.text = "Not Available"
+                routeView.mapButton.isHidden = true
                 if #available(iOS 13.0, *) {
                     routeView.valueLabel.textColor = UIColor.label
                 } else {
@@ -233,14 +274,50 @@ class TravelTimesViewController: RefreshViewController, UITableViewDelegate, UIT
      
         return cell
     }
+    
+    @objc func travelTimeButtonAction(_ sender: UIButton) {
+        // Perform Segue
+        performSegue(withIdentifier: segueTravelTimesViewController, sender: sender)
+        
+    }
 
+    
+    // MARK: Naviagtion
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == segueTravelTimesViewController {
+            if let button = sender as? TravelTimeMapButton {
+                
+                if let searchText = searchController.searchBar.text {
+                    
+                    if (searchText.isEmpty) {
+                        let routeIndex = travelTimeGroups[button.routeIndex!]
+                        let travelTimeIndex = routeIndex.routes[button.travelTimeIndex!]
+                        let destinationViewController = segue.destination as! TravelTimeAlertViewController
+                        destinationViewController.travelTimeId = travelTimeIndex.routeid
+                    }
+                    else {
+                        
+                        filtered = searchText.isEmpty ? travelTimeGroups : travelTimeGroups.filter({(travelTimeGroup: TravelTimeItemGroup) -> Bool in
+                            
+                            let tollSign = filtered[button.routeIndex!]
+                            let tollTrip = tollSign.routes[button.travelTimeIndex!]
+                            let destinationViewController = segue.destination as! TravelTimeAlertViewController
+                            destinationViewController.travelTimeId = tollTrip.routeid
+                            return travelTimeGroup.title.range(of: searchText, options: .caseInsensitive) != nil
+                            
+                        })
+                    }
+                }
+            }
+        }
+    }
     
     // MARK: UISearchBar Delegate Methods
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {
             filtered = searchText.isEmpty ? travelTimeGroups : travelTimeGroups.filter({(travelTimeGroup: TravelTimeItemGroup) -> Bool in
                 return travelTimeGroup.title.range(of: searchText, options: .caseInsensitive) != nil
-            })
+            }).sorted(by: {$0.routes[0].title < $1.routes[0].title })
             tableView.reloadData()
         }
     }

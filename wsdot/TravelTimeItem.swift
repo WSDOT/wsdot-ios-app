@@ -35,10 +35,17 @@ class TravelTimeItem: Object {
     
     @objc dynamic var averageTime: Int = 0
     @objc dynamic var currentTime: Int = 0
+    @objc dynamic var hovCurrentTime: Int = 0
     
     @objc dynamic var status: String = ""
 
     @objc dynamic var updated: String = ""
+    
+    @objc dynamic var title: String = ""
+    
+    override static func primaryKey() -> String? {
+        return "routeid"
+    }
 
 }
 
