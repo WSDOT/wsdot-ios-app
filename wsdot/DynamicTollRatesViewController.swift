@@ -183,20 +183,14 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
     /*
      * Creates a string for the travel time header,
      * Checks if the group has a general purpose and HOV travel time.
-     * In the case of 405, the HOV time is the ETL time.
      */
     func getTravelTimeFromGroup(travelTimeGroup: TravelTimeItemGroup) -> String {
         
         var gpTime = -1
         var etlTime = -1
         
-        if let gpTimeItem = travelTimeGroup.routes.filter({ !$0.viaText.contains("HOV") }).first {
-            gpTime = gpTimeItem.currentTime
-        }
-        
-        if let etlTimeItem = travelTimeGroup.routes.filter({ $0.viaText.contains("HOV")}).first {
-            etlTime = etlTimeItem.currentTime
-        }
+        gpTime = travelTimeGroup.routes[0].currentTime
+        etlTime = travelTimeGroup.routes[0].hovCurrentTime
         
         if (gpTime != -1 && etlTime != -1) {
             return "\(travelTimeGroup.title): \(gpTime) min or \(etlTime) min via ETL"
