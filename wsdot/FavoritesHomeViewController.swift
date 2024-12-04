@@ -499,7 +499,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                     }
                 }
                 
-                if (route.status.lowercased() == "open"){
+                if ((route.currentTime != 0) && (route.currentTime != -1)) {
                     routeView.valueLabel.text = "\(route.currentTime) min"
                     routeView.subtitleLabel.isHidden = false
                 } else if (route.status.lowercased() == "closed"){
