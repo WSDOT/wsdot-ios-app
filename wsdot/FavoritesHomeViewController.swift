@@ -468,7 +468,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 routeView.valueLabel.translatesAutoresizingMaskIntoConstraints = false
             
                 routeView.titleLabel.text = "Via \(route.viaText)"
-                routeView.subtitleLabel.text = "\(route.distance) miles / \(route.averageTime) min"
+                routeView.subtitleLabel.text = "\(route.distance) miles"
                 
                 if ((route.startLatitude != 0 && route.startLongitude != 0) && (route.endLatitude != 0 && route.endLongitude != 0)) {
                     routeView.mapButton.routeIndex = indexPath.row
