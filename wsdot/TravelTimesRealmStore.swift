@@ -95,14 +95,14 @@ class TravelTimesStore: Decodable {
     }
     
     static func updateTravelTimes(_ force: Bool, completion: @escaping getTravelTimesCompletion) {
-        var delta = CachesStore.updateTime
+        var delta = CachesStore.travelTimeCacheTime
         let deltaUpdated = (Calendar.current as NSCalendar).components(.second, from: CachesStore.getUpdatedTime(CachedData.travelTimes), to: Date(), options: []).second
         
         if let deltaValue = deltaUpdated {
             delta = deltaValue
         }
          
-        if ((delta > CachesStore.updateTime) || force) {
+        if ((delta > CachesStore.travelTimeCacheTime) || force) {
            
             let request = NetworkUtils
                 .getJSONRequestNoLocalCache(forUrl: "https://data.wsdot.wa.gov/mobile/TravelTimesv2.js")

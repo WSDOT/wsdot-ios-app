@@ -56,6 +56,9 @@ class CachesStore {
     
     static let mountainPassCacheTime: Int = 300 // once every 5 minutes
     
+    static let travelTimeCacheTime: Int = 300 // once every 5 minutes
+
+    
     static func initCacheItem(){
         do {
             let realm = try Realm()
