@@ -454,7 +454,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             travelTimeCell.accessoryType = .none
             travelTimeCell.selectionStyle = .none
 
-            var lastRouteView: RouteView? = nil
+            let lastRouteView: RouteView? = nil
         
             for route in travelTimeGroup.routes {
         
@@ -550,8 +550,9 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 }
 
                 travelTimeCell.dynamicRouteViews.append(routeView)
-                lastRouteView = routeView
-            
+                routeView.line.isHidden = true
+                // lastRouteView = routeView
+
             }
 
             travelTimeCell.sizeToFit()

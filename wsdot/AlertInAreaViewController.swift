@@ -39,8 +39,6 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
     var maintenanceAlerts = [HighwayAlertItem]()
     var policeActivityAlerts = [HighwayAlertItem]()
     var weatherAlerts = [HighwayAlertItem]()
-
-    var travelTimeAlerts = [TravelTimeItem]()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -74,10 +72,6 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
                 alertTypeAlerts.append(alert)
             }
         }
-        
-        for travelTime in travelTimes {
-            travelTimeAlerts.append(travelTime)
-        }
 
         alertTypeAlerts = alertTypeAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
         bridgeAlerts = bridgeAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
@@ -87,7 +81,8 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
         maintenanceAlerts = maintenanceAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
         policeActivityAlerts = policeActivityAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
         weatherAlerts = weatherAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
-        travelTimeAlerts = travelTimeAlerts.sorted(by: {$0.title < $1.title})
+        travelTimes = travelTimes.sorted(by: {$0.title < $1.title})
+            .filter({$0.routeid != 36}).filter({$0.routeid != 37}).filter({$0.routeid != 68}).filter({$0.routeid != 69})
 
         tableView.rowHeight = UITableView.automaticDimension
         
@@ -209,8 +204,8 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
             htmlString = htmlStyleString + weatherAlerts[indexPath.row].headlineDesc
             break
         case 8:
-            cell.updateTime.text = "Routes: " + travelTimeAlerts[indexPath.row].viaText
-            htmlString = htmlStyleString + travelTimeAlerts[indexPath.row].title
+            cell.updateTime.text = "Routes: " + travelTimes[indexPath.row].viaText
+            htmlString = htmlStyleString + travelTimes[indexPath.row].title
             break
         default:
             break
@@ -260,7 +255,7 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
             performSegue(withIdentifier: SegueHighwayAlertViewController, sender: weatherAlerts[indexPath.row])
             break
         case 8:
-            performSegue(withIdentifier: SegueTravelTimesViewController, sender: travelTimeAlerts[indexPath.row])
+            performSegue(withIdentifier: SegueTravelTimesViewController, sender: travelTimes[indexPath.row])
             break
         default: break
         }

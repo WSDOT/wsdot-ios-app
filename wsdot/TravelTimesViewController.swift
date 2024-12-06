@@ -160,7 +160,7 @@ class TravelTimesViewController: RefreshViewController, UITableViewDelegate, UIT
         cell.favoriteButton.tag = indexPath.row
         cell.favoriteButton.addTarget(self, action: #selector(favoriteAction(_:)), for: .touchUpInside)
 
-        var lastRouteView: RouteView? = nil
+        let lastRouteView: RouteView? = nil
         
         for route in travelTimeGroup.routes {
         
@@ -266,8 +266,9 @@ class TravelTimesViewController: RefreshViewController, UITableViewDelegate, UIT
             }
             
             cell.dynamicRouteViews.append(routeView)
-            lastRouteView = routeView
-            
+            routeView.line.isHidden = true
+            // lastRouteView = routeView
+
         }
 
         cell.sizeToFit()

@@ -607,13 +607,17 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         travelTimesMarkers.removeAll()
         for travelTimes in TravelTimesStore.getTravelTimes(){
             
-            if ((travelTimes.startLatitude != 0 && travelTimes.startLongitude != 0) && (travelTimes.endLatitude != 0 && travelTimes.endLongitude != 0)) {
-                let travelTimeLocation = CLLocationCoordinate2D(latitude: travelTimes.startLatitude, longitude: travelTimes.startLongitude)
-                let marker = GMSMarker(position: travelTimeLocation)
-                marker.snippet = "traveltimes"
-                marker.icon = travelTimesIconImage
-                marker.userData = travelTimes
-                travelTimesMarkers.insert(marker)
+            if (travelTimes.routeid != 36 && travelTimes.routeid != 37 && travelTimes.routeid != 68 && travelTimes.routeid != 69) {
+                
+                if ((travelTimes.startLatitude != 0 && travelTimes.startLongitude != 0) && (travelTimes.endLatitude != 0 && travelTimes.endLongitude != 0)) {
+                    
+                    let travelTimeLocation = CLLocationCoordinate2D(latitude: travelTimes.startLatitude, longitude: travelTimes.startLongitude)
+                    let marker = GMSMarker(position: travelTimeLocation)
+                    marker.snippet = "traveltimes"
+                    marker.icon = travelTimesIconImage
+                    marker.userData = travelTimes
+                    travelTimesMarkers.insert(marker)
+                }
             }
         }
     }
