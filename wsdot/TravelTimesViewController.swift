@@ -93,11 +93,6 @@ class TravelTimesViewController: RefreshViewController, UITableViewDelegate, UIT
 
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        searchController.isActive = false
-    }
-    
     func refresh(_ force: Bool){
         DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { [weak self] in
             TravelTimesStore.updateTravelTimes(force, completion: { error in
