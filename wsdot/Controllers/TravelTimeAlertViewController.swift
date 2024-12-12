@@ -293,6 +293,8 @@ class TravelTimeAlertViewController: RefreshViewController, INDLinkLabelDelegate
 
             startMarker.map = mapView
             endMarker.map = mapView
+                
+            mapView.setMinZoom(0, maxZoom: 12)
                           
         }
     }
