@@ -745,9 +745,9 @@
                                         </subviews>
                                     </stackView>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ef-2h-COG">
-                                        <rect key="frame" x="20" y="266" width="327" height="218"/>
+                                        <rect key="frame" x="20" y="266" width="335" height="245"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="218" id="pfs-aa-Dal"/>
+                                            <constraint firstAttribute="height" constant="245" id="pfs-aa-Dal"/>
                                         </constraints>
                                         <connections>
                                             <segue destination="qrd-2O-7DT" kind="embed" identifier="EmbedMapSegue" id="6ue-Sz-1ja"/>
@@ -757,15 +757,13 @@
                                 <constraints>
                                     <constraint firstItem="lV6-kK-vlN" firstAttribute="leading" secondItem="rQw-Gd-hqx" secondAttribute="leadingMargin" constant="12" id="6q9-Rd-jqB"/>
                                     <constraint firstAttribute="bottom" secondItem="7Ef-2h-COG" secondAttribute="bottom" constant="20" id="A3T-G7-mZ5"/>
-                                    <constraint firstAttribute="trailing" secondItem="7Ef-2h-COG" secondAttribute="trailing" constant="16" id="Cka-w0-jn4"/>
-                                    <constraint firstItem="7Ef-2h-COG" firstAttribute="width" secondItem="rQw-Gd-hqx" secondAttribute="width" multiplier="0.872" id="Glz-gj-Kh3"/>
                                     <constraint firstItem="lV6-kK-vlN" firstAttribute="top" secondItem="rQw-Gd-hqx" secondAttribute="top" constant="20" id="RxL-Be-QA8"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lV6-kK-vlN" secondAttribute="trailing" constant="8" id="SVu-1S-Is3"/>
                                     <constraint firstItem="7Ef-2h-COG" firstAttribute="top" secondItem="i5E-z9-Dhx" secondAttribute="bottom" constant="20" id="WoG-Kk-mR2"/>
-                                    <constraint firstItem="7Ef-2h-COG" firstAttribute="top" secondItem="uNY-WL-zEi" secondAttribute="bottom" constant="20" id="ZBd-6J-GRS"/>
                                     <constraint firstItem="i5E-z9-Dhx" firstAttribute="leading" secondItem="lV6-kK-vlN" secondAttribute="leading" id="b2r-yC-ZJj"/>
                                     <constraint firstItem="i5E-z9-Dhx" firstAttribute="top" secondItem="lV6-kK-vlN" secondAttribute="bottom" constant="20" id="exk-jI-5R4"/>
-                                    <constraint firstItem="i5E-z9-Dhx" firstAttribute="trailing" secondItem="rQw-Gd-hqx" secondAttribute="trailingMargin" id="gx6-Hf-2Jw"/>
+                                    <constraint firstItem="i5E-z9-Dhx" firstAttribute="trailing" secondItem="rQw-Gd-hqx" secondAttribute="trailing" constant="-20" id="gx6-Hf-2Jw"/>
+                                    <constraint firstItem="7Ef-2h-COG" firstAttribute="centerX" secondItem="rQw-Gd-hqx" secondAttribute="centerX" id="snN-TB-dXD"/>
                                     <constraint firstItem="i5E-z9-Dhx" firstAttribute="centerX" secondItem="rQw-Gd-hqx" secondAttribute="centerX" id="xWn-W1-LVK"/>
                                 </constraints>
                             </scrollView>
@@ -807,7 +805,7 @@
                         <viewControllerLayoutGuide type="bottom" id="y7U-n2-tAR"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dTd-r0-hNz">
-                        <rect key="frame" x="0.0" y="0.0" width="327" height="218"/>
+                        <rect key="frame" x="0.0" y="0.0" width="335" height="245"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>

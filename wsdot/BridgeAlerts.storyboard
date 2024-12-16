@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="srJ-Gc-8SK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="srJ-Gc-8SK">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -183,9 +183,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rfj-Ie-EaY">
-                                        <rect key="frame" x="20" y="107" width="370" height="200"/>
+                                        <rect key="frame" x="20" y="107" width="370" height="245"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="200" id="f4b-q7-97r"/>
+                                            <constraint firstAttribute="height" constant="245" id="f4b-q7-97r"/>
                                         </constraints>
                                         <connections>
                                             <segue destination="Tio-pz-urg" kind="embed" identifier="EmbedMapSegue" id="q1f-Mx-ogS"/>
@@ -242,7 +242,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Oux-we-pCd"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dml-vk-AaF">
-                        <rect key="frame" x="0.0" y="0.0" width="380" height="200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="370" height="245"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
@@ -252,12 +252,6 @@
             <point key="canvasLocation" x="2564" y="-606"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="TUp-dV-iAm"/>
-        <designable name="Wcj-uV-oiw">
-            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
-        </designable>
-    </designables>
     <resources>
         <image name="icRefresh" width="24" height="24"/>
         <systemColor name="secondaryLabelColor">

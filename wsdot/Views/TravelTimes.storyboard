@@ -88,7 +88,7 @@
                                         </subviews>
                                     </stackView>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GwI-FG-XH5">
-                                        <rect key="frame" x="20" y="266" width="327" height="245"/>
+                                        <rect key="frame" x="20" y="266" width="335" height="245"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="245" id="PVJ-VA-oN1"/>
                                         </constraints>
@@ -98,18 +98,16 @@
                                     </containerView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="GwI-FG-XH5" firstAttribute="width" secondItem="9lO-gB-lae" secondAttribute="width" multiplier="0.872" id="20T-u0-pYJ"/>
                                     <constraint firstAttribute="bottom" secondItem="GwI-FG-XH5" secondAttribute="bottom" constant="20" id="H08-q5-8m8"/>
-                                    <constraint firstItem="GwI-FG-XH5" firstAttribute="top" secondItem="GAr-9y-mVV" secondAttribute="bottom" constant="20" id="LSW-lJ-c7H"/>
+                                    <constraint firstItem="GwI-FG-XH5" firstAttribute="centerX" secondItem="9lO-gB-lae" secondAttribute="centerX" id="Naj-la-rMG"/>
                                     <constraint firstItem="lts-Ca-89R" firstAttribute="leading" secondItem="6y0-86-GQK" secondAttribute="leading" id="RhK-nE-4ir"/>
                                     <constraint firstItem="lts-Ca-89R" firstAttribute="top" secondItem="6y0-86-GQK" secondAttribute="bottom" constant="20" id="Sjx-ou-zbd"/>
                                     <constraint firstItem="lts-Ca-89R" firstAttribute="centerX" secondItem="9lO-gB-lae" secondAttribute="centerX" id="UbO-FN-uep"/>
-                                    <constraint firstItem="lts-Ca-89R" firstAttribute="trailing" secondItem="9lO-gB-lae" secondAttribute="trailingMargin" id="W4e-o5-2Vd"/>
+                                    <constraint firstItem="lts-Ca-89R" firstAttribute="trailing" secondItem="9lO-gB-lae" secondAttribute="trailing" constant="-20" id="W4e-o5-2Vd"/>
                                     <constraint firstItem="6y0-86-GQK" firstAttribute="top" secondItem="9lO-gB-lae" secondAttribute="top" constant="20" id="Wkc-cP-oUj"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6y0-86-GQK" secondAttribute="trailing" constant="8" id="epo-fo-DGA"/>
                                     <constraint firstItem="GwI-FG-XH5" firstAttribute="top" secondItem="lts-Ca-89R" secondAttribute="bottom" constant="20" id="gyC-NI-sMm"/>
                                     <constraint firstItem="6y0-86-GQK" firstAttribute="leading" secondItem="9lO-gB-lae" secondAttribute="leadingMargin" constant="12" id="nev-Bo-lAK"/>
-                                    <constraint firstAttribute="trailing" secondItem="GwI-FG-XH5" secondAttribute="trailing" constant="16" id="oPl-ql-62a"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -149,7 +147,7 @@
                         <viewControllerLayoutGuide type="bottom" id="anm-Rb-kGG"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="iyw-Zc-5LV">
-                        <rect key="frame" x="0.0" y="0.0" width="327" height="245"/>
+                        <rect key="frame" x="0.0" y="0.0" width="335" height="245"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
