@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Rest Area View Controller-->
+        <!--Travel Time Alert View Controller-->
         <scene sceneID="ocw-md-D1Q">
             <objects>
-                <viewController id="zac-0k-Ea4" customClass="RestAreaViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zac-0k-Ea4" customClass="TravelTimeAlertViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bQc-gA-m07"/>
                         <viewControllerLayoutGuide type="bottom" id="9ck-jo-zRe"/>
@@ -42,30 +42,47 @@
                                         <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="0.0" bottom="8" trailing="10"/>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="lts-Ca-89R">
-                                        <rect key="frame" x="20" y="106" width="335" height="133"/>
+                                        <rect key="frame" x="20" y="106" width="335" height="140"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ihB-6m-Q30" userLabel="Rest Area Name" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="56.5" height="26.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ihB-6m-Q30" userLabel="Title" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsm-Qc-LU6" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="41.5" width="65.5" height="20.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y24-TD-oK1" userLabel="Route" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="15" width="0.0" height="0.0"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Direction" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PPo-iP-KdL" userLabel="Rest Area Direction" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="77" width="69" height="20.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Joy-5k-fyf" userLabel="Distance" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="30" width="0.0" height="0.0"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amenities" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9bY-Zx-Dm3" userLabel="Rest Area Amenities" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="112.5" width="75.5" height="20.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsm-Qc-LU6" userLabel="Average Time" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="45" width="0.0" height="0.0"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PPo-iP-KdL" userLabel="Current Time" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="60" width="0.0" height="0.0"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdb-7P-Rdi" userLabel="HOV Time" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="75" width="0.0" height="0.0"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GAr-9y-mVV">
+                                                <rect key="frame" x="0.0" y="90" width="81.5" height="50"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -82,14 +99,14 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="GwI-FG-XH5" secondAttribute="bottom" constant="20" id="H08-q5-8m8"/>
-                                    <constraint firstItem="GwI-FG-XH5" firstAttribute="centerX" secondItem="9lO-gB-lae" secondAttribute="centerX" id="LY6-0a-MfC"/>
+                                    <constraint firstItem="GwI-FG-XH5" firstAttribute="centerX" secondItem="9lO-gB-lae" secondAttribute="centerX" id="Naj-la-rMG"/>
                                     <constraint firstItem="lts-Ca-89R" firstAttribute="leading" secondItem="6y0-86-GQK" secondAttribute="leading" id="RhK-nE-4ir"/>
                                     <constraint firstItem="lts-Ca-89R" firstAttribute="top" secondItem="6y0-86-GQK" secondAttribute="bottom" constant="20" id="Sjx-ou-zbd"/>
                                     <constraint firstItem="lts-Ca-89R" firstAttribute="centerX" secondItem="9lO-gB-lae" secondAttribute="centerX" id="UbO-FN-uep"/>
                                     <constraint firstItem="lts-Ca-89R" firstAttribute="trailing" secondItem="9lO-gB-lae" secondAttribute="trailing" constant="-20" id="W4e-o5-2Vd"/>
                                     <constraint firstItem="6y0-86-GQK" firstAttribute="top" secondItem="9lO-gB-lae" secondAttribute="top" constant="20" id="Wkc-cP-oUj"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6y0-86-GQK" secondAttribute="trailing" constant="8" id="epo-fo-DGA"/>
-                                    <constraint firstItem="GwI-FG-XH5" firstAttribute="top" secondItem="lts-Ca-89R" secondAttribute="bottom" constant="27" id="gyC-NI-sMm"/>
+                                    <constraint firstItem="GwI-FG-XH5" firstAttribute="top" secondItem="lts-Ca-89R" secondAttribute="bottom" constant="20" id="gyC-NI-sMm"/>
                                     <constraint firstItem="6y0-86-GQK" firstAttribute="leading" secondItem="9lO-gB-lae" secondAttribute="leadingMargin" constant="12" id="nev-Bo-lAK"/>
                                 </constraints>
                             </scrollView>
@@ -104,14 +121,17 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="restAreaAmenities" destination="9bY-Zx-Dm3" id="lVT-Uj-qiE"/>
-                        <outlet property="restAreaDirection" destination="PPo-iP-KdL" id="Odk-Xx-cda"/>
-                        <outlet property="restAreaImage" destination="pmS-Jc-hBy" id="Jbl-DA-9cL"/>
-                        <outlet property="restAreaLabel" destination="qEX-yz-AOG" id="VO5-o7-8yI"/>
-                        <outlet property="restAreaLocation" destination="qsm-Qc-LU6" id="RgM-oz-Y80"/>
-                        <outlet property="restAreaName" destination="ihB-6m-Q30" id="hVw-9Q-TDB"/>
-                        <outlet property="restAreaStack" destination="6y0-86-GQK" id="KHU-ee-K2W"/>
                         <outlet property="scrollView" destination="9lO-gB-lae" id="L52-Za-ezd"/>
+                        <outlet property="travelTimeAverageTime" destination="qsm-Qc-LU6" id="Lt2-gG-TeL"/>
+                        <outlet property="travelTimeCurrentTime" destination="PPo-iP-KdL" id="Hl7-U2-qhV"/>
+                        <outlet property="travelTimeDistance" destination="Joy-5k-fyf" id="74d-YG-SzQ"/>
+                        <outlet property="travelTimeHOVCurrentTime" destination="tdb-7P-Rdi" id="pn0-W1-Waf"/>
+                        <outlet property="travelTimeImage" destination="pmS-Jc-hBy" id="JzO-8l-qin"/>
+                        <outlet property="travelTimeLabel" destination="qEX-yz-AOG" id="67t-FG-h0x"/>
+                        <outlet property="travelTimeName" destination="ihB-6m-Q30" id="jFR-tu-8uu"/>
+                        <outlet property="travelTimeStack" destination="6y0-86-GQK" id="bVn-m3-wG7"/>
+                        <outlet property="travelTimeVia" destination="y24-TD-oK1" id="fxZ-fW-6Na"/>
+                        <outlet property="updateTimeLabel" destination="GAr-9y-mVV" id="2CQ-we-MTn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JAZ-mx-9cY" userLabel="First Responder" sceneMemberID="firstResponder"/>

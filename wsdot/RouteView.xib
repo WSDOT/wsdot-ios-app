@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,35 +16,39 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aO6-di-BGz">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="104"/>
+                    <rect key="frame" x="0.0" y="20" width="375" height="84"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zMT-Ka-K1V">
-                            <rect key="frame" x="8" y="8" width="359" height="20.5"/>
+                            <rect key="frame" x="8" y="8" width="265" height="4"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tva-18-jok">
-                            <rect key="frame" x="8" y="36.5" width="359" height="20.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tva-18-jok">
+                            <rect key="frame" x="8" y="19.5" width="265" height="20.5"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dlc-FH-ofD">
-                            <rect key="frame" x="8" y="65" width="298.5" height="24"/>
-                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                            <nil key="textColor"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dlc-FH-ofD">
+                            <rect key="frame" x="8" y="47" width="299" height="22"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yLZ-Bd-SST">
-                            <rect key="frame" x="20" y="97" width="335" height="1"/>
-                            <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <rect key="frame" x="20" y="77" width="335" height="1"/>
+                            <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="7Um-px-Nwb"/>
                             </constraints>
                         </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8wl-V4-ueM" customClass="TravelTimeMapButton" customModule="WSDOT" customModuleProvider="target">
+                            <rect key="frame" x="274" y="43" width="93" height="30"/>
+                            <state key="normal" title="Show on map"/>
+                        </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fiN-7A-mcX">
-                            <rect key="frame" x="314.5" y="62.5" width="52.5" height="26.5"/>
+                            <rect key="frame" x="315" y="8" width="52" height="26.5"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -54,20 +59,25 @@
                         <constraint firstItem="fiN-7A-mcX" firstAttribute="leading" secondItem="Dlc-FH-ofD" secondAttribute="trailing" constant="8" id="6JR-3x-ahs"/>
                         <constraint firstItem="yLZ-Bd-SST" firstAttribute="top" secondItem="Dlc-FH-ofD" secondAttribute="bottom" constant="8" id="FeG-up-hhl"/>
                         <constraint firstAttribute="bottom" secondItem="yLZ-Bd-SST" secondAttribute="bottom" constant="6" id="LhH-fy-0pM"/>
+                        <constraint firstAttribute="bottom" secondItem="8wl-V4-ueM" secondAttribute="bottom" constant="11" id="MXl-WE-wiU"/>
                         <constraint firstItem="Tva-18-jok" firstAttribute="leading" secondItem="aO6-di-BGz" secondAttribute="leading" constant="8" id="Nq2-gt-MaQ"/>
-                        <constraint firstAttribute="trailing" secondItem="zMT-Ka-K1V" secondAttribute="trailing" constant="8" id="Qi7-w8-SgW"/>
-                        <constraint firstAttribute="trailing" secondItem="Tva-18-jok" secondAttribute="trailing" constant="8" id="UIg-eb-tUu"/>
+                        <constraint firstAttribute="trailing" secondItem="zMT-Ka-K1V" secondAttribute="trailing" constant="102" id="Qi7-w8-SgW"/>
+                        <constraint firstAttribute="trailing" secondItem="Tva-18-jok" secondAttribute="trailing" constant="102" id="UIg-eb-tUu"/>
+                        <constraint firstItem="8wl-V4-ueM" firstAttribute="trailing" secondItem="Tva-18-jok" secondAttribute="trailing" constant="94" id="WF3-pg-zYv"/>
                         <constraint firstAttribute="trailing" secondItem="yLZ-Bd-SST" secondAttribute="trailing" constant="20" symbolic="YES" id="Wxj-aq-QHt"/>
-                        <constraint firstItem="yLZ-Bd-SST" firstAttribute="top" secondItem="fiN-7A-mcX" secondAttribute="bottom" constant="8" id="YvM-Ae-pQE"/>
+                        <constraint firstItem="yLZ-Bd-SST" firstAttribute="top" secondItem="fiN-7A-mcX" secondAttribute="bottom" constant="42.5" id="YvM-Ae-pQE"/>
                         <constraint firstItem="zMT-Ka-K1V" firstAttribute="top" secondItem="aO6-di-BGz" secondAttribute="top" constant="8" id="dR6-tJ-lGh"/>
                         <constraint firstAttribute="trailing" secondItem="fiN-7A-mcX" secondAttribute="trailing" constant="8" id="fEo-f2-SA7"/>
                         <constraint firstItem="zMT-Ka-K1V" firstAttribute="leading" secondItem="aO6-di-BGz" secondAttribute="leading" constant="8" id="flD-We-pWQ"/>
-                        <constraint firstItem="Dlc-FH-ofD" firstAttribute="top" secondItem="Tva-18-jok" secondAttribute="bottom" constant="8" id="io6-ig-YUL"/>
+                        <constraint firstItem="Dlc-FH-ofD" firstAttribute="top" secondItem="Tva-18-jok" secondAttribute="bottom" constant="7" id="io6-ig-YUL"/>
+                        <constraint firstItem="8wl-V4-ueM" firstAttribute="centerY" secondItem="Dlc-FH-ofD" secondAttribute="centerY" id="nPD-CA-vmC"/>
                         <constraint firstItem="Tva-18-jok" firstAttribute="top" secondItem="zMT-Ka-K1V" secondAttribute="bottom" constant="8" id="pKk-bc-f8G"/>
+                        <constraint firstItem="8wl-V4-ueM" firstAttribute="top" secondItem="fiN-7A-mcX" secondAttribute="bottom" constant="8.5" id="rTa-bD-UAU"/>
                         <constraint firstItem="yLZ-Bd-SST" firstAttribute="leading" secondItem="aO6-di-BGz" secondAttribute="leading" constant="20" symbolic="YES" id="w3E-gD-Ted"/>
                     </constraints>
                 </view>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <constraints>
                 <constraint firstItem="aO6-di-BGz" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="2yJ-kp-VNR"/>
                 <constraint firstItem="aO6-di-BGz" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="78l-HM-vDE"/>
@@ -75,10 +85,10 @@
                 <constraint firstItem="aO6-di-BGz" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="yFb-jm-Y0q"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="contentView" destination="aO6-di-BGz" id="f0q-T3-yRd"/>
                 <outlet property="line" destination="yLZ-Bd-SST" id="Q5m-HS-sPq"/>
+                <outlet property="mapButton" destination="8wl-V4-ueM" id="Np8-zV-jtc"/>
                 <outlet property="subtitleLabel" destination="Tva-18-jok" id="jS5-y6-kUu"/>
                 <outlet property="titleLabel" destination="zMT-Ka-K1V" id="FVg-TT-tPD"/>
                 <outlet property="updatedLabel" destination="Dlc-FH-ofD" id="Cag-X3-zJd"/>
@@ -87,4 +97,9 @@
             <point key="canvasLocation" x="20" y="-269.86506746626691"/>
         </view>
     </objects>
+    <resources>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

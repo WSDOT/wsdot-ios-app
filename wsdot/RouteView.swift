@@ -16,6 +16,7 @@ class RouteView: UIView {
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var updatedLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
+    @IBOutlet weak var mapButton: TravelTimeMapButton!
     @IBOutlet weak var contentView: UIView!
     
     @IBOutlet weak var line: UIView!
@@ -23,5 +24,12 @@ class RouteView: UIView {
     static func instantiateFromXib() -> RouteView {
         return Bundle.main.loadNibNamed("RouteView", owner: nil, options: nil)![0] as! RouteView
     }
+
+}
+
+class TravelTimeMapButton: UIButton {
+
+    var routeIndex: Int?
+    var travelTimeIndex: Int?
 
 }

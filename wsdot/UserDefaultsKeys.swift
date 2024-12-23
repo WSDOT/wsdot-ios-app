@@ -26,6 +26,8 @@ class UserDefaultsKeys {
     static let restAreas = "RestAreaMarkerPref"
     static let mountainPasses = "MountainPassMarkerPref"
     static let trafficLayer = "TrafficLayerMarkerPref"
+    static let travelTimes = "TravelTimesMarkerPref"
+
 
     static let favoritesOrder = "FavoritesSectionOrderArrayv1"
     

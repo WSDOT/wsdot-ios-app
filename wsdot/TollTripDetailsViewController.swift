@@ -20,7 +20,7 @@
 
 import Foundation
 
-class TollTripDetailsViewController: UIViewController, MapMarkerDelegate, GMSMapViewDelegate {
+class TollTripDetailsViewController: RefreshViewController, MapMarkerDelegate, GMSMapViewDelegate {
 
     var text = ""
     
@@ -40,6 +40,16 @@ class TollTripDetailsViewController: UIViewController, MapMarkerDelegate, GMSMap
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        showOverlay(self.view)
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MyAnalytics.screenView(screenName: "TollTripDetails")
+        
+        hideOverlayView()
+        
         let htmlStyleString = "<style>body{font-family: '-apple-system'; font-size:\(infoLinkLabel.font.pointSize)px;}</style>"
         
         let htmlString = htmlStyleString + "Travel as far as " + text
@@ -55,47 +65,57 @@ class TollTripDetailsViewController: UIViewController, MapMarkerDelegate, GMSMap
             infoLinkLabel.textColor = UIColor.label
         }
         
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        MyAnalytics.screenView(screenName: "TollTripDetails")
+        embeddedMapViewController.view.isHidden = false
+
+
     }
     
     func mapReady() {
 
-        if let mapView = embeddedMapViewController.view as? GMSMapView{
+        self.embeddedMapViewController.view.layer.borderWidth = 0.5
+        self.embeddedMapViewController.view.isHidden = true
+
+        if let mapView = embeddedMapViewController.view as? GMSMapView {
             
-            mapView.settings.setAllGesturesEnabled(false)
+            mapView.settings.setAllGesturesEnabled(true)
+            mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: startLatitude, longitude: startLongitude), zoom: 12))
+                
+            var locationArray = [[String: Double]]()
+            locationArray = [["latitude": startLatitude,"longitude": startLongitude], ["latitude": endLatitude, "longitude": endLongitude]]
+
+            var bounds = GMSCoordinateBounds()
+            for location in locationArray
+            
+            {
+                let latitude = location["latitude"]
+                let longitude = location["longitude"]
+
+                let marker = GMSMarker()
+                marker.position = CLLocationCoordinate2D(latitude:latitude!, longitude:longitude!)
+                bounds = bounds.includingCoordinate(marker.position)
+            }
+
+            CATransaction.begin()
+            CATransaction.setAnimationDuration(0.0)
+            let update = GMSCameraUpdate.fit(bounds, withPadding: 50)
+            mapView.animate(with: update)
+            CATransaction.commit()
             
             startMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: startLatitude, longitude: startLongitude))
             startMarker.icon = GMSMarker.markerImage(with: UIColor.green)
+                            
             endMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: endLatitude, longitude: endLongitude))
-            
+            endMarker.icon = GMSMarker.markerImage(with: UIColor.red)
+
             startMarker.map = mapView
             endMarker.map = mapView
-            
-            let center = LatLonUtils.getCenterLocation(startLatitude, startLongitude, endLatitude, endLongitude)
-
-            let distanceInMiles = Double(LatLonUtils.haversine(startLatitude, lonA: startLongitude, latB: endLatitude, lonB: endLongitude)) * 0.000189394
-            var zoom: Float = 0
-        
-            switch distanceInMiles {
-            case ..<4:
-                zoom = 12
-            case 4..<8:
-                zoom = 11
-            case 8..<15:
-                zoom = 10
-            case 15...:
-                zoom = 9
-            default:
-                fatalError()
-            }
-          
-            mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: center.latitude, longitude: center.longitude), zoom: zoom))
+                
+            mapView.setMinZoom(0, maxZoom: 14)
+                          
         }
+        
     }
+    
     
     // MARK: Naviagtion
     // Get refrence to child VC

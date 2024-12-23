@@ -38,10 +38,11 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                         "WSDOT Alerts",
                         "Mountain Passes",
                         "Rest Areas",
+                        "Travel Times",
                         "Cluster Cameras",
                         "Favorite Location"]
         
-        menu_icon_names = ["","icHomeTraffic", "alert_high_icon","icMountainPass","restarea_icon","camera_icon","icHomeFavorites", "trafficMapKey"]
+        menu_icon_names = ["","icHomeTraffic", "alert_high_icon","icMountainPass","restarea_icon","icTravelTime","camera_icon","icHomeFavorites", "trafficMapKey"]
 
         self.view.backgroundColor = ThemeManager.currentTheme().mainColor
     }
@@ -94,7 +95,7 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
         
             return cell
         
-        } else if indexPath.row < 7 {
+        } else if indexPath.row < 8 {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! SettingsCell
             
@@ -175,6 +176,23 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                 break
                 
             case menu_options[4]:
+                let travelTimesPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.travelTimes)
+                if let travelTimesVisible = travelTimesPref {
+                    if (travelTimesVisible == "on") {
+                        cell.settingSwitch.isOn = true
+                    } else {
+                        cell.settingSwitch.isOn = false
+                    }
+                }
+                
+                cell.settingSwitch.addTarget(self, action: #selector(TrafficMapSettingsViewController.changeTravelTimesPref(_:)), for: .valueChanged)
+                cell.settingSwitch.isHidden = false
+                cell.selectionStyle = .none
+                cell.favoriteImageView.isHidden = true
+                cell.infoButton.isHidden = true
+                break
+                
+            case menu_options[5]:
                 let clusterPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.shouldCluster)
                 if let clusterVisible = clusterPref {
                     if (clusterVisible == "on") {
@@ -192,7 +210,7 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                 cell.infoButton.addTarget(self, action: #selector(TrafficMapSettingsViewController.clusterInfoAlert(_:)), for: .touchUpInside)
                 break
                 
-            case menu_options[5]:
+            case menu_options[6]:
                 cell.selectionStyle = .blue
                 cell.settingSwitch.isHidden = true
                 cell.favoriteImageView.isHidden = false
@@ -216,7 +234,7 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
     // MARK: Table View Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.row) {
-        case 6:
+        case 7:
             favoriteLocationAction()
         default:
             break
@@ -332,6 +350,22 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
             }
         }
     }
+    
+    @objc func changeTravelTimesPref(_ sender: UISwitch){
+        let travelTimesPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.travelTimes)
+        if let travelTimesVisible = travelTimesPref {
+            if (travelTimesVisible == "on") {
+                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Hide Travel Times")
+                UserDefaults.standard.set("off", forKey: UserDefaultsKeys.travelTimes)
+                my_parent!.removeTravelTimes()
+            } else {
+                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Show Travel Times")
+                UserDefaults.standard.set("on", forKey: UserDefaultsKeys.travelTimes)
+                my_parent!.drawTravelTimes()
+            }
+        }
+    }
+    
     
     @objc func clusterInfoAlert(_ sender: UIButton){
         self.present(AlertMessages.getAlert("Camera Marker Clustering", message: "By turning clustering on, large numbers of camera markers will gather together in clusters at low zoom levels. When viewing the map at a high zoom level, individual camera markers will show on the map.", confirm: "OK"), animated: true, completion: nil)

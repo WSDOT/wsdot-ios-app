@@ -26,9 +26,11 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
     
     let cellIdentifier = "AlertCell"
     let SegueHighwayAlertViewController = "HighwayAlertViewController"
-    
+    let SegueTravelTimesViewController = "TravelTimesViewController"
+
     var alerts = [HighwayAlertItem]()
-    
+    var travelTimes = [TravelTimeItem]()
+
     var alertTypeAlerts = [HighwayAlertItem]()
     var bridgeAlerts = [HighwayAlertItem]()
     var constructionAlerts = [HighwayAlertItem]()
@@ -79,10 +81,12 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
         maintenanceAlerts = maintenanceAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
         policeActivityAlerts = policeActivityAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
         weatherAlerts = weatherAlerts.sorted(by: {$0.lastUpdatedTime.timeIntervalSince1970  > $1.lastUpdatedTime.timeIntervalSince1970})
-        
+        travelTimes = travelTimes.sorted(by: {$0.title < $1.title})
+            .filter({$0.routeid != 36}).filter({$0.routeid != 37}).filter({$0.routeid != 68}).filter({$0.routeid != 69})
+
         tableView.rowHeight = UITableView.automaticDimension
         
-        if self.alerts.count == 0 {
+        if self.alerts.count == 0 && self.travelTimes.count == 0 {
             self.tableView.isHidden = true
 
         } else {
@@ -102,7 +106,7 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 8
+        return 9
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -125,6 +129,8 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
             if (policeActivityAlerts.count != 0) { return "Police activity" } else { return nil }
         case 7:
             if (weatherAlerts.count != 0) { return "Weather" } else { return nil }
+        case 8:
+            if (travelTimes.count != 0) { return "Travel Times" } else { return nil }
         default:
             return nil
             
@@ -151,6 +157,8 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
             return policeActivityAlerts.count
         case 7:
             return weatherAlerts.count
+        case 8:
+            return travelTimes.count
         default:
             return 0
         }
@@ -194,6 +202,10 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
         case 7:
             cell.updateTime.text = TimeUtils.timeAgoSinceDate(date: weatherAlerts[indexPath.row].lastUpdatedTime, numericDates: false)
             htmlString = htmlStyleString + weatherAlerts[indexPath.row].headlineDesc
+            break
+        case 8:
+            cell.updateTime.text = "Routes: " + travelTimes[indexPath.row].viaText
+            htmlString = htmlStyleString + travelTimes[indexPath.row].title
             break
         default:
             break
@@ -242,6 +254,9 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
         case 7:
             performSegue(withIdentifier: SegueHighwayAlertViewController, sender: weatherAlerts[indexPath.row])
             break
+        case 8:
+            performSegue(withIdentifier: SegueTravelTimesViewController, sender: travelTimes[indexPath.row])
+            break
         default: break
         }
         
@@ -256,6 +271,12 @@ class AlertsInAreaViewController: UIViewController, UITableViewDelegate, UITable
             let alertItem = (sender as! HighwayAlertItem)
             let destinationViewController = segue.destination as! HighwayAlertViewController
             destinationViewController.alertId = alertItem.alertId
+        }
+        
+        if segue.identifier == SegueTravelTimesViewController {
+            let alertItem = (sender as! TravelTimeItem)
+            let destinationViewController = segue.destination as! TravelTimeAlertViewController
+            destinationViewController.travelTimeId = alertItem.routeid
         }
     }
     

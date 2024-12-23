@@ -18,8 +18,10 @@
 		02D7F1ED2614CCE000BD81CC /* BridgeAlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D7F1EC2614CCE000BD81CC /* BridgeAlertItem.swift */; };
 		02D7F1F22614CCED00BD81CC /* BridgeAlertsRealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D7F1F12614CCED00BD81CC /* BridgeAlertsRealmStore.swift */; };
 		02D7F1F72614D7DE00BD81CC /* BridgeAlertsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D7F1F62614D7DE00BD81CC /* BridgeAlertsTableViewController.swift */; };
+		5568FB032CB99B7A000850AE /* TravelTimes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5568FB022CB99B7A000850AE /* TravelTimes.storyboard */; };
 		558F4FE82BC9F06000EC6CAD /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 558F4FE72BC9F06000EC6CAD /* PrivacyInfo.xcprivacy */; };
 		55A080A928C91A60004219EE /* BridgeAlertDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A080A828C91A60004219EE /* BridgeAlertDetailViewController.swift */; };
+		55F5319E2CB6FA5900DC6792 /* TravelTimeAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F5319D2CB6FA5900DC6792 /* TravelTimeAlertViewController.swift */; };
 		76763D7C27CFD4E700BBB1DB /* DateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76763D7B27CFD4E700BBB1DB /* DateButton.swift */; };
 		76D632A1289C5F2D00534F11 /* googlemapstyle.json in Resources */ = {isa = PBXBuildFile; fileRef = 76D632A0289C5F2D00534F11 /* googlemapstyle.json */; };
 		9A0360481DECBC6100B88466 /* PassCameraIDItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0360471DECBC6100B88466 /* PassCameraIDItem.swift */; };
@@ -272,8 +274,10 @@
 		02D7F1F62614D7DE00BD81CC /* BridgeAlertsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeAlertsTableViewController.swift; sourceTree = "<group>"; };
 		08B5584F4B8FFF1035CFBE34 /* Pods_WSDOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WSDOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F733049676C72FA80F317B5 /* Pods-WSDOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.debug.xcconfig"; sourceTree = "<group>"; };
+		5568FB022CB99B7A000850AE /* TravelTimes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TravelTimes.storyboard; sourceTree = "<group>"; };
 		558F4FE72BC9F06000EC6CAD /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		55A080A828C91A60004219EE /* BridgeAlertDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeAlertDetailViewController.swift; sourceTree = "<group>"; };
+		55F5319D2CB6FA5900DC6792 /* TravelTimeAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelTimeAlertViewController.swift; sourceTree = "<group>"; };
 		65D6D46116E71C14DDDD1497 /* Pods-WSDOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.release.xcconfig"; sourceTree = "<group>"; };
 		690E6882E64B87BDA185B4DC /* Pods_WSDOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WSDOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76763D7B27CFD4E700BBB1DB /* DateButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateButton.swift; sourceTree = "<group>"; };
@@ -616,6 +620,22 @@
 				D8D316727AAA338CBCFCA3B1 /* Pods-WSDOTTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		55F531A12CB6FEDC00DC6792 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5568FB022CB99B7A000850AE /* TravelTimes.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		55F531A22CB6FEF000DC6792 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				55F5319D2CB6FA5900DC6792 /* TravelTimeAlertViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		9A0616781D62283F00126520 /* VesselWatch */ = {
@@ -1045,6 +1065,8 @@
 		9A6FBD101D6CEE0400CDCE16 /* TravelTimeDetails */ = {
 			isa = PBXGroup;
 			children = (
+				55F531A22CB6FEF000DC6792 /* Controllers */,
+				55F531A12CB6FEDC00DC6792 /* Views */,
 				9AEEDDAF1D70B1CC0032F5EC /* Model */,
 			);
 			name = TravelTimeDetails;
@@ -1867,6 +1889,7 @@
 				9A0616C81D6601BD00126520 /* TollRates.storyboard in Resources */,
 				9A6FBCD61D6B5EBB00CDCE16 /* RestArea.storyboard in Resources */,
 				0222F7D5263741C2003D3E93 /* LICENSE.md in Resources */,
+				5568FB032CB99B7A000850AE /* TravelTimes.storyboard in Resources */,
 				02782A47254379E9008CF650 /* PassReportView.xib in Resources */,
 				02D7F1E32614CCA000BD81CC /* BridgeAlerts.storyboard in Resources */,
 			);
@@ -2280,6 +2303,7 @@
 				9ADD915D21FF670E0068AC28 /* LocationSearchDelegate.swift in Sources */,
 				9AB549011D7874E000927F13 /* AmtrakCascadesStationItem.swift in Sources */,
 				02215F3A2167D87500051301 /* SegmentedControlWithBadge.swift in Sources */,
+				55F5319E2CB6FA5900DC6792 /* TravelTimeAlertViewController.swift in Sources */,
 				9AE6B780209CF9B1001DE80F /* SwitchCell.swift in Sources */,
 				9A946BBA2163B742006E5885 /* IconButton.swift in Sources */,
 				02D7F1F22614CCED00BD81CC /* BridgeAlertsRealmStore.swift in Sources */,
@@ -2525,7 +2549,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5.42.0.1;
+				CURRENT_PROJECT_VERSION = 5.43.0.2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 9544S8BX77;
 				INFOPLIST_FILE = wsdot/Info.plist;
@@ -2534,7 +2558,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.42.0;
+				MARKETING_VERSION = 5.43.0;
 				PRODUCT_BUNDLE_IDENTIFIER = gov.wa.wsdot.iphone.WSDOT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2555,7 +2579,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5.42.0.1;
+				CURRENT_PROJECT_VERSION = 5.43.0.2;
 				DEVELOPMENT_TEAM = 9544S8BX77;
 				INFOPLIST_FILE = wsdot/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -2563,7 +2587,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.42.0;
+				MARKETING_VERSION = 5.43.0;
 				PRODUCT_BUNDLE_IDENTIFIER = gov.wa.wsdot.iphone.WSDOT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

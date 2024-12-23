@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="mIB-If-tar">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="mIB-If-tar">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -91,6 +91,7 @@
                     <connections>
                         <outlet property="bannerView" destination="2vc-1f-UHI" id="oQs-TR-CjI"/>
                         <outlet property="tableView" destination="l06-xD-ZI4" id="FZC-Fq-MWI"/>
+                        <segue destination="MjP-e8-5EI" kind="show" identifier="TravelTimesViewController" id="EMm-5q-gcf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vc1-Lk-8RU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -664,16 +665,165 @@
             </objects>
             <point key="canvasLocation" x="6044" y="-53.523238380809602"/>
         </scene>
+        <!--Travel Time Alert View Controller-->
+        <scene sceneID="tit-IK-nyd">
+            <objects>
+                <viewController id="MjP-e8-5EI" customClass="TravelTimeAlertViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oRU-I6-tF1"/>
+                        <viewControllerLayoutGuide type="bottom" id="13b-15-Ddi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mJT-wi-JLZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQw-Gd-hqx">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lV6-kK-vlN">
+                                        <rect key="frame" x="20" y="20" width="110" height="66"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RIy-cr-xhu">
+                                                <rect key="frame" x="0.0" y="8" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="jnR-mb-rny"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="62t-f0-csz">
+                                                <rect key="frame" x="50" y="8" width="50" height="50"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="0.0" bottom="8" trailing="10"/>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="i5E-z9-Dhx">
+                                        <rect key="frame" x="20" y="106" width="335" height="140"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iOR-MR-Scr" userLabel="Title" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dDO-Tn-tAU" userLabel="Route" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="15" width="0.0" height="0.0"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kAy-xb-gmm" userLabel="Distance" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="30" width="0.0" height="0.0"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IWH-Br-S66" userLabel="Average Time" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="45" width="0.0" height="0.0"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8z-E8-wUD" userLabel="Current Time" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="60" width="0.0" height="0.0"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H0u-nZ-hPW" userLabel="HOV Time" customClass="INDLinkLabel" customModule="WSDOT" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="75" width="0.0" height="0.0"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uNY-WL-zEi">
+                                                <rect key="frame" x="0.0" y="90" width="81.5" height="50"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ef-2h-COG">
+                                        <rect key="frame" x="20" y="266" width="335" height="245"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="245" id="pfs-aa-Dal"/>
+                                        </constraints>
+                                        <connections>
+                                            <segue destination="qrd-2O-7DT" kind="embed" identifier="EmbedMapSegue" id="6ue-Sz-1ja"/>
+                                        </connections>
+                                    </containerView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="lV6-kK-vlN" firstAttribute="leading" secondItem="rQw-Gd-hqx" secondAttribute="leadingMargin" constant="12" id="6q9-Rd-jqB"/>
+                                    <constraint firstAttribute="bottom" secondItem="7Ef-2h-COG" secondAttribute="bottom" constant="20" id="A3T-G7-mZ5"/>
+                                    <constraint firstItem="lV6-kK-vlN" firstAttribute="top" secondItem="rQw-Gd-hqx" secondAttribute="top" constant="20" id="RxL-Be-QA8"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lV6-kK-vlN" secondAttribute="trailing" constant="8" id="SVu-1S-Is3"/>
+                                    <constraint firstItem="7Ef-2h-COG" firstAttribute="top" secondItem="i5E-z9-Dhx" secondAttribute="bottom" constant="20" id="WoG-Kk-mR2"/>
+                                    <constraint firstItem="i5E-z9-Dhx" firstAttribute="leading" secondItem="lV6-kK-vlN" secondAttribute="leading" id="b2r-yC-ZJj"/>
+                                    <constraint firstItem="i5E-z9-Dhx" firstAttribute="top" secondItem="lV6-kK-vlN" secondAttribute="bottom" constant="20" id="exk-jI-5R4"/>
+                                    <constraint firstItem="i5E-z9-Dhx" firstAttribute="trailing" secondItem="rQw-Gd-hqx" secondAttribute="trailing" constant="-20" id="gx6-Hf-2Jw"/>
+                                    <constraint firstItem="7Ef-2h-COG" firstAttribute="centerX" secondItem="rQw-Gd-hqx" secondAttribute="centerX" id="snN-TB-dXD"/>
+                                    <constraint firstItem="i5E-z9-Dhx" firstAttribute="centerX" secondItem="rQw-Gd-hqx" secondAttribute="centerX" id="xWn-W1-LVK"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="rQw-Gd-hqx" firstAttribute="bottom" secondItem="mJT-wi-JLZ" secondAttribute="bottomMargin" id="47l-YC-Hpc"/>
+                            <constraint firstItem="rQw-Gd-hqx" firstAttribute="centerX" secondItem="mJT-wi-JLZ" secondAttribute="centerX" id="9aU-IA-2Pp"/>
+                            <constraint firstItem="7Ef-2h-COG" firstAttribute="leading" secondItem="mJT-wi-JLZ" secondAttribute="leadingMargin" constant="4" id="GeU-eR-RjR"/>
+                            <constraint firstItem="rQw-Gd-hqx" firstAttribute="leading" secondItem="mJT-wi-JLZ" secondAttribute="leadingMargin" constant="-16" id="adK-Ca-yWQ"/>
+                            <constraint firstItem="rQw-Gd-hqx" firstAttribute="top" secondItem="mJT-wi-JLZ" secondAttribute="topMargin" id="sxq-Eh-1Xr"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="HFs-fI-ppl"/>
+                    <connections>
+                        <outlet property="scrollView" destination="rQw-Gd-hqx" id="k4S-Mg-oa1"/>
+                        <outlet property="travelTimeAverageTime" destination="IWH-Br-S66" id="bhd-wH-BEu"/>
+                        <outlet property="travelTimeCurrentTime" destination="m8z-E8-wUD" id="XeI-IK-jVx"/>
+                        <outlet property="travelTimeDistance" destination="kAy-xb-gmm" id="mmP-HO-Wxt"/>
+                        <outlet property="travelTimeHOVCurrentTime" destination="H0u-nZ-hPW" id="e5c-x3-Pga"/>
+                        <outlet property="travelTimeImage" destination="RIy-cr-xhu" id="0Qo-9J-S0t"/>
+                        <outlet property="travelTimeLabel" destination="62t-f0-csz" id="BYp-Vl-NFy"/>
+                        <outlet property="travelTimeName" destination="iOR-MR-Scr" id="VPG-kT-WVz"/>
+                        <outlet property="travelTimeStack" destination="lV6-kK-vlN" id="BYB-xc-EPJ"/>
+                        <outlet property="travelTimeVia" destination="dDO-Tn-tAU" id="1lz-4d-10z"/>
+                        <outlet property="updateTimeLabel" destination="uNY-WL-zEi" id="KQ0-xa-ebf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S20-i7-ce1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5190" y="-810"/>
+        </scene>
+        <!--Simple Map View Controller-->
+        <scene sceneID="WeD-O8-3mz">
+            <objects>
+                <viewController id="qrd-2O-7DT" customClass="SimpleMapViewController" customModule="WSDOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="q8V-O9-13m"/>
+                        <viewControllerLayoutGuide type="bottom" id="y7U-n2-tAR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dTd-r0-hNz">
+                        <rect key="frame" x="0.0" y="0.0" width="335" height="245"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="caf-Ip-MRg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5950" y="-811"/>
+        </scene>
     </scenes>
     <resources>
         <image name="icBlog" width="24" height="24"/>
         <image name="icStarSmall" width="24" height="24"/>
         <image name="icYouTube2" width="24" height="24"/>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -682,7 +832,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiarySystemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

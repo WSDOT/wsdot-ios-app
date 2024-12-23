@@ -274,7 +274,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // MARK: Realm
     func migrateRealm(){
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
-            schemaVersion: 13,
+            schemaVersion: 14,
 
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
@@ -410,6 +410,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     migration.enumerateObjects(ofType: BridgeAlertItem.className()) { oldObject, newObject in
                         newObject!["status"] = ""
                     }
+                    migration.deleteData(forType: CacheItem.className())
+                }
+                
+                /* Adds title field to travel time item.
+                 Clears travel time and cache data
+                 */
+                if (oldSchemaVersion < 14) {
+                    migration.enumerateObjects(ofType: TravelTimeItem.className()) { oldObject, newObject in
+                        newObject!["title"] = ""
+                        newObject!["hovCurrentTime"] = 0
+                    }
+                    migration.deleteData(forType: TravelTimeItem.className())
                     migration.deleteData(forType: CacheItem.className())
                 }
                 

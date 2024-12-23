@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zYt-nO-VSk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zYt-nO-VSk">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,10 +28,10 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rx9-B0-Eo3">
-                                <rect key="frame" x="0.0" y="44" width="375" height="565"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="545"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6sp-fh-RMs">
-                                        <rect key="frame" x="20" y="20" width="335" height="656.5"/>
+                                        <rect key="frame" x="20" y="20" width="335" height="701.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="woS-Xy-2wH">
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
@@ -85,9 +85,9 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gqA-aV-1XZ">
-                                                <rect key="frame" x="0.0" y="456.5" width="335" height="200"/>
+                                                <rect key="frame" x="0.0" y="456.5" width="335" height="245"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="200" id="ove-eO-gQu"/>
+                                                    <constraint firstAttribute="height" constant="245" id="ove-eO-gQu"/>
                                                 </constraints>
                                                 <connections>
                                                     <segue destination="bOC-R3-DbN" kind="embed" identifier="EmbedMapSegue" id="Mpo-QE-0tv"/>
@@ -162,7 +162,7 @@
     <resources>
         <image name="icStarSmall" width="24" height="24"/>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
