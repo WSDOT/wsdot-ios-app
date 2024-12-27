@@ -51,6 +51,8 @@ class TravelTimeAlertViewController: RefreshViewController, INDLinkLabelDelegate
     fileprivate var startMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0))
     fileprivate var endMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0))
 
+    fileprivate weak var timer: Timer?
+    
     var startLatitude = 0.0
     var startLongitude = 0.0
     
@@ -69,7 +71,21 @@ class TravelTimeAlertViewController: RefreshViewController, INDLinkLabelDelegate
         favoriteBarButton.tintColor = Colors.yellow
         
         embeddedMapViewController.view.isHidden = true
+        
+        timer = Timer.scheduledTimer(timeInterval: TimeInterval(CachesStore.travelTimeCacheTime), target: self, selector: #selector(TravelTimeAlertViewController.updateTravelTime(_:)), userInfo: nil, repeats: true)
 
+    }
+    
+    @objc func updateTravelTime(_ sender: Timer){
+        loadAlert()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if self.isBeingDismissed || self.isMovingFromParent {
+            if timer != nil {
+                self.timer?.invalidate()
+            }
+        }
     }
     
     func loadAlert(){
