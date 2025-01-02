@@ -2,7 +2,7 @@
 //  TravelTimesViewController.swift
 //  WSDOT
 //
-//  Copyright (c) 2016 Washington State Department of Transportation
+//  Copyright (c) 2025 Washington State Department of Transportation
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -87,7 +87,7 @@ class TravelTimesViewController: RefreshViewController, UITableViewDelegate, UIT
     // Make sure table has the latest data when the view displays
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.travelTimeGroups = TravelTimesStore.getAllTravelTimeGroups().sorted(by: {$0.routes[0].title < $1.routes[0].title })
+        self.travelTimeGroups = TravelTimesStore.getAllTravelTimeGroups()
         self.tableView.reloadData()
         tableView.rowHeight = UITableView.automaticDimension
 
@@ -100,8 +100,8 @@ class TravelTimesViewController: RefreshViewController, UITableViewDelegate, UIT
                     // Reload tableview on UI thread
                     DispatchQueue.main.async { [weak self] in
                         if let selfValue = self{
-                            selfValue.travelTimeGroups = TravelTimesStore.getAllTravelTimeGroups().sorted(by: {$0.routes[0].title < $1.routes[0].title })
-                            selfValue.filtered = selfValue.travelTimeGroups.sorted(by: {$0.routes[0].title < $1.routes[0].title })
+                            selfValue.travelTimeGroups = TravelTimesStore.getAllTravelTimeGroups()
+                            selfValue.filtered = selfValue.travelTimeGroups
                             selfValue.tableView.reloadData()
                             selfValue.refreshControl.endRefreshing()
                             selfValue.hideOverlayView()
@@ -313,7 +313,7 @@ class TravelTimesViewController: RefreshViewController, UITableViewDelegate, UIT
         if let searchText = searchController.searchBar.text {
             filtered = searchText.isEmpty ? travelTimeGroups : travelTimeGroups.filter({(travelTimeGroup: TravelTimeItemGroup) -> Bool in
                 return travelTimeGroup.title.range(of: searchText, options: .caseInsensitive) != nil
-            }).sorted(by: {$0.routes[0].title < $1.routes[0].title })
+            })
             tableView.reloadData()
         }
     }
