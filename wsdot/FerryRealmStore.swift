@@ -2,7 +2,7 @@
 //  FerryRealmStore.swift
 //  WSDOT
 //
-//  Copyright (c) 2016 Washington State Department of Transportation
+//  Copyright (c) 2025 Washington State Department of Transportation
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@ import SwiftyJSON
 import RealmSwift
 /*
  Collects new ferry schedule information from
- the schedule API at: https://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js
+ the schedule API at: https://data.wsdot.wa.gov/mobile/WSFRouteSchedules.json
  */
 class FerryRealmStore: Decodable {
     
@@ -88,7 +88,7 @@ class FerryRealmStore: Decodable {
             }
         
             if ((delta > CachesStore.ferryUpdateTime) || force){
-                AF.request("https://data.wsdot.wa.gov/mobile/WSFRouteSchedules.js").validate().responseDecodable(of: FerryRealmStore.self) { response in
+                AF.request("https://data.wsdot.wa.gov/mobile/WSFRouteSchedules.json").validate().responseDecodable(of: FerryRealmStore.self) { response in
                     switch response.result {
                     case .success:
                         if let value = response.data {
