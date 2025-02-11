@@ -41,7 +41,11 @@ class TollRatesTabBarViewController: UITabBarController {
         sr167VC.stateRoute = "167"
         i405VC.stateRoute = "405"
         
-
+        // Disable floating tab bar on iOS 18+ iPad
+        if (UIDevice.current.userInterfaceIdiom == .pad) {
+            if #available(iOS 17.0, *) {
+                traitOverrides.horizontalSizeClass = .compact
+            }
+        }
     }
-
 }
