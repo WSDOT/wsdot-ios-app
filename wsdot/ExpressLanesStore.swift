@@ -28,7 +28,7 @@ class ExpressLanesStore: Decodable {
     
     static func getExpressLanes(_ completion: @escaping FetchExpressLanesCompletion) {
         
-        AF.request("https://data.wsdot.wa.gov/mobile/ExpressLanes.js").validate().responseDecodable(of: ExpressLanesStore.self) { response in
+        AF.request("https://data.wsdot.wa.gov/mobile/ExpressLanes.json").validate().responseDecodable(of: ExpressLanesStore.self) { response in
             switch response.result {
             case .success:
                 if let value = response.data {

@@ -105,7 +105,7 @@ class TravelTimesStore: Decodable {
         if ((delta > CachesStore.travelTimeCacheTime) || force) {
            
             let request = NetworkUtils
-                .getJSONRequestNoLocalCache(forUrl: "https://data.wsdot.wa.gov/mobile/TravelTimesv2.js")
+                .getJSONRequestNoLocalCache(forUrl: "https://data.wsdot.wa.gov/mobile/TravelTimesv2.json")
             
             AF.request(request).validate().responseDecodable(of: TravelTimesStore.self) { response in
                 switch response.result {

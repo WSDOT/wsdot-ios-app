@@ -68,7 +68,7 @@ class HighwayAlertsStore: Decodable {
          
             if ((delta > CachesStore.alertsCacheTime) || force) {
             
-                let request = NetworkUtils.getJSONRequestNoLocalCache(forUrl: "https://data.wsdot.wa.gov/mobile/HighwayAlerts.js")
+                let request = NetworkUtils.getJSONRequestNoLocalCache(forUrl: "https://data.wsdot.wa.gov/mobile/HighwayAlerts.json")
                 
                 AF.request(request).validate().responseDecodable(of: HighwayAlertsStore.self) { response in
                     switch response.result {

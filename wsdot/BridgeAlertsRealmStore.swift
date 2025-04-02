@@ -70,7 +70,7 @@ class BridgeAlertsStore: Decodable {
          
             if ((delta > CachesStore.bridgeCacheTime) || force) {
             
-                let request = NetworkUtils.getJSONRequestNoLocalCache(forUrl: "https://data.wsdot.wa.gov/mobile/BridgeOpenings.js")
+                let request = NetworkUtils.getJSONRequestNoLocalCache(forUrl: "https://data.wsdot.wa.gov/mobile/BridgeOpenings.json")
                 
                 AF.request(request).validate().responseDecodable(of: BridgeAlertsStore.self) { response in
                     switch response.result {

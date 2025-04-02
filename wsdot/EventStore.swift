@@ -45,7 +45,7 @@ class EventStore: Decodable {
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
         pushSession = Session(configuration: configuration)
 
-        pushSession!.request("https://data.wsdot.wa.gov/mobile/NotificationTopicsVersion.js").validate().responseDecodable(of: EventStore.self) { response in
+        pushSession!.request("https://data.wsdot.wa.gov/mobile/NotificationTopicsVersion.json").validate().responseDecodable(of: EventStore.self) { response in
             switch response.result {
             case .success:
                 if let value = response.data {
@@ -72,7 +72,7 @@ class EventStore: Decodable {
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
         eventSession = Session(configuration: configuration)
 
-        eventSession!.request("https://data.wsdot.wa.gov/mobile/EventStatus.js").validate().responseDecodable(of: EventStore.self) { response in
+        eventSession!.request("https://data.wsdot.wa.gov/mobile/EventStatus.json").validate().responseDecodable(of: EventStore.self) { response in
             switch response.result {
             case .success:
                 if let value = response.data {
