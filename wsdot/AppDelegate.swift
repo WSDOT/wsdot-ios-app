@@ -274,7 +274,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // MARK: Realm
     func migrateRealm(){
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
-            schemaVersion: 14,
+            schemaVersion: 15,
 
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
@@ -422,6 +422,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                         newObject!["hovCurrentTime"] = 0
                     }
                     migration.deleteData(forType: TravelTimeItem.className())
+                    migration.deleteData(forType: CacheItem.className())
+                }
+                
+                /* Adds delete field to travel time item.
+                 Clears cache to force refresh
+                 */
+                if (oldSchemaVersion < 15) {
+                    migration.enumerateObjects(ofType: TravelTimeItem.className()) { oldObject, newObject in
+                        newObject!["delete"] = false
+                    }
                     migration.deleteData(forType: CacheItem.className())
                 }
                 
