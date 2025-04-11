@@ -35,7 +35,7 @@ class BestTimesToTravelStore: Decodable {
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
         session = Session(configuration: configuration)
 
-        session!.request("https://data.wsdot.wa.gov/mobile/travelCharts.js").validate().responseDecodable(of: BestTimesToTravelStore.self) { response in
+        session!.request("https://data.wsdot.wa.gov/mobile/travelCharts.json").validate().responseDecodable(of: BestTimesToTravelStore.self) { response in
             switch response.result {
             case .success:
                 if let value = response.data {
@@ -55,7 +55,7 @@ class BestTimesToTravelStore: Decodable {
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
         session = Session(configuration: configuration)
 
-        session!.request("https://data.wsdot.wa.gov/mobile/travelCharts.js").validate().responseDecodable(of: BestTimesToTravelStore.self) { response in
+        session!.request("https://data.wsdot.wa.gov/mobile/travelCharts.json").validate().responseDecodable(of: BestTimesToTravelStore.self) { response in
             switch response.result {
             case .success:
                 if let value = response.data {

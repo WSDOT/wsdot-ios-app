@@ -159,12 +159,17 @@ class TravelTimeAlertViewController: RefreshViewController, INDLinkLabelDelegate
         travelTimeVia.attributedText = travelTimeViaLabel(label: "Routes: ", description: travelTimeItem.viaText)
         travelTimeDistance.attributedText = travelTimeDistanceLabel(label: "Distance: ", description: travelTimeItem.distance.description, miles: " miles")
         
-        if (travelTimeItem.currentTime == -1) {
+        if (travelTimeItem.averageTime == -1) {
             travelTimeAverageTime.attributedText = travelTimeAverageTimeLabel(label: "Average Time: ", description: "N/A", minutes: "")
-            travelTimeCurrentTime.attributedText = travelTimeCurrentTimeLabel(label: "Current Time: ", description: "N/A", minutes: "")
         }
         else {
             travelTimeAverageTime.attributedText = travelTimeAverageTimeLabel(label: "Average Time: ", description: travelTimeItem.averageTime.description, minutes: " minutes")
+        }
+                
+        if (travelTimeItem.currentTime == -1) {
+            travelTimeCurrentTime.attributedText = travelTimeCurrentTimeLabel(label: "Current Time: ", description: "N/A", minutes: "")
+        }
+        else {
             travelTimeCurrentTime.attributedText = travelTimeCurrentTimeLabel(label: "Current Time: ", description: travelTimeItem.currentTime.description, minutes: " minutes")
         }
                 

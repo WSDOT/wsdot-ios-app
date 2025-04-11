@@ -43,6 +43,8 @@ class TravelTimeItem: Object {
     
     @objc dynamic var title: String = ""
     
+    @objc dynamic var delete: Bool = false
+    
     override static func primaryKey() -> String? {
         return "routeid"
     }

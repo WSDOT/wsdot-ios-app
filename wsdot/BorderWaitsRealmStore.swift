@@ -66,7 +66,7 @@ class BorderWaitStore: Decodable {
          
         if ((delta > CachesStore.updateTime) || force){
             
-            let request = NetworkUtils.getJSONRequestNoLocalCache(forUrl: "https://data.wsdot.wa.gov/mobile/BorderCrossings.js")
+            let request = NetworkUtils.getJSONRequestNoLocalCache(forUrl: "https://data.wsdot.wa.gov/mobile/BorderCrossings.json")
         
             AF.request(request).validate().responseDecodable(of: BorderWaitStore.self) { response in
                 switch response.result {

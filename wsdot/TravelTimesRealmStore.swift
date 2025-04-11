@@ -44,7 +44,7 @@ class TravelTimesStore: Decodable {
     
     static func getTravelTimes() -> [TravelTimeItem]{
             let realm = try! Realm()
-            let travelTimeItems = realm.objects(TravelTimeItem.self)
+            let travelTimeItems = realm.objects(TravelTimeItem.self).filter("delete == false")
             return Array(travelTimeItems)
 
     }
@@ -105,7 +105,7 @@ class TravelTimesStore: Decodable {
         if ((delta > CachesStore.travelTimeCacheTime) || force) {
            
             let request = NetworkUtils
-                .getJSONRequestNoLocalCache(forUrl: "https://data.wsdot.wa.gov/mobile/TravelTimesv2.js")
+                .getJSONRequestNoLocalCache(forUrl: "https://data.wsdot.wa.gov/mobile/TravelTimesv2.json")
             
             AF.request(request).validate().responseDecodable(of: TravelTimesStore.self) { response in
                 switch response.result {
@@ -174,7 +174,10 @@ class TravelTimesStore: Decodable {
     
     fileprivate static func parseTravelTimesJSON(_ json: JSON) ->[TravelTimeItemGroup]{
         var travelTimes = [TravelTimeItemGroup]()
-        
+        let newTravelTimes = List<TravelTimeItem>()
+
+        let realm = try! Realm()
+
         for (_,subJson):(String, JSON) in json {
    
             let time = TravelTimeItem()
@@ -205,7 +208,22 @@ class TravelTimesStore: Decodable {
         
             timeGroup.routes.append(time)
             travelTimes.append(timeGroup)
+            newTravelTimes.append(time)
         }
+        
+        let oldTimes = getTravelTimes()
+        do {
+            try realm.write{
+                for time in oldTimes {
+                    time.delete = true
+                }
+                realm.add(newTravelTimes, update: .all)
+            
+            }
+        }catch{
+            print("TravelTimeStore.saveAlerts: Realm write error")
+        }
+        
         
         return travelTimes
     }

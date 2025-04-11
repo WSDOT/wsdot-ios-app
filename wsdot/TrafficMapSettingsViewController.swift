@@ -223,12 +223,17 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
             let cell = tableView.dequeueReusableCell(withIdentifier: legendCellIdentifier) as! CameraImageCustomCell
             cell.CameraImage.image = UIImage(named: "trafficMapKey")
             cell.sizeToFit()
-            return cell
             
-//            return UITableViewCell()
-
+            let screenSize: CGRect = UIScreen.main.bounds
+            let screenWidth = screenSize.width
+            if (UIDevice.current.userInterfaceIdiom == .pad || screenWidth <= 320) {
+                let frame = CGRect(x: 16, y: 20, width: 290, height: 400)
+                cell.CameraImage.frame = frame
+            }
+            
+            return cell
+    
         }
-        
     }
     
     // MARK: Table View Delegate Methods

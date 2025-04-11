@@ -79,7 +79,7 @@ class CamerasStore: Decodable {
          
         if ((delta > CachesStore.cameraUpdateTime) || force){
             
-            AF.request("https://data.wsdot.wa.gov/mobile/Cameras.js").validate().responseDecodable(of: CamerasStore.self) { response in
+            AF.request("https://data.wsdot.wa.gov/mobile/Cameras.json").validate().responseDecodable(of: CamerasStore.self) { response in
                 switch response.result {
                 case .success:
                     if let value = response.data {

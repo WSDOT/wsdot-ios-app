@@ -63,7 +63,7 @@ class MountainPassStore: Decodable {
         if ((delta > CachesStore.mountainPassCacheTime) || force){
             
             let request = NetworkUtils
-                .getJSONRequestNoLocalCache(forUrl: "https://data.wsdot.wa.gov/mobile/MountainPassConditions.js")
+                .getJSONRequestNoLocalCache(forUrl: "https://data.wsdot.wa.gov/mobile/MountainPassConditions.json")
             
             AF.request(request)
                 .validate()
