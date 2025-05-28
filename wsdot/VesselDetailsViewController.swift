@@ -21,31 +21,40 @@
 import Foundation
 import UIKit
 import SafariServices
+import SwiftyJSON
+import Alamofire
 
-class VesselDetailsViewController: UIViewController{
+
+class VesselDetailsViewController: RefreshViewController {
+        
+    var vesselItem: VesselItem? = nil
     
     let vesselBaseUrlString = "https://www.wsdot.com/ferries/vesselwatch/VesselDetail.aspx?vessel_id="
     
-    var vesselItem: VesselItem? = nil
-    
-    @IBOutlet weak var routeLabel: UILabel!
-    @IBOutlet weak var departLabel: UILabel!
-    @IBOutlet weak var arrLabel: UILabel!
+    @IBOutlet weak var vesselLabel: UILabel!
+    @IBOutlet weak var destinationLabel: UILabel!
     @IBOutlet weak var schedDepartLabel: UILabel!
     @IBOutlet weak var actualDepartLabel: UILabel!
     @IBOutlet weak var etaLabel: UILabel!
-    @IBOutlet weak var headinglabel: UILabel!
-    @IBOutlet weak var speedLabel: UILabel!
     @IBOutlet weak var updatedLabel: UILabel!
+    @IBOutlet weak var vesselImage: UIImageView!
     
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = vesselItem?.vesselName
+        title = ""
         
-        routeLabel.text = vesselItem?.route
-        departLabel.text = vesselItem?.departingTerminal
-        arrLabel.text = vesselItem?.arrivingTerminal
+        vesselLabel.text = vesselItem?.vesselName
+        
+        if (vesselItem?.departingTerminal != "N/A") && (vesselItem?.arrivingTerminal != "N/A") {
+            destinationLabel.text = String(vesselItem?.departingTerminal ?? "") + " to " + String(vesselItem?.arrivingTerminal ?? "")
+        }
+        else {
+            destinationLabel.text = "Not Available"
+        }
         
         if let departTime = vesselItem?.nextDeparture {
             schedDepartLabel.text = TimeUtils.getTimeOfDay(departTime)
@@ -65,20 +74,21 @@ class VesselDetailsViewController: UIViewController{
             etaLabel.text = "--:--"
         }
         
-        if let speed = vesselItem?.speed {
-            speedLabel.text = String(speed)
-        } else {
-            speedLabel.text = ""
-        }
-        
-        headinglabel.text = vesselItem?.headText
-
         if let updated = vesselItem?.updateTime {
               updatedLabel.text = TimeUtils.timeAgoSinceDate(date: updated, numericDates: true)
         } else {
             updatedLabel.text = ""
         }
         
+        self.vesselImage.image = UIImage(named: vesselItem?.vesselName ?? "")
+        self.vesselImage.layer.borderWidth = 0.5
+        
+        self.activityIndicatorView.isHidden = true
+        
+        let backButton = UIBarButtonItem()
+        backButton.title = "Back"
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
