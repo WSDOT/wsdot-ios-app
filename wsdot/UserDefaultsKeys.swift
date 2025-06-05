@@ -27,6 +27,11 @@ class UserDefaultsKeys {
     static let mountainPasses = "MountainPassMarkerPref"
     static let trafficLayer = "TrafficLayerMarkerPref"
     static let travelTimes = "TravelTimesMarkerPref"
+    static let ferryTrafficLayer = "FerryTrafficLayerMarkerPref"
+    static let ferryVesselLayer = "FerryVesselMarkerPref"
+    static let ferryLabelLayer = "FerryLabelMarkerPref"
+    static let ferryTerminalLayer = "FerryTerminalLayerMarkerPref"
+    static let ferryCameraLayer = "FerryCameraLayerMarkerPref"
 
 
     static let favoritesOrder = "FavoritesSectionOrderArrayv1"
