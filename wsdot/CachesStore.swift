@@ -58,6 +58,8 @@ class CachesStore {
     
     static let travelTimeCacheTime: Int = 300 // once every 5 minutes
 
+    static let ferryDetailUpdateTime: TimeInterval = 60 // once a minute
+
     
     static func initCacheItem(){
         do {

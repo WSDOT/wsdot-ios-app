@@ -41,59 +41,108 @@ class VesselDetailsViewController: RefreshViewController {
     
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
 
-
+    fileprivate weak var timer: Timer?
+    
+    @IBOutlet weak var vesselStackView: UIStackView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = ""
+        self.vesselStackView.isHidden = true
         
-        vesselLabel.text = vesselItem?.vesselName
-        
-        if (vesselItem?.departingTerminal != "N/A") && (vesselItem?.arrivingTerminal != "N/A") {
-            destinationLabel.text = String(vesselItem?.departingTerminal ?? "") + " to " + String(vesselItem?.arrivingTerminal ?? "")
-        }
-        else {
-            destinationLabel.text = "Not Available"
-        }
-        
-        if let departTime = vesselItem?.nextDeparture {
-            schedDepartLabel.text = TimeUtils.getTimeOfDay(departTime)
-        } else {
-            schedDepartLabel.text = "--:--"
-        }
-        
-        if let actualDepartTime = vesselItem?.leftDock {
-            actualDepartLabel.text = TimeUtils.getTimeOfDay(actualDepartTime)
-        } else {
-            actualDepartLabel.text = "--:--"
-        }
- 
-        if let eta = vesselItem?.eta {
-            etaLabel.text = TimeUtils.getTimeOfDay(eta)
-        } else {
-            etaLabel.text = "--:--"
-        }
-        
-        if let updated = vesselItem?.updateTime {
-              updatedLabel.text = TimeUtils.timeAgoSinceDate(date: updated, numericDates: true)
-        } else {
-            updatedLabel.text = ""
-        }
-        
-        self.vesselImage.image = UIImage(named: vesselItem?.vesselName ?? "")
-        self.vesselImage.layer.borderWidth = 0.5
-        
-        self.activityIndicatorView.isHidden = true
-        
+        refresh()
+
         let backButton = UIBarButtonItem()
         backButton.title = "Back"
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
-
+        
+        // refresh controller
+        self.timer = Timer.scheduledTimer(timeInterval: CachesStore.ferryDetailUpdateTime, target: self, selector: #selector(self.alertsTimerTask), userInfo: nil, repeats: true)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         MyAnalytics.screenView(screenName: "VesselDetails")
+    }
+    
+    // timer to force refresh traffic alerts
+    @objc func alertsTimerTask(_ timer:Timer) {
+        refresh()
+    }
+    
+    func refresh() {
+                
+        self.title = ""
+        self.activityIndicatorView.startAnimating()
+        self.activityIndicatorView.isHidden = false
+
+          AF.request("https://www.wsdot.wa.gov/ferries/api/vessels/rest/vessellocations?apiaccesscode=" + ApiKeys.getWSDOTKey()).validate().responseDecodable(of: VesselWatchStore.self) { response in
+              switch response.result {
+              case .success:
+                  if let value = response.data {
+                      let json = JSON(value)
+                      let vessels = VesselWatchStore.parseVesselsJSON(json)
+                      
+                      for vessel in vessels {
+                          
+                          if (vessel.vesselID == self.vesselItem?.vesselID) {
+                                                            
+                              self.vesselLabel.text = vessel.vesselName
+                              
+                              if (self.vesselItem?.departingTerminal != "N/A") && (vessel.arrivingTerminal != "N/A") {
+                                  self.destinationLabel.text = String(vessel.departingTerminal) + " to " + String(vessel.arrivingTerminal)
+                              }
+                              else {
+                                  self.destinationLabel.text = "Not Available"
+                              }
+                              
+                              if let departTime = vessel.nextDeparture {
+                                  self.schedDepartLabel.text = TimeUtils.getTimeOfDay(departTime)
+                              } else {
+                                  self.schedDepartLabel.text = "--:--"
+                              }
+                              
+                              if let actualDepartTime = vessel.leftDock {
+                                  self.actualDepartLabel.text = TimeUtils.getTimeOfDay(actualDepartTime)
+                              } else {
+                                  self.actualDepartLabel.text = "--:--"
+                              }
+                              
+                              if let eta = vessel.eta {
+                                  self.etaLabel.text = TimeUtils.getTimeOfDay(eta)
+                              } else {
+                                  self.etaLabel.text = "--:--"
+                              }
+                      
+                              self.updatedLabel.text = TimeUtils.timeAgoSinceDate(date: vessel.updateTime, numericDates: true)
+                              
+                              self.vesselImage.image = UIImage(named: self.vesselItem?.vesselName ?? "")
+                              self.vesselImage.layer.borderWidth = 0.5
+                          }
+                      }
+                      self.vesselStackView.isHidden = false
+                  }
+                  
+
+              case .failure(let error):
+                  print(error)
+                  AlertMessages.getConnectionAlert(backupURL: WsdotURLS.ferries, message: WSDOTErrorStrings.ferriesSchedule)
+                  
+                  self.vesselStackView.isHidden = true
+              }
+              
+              self.activityIndicatorView.stopAnimating()
+              self.activityIndicatorView.isHidden = true
+          }
+      }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if self.isBeingDismissed || self.isMovingFromParent {
+            if timer != nil {
+                self.timer?.invalidate()
+            }
+        }
     }
     
     @IBAction func linkAction(_ sender: UIBarButtonItem) {
