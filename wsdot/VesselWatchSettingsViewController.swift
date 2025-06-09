@@ -35,7 +35,7 @@ class VesselWatchSettingsViewController: UIViewController, UITableViewDataSource
         
         menu_options = ["Traffic Layer", "Terminals", "Cameras", "Vessels", "Labels"]
         
-        menu_icon_names = ["","icHomeTraffic", "terminal", "camera_icon", "ferry0", "label"]
+        menu_icon_names = ["","trafficlayer", "terminal", "camera_icon", "vessels", "label"]
         
         self.view.backgroundColor = ThemeManager.currentTheme().mainColor
     }

@@ -42,7 +42,7 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                         "Cluster Cameras",
                         "Favorite Location"]
         
-        menu_icon_names = ["","icHomeTraffic", "alert_high_icon","icMountainPass","restarea_icon","icTravelTime","camera_icon","icHomeFavorites", "trafficMapKey"]
+        menu_icon_names = ["","trafficlayer", "alert_high_icon","icMountainPass","restarea_icon","icTravelTime","camera_icon","icHomeFavorites", "trafficMapKey"]
 
         self.view.backgroundColor = ThemeManager.currentTheme().mainColor
     }

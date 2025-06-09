@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "terminal@1x.png",
+      "filename" : "trafficlayer@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "terminal@2x.png",
+      "filename" : "trafficlayer@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "terminal@3x.png",
+      "filename" : "trafficlayer@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
