@@ -55,8 +55,8 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     fileprivate let cameraIconImage = UIImage(named: "icMapCamera")
     
-    fileprivate let cameraBarButtonImage = UIImage(named: "icCamera")
-    fileprivate let cameraHighlightBarButtonImage = UIImage(named: "icCameraHighlight")
+//    fileprivate let cameraBarButtonImage = UIImage(named: "icCamera")
+//    fileprivate let cameraHighlightBarButtonImage = UIImage(named: "icCameraHighlight")
     
     fileprivate let mountainPassIconImage = UIImage(named: "icMountainPass")
 
@@ -92,9 +92,9 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
             UserDefaults.standard.set("on", forKey: UserDefaultsKeys.cameras)
         }
         
-        if (UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras) == "on"){
-            cameraBarButton.image = cameraHighlightBarButtonImage
-        }
+//        if (UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras) == "on"){
+//            cameraBarButton.image = cameraHighlightBarButtonImage
+//        }
         
         self.loadCameraMarkers()
         self.drawCameras()
@@ -191,23 +191,6 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     @IBAction func goToLocation(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: SegueGoToPopover, sender: self)
-    }
-    
-    @IBAction func cameraToggleButtonPressed(_ sender: UIBarButtonItem) {
-        let camerasPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras)
-        if let camerasVisible = camerasPref {
-            if (camerasVisible == "on") {
-                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Hide Cameras")
-                UserDefaults.standard.set("off", forKey: UserDefaultsKeys.cameras)
-                sender.image = cameraBarButtonImage
-                removeCameras()
-            } else {
-                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Show Cameras")
-                sender.image = cameraHighlightBarButtonImage
-                UserDefaults.standard.set("on", forKey: UserDefaultsKeys.cameras)
-                drawCameras()
-            }
-        }
     }
     
     @IBAction func travelerInfoAction(_ sender: UIBarButtonItem) {

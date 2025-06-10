@@ -2,7 +2,7 @@
 //  TrafficMapLayersSettings.swift
 //  WSDOT
 //
-//  Copyright (c) 2016 Washington State Department of Transportation
+//  Copyright (c) 2025 Washington State Department of Transportation
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -39,10 +39,11 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                         "Mountain Passes",
                         "Rest Areas",
                         "Travel Times",
+                        "Cameras",
                         "Cluster Cameras",
                         "Favorite Location"]
         
-        menu_icon_names = ["","trafficlayer", "alert_high_icon","icMountainPass","restarea_icon","icTravelTime","camera_icon","icHomeFavorites", "trafficMapKey"]
+        menu_icon_names = ["","trafficlayer", "alert_high_icon","icMountainPass","restarea_icon","icTravelTime","camera_icon","cluster_icon","icHomeFavorites", "trafficMapKey"]
 
         self.view.backgroundColor = ThemeManager.currentTheme().mainColor
     }
@@ -95,7 +96,7 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
         
             return cell
         
-        } else if indexPath.row < 8 {
+        } else if indexPath.row < 9 {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! SettingsCell
             
@@ -193,6 +194,23 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                 break
                 
             case menu_options[5]:
+                let cameraPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras)
+                if let cameraVisible = cameraPref {
+                    if (cameraVisible == "on") {
+                        cell.settingSwitch.isOn = true
+                    } else {
+                        cell.settingSwitch.isOn = false
+                    }
+                }
+
+                cell.settingSwitch.addTarget(self, action: #selector(TrafficMapSettingsViewController.changeCameraPref(_:)), for: .valueChanged)
+                cell.settingSwitch.isHidden = false
+                cell.selectionStyle = .none
+                cell.favoriteImageView.isHidden = true
+                cell.infoButton.isHidden = true
+                break
+                
+            case menu_options[6]:
                 let clusterPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.shouldCluster)
                 if let clusterVisible = clusterPref {
                     if (clusterVisible == "on") {
@@ -210,7 +228,7 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                 cell.infoButton.addTarget(self, action: #selector(TrafficMapSettingsViewController.clusterInfoAlert(_:)), for: .touchUpInside)
                 break
                 
-            case menu_options[6]:
+            case menu_options[7]:
                 cell.selectionStyle = .blue
                 cell.settingSwitch.isHidden = true
                 cell.favoriteImageView.isHidden = false
@@ -239,7 +257,7 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
     // MARK: Table View Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.row) {
-        case 7:
+        case 8:
             favoriteLocationAction()
         default:
             break
@@ -279,20 +297,6 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
         
     }
 
-    @objc func changeClusterPref(_ sender: UISwitch){
-        let clusterPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.shouldCluster)
-        if let clusterVisible = clusterPref {
-            if (clusterVisible == "on") {
-                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Camera Clustering Off")
-                UserDefaults.standard.set("off", forKey: UserDefaultsKeys.shouldCluster)
-            } else {
-                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Camera Clustering On")
-                UserDefaults.standard.set("on", forKey: UserDefaultsKeys.shouldCluster)
-            }
-            my_parent!.resetMapCamera()
-        }
-    }
-    
     @objc func changeTrafficLayerPref(_ sender: UISwitch){
         let trafficLayerPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.trafficLayer)
         if let trafficLayerVisible = trafficLayerPref {
@@ -371,6 +375,36 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
         }
     }
     
+    
+    @objc func changeCameraPref(_ sender: UISwitch){
+        let cameraPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras)
+        if let cameraVisible = cameraPref {
+            if (cameraVisible == "on") {
+                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Cameras  Off")
+                UserDefaults.standard.set("off", forKey: UserDefaultsKeys.cameras)
+            my_parent!.removeCameras()
+
+            } else {
+                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Cameras On")
+                UserDefaults.standard.set("on", forKey: UserDefaultsKeys.cameras)
+            }
+            my_parent!.drawCameras()
+        }
+    }
+    
+    @objc func changeClusterPref(_ sender: UISwitch){
+        let clusterPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.shouldCluster)
+        if let clusterVisible = clusterPref {
+            if (clusterVisible == "on") {
+                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Camera Clustering Off")
+                UserDefaults.standard.set("off", forKey: UserDefaultsKeys.shouldCluster)
+            } else {
+                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Camera Clustering On")
+                UserDefaults.standard.set("on", forKey: UserDefaultsKeys.shouldCluster)
+            }
+            my_parent!.resetMapCamera()
+        }
+    }
     
     @objc func clusterInfoAlert(_ sender: UIButton){
         self.present(AlertMessages.getAlert("Camera Marker Clustering", message: "By turning clustering on, large numbers of camera markers will gather together in clusters at low zoom levels. When viewing the map at a high zoom level, individual camera markers will show on the map.", confirm: "OK"), animated: true, completion: nil)

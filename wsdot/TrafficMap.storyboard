@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IAh-cF-WhQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IAh-cF-WhQ">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -84,15 +84,6 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="aJN-yJ-q7N"/>
-                                    <barButtonItem image="icCamera" id="Rg4-Bd-cfR">
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="Camera Toggle"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="cameraToggleButtonPressed:" destination="1Nk-0b-wXD" id="I28-b2-AGW"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="yr2-sO-d7w"/>
                                     <barButtonItem image="icDotMenu" id="Yhn-F9-Ikf">
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="More Options"/>
@@ -153,7 +144,6 @@
                     <connections>
                         <outlet property="activityIndicatorView" destination="ma7-um-xVJ" id="0Ww-Wc-JTH"/>
                         <outlet property="bannerView" destination="Qyr-NB-cah" id="ocH-R2-n1i"/>
-                        <outlet property="cameraBarButton" destination="Rg4-Bd-cfR" id="AGx-ii-TKK"/>
                         <outlet property="travelInformationButton" destination="6VY-LF-EDH" id="sp2-lz-uU3"/>
                         <segue destination="qsb-BA-WFJ" kind="popoverPresentation" identifier="TrafficMapGoToViewController" popoverAnchorBarButtonItem="OPC-ew-Vud" id="YMu-Xo-RbI">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -595,7 +585,6 @@
     </scenes>
     <resources>
         <image name="icAlert" width="24" height="24"/>
-        <image name="icCamera" width="32" height="32"/>
         <image name="icDotMenu" width="24" height="24"/>
         <image name="icFavoriteDefault" width="32" height="32"/>
         <image name="icLocation" width="24" height="24"/>
@@ -603,10 +592,10 @@
         <image name="icMyLocation" width="32" height="32"/>
         <image name="icRefresh" width="24" height="24"/>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -615,7 +604,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
