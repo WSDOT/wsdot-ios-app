@@ -31,6 +31,7 @@ import EasyTipView
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
     
     var window: UIWindow?
+    var newDB: Bool = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -271,8 +272,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        
+        // When schema version is unsupported notify users.
+        if (newDB) {
+            let alertController = UIAlertController(title: "Thank you for updating the WSDOT app", message: "This version of the app requires a new database to work correctly. All user settings have been reset. We apologize for any inconvenience.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default) { UIAlertAction in }
+            alertController.addAction(okAction)
+            self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
+            
+            UserDefaults.standard.set("on", forKey: UserDefaultsKeys.trafficLayer)
+            UserDefaults.standard.set("on", forKey: UserDefaultsKeys.alerts)
+            UserDefaults.standard.set("on", forKey: UserDefaultsKeys.restAreas)
+            UserDefaults.standard.set("on", forKey: UserDefaultsKeys.cameras)
+            UserDefaults.standard.set("on", forKey: UserDefaultsKeys.shouldCluster)
+            UserDefaults.standard.set("system", forKey: UserDefaultsKeys.mapStyle)
+            
+            newDB = false
+
+        }
+        
+    }
+    
     // MARK: Realm
     func migrateRealm(){
+        
+        // Check realm schema version.
+        let configCheck = Realm.Configuration()
+            do {
+                 let fileUrl = try schemaVersionAtURL(configCheck.fileURL!)
+                print("schema version \(fileUrl)")
+            } catch  {
+                
+                // clear database when schema version is unsupported.
+                print(error)
+                try? FileManager.default.removeItem(at: Realm.Configuration.defaultConfiguration.fileURL!)
+                
+                newDB = true
+                
+            }
+        
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
             schemaVersion: 15,
 
