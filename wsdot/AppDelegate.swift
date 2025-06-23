@@ -297,20 +297,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // MARK: Realm
     func migrateRealm(){
         
-        // Check realm schema version.
+        // Check Realm schema version.
         let configCheck = Realm.Configuration()
-            do {
-                 let fileUrl = try schemaVersionAtURL(configCheck.fileURL!)
-                print("schema version \(fileUrl)")
-            } catch  {
-                
-                // clear database when schema version is unsupported.
-                print(error)
-                try? FileManager.default.removeItem(at: Realm.Configuration.defaultConfiguration.fileURL!)
-                
-                newDB = true
-                
-            }
+        
+        do {
+            
+            let fileUrl = try schemaVersionAtURL(configCheck.fileURL!)
+            print("schema version \(fileUrl)")
+            
+        } catch let error as Realm.Error where error.code == .unsupportedFileFormatVersion {
+            
+            // Clear database when schema version is unsupported.
+            try? FileManager.default.removeItem(at: Realm.Configuration.defaultConfiguration.fileURL!)
+            newDB = true
+            print(error)
+
+        } catch {
+            
+            print(error)
+            
+        }
         
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
             schemaVersion: 15,
