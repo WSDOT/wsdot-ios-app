@@ -77,7 +77,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         }
     }
 
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+    func adViewDidReceiveAd(_ bannerView: BannerView) {
         bannerView.isAccessibilityElement = true
         bannerView.accessibilityLabel = "advertisement banner."
     }

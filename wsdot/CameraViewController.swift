@@ -21,14 +21,14 @@
 import UIKit
 import GoogleMobileAds
 
-class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDelegate, GMSMapViewDelegate {
+class CameraViewController: UIViewController, BannerViewDelegate, MapMarkerDelegate, GMSMapViewDelegate {
     
     @IBOutlet weak var cameraImage: UIImageView!
     fileprivate let cameraMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: 0, longitude: 0))
     
     @IBOutlet weak var favoriteBarButton: UIBarButtonItem!
     
-    @IBOutlet weak var bannerView: GAMBannerView!
+    @IBOutlet weak var bannerView: AdManagerBannerView!
     
     @IBOutlet weak var cameraTitleLabel: UILabel!
     @IBOutlet weak var cameraDirectionLabel: UILabel!
@@ -110,7 +110,7 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
             bannerView.adUnitID = ApiKeys.getAdId()
             bannerView.rootViewController = self
             bannerView.adSize = getFullWidthAdaptiveAdSize()
-            let request = GAMRequest()
+            let request = AdManagerRequest()
             request.customTargeting = ["wsdotapp":adTarget]
         
             bannerView.load(request)
@@ -123,7 +123,7 @@ class CameraViewController: UIViewController, GADBannerViewDelegate, MapMarkerDe
         
     }
     
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+    func adViewDidReceiveAd(_ bannerView: BannerView) {
         bannerView.isAccessibilityElement = true
         bannerView.accessibilityLabel = "advertisement banner."
     }

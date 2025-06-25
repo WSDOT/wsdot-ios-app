@@ -23,7 +23,7 @@ import RealmSwift
 import GoogleMobileAds
 import SafariServices
 
-class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate {
+class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, UITableViewDataSource, BannerViewDelegate {
     
     let cellIdentifier = "FerriesRouteSchedulesCell"
     
@@ -41,7 +41,7 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
     let refreshControl = UIRefreshControl()
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var bannerView: GAMBannerView!
+    @IBOutlet weak var bannerView: AdManagerBannerView!
     
     @IBOutlet weak var ticketsButton: UIButton!
     @IBOutlet weak var reservationsButton: UIButton!
@@ -64,7 +64,7 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
         bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.adSize = getFullWidthAdaptiveAdSize()
         bannerView.rootViewController = self
-        let request = GAMRequest()
+        let request = AdManagerRequest()
         request.customTargeting = [
             "wsdotapp":"ferries",
             "wsdotferries":"ferries-home"

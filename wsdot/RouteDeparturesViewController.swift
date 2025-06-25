@@ -22,7 +22,7 @@ import UIKit
 import GoogleMobileAds
 import RealmSwift
 
-class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
+class RouteDeparturesViewController: UIViewController, BannerViewDelegate {
 
     let timesViewSegue = "timesViewSegue"
     let camerasViewSegue = "camerasViewSegue"
@@ -46,7 +46,7 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
     @IBOutlet weak var sailingButton: IconButton!
     @IBOutlet weak var dayButton: IconButton!
 
-    @IBOutlet weak var bannerView: GAMBannerView!
+    @IBOutlet weak var bannerView: AdManagerBannerView!
     
     var routeItem: FerryScheduleItem?
     var routeId = 0
@@ -58,7 +58,7 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
     let favoriteBarButton = UIBarButtonItem()
     let alertBarButton = UIBarButtonItem()
     
-    internal func adViewDidReceiveAd(_ bannerView: GAMBannerView) {
+    internal func adViewDidReceiveAd(_ bannerView: AdManagerBannerView) {
         print("wsdot debug: adViewDidReceiveAd")
         if let responseInfo = bannerView.responseInfo {
           print("wsdot debug: \(responseInfo)")
@@ -117,7 +117,7 @@ class RouteDeparturesViewController: UIViewController, GADBannerViewDelegate {
         bannerView.adSize = getFullWidthAdaptiveAdSize()
         bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.rootViewController = self
-        let request = GAMRequest()
+        let request = AdManagerRequest()
             
         request.customTargeting = [
             "wsdotapp":"ferries",

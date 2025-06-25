@@ -21,7 +21,7 @@
 import UIKit
 import GoogleMobileAds
 
-class TravelTimesViewController: RefreshViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, GADBannerViewDelegate {
+class TravelTimesViewController: RefreshViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, BannerViewDelegate {
     
     let cellIdentifier = "TravelTimeCell"
     
@@ -31,7 +31,7 @@ class TravelTimesViewController: RefreshViewController, UITableViewDelegate, UIT
     var filtered = [TravelTimeItemGroup]()
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var bannerView: GAMBannerView!
+    @IBOutlet weak var bannerView: AdManagerBannerView!
     
     let refreshControl = UIRefreshControl()
     
@@ -67,7 +67,7 @@ class TravelTimesViewController: RefreshViewController, UITableViewDelegate, UIT
         bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.adSize = getFullWidthAdaptiveAdSize()
         bannerView.rootViewController = self
-        let request = GAMRequest()
+        let request = AdManagerRequest()
         request.customTargeting = ["wsdotapp":"traffic"]
         
         bannerView.load(request)
