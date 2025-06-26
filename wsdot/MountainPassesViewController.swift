@@ -22,7 +22,7 @@ import UIKit
 import Foundation
 import GoogleMobileAds
 
-class MountainPassesViewController: RefreshViewController, UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate {
+class MountainPassesViewController: RefreshViewController, UITableViewDelegate, UITableViewDataSource, BannerViewDelegate {
 
     let cellIdentifier = "PassCell"
     let segueMountainPassDetailsViewController = "MountainPassDetailsViewController"
@@ -31,7 +31,7 @@ class MountainPassesViewController: RefreshViewController, UITableViewDelegate, 
     var passItems = [MountainPassItem]()
     fileprivate let mountainPassMarkers = GMSMarker(position: CLLocationCoordinate2D(latitude: 0, longitude: 0))
 
-    @IBOutlet weak var bannerView: GAMBannerView!
+    @IBOutlet weak var bannerView: AdManagerBannerView!
     
     let refreshControl = UIRefreshControl()
     
@@ -57,7 +57,7 @@ class MountainPassesViewController: RefreshViewController, UITableViewDelegate, 
         bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.adSize = getFullWidthAdaptiveAdSize()
         bannerView.rootViewController = self
-        let request = GAMRequest()
+        let request = AdManagerRequest()
         request.customTargeting = ["wsdotapp":"passes"]
         bannerView.load(request)
         bannerView.delegate = self

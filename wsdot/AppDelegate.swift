@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         application.registerForRemoteNotifications()
         
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        MobileAds.shared.start(completionHandler: nil)
         // print(GADMobileAds.sharedInstance().sdkVersion)
         // GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = [ "9c3a9dd6ec9e8078003e5d4f8c885944" ]
         

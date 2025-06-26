@@ -15,7 +15,7 @@ extension UIViewController {
         tableView.tableFooterView = UIView()
     }
     
-    func getFullWidthAdaptiveAdSize() -> GADAdSize {
+    func getFullWidthAdaptiveAdSize() -> AdSize {
       // Here safe area is taken into account, hence the view frame is used after the
       // view has been laid out.
       let frame = { () -> CGRect in
@@ -25,7 +25,7 @@ extension UIViewController {
           return view.frame
         }
       }()
-      return GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(frame.size.width)
+        return currentOrientationAnchoredAdaptiveBanner(width: frame.size.width)
     }
 
 }

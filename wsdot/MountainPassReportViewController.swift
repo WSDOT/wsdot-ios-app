@@ -21,7 +21,7 @@
 import UIKit
 import GoogleMobileAds
 
-class MountainPassReportViewController: RefreshViewController, UITableViewDataSource, UITableViewDelegate, GADBannerViewDelegate {
+class MountainPassReportViewController: RefreshViewController, UITableViewDataSource, UITableViewDelegate, BannerViewDelegate {
 
     let camerasCellIdentifier = "PassCamerasCell"
     let SegueCamerasViewController = "CamerasViewController"
@@ -34,7 +34,7 @@ class MountainPassReportViewController: RefreshViewController, UITableViewDataSo
     
     let passReportView = PassReportView()
     
-    @IBOutlet weak var bannerView: GAMBannerView!
+    @IBOutlet weak var bannerView: AdManagerBannerView!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -84,7 +84,7 @@ class MountainPassReportViewController: RefreshViewController, UITableViewDataSo
         bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.adSize = getFullWidthAdaptiveAdSize()
         bannerView.rootViewController = self
-        let request = GAMRequest()
+        let request = AdManagerRequest()
         request.customTargeting = ["wsdotapp":"passes"]
         
         bannerView.load(request)
@@ -333,7 +333,7 @@ class MountainPassReportViewController: RefreshViewController, UITableViewDataSo
     // MARK: -
     // MARK: Ads
     
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+    func adViewDidReceiveAd(_ bannerView: BannerView) {
         bannerView.isAccessibilityElement = true
         bannerView.accessibilityLabel = "advertisement banner."
     }

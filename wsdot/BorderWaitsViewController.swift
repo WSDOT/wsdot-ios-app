@@ -21,11 +21,11 @@
 import UIKit
 import GoogleMobileAds
 
-class BorderWaitsViewController: RefreshViewController, UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate {
+class BorderWaitsViewController: RefreshViewController, UITableViewDelegate, UITableViewDataSource, BannerViewDelegate {
     
     let cellIdentifier = "borderwaitcell"
     
-    @IBOutlet weak var bannerView: GAMBannerView!
+    @IBOutlet weak var bannerView: AdManagerBannerView!
     @IBOutlet weak var segmentedControlView: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     var displayedWaits = [BorderWaitItem]()
@@ -58,7 +58,7 @@ class BorderWaitsViewController: RefreshViewController, UITableViewDelegate, UIT
         bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.rootViewController = self
         bannerView.adSize = getFullWidthAdaptiveAdSize()
-        let request = GAMRequest()
+        let request = AdManagerRequest()
         request.customTargeting = ["wsdotapp":"border"]
         
         bannerView.load(request)
@@ -66,7 +66,7 @@ class BorderWaitsViewController: RefreshViewController, UITableViewDelegate, UIT
         
     }
     
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+    func adViewDidReceiveAd(_ bannerView: BannerView) {
         bannerView.isAccessibilityElement = true
         bannerView.accessibilityLabel = "advertisement banner."
     }

@@ -21,7 +21,7 @@
 import UIKit
 import GoogleMobileAds
 
-class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate {
+class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, BannerViewDelegate {
     
     let cellIdentifier = "TravelerInfoCell"
     
@@ -33,7 +33,7 @@ class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var bannerView: GAMBannerView!
+    @IBOutlet weak var bannerView: AdManagerBannerView!
     
     var menu_options: [String] = []
     
@@ -56,7 +56,7 @@ class TravelerInfoViewController: UIViewController, UITableViewDelegate, UITable
         bannerView.adUnitID = ApiKeys.getAdId()
         bannerView.adSize = getFullWidthAdaptiveAdSize()
         bannerView.rootViewController = self
-        let request = GAMRequest()
+        let request = AdManagerRequest()
         request.customTargeting = ["wsdotapp":"traffic"]
         
         bannerView.load(request)
