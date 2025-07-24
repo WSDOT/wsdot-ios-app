@@ -37,7 +37,7 @@ struct FerriesConsts {
         11: FerriesTerminalItem(id: 11, name: "Coupeville", lat: 48.159008, long: -122.672603),
         12: FerriesTerminalItem(id: 12, name: "Kingston", lat: 47.794606, long: -122.494328),
         13: FerriesTerminalItem(id: 13, name: "Lopez Island", lat: 48.570928, long: -122.882764),
-        14: FerriesTerminalItem(id: 14, name: "Mukilteo", lat: 47.949544, long: -122.304997),
+        14: FerriesTerminalItem(id: 14, name: "Mukilteo", lat: 47.9506, long: -122.297),
         15: FerriesTerminalItem(id: 15, name: "Orcas Island", lat: 48.597333, long: -122.943494),
         16: FerriesTerminalItem(id: 16, name: "Point Defiance", lat: 47.306519, long: -122.514053),
         17: FerriesTerminalItem(id: 17, name: "Port Townsend", lat: 48.110847, long: -122.759039),
