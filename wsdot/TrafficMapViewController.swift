@@ -74,22 +74,20 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set default value for mountain passes if there is none
+        // Set default value for traffic map icons
         if (UserDefaults.standard.string(forKey: UserDefaultsKeys.mountainPasses) == nil){
             UserDefaults.standard.set("on", forKey: UserDefaultsKeys.mountainPasses)
         }
         
-        // Set default value for travel times display if there is none
         if (UserDefaults.standard.string(forKey: UserDefaultsKeys.travelTimes) == nil){
             UserDefaults.standard.set("on", forKey: UserDefaultsKeys.travelTimes)
+            fetchTravelTimes(force: false, group: serviceGroup)
         }
         
-        // Set default value for camera display if there is none
         if (UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras) == nil){
             UserDefaults.standard.set("on", forKey: UserDefaultsKeys.cameras)
         }
         
-        // Set default value for traffic map alerts if there is none
         if (UserDefaults.standard.string(forKey: UserDefaultsKeys.alerts) == nil){
             UserDefaults.standard.set("on", forKey: UserDefaultsKeys.alerts)
         }

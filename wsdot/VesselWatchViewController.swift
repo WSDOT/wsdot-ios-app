@@ -62,9 +62,8 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Vessel Watch"
-        
-        ferryTrafficLayer()
-        
+                
+        // Set default value for vessel watch icons
         if (UserDefaults.standard.string(forKey: UserDefaultsKeys.ferryVesselLayer) == nil){
             UserDefaults.standard.set("on", forKey: UserDefaultsKeys.ferryVesselLayer)
         }
@@ -75,11 +74,15 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         
         if (UserDefaults.standard.string(forKey: UserDefaultsKeys.ferryTerminalLayer) == nil){
             UserDefaults.standard.set("on", forKey: UserDefaultsKeys.ferryTerminalLayer)
+            fetchTerminals(true)
         }
         
         if (UserDefaults.standard.string(forKey: UserDefaultsKeys.ferryCameraLayer) == nil){
             UserDefaults.standard.set("on", forKey: UserDefaultsKeys.ferryCameraLayer)
+            fetchCameras(true)
         }
+        
+        ferryTrafficLayer()
                 
     }
     
