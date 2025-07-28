@@ -55,9 +55,6 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     fileprivate let cameraIconImage = UIImage(named: "icMapCamera")
     
-//    fileprivate let cameraBarButtonImage = UIImage(named: "icCamera")
-//    fileprivate let cameraHighlightBarButtonImage = UIImage(named: "icCameraHighlight")
-    
     fileprivate let mountainPassIconImage = UIImage(named: "icMountainPass")
 
     fileprivate let travelTimesIconImage = UIImage(named: "icTravelTime")
@@ -92,9 +89,11 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
             UserDefaults.standard.set("on", forKey: UserDefaultsKeys.cameras)
         }
         
-//        if (UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras) == "on"){
-//            cameraBarButton.image = cameraHighlightBarButtonImage
-//        }
+        // Set default value for traffic map alerts if there is none
+        if (UserDefaults.standard.string(forKey: UserDefaultsKeys.alerts) == nil){
+            UserDefaults.standard.set("on", forKey: UserDefaultsKeys.alerts)
+        }
+        
         
         self.loadCameraMarkers()
         self.drawCameras()
