@@ -42,6 +42,8 @@ class CameraViewController: UIViewController, BannerViewDelegate, MapMarkerDeleg
     
     weak fileprivate var embeddedMapViewController: SimpleMapViewController!
     
+    fileprivate var actionSheet: UIAlertController!
+    
     var cameraItem: CameraItem = CameraItem()
     var adTarget: String = "other"
     var adsEnabled = true
@@ -229,15 +231,44 @@ class CameraViewController: UIViewController, BannerViewDelegate, MapMarkerDeleg
     
     }
     
+    @objc func actionSheetBackgroundTapped() {
+        self.actionSheet.dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: Favorite action
     @IBAction func updateFavorite(_ sender: UIBarButtonItem) {
+
+        let alertTime = 1.5
+
         if (cameraItem.selected){
             CamerasStore.updateFavorite(cameraItem, newValue: false)
             favoriteBarButton.image = UIImage(named: "icStarSmall")
-            favoriteBarButton.accessibilityLabel = "add to favorites"
-        }else {
+            favoriteBarButton.accessibilityLabel = "remove from favorites"
+            
+            if UIDevice.current.userInterfaceIdiom != .pad {
+                actionSheet = UIAlertController(title: nil, message: "Removed from Favorites", preferredStyle: .actionSheet)
+                self.present(actionSheet, animated: true) {
+                    self.actionSheet.view.superview?.subviews.first?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.actionSheetBackgroundTapped)))
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + alertTime) {
+                        self.actionSheet.dismiss(animated: true)
+                    }
+                }
+            }
+            
+        } else {
             CamerasStore.updateFavorite(cameraItem, newValue: true)
             favoriteBarButton.image = UIImage(named: "icStarSmallFilled")
-            favoriteBarButton.accessibilityLabel = "remove from favorites"
+            favoriteBarButton.accessibilityLabel = "add to favorites"
+
+            if UIDevice.current.userInterfaceIdiom != .pad {
+                actionSheet = UIAlertController(title: nil, message: "Added to Favorites", preferredStyle: .actionSheet)
+                self.present(actionSheet, animated: true) {
+                    self.actionSheet.view.superview?.subviews.first?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.actionSheetBackgroundTapped)))
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + alertTime) {
+                        self.actionSheet.dismiss(animated: true)
+                    }
+                }
+            }
         }
     }
     

@@ -27,6 +27,8 @@ class MountainPassTabBarViewController: UITabBarController{
     
     let favoriteBarButton = UIBarButtonItem()
     
+    fileprivate var actionSheet: UIAlertController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,16 +58,43 @@ class MountainPassTabBarViewController: UITabBarController{
         self.navigationItem.rightBarButtonItems = [favoriteBarButton]
     }
     
+    @objc func actionSheetBackgroundTapped() {
+        self.actionSheet.dismiss(animated: true, completion: nil)
+    }
+    
     @objc func updateFavorite(_ sender: UIBarButtonItem) {
+        
+        let alertTime = 1.5
+
         if (passItem.selected){
             MountainPassStore.updateFavorite(passItem, newValue: false)
             favoriteBarButton.image = UIImage(named: "icStarSmall")
-            favoriteBarButton.accessibilityLabel = "add to favorites"
+            favoriteBarButton.accessibilityLabel = "remove from favorites"
+            
+            if UIDevice.current.userInterfaceIdiom != .pad {
+                actionSheet = UIAlertController(title: nil, message: "Removed from Favorites", preferredStyle: .actionSheet)
+                self.present(actionSheet, animated: true) {
+                    self.actionSheet.view.superview?.subviews.first?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.actionSheetBackgroundTapped)))
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + alertTime) {
+                        self.actionSheet.dismiss(animated: true)
+                    }
+                }
+            }
+            
         } else {
             MountainPassStore.updateFavorite(passItem, newValue: true)
             favoriteBarButton.image = UIImage(named: "icStarSmallFilled")
-            favoriteBarButton.accessibilityLabel = "remove from favorites"
+            favoriteBarButton.accessibilityLabel = "add to favorites"
+            
+            if UIDevice.current.userInterfaceIdiom != .pad {
+                actionSheet = UIAlertController(title: nil, message: "Added to Favorites", preferredStyle: .actionSheet)
+                self.present(actionSheet, animated: true) {
+                    self.actionSheet.view.superview?.subviews.first?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.actionSheetBackgroundTapped)))
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + alertTime) {
+                        self.actionSheet.dismiss(animated: true)
+                    }
+                }
+            }
         }
     }
-
 }

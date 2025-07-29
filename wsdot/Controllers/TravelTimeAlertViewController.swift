@@ -58,6 +58,8 @@ class TravelTimeAlertViewController: RefreshViewController, INDLinkLabelDelegate
     
     var endLatitude = 0.0
     var endLongitude = 0.0
+    
+    fileprivate var actionSheet: UIAlertController!
 
     weak fileprivate var embeddedMapViewController: SimpleMapViewController!
 
@@ -321,7 +323,7 @@ class TravelTimeAlertViewController: RefreshViewController, INDLinkLabelDelegate
     }
     
     // MARK: Naviagtion
-    // Get refrence to child VC
+    // Get reference to child VC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
         print("here 1")
@@ -336,8 +338,14 @@ class TravelTimeAlertViewController: RefreshViewController, INDLinkLabelDelegate
         }
     }
     
+    @objc func actionSheetBackgroundTapped() {
+        self.actionSheet.dismiss(animated: true, completion: nil)
+    }
+    
     // MARK: Favorite action
     @objc func favoriteAction(_ sender: UIButton) {
+        
+        let alertTime = 1.5
         
         for routes in travelTimeGroups {
             if (!favoriteButtonSelected && routes.title == travelTimeItem.title) {
@@ -349,6 +357,15 @@ class TravelTimeAlertViewController: RefreshViewController, INDLinkLabelDelegate
                 favoriteBarButton.image = UIImage(named: "icStarSmallFilled")
                 favoriteBarButton.accessibilityLabel = "add to favorites"
                 
+                if UIDevice.current.userInterfaceIdiom != .pad {
+                    actionSheet = UIAlertController(title: nil, message: "Added to Favorites", preferredStyle: .actionSheet)
+                    self.present(actionSheet, animated: true) {
+                        self.actionSheet.view.superview?.subviews.first?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.actionSheetBackgroundTapped)))
+                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + alertTime) {
+                            self.actionSheet.dismiss(animated: true)
+                        }
+                    }
+                }
             }
             else if (favoriteButtonSelected && routes.title == travelTimeItem.title) {
                 
@@ -358,6 +375,16 @@ class TravelTimeAlertViewController: RefreshViewController, INDLinkLabelDelegate
                 
                 favoriteBarButton.image = UIImage(named: "icStarSmall")
                 favoriteBarButton.accessibilityLabel = "remove from favorites"
+                
+                if UIDevice.current.userInterfaceIdiom != .pad {
+                    actionSheet = UIAlertController(title: nil, message: "Removed from Favorites", preferredStyle: .actionSheet)
+                    self.present(actionSheet, animated: true) {
+                        self.actionSheet.view.superview?.subviews.first?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.actionSheetBackgroundTapped)))
+                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + alertTime) {
+                            self.actionSheet.dismiss(animated: true)
+                        }
+                    }
+                }
             }
         }
     }
