@@ -29,13 +29,14 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     
     let SegueCamerasViewController = "CamerasViewController"
     let SegueVesselDetailsViewController = "VesselDetailsViewController"
+    let SegueTerminalsViewController = "TerminalsViewController"
     let SegueSettingsPopover = "VesselWatchSettingsViewController"
 
     var routeId: Int = -1
 
     fileprivate weak var timer: Timer?
 
-    fileprivate weak var embeddedMapViewController: MapViewController!
+    fileprivate weak var embeddedMapViewController: VesselWatchMapViewController!
     
     fileprivate var terminalCameraMarkers = Set<GMSMarker>()
     fileprivate var vesselMarkers = Set<GMSMarker>()
@@ -49,12 +50,14 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     fileprivate let cameraBarButtonImage = UIImage(named: "icCamera")
     fileprivate let cameraHighlightBarButtonImage = UIImage(named: "icCameraHighlight")
     
-    fileprivate let vesselNames = ["Cathlamet":"CAT", "Chelan":"CHE", "Chetzemoka":"CHZ", "Issaquah":"ISS", "Kaleetan":"KAL", "Kennewick":"KEN", "Kitsap":"KIS", "Kittitas":"KIT", "Puyallup":"PUY", "Salish":"SAL", "Samish":"SAM", "Sealth":"SEA", "Spokane":"SPO", "Suquamish":"SUQ", "Tacoma":"TAC", "Tillikum":"TIL", "Tokitae":"TOK", "Walla Walla":"WAL", "Yakima":"YAK"]
+    fileprivate let vesselNames = ["Cathlamet":"CAT", "Chelan":"CHE", "Chetzemoka":"CHZ", "Chimacum":"CHI", "Issaquah":"ISS", "Kaleetan":"KAL", "Kennewick":"KEN", "Kitsap":"KIS", "Kittitas":"KIT", "Puyallup":"PUY", "Salish":"SAL", "Samish":"SAM", "Sealth":"SEA", "Spokane":"SPO", "Suquamish":"SUQ", "Tacoma":"TAC", "Tillikum":"TIL", "Tokitae":"TOK", "Walla Walla":"WAL", "Wenatchee":"WEN", "Yakima":"YAK"]
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var myLocationBarButton: UIBarButtonItem!
     @IBOutlet weak var cameraBarButton: UIBarButtonItem!
+    
+    var vesselWatchFavSegue = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -168,7 +171,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
             let cameraLocation = CLLocationCoordinate2D(latitude: camera.latitude, longitude: camera.longitude)
             let marker = GMSMarker(position: cameraLocation)
             marker.snippet = "camera"
-            marker.zIndex = 2
+            marker.zIndex = 1
             marker.icon = cameraIconImage
             marker.userData = camera
             terminalCameraMarkers.insert(marker)
@@ -333,22 +336,31 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         drawTerminals()
     }
         
-        func loadTerminalMarkers(){
-            removeTerminals()
-            terminalMarkers.removeAll()
+    func loadTerminalMarkers(){
+        removeTerminals()
+        terminalMarkers.removeAll()
+        
+        // get map with terminal locations
+        let terminalsMap = FerriesConsts.init().terminalMap
+        
+        
+        for terminal in terminalsMap.values {
+            let terminalLocation = CLLocationCoordinate2D(latitude: terminal.latitude, longitude: terminal.longitude)
+            let marker = GMSMarker(position: terminalLocation)
+            marker.snippet = "terminal"
+            marker.zIndex = 2
+            marker.icon = terminalImage
+            marker.userData = terminal
+            terminalMarkers.insert(marker)
             
-         // get map with terminal locations
-            let terminalsMap = FerriesConsts.init().terminalMap
-            for terminal in terminalsMap.values {
-                let terminalLocation = CLLocationCoordinate2D(latitude: terminal.latitude, longitude: terminal.longitude)
-                let marker = GMSMarker(position: terminalLocation)
-                marker.snippet = "terminal"
-                marker.zIndex = 1
-                marker.icon = terminalImage
-                marker.userData = terminal
-                terminalMarkers.insert(marker)
-            }
+           
+                
+            
         }
+    }
+                
+            
+        
         
         func drawTerminals(){
             if embeddedMapViewController != nil {
@@ -364,16 +376,55 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
             }
         }
     
+    
+    // MARK: favorite location
+    func saveCurrentLocation(){
+        
+        let alertController = UIAlertController(title: "New Favorite Location", message:nil, preferredStyle: .alert)
+        
+        alertController.addTextField { (textfield) in
+            textfield.placeholder = "Name"
+        }
+        
+        alertController.view.tintColor = Colors.tintColor
+
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+
+        let okAction = UIAlertAction(title: "Ok", style: .default) { (_) -> Void in
+            MyAnalytics.event(category: "Vessel Watch", action: "UIAction", label: "Favorite Location Saved")
+            let textf = alertController.textFields![0] as UITextField
+            if let mapView = self.embeddedMapViewController.view as? GMSMapView{
+                let favoriteLocation = VesselWatchFavoriteLocationItem()
+                favoriteLocation.name = textf.text!
+                favoriteLocation.latitude = mapView.camera.target.latitude
+                favoriteLocation.longitude = mapView.camera.target.longitude
+                favoriteLocation.zoom = mapView.camera.zoom
+                FavoriteLocationStore.saveVesselWatchFavorite(favoriteLocation)
+            }
+        }
+        alertController.addAction(okAction)
+
+        present(alertController, animated: false, completion: nil)
+    }
+    
+    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
+        if let mapView = embeddedMapViewController.view as? GMSMapView {
+            UserDefaults.standard.set(mapView.camera.target.latitude, forKey: UserDefaultsKeys.vesselWatchMapLat)
+            UserDefaults.standard.set(mapView.camera.target.longitude, forKey: UserDefaultsKeys.vesselWatchMapLon)
+            UserDefaults.standard.set(mapView.camera.zoom, forKey: UserDefaultsKeys.vesselWatchMapZoom)
+        }
+    }
+    
     // MARK: MapMarkerViewController protocol method
     func mapReady() {
 
         if embeddedMapViewController != nil {
-        
-            let location = VesselWatchStore.getRouteLocation(scheduleId: routeId)
-            let zoom = VesselWatchStore.getRouteZoom(scheduleId: routeId)
             
-            embeddedMapViewController.goToLocation(location: location, zoom: zoom)
-  
+            if !(vesselWatchFavSegue) {
+                let location = VesselWatchStore.getRouteLocation(scheduleId: routeId)
+                let zoom = VesselWatchStore.getRouteZoom(scheduleId: routeId)
+                embeddedMapViewController.goToLocation(location: location, zoom: zoom)
+            }
         }
         
         activityIndicator.startAnimating()
@@ -394,7 +445,11 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         
         if marker.snippet == "camera" {
             performSegue(withIdentifier: SegueCamerasViewController, sender: marker)
-        } else if marker.snippet == "vessel" {
+        }
+        if marker.snippet == "terminal" {
+            performSegue(withIdentifier: SegueTerminalsViewController, sender: marker)
+        }
+        else if marker.snippet == "vessel" {
             performSegue(withIdentifier: SegueVesselDetailsViewController, sender: marker)
         }
         return true
@@ -417,7 +472,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     // MARK: Naviagtion
     // Get refrence to child VC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? MapViewController, segue.identifier == "EmbedMapSegue" {
+        if let vc = segue.destination as? VesselWatchMapViewController, segue.identifier == "EmbedMapSegue" {
             vc.markerDelegate = self
             vc.mapDelegate = self
             self.embeddedMapViewController = vc
@@ -427,6 +482,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
             let cameraItem = ((sender as! GMSMarker).userData as! CameraItem)
             let destinationViewController = segue.destination as! CameraViewController
             destinationViewController.cameraItem = cameraItem
+            destinationViewController.vesselWatchSegue = true
             destinationViewController.adTarget = "ferries"
         }
         
@@ -434,6 +490,14 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
             let vesselItem = ((sender as! GMSMarker).userData as! VesselItem)
             let destinationViewController = segue.destination as! VesselDetailsViewController
             destinationViewController.vesselItem = vesselItem
+            segue.destination.title = "Ferries"
+        }
+        
+        if segue.identifier == SegueTerminalsViewController {
+            let ferriesTerminalItem = ((sender as! GMSMarker).userData as! FerriesTerminalItem)
+            let destinationViewController = segue.destination as! TerminalViewController
+            destinationViewController.ferriesTerminalItem = ferriesTerminalItem.terminalId
+            segue.destination.title = "Terminals"
         }
         
         if segue.identifier == SegueSettingsPopover {

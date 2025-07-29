@@ -47,6 +47,8 @@ class CachesStore {
     static let vesselUpdateTime: TimeInterval = 30 // once every 30 seconds
     static let spacesUpdateTime: TimeInterval = 60 // once a minute
     static let ferryUpdateTime: Int = 300 // once every 5 minutes
+    static let ferryDetailUpdateTime: TimeInterval = 60 // once a minute
+    static let terminalUpdateTime: TimeInterval = 60 // once a minute
 
     static let alertsUpdateTime: TimeInterval = 60 // once a minute
     static let alertsCacheTime: Int = 60 // once a minute
@@ -58,9 +60,7 @@ class CachesStore {
     
     static let travelTimeCacheTime: Int = 300 // once every 5 minutes
 
-    static let ferryDetailUpdateTime: TimeInterval = 60 // once a minute
 
-    
     static func initCacheItem(){
         do {
             let realm = try Realm()

@@ -45,10 +45,18 @@ class CameraViewController: UIViewController, BannerViewDelegate, MapMarkerDeleg
     var cameraItem: CameraItem = CameraItem()
     var adTarget: String = "other"
     var adsEnabled = true
+    var vesselWatchSegue = false
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = cameraItem.roadName
+        
+        if (vesselWatchSegue) {
+            self.navigationItem.title = "Cameras"
+        }
+        else {
+            self.navigationItem.title = cameraItem.roadName
+        }
 
         cameraIconLabel.text = "Camera"
         cameraIconImage.image = UIImage(named: "icMapCamera")
@@ -143,6 +151,30 @@ class CameraViewController: UIViewController, BannerViewDelegate, MapMarkerDeleg
             mapView.settings.setAllGesturesEnabled(true)
             mapView.moveCamera(GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: self.cameraItem.latitude, longitude: self.cameraItem.longitude), zoom: 12))
             
+            // Check for traffic layer settings
+            if (vesselWatchSegue) {
+                    let trafficLayerPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.ferryTrafficLayer)
+                    if let trafficLayerVisible = trafficLayerPref {
+                        if (trafficLayerVisible == "on") {
+                            UserDefaults.standard.set("on", forKey: UserDefaultsKeys.ferryTrafficLayer)
+                            mapView.isTrafficEnabled = true
+                        } else {
+                            UserDefaults.standard.set("off", forKey: UserDefaultsKeys.ferryTrafficLayer)
+                            mapView.isTrafficEnabled = false
+                        }
+                    }
+                }
+            
+            else {
+                let trafficLayerPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.trafficLayer)
+                if let trafficLayerVisible = trafficLayerPref {
+                    if (trafficLayerVisible == "on") {
+                        mapView.isTrafficEnabled = true
+                    } else {
+                        mapView.isTrafficEnabled = false
+                    }
+                }
+            }
         }
         
         let placeholder: UIImage? = UIImage(named: "imagePlaceholder")

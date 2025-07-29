@@ -412,7 +412,7 @@
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9hJ-zA-Z8A">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                 <items>
-                                    <navigationItem title="More" id="CGh-ec-Ydq">
+                                    <navigationItem title="Settings" id="CGh-ec-Ydq">
                                         <barButtonItem key="leftBarButtonItem" title="Done" id="9VA-JQ-6dF">
                                             <connections>
                                                 <action selector="closeAction:" destination="iX4-th-1S0" id="M63-K9-UbE"/>

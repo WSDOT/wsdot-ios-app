@@ -40,6 +40,10 @@ class UserDefaultsKeys {
     static let mapLon = "MapLongitudeBound"
     static let mapZoom = "MapZoom"
     
+    static let vesselWatchMapLat = "VesselWatchMapLatitudeBound"
+    static let vesselWatchMapLon = "VesselWatchMapLongitudeBound"
+    static let vesselWatchMapZoom = "VesselWatchMapZoom"
+    
     static let hasSeenWarning = "HasSeenWarning"
     
     static let shouldCluster = "shouldClusterCameraIcons"

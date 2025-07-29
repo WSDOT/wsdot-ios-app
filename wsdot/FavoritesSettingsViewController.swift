@@ -25,7 +25,7 @@ class FavoritesSettingsViewController: UIViewController {
     let sectionCellIdentifier = "SectionCell"
     let textCellIdentifier = "TextCell"
 
-    let numFavoriteSections = 8
+    let numFavoriteSections = 9
 
     var sectionTypesOrderRawArray = UserDefaults.standard.array(forKey: UserDefaultsKeys.favoritesOrder) as? [Int] ?? [Int]()
 
@@ -58,8 +58,11 @@ class FavoritesSettingsViewController: UIViewController {
         for pass in MountainPassStore.findFavoritePasses() {
             MountainPassStore.updateFavorite(pass, newValue: false)
         }
-        for location in FavoriteLocationStore.getFavorites() {
+        for location in FavoriteLocationStore.getTrafficMapFavorites() {
             FavoriteLocationStore.deleteFavorite(location)
+        }
+        for location in FavoriteLocationStore.getVesselWatchFavorites() {
+            FavoriteLocationStore.deleteVesselWatchFavorite(location)
         }
         for route in MyRouteStore.getSelectedRoutes() {
             _ = MyRouteStore.updateSelected(route, newValue: false)

@@ -30,6 +30,7 @@ class FavoritesHomeViewController: RefreshViewController {
     let segueMyRouteReportViewController = "MyRouteReportViewController"
     let segueFavoritesSettingsViewController = "FavoritesSettingsViewController"
     let segueTrafficMapViewController = "TrafficMapViewController"
+    let segueVesselWatchViewController = "VesselWatchViewController"
     let segueRouteDeparturesViewController = "SailingsViewController"
     let segueRouteAlertsViewController = "RouteAlertsViewController"
     let segueCameraViewController = "CameraViewController"
@@ -48,13 +49,16 @@ class FavoritesHomeViewController: RefreshViewController {
     var travelTimeGroups = [TravelTimeItemGroup]()
     var ferrySchedules = [FerryScheduleItem]()
     var mountainPasses = [MountainPassItem]()
-    var savedLocations = [FavoriteLocationItem]()
+    var savedTrafficMapLocations = [FavoriteLocationItem]()
+    var savedVesselWatchLocations = [VesselWatchFavoriteLocationItem]()
     var myRoutes = [MyRouteItem]()
     var tollRates = [TollRateSignItem]()
     var borderWaits = [BorderWaitItem]()
     
     let mountainPassViewController = MountainPassesViewController()
     
+    private var vesselWatchFav = false
+
 
     @IBOutlet weak var emptyFavoritesView: UIView!
     @IBOutlet weak var tableView: UITableView!
@@ -117,8 +121,10 @@ class FavoritesHomeViewController: RefreshViewController {
             return ferrySchedules.count
         case .mountainPass:
             return mountainPasses.count
-        case .mapLocation:
-            return savedLocations.count
+        case .trafficMapLocation:
+            return savedTrafficMapLocations.count
+        case .vesselWatchLocation:
+            return savedVesselWatchLocations.count
         case .tollRate:
             return tollRates.count
         case .borderWait:
@@ -149,8 +155,10 @@ class FavoritesHomeViewController: RefreshViewController {
             return ferrySchedules.count > 0 ? MyRouteStore.sectionTitles[FavoritesContent.ferrySchedule.rawValue] : ""
         case .mountainPass:
             return mountainPasses.count > 0 ? MyRouteStore.sectionTitles[FavoritesContent.mountainPass.rawValue] : ""
-        case .mapLocation:
-            return savedLocations.count > 0 ? MyRouteStore.sectionTitles[FavoritesContent.mapLocation.rawValue] : ""
+        case .trafficMapLocation:
+            return savedTrafficMapLocations.count > 0 ? MyRouteStore.sectionTitles[FavoritesContent.trafficMapLocation.rawValue] : ""
+        case .vesselWatchLocation:
+            return savedVesselWatchLocations.count > 0 ? MyRouteStore.sectionTitles[FavoritesContent.vesselWatchLocation.rawValue] : ""
         case .tollRate:
             return tollRates.count > 0 ? MyRouteStore.sectionTitles[FavoritesContent.tollRate.rawValue] : ""
         case .borderWait:
@@ -173,18 +181,19 @@ class FavoritesHomeViewController: RefreshViewController {
             sectionTypesOrderRawArray.append(FavoritesContent.route.rawValue)
             sectionTypesOrderRawArray.append(FavoritesContent.ferrySchedule.rawValue)
             sectionTypesOrderRawArray.append(FavoritesContent.mountainPass.rawValue)
-            sectionTypesOrderRawArray.append(FavoritesContent.mapLocation.rawValue)
+            sectionTypesOrderRawArray.append(FavoritesContent.trafficMapLocation.rawValue)
+            sectionTypesOrderRawArray.append(FavoritesContent.vesselWatchLocation.rawValue)
             sectionTypesOrderRawArray.append(FavoritesContent.camera.rawValue)
             sectionTypesOrderRawArray.append(FavoritesContent.travelTime.rawValue)
             sectionTypesOrderRawArray.append(FavoritesContent.tollRate.rawValue)
             sectionTypesOrderRawArray.append(FavoritesContent.borderWait.rawValue)
             UserDefaults.standard.set(sectionTypesOrderRawArray, forKey: UserDefaultsKeys.favoritesOrder)
-        } else if sectionTypesOrderRawArray.count < 7 { // Add toll rates & border waits
+        } else if sectionTypesOrderRawArray.count < 8 { // Add toll rates & border waits
             sectionTypesOrderRawArray.append(FavoritesContent.tollRate.rawValue)
             sectionTypesOrderRawArray.append(FavoritesContent.borderWait.rawValue)
             UserDefaults.standard.set(sectionTypesOrderRawArray, forKey: UserDefaultsKeys.favoritesOrder)
-        } else if sectionTypesOrderRawArray.count < 8 { // Added border waits
-            sectionTypesOrderRawArray.append(FavoritesContent.borderWait.rawValue)
+        } else if sectionTypesOrderRawArray.count < 9 { // Added border waits
+            sectionTypesOrderRawArray.append(FavoritesContent.vesselWatchLocation.rawValue)
             UserDefaults.standard.set(sectionTypesOrderRawArray, forKey: UserDefaultsKeys.favoritesOrder)
         }
         
@@ -214,7 +223,8 @@ extension FavoritesHomeViewController {
         travelTimeGroups = TravelTimesStore.findFavoriteTimes()
         ferrySchedules = FerryRealmStore.findFavoriteSchedules()
         mountainPasses = MountainPassStore.findFavoritePasses()
-        savedLocations = FavoriteLocationStore.getFavorites()
+        savedTrafficMapLocations = FavoriteLocationStore.getTrafficMapFavorites()
+        savedVesselWatchLocations = FavoriteLocationStore.getVesselWatchFavorites()
         myRoutes = MyRouteStore.getSelectedRoutes()
         tollRates = TollRateSignsStore.findFavoriteTollSigns()
         borderWaits = BorderWaitStore.getFavoriteWaits()
@@ -262,7 +272,8 @@ extension FavoritesHomeViewController {
             self.travelTimeGroups = TravelTimesStore.findFavoriteTimes()
             self.ferrySchedules = FerryRealmStore.findFavoriteSchedules()
             self.mountainPasses = MountainPassStore.findFavoritePasses()
-            self.savedLocations = FavoriteLocationStore.getFavorites()
+            self.savedTrafficMapLocations = FavoriteLocationStore.getTrafficMapFavorites()
+            self.savedVesselWatchLocations = FavoriteLocationStore.getVesselWatchFavorites()
             self.tollRates = TollRateSignsStore.findFavoriteTollSigns()
             self.borderWaits = BorderWaitStore.getFavoriteWaits()
             
@@ -294,7 +305,8 @@ extension FavoritesHomeViewController {
             (self.travelTimeGroups.count == 0) &&
             (self.ferrySchedules.count == 0) &&
             (self.mountainPasses.count == 0) &&
-            (self.savedLocations.count == 0) &&
+            (self.savedTrafficMapLocations.count == 0) &&
+            (self.savedVesselWatchLocations.count == 0) &&
             (self.tollRates.count == 0) &&
             (self.myRoutes.count == 0) &&
             (self.borderWaits.count == 0)
@@ -428,12 +440,17 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             cameraCell.textLabel?.text = camera.title
             return cameraCell
         
-        case .mapLocation:
+        case .trafficMapLocation:
             
             let locationCell = tableView.dequeueReusableCell(withIdentifier: textCellIdentifier, for: indexPath)
-            locationCell.textLabel?.text = savedLocations[indexPath.row].name
+            locationCell.textLabel?.text = savedTrafficMapLocations[indexPath.row].name
             return locationCell
             
+        case .vesselWatchLocation:
+            let locationCell = tableView.dequeueReusableCell(withIdentifier: textCellIdentifier, for: indexPath)
+            locationCell.textLabel?.text = savedVesselWatchLocations[indexPath.row].name
+            return locationCell
+        
         case .travelTime:
         
             let travelTimeCell = tableView.dequeueReusableCell(withIdentifier: travelTimesCellIdentifier) as! GroupRouteCell
@@ -785,7 +802,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             
             let alertController = UIAlertController(title: "Edit Name", message:nil, preferredStyle: .alert)
             alertController.addTextField { (textfield) in
-                textfield.placeholder = self.savedLocations[indexPath.row].name
+                textfield.placeholder = self.savedTrafficMapLocations[indexPath.row].name
             }
             
             alertController.view.tintColor = Colors.tintColor
@@ -795,10 +812,10 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 let textf = alertController.textFields![0] as UITextField
                 var name = textf.text!
                 if name.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "" {
-                    name = self.savedLocations[indexPath.row].name
+                    name = self.savedTrafficMapLocations[indexPath.row].name
                 }
                 
-                FavoriteLocationStore.updateName(self.savedLocations[indexPath.row], name: name)
+                FavoriteLocationStore.updateName(self.savedTrafficMapLocations[indexPath.row], name: name)
                 self.tableView.reloadData()
             }
             
@@ -815,11 +832,18 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
         
             // Delete the row from the data source
             switch self.getType(forSection: indexPath.section) {
-            case .mapLocation:
-                FavoriteLocationStore.deleteFavorite(self.savedLocations[indexPath.row])
-                self.savedLocations.remove(at: indexPath.row)
+            case .trafficMapLocation:
+                FavoriteLocationStore.deleteFavorite(self.savedTrafficMapLocations[indexPath.row])
+                self.savedTrafficMapLocations.remove(at: indexPath.row)
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
                 break
+                
+            case .vesselWatchLocation:
+                FavoriteLocationStore.deleteVesselWatchFavorite(self.savedVesselWatchLocations[indexPath.row])
+                self.savedVesselWatchLocations.remove(at: indexPath.row)
+                self.tableView.deleteRows(at: [indexPath], with: .fade)
+                break
+                
             case .camera:
                 CamerasStore.updateFavorite(self.cameras[indexPath.row], newValue: false)
                 self.cameras.remove(at: indexPath.row)
@@ -858,7 +882,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
         
         if getType(forSection: indexPath.section) == .route {
             return [deleteAction, renameRouteAction]
-        } else if getType(forSection: indexPath.section) == .mapLocation {
+        } else if getType(forSection: indexPath.section) == .trafficMapLocation {
             return [deleteAction, renameLocationAction]
         } else {
             return [deleteAction]
@@ -868,8 +892,12 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
  // MARK: - Navigation
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (getType(forSection: indexPath.section)){
-        case .mapLocation:
+        case .trafficMapLocation:
             performSegue(withIdentifier: segueTrafficMapViewController, sender: nil)
+            tableView.deselectRow(at: indexPath, animated: true)
+            break
+        case .vesselWatchLocation:
+            performSegue(withIdentifier: segueVesselWatchViewController, sender: nil)
             tableView.deselectRow(at: indexPath, animated: true)
             break
         case .camera:
@@ -914,11 +942,32 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 UserDefaults.standard.set(myRoutes[mapButton.tag].displayZoom, forKey: UserDefaultsKeys.mapZoom)
                 segue.destination.title = "Traffic Map"
             } else if let indexPath = tableView.indexPathForSelectedRow {
-                let locationItem = self.savedLocations[indexPath.row] as FavoriteLocationItem
+                let locationItem = self.savedTrafficMapLocations[indexPath.row] as FavoriteLocationItem
                 UserDefaults.standard.set(locationItem.latitude, forKey: UserDefaultsKeys.mapLat)
                 UserDefaults.standard.set(locationItem.longitude, forKey: UserDefaultsKeys.mapLon)
                 UserDefaults.standard.set(locationItem.zoom, forKey: UserDefaultsKeys.mapZoom)
                 segue.destination.title = "Traffic Map"
+            }
+        }
+        
+        if segue.identifier == segueVesselWatchViewController {
+            
+            if let mapButton = sender as! UIButton? {
+                UserDefaults.standard.set(myRoutes[mapButton.tag].displayLatitude, forKey: UserDefaultsKeys.vesselWatchMapLat)
+                UserDefaults.standard.set(myRoutes[mapButton.tag].displayLongitude, forKey: UserDefaultsKeys.vesselWatchMapLon)
+                UserDefaults.standard.set(myRoutes[mapButton.tag].displayZoom, forKey: UserDefaultsKeys.vesselWatchMapZoom)
+                segue.destination.title = "Vessel Watch"
+            } else if let indexPath = tableView.indexPathForSelectedRow {
+                let locationItem = self.savedVesselWatchLocations[indexPath.row] as VesselWatchFavoriteLocationItem
+                UserDefaults.standard.set(locationItem.latitude, forKey: UserDefaultsKeys.vesselWatchMapLat)
+                UserDefaults.standard.set(locationItem.longitude, forKey: UserDefaultsKeys.vesselWatchMapLon)
+                UserDefaults.standard.set(locationItem.zoom, forKey: UserDefaultsKeys.vesselWatchMapZoom)
+                segue.destination.title = "Vessel Watch"
+                
+                if let vesselWatchViewController = segue.destination as? VesselWatchViewController {
+                    vesselWatchFav = true
+                    vesselWatchViewController.vesselWatchFavSegue = vesselWatchFav
+                }
             }
         }
        

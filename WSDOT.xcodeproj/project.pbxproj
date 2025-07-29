@@ -18,6 +18,11 @@
 		02D7F1ED2614CCE000BD81CC /* BridgeAlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D7F1EC2614CCE000BD81CC /* BridgeAlertItem.swift */; };
 		02D7F1F22614CCED00BD81CC /* BridgeAlertsRealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D7F1F12614CCED00BD81CC /* BridgeAlertsRealmStore.swift */; };
 		02D7F1F72614D7DE00BD81CC /* BridgeAlertsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D7F1F62614D7DE00BD81CC /* BridgeAlertsTableViewController.swift */; };
+		550195192E17058F0004AD74 /* VesselWatchFavoriteLocationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550195182E17058F0004AD74 /* VesselWatchFavoriteLocationItem.swift */; };
+		551927692DFA282C0082D807 /* TerminalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551927682DFA282C0082D807 /* TerminalStore.swift */; };
+		5519276D2DFA28770082D807 /* TerminalItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5519276C2DFA28770082D807 /* TerminalItem.swift */; };
+		5519276F2DFA38BB0082D807 /* TerminalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5519276E2DFA38BB0082D807 /* TerminalViewController.swift */; };
+		552490DE2E1A048A000DE7A3 /* VesselWatchMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552490DD2E1A048A000DE7A3 /* VesselWatchMapViewController.swift */; };
 		5568FB032CB99B7A000850AE /* TravelTimes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5568FB022CB99B7A000850AE /* TravelTimes.storyboard */; };
 		558F4FE82BC9F06000EC6CAD /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 558F4FE72BC9F06000EC6CAD /* PrivacyInfo.xcprivacy */; };
 		55A080A928C91A60004219EE /* BridgeAlertDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A080A828C91A60004219EE /* BridgeAlertDetailViewController.swift */; };
@@ -274,6 +279,11 @@
 		02D7F1F62614D7DE00BD81CC /* BridgeAlertsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeAlertsTableViewController.swift; sourceTree = "<group>"; };
 		08B5584F4B8FFF1035CFBE34 /* Pods_WSDOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WSDOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F733049676C72FA80F317B5 /* Pods-WSDOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSDOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WSDOT/Pods-WSDOT.debug.xcconfig"; sourceTree = "<group>"; };
+		550195182E17058F0004AD74 /* VesselWatchFavoriteLocationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VesselWatchFavoriteLocationItem.swift; sourceTree = "<group>"; };
+		551927682DFA282C0082D807 /* TerminalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalStore.swift; sourceTree = "<group>"; };
+		5519276C2DFA28770082D807 /* TerminalItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalItem.swift; sourceTree = "<group>"; };
+		5519276E2DFA38BB0082D807 /* TerminalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalViewController.swift; sourceTree = "<group>"; };
+		552490DD2E1A048A000DE7A3 /* VesselWatchMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VesselWatchMapViewController.swift; sourceTree = "<group>"; };
 		5568FB022CB99B7A000850AE /* TravelTimes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TravelTimes.storyboard; sourceTree = "<group>"; };
 		558F4FE72BC9F06000EC6CAD /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		55A080A828C91A60004219EE /* BridgeAlertDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeAlertDetailViewController.swift; sourceTree = "<group>"; };
@@ -641,6 +651,7 @@
 		9A0616781D62283F00126520 /* VesselWatch */ = {
 			isa = PBXGroup;
 			children = (
+				5519276E2DFA38BB0082D807 /* TerminalViewController.swift */,
 				9A0616791D62285A00126520 /* VesselWatchViewController.swift */,
 				9A0616B81D63867A00126520 /* VesselDetailsViewController.swift */,
 				9AD0A0DB2358ED1700952AB4 /* VesselWatchSettingsViewController.swift */,
@@ -652,6 +663,7 @@
 			isa = PBXGroup;
 			children = (
 				9A06167B1D622AE800126520 /* MapViewController.swift */,
+				552490DD2E1A048A000DE7A3 /* VesselWatchMapViewController.swift */,
 				9A4BBAAF2125C53500DE6F1B /* SimpleMapViewController.swift */,
 				9A06167E1D62602500126520 /* MapMarkerDelegate.swift */,
 				9A7BC0AB1D9DBAB400EF760C /* CameraClusterItem.swift */,
@@ -664,6 +676,7 @@
 		9A0616B31D63671400126520 /* VesselWatch */ = {
 			isa = PBXGroup;
 			children = (
+				550195182E17058F0004AD74 /* VesselWatchFavoriteLocationItem.swift */,
 				9A0616B61D63674500126520 /* VesselWatchStore.swift */,
 				9A0616B41D63672A00126520 /* VesselItem.swift */,
 			);
@@ -1522,6 +1535,8 @@
 		9AE486421D495A49007A92E3 /* Terminals */ = {
 			isa = PBXGroup;
 			children = (
+				5519276C2DFA28770082D807 /* TerminalItem.swift */,
+				551927682DFA282C0082D807 /* TerminalStore.swift */,
 				9AE4863D1D49594D007A92E3 /* FerriesTerminalMap.swift */,
 				9AE486431D495ACB007A92E3 /* FerriesTerminalItem.swift */,
 			);
@@ -2180,6 +2195,7 @@
 				9AFEECE11D3925400078A781 /* CachesStore.swift in Sources */,
 				9A2F4A5D1D52747900911AF5 /* FerryScheduleRealmDataModel.swift in Sources */,
 				0242912C2434E98800A55735 /* NetworkUtils.swift in Sources */,
+				550195192E17058F0004AD74 /* VesselWatchFavoriteLocationItem.swift in Sources */,
 				9A6FBCD81D6B5EDD00CDCE16 /* RestAreaViewController.swift in Sources */,
 				9A6FBCEF1D6C9B2C00CDCE16 /* FavoriteLocationItem.swift in Sources */,
 				9A6FBD231D6DF9AB00CDCE16 /* BorderWaitsViewController.swift in Sources */,
@@ -2236,6 +2252,7 @@
 				9A0719331D42732A007BB4C5 /* INDLinkLabel.swift in Sources */,
 				9AE6D0BE22CBDE81009A70E8 /* WsdotURLS.swift in Sources */,
 				02D7F1ED2614CCE000BD81CC /* BridgeAlertItem.swift in Sources */,
+				551927692DFA282C0082D807 /* TerminalStore.swift in Sources */,
 				9A6FBD371D6E413A00CDCE16 /* MountainPassTabBarViewController.swift in Sources */,
 				9AE6B77E209CF965001DE80F /* PassableSwitch.swift in Sources */,
 				9A6A0029210105070005CC7F /* TollRatesTabBarViewController.swift in Sources */,
@@ -2252,6 +2269,7 @@
 				9A2F4A701D53AA5C00911AF5 /* CameraRealmStore.swift in Sources */,
 				9A6FBCFE1D6CAE5700CDCE16 /* ExpressLaneItem.swift in Sources */,
 				9ACDCA3F216405B5004972C5 /* TerminalSelectionViewController.swift in Sources */,
+				5519276F2DFA38BB0082D807 /* TerminalViewController.swift in Sources */,
 				9A6FBCFC1D6CAC0800CDCE16 /* ExpressLaneCell.swift in Sources */,
 				9A2BA5CF1F20FF2300B2092F /* BestTimesToTravelStore.swift in Sources */,
 				9A7BC0D11DA3F31B00EF760C /* GMUSimpleClusterAlgorithm.m in Sources */,
@@ -2350,11 +2368,13 @@
 				9AEF4D9E1D773040003ECA34 /* NewsViewController.swift in Sources */,
 				9AF474B020E3E9BC00E7740C /* RouteView.swift in Sources */,
 				9A0719351D4274B8007BB4C5 /* LinkCell.swift in Sources */,
+				5519276D2DFA28770082D807 /* TerminalItem.swift in Sources */,
 				9A0616D71D664D2300126520 /* FourColTableViewCell.swift in Sources */,
 				9A7BC0AC1D9DBAB400EF760C /* CameraClusterItem.swift in Sources */,
 				0263A86721FBD73E0090A954 /* MyRouteSetupViewController.swift in Sources */,
 				9A0616D51D6638AB00126520 /* TollRateSignsStore.swift in Sources */,
 				9A81A57A1D4AC5840049913A /* RouteCamerasViewController.swift in Sources */,
+				552490DE2E1A048A000DE7A3 /* VesselWatchMapViewController.swift in Sources */,
 				9A52F1F12208AA9B0008038B /* MyRouteTravelTimesViewController.swift in Sources */,
 				9AB5490C1D7A1D2800927F13 /* MyAnalytics.swift in Sources */,
 				9AEEDDA41D6F3D810032F5EC /* MountainPassCell.swift in Sources */,

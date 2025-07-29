@@ -319,7 +319,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
-            schemaVersion: 15,
+            schemaVersion: 16,
 
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
@@ -478,6 +478,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                         newObject!["delete"] = false
                     }
                     migration.deleteData(forType: CacheItem.className())
+                }
+                
+                /* Adds vessel watch favorite location fields.
+                 Clears cache to force refresh
+                 */
+                if (oldSchemaVersion < 16) {
+                    migration.enumerateObjects(ofType: VesselWatchFavoriteLocationItem.className()) { oldObject, newObject in
+                        newObject!["id"] = 0
+                        newObject!["name"] = ""
+                        newObject!["zoom"] = 0.0
+                        newObject!["latitude"] = 0.0
+                        newObject!["longitude"] = 0.0
+
+                    }
+                    migration.deleteData(forType: CacheItem.className())
+                    migration.deleteData(forType: VesselWatchFavoriteLocationItem.className())
+
+                    
                 }
                 
         })

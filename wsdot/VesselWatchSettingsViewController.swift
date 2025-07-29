@@ -33,9 +33,9 @@ class VesselWatchSettingsViewController: UIViewController, UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        menu_options = ["Traffic Layer", "Terminals", "Cameras", "Vessels", "Labels"]
+        menu_options = ["Traffic Layer", "Terminals", "Cameras", "Vessels", "Labels", "Favorite Location"]
         
-        menu_icon_names = ["","trafficlayer", "terminal", "camera_icon", "vessels", "label"]
+        menu_icon_names = ["","trafficlayer", "terminal", "camera_icon", "vessels", "label","icHomeFavorites",]
         
         self.view.backgroundColor = ThemeManager.currentTheme().mainColor
     }
@@ -88,7 +88,7 @@ class VesselWatchSettingsViewController: UIViewController, UITableViewDataSource
         
         return cell
         
-    } else if indexPath.row < 6 {
+    } else if indexPath.row < 7 {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! SettingsCell
         
@@ -181,6 +181,13 @@ class VesselWatchSettingsViewController: UIViewController, UITableViewDataSource
             cell.infoButton.isHidden = true
             break
             
+        case menu_options[5]:
+            cell.selectionStyle = .blue
+            cell.settingSwitch.isHidden = true
+            cell.favoriteImageView.isHidden = false
+            cell.infoButton.isHidden = true
+            break
+    
         default: break
         }
         return cell
@@ -192,6 +199,23 @@ class VesselWatchSettingsViewController: UIViewController, UITableViewDataSource
         return cell
         
     }
+    }
+    
+    // MARK: Table View Delegate Methods
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch (indexPath.row) {
+        case 6:
+            favoriteLocationAction()
+        default:
+            break
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func favoriteLocationAction(){
+        self.dismiss(animated: true) {
+            self.my_parent!.saveCurrentLocation()
+        }
     }
     
     
