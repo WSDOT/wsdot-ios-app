@@ -21,11 +21,17 @@ import RealmSwift
 
 class FavoriteLocationStore{
     
-    // Gets all saved Favorite Items from Realm
-    static func getFavorites() -> [FavoriteLocationItem]{
+    // Gets saved Favorite Items from Realm
+    static func getTrafficMapFavorites() -> [FavoriteLocationItem]{
         let realm = try! Realm()
         let favoriteLocationItems = realm.objects(FavoriteLocationItem.self)
         return Array(favoriteLocationItems)
+    }
+    
+    static func getVesselWatchFavorites() -> [VesselWatchFavoriteLocationItem]{
+        let realm = try! Realm()
+        let vesselWatchFavoriteLocationItem = realm.objects(VesselWatchFavoriteLocationItem.self)
+        return Array(vesselWatchFavoriteLocationItem)
     }
     
     // Saves a favorite location, giving it a unique ID based on the current time
@@ -43,6 +49,21 @@ class FavoriteLocationStore{
         }
     }
     
+    static func saveVesselWatchFavorite(_ favorite: VesselWatchFavoriteLocationItem){
+        
+        favorite.id = TimeUtils.currentTime
+        
+        let realm = try! Realm()
+        do {
+            try realm.write{
+                realm.add(favorite)
+            }
+        }catch{
+            print("FavoriteLocationStore.saveFavorite: Realm write error")
+        }
+    }
+    
+    
     static func updateName(_ location: FavoriteLocationItem, name: String){
         let realm = try! Realm()
         do {
@@ -57,6 +78,18 @@ class FavoriteLocationStore{
     
     // Removes a favorite item from Realm
     static func deleteFavorite(_ favorite: FavoriteLocationItem){
+        let realm = try! Realm()
+        do {
+            try realm.write{
+                realm.delete(favorite)
+            }
+        }catch{
+            print("FavoriteLocationStore.deleteFavorite: Realm write error")
+        }
+    }
+    
+    
+    static func deleteVesselWatchFavorite(_ favorite: VesselWatchFavoriteLocationItem){
         let realm = try! Realm()
         do {
             try realm.write{

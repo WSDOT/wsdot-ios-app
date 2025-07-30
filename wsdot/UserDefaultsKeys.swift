@@ -27,6 +27,11 @@ class UserDefaultsKeys {
     static let mountainPasses = "MountainPassMarkerPref"
     static let trafficLayer = "TrafficLayerMarkerPref"
     static let travelTimes = "TravelTimesMarkerPref"
+    static let ferryTrafficLayer = "FerryTrafficLayerMarkerPref"
+    static let ferryVesselLayer = "FerryVesselMarkerPref"
+    static let ferryLabelLayer = "FerryLabelMarkerPref"
+    static let ferryTerminalLayer = "FerryTerminalLayerMarkerPref"
+    static let ferryCameraLayer = "FerryCameraLayerMarkerPref"
 
 
     static let favoritesOrder = "FavoritesSectionOrderArrayv1"
@@ -34,6 +39,10 @@ class UserDefaultsKeys {
     static let mapLat = "MapLatitudeBound"
     static let mapLon = "MapLongitudeBound"
     static let mapZoom = "MapZoom"
+    
+    static let vesselWatchMapLat = "VesselWatchMapLatitudeBound"
+    static let vesselWatchMapLon = "VesselWatchMapLongitudeBound"
+    static let vesselWatchMapZoom = "VesselWatchMapZoom"
     
     static let hasSeenWarning = "HasSeenWarning"
     

@@ -246,6 +246,7 @@ struct WSDOTErrorStrings {
     static let ferrySailings = "can't download ferry sailings"
     static let ferryCameras = "can't download terminal cameras"
     static let ferryAlerts = "can't download ferry alerts"
+    static let ferryTerminal = "can't download ferry terminal"
     static let cameras = "can't download cameras"
     static let borderWaits = "can't download border waits"
     static let eventStatusAlert = "can't download alert"

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0hy-HL-p0M">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0hy-HL-p0M">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -450,6 +450,7 @@ Tap star icons to add Favorites</string>
                         <segue destination="0lX-t0-vJz" kind="show" identifier="MyRouteReportViewController" id="JXq-Vi-ZkZ"/>
                         <segue destination="QtI-NJ-tN5" kind="show" identifier="RouteAlertsViewController" id="54S-Ei-Egu"/>
                         <segue destination="3Qo-4v-sQJ" kind="show" identifier="TravelTimesViewController" id="X3U-Wu-njd"/>
+                        <segue destination="I0D-Xj-rWg" kind="show" identifier="VesselWatchViewController" id="dL5-28-gD8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IWz-d1-mpb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -571,6 +572,16 @@ Tap star icons to add Favorites</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4dn-gZ-p2a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="778" y="347"/>
+        </scene>
+        <!--VesselWatchViewController-->
+        <scene sceneID="9zV-5F-pAC">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Ferries" referencedIdentifier="VesselWatchViewController" id="I0D-Xj-rWg" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="6Rp-ah-bMM"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FeO-wu-SDB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="852" y="395"/>
         </scene>
     </scenes>
     <resources>

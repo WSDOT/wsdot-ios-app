@@ -75,7 +75,7 @@ class VesselWatchStore: Decodable {
     }
     
     //Converts JSON from api into and array of FerriesRouteScheduleItems
-    fileprivate static func parseVesselsJSON(_ json: JSON) ->[VesselItem]{
+     static func parseVesselsJSON(_ json: JSON) ->[VesselItem]{
         
         var vessels = [VesselItem]()
         

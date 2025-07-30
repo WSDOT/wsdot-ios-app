@@ -28,17 +28,20 @@ class BorderWaitsViewController: RefreshViewController, UITableViewDelegate, UIT
     @IBOutlet weak var bannerView: AdManagerBannerView!
     @IBOutlet weak var segmentedControlView: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
+    
     var displayedWaits = [BorderWaitItem]()
     var northboundWaits = [BorderWaitItem]()
     var southboundWaits = [BorderWaitItem]()
-    
+
     let refreshControl = UIRefreshControl()
+    
+    fileprivate var actionSheet: UIAlertController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         displayedWaits = northboundWaits
-
+        
         // refresh controller
         refreshControl.addTarget(self, action: #selector(BorderWaitsViewController.refreshAction(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
@@ -106,7 +109,7 @@ class BorderWaitsViewController: RefreshViewController, UITableViewDelegate, UIT
             })
         }
     }
-
+    
     
     // MARK: Table View Data Source Methods
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -149,7 +152,7 @@ class BorderWaitsViewController: RefreshViewController, UITableViewDelegate, UIT
         // set up favorite button
         cell.favoriteButton.setImage(wait.selected ? UIImage(named: "icStarSmallFilled") : UIImage(named: "icStarSmall"), for: .normal)
         cell.favoriteButton.tintColor = ThemeManager.currentTheme().darkColor
-
+        
         cell.favoriteButton.tag = indexPath.row
         cell.favoriteButton.addTarget(self, action: #selector(favoriteAction(_:)), for: .touchUpInside)
         
@@ -158,7 +161,6 @@ class BorderWaitsViewController: RefreshViewController, UITableViewDelegate, UIT
         return cell
     }
     
-
     
     // Remove and add hairline for nav bar
     override func viewWillAppear(_ animated: Bool) {
@@ -195,18 +197,43 @@ class BorderWaitsViewController: RefreshViewController, UITableViewDelegate, UIT
         }
     }
     
+    @objc func actionSheetBackgroundTapped() {
+        self.actionSheet.dismiss(animated: true, completion: nil)
+    }
+    
     // MARK: Favorite action
     @objc func favoriteAction(_ sender: UIButton) {
         let index = sender.tag
         let wait = displayedWaits[index]
+        let alertTime = 1.5
         
         if (wait.selected){
             BorderWaitStore.updateFavorite(wait, newValue: false)
             sender.setImage(UIImage(named: "icStarSmall"), for: .normal)
-        }else {
+            
+            if UIDevice.current.userInterfaceIdiom != .pad {
+                actionSheet = UIAlertController(title: nil, message: "Removed from Favorites", preferredStyle: .actionSheet)
+                self.present(actionSheet, animated: true) {
+                    self.actionSheet.view.superview?.subviews.first?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.actionSheetBackgroundTapped)))
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + alertTime) {
+                        self.actionSheet.dismiss(animated: true)
+                    }
+                }
+            }
+            
+        } else {
             BorderWaitStore.updateFavorite(wait, newValue: true)
             sender.setImage(UIImage(named: "icStarSmallFilled"), for: .normal)
+            
+            if UIDevice.current.userInterfaceIdiom != .pad {
+                actionSheet = UIAlertController(title: nil, message: "Added to Favorites", preferredStyle: .actionSheet)
+                self.present(actionSheet, animated: true) {
+                    self.actionSheet.view.superview?.subviews.first?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.actionSheetBackgroundTapped)))
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + alertTime) {
+                        self.actionSheet.dismiss(animated: true)
+                    }
+                }
+            }
         }
     }
-    
 }

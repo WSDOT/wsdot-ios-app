@@ -38,8 +38,9 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
     
     let refreshControl = UIRefreshControl()
     
+    fileprivate var actionSheet: UIAlertController!
+    
     @IBOutlet weak var travelTimeTextLabel: UILabel!
-
     @IBOutlet weak var infoLinkButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
@@ -334,19 +335,44 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
             }
         }
     }
+    
+    @objc func actionSheetBackgroundTapped() {
+        self.actionSheet.dismiss(animated: true, completion: nil)
+    }
 
     // MARK: Favorite action
     @objc func favoriteAction(_ sender: UIButton) {
         let index = sender.tag
         let tollSign = self.displayedTollRates[index]
+        let alertTime = 1.5
         
         if (tollSign.selected){
             TollRateSignsStore.updateFavorite(tollSign, newValue: false)
             sender.setImage(UIImage(named: "icStarSmall"), for: .normal)
-        }else {
+            
+            if UIDevice.current.userInterfaceIdiom != .pad {
+                actionSheet = UIAlertController(title: nil, message: "Removed from Favorites", preferredStyle: .actionSheet)
+                self.present(actionSheet, animated: true) {
+                    self.actionSheet.view.superview?.subviews.first?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.actionSheetBackgroundTapped)))
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + alertTime) {
+                        self.actionSheet.dismiss(animated: true)
+                    }
+                }
+            }
+            
+        } else {
             TollRateSignsStore.updateFavorite(tollSign, newValue: true)
             sender.setImage(UIImage(named: "icStarSmallFilled"), for: .normal)
+                        
+            if UIDevice.current.userInterfaceIdiom != .pad {
+                actionSheet = UIAlertController(title: nil, message: "Added to Favorites", preferredStyle: .actionSheet)
+                self.present(actionSheet, animated: true) {
+                    self.actionSheet.view.superview?.subviews.first?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.actionSheetBackgroundTapped)))
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + alertTime) {
+                        self.actionSheet.dismiss(animated: true)
+                    }
+                }
+            }
         }
     }
-    
 }

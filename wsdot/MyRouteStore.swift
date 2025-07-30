@@ -27,17 +27,18 @@ enum FavoritesContent: Int {
     case route = 0 // traffic map showing users route.
     case ferrySchedule = 1
     case mountainPass = 2
-    case mapLocation = 3
+    case trafficMapLocation = 3
     case camera = 4 // User selected cameras or cameras on user route
     case travelTime = 5 // user selected travel times or time on users route
     case tollRate = 6
     case borderWait = 7
+    case vesselWatchLocation = 8
 }
 
 class MyRouteStore {
     
     // titles for each content type section.
-    static let sectionTitles = ["My Routes", "Ferry Schedules", "Mountain Passes", "Traffic Map Locations", "Cameras", "Travel Times", "Toll Rates", "Border Waits"]
+    static let sectionTitles = ["My Routes", "Ferry Schedules", "Mountain Passes", "Traffic Map Locations", "Cameras", "Travel Times", "Toll Rates", "Border Waits", "Vessel Watch Locations"]
     
     static func getRoutes() -> [MyRouteItem] {
         let realm = try! Realm()

@@ -55,9 +55,6 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     fileprivate let cameraIconImage = UIImage(named: "icMapCamera")
     
-    fileprivate let cameraBarButtonImage = UIImage(named: "icCamera")
-    fileprivate let cameraHighlightBarButtonImage = UIImage(named: "icCameraHighlight")
-    
     fileprivate let mountainPassIconImage = UIImage(named: "icMountainPass")
 
     fileprivate let travelTimesIconImage = UIImage(named: "icTravelTime")
@@ -77,24 +74,24 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set default value for mountain passes if there is none
+        // Set default value for traffic map icons
         if (UserDefaults.standard.string(forKey: UserDefaultsKeys.mountainPasses) == nil){
             UserDefaults.standard.set("on", forKey: UserDefaultsKeys.mountainPasses)
         }
         
-        // Set default value for travel times display if there is none
         if (UserDefaults.standard.string(forKey: UserDefaultsKeys.travelTimes) == nil){
             UserDefaults.standard.set("on", forKey: UserDefaultsKeys.travelTimes)
+            fetchTravelTimes(force: false, group: serviceGroup)
         }
         
-        // Set default value for camera display if there is none
         if (UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras) == nil){
             UserDefaults.standard.set("on", forKey: UserDefaultsKeys.cameras)
         }
         
-        if (UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras) == "on"){
-            cameraBarButton.image = cameraHighlightBarButtonImage
+        if (UserDefaults.standard.string(forKey: UserDefaultsKeys.alerts) == nil){
+            UserDefaults.standard.set("on", forKey: UserDefaultsKeys.alerts)
         }
+        
         
         self.loadCameraMarkers()
         self.drawCameras()
@@ -191,23 +188,6 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     
     @IBAction func goToLocation(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: SegueGoToPopover, sender: self)
-    }
-    
-    @IBAction func cameraToggleButtonPressed(_ sender: UIBarButtonItem) {
-        let camerasPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras)
-        if let camerasVisible = camerasPref {
-            if (camerasVisible == "on") {
-                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Hide Cameras")
-                UserDefaults.standard.set("off", forKey: UserDefaultsKeys.cameras)
-                sender.image = cameraBarButtonImage
-                removeCameras()
-            } else {
-                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Show Cameras")
-                sender.image = cameraHighlightBarButtonImage
-                UserDefaults.standard.set("on", forKey: UserDefaultsKeys.cameras)
-                drawCameras()
-            }
-        }
     }
     
     @IBAction func travelerInfoAction(_ sender: UIBarButtonItem) {

@@ -21,63 +21,45 @@
 import Foundation
 import UIKit
 import SafariServices
+import SwiftyJSON
+import Alamofire
 
-class VesselDetailsViewController: UIViewController{
-    
-    let vesselBaseUrlString = "https://www.wsdot.com/ferries/vesselwatch/VesselDetail.aspx?vessel_id="
-    
+
+class VesselDetailsViewController: RefreshViewController {
+        
     var vesselItem: VesselItem? = nil
-    
-    @IBOutlet weak var routeLabel: UILabel!
-    @IBOutlet weak var departLabel: UILabel!
-    @IBOutlet weak var arrLabel: UILabel!
-    @IBOutlet weak var schedDepartLabel: UILabel!
-    @IBOutlet weak var actualDepartLabel: UILabel!
-    @IBOutlet weak var etaLabel: UILabel!
-    @IBOutlet weak var headinglabel: UILabel!
-    @IBOutlet weak var speedLabel: UILabel!
+
+    fileprivate weak var timer: Timer?
+        
+    @IBOutlet weak var vesselLabel: UILabel!
+    @IBOutlet weak var destinationLabel1: UILabel!
+    @IBOutlet weak var destinationLabel2: UILabel!
+    @IBOutlet weak var schedDepartLabel1: UILabel!
+    @IBOutlet weak var schedDepartLabel2: UILabel!
+    @IBOutlet weak var actualDepartLabel1: UILabel!
+    @IBOutlet weak var actualDepartLabel2: UILabel!
+    @IBOutlet weak var etaLabel1: UILabel!
+    @IBOutlet weak var etaLabel2: UILabel!
     @IBOutlet weak var updatedLabel: UILabel!
+    @IBOutlet weak var vesselImage: UIImageView!
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var vesselStackView: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = vesselItem?.vesselName
+        self.activityIndicatorView.startAnimating()
+        self.activityIndicatorView.isHidden = false
         
-        routeLabel.text = vesselItem?.route
-        departLabel.text = vesselItem?.departingTerminal
-        arrLabel.text = vesselItem?.arrivingTerminal
-        
-        if let departTime = vesselItem?.nextDeparture {
-            schedDepartLabel.text = TimeUtils.getTimeOfDay(departTime)
-        } else {
-            schedDepartLabel.text = "--:--"
-        }
-        
-        if let actualDepartTime = vesselItem?.leftDock {
-            actualDepartLabel.text = TimeUtils.getTimeOfDay(actualDepartTime)
-        } else {
-            actualDepartLabel.text = "--:--"
-        }
- 
-        if let eta = vesselItem?.eta {
-            etaLabel.text = TimeUtils.getTimeOfDay(eta)
-        } else {
-            etaLabel.text = "--:--"
-        }
-        
-        if let speed = vesselItem?.speed {
-            speedLabel.text = String(speed)
-        } else {
-            speedLabel.text = ""
-        }
-        
-        headinglabel.text = vesselItem?.headText
+        self.vesselStackView.isHidden = true
 
-        if let updated = vesselItem?.updateTime {
-              updatedLabel.text = TimeUtils.timeAgoSinceDate(date: updated, numericDates: true)
-        } else {
-            updatedLabel.text = ""
-        }
+        let backButton = UIBarButtonItem()
+        backButton.title = "Vessel Watch"
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+
+        self.timer = Timer.scheduledTimer(timeInterval: CachesStore.ferryDetailUpdateTime, target: self, selector: #selector(self.vesselDetailTimerTask), userInfo: nil, repeats: true)
+        
+        self.loadVessel()
         
     }
     
@@ -86,18 +68,112 @@ class VesselDetailsViewController: UIViewController{
         MyAnalytics.screenView(screenName: "VesselDetails")
     }
     
-    @IBAction func linkAction(_ sender: UIBarButtonItem) {
+    @objc func vesselDetailTimerTask(_ timer:Timer) {
         
-        let config = SFSafariViewController.Configuration()
-        config.entersReaderIfAvailable = false
-        let svc = SFSafariViewController(url: URL(string: vesselBaseUrlString + String((vesselItem?.vesselID)!))!, configuration: config)
+        self.activityIndicatorView.startAnimating()
+        self.activityIndicatorView.isHidden = false
         
-        if #available(iOS 10.0, *) {
-            svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor
-            svc.preferredBarTintColor = ThemeManager.currentTheme().mainColor
-        } else {
-            svc.view.tintColor = ThemeManager.currentTheme().mainColor
-        }
-        self.present(svc, animated: true, completion: nil)
+        self.loadVessel()
+        
     }
+    
+    func loadVessel() {
+                
+          AF.request("https://www.wsdot.wa.gov/ferries/api/vessels/rest/vessellocations?apiaccesscode=" + ApiKeys.getWSDOTKey()).validate().responseDecodable(of: VesselWatchStore.self) { response in
+              switch response.result {
+              case .success:
+                  if let value = response.data {
+                      let json = JSON(value)
+                      let vessels = VesselWatchStore.parseVesselsJSON(json)
+                      
+                      for vessel in vessels {
+                          
+                          if (vessel.vesselID == self.vesselItem?.vesselID) {
+                                                            
+                              self.vesselLabel.text = vessel.vesselName
+                              self.vesselLabel.font = UIFont(descriptor: UIFont.preferredFont(forTextStyle: .title2).fontDescriptor.withSymbolicTraits(.traitBold)!, size: UIFont.preferredFont(forTextStyle: .title2).pointSize)
+
+                              
+                              self.destinationLabel1.font = UIFont(descriptor: UIFont.preferredFont(forTextStyle: .body).fontDescriptor.withSymbolicTraits(.traitBold)!, size: UIFont.preferredFont(forTextStyle: .body).pointSize)
+                              
+                              if (self.vesselItem?.departingTerminal != "N/A") && (vessel.arrivingTerminal != "N/A") {
+                                  self.destinationLabel2.text = String(vessel.departingTerminal) + " to " + String(vessel.arrivingTerminal)
+                              }
+                              else {
+                                  self.destinationLabel2.text = "Not Available"
+                              }
+                              
+                              self.schedDepartLabel1.font = UIFont(descriptor: UIFont.preferredFont(forTextStyle: .body).fontDescriptor.withSymbolicTraits(.traitBold)!, size: UIFont.preferredFont(forTextStyle: .body).pointSize)
+                              
+                              if let departTime = vessel.nextDeparture {
+                                  self.schedDepartLabel2.text = TimeUtils.getTimeOfDay(departTime)
+                              } else {
+                                  self.schedDepartLabel2.text = "--:--"
+                              }
+                              
+                              self.actualDepartLabel1.font = UIFont(descriptor: UIFont.preferredFont(forTextStyle: .body).fontDescriptor.withSymbolicTraits(.traitBold)!, size: UIFont.preferredFont(forTextStyle: .body).pointSize)
+
+                              
+                              if let actualDepartTime = vessel.leftDock {
+                                  self.actualDepartLabel2.text = TimeUtils.getTimeOfDay(actualDepartTime)
+                              } else {
+                                  self.actualDepartLabel2.text = "--:--"
+                              }
+                              
+                              self.etaLabel1.font = UIFont(descriptor: UIFont.preferredFont(forTextStyle: .body).fontDescriptor.withSymbolicTraits(.traitBold)!, size: UIFont.preferredFont(forTextStyle: .body).pointSize)
+
+                              if let eta = vessel.eta {
+                                  self.etaLabel2.text = TimeUtils.getTimeOfDay(eta)
+                              } else {
+                                  self.etaLabel2.text = "--:--"
+                              }
+                      
+                              self.updatedLabel.text = TimeUtils.timeAgoSinceDate(date: vessel.updateTime, numericDates: true)
+                              
+                              self.vesselImage.image = UIImage(named: self.vesselItem?.vesselName ?? "")
+                              self.vesselImage.layer.borderWidth = 0.5
+                          }
+                      }
+                      self.vesselStackView.isHidden = false
+                  }
+                  
+
+              case .failure(let error):
+                  print(error)
+                  AlertMessages.getConnectionAlert(backupURL: WsdotURLS.ferries, message: WSDOTErrorStrings.ferriesSchedule)
+                  
+                  self.vesselStackView.isHidden = true
+              }
+              
+              self.activityIndicatorView.stopAnimating()
+              self.activityIndicatorView.isHidden = true
+          }
+      }
+    
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        self.loadVessel()
+        
+    }
+    
+    @IBAction func refreshPressed(_ sender: UIBarButtonItem) {
+        MyAnalytics.event(category: "VesselDetails", action: "UIAction", label: "Refresh")
+                
+        self.activityIndicatorView.startAnimating()
+        self.activityIndicatorView.isHidden = false
+        self.loadVessel()
+
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if self.isBeingDismissed || self.isMovingFromParent {
+            if timer != nil {
+                self.timer?.invalidate()
+            }
+        }
+    }
+    
 }

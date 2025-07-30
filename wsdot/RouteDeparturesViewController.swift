@@ -58,6 +58,8 @@ class RouteDeparturesViewController: UIViewController, BannerViewDelegate {
     let favoriteBarButton = UIBarButtonItem()
     let alertBarButton = UIBarButtonItem()
     
+    fileprivate var actionSheet: UIAlertController!
+    
     internal func adViewDidReceiveAd(_ bannerView: AdManagerBannerView) {
         print("wsdot debug: adViewDidReceiveAd")
         if let responseInfo = bannerView.responseInfo {
@@ -341,16 +343,43 @@ class RouteDeparturesViewController: UIViewController, BannerViewDelegate {
         performSegue(withIdentifier: SegueRouteAlertsViewController, sender: sender)
     }
     
+    @objc func actionSheetBackgroundTapped() {
+        self.actionSheet.dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: Favorite action
     @objc func updateFavorite(_ sender: UIBarButtonItem) {
     
         let isFavorite = FerryRealmStore.toggleFavorite(routeId)
+        let alertTime = 1.5
         
         if (isFavorite == 1){
             favoriteBarButton.image = UIImage(named: "icStarSmallFilled")
-            favoriteBarButton.accessibilityLabel = "remove from favorites"
+            favoriteBarButton.accessibilityLabel = "add to favorites"
+            
+            if UIDevice.current.userInterfaceIdiom != .pad {
+                actionSheet = UIAlertController(title: nil, message: "Added to Favorites", preferredStyle: .actionSheet)
+                self.present(actionSheet, animated: true) {
+                    self.actionSheet.view.superview?.subviews.first?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.actionSheetBackgroundTapped)))
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + alertTime) {
+                        self.actionSheet.dismiss(animated: true)
+                    }
+                }
+            }
+            
         } else if (isFavorite == 0) {
             favoriteBarButton.image = UIImage(named: "icStarSmall")
-            favoriteBarButton.accessibilityLabel = "add to favorites"
+            favoriteBarButton.accessibilityLabel = "remove from favorites"
+            
+            if UIDevice.current.userInterfaceIdiom != .pad {
+                actionSheet = UIAlertController(title: nil, message: "Removed from Favorites", preferredStyle: .actionSheet)
+                self.present(actionSheet, animated: true) {
+                    self.actionSheet.view.superview?.subviews.first?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.actionSheetBackgroundTapped)))
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + alertTime) {
+                        self.actionSheet.dismiss(animated: true)
+                    }
+                }
+            }
         } else {
             print("favorites write error")
         }

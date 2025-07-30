@@ -46,9 +46,9 @@ class VesselItem {
     let speed: Float
     let updateTime: Date
    
-    var route: String = "Not available"
-    var arrivingTerminal = "Not available"
-    var departingTerminal = "Not available"
+    var route: String = "Not Available"
+    var arrivingTerminal = "N/A"
+    var departingTerminal = "N/A"
     
     var arrivingTerminalID = -1
     var departingTerminalID = -1
