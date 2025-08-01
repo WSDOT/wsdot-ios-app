@@ -66,7 +66,7 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="P5q-Jx-Phh"/>
-                                    <barButtonItem image="icAlert" id="f2S-Vg-19G">
+                                    <barButtonItem image="icAlert2" id="f2S-Vg-19G">
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="Alerts In This Area"/>
                                         </userDefinedRuntimeAttributes>
@@ -575,7 +575,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icAlert" width="24" height="24"/>
+        <image name="icAlert2" width="24" height="24"/>
         <image name="icDotMenu" width="24" height="24"/>
         <image name="icFavoriteDefault" width="32" height="32"/>
         <image name="icLocation" width="24" height="24"/>
