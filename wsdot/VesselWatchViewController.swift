@@ -83,7 +83,11 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         }
         
         ferryTrafficLayer()
-                
+        
+        if let mapView = embeddedMapViewController.view as? GMSMapView{
+            mapView.settings.myLocationButton = true
+            mapView.isMyLocationEnabled = true
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -117,6 +117,10 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         bannerView.load(request)
         bannerView.delegate = self
         
+        if let mapView = embeddedMapViewController.view as? GMSMapView{
+            mapView.settings.myLocationButton = true
+            mapView.isMyLocationEnabled = true
+        }
     }
     
     // add notification observers & set timer
