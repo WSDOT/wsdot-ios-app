@@ -59,6 +59,9 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
 
     fileprivate let travelTimesIconImage = UIImage(named: "icTravelTime")
     
+    fileprivate let cameraBarButtonImage = UIImage(named: "icCamera")
+    fileprivate let cameraHighlightBarButtonImage = UIImage(named: "icCameraHighlight")
+    
     var tipView = EasyTipView(text: "")
     
     @IBOutlet weak var travelInformationButton: UIBarButtonItem!
@@ -84,12 +87,16 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
             fetchTravelTimes(force: false, group: serviceGroup)
         }
         
+        if (UserDefaults.standard.string(forKey: UserDefaultsKeys.alerts) == nil){
+            UserDefaults.standard.set("on", forKey: UserDefaultsKeys.alerts)
+        }
+        
         if (UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras) == nil){
             UserDefaults.standard.set("on", forKey: UserDefaultsKeys.cameras)
         }
         
-        if (UserDefaults.standard.string(forKey: UserDefaultsKeys.alerts) == nil){
-            UserDefaults.standard.set("on", forKey: UserDefaultsKeys.alerts)
+        if (UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras) == "on"){
+            cameraBarButton.image = cameraHighlightBarButtonImage
         }
         
         
@@ -119,8 +126,13 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         
         if let mapView = embeddedMapViewController.view as? GMSMapView{
             mapView.settings.myLocationButton = true
-            mapView.isMyLocationEnabled = true
         }
+    }
+    
+    func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
+        MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "My Location")
+        embeddedMapViewController.goToUsersLocation()
+        return false
     }
     
     // add notification observers & set timer
@@ -181,11 +193,6 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         }
     }
     
-    @IBAction func myLocationButtonPressed(_ sender: UIBarButtonItem) {
-        MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "My Location")
-        embeddedMapViewController.goToUsersLocation()
-    }
-    
     @IBAction func alertsInAreaButtonPressed(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: SegueAlertsInArea, sender: sender)
     }
@@ -193,6 +200,24 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
     @IBAction func goToLocation(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: SegueGoToPopover, sender: self)
     }
+    
+    @IBAction func cameraToggleButtonPressed(_ sender: UIBarButtonItem) {
+        let camerasPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras)
+        if let camerasVisible = camerasPref {
+            if (camerasVisible == "on") {
+                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Hide Cameras")
+                UserDefaults.standard.set("off", forKey: UserDefaultsKeys.cameras)
+                sender.image = cameraBarButtonImage
+                removeCameras()
+            } else {
+                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Show Cameras")
+                sender.image = cameraHighlightBarButtonImage
+                UserDefaults.standard.set("on", forKey: UserDefaultsKeys.cameras)
+                drawCameras()
+            }
+        }
+    }
+    
     
     @IBAction func travelerInfoAction(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: SegueTravlerInfoViewController, sender: self)

@@ -23,6 +23,15 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mCg-ql-Rvd">
                                 <rect key="frame" x="0.0" y="559" width="375" height="44"/>
                                 <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="rcb-YF-VCT"/>
+                                    <barButtonItem image="icCamera" id="4er-mk-VWE">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="camera toggle"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="cameraToggleButtonPressed:" destination="fa2-BD-KKh" id="h31-rK-HiO"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="jPL-ax-FfM"/>
                                     <barButtonItem image="icDotMenu" id="XQL-7t-bi2">
                                         <connections>
@@ -57,6 +66,7 @@
                     <navigationItem key="navigationItem" title="Vessel Watch" id="Qnu-LN-47K"/>
                     <connections>
                         <outlet property="activityIndicator" destination="ACs-iT-ykb" id="D9L-rz-gGP"/>
+                        <outlet property="cameraBarButton" destination="4er-mk-VWE" id="dng-pf-fjs"/>
                         <segue destination="yoM-cs-BEf" kind="show" identifier="CamerasViewController" id="E22-A6-z9N"/>
                         <segue destination="0hD-sb-OuA" kind="show" identifier="VesselDetailsViewController" id="brb-bs-5Z4"/>
                         <segue destination="ujp-Ps-Ns9" kind="popoverPresentation" identifier="VesselWatchSettingsViewController" popoverAnchorBarButtonItem="XQL-7t-bi2" id="60g-FE-azz">
@@ -1559,6 +1569,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="icAlertTab" width="32" height="32"/>
+        <image name="icCamera" width="32" height="32"/>
         <image name="icDotMenu" width="24" height="24"/>
         <image name="icDownArrow" width="24" height="24"/>
         <image name="icFavoriteDefault" width="32" height="32"/>
@@ -1568,13 +1579,13 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1583,10 +1594,10 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

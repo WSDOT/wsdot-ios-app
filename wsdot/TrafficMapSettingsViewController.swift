@@ -39,11 +39,10 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                         "Mountain Passes",
                         "Rest Areas",
                         "Travel Times",
-                        "Cameras",
                         "Cluster Cameras",
                         "Favorite Location"]
         
-        menu_icon_names = ["","trafficlayer", "alert_high_icon","icMountainPass","restarea_icon","icTravelTime","camera_icon","cluster_icon","icHomeFavorites", "trafficMapKey"]
+        menu_icon_names = ["","trafficlayer", "alert_high_icon","icMountainPass","restarea_icon","icTravelTime","cluster_icon","icHomeFavorites", "trafficMapKey"]
 
         self.view.backgroundColor = ThemeManager.currentTheme().mainColor
     }
@@ -96,7 +95,7 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
         
             return cell
         
-        } else if indexPath.row < 9 {
+        } else if indexPath.row < 8 {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! SettingsCell
             
@@ -194,23 +193,6 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                 break
                 
             case menu_options[5]:
-                let cameraPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras)
-                if let cameraVisible = cameraPref {
-                    if (cameraVisible == "on") {
-                        cell.settingSwitch.isOn = true
-                    } else {
-                        cell.settingSwitch.isOn = false
-                    }
-                }
-
-                cell.settingSwitch.addTarget(self, action: #selector(TrafficMapSettingsViewController.changeCameraPref(_:)), for: .valueChanged)
-                cell.settingSwitch.isHidden = false
-                cell.selectionStyle = .none
-                cell.favoriteImageView.isHidden = true
-                cell.infoButton.isHidden = true
-                break
-                
-            case menu_options[6]:
                 let clusterPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.shouldCluster)
                 if let clusterVisible = clusterPref {
                     if (clusterVisible == "on") {
@@ -228,7 +210,7 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                 cell.infoButton.addTarget(self, action: #selector(TrafficMapSettingsViewController.clusterInfoAlert(_:)), for: .touchUpInside)
                 break
                 
-            case menu_options[7]:
+            case menu_options[6]:
                 cell.selectionStyle = .blue
                 cell.settingSwitch.isHidden = true
                 cell.favoriteImageView.isHidden = false
@@ -257,7 +239,7 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
     // MARK: Table View Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.row) {
-        case 8:
+        case 7:
             favoriteLocationAction()
         default:
             break
@@ -372,23 +354,6 @@ class TrafficMapSettingsViewController: UIViewController, UITableViewDataSource,
                 UserDefaults.standard.set("on", forKey: UserDefaultsKeys.travelTimes)
                 my_parent!.drawTravelTimes()
             }
-        }
-    }
-    
-    
-    @objc func changeCameraPref(_ sender: UISwitch){
-        let cameraPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.cameras)
-        if let cameraVisible = cameraPref {
-            if (cameraVisible == "on") {
-                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Cameras  Off")
-                UserDefaults.standard.set("off", forKey: UserDefaultsKeys.cameras)
-            my_parent!.removeCameras()
-
-            } else {
-                MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "Cameras On")
-                UserDefaults.standard.set("on", forKey: UserDefaultsKeys.cameras)
-            }
-            my_parent!.drawCameras()
         }
     }
     

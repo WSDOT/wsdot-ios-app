@@ -74,6 +74,15 @@
                                             <action selector="alertsInAreaButtonPressed:" destination="1Nk-0b-wXD" id="avG-9R-OcN"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="hga-eT-mYe"/>
+                                    <barButtonItem image="icCamera" id="b0u-iG-95s">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="Camera Toggle"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="cameraToggleButtonPressed:" destination="1Nk-0b-wXD" id="EeT-ij-lwp"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="aJN-yJ-q7N"/>
                                     <barButtonItem image="icDotMenu" id="Yhn-F9-Ikf">
                                         <userDefinedRuntimeAttributes>
@@ -135,6 +144,7 @@
                     <connections>
                         <outlet property="activityIndicatorView" destination="ma7-um-xVJ" id="0Ww-Wc-JTH"/>
                         <outlet property="bannerView" destination="Qyr-NB-cah" id="ocH-R2-n1i"/>
+                        <outlet property="cameraBarButton" destination="b0u-iG-95s" id="lI9-kO-rIh"/>
                         <outlet property="travelInformationButton" destination="6VY-LF-EDH" id="sp2-lz-uU3"/>
                         <segue destination="qsb-BA-WFJ" kind="popoverPresentation" identifier="TrafficMapGoToViewController" popoverAnchorBarButtonItem="OPC-ew-Vud" id="YMu-Xo-RbI">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -576,16 +586,17 @@
     </scenes>
     <resources>
         <image name="icAlert2" width="24" height="24"/>
+        <image name="icCamera" width="32" height="32"/>
         <image name="icDotMenu" width="24" height="24"/>
         <image name="icFavoriteDefault" width="32" height="32"/>
         <image name="icLocation" width="24" height="24"/>
         <image name="icMenu" width="24" height="24"/>
         <image name="icRefresh" width="24" height="24"/>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -594,7 +605,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
