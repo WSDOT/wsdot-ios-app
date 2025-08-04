@@ -53,8 +53,6 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     fileprivate let vesselNames = ["Cathlamet":"CAT", "Chelan":"CHE", "Chetzemoka":"CHZ", "Chimacum":"CHI", "Issaquah":"ISS", "Kaleetan":"KAL", "Kennewick":"KEN", "Kitsap":"KIS", "Kittitas":"KIT", "Puyallup":"PUY", "Salish":"SAL", "Samish":"SAM", "Sealth":"SEA", "Spokane":"SPO", "Suquamish":"SUQ", "Tacoma":"TAC", "Tillikum":"TIL", "Tokitae":"TOK", "Walla Walla":"WAL", "Wenatchee":"WEN", "Yakima":"YAK"]
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
-    @IBOutlet weak var myLocationBarButton: UIBarButtonItem!
     @IBOutlet weak var cameraBarButton: UIBarButtonItem!
     
     var vesselWatchFavSegue = false
@@ -82,12 +80,21 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
             fetchCameras(true)
         }
         
+        if (UserDefaults.standard.string(forKey: UserDefaultsKeys.ferryCameraLayer) == "on"){
+            cameraBarButton.image = cameraHighlightBarButtonImage
+        }
+        
         ferryTrafficLayer()
         
         if let mapView = embeddedMapViewController.view as? GMSMapView{
             mapView.settings.myLocationButton = true
             mapView.isMyLocationEnabled = true
         }
+    }
+    
+    func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
+        MyAnalytics.event(category: "Vessel Watch", action: "UIAction", label: "My Location")
+        return false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -108,19 +115,31 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         MyAnalytics.screenView(screenName: "VesselWatch")
     }
     
-    @IBAction func myLocationButtonPressed(_ sender: UIBarButtonItem) {
-        MyAnalytics.event(category: "Vessel Watch", action: "UIAction", label: "My Location")
-        embeddedMapViewController.goToUsersLocation()
-    }
-    
     @IBAction func mapSettingsButtonPressed(_ sender: UIBarButtonItem) {
         MyAnalytics.event(category: "Vessel Watch", action: "UIAction", label: "Map Settings")
         performSegue(withIdentifier: SegueSettingsPopover, sender: self)
     }
     
+    @IBAction func cameraToggleButtonPressed(_ sender: UIBarButtonItem) {
+        let camerasPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.ferryCameraLayer)
+        if let camerasVisible = camerasPref {
+            if (camerasVisible == "on") {
+                MyAnalytics.event(category: "Vessel Watch", action: "UIAction", label: "Hide Cameras")
+                UserDefaults.standard.set("off", forKey: UserDefaultsKeys.ferryCameraLayer)
+                sender.image = cameraBarButtonImage
+                removeCameras()
+                
+            } else {
+                MyAnalytics.event(category: "Vessel Watch", action: "UIAction", label: "Show Cameras")
+                sender.image = cameraHighlightBarButtonImage
+                UserDefaults.standard.set("on", forKey: UserDefaultsKeys.ferryCameraLayer)
+                drawCameras()
+            }
+        }
+    }
+    
     
     func ferryTrafficLayer() {
-        
         if (UserDefaults.standard.string(forKey: UserDefaultsKeys.ferryTrafficLayer) == nil){
             UserDefaults.standard.set("on", forKey: UserDefaultsKeys.ferryTrafficLayer)
         }
@@ -360,28 +379,22 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
             marker.userData = terminal
             terminalMarkers.insert(marker)
             
-           
-                
-            
         }
     }
+    
+    func drawTerminals(){
+        if embeddedMapViewController != nil {
+            if let mapView = embeddedMapViewController.view as? GMSMapView{
+                let terminalPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.ferryTerminalLayer)
                 
-            
-        
-        
-        func drawTerminals(){
-            if embeddedMapViewController != nil {
-                if let mapView = embeddedMapViewController.view as? GMSMapView{
-                    let terminalPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.ferryTerminalLayer)
-                
-                    if (terminalPref == "on") {
-                        for terminalMarker in terminalMarkers{
-                            terminalMarker.map = mapView
-                        }
+                if (terminalPref == "on") {
+                    for terminalMarker in terminalMarkers{
+                        terminalMarker.map = mapView
                     }
                 }
             }
         }
+    }
     
     
     // MARK: favorite location

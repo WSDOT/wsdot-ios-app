@@ -33,9 +33,9 @@ class VesselWatchSettingsViewController: UIViewController, UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        menu_options = ["Traffic Layer", "Terminals", "Cameras", "Vessels", "Labels", "Favorite Location"]
+        menu_options = ["Traffic Layer", "Terminals", "Vessels", "Labels", "Favorite Location"]
         
-        menu_icon_names = ["","trafficlayer", "terminal", "camera_icon", "vessels", "label","icHomeFavorites",]
+        menu_icon_names = ["","trafficlayer", "terminal", "vessels", "label","icHomeFavorites"]
         
         self.view.backgroundColor = ThemeManager.currentTheme().mainColor
     }
@@ -63,7 +63,7 @@ class VesselWatchSettingsViewController: UIViewController, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return menu_options.count + 1 // for the legend and map style cell
+        return menu_options.count + 1 // for map style cell
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -88,7 +88,7 @@ class VesselWatchSettingsViewController: UIViewController, UITableViewDataSource
         
         return cell
         
-    } else if indexPath.row < 7 {
+    } else if indexPath.row < 6 {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! SettingsCell
         
@@ -132,24 +132,8 @@ class VesselWatchSettingsViewController: UIViewController, UITableViewDataSource
             cell.favoriteImageView.isHidden = true
             cell.infoButton.isHidden = true
             break
-            
-        case menu_options[2]:
-            let ferryCameraLayerPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.ferryCameraLayer)
-            if let ferryCameraLayerVisible = ferryCameraLayerPref {
-                if (ferryCameraLayerVisible == "on") {
-                    cell.settingSwitch.isOn = true
-                } else {
-                    cell.settingSwitch.isOn = false
-                }
-            }
-            cell.settingSwitch.addTarget(self, action: #selector(VesselWatchSettingsViewController.changeFerryCameraLayerPref(_:)), for: .valueChanged)
-            cell.settingSwitch.isHidden = false
-            cell.selectionStyle = .none
-            cell.favoriteImageView.isHidden = true
-            cell.infoButton.isHidden = true
-            break
         
-        case menu_options[3]:
+        case menu_options[2]:
             let ferryVesselLayerPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.ferryVesselLayer)
             if let ferryVesselLayerVisible = ferryVesselLayerPref {
                 if (ferryVesselLayerVisible == "on") {
@@ -165,7 +149,7 @@ class VesselWatchSettingsViewController: UIViewController, UITableViewDataSource
             cell.infoButton.isHidden = true
             break
             
-        case menu_options[4]:
+        case menu_options[3]:
             let ferryLabelLayerPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.ferryLabelLayer)
             if let ferryLabelLayerVisible = ferryLabelLayerPref {
                 if (ferryLabelLayerVisible == "on") {
@@ -181,7 +165,7 @@ class VesselWatchSettingsViewController: UIViewController, UITableViewDataSource
             cell.infoButton.isHidden = true
             break
             
-        case menu_options[5]:
+        case menu_options[4]:
             cell.selectionStyle = .blue
             cell.settingSwitch.isHidden = true
             cell.favoriteImageView.isHidden = false
@@ -204,7 +188,7 @@ class VesselWatchSettingsViewController: UIViewController, UITableViewDataSource
     // MARK: Table View Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.row) {
-        case 6:
+        case 5:
             favoriteLocationAction()
         default:
             break
@@ -313,20 +297,4 @@ class VesselWatchSettingsViewController: UIViewController, UITableViewDataSource
         }
     }
     
-    @objc func changeFerryCameraLayerPref(_ sender: UISwitch){
-        let ferryCameraLayerPref = UserDefaults.standard.string(forKey: UserDefaultsKeys.ferryCameraLayer)
-        if let ferryCameraLayerVisible = ferryCameraLayerPref {
-            if (ferryCameraLayerVisible == "on") {
-                MyAnalytics.event(category: "Vessel Watch", action: "UIAction", label: "Hide Camera Layer")
-                UserDefaults.standard.set("off", forKey: UserDefaultsKeys.ferryCameraLayer)
-                my_parent!.removeCameras()
-                
-            } else {
-                MyAnalytics.event(category: "Vessel Watch", action: "UIAction", label: "Show Camera Layer")
-                UserDefaults.standard.set("on", forKey: UserDefaultsKeys.ferryCameraLayer)
-                my_parent!.drawCameras()
-
-            }
-        }
-    }
 }
