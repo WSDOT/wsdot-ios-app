@@ -126,12 +126,12 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         
         if let mapView = embeddedMapViewController.view as? GMSMapView{
             mapView.settings.myLocationButton = true
-            mapView.isMyLocationEnabled = true
         }
     }
     
     func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
         MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "My Location")
+        embeddedMapViewController.goToUsersLocation()
         return false
     }
     

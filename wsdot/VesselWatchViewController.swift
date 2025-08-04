@@ -88,12 +88,12 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         
         if let mapView = embeddedMapViewController.view as? GMSMapView{
             mapView.settings.myLocationButton = true
-            mapView.isMyLocationEnabled = true
         }
     }
     
     func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
         MyAnalytics.event(category: "Vessel Watch", action: "UIAction", label: "My Location")
+        embeddedMapViewController.goToUsersLocation()
         return false
     }
     
