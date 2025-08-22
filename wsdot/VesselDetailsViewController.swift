@@ -36,6 +36,7 @@ class VesselDetailsViewController: RefreshViewController {
     @IBOutlet weak var schedDepartLabel: UILabel!
     @IBOutlet weak var actualDepartLabel: UILabel!
     @IBOutlet weak var etaLabel: UILabel!
+    @IBOutlet weak var speedLabel: UILabel!
     @IBOutlet weak var updatedLabel: UILabel!
     @IBOutlet weak var vesselImage: UIImageView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
@@ -124,6 +125,13 @@ class VesselDetailsViewController: RefreshViewController {
 
                               } else {
                                   self.etaLabel.attributedText = self.label(label: "Estimated Arrival Time: ", text: "--:--")
+                              }
+                              
+                              if let speed = String(vessel.speed) as NSString? {
+                                  self.speedLabel.attributedText = self.label(label: "Speed: ", text: String(speed) + " knots")
+
+                              } else {
+                                  self.speedLabel.attributedText = self.label(label: "Speed: ", text: "Not Available")
                               }
                       
                               self.updatedLabel.text = TimeUtils.timeAgoSinceDate(date: vessel.updateTime, numericDates: true)
