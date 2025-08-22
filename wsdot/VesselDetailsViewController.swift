@@ -32,14 +32,10 @@ class VesselDetailsViewController: RefreshViewController {
     fileprivate weak var timer: Timer?
         
     @IBOutlet weak var vesselLabel: UILabel!
-    @IBOutlet weak var destinationLabel1: UILabel!
-    @IBOutlet weak var destinationLabel2: UILabel!
-    @IBOutlet weak var schedDepartLabel1: UILabel!
-    @IBOutlet weak var schedDepartLabel2: UILabel!
-    @IBOutlet weak var actualDepartLabel1: UILabel!
-    @IBOutlet weak var actualDepartLabel2: UILabel!
-    @IBOutlet weak var etaLabel1: UILabel!
-    @IBOutlet weak var etaLabel2: UILabel!
+    @IBOutlet weak var routeLabel: UILabel!
+    @IBOutlet weak var schedDepartLabel: UILabel!
+    @IBOutlet weak var actualDepartLabel: UILabel!
+    @IBOutlet weak var etaLabel: UILabel!
     @IBOutlet weak var updatedLabel: UILabel!
     @IBOutlet weak var vesselImage: UIImageView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
@@ -77,6 +73,15 @@ class VesselDetailsViewController: RefreshViewController {
         
     }
     
+    func label(label: String, text: String) ->  NSAttributedString {
+        let titleAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .headline)]
+        let ContentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .body)]
+        let label = NSMutableAttributedString(string: label, attributes: titleAttributes)
+        let content = NSMutableAttributedString(string: text, attributes: ContentAttributes)
+        label.append(content)
+        return label
+    }
+    
     func loadVessel() {
                 
           AF.request("https://www.wsdot.wa.gov/ferries/api/vessels/rest/vessellocations?apiaccesscode=" + ApiKeys.getWSDOTKey()).validate().responseDecodable(of: VesselWatchStore.self) { response in
@@ -92,44 +97,36 @@ class VesselDetailsViewController: RefreshViewController {
                                                             
                               self.vesselLabel.text = vessel.vesselName
                               self.vesselLabel.font = UIFont(descriptor: UIFont.preferredFont(forTextStyle: .title2).fontDescriptor.withSymbolicTraits(.traitBold)!, size: UIFont.preferredFont(forTextStyle: .title2).pointSize)
-
-                              
-                              self.destinationLabel1.font = UIFont(descriptor: UIFont.preferredFont(forTextStyle: .body).fontDescriptor.withSymbolicTraits(.traitBold)!, size: UIFont.preferredFont(forTextStyle: .body).pointSize)
-                              
+                                                        
                               if (self.vesselItem?.departingTerminal != "N/A") && (vessel.arrivingTerminal != "N/A") {
-                                  self.destinationLabel2.text = String(vessel.departingTerminal) + " to " + String(vessel.arrivingTerminal)
+                                  self.routeLabel.attributedText = self.label(label: "Route: ", text: String(vessel.departingTerminal) + " to " + String(vessel.arrivingTerminal))
                               }
                               else {
-                                  self.destinationLabel2.text = "Not Available"
+                                  self.routeLabel.attributedText = self.label(label: "Route: ", text: "Not Available")
                               }
-                              
-                              self.schedDepartLabel1.font = UIFont(descriptor: UIFont.preferredFont(forTextStyle: .body).fontDescriptor.withSymbolicTraits(.traitBold)!, size: UIFont.preferredFont(forTextStyle: .body).pointSize)
-                              
+                                                            
                               if let departTime = vessel.nextDeparture {
-                                  self.schedDepartLabel2.text = TimeUtils.getTimeOfDay(departTime)
+                                  self.schedDepartLabel.attributedText = self.label(label: "Scheduled Departure: ", text: TimeUtils.getTimeOfDay(departTime))
+                                  
                               } else {
-                                  self.schedDepartLabel2.text = "--:--"
+                                  self.schedDepartLabel.attributedText = self.label(label: "Scheduled Departure: ", text: "--:--")
                               }
-                              
-                              self.actualDepartLabel1.font = UIFont(descriptor: UIFont.preferredFont(forTextStyle: .body).fontDescriptor.withSymbolicTraits(.traitBold)!, size: UIFont.preferredFont(forTextStyle: .body).pointSize)
-
                               
                               if let actualDepartTime = vessel.leftDock {
-                                  self.actualDepartLabel2.text = TimeUtils.getTimeOfDay(actualDepartTime)
+                                  self.actualDepartLabel.attributedText = self.label(label: "Actual Departure: ", text: TimeUtils.getTimeOfDay(actualDepartTime))
+                                  
                               } else {
-                                  self.actualDepartLabel2.text = "--:--"
+                                  self.actualDepartLabel.attributedText = self.label(label: "Actual Departure: ", text: "--:--")
                               }
                               
-                              self.etaLabel1.font = UIFont(descriptor: UIFont.preferredFont(forTextStyle: .body).fontDescriptor.withSymbolicTraits(.traitBold)!, size: UIFont.preferredFont(forTextStyle: .body).pointSize)
-
                               if let eta = vessel.eta {
-                                  self.etaLabel2.text = TimeUtils.getTimeOfDay(eta)
+                                  self.etaLabel.attributedText = self.label(label: "Estimated Arrival Time: ", text: TimeUtils.getTimeOfDay(eta))
+
                               } else {
-                                  self.etaLabel2.text = "--:--"
+                                  self.etaLabel.attributedText = self.label(label: "Estimated Arrival Time: ", text: "--:--")
                               }
                       
                               self.updatedLabel.text = TimeUtils.timeAgoSinceDate(date: vessel.updateTime, numericDates: true)
-                              
                               self.vesselImage.image = UIImage(named: self.vesselItem?.vesselName ?? "")
                               self.vesselImage.layer.borderWidth = 0.5
                           }
