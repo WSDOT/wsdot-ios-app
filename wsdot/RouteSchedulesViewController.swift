@@ -34,7 +34,7 @@ class RouteSchedulesViewController: RefreshViewController, UITableViewDelegate, 
     
     var overlayView = UIView()
     
-    let ticketsUrlString = "https://wave2go.wsdot.com/Webstore/Content.aspx?Kind=LandingPage&CG=21&C=10"
+    let ticketsUrlString = "https://wave2go.wsdot.com/webstore/landingPage?cg=21&c=76"
     
     let reservationsUrlString = "https://secureapps.wsdot.wa.gov/ferries/reservations/vehicle/Mobile/MobileDefault.aspx"
     
