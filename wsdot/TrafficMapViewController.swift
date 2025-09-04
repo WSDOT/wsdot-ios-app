@@ -124,15 +124,6 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
         bannerView.load(request)
         bannerView.delegate = self
         
-        if let mapView = embeddedMapViewController.view as? GMSMapView{
-            mapView.settings.myLocationButton = true
-        }
-    }
-    
-    func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
-        MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "My Location")
-        embeddedMapViewController.goToUsersLocation()
-        return false
     }
     
     // add notification observers & set timer
@@ -191,6 +182,17 @@ class TrafficMapViewController: UIViewController, MapMarkerDelegate, GMSMapViewD
             self.activityIndicatorView.stopAnimating()
             self.activityIndicatorView.isHidden = true
         }
+    }
+    
+    @IBAction func myLocationButtonPressed(_ sender: UIBarButtonItem) {
+        MyAnalytics.event(category: "Traffic Map", action: "UIAction", label: "My Location")
+        embeddedMapViewController.goToUsersLocation()
+        
+//        let noLocation = CLLocationCoordinate2D()
+//           let viewRegion = MKCoordinateRegionMakeWithDistance(noLocation, 200, 200)
+//           mapView.setRegion(viewRegion, animated: false)
+//           mapView.showsUserLocation = true
+//
     }
     
     @IBAction func alertsInAreaButtonPressed(_ sender: UIBarButtonItem) {
