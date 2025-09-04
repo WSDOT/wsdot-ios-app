@@ -54,6 +54,8 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var cameraBarButton: UIBarButtonItem!
+    @IBOutlet weak var myLocationBarButton: UIBarButtonItem!
+
     
     var vesselWatchFavSegue = false
     
@@ -85,16 +87,7 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
         }
         
         ferryTrafficLayer()
-        
-        if let mapView = embeddedMapViewController.view as? GMSMapView{
-            mapView.settings.myLocationButton = true
-        }
-    }
-    
-    func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
-        MyAnalytics.event(category: "Vessel Watch", action: "UIAction", label: "My Location")
-        embeddedMapViewController.goToUsersLocation()
-        return false
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -113,6 +106,11 @@ class VesselWatchViewController: UIViewController, MapMarkerDelegate, GMSMapView
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         MyAnalytics.screenView(screenName: "VesselWatch")
+    }
+    
+    @IBAction func myLocationButtonPressed(_ sender: UIBarButtonItem) {
+        MyAnalytics.event(category: "Vessel Watch", action: "UIAction", label: "My Location")
+        embeddedMapViewController.goToUsersLocation()
     }
     
     @IBAction func mapSettingsButtonPressed(_ sender: UIBarButtonItem) {

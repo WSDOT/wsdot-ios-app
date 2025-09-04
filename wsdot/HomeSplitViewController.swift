@@ -28,9 +28,17 @@ class HomeSplitViewController: UISplitViewController, UISplitViewControllerDeleg
     }
 
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
-        if (splitViewController.isCollapsed) {
+        
+        if #available(iOS 26.0, *) {
+            if (!splitViewController.isCollapsed) {
+                return false
+            }
+        }
+        
+        else if (splitViewController.isCollapsed) {
             return false
         }
+        
         return true
     }
 }
