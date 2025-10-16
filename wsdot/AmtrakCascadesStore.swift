@@ -163,7 +163,7 @@ class AmtrakCascadesStore: Decodable {
     // Builds an array of Station data for using in calculating the users distance from the station.
     static func getStations() -> [AmtrakCascadesStationItem]{
         var stations = [AmtrakCascadesStationItem]()
-        stations.append(AmtrakCascadesStationItem(id: "VAC", name: "Vancouver, BC", lat: 49.2737293, lon: -123.0979175))
+        stations.append(AmtrakCascadesStationItem(id: "VAC", name: "Vancouver, CANADA", lat: 49.2737293, lon: -123.0979175))
         stations.append(AmtrakCascadesStationItem(id: "BEL", name: "Bellingham, WA", lat: 48.720423, lon: -122.5109386))
         stations.append(AmtrakCascadesStationItem(id: "MVW", name: "Mount Vernon, WA", lat: 48.4185923, lon: -122.334973))
         stations.append(AmtrakCascadesStationItem(id: "STW", name: "Stanwood, WA", lat: 48.2417732, lon: -122.3495322))
@@ -175,7 +175,7 @@ class AmtrakCascadesStore: Decodable {
         stations.append(AmtrakCascadesStationItem(id: "OLW", name: "Olympia/Lacey, WA", lat: 46.9913576, lon: -122.793982))
         stations.append(AmtrakCascadesStationItem(id: "CTL", name: "Centralia, WA", lat: 46.7177596, lon: -122.9528291))
         stations.append(AmtrakCascadesStationItem(id: "KEL", name: "Kelso/Longview, WA", lat: 46.1422504, lon: -122.9132438))
-        stations.append(AmtrakCascadesStationItem(id: "VAN", name: "Vancouver, WA", lat: 45.6294472, lon: -122.685568))
+        stations.append(AmtrakCascadesStationItem(id: "VAN", name: "Vancouver, USA", lat: 45.6294472, lon: -122.685568))
         stations.append(AmtrakCascadesStationItem(id: "PDX", name: "Portland, OR", lat: 45.528639, lon: -122.676284))
         stations.append(AmtrakCascadesStationItem(id: "ORC", name: "Oregon City, OR", lat: 45.3659422, lon: -122.5960671))
         stations.append(AmtrakCascadesStationItem(id: "SLM", name: "Salem, OR", lat: 44.9323665, lon: -123.0281591))
@@ -187,7 +187,7 @@ class AmtrakCascadesStore: Decodable {
     // Used to populate the destination selection
     static func getDestinationData() -> [String] {
         var dest = [String]()
-        dest.append("Vancouver, BC")
+        dest.append("Vancouver, CANADA")
         dest.append("Bellingham, WA")
         dest.append("Mount Vernon, WA")
         dest.append("Stanwood, WA")
@@ -199,7 +199,7 @@ class AmtrakCascadesStore: Decodable {
         dest.append("Olympia/Lacey, WA")
         dest.append("Centralia, WA")
         dest.append("Kelso/Longview, WA")
-        dest.append("Vancouver, WA")
+        dest.append("Vancouver, USA")
         dest.append("Portland, OR")
         dest.append("Oregon City, OR")
         dest.append("Salem, OR")
@@ -213,7 +213,7 @@ class AmtrakCascadesStore: Decodable {
     // Used to populate the origin selection
     static func getOriginData() -> [String]{
         var origins = [String]()
-        origins.append("Vancouver, BC")
+        origins.append("Vancouver, CANADA")
         origins.append("Bellingham, WA")
         origins.append("Mount Vernon, WA")
         origins.append("Stanwood, WA")
@@ -225,7 +225,7 @@ class AmtrakCascadesStore: Decodable {
         origins.append("Olympia/Lacey, WA")
         origins.append("Centralia, WA")
         origins.append("Kelso/Longview, WA")
-        origins.append("Vancouver, WA")
+        origins.append("Vancouver, USA")
         origins.append("Portland, OR")
         origins.append("Oregon City, OR")
         origins.append("Salem, OR")
@@ -237,7 +237,7 @@ class AmtrakCascadesStore: Decodable {
     // Station names to ID mapping.
     static let stationIdsMap: Dictionary<String, String> = [
         "All": "N/A",
-        "Vancouver, BC": "VAC",
+        "Vancouver, CANADA": "VAC",
         "Bellingham, WA": "BEL",
         "Mount Vernon, WA": "MVW",
         "Stanwood, WA": "STW",
@@ -249,7 +249,7 @@ class AmtrakCascadesStore: Decodable {
         "Olympia/Lacey, WA": "OLW",
         "Centralia, WA": "CTL",
         "Kelso/Longview, WA": "KEL",
-        "Vancouver, WA": "VAN",
+        "Vancouver, USA": "VAN",
         "Portland, OR": "PDX",
         "Oregon City, OR": "ORC",
         "Salem, OR": "SLM",
