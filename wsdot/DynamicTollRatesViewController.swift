@@ -248,12 +248,7 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
             tripView.actionButton.tripIndex = tollSign.trips.index(of: trip)
             tripView.actionButton.addTarget(self, action: #selector(tripButtonAction(_:)), for: .touchUpInside)
             
-            if tollSign.stateRoute == 405 {
-                tripView.topLabel.text = "to \(trip.endLocationName)"
-            } else {
-                tripView.topLabel.text = "Carpools and motorcycles free"
-            }
-                
+            tripView.topLabel.text = "to \(trip.endLocationName)"
             tripView.bottomLabel.text = TimeUtils.timeAgoSinceDate(date: trip.updatedAt, numericDates: true)
                 
             if (trip.message == ""){
