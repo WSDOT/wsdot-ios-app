@@ -677,12 +677,7 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             
                 tripView.actionButton.isHidden = true
                 
-                if tollSign.stateRoute == 405 {
-                    tripView.topLabel.text = "to \(trip.endLocationName)"
-                } else {
-                    tripView.topLabel.text = "Carpools and motorcycles free"
-                }
-            
+                tripView.topLabel.text = "to \(trip.endLocationName)"
                 tripView.bottomLabel.text = TimeUtils.timeAgoSinceDate(date: trip.updatedAt, numericDates: true)
             
                 if (trip.message == ""){
