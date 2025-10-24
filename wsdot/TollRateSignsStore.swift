@@ -279,6 +279,50 @@ class TollRateSignsStore: Decodable {
             return true;
         }
 
+        /*
+         * SR 167 legacy trips to remove
+         */
+        if tripJson["StartLocationName"].stringValue == "S 23rd St"
+                && tripJson["TravelDirection"].stringValue == "S" {
+            return true;
+        }
+        if tripJson["StartLocationName"].stringValue == "S 192nd St"
+                && tripJson["TravelDirection"].stringValue == "S" {
+            return true;
+        }
+        if tripJson["StartLocationName"].stringValue == "4th Ave N"
+                && tripJson["TravelDirection"].stringValue == "S" {
+            return true;
+        }
+        if tripJson["StartLocationName"].stringValue == "15th St SW"
+                && tripJson["TravelDirection"].stringValue == "N" {
+            return true;
+        }
+        if tripJson["StartLocationName"].stringValue == "30th St NW"
+                && tripJson["TravelDirection"].stringValue == "N" {
+            return true;
+        }
+        if tripJson["StartLocationName"].stringValue == "S 265th St"
+                && tripJson["TravelDirection"].stringValue == "N" {
+            return true;
+        }
+        if tripJson["StartLocationName"].stringValue == "7th St NW"
+                && tripJson["TravelDirection"].stringValue == "N" {
+            return true;
+        }
+
+        /*
+         * Temporarily remove these until tolling starts
+         */
+        if tripJson["StartLocationName"].stringValue == "SR 410"
+                && tripJson["TravelDirection"].stringValue == "N" {
+            return true;
+        }
+        if tripJson["StartLocationName"].stringValue == "Stewart Rd"
+                && tripJson["TravelDirection"].stringValue == "N" {
+            return true;
+        }
+
         return false;
     }
 
@@ -328,37 +372,6 @@ class TollRateSignsStore: Decodable {
     
         var title = location
     
-        // Southbound name changes
-        if direction == "S" {
-            if location == "4th Ave N" {
-                title = "SR 516"
-            }
-            
-            if location == "S 192nd St" {
-                title = "S 180th St"
-            }
-            
-            if location == "S 23rd St" {
-                title = "I-405 (Renton)"
-            }
-        }
-
-        // Northbound name changes
-        if direction == "N" {
-            if location == "15th St SW" {
-                title = "SR 18 (Auburn)"
-            }
-            if location == "7th St NW" {
-                title = "15th St SW"
-            }
-            if location == "30th St NW" {
-                title = "S 277th St"
-            }
-            if location == "S 265th St" {
-                title = "SR 516"
-            }
-        }
-
         title = "Lane entrance near \(title)"
     
         return title
