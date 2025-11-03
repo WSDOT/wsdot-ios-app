@@ -1,5 +1,5 @@
 //
-//  SR520TollRatesViewController.swift
+//  TollTableViewController.swift
 //  WSDOT
 //
 //  Copyright (c) 2018 Washington State Department of Transportation
@@ -28,31 +28,91 @@ class TollTableViewController: RefreshViewController, UITableViewDelegate, UITab
     
     var tollTableItem = TollRateTableItem()
     
+    var northboundTollRates = TollRateTableItem()
+    var southboundTollRates = TollRateTableItem()
+    
     var stateRoute: Int = 0
 
     let refreshControl = UIRefreshControl()
+    
+    var list = [TollRateRowItem]()
+
 
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    
+    var tollRoute: Int = 0
+
+    @IBOutlet weak var directionSegmentControl: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         showOverlay(self.view)
         
+        directionSegmentControl.isHidden = true
+        
         // refresh controller
         refreshControl.addTarget(self, action: #selector(TollTableViewController.refreshAction(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
         
-        if let tolls = TollRateTableStore.getTollRateTableByRoute(route: self.stateRoute) {
+        
+        if let tolls = TollRateTableStore.getTollRateTableByRoute(route: tollRoute) {
             self.tollTableItem = tolls
+
         }
         
+        if (self.tollRoute == 509) {
+            
+            if let northboundTollRates = TollRateTableStore.getTollRateTableByRoute(route: 50978) {
+                self.tollTableItem = northboundTollRates
+            }
+            
+            if let southboundTollRates = TollRateTableStore.getTollRateTableByRoute(route: 50983) {
+                self.tollTableItem = southboundTollRates
+            }
+            
+            if (directionSegmentControl.selectedSegmentIndex == 0){
+                tollTableItem = northboundTollRates
+
+            } else {
+                tollTableItem = southboundTollRates
+            }
+            
+            messageLabel.text = northboundTollRates.message
+
+        }
+        
+        else if let tolls = TollRateTableStore.getTollRateTableByRoute(route: tollRoute) {
+            tollTableItem = tolls
+            messageLabel.text = tolls.message
+
+        }
+        
+        self.edgesForExtendedLayout = []
+        
+        let websiteButton = UIBarButtonItem(title: "My Good To Go", style: .plain, target: self, action: #selector(goodToGoWebsite))
+           navigationItem.rightBarButtonItem = websiteButton
+        
+        if (tollRoute == 509) {
+            directionSegmentControl.isHidden = false
+        }
+        
+
     }
+    
+    @objc func goodToGoWebsite() {
+            if let url = URL(string: "https://mygoodtogo.com") {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        MyAnalytics.screenView(screenName: "MyGoodToGo.com")
+        MyAnalytics.event(category: "Tolling", action: "open_link", label: "tolling_good_to_go")
+
+        }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        MyAnalytics.screenView(screenName: "SR520TollRates")
+        MyAnalytics.screenView(screenName: "TollRates")
         refresh(true)
     }
 
@@ -69,10 +129,29 @@ class TollTableViewController: RefreshViewController, UITableViewDelegate, UITab
                     DispatchQueue.main.async { [weak self] in
                         if let selfValue = self {
                             
+                            if (self?.tollRoute == 509) {
+                                
+                                if let northboundTollRates = TollRateTableStore.getTollRateTableByRoute(route: 50978) {
+                                    self?.northboundTollRates = northboundTollRates
+                                }
+                                
+                                if let southboundTollRates = TollRateTableStore.getTollRateTableByRoute(route: 50983) {
+                                    self?.southboundTollRates = southboundTollRates
+                                }
+                                
+                                if (self?.directionSegmentControl.selectedSegmentIndex == 0){
+                                    self?.tollTableItem = self!.northboundTollRates
+
+                                } else {
+                                    self?.tollTableItem = self!.southboundTollRates
+
+                                }
+                            }
+                            
                             if let tolls = TollRateTableStore.getTollRateTableByRoute(route: selfValue.stateRoute) {
                                 selfValue.tollTableItem = tolls
                                 selfValue.messageLabel.text = tolls.message
-                            
+
                             }
                             
                             selfValue.tableView.reloadData()
@@ -91,6 +170,21 @@ class TollTableViewController: RefreshViewController, UITableViewDelegate, UITab
                 }
                 
             })
+        }
+    }
+    
+    @IBAction func indexChanged(_ sender: UISegmentedControl) {
+        switch (sender.selectedSegmentIndex){
+        case 0:
+            tollTableItem = northboundTollRates
+            tableView.reloadData()
+            break
+        case 1:
+            tollTableItem = southboundTollRates
+            tableView.reloadData()
+            break
+        default:
+            break
         }
     }
 

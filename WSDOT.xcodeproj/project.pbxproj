@@ -23,6 +23,7 @@
 		5519276D2DFA28770082D807 /* TerminalItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5519276C2DFA28770082D807 /* TerminalItem.swift */; };
 		5519276F2DFA38BB0082D807 /* TerminalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5519276E2DFA38BB0082D807 /* TerminalViewController.swift */; };
 		552490DE2E1A048A000DE7A3 /* VesselWatchMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552490DD2E1A048A000DE7A3 /* VesselWatchMapViewController.swift */; };
+		5551B75E2EA94518005773CF /* TollRatesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5551B75D2EA94518005773CF /* TollRatesTableViewController.swift */; };
 		5568FB032CB99B7A000850AE /* TravelTimes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5568FB022CB99B7A000850AE /* TravelTimes.storyboard */; };
 		558F4FE82BC9F06000EC6CAD /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 558F4FE72BC9F06000EC6CAD /* PrivacyInfo.xcprivacy */; };
 		55A080A928C91A60004219EE /* BridgeAlertDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A080A828C91A60004219EE /* BridgeAlertDetailViewController.swift */; };
@@ -284,6 +285,7 @@
 		5519276C2DFA28770082D807 /* TerminalItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalItem.swift; sourceTree = "<group>"; };
 		5519276E2DFA38BB0082D807 /* TerminalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalViewController.swift; sourceTree = "<group>"; };
 		552490DD2E1A048A000DE7A3 /* VesselWatchMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VesselWatchMapViewController.swift; sourceTree = "<group>"; };
+		5551B75D2EA94518005773CF /* TollRatesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TollRatesTableViewController.swift; sourceTree = "<group>"; };
 		5568FB022CB99B7A000850AE /* TravelTimes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TravelTimes.storyboard; sourceTree = "<group>"; };
 		558F4FE72BC9F06000EC6CAD /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		55A080A828C91A60004219EE /* BridgeAlertDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeAlertDetailViewController.swift; sourceTree = "<group>"; };
@@ -714,6 +716,7 @@
 			isa = PBXGroup;
 			children = (
 				9A0616C91D66021B00126520 /* TollRatesViewController.swift */,
+				5551B75D2EA94518005773CF /* TollRatesTableViewController.swift */,
 				9A6A0028210105070005CC7F /* TollRatesTabBarViewController.swift */,
 				9A0616CB1D660BD500126520 /* TollTableViewController.swift */,
 				9A6A0034210777EC0005CC7F /* TollTripDetailsViewController.swift */,
@@ -2313,6 +2316,7 @@
 				9A7BC0DF1DA3F32400EF760C /* GQTPointQuadTree.m in Sources */,
 				9A8486F21D81AC450026F1CF /* SelectionCell.swift in Sources */,
 				9A0616CC1D660BD500126520 /* TollTableViewController.swift in Sources */,
+				5551B75E2EA94518005773CF /* TollRatesTableViewController.swift in Sources */,
 				9A6FBD0F1D6CC43C00CDCE16 /* GroupRouteCell.swift in Sources */,
 				9A7BC0E01DA3F32400EF760C /* GQTPointQuadTreeChild.m in Sources */,
 				9A6FBCE31D6BA2DC00CDCE16 /* AlertInAreaViewController.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  I405ViewController.swift
+//  DynamicTollRatesViewController.swift
 //  WSDOT
 //
 //  Copyright (c) 2018 Washington State Department of Transportation
@@ -51,7 +51,22 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
         
         // refresh controller
         refreshControl.addTarget(self, action: #selector(BorderWaitsViewController.refreshAction(_:)), for: .valueChanged)
+        
+        self.edgesForExtendedLayout = []
+        
+        let websiteButton = UIBarButtonItem(title: "My Good To Go", style: .plain, target: self, action: #selector(goodToGoWebsite))
+           navigationItem.rightBarButtonItem = websiteButton
+
     }
+    
+    @objc func goodToGoWebsite() {
+            if let url = URL(string: "https://mygoodtogo.com") {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        MyAnalytics.screenView(screenName: "MyGoodToGo.com")
+        MyAnalytics.event(category: "Tolling", action: "open_link", label: "tolling_good_to_go")
+
+        }
     
     override func viewWillAppear(_ animated: Bool) {
         refresh(true)
