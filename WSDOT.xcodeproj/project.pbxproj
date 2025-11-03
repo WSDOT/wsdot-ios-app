@@ -84,7 +84,6 @@
 		9A52F1EF22089F660008038B /* AlertTableDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A52F1EE22089F660008038B /* AlertTableDataDelegate.swift */; };
 		9A52F1F12208AA9B0008038B /* MyRouteTravelTimesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A52F1F02208AA9B0008038B /* MyRouteTravelTimesViewController.swift */; };
 		9A63788520E52D9D0079BFAA /* TollTripItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A63788420E52D9D0079BFAA /* TollTripItem.swift */; };
-		9A6A0029210105070005CC7F /* TollRatesTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6A0028210105070005CC7F /* TollRatesTabBarViewController.swift */; };
 		9A6A002B210237B20005CC7F /* TollTripView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A6A002A210237B20005CC7F /* TollTripView.xib */; };
 		9A6A002D210238350005CC7F /* TollTripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6A002C210238350005CC7F /* TollTripView.swift */; };
 		9A6A0035210777EC0005CC7F /* TollTripDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6A0034210777EC0005CC7F /* TollTripDetailsViewController.swift */; };
@@ -348,7 +347,6 @@
 		9A52F1EE22089F660008038B /* AlertTableDataDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertTableDataDelegate.swift; sourceTree = "<group>"; };
 		9A52F1F02208AA9B0008038B /* MyRouteTravelTimesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRouteTravelTimesViewController.swift; sourceTree = "<group>"; };
 		9A63788420E52D9D0079BFAA /* TollTripItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TollTripItem.swift; sourceTree = "<group>"; };
-		9A6A0028210105070005CC7F /* TollRatesTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TollRatesTabBarViewController.swift; sourceTree = "<group>"; };
 		9A6A002A210237B20005CC7F /* TollTripView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TollTripView.xib; sourceTree = "<group>"; };
 		9A6A002C210238350005CC7F /* TollTripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TollTripView.swift; sourceTree = "<group>"; };
 		9A6A0034210777EC0005CC7F /* TollTripDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TollTripDetailsViewController.swift; sourceTree = "<group>"; };
@@ -717,7 +715,6 @@
 			children = (
 				9A0616C91D66021B00126520 /* TollRatesViewController.swift */,
 				5551B75D2EA94518005773CF /* TollRatesTableViewController.swift */,
-				9A6A0028210105070005CC7F /* TollRatesTabBarViewController.swift */,
 				9A0616CB1D660BD500126520 /* TollTableViewController.swift */,
 				9A6A0034210777EC0005CC7F /* TollTripDetailsViewController.swift */,
 				9A0616D11D660DC500126520 /* DynamicTollRatesViewController.swift */,
@@ -2258,7 +2255,6 @@
 				551927692DFA282C0082D807 /* TerminalStore.swift in Sources */,
 				9A6FBD371D6E413A00CDCE16 /* MountainPassTabBarViewController.swift in Sources */,
 				9AE6B77E209CF965001DE80F /* PassableSwitch.swift in Sources */,
-				9A6A0029210105070005CC7F /* TollRatesTabBarViewController.swift in Sources */,
 				9A8486F81D81E96A0026F1CF /* DepartureDaySelectionViewController.swift in Sources */,
 				9A50179C1D258F2000B9C49E /* RoutesCustomCell.swift in Sources */,
 				9AEEDDA61D6F3EC50032F5EC /* WeatherUtils.swift in Sources */,
