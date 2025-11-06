@@ -190,13 +190,8 @@ class TollRatesTableViewController: RefreshViewController, UITableViewDataSource
     func setNavController(newNavigationController: UINavigationController){
 
         let rootViewController = UIApplication.shared.windows.first!.rootViewController as! UISplitViewController
-        if (rootViewController.isCollapsed) {
-            let nav = rootViewController.viewControllers[0] as! UINavigationController
-            nav.pushViewController(newNavigationController, animated: true)
-        } else {
-            newNavigationController.viewControllers[0].navigationItem.leftBarButtonItem = rootViewController.displayModeButtonItem
-            newNavigationController.viewControllers[0].navigationItem.leftItemsSupplementBackButton = true
-            rootViewController.showDetailViewController(newNavigationController, sender: self)
-        }
+        newNavigationController.viewControllers[0].navigationItem.leftBarButtonItem = rootViewController.displayModeButtonItem
+        newNavigationController.viewControllers[0].navigationItem.leftItemsSupplementBackButton = true
+        rootViewController.showDetailViewController(newNavigationController, sender: self)
     }
 }
