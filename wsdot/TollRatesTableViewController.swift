@@ -34,7 +34,7 @@ class TollRatesTableViewController: RefreshViewController, UITableViewDataSource
         super.viewDidLoad()
         title = "Toll Rates"
         
-        menu_options = ["SR 16","SR 99","SR 167","SR 509", "SR 520","I-405"]
+        menu_options = ["SR 16 Tacoma Narrows Bridge","SR 99 Tunnel","SR 167 Express Toll Lanes","SR 509 Expressway", "SR 520 Bridge","I-405 Express Toll Lanes"]
         menu_icon_names = ["icTabSR16","icTabSR99","icTabSR167","icTabSR509","icTabSR520","icTabI405"]
 
         view.addSubview(tableView)
@@ -78,18 +78,20 @@ class TollRatesTableViewController: RefreshViewController, UITableViewDataSource
         let selectedToll = menu_options[indexPath.row]
 
         switch selectedToll {
-        case "SR 509":
-            tollRateView(route: 509)
-        case "SR 16":
+        case "SR 16 Tacoma Narrows Bridge":
             tollRateView(route: 16)
-        case "SR 520":
-            tollRateView(route: 520)
-        case "SR 99":
+        case "SR 99 Tunnel":
             tollRateView(route: 99)
-        case "SR 167":
+        case "SR 167 Express Toll Lanes":
             tollRateView(route: 167)
-        case "I-405":
+        case "I-405 Express Toll Lanes":
             tollRateView(route: 405)
+        case "SR 509 Expressway":
+            tollRateView(route: 509)
+        case "SR 520 Bridge":
+            tollRateView(route: 520)
+
+
         default:
             break
         }
