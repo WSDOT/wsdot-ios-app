@@ -214,8 +214,8 @@ extension Date {
     var isWeekend: Bool {
         let calendar = Calendar(identifier: .gregorian)
         let components = calendar.dateComponents([.weekday], from: self)
-        
-        if (components.weekday == 1) || (components.weekday == 0) {
+        if (components.weekday == 1) || (components.weekday == 7) {
+
            return true
         } else {
            return false
