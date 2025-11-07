@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24128" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7nX-QB-1g8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7nX-QB-1g8">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -118,9 +118,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="746"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="T7m-eA-seQ">
-                                <rect key="frame" x="16" y="357" width="382" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="T7m-eA-seQ">
+                                <rect key="frame" x="20" y="358" width="188" height="31"/>
                                 <segments>
                                     <segment title="Northbound"/>
                                     <segment title="Southbound"/>
@@ -130,7 +129,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="x0o-lO-kvk">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="746"/>
+                                <rect key="frame" x="0.0" y="35" width="414" height="746"/>
                                 <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="threeColCell" id="rQW-75-swr" customClass="ThreeColTableCell" customModule="WSDOT">
@@ -188,27 +187,50 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="voI-Lj-ci2">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
-                                <color key="backgroundColor" red="0.93581814240000005" green="0.41981336809999997" blue="0.088704427079999995" alpha="0.39875856160000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="0.0" y="5" width="414" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3sL-yJ-tPk">
+                                <rect key="frame" x="20" y="0.0" width="374" height="30"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Learn how SR 99 tolls work">
+                                            <attributes>
+                                                <font key="NSFont" metaFont="system" size="15"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                <integer key="NSUnderline" value="1"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="infoLinkAction:" destination="vkj-nx-uYl" eventType="touchUpInside" id="LpQ-vR-1eT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="leadingMargin" secondItem="3sL-yJ-tPk" secondAttribute="leading" id="6dN-OW-Vby"/>
                             <constraint firstAttribute="trailing" secondItem="x0o-lO-kvk" secondAttribute="trailing" id="E3s-Ux-wSg"/>
                             <constraint firstItem="voI-Lj-ci2" firstAttribute="leading" secondItem="M94-zf-yaP" secondAttribute="leading" id="JIA-pB-jhX"/>
-                            <constraint firstItem="voI-Lj-ci2" firstAttribute="top" secondItem="M94-zf-yaP" secondAttribute="top" id="OCM-uk-dOM"/>
+                            <constraint firstItem="3sL-yJ-tPk" firstAttribute="trailing" secondItem="M94-zf-yaP" secondAttribute="trailingMargin" id="LNj-YB-UdH"/>
+                            <constraint firstItem="voI-Lj-ci2" firstAttribute="top" secondItem="M94-zf-yaP" secondAttribute="top" constant="5" id="OCM-uk-dOM"/>
+                            <constraint firstItem="tcz-Wt-ljO" firstAttribute="top" secondItem="T7m-eA-seQ" secondAttribute="bottom" constant="290" id="RDy-XS-UF9"/>
                             <constraint firstAttribute="trailing" secondItem="voI-Lj-ci2" secondAttribute="trailing" id="VMA-ie-lRp"/>
-                            <constraint firstAttribute="bottom" secondItem="x0o-lO-kvk" secondAttribute="bottom" id="hPV-1Z-0aY"/>
+                            <constraint firstItem="T7m-eA-seQ" firstAttribute="leading" secondItem="3sL-yJ-tPk" secondAttribute="leading" id="YcW-Pd-nvX"/>
+                            <constraint firstItem="x0o-lO-kvk" firstAttribute="top" secondItem="3sL-yJ-tPk" secondAttribute="bottom" constant="5" id="fev-u1-jkZ"/>
+                            <constraint firstAttribute="bottom" secondItem="x0o-lO-kvk" secondAttribute="bottom" constant="-35" id="hPV-1Z-0aY"/>
+                            <constraint firstItem="T7m-eA-seQ" firstAttribute="centerY" secondItem="M94-zf-yaP" secondAttribute="centerY" id="oUB-Sb-QVU"/>
                             <constraint firstItem="x0o-lO-kvk" firstAttribute="leading" secondItem="M94-zf-yaP" secondAttribute="leading" id="uCl-mm-G9I"/>
-                            <constraint firstItem="x0o-lO-kvk" firstAttribute="top" secondItem="voI-Lj-ci2" secondAttribute="bottom" id="uJw-ug-qps"/>
+                            <constraint firstItem="x0o-lO-kvk" firstAttribute="top" secondItem="voI-Lj-ci2" secondAttribute="bottom" constant="30" id="uJw-ug-qps"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="sZw-pL-dAN"/>
                     <connections>
                         <outlet property="directionSegmentControl" destination="T7m-eA-seQ" id="Kp0-zM-1ZX"/>
+                        <outlet property="infoLinkButton" destination="3sL-yJ-tPk" id="fbp-G5-jr9"/>
                         <outlet property="messageLabel" destination="voI-Lj-ci2" id="RBE-aP-52z"/>
                         <outlet property="tableView" destination="x0o-lO-kvk" id="HxL-mG-1Vw"/>
                     </connections>
@@ -241,7 +263,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0Af-Ai-0ue">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="746"/>
+                                <rect key="frame" x="0.0" y="35" width="414" height="711"/>
                                 <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="threeColCell" id="q4b-WE-YhQ" customClass="ThreeColTableCell" customModule="WSDOT">
@@ -298,9 +320,25 @@
                                     <outlet property="delegate" destination="XRc-2T-yQd" id="CHE-AJ-alg"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N1j-Qf-5K5">
+                                <rect key="frame" x="20" y="0.0" width="374" height="30"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Learn how SR 520 tolls work">
+                                            <attributes>
+                                                <font key="NSFont" metaFont="system" size="15"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                <integer key="NSUnderline" value="1"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="infoLinkAction:" destination="XRc-2T-yQd" eventType="touchUpInside" id="4gB-uI-eKE"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GlT-AO-G6t">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
-                                <color key="backgroundColor" red="0.93581814240000005" green="0.41981336809999997" blue="0.088704427079999995" alpha="0.39875856160000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="0.0" y="5" width="414" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -308,11 +346,13 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="0Af-Ai-0ue" firstAttribute="top" secondItem="GlT-AO-G6t" secondAttribute="bottom" id="0Hn-Ia-qJJ"/>
-                            <constraint firstItem="GlT-AO-G6t" firstAttribute="top" secondItem="ehj-rx-D4N" secondAttribute="top" id="CLI-nd-n36"/>
+                            <constraint firstItem="0Af-Ai-0ue" firstAttribute="top" secondItem="GlT-AO-G6t" secondAttribute="bottom" constant="30" id="0Hn-Ia-qJJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="N1j-Qf-5K5" secondAttribute="trailing" id="1VS-6N-ec3"/>
+                            <constraint firstItem="GlT-AO-G6t" firstAttribute="top" secondItem="ehj-rx-D4N" secondAttribute="top" constant="5" id="CLI-nd-n36"/>
                             <constraint firstItem="0Af-Ai-0ue" firstAttribute="leading" secondItem="ehj-rx-D4N" secondAttribute="leading" id="CnL-E9-7pq"/>
                             <constraint firstAttribute="bottom" secondItem="0Af-Ai-0ue" secondAttribute="bottom" id="JCH-8A-KyM"/>
-                            <constraint firstAttribute="bottom" secondItem="0Af-Ai-0ue" secondAttribute="bottom" id="KEF-bk-GOc"/>
+                            <constraint firstItem="N1j-Qf-5K5" firstAttribute="top" secondItem="GlT-AO-G6t" secondAttribute="top" constant="-5" id="Klc-0U-EkQ"/>
+                            <constraint firstItem="N1j-Qf-5K5" firstAttribute="leading" secondItem="ehj-rx-D4N" secondAttribute="leadingMargin" id="awG-T5-KFY"/>
                             <constraint firstItem="GlT-AO-G6t" firstAttribute="leading" secondItem="ehj-rx-D4N" secondAttribute="leading" id="c7p-xV-I6i"/>
                             <constraint firstAttribute="trailing" secondItem="0Af-Ai-0ue" secondAttribute="trailing" id="gJ6-oZ-aon"/>
                             <constraint firstAttribute="trailing" secondItem="GlT-AO-G6t" secondAttribute="trailing" id="sb7-jd-hzs"/>
@@ -321,6 +361,7 @@
                     <navigationItem key="navigationItem" id="dTZ-BF-dn1"/>
                     <connections>
                         <outlet property="directionSegmentControl" destination="hu2-Ex-Dua" id="0XY-Tp-fHy"/>
+                        <outlet property="infoLinkButton" destination="N1j-Qf-5K5" id="RZQ-g1-6MD"/>
                         <outlet property="messageLabel" destination="GlT-AO-G6t" id="eoG-DE-NfE"/>
                         <outlet property="tableView" destination="0Af-Ai-0ue" id="p5o-sa-OgT"/>
                     </connections>
@@ -341,9 +382,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="746"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dTW-46-RAY">
-                                <rect key="frame" x="16" y="357" width="382" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dTW-46-RAY">
+                                <rect key="frame" x="20" y="358" width="188" height="31"/>
                                 <segments>
                                     <segment title="Northbound"/>
                                     <segment title="Southbound"/>
@@ -354,7 +394,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OYr-mJ-SjK">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="746"/>
+                                <rect key="frame" x="0.0" y="35" width="414" height="793"/>
                                 <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="fourColCell" id="l7c-xT-YUc" customClass="FourColTableCell" customModule="WSDOT">
@@ -423,9 +463,25 @@
                                     <outlet property="delegate" destination="0ki-xc-aX5" id="w1a-Jn-QrV"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fE5-t2-aeA">
+                                <rect key="frame" x="20" y="0.0" width="374" height="30"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Learn how SR 16 tolls work">
+                                            <attributes>
+                                                <font key="NSFont" metaFont="system" size="15"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                <integer key="NSUnderline" value="1"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="infoLinkAction:" destination="0ki-xc-aX5" eventType="touchUpInside" id="uoI-E8-zDr"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Gk-Ri-MYy">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
-                                <color key="backgroundColor" red="0.93581814240000005" green="0.41981336809999997" blue="0.088704427079999995" alpha="0.39875856164383561" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="0.0" y="5" width="414" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -434,28 +490,35 @@
                         <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="OYr-mJ-SjK" firstAttribute="leading" secondItem="QCH-iJ-OhI" secondAttribute="leading" id="5Ek-l8-NBV"/>
+                            <constraint firstItem="dTW-46-RAY" firstAttribute="centerY" secondItem="QCH-iJ-OhI" secondAttribute="centerY" id="8zt-IX-slQ"/>
                             <constraint firstItem="OYr-mJ-SjK" firstAttribute="leading" secondItem="QCH-iJ-OhI" secondAttribute="leading" id="CR2-J0-qmk"/>
                             <constraint firstItem="4Gk-Ri-MYy" firstAttribute="leading" secondItem="QCH-iJ-OhI" secondAttribute="leading" id="D7O-Ck-8qh"/>
+                            <constraint firstItem="dTW-46-RAY" firstAttribute="leading" secondItem="fE5-t2-aeA" secondAttribute="leading" id="Ha0-13-w8V"/>
                             <constraint firstItem="4Gk-Ri-MYy" firstAttribute="leading" secondItem="QCH-iJ-OhI" secondAttribute="leading" id="JYY-xX-TLb"/>
                             <constraint firstAttribute="trailing" secondItem="OYr-mJ-SjK" secondAttribute="trailing" id="Oc1-S9-HvZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fE5-t2-aeA" secondAttribute="trailing" id="PHC-TT-zrb"/>
+                            <constraint firstItem="fE5-t2-aeA" firstAttribute="leading" secondItem="QCH-iJ-OhI" secondAttribute="leadingMargin" id="QUh-sL-zho"/>
                             <constraint firstAttribute="trailing" secondItem="OYr-mJ-SjK" secondAttribute="trailing" id="fRW-L4-Lr8"/>
+                            <constraint firstItem="4ga-Tk-G4K" firstAttribute="top" secondItem="dTW-46-RAY" secondAttribute="bottom" constant="290" id="fVk-z8-NxW"/>
                             <constraint firstAttribute="trailing" secondItem="4Gk-Ri-MYy" secondAttribute="trailing" id="hhO-Ea-ERf"/>
-                            <constraint firstItem="OYr-mJ-SjK" firstAttribute="top" secondItem="4Gk-Ri-MYy" secondAttribute="bottom" id="sK0-hz-rI5"/>
-                            <constraint firstItem="4Gk-Ri-MYy" firstAttribute="top" secondItem="QCH-iJ-OhI" secondAttribute="top" id="wNv-Tg-fxy"/>
+                            <constraint firstItem="fE5-t2-aeA" firstAttribute="top" secondItem="4Gk-Ri-MYy" secondAttribute="top" constant="-5" id="ogx-K0-2Xc"/>
+                            <constraint firstItem="OYr-mJ-SjK" firstAttribute="top" secondItem="4Gk-Ri-MYy" secondAttribute="bottom" constant="30" id="sK0-hz-rI5"/>
+                            <constraint firstItem="4Gk-Ri-MYy" firstAttribute="top" secondItem="QCH-iJ-OhI" secondAttribute="top" constant="5" id="wNv-Tg-fxy"/>
                             <constraint firstAttribute="trailing" secondItem="4Gk-Ri-MYy" secondAttribute="trailing" id="yV5-7a-JSe"/>
-                            <constraint firstAttribute="bottom" secondItem="OYr-mJ-SjK" secondAttribute="bottom" id="ykS-wC-a7b"/>
+                            <constraint firstAttribute="bottom" secondItem="OYr-mJ-SjK" secondAttribute="bottom" constant="-82" id="ykS-wC-a7b"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ooD-RG-n99"/>
                     <connections>
                         <outlet property="directionSegmentControl" destination="dTW-46-RAY" id="dX8-OI-QKa"/>
+                        <outlet property="infoLinkButton" destination="fE5-t2-aeA" id="eIu-AD-D2H"/>
                         <outlet property="messageLabel" destination="4Gk-Ri-MYy" id="k0P-0r-t8D"/>
                         <outlet property="tableView" destination="OYr-mJ-SjK" id="OuY-nZ-hQd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bq7-p6-Rkj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="619" y="-821"/>
+            <point key="canvasLocation" x="618.84057971014499" y="-821.65178571428567"/>
         </scene>
         <!--Dynamic Toll Rates View Controller-->
         <scene sceneID="oLf-df-8ah">
@@ -470,7 +533,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EpJ-DQ-EwE">
-                                <rect key="frame" x="0.0" y="84" width="414" height="560.5"/>
+                                <rect key="frame" x="0.0" y="81" width="414" height="566.5"/>
                                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="I405TollRatesCell" id="mUn-Sj-h5B" customClass="GroupRouteCell" customModule="WSDOT" customModuleProvider="target">
@@ -521,15 +584,15 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="g71-Ds-4pA">
                                 <rect key="frame" x="197" y="363" width="20" height="20"/>
                             </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estimated toll rates provided as a courtesy. You'll always pay the toll you see on actual road signs when you enter. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="luD-0C-pPF">
-                                <rect key="frame" x="0.0" y="644.5" width="414" height="33.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estimated toll rates provided as a courtesy. You'll always pay the toll you see on actual road signs when you enter. " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="luD-0C-pPF">
+                                <rect key="frame" x="15" y="647.5" width="383" height="31.5"/>
                                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cWF-OU-htd">
-                                <rect key="frame" x="16" y="4" width="382" height="30"/>
+                                <rect key="frame" x="20" y="0.0" width="374" height="30"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
                                         <fragment content="Learn how SR 167 tolls work">
@@ -545,13 +608,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scp-TD-yjd">
-                                <rect key="frame" x="0.0" y="37" width="414" height="0.0"/>
+                                <rect key="frame" x="0.0" y="30" width="414" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="nLK-EX-gZv">
-                                <rect key="frame" x="16" y="45" width="382" height="32"/>
+                                <rect key="frame" x="15" y="38" width="384" height="32"/>
                                 <segments>
                                     <segment title="Northbound"/>
                                     <segment title="Southbound"/>
@@ -563,24 +626,24 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="EpJ-DQ-EwE" firstAttribute="top" secondItem="nLK-EX-gZv" secondAttribute="bottom" constant="8" id="1tW-9H-VEy"/>
+                            <constraint firstItem="EpJ-DQ-EwE" firstAttribute="top" secondItem="nLK-EX-gZv" secondAttribute="bottom" constant="12" id="1tW-9H-VEy"/>
                             <constraint firstItem="g71-Ds-4pA" firstAttribute="centerY" secondItem="IWg-co-XQz" secondAttribute="centerY" id="2f2-bf-Xpu"/>
                             <constraint firstItem="nLK-EX-gZv" firstAttribute="top" secondItem="scp-TD-yjd" secondAttribute="bottom" constant="8" id="557-xY-NPP"/>
-                            <constraint firstItem="cWF-OU-htd" firstAttribute="top" secondItem="IWg-co-XQz" secondAttribute="top" constant="4" id="5xA-bl-SHA"/>
-                            <constraint firstItem="nLK-EX-gZv" firstAttribute="leading" secondItem="IWg-co-XQz" secondAttribute="leading" constant="16" id="Ain-s2-FJv"/>
+                            <constraint firstItem="cWF-OU-htd" firstAttribute="top" secondItem="IWg-co-XQz" secondAttribute="top" id="5xA-bl-SHA"/>
+                            <constraint firstItem="nLK-EX-gZv" firstAttribute="leading" secondItem="IWg-co-XQz" secondAttribute="leading" constant="15" id="Ain-s2-FJv"/>
                             <constraint firstItem="scp-TD-yjd" firstAttribute="leading" secondItem="IWg-co-XQz" secondAttribute="leading" id="BHE-rj-9VT"/>
-                            <constraint firstAttribute="trailing" secondItem="nLK-EX-gZv" secondAttribute="trailing" constant="16" id="Bdo-aN-pMQ"/>
-                            <constraint firstItem="luD-0C-pPF" firstAttribute="leading" secondItem="IWg-co-XQz" secondAttribute="leading" id="Cej-1l-1dx"/>
-                            <constraint firstItem="cWF-OU-htd" firstAttribute="trailing" secondItem="nLK-EX-gZv" secondAttribute="trailing" id="HaV-Yo-AUI"/>
-                            <constraint firstAttribute="trailing" secondItem="luD-0C-pPF" secondAttribute="trailing" id="I86-9u-4Ld"/>
+                            <constraint firstAttribute="trailing" secondItem="nLK-EX-gZv" secondAttribute="trailing" constant="15" id="Bdo-aN-pMQ"/>
+                            <constraint firstItem="luD-0C-pPF" firstAttribute="leading" secondItem="IWg-co-XQz" secondAttribute="leading" constant="15" id="Cej-1l-1dx"/>
+                            <constraint firstItem="cWF-OU-htd" firstAttribute="trailing" secondItem="IWg-co-XQz" secondAttribute="trailingMargin" id="HaV-Yo-AUI"/>
+                            <constraint firstAttribute="trailing" secondItem="luD-0C-pPF" secondAttribute="trailing" constant="16" id="I86-9u-4Ld"/>
                             <constraint firstAttribute="trailing" secondItem="scp-TD-yjd" secondAttribute="trailing" id="LDX-lp-Drn"/>
-                            <constraint firstItem="scp-TD-yjd" firstAttribute="top" secondItem="cWF-OU-htd" secondAttribute="bottom" constant="3" id="Nzk-il-IKu"/>
+                            <constraint firstItem="scp-TD-yjd" firstAttribute="top" secondItem="cWF-OU-htd" secondAttribute="bottom" id="Nzk-il-IKu"/>
                             <constraint firstItem="EpJ-DQ-EwE" firstAttribute="leading" secondItem="IWg-co-XQz" secondAttribute="leading" id="XWR-ec-cvH"/>
-                            <constraint firstItem="cWF-OU-htd" firstAttribute="leading" secondItem="nLK-EX-gZv" secondAttribute="leading" id="Xka-9P-N2f"/>
+                            <constraint firstItem="cWF-OU-htd" firstAttribute="leading" secondItem="IWg-co-XQz" secondAttribute="leadingMargin" id="Xka-9P-N2f"/>
                             <constraint firstAttribute="trailing" secondItem="EpJ-DQ-EwE" secondAttribute="trailing" id="dp1-MP-Zyj"/>
                             <constraint firstItem="luD-0C-pPF" firstAttribute="top" secondItem="EpJ-DQ-EwE" secondAttribute="bottom" id="i3i-fv-SkV"/>
                             <constraint firstItem="g71-Ds-4pA" firstAttribute="centerX" secondItem="IWg-co-XQz" secondAttribute="centerX" id="lIH-4u-Bka"/>
-                            <constraint firstItem="zPA-My-OCY" firstAttribute="top" secondItem="luD-0C-pPF" secondAttribute="bottom" id="znC-HB-cwo"/>
+                            <constraint firstItem="zPA-My-OCY" firstAttribute="top" secondItem="luD-0C-pPF" secondAttribute="bottom" constant="-1" id="znC-HB-cwo"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Gz3-t6-UJ0"/>
@@ -595,7 +658,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jwB-OF-E99" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="619" y="534"/>
+            <point key="canvasLocation" x="618.84057971014499" y="533.70535714285711"/>
         </scene>
         <!--Dynamic Toll Rates View Controller-->
         <scene sceneID="O0p-iq-jhF">
@@ -610,7 +673,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="m1a-Ef-gNW">
-                                <rect key="frame" x="0.0" y="84" width="414" height="560.5"/>
+                                <rect key="frame" x="0.0" y="81" width="414" height="566.5"/>
                                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="I405TollRatesCell" id="6u9-pz-Cmm" customClass="GroupRouteCell" customModule="WSDOT" customModuleProvider="target">
@@ -661,15 +724,15 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="cGV-A7-ToY">
                                 <rect key="frame" x="197" y="363" width="20" height="20"/>
                             </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estimated toll rates provided as a courtesy. You'll always pay the toll you see on actual road signs when you enter. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e23-89-8A2">
-                                <rect key="frame" x="0.0" y="644.5" width="414" height="33.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estimated toll rates provided as a courtesy. You'll always pay the toll you see on actual road signs when you enter. " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e23-89-8A2">
+                                <rect key="frame" x="15" y="647.5" width="383" height="31.5"/>
                                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fkd-79-b6Y">
-                                <rect key="frame" x="15" y="4" width="382" height="30"/>
+                                <rect key="frame" x="20" y="0.0" width="374" height="30"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
                                         <fragment content="Learn how I-405 tolls work">
@@ -686,13 +749,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0RH-IO-SRE">
-                                <rect key="frame" x="0.0" y="37" width="414" height="0.0"/>
+                                <rect key="frame" x="0.0" y="30" width="414" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WHV-CI-O0e">
-                                <rect key="frame" x="16" y="45" width="382" height="32"/>
+                                <rect key="frame" x="15" y="38" width="384" height="32"/>
                                 <segments>
                                     <segment title="Northbound"/>
                                     <segment title="Southbound"/>
@@ -706,21 +769,21 @@
                         <constraints>
                             <constraint firstItem="0RH-IO-SRE" firstAttribute="leading" secondItem="wvb-Oe-dcF" secondAttribute="leading" id="1RK-2U-JWW"/>
                             <constraint firstItem="cGV-A7-ToY" firstAttribute="centerX" secondItem="wvb-Oe-dcF" secondAttribute="centerX" id="9dZ-jh-Aee"/>
-                            <constraint firstItem="fkd-79-b6Y" firstAttribute="leading" secondItem="WHV-CI-O0e" secondAttribute="leading" constant="-1" id="AJ0-hl-PXk"/>
-                            <constraint firstItem="fkd-79-b6Y" firstAttribute="trailing" secondItem="WHV-CI-O0e" secondAttribute="trailing" constant="-1" id="CdU-ar-hU2"/>
-                            <constraint firstItem="WHV-CI-O0e" firstAttribute="leading" secondItem="wvb-Oe-dcF" secondAttribute="leading" constant="16" id="EKf-le-HQM"/>
+                            <constraint firstItem="fkd-79-b6Y" firstAttribute="leading" secondItem="wvb-Oe-dcF" secondAttribute="leadingMargin" id="AJ0-hl-PXk"/>
+                            <constraint firstItem="fkd-79-b6Y" firstAttribute="trailing" secondItem="wvb-Oe-dcF" secondAttribute="trailingMargin" id="CdU-ar-hU2"/>
+                            <constraint firstItem="WHV-CI-O0e" firstAttribute="leading" secondItem="wvb-Oe-dcF" secondAttribute="leading" constant="15" id="EKf-le-HQM"/>
                             <constraint firstItem="WHV-CI-O0e" firstAttribute="top" secondItem="0RH-IO-SRE" secondAttribute="bottom" constant="8" id="FlB-Fs-8sB"/>
                             <constraint firstItem="cGV-A7-ToY" firstAttribute="centerY" secondItem="wvb-Oe-dcF" secondAttribute="centerY" id="Hca-Pw-ZDb"/>
                             <constraint firstAttribute="trailing" secondItem="m1a-Ef-gNW" secondAttribute="trailing" id="Sx0-NA-Tch"/>
                             <constraint firstItem="e23-89-8A2" firstAttribute="top" secondItem="m1a-Ef-gNW" secondAttribute="bottom" id="WJR-0a-sAT"/>
-                            <constraint firstAttribute="trailing" secondItem="WHV-CI-O0e" secondAttribute="trailing" constant="16" id="ZBg-A5-hlD"/>
-                            <constraint firstItem="m1a-Ef-gNW" firstAttribute="top" secondItem="WHV-CI-O0e" secondAttribute="bottom" constant="8" id="fss-Pv-PUv"/>
-                            <constraint firstItem="0RH-IO-SRE" firstAttribute="top" secondItem="fkd-79-b6Y" secondAttribute="bottom" constant="3" id="jU2-37-JhP"/>
-                            <constraint firstItem="fkd-79-b6Y" firstAttribute="top" secondItem="wvb-Oe-dcF" secondAttribute="top" constant="4" id="luw-cY-TI6"/>
-                            <constraint firstItem="e23-89-8A2" firstAttribute="leading" secondItem="wvb-Oe-dcF" secondAttribute="leading" id="nyt-2g-6Ih"/>
-                            <constraint firstAttribute="trailing" secondItem="e23-89-8A2" secondAttribute="trailing" id="oeQ-zs-ing"/>
+                            <constraint firstAttribute="trailing" secondItem="WHV-CI-O0e" secondAttribute="trailing" constant="15" id="ZBg-A5-hlD"/>
+                            <constraint firstItem="m1a-Ef-gNW" firstAttribute="top" secondItem="WHV-CI-O0e" secondAttribute="bottom" constant="12" id="fss-Pv-PUv"/>
+                            <constraint firstItem="0RH-IO-SRE" firstAttribute="top" secondItem="fkd-79-b6Y" secondAttribute="bottom" id="jU2-37-JhP"/>
+                            <constraint firstItem="fkd-79-b6Y" firstAttribute="top" secondItem="wvb-Oe-dcF" secondAttribute="top" id="luw-cY-TI6"/>
+                            <constraint firstItem="e23-89-8A2" firstAttribute="leading" secondItem="wvb-Oe-dcF" secondAttribute="leading" constant="15" id="nyt-2g-6Ih"/>
+                            <constraint firstAttribute="trailing" secondItem="e23-89-8A2" secondAttribute="trailing" constant="16" id="oeQ-zs-ing"/>
                             <constraint firstAttribute="trailing" secondItem="0RH-IO-SRE" secondAttribute="trailing" id="owg-PX-DEt"/>
-                            <constraint firstItem="yhz-Lw-oDG" firstAttribute="top" secondItem="e23-89-8A2" secondAttribute="bottom" id="p5W-vL-Erj"/>
+                            <constraint firstItem="yhz-Lw-oDG" firstAttribute="top" secondItem="e23-89-8A2" secondAttribute="bottom" constant="-1" id="p5W-vL-Erj"/>
                             <constraint firstItem="m1a-Ef-gNW" firstAttribute="leading" secondItem="wvb-Oe-dcF" secondAttribute="leading" id="vke-Qx-2Nr"/>
                         </constraints>
                     </view>
@@ -736,7 +799,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bAw-P8-NNA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="619" y="2636"/>
+            <point key="canvasLocation" x="618.84057971014499" y="2635.7142857142858"/>
         </scene>
         <!--Toll Trip Details View Controller-->
         <scene sceneID="Y0q-Ru-g2V">
@@ -830,7 +893,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wYn-Tf-8n2">
-                                <rect key="frame" x="0.0" y="59" width="414" height="687"/>
+                                <rect key="frame" x="0.0" y="78" width="414" height="689"/>
                                 <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="threeColCell" id="edz-Ax-SM6" customClass="ThreeColTableCell" customModule="WSDOT">
@@ -887,15 +950,31 @@
                                     <outlet property="delegate" destination="SVl-pv-aoY" id="AkR-pS-MMV"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ivn-Lf-9IS">
+                                <rect key="frame" x="20" y="0.0" width="374" height="30"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Learn how SR 509 tolls work">
+                                            <attributes>
+                                                <font key="NSFont" metaFont="system" size="15"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                <integer key="NSUnderline" value="1"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="infoLinkAction:" destination="SVl-pv-aoY" eventType="touchUpInside" id="BcU-yK-Zec"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6eY-jV-vA2">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
-                                <color key="backgroundColor" red="0.93581814240000005" green="0.41981336809999997" blue="0.088704427079999995" alpha="0.39875856160000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="0.0" y="5" width="414" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Kui-Si-oO1">
-                                <rect key="frame" x="12" y="13" width="382" height="32"/>
+                                <rect key="frame" x="15" y="35" width="384" height="32"/>
                                 <segments>
                                     <segment title="Northbound"/>
                                     <segment title="Southbound"/>
@@ -909,21 +988,25 @@
                         <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="wYn-Tf-8n2" secondAttribute="trailing" id="0kX-cg-I4K"/>
-                            <constraint firstAttribute="bottom" secondItem="wYn-Tf-8n2" secondAttribute="bottom" id="0vP-4e-u3C"/>
-                            <constraint firstItem="Kui-Si-oO1" firstAttribute="leading" secondItem="wYn-Tf-8n2" secondAttribute="leading" constant="12" id="3sr-QD-gCY"/>
-                            <constraint firstAttribute="bottom" secondItem="wYn-Tf-8n2" secondAttribute="bottom" id="8hq-Gj-ush"/>
-                            <constraint firstItem="wYn-Tf-8n2" firstAttribute="top" secondItem="6eY-jV-vA2" secondAttribute="bottom" constant="59" id="Dxh-eX-er5"/>
-                            <constraint firstItem="Kui-Si-oO1" firstAttribute="top" secondItem="6eY-jV-vA2" secondAttribute="bottom" constant="13" id="HJt-go-bnw"/>
+                            <constraint firstAttribute="bottom" secondItem="wYn-Tf-8n2" secondAttribute="bottom" constant="-21" id="0vP-4e-u3C"/>
+                            <constraint firstItem="Kui-Si-oO1" firstAttribute="leading" secondItem="7Qh-hb-zGL" secondAttribute="leading" constant="15" id="3sr-QD-gCY"/>
+                            <constraint firstItem="ivn-Lf-9IS" firstAttribute="leading" secondItem="7Qh-hb-zGL" secondAttribute="leadingMargin" id="7eQ-a3-tvS"/>
+                            <constraint firstAttribute="bottom" secondItem="wYn-Tf-8n2" secondAttribute="bottom" constant="-21" id="8hq-Gj-ush"/>
+                            <constraint firstItem="wYn-Tf-8n2" firstAttribute="top" secondItem="Kui-Si-oO1" secondAttribute="bottom" constant="12" id="Dxh-eX-er5"/>
+                            <constraint firstItem="6eY-jV-vA2" firstAttribute="bottom" secondItem="Kui-Si-oO1" secondAttribute="top" constant="-30" id="HJt-go-bnw"/>
                             <constraint firstItem="wYn-Tf-8n2" firstAttribute="leading" secondItem="7Qh-hb-zGL" secondAttribute="leading" id="JI3-Hk-t9Z"/>
                             <constraint firstAttribute="trailing" secondItem="6eY-jV-vA2" secondAttribute="trailing" id="OzG-JQ-HgW"/>
-                            <constraint firstItem="Kui-Si-oO1" firstAttribute="trailing" secondItem="wYn-Tf-8n2" secondAttribute="trailing" constant="-20" id="Yg2-np-2KH"/>
+                            <constraint firstItem="ivn-Lf-9IS" firstAttribute="top" secondItem="6eY-jV-vA2" secondAttribute="bottom" constant="-5" id="UQ9-7W-3YZ"/>
+                            <constraint firstAttribute="trailing" secondItem="Kui-Si-oO1" secondAttribute="trailing" constant="15" id="Yg2-np-2KH"/>
                             <constraint firstItem="6eY-jV-vA2" firstAttribute="leading" secondItem="7Qh-hb-zGL" secondAttribute="leading" id="cJP-m2-30m"/>
-                            <constraint firstItem="6eY-jV-vA2" firstAttribute="top" secondItem="7Qh-hb-zGL" secondAttribute="top" id="hvR-I8-1wz"/>
+                            <constraint firstItem="6eY-jV-vA2" firstAttribute="top" secondItem="7Qh-hb-zGL" secondAttribute="top" constant="5" id="hvR-I8-1wz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ivn-Lf-9IS" secondAttribute="trailing" id="mk7-Or-11O"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9aw-5B-MOe"/>
                     <connections>
                         <outlet property="directionSegmentControl" destination="Kui-Si-oO1" id="fcL-ul-NuR"/>
+                        <outlet property="infoLinkButton" destination="ivn-Lf-9IS" id="jlG-de-kw8"/>
                         <outlet property="messageLabel" destination="6eY-jV-vA2" id="Qjj-K7-EP0"/>
                         <outlet property="tableView" destination="wYn-Tf-8n2" id="qdJ-kK-PTn"/>
                     </connections>

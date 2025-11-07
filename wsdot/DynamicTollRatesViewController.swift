@@ -56,6 +56,9 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
         
         let websiteButton = UIBarButtonItem(title: "My Good To Go", style: .plain, target: self, action: #selector(goodToGoWebsite))
            navigationItem.rightBarButtonItem = websiteButton
+        
+        infoLinkButton.tintColor = ThemeManager.currentTheme().darkColor
+
 
     }
     
@@ -262,7 +265,8 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
             tripView.actionButton.signIndex = indexPath.row
             tripView.actionButton.tripIndex = tollSign.trips.index(of: trip)
             tripView.actionButton.addTarget(self, action: #selector(tripButtonAction(_:)), for: .touchUpInside)
-            
+            tripView.actionButton.tintColor = ThemeManager.currentTheme().darkColor
+
             tripView.topLabel.text = "to \(trip.endLocationName)"
             tripView.bottomLabel.text = TimeUtils.timeAgoSinceDate(date: trip.updatedAt, numericDates: true)
                 
