@@ -319,7 +319,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
-            schemaVersion: 16,
+            schemaVersion: 17,
 
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
@@ -495,6 +495,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     migration.deleteData(forType: CacheItem.className())
                     migration.deleteData(forType: VesselWatchFavoriteLocationItem.className())
 
+                }
+                
+                /* Adds id field to toll rate table item.
+                 Clears cache to force refresh
+                 */
+                if (oldSchemaVersion < 17) {
+                    migration.enumerateObjects(ofType: TollRateTableItem.className()) { oldObject, newObject in
+                        newObject!["id"] = 0
+                    }
+                    migration.deleteData(forType: CacheItem.className())
+                    migration.deleteData(forType: TollRateTableItem.className())
                     
                 }
                 

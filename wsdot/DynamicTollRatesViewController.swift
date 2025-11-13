@@ -1,5 +1,5 @@
 //
-//  I405ViewController.swift
+//  DynamicTollRatesViewController.swift
 //  WSDOT
 //
 //  Copyright (c) 2018 Washington State Department of Transportation
@@ -51,7 +51,25 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
         
         // refresh controller
         refreshControl.addTarget(self, action: #selector(BorderWaitsViewController.refreshAction(_:)), for: .valueChanged)
+        
+        self.edgesForExtendedLayout = []
+        
+        let websiteButton = UIBarButtonItem(title: "My Good To Go", style: .plain, target: self, action: #selector(goodToGoWebsite))
+           navigationItem.rightBarButtonItem = websiteButton
+        
+        infoLinkButton.tintColor = ThemeManager.currentTheme().darkColor
+
+
     }
+    
+    @objc func goodToGoWebsite() {
+            if let url = URL(string: "https://mygoodtogo.com") {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        MyAnalytics.screenView(screenName: "MyGoodToGo.com")
+        MyAnalytics.event(category: "Tolling", action: "open_link", label: "tolling_good_to_go")
+
+        }
     
     override func viewWillAppear(_ animated: Bool) {
         refresh(true)
@@ -169,7 +187,7 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
             
             let config = SFSafariViewController.Configuration()
             config.entersReaderIfAvailable = false
-            let svc = SFSafariViewController(url: URL(string: "https://wsdot.wa.gov/travel/roads-bridges/toll-roads-bridges-tunnels/sr-167-high-occupancy-toll-hot-lanes")!, configuration: config)
+            let svc = SFSafariViewController(url: URL(string: "https://wsdot.wa.gov/travel/roads-bridges/toll-roads-bridges-tunnels/sr-167-express-toll-lanes")!, configuration: config)
             
             if #available(iOS 10.0, *) {
                 svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor
@@ -247,7 +265,8 @@ class DynamicTollRatesViewController: UIViewController, UITableViewDelegate, UIT
             tripView.actionButton.signIndex = indexPath.row
             tripView.actionButton.tripIndex = tollSign.trips.index(of: trip)
             tripView.actionButton.addTarget(self, action: #selector(tripButtonAction(_:)), for: .touchUpInside)
-            
+            tripView.actionButton.tintColor = ThemeManager.currentTheme().darkColor
+
             tripView.topLabel.text = "to \(trip.endLocationName)"
             tripView.bottomLabel.text = TimeUtils.timeAgoSinceDate(date: trip.updatedAt, numericDates: true)
                 

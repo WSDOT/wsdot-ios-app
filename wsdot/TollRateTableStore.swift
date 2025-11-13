@@ -33,9 +33,9 @@ class TollRateTableStore: Decodable {
         return Array(tollTableItems)
     }
     
-    static func getTollRateTableByRoute(route: Int) -> TollRateTableItem? {
+    static func getTollRateTableByRoute(id: Int) -> TollRateTableItem? {
         let realm = try! Realm()
-        let tollTableItem = realm.objects(TollRateTableItem.self).filter( "delete == false").filter("route == \(route)").first
+        let tollTableItem = realm.objects(TollRateTableItem.self).filter( "delete == false").filter("id == \(id)").first
         return tollTableItem
         
     }
@@ -92,6 +92,7 @@ class TollRateTableStore: Decodable {
     
             let tollRate = TollRateTableItem()
     
+            tollRate.id = tollJson["id"].intValue
             tollRate.route = tollJson["route"].intValue
             tollRate.message = tollJson["message"].stringValue
             tollRate.numCol = tollJson["numCol"].intValue
@@ -214,8 +215,8 @@ extension Date {
     var isWeekend: Bool {
         let calendar = Calendar(identifier: .gregorian)
         let components = calendar.dateComponents([.weekday], from: self)
-        
-        if (components.weekday == 1) || (components.weekday == 0) {
+        if (components.weekday == 1) || (components.weekday == 7) {
+
            return true
         } else {
            return false

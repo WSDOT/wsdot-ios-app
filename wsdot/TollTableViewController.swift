@@ -1,5 +1,5 @@
 //
-//  SR520TollRatesViewController.swift
+//  TollTableViewController.swift
 //  WSDOT
 //
 //  Copyright (c) 2018 Washington State Department of Transportation
@@ -20,6 +20,7 @@
 
 import Foundation
 import UIKit
+import SafariServices
 
 class TollTableViewController: RefreshViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -28,31 +29,96 @@ class TollTableViewController: RefreshViewController, UITableViewDelegate, UITab
     
     var tollTableItem = TollRateTableItem()
     
+    var northboundTollRates = TollRateTableItem()
+    var southboundTollRates = TollRateTableItem()
+    
     var stateRoute: Int = 0
 
     let refreshControl = UIRefreshControl()
+    
+    var list = [TollRateRowItem]()
+
 
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var infoLinkButton: UIButton!
+    
+    var tollId: Int = 0
+
+    @IBOutlet weak var directionSegmentControl: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         showOverlay(self.view)
         
+        directionSegmentControl.isHidden = true
+        
         // refresh controller
         refreshControl.addTarget(self, action: #selector(TollTableViewController.refreshAction(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
         
-        if let tolls = TollRateTableStore.getTollRateTableByRoute(route: self.stateRoute) {
-            self.tollTableItem = tolls
+        infoLinkButton.tintColor = ThemeManager.currentTheme().darkColor
+        
+        self.edgesForExtendedLayout = []
+        
+        let websiteButton = UIBarButtonItem(title: "My Good To Go", style: .plain, target: self, action: #selector(goodToGoWebsite))
+           navigationItem.rightBarButtonItem = websiteButton
+        
+        // SR 509 Expressway
+        if (self.tollId == 3) {
+            
+            directionSegmentControl.isHidden = false
+            
+            // SR 509 Expressway Northbound
+            if let northboundTollRates = TollRateTableStore.getTollRateTableByRoute(id: 3) {
+                self.tollTableItem = northboundTollRates
+            }
+            
+            // SR 509 Expressway Southbound
+            if let southboundTollRates = TollRateTableStore.getTollRateTableByRoute(id: 4) {
+                self.tollTableItem = southboundTollRates
+            }
+            
+            if (directionSegmentControl.selectedSegmentIndex == 0){
+                tollTableItem = northboundTollRates
+                if (northboundTollRates.message != "") {
+                    messageLabel.text = northboundTollRates.message
+                    infoLinkButton.isHidden = true
+                }
+
+            } else {
+                tollTableItem = southboundTollRates
+                if (southboundTollRates.message != "") {
+                    messageLabel.text = southboundTollRates.message
+                    infoLinkButton.isHidden = true
+                }
+            }
+        }
+        
+        else if let tolls = TollRateTableStore.getTollRateTableByRoute(id: tollId) {
+            tollTableItem = tolls
+
+            if (tolls.message != "") {
+                messageLabel.text = tolls.message
+                infoLinkButton.isHidden = true
+            }
         }
         
     }
+    
+    @objc func goodToGoWebsite() {
+            if let url = URL(string: "https://mygoodtogo.com") {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        MyAnalytics.screenView(screenName: "MyGoodToGo.com")
+        MyAnalytics.event(category: "Tolling", action: "open_link", label: "tolling_good_to_go")
+
+        }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        MyAnalytics.screenView(screenName: "SR520TollRates")
+        MyAnalytics.screenView(screenName: "TollRates")
         refresh(true)
     }
 
@@ -69,10 +135,44 @@ class TollTableViewController: RefreshViewController, UITableViewDelegate, UITab
                     DispatchQueue.main.async { [weak self] in
                         if let selfValue = self {
                             
-                            if let tolls = TollRateTableStore.getTollRateTableByRoute(route: selfValue.stateRoute) {
-                                selfValue.tollTableItem = tolls
-                                selfValue.messageLabel.text = tolls.message
+                            // SR 509 Expressway
+                            if (self?.tollId == 3) {
+                                
+                                // SR 509 Expressway Northbound
+                                if let northboundTollRates = TollRateTableStore.getTollRateTableByRoute(id: 3) {
+                                    self?.northboundTollRates = northboundTollRates
+                                }
+                                
+                                // SR 509 Expressway Southbound
+                                if let southboundTollRates = TollRateTableStore.getTollRateTableByRoute(id: 4) {
+                                    self?.southboundTollRates = southboundTollRates
+                                }
+                                
+                                if (self?.directionSegmentControl.selectedSegmentIndex == 0){
+                                    self?.tollTableItem = self!.northboundTollRates
+                                    if (self?.northboundTollRates.message != "") {
+                                        self?.messageLabel.text = self?.northboundTollRates.message
+                                        self?.infoLinkButton.isHidden = true
+                                    }
+
+                                } else {
+                                    self?.tollTableItem = self!.southboundTollRates
+                                    if (self?.southboundTollRates.message != "") {
+                                        self?.messageLabel.text = self?.northboundTollRates.message
+                                        self?.infoLinkButton.isHidden = true
+                                    }
+
+                                }
+                            }
                             
+                            else if let tolls = TollRateTableStore.getTollRateTableByRoute(id: selfValue.tollId) {
+                                selfValue.tollTableItem = tolls
+                                
+                                if (tolls.message != "") {
+                                    selfValue.messageLabel.text = tolls.message
+                                    selfValue.infoLinkButton.isHidden = true
+                                }
+
                             }
                             
                             selfValue.tableView.reloadData()
@@ -92,6 +192,82 @@ class TollTableViewController: RefreshViewController, UITableViewDelegate, UITab
                 
             })
         }
+    }
+    
+    @IBAction func indexChanged(_ sender: UISegmentedControl) {
+        switch (sender.selectedSegmentIndex){
+        case 0:
+            tollTableItem = northboundTollRates
+            tableView.reloadData()
+            break
+        case 1:
+            tollTableItem = southboundTollRates
+            tableView.reloadData()
+            break
+        default:
+            break
+        }
+    }
+    
+    @IBAction func infoLinkAction(_ sender: UIButton) {
+        if tollId == 1 {
+            MyAnalytics.event(category: "Tolling", action: "open_link", label: "tolling_16")
+            let config = SFSafariViewController.Configuration()
+            config.entersReaderIfAvailable = false
+            let svc = SFSafariViewController(url: URL(string: "https://wsdot.wa.gov/travel/roads-bridges/toll-roads-bridges-tunnels/tacoma-narrows-bridge-tolling")!, configuration: config)
+            
+            if #available(iOS 10.0, *) {
+                svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor
+                svc.preferredBarTintColor = ThemeManager.currentTheme().mainColor
+            } else {
+                svc.view.tintColor = ThemeManager.currentTheme().mainColor
+            }
+            self.present(svc, animated: true, completion: nil)
+        } else if tollId == 2 {
+            MyAnalytics.event(category: "Tolling", action: "open_link", label: "tolling_99")
+
+            let config = SFSafariViewController.Configuration()
+            config.entersReaderIfAvailable = false
+            let svc = SFSafariViewController(url: URL(string: "https://wsdot.wa.gov/travel/roads-bridges/toll-roads-bridges-tunnels/sr-99-tunnel-tolling")!, configuration: config)
+            
+            if #available(iOS 10.0, *) {
+                svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor
+                svc.preferredBarTintColor = ThemeManager.currentTheme().mainColor
+            } else {
+                svc.view.tintColor = ThemeManager.currentTheme().mainColor
+            }
+            self.present(svc, animated: true, completion: nil)
+        }
+     else if tollId == 3 {
+        MyAnalytics.event(category: "Tolling", action: "open_link", label: "tolling_509")
+        
+        let config = SFSafariViewController.Configuration()
+        config.entersReaderIfAvailable = false
+        let svc = SFSafariViewController(url: URL(string: "https://wsdot.wa.gov/travel/roads-bridges/toll-roads-bridges-tunnels/sr-509-expressway")!, configuration: config)
+        
+        if #available(iOS 10.0, *) {
+            svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor
+            svc.preferredBarTintColor = ThemeManager.currentTheme().mainColor
+        } else {
+            svc.view.tintColor = ThemeManager.currentTheme().mainColor
+        }
+        self.present(svc, animated: true, completion: nil)
+    }
+        else if tollId == 5 {
+           MyAnalytics.event(category: "Tolling", action: "open_link", label: "tolling_520")
+           
+           let config = SFSafariViewController.Configuration()
+           config.entersReaderIfAvailable = false
+           let svc = SFSafariViewController(url: URL(string: "https://wsdot.wa.gov/travel/roads-bridges/toll-roads-bridges-tunnels/sr-520-bridge-tolling")!, configuration: config)
+           
+           if #available(iOS 10.0, *) {
+               svc.preferredControlTintColor = ThemeManager.currentTheme().secondaryColor
+               svc.preferredBarTintColor = ThemeManager.currentTheme().mainColor
+           } else {
+               svc.view.tintColor = ThemeManager.currentTheme().mainColor
+           }
+           self.present(svc, animated: true, completion: nil)
+       }
     }
 
     // MARK: Table View Data Source Methods
