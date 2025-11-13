@@ -24,6 +24,7 @@ import RealmSwift
 
 class TollRateTableItem: Object {
 
+    @objc dynamic var id: Int = 0
     @objc dynamic var route: Int = 0
     @objc dynamic var message: String = ""
     @objc dynamic var numCol: Int = 0
@@ -33,6 +34,6 @@ class TollRateTableItem: Object {
     @objc dynamic var delete: Bool = false
 
     override static func primaryKey() -> String? {
-        return "route"
+        return "id"
     }
 }

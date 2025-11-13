@@ -84,14 +84,12 @@ class TollRatesTableViewController: RefreshViewController, UITableViewDataSource
             tollRateView(route: 99)
         case "SR 167 Express Toll Lanes":
             tollRateView(route: 167)
-        case "I-405 Express Toll Lanes":
-            tollRateView(route: 405)
         case "SR 509 Expressway":
             tollRateView(route: 509)
         case "SR 520 Bridge":
             tollRateView(route: 520)
-
-
+        case "I-405 Express Toll Lanes":
+            tollRateView(route: 405)
         default:
             break
         }
@@ -102,24 +100,11 @@ class TollRatesTableViewController: RefreshViewController, UITableViewDataSource
         let tollViewStoryboard: UIStoryboard = UIStoryboard(name: "TollRates", bundle: nil)
         let tollsNav = tollViewStoryboard.instantiateViewController(withIdentifier: "TollsNav") as! UINavigationController
     
-        if (route == 509) {
-            let tollRatesTableView = tollViewStoryboard.instantiateViewController(withIdentifier: "TollRatesTableViewController") as! TollRatesTableViewController
-            let tollViewTableView = tollViewStoryboard.instantiateViewController(withIdentifier: "SR509") as! TollTableViewController
-            tollViewTableView.tollRoute = 509
-            tollViewTableView.title = "SR 509"
-            if UIDevice.current.userInterfaceIdiom == .pad {
-                tollsNav.setViewControllers([tollRatesTableView, tollViewTableView], animated: false)
-
-            } else {
-                tollsNav.setViewControllers([tollViewTableView], animated: false)
-
-            }
-        }
-        
-        else if (route == 16) {
+        // SR 16 Tacoma Narrows Bridge
+        if (route == 16) {
             let tollRatesTableView = tollViewStoryboard.instantiateViewController(withIdentifier: "TollRatesTableViewController") as! TollRatesTableViewController
             let tollViewTableView = tollViewStoryboard.instantiateViewController(withIdentifier: "SR16") as! TollTableViewController
-            tollViewTableView.tollRoute = 16
+            tollViewTableView.tollId = 1
             tollViewTableView.title = "SR 16"
             
             if UIDevice.current.userInterfaceIdiom == .pad {
@@ -130,24 +115,12 @@ class TollRatesTableViewController: RefreshViewController, UITableViewDataSource
 
             }
         }
-        else if (route == 520) {
-            let tollRatesTableView = tollViewStoryboard.instantiateViewController(withIdentifier: "TollRatesTableViewController") as! TollRatesTableViewController
-            let tollViewTableView = tollViewStoryboard.instantiateViewController(withIdentifier: "SR520") as! TollTableViewController
-            tollViewTableView.tollRoute = 520
-            tollViewTableView.title = "SR 520"
-            
-            if UIDevice.current.userInterfaceIdiom == .pad {
-                tollsNav.setViewControllers([tollRatesTableView, tollViewTableView], animated: false)
-
-            } else {
-                tollsNav.setViewControllers([tollViewTableView], animated: false)
-
-            }
-        }
+        
+        // SR 99 Tunnel
         else if (route == 99) {
             let tollRatesTableView = tollViewStoryboard.instantiateViewController(withIdentifier: "TollRatesTableViewController") as! TollRatesTableViewController
             let tollViewTableView = tollViewStoryboard.instantiateViewController(withIdentifier: "SR99") as! TollTableViewController
-            tollViewTableView.tollRoute = 99
+            tollViewTableView.tollId = 2
             tollViewTableView.title = "SR 99"
             
             if UIDevice.current.userInterfaceIdiom == .pad {
@@ -157,6 +130,8 @@ class TollRatesTableViewController: RefreshViewController, UITableViewDataSource
 
             }
         }
+        
+        // SR 167 Express Toll Lanes
         else if (route == 167) {
             let tollRatesTableView = tollViewStoryboard.instantiateViewController(withIdentifier: "TollRatesTableViewController") as! TollRatesTableViewController
             let dynamicTollRatesViewController = tollViewStoryboard.instantiateViewController(withIdentifier: "SR167") as! DynamicTollRatesViewController
@@ -171,6 +146,39 @@ class TollRatesTableViewController: RefreshViewController, UITableViewDataSource
 
             }
         }
+        
+        // SR 509 Expressway
+        else if (route == 509) {
+            let tollRatesTableView = tollViewStoryboard.instantiateViewController(withIdentifier: "TollRatesTableViewController") as! TollRatesTableViewController
+            let tollViewTableView = tollViewStoryboard.instantiateViewController(withIdentifier: "SR509") as! TollTableViewController
+            tollViewTableView.tollId = 3
+            tollViewTableView.title = "SR 509"
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                tollsNav.setViewControllers([tollRatesTableView, tollViewTableView], animated: false)
+
+            } else {
+                tollsNav.setViewControllers([tollViewTableView], animated: false)
+
+            }
+        }
+
+        // SR 520 Bridge
+        else if (route == 520) {
+            let tollRatesTableView = tollViewStoryboard.instantiateViewController(withIdentifier: "TollRatesTableViewController") as! TollRatesTableViewController
+            let tollViewTableView = tollViewStoryboard.instantiateViewController(withIdentifier: "SR520") as! TollTableViewController
+            tollViewTableView.tollId = 5
+            tollViewTableView.title = "SR 520"
+            
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                tollsNav.setViewControllers([tollRatesTableView, tollViewTableView], animated: false)
+
+            } else {
+                tollsNav.setViewControllers([tollViewTableView], animated: false)
+
+            }
+        }
+        
+        // I-405 Express Toll Lanes
         else if (route == 405) {
             let tollRatesTableView = tollViewStoryboard.instantiateViewController(withIdentifier: "TollRatesTableViewController") as! TollRatesTableViewController
             let dynamicTollRatesViewController = tollViewStoryboard.instantiateViewController(withIdentifier: "I405") as! DynamicTollRatesViewController
@@ -191,9 +199,9 @@ class TollRatesTableViewController: RefreshViewController, UITableViewDataSource
 
     func setNavController(newNavigationController: UINavigationController){
 
-        let rootViewController = UIApplication.shared.windows.first!.rootViewController as! UISplitViewController
-        newNavigationController.viewControllers[0].navigationItem.leftBarButtonItem = rootViewController.displayModeButtonItem
+        let rootViewController = UIApplication.shared.windows.first?.rootViewController as! UISplitViewController?
+        newNavigationController.viewControllers[0].navigationItem.leftBarButtonItem = rootViewController?.displayModeButtonItem
         newNavigationController.viewControllers[0].navigationItem.leftItemsSupplementBackButton = true
-        rootViewController.showDetailViewController(newNavigationController, sender: self)
+        rootViewController?.showDetailViewController(newNavigationController, sender: self)
     }
 }

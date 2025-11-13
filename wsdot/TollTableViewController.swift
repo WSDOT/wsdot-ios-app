@@ -43,7 +43,7 @@ class TollTableViewController: RefreshViewController, UITableViewDelegate, UITab
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var infoLinkButton: UIButton!
     
-    var tollRoute: Int = 0
+    var tollId: Int = 0
 
     @IBOutlet weak var directionSegmentControl: UISegmentedControl!
     
@@ -60,20 +60,26 @@ class TollTableViewController: RefreshViewController, UITableViewDelegate, UITab
         
         infoLinkButton.tintColor = ThemeManager.currentTheme().darkColor
         
-        if let tolls = TollRateTableStore.getTollRateTableByRoute(route: tollRoute) {
-            self.tollTableItem = tolls
-
-        }
+        self.edgesForExtendedLayout = []
         
-        if (self.tollRoute == 509) {
+        let websiteButton = UIBarButtonItem(title: "My Good To Go", style: .plain, target: self, action: #selector(goodToGoWebsite))
+           navigationItem.rightBarButtonItem = websiteButton
+        
+        // SR 509 Expressway
+        if (self.tollId == 3) {
             
-            if let northboundTollRates = TollRateTableStore.getTollRateTableByRoute(route: 50978) {
+            directionSegmentControl.isHidden = false
+            
+            // SR 509 Expressway Northbound
+            if let northboundTollRates = TollRateTableStore.getTollRateTableByRoute(id: 3) {
                 self.tollTableItem = northboundTollRates
             }
             
-            if let southboundTollRates = TollRateTableStore.getTollRateTableByRoute(route: 50983) {
+            // SR 509 Expressway Southbound
+            if let southboundTollRates = TollRateTableStore.getTollRateTableByRoute(id: 4) {
                 self.tollTableItem = southboundTollRates
             }
+            
             if (directionSegmentControl.selectedSegmentIndex == 0){
                 tollTableItem = northboundTollRates
                 if (northboundTollRates.message != "") {
@@ -90,7 +96,7 @@ class TollTableViewController: RefreshViewController, UITableViewDelegate, UITab
             }
         }
         
-        else if let tolls = TollRateTableStore.getTollRateTableByRoute(route: tollRoute) {
+        else if let tolls = TollRateTableStore.getTollRateTableByRoute(id: tollId) {
             tollTableItem = tolls
 
             if (tolls.message != "") {
@@ -99,16 +105,6 @@ class TollTableViewController: RefreshViewController, UITableViewDelegate, UITab
             }
         }
         
-        self.edgesForExtendedLayout = []
-        
-        let websiteButton = UIBarButtonItem(title: "My Good To Go", style: .plain, target: self, action: #selector(goodToGoWebsite))
-           navigationItem.rightBarButtonItem = websiteButton
-        
-        if (tollRoute == 509) {
-            directionSegmentControl.isHidden = false
-        }
-        
-
     }
     
     @objc func goodToGoWebsite() {
@@ -139,13 +135,16 @@ class TollTableViewController: RefreshViewController, UITableViewDelegate, UITab
                     DispatchQueue.main.async { [weak self] in
                         if let selfValue = self {
                             
-                            if (self?.tollRoute == 509) {
+                            // SR 509 Expressway
+                            if (self?.tollId == 3) {
                                 
-                                if let northboundTollRates = TollRateTableStore.getTollRateTableByRoute(route: 50978) {
+                                // SR 509 Expressway Northbound
+                                if let northboundTollRates = TollRateTableStore.getTollRateTableByRoute(id: 3) {
                                     self?.northboundTollRates = northboundTollRates
                                 }
                                 
-                                if let southboundTollRates = TollRateTableStore.getTollRateTableByRoute(route: 50983) {
+                                // SR 509 Expressway Southbound
+                                if let southboundTollRates = TollRateTableStore.getTollRateTableByRoute(id: 4) {
                                     self?.southboundTollRates = southboundTollRates
                                 }
                                 
@@ -166,7 +165,7 @@ class TollTableViewController: RefreshViewController, UITableViewDelegate, UITab
                                 }
                             }
                             
-                            if let tolls = TollRateTableStore.getTollRateTableByRoute(route: selfValue.stateRoute) {
+                            else if let tolls = TollRateTableStore.getTollRateTableByRoute(id: selfValue.tollId) {
                                 selfValue.tollTableItem = tolls
                                 
                                 if (tolls.message != "") {
@@ -211,7 +210,7 @@ class TollTableViewController: RefreshViewController, UITableViewDelegate, UITab
     }
     
     @IBAction func infoLinkAction(_ sender: UIButton) {
-        if tollRoute == 16 {
+        if tollId == 1 {
             MyAnalytics.event(category: "Tolling", action: "open_link", label: "tolling_16")
             let config = SFSafariViewController.Configuration()
             config.entersReaderIfAvailable = false
@@ -224,7 +223,7 @@ class TollTableViewController: RefreshViewController, UITableViewDelegate, UITab
                 svc.view.tintColor = ThemeManager.currentTheme().mainColor
             }
             self.present(svc, animated: true, completion: nil)
-        } else if tollRoute == 99 {
+        } else if tollId == 2 {
             MyAnalytics.event(category: "Tolling", action: "open_link", label: "tolling_99")
 
             let config = SFSafariViewController.Configuration()
@@ -239,7 +238,7 @@ class TollTableViewController: RefreshViewController, UITableViewDelegate, UITab
             }
             self.present(svc, animated: true, completion: nil)
         }
-     else if tollRoute == 509 {
+     else if tollId == 3 {
         MyAnalytics.event(category: "Tolling", action: "open_link", label: "tolling_509")
         
         let config = SFSafariViewController.Configuration()
@@ -254,7 +253,7 @@ class TollTableViewController: RefreshViewController, UITableViewDelegate, UITab
         }
         self.present(svc, animated: true, completion: nil)
     }
-        else if tollRoute == 520 {
+        else if tollId == 5 {
            MyAnalytics.event(category: "Tolling", action: "open_link", label: "tolling_520")
            
            let config = SFSafariViewController.Configuration()
