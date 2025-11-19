@@ -193,7 +193,7 @@ DEPENDENCIES:
   - Google-Mobile-Ads-SDK
   - GoogleMaps (~> 3.10.0)
   - NotificationBannerSwift (= 3.2.0)
-  - RealmSwift (~> 10.54.5)
+  - RealmSwift (~> 10.54.6)
   - SDWebImage (~> 5.21.1)
   - SwiftyJSON (~> 5.0.2)
 
@@ -266,6 +266,6 @@ SPEC CHECKSUMS:
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftyJSON: f5b1bf1cd8dd53cd25887ac0eabcfd92301c6a5a
 
-PODFILE CHECKSUM: e8843fd5264d66474b48ba61a6c37ce2ba7e65b5
+PODFILE CHECKSUM: 83c6c5ebd177cc9b2dd12212ba689548111861fa
 
 COCOAPODS: 1.16.2
