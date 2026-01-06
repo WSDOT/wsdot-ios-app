@@ -311,18 +311,6 @@ class TollRateSignsStore: Decodable {
             return true;
         }
 
-        /*
-         * Temporarily remove these until tolling starts
-         */
-        if tripJson["StartLocationName"].stringValue == "SR 410"
-                && tripJson["TravelDirection"].stringValue == "N" {
-            return true;
-        }
-        if tripJson["StartLocationName"].stringValue == "Stewart Rd"
-                && tripJson["TravelDirection"].stringValue == "N" {
-            return true;
-        }
-
         return false;
     }
 

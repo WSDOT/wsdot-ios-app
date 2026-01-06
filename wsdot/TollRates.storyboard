@@ -129,7 +129,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="x0o-lO-kvk">
-                                <rect key="frame" x="0.0" y="35" width="414" height="746"/>
+                                <rect key="frame" x="0.0" y="35" width="414" height="711"/>
                                 <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="threeColCell" id="rQW-75-swr" customClass="ThreeColTableCell" customModule="WSDOT">
@@ -221,7 +221,7 @@
                             <constraint firstAttribute="trailing" secondItem="voI-Lj-ci2" secondAttribute="trailing" id="VMA-ie-lRp"/>
                             <constraint firstItem="T7m-eA-seQ" firstAttribute="leading" secondItem="3sL-yJ-tPk" secondAttribute="leading" id="YcW-Pd-nvX"/>
                             <constraint firstItem="x0o-lO-kvk" firstAttribute="top" secondItem="3sL-yJ-tPk" secondAttribute="bottom" constant="5" id="fev-u1-jkZ"/>
-                            <constraint firstAttribute="bottom" secondItem="x0o-lO-kvk" secondAttribute="bottom" constant="-35" id="hPV-1Z-0aY"/>
+                            <constraint firstAttribute="bottom" secondItem="x0o-lO-kvk" secondAttribute="bottom" id="hPV-1Z-0aY"/>
                             <constraint firstItem="T7m-eA-seQ" firstAttribute="centerY" secondItem="M94-zf-yaP" secondAttribute="centerY" id="oUB-Sb-QVU"/>
                             <constraint firstItem="x0o-lO-kvk" firstAttribute="leading" secondItem="M94-zf-yaP" secondAttribute="leading" id="uCl-mm-G9I"/>
                             <constraint firstItem="x0o-lO-kvk" firstAttribute="top" secondItem="voI-Lj-ci2" secondAttribute="bottom" constant="30" id="uJw-ug-qps"/>
@@ -394,7 +394,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OYr-mJ-SjK">
-                                <rect key="frame" x="0.0" y="35" width="414" height="793"/>
+                                <rect key="frame" x="0.0" y="35" width="414" height="711"/>
                                 <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="fourColCell" id="l7c-xT-YUc" customClass="FourColTableCell" customModule="WSDOT">
@@ -489,23 +489,19 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="OYr-mJ-SjK" firstAttribute="leading" secondItem="QCH-iJ-OhI" secondAttribute="leading" id="5Ek-l8-NBV"/>
                             <constraint firstItem="dTW-46-RAY" firstAttribute="centerY" secondItem="QCH-iJ-OhI" secondAttribute="centerY" id="8zt-IX-slQ"/>
                             <constraint firstItem="OYr-mJ-SjK" firstAttribute="leading" secondItem="QCH-iJ-OhI" secondAttribute="leading" id="CR2-J0-qmk"/>
-                            <constraint firstItem="4Gk-Ri-MYy" firstAttribute="leading" secondItem="QCH-iJ-OhI" secondAttribute="leading" id="D7O-Ck-8qh"/>
                             <constraint firstItem="dTW-46-RAY" firstAttribute="leading" secondItem="fE5-t2-aeA" secondAttribute="leading" id="Ha0-13-w8V"/>
                             <constraint firstItem="4Gk-Ri-MYy" firstAttribute="leading" secondItem="QCH-iJ-OhI" secondAttribute="leading" id="JYY-xX-TLb"/>
-                            <constraint firstAttribute="trailing" secondItem="OYr-mJ-SjK" secondAttribute="trailing" id="Oc1-S9-HvZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="fE5-t2-aeA" secondAttribute="trailing" id="PHC-TT-zrb"/>
                             <constraint firstItem="fE5-t2-aeA" firstAttribute="leading" secondItem="QCH-iJ-OhI" secondAttribute="leadingMargin" id="QUh-sL-zho"/>
                             <constraint firstAttribute="trailing" secondItem="OYr-mJ-SjK" secondAttribute="trailing" id="fRW-L4-Lr8"/>
                             <constraint firstItem="4ga-Tk-G4K" firstAttribute="top" secondItem="dTW-46-RAY" secondAttribute="bottom" constant="290" id="fVk-z8-NxW"/>
-                            <constraint firstAttribute="trailing" secondItem="4Gk-Ri-MYy" secondAttribute="trailing" id="hhO-Ea-ERf"/>
                             <constraint firstItem="fE5-t2-aeA" firstAttribute="top" secondItem="4Gk-Ri-MYy" secondAttribute="top" constant="-5" id="ogx-K0-2Xc"/>
                             <constraint firstItem="OYr-mJ-SjK" firstAttribute="top" secondItem="4Gk-Ri-MYy" secondAttribute="bottom" constant="30" id="sK0-hz-rI5"/>
                             <constraint firstItem="4Gk-Ri-MYy" firstAttribute="top" secondItem="QCH-iJ-OhI" secondAttribute="top" constant="5" id="wNv-Tg-fxy"/>
                             <constraint firstAttribute="trailing" secondItem="4Gk-Ri-MYy" secondAttribute="trailing" id="yV5-7a-JSe"/>
-                            <constraint firstAttribute="bottom" secondItem="OYr-mJ-SjK" secondAttribute="bottom" constant="-82" id="ykS-wC-a7b"/>
+                            <constraint firstAttribute="bottom" secondItem="OYr-mJ-SjK" secondAttribute="bottom" id="ykS-wC-a7b"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ooD-RG-n99"/>
@@ -893,7 +889,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wYn-Tf-8n2">
-                                <rect key="frame" x="0.0" y="78" width="414" height="689"/>
+                                <rect key="frame" x="0.0" y="78" width="414" height="668"/>
                                 <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="threeColCell" id="edz-Ax-SM6" customClass="ThreeColTableCell" customModule="WSDOT">
@@ -988,10 +984,9 @@
                         <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="wYn-Tf-8n2" secondAttribute="trailing" id="0kX-cg-I4K"/>
-                            <constraint firstAttribute="bottom" secondItem="wYn-Tf-8n2" secondAttribute="bottom" constant="-21" id="0vP-4e-u3C"/>
                             <constraint firstItem="Kui-Si-oO1" firstAttribute="leading" secondItem="7Qh-hb-zGL" secondAttribute="leading" constant="15" id="3sr-QD-gCY"/>
                             <constraint firstItem="ivn-Lf-9IS" firstAttribute="leading" secondItem="7Qh-hb-zGL" secondAttribute="leadingMargin" id="7eQ-a3-tvS"/>
-                            <constraint firstAttribute="bottom" secondItem="wYn-Tf-8n2" secondAttribute="bottom" constant="-21" id="8hq-Gj-ush"/>
+                            <constraint firstAttribute="bottom" secondItem="wYn-Tf-8n2" secondAttribute="bottom" id="8hq-Gj-ush"/>
                             <constraint firstItem="wYn-Tf-8n2" firstAttribute="top" secondItem="Kui-Si-oO1" secondAttribute="bottom" constant="12" id="Dxh-eX-er5"/>
                             <constraint firstItem="6eY-jV-vA2" firstAttribute="bottom" secondItem="Kui-Si-oO1" secondAttribute="top" constant="-30" id="HJt-go-bnw"/>
                             <constraint firstItem="wYn-Tf-8n2" firstAttribute="leading" secondItem="7Qh-hb-zGL" secondAttribute="leading" id="JI3-Hk-t9Z"/>
@@ -1017,7 +1012,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="xtX-gv-a7z"/>
+        <segue reference="M3o-fM-HcD"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="icStarSmall" width="24" height="24"/>
@@ -1028,7 +1023,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiarySystemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
