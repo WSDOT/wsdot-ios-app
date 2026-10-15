@@ -305,7 +305,7 @@ class TollTableViewController: RefreshViewController, UITableViewDelegate, UITab
             
             
             if (tollTableItem.tollTable[indexPath.row].header) {
-                cell.backgroundColor = UIColor.groupTableViewBackground
+                cell.backgroundColor = UIColor.systemGroupedBackground
             } else {
             
                 if #available(iOS 13, *){
@@ -362,7 +362,7 @@ class TollTableViewController: RefreshViewController, UITableViewDelegate, UITab
         
         
             if (tollTableItem.tollTable[indexPath.row].header) {
-                cell.backgroundColor = UIColor.groupTableViewBackground
+                cell.backgroundColor = UIColor.systemGroupedBackground
             } else {
                 
                 if #available(iOS 13, *){
