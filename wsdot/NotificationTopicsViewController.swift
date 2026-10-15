@@ -128,7 +128,7 @@ class NotificationTopicsViewController: RefreshViewController, UITableViewDelega
     }
 
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        (view as! UITableViewHeaderFooterView).backgroundView?.backgroundColor = UIColor.groupTableViewBackground
+        (view as! UITableViewHeaderFooterView).backgroundView?.backgroundColor = UIColor.systemGroupedBackground
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

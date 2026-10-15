@@ -15,6 +15,8 @@ Washington State Traveler information provide by The Washington State Department
 * Amtrak Cascades Train Schedules.
 
 ## Dependencies
+This project uses [CocoaPods](https://cocoapods.org/) (v1.17.0) for dependency management.
+
 * [Alamofire](https://github.com/Alamofire/Alamofire)
 * [EasyTipView](https://github.com/teodorpatras/EasyTipView)
 * [Firebase/AdMob](https://firebase.google.com/docs/admob/ios/quick-start)

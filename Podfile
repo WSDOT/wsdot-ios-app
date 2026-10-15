@@ -1,5 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '12.0'
+platform :ios, '15.0'
 use_frameworks!
 
 target 'WSDOT' do
@@ -9,8 +9,8 @@ target 'WSDOT' do
     pod 'Firebase/Performance'
     pod 'Firebase/Crashlytics'
     pod 'GoogleMaps', '~> 3.10.0'
-    pod 'RealmSwift', '~> 10.54.6'
-    pod 'Alamofire', '~> 5.10.2'
+    pod 'RealmSwift', '~> 20.0.6'
+    pod 'Alamofire', '~> 5.12.2'
     pod 'SwiftyJSON', '~> 5.0.2'
     pod 'SDWebImage', '~> 5.21.5'
     pod 'EasyTipView', '~> 2.1.0'
@@ -24,8 +24,8 @@ target 'WSDOTTests' do
     pod 'Firebase/Performance'
     pod 'Firebase/Crashlytics'
     pod 'GoogleMaps', '~> 3.10.0'
-    pod 'RealmSwift', '~> 10.54.6'
-    pod 'Alamofire', '~> 5.10.2'
+    pod 'RealmSwift', '~> 20.0.6'
+    pod 'Alamofire', '~> 5.12.2'
     pod 'SwiftyJSON', '~> 5.0.2'
     pod 'SDWebImage', '~> 5.21.5'
     pod 'EasyTipView', '~> 2.1.0'
