@@ -29,8 +29,6 @@
 		5568FB032CB99B7A000850AE /* TravelTimes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5568FB022CB99B7A000850AE /* TravelTimes.storyboard */; };
 		558F4FE82BC9F06000EC6CAD /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 558F4FE72BC9F06000EC6CAD /* PrivacyInfo.xcprivacy */; };
 		55A080A928C91A60004219EE /* BridgeAlertDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A080A828C91A60004219EE /* BridgeAlertDetailViewController.swift */; };
-		55DDDF3E305C871D000945CA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DDDF3D305C871D000945CA /* SceneDelegate.swift */; };
-		55EAAFE53061A25F0034F15B /* HappeningNowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EAAFE43061A25F0034F15B /* HappeningNowViewController.swift */; };
 		55F5319E2CB6FA5900DC6792 /* TravelTimeAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F5319D2CB6FA5900DC6792 /* TravelTimeAlertViewController.swift */; };
 		76763D7C27CFD4E700BBB1DB /* DateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76763D7B27CFD4E700BBB1DB /* DateButton.swift */; };
 		76D632A1289C5F2D00534F11 /* googlemapstyle.json in Resources */ = {isa = PBXBuildFile; fileRef = 76D632A0289C5F2D00534F11 /* googlemapstyle.json */; };
@@ -2583,7 +2581,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5.53.0.1;
+				CURRENT_PROJECT_VERSION = 5.54.0.0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 9544S8BX77;
 				INFOPLIST_FILE = wsdot/Info.plist;
@@ -2592,7 +2590,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.53.0;
+				MARKETING_VERSION = 5.54.0;
 				PRODUCT_BUNDLE_IDENTIFIER = gov.wa.wsdot.iphone.WSDOT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2613,7 +2611,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5.53.0.1;
+				CURRENT_PROJECT_VERSION = 5.54.0.0;
 				DEVELOPMENT_TEAM = 9544S8BX77;
 				INFOPLIST_FILE = wsdot/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -2621,7 +2619,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.53.0;
+				MARKETING_VERSION = 5.54.0;
 				PRODUCT_BUNDLE_IDENTIFIER = gov.wa.wsdot.iphone.WSDOT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
