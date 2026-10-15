@@ -24,7 +24,7 @@ class HomeSplitViewController: UISplitViewController, UISplitViewControllerDeleg
 
     override func viewDidLoad() {
         self.delegate = self
-        self.preferredDisplayMode = .allVisible
+        self.preferredDisplayMode = UISplitViewController.DisplayMode.oneBesideSecondary
     }
 
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
