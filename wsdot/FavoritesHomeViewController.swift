@@ -1,5 +1,5 @@
 //
-//  FavroitesHomeViewController.swift
+//  FavoritesHomeViewController.swift
 //  WSDOT
 //
 //  Copyright (c) 2017 Washington State Department of Transportation
@@ -756,11 +756,11 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
      *    Delete: removes the item from favorites. If trying to delete a route, will ask for comfirmation.
      *    Rename: lets user change the name of the item. Only avaiable for a route.
      */
-    
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
 
-        let renameRouteAction = UITableViewRowAction(style: .normal, title: "Rename") { action, index in
-            
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+
+        let renameRouteAction = UIContextualAction(style: .normal, title: "Rename") { action, view, completionHandler in
+
             tableView.reloadRows(at: [indexPath], with: .right)
             
             let alertController = UIAlertController(title: "Edit Name", message:nil, preferredStyle: .alert)
@@ -787,12 +787,11 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             alertController.addAction(okAction)
             
             self.present(alertController, animated: false, completion: nil)
-            
+            completionHandler(true)
         }
-        
-        let renameLocationAction = UITableViewRowAction(style: UITableViewRowAction.Style.normal, title: "Edit", handler: { (action:UITableViewRowAction,
-            indexPath:IndexPath) -> Void in
-            
+
+        let renameLocationAction = UIContextualAction(style: .normal, title: "Edit") { action, view, completionHandler in
+
             tableView.reloadRows(at: [indexPath], with: .right)
             
             let alertController = UIAlertController(title: "Edit Name", message:nil, preferredStyle: .alert)
@@ -820,11 +819,11 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
             alertController.addAction(okAction)
             
             self.present(alertController, animated: false, completion: nil)
-            
-        })
-        
-        let deleteAction = UITableViewRowAction(style: UITableViewRowAction.Style.default, title: "Remove" , handler: { (action:UITableViewRowAction, indexPath:IndexPath) -> Void in
-        
+            completionHandler(true)
+        }
+
+        let deleteAction = UIContextualAction(style: .destructive, title: "Remove") { action, view, completionHandler in
+
             // Delete the row from the data source
             switch self.getType(forSection: indexPath.section) {
             case .trafficMapLocation:
@@ -873,15 +872,18 @@ extension FavoritesHomeViewController:  UITableViewDataSource, UITableViewDelega
                 self.borderWaits.remove(at: indexPath.row)
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
             }
-        })
-        
-        if getType(forSection: indexPath.section) == .route {
-            return [deleteAction, renameRouteAction]
-        } else if getType(forSection: indexPath.section) == .trafficMapLocation {
-            return [deleteAction, renameLocationAction]
-        } else {
-            return [deleteAction]
+            completionHandler(true)
         }
+
+        let actions: [UIContextualAction]
+        if getType(forSection: indexPath.section) == .route {
+            actions = [deleteAction, renameRouteAction]
+        } else if getType(forSection: indexPath.section) == .trafficMapLocation {
+            actions = [deleteAction, renameLocationAction]
+        } else {
+            actions = [deleteAction]
+        }
+        return UISwipeActionsConfiguration(actions: actions)
     }
  
  // MARK: - Navigation
