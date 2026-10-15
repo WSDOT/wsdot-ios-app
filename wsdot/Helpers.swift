@@ -1,5 +1,5 @@
 //
-//  Consts.swift
+//  Helpers.swift
 //  WSDOT
 //
 //  Copyright (c) 2016 Washington State Department of Transportation
@@ -16,6 +16,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
+
 import UIKit
 import NotificationBannerSwift
 
@@ -217,7 +218,7 @@ struct UIHelpers {
     }
     
     static func createActivityIndicator() -> UIActivityIndicatorView {
-        let activityIndicator = UIActivityIndicatorView(style: .white)
+        let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
         activityIndicator.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30)
