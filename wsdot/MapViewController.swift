@@ -17,6 +17,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
+
 import UIKit
 import CoreLocation
 import GoogleMaps
@@ -126,13 +127,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMUCluster
     
     func goToUsersLocation() {
         if let mapView = view as? GMSMapView{
-            if CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
+            let status = locationManager.authorizationStatus
+            if status == .authorizedWhenInUse || status == .authorizedAlways {
                 if let location = locationManager.location?.coordinate {
                     mapView.animate(toLocation: location)
                 }
             } else if !CLLocationManager.locationServicesEnabled() {
                 self.present(AlertMessages.getAlert("Location Services Are Disabled", message: "You can enable location services from Settings.", confirm: "OK"), animated: true, completion: nil)
-            } else if CLLocationManager.authorizationStatus() == .denied {
+            } else if status == .denied {
                 self.present(AlertMessages.getAlert("\"WSDOT\" Doesn't Have Permission To Use Your Location", message: "You can enable location services for this app in Settings", confirm: "OK"), animated: true, completion: nil)
             } else {
                 self.locationManager.requestWhenInUseAuthorization()
