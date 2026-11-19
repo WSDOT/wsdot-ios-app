@@ -23,9 +23,16 @@ class WeatherUtils {
     
     // Returns forecast input String
     static func getForecastBriefDescription(_ fullForecast: String, index: Int) -> String {
-        if (fullForecast != ""){
+        
+        if (fullForecast.allSatisfy {$0 == "."}) {
+            return ""
+        }
+        
+        else if (fullForecast != ""){
             return fullForecast.split(separator: ".").map(String.init)[index]
-        } else {
+        }
+        
+        else {
             return ""
         }
     }
